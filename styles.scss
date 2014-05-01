@@ -34,6 +34,7 @@ $arrowheight: 0.35em;
 $arrowhalfbase: 0.7 * $arrowheight; /* 0.577 */
 $arrowbase: 2 * $arrowhalfbase;
 
+$bodyfont: "museo-sans-1", "museo-sans-2", Verdana, Arial, sans-serif;
 $monofont: Menlo, monospace;
 
 .hide {
@@ -41,7 +42,7 @@ $monofont: Menlo, monospace;
 }
 
 html {
-  font-family: "museo-sans-1", "museo-sans-2", Verdana, Arial, sans-serif;
+  font-family: $bodyfont;
   color: $darkestblue;
 }
 body {
@@ -525,13 +526,13 @@ th, td {
 
 div.popup {
   position: absolute;
-  right: 1px;
-  bottom: 2px;
+  right: 100%;
+  top: 15px;
   margin: auto;
   padding: 0 2px;
   background: #ffe780;
   color: black;
-  font-family: "museo-sans-1", "museo-sans-2", Verdana, Arial, sans-serif;
+  font-family: $bodyfont;
   font-variant: normal;
   font-size: 75%;
   border-radius: 1px;
@@ -540,47 +541,47 @@ div.popup {
   -moz-animation-duration: 30s;
   -webkit-animation-duration: 30s;
   -moz-animation-name: fadeinout;
-  -webkit-animation-name: fadeinout;
+  -webkit-animation-name: fadeinout; 
 }
 
 @-moz-keyframes fadeinout {
   from {
-    opacity: 0; 
-    -moz-transform: scale3d(0.7, 0.7, 0.7);
-    -moz-animation-timing-function: ease-out;
+    opacity: 0;
+    -moz-transform: scale3d(0.7, 0.7, 0.7) translate3d(0, -10px, 0);
+    -moz-animation-timing-function: ease-out; 
   }
 
   0.75% {
-    opacity: 1; 
+    opacity: 1;
     -moz-transform: scale3d(1, 1, 1);
   }
 
-  95% {
-    opacity: 1; 
+  99% {
+    opacity: 1;
   }
 
   to {
     opacity: 0;
-  }
+  } 
 }
 
 @-webkit-keyframes fadeinout {
   from {
-    opacity: 0; 
-    -webkit-transform: scale3d(0.7, 0.7, 0.7);
-    -webkit-animation-timing-function: ease-out;
+    opacity: 0;
+    -webkit-transform: scale3d(0.7, 0.7, 0.7) translate3d(0, -10px, 0);
+    -webkit-animation-timing-function: ease-out; 
   }
 
   0.75% {
-    opacity: 1; 
-    -webkit-transform: scale3d(1, 1, 1);
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1); 
   }
 
-  95% {
+  99% {
     opacity: 1; 
   }
 
   to {
-    opacity: 0;
-  }
+    opacity: 0; 
+  } 
 }

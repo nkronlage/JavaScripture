@@ -87,7 +87,7 @@ After first line in the other sections are the member that section describes.  T
 The *parameterList* is a comma separated list of "name : Type" pairs (or empty if there are parameters).  Optional parameters should be wrapped in []. After the name, you can specify " = value" to specify what value is used if the parameter is not specified.  Here are some examples:
 * [isArray(value : Object) : Boolean](http://www.javascripture.com/Array#isArray)
 * [RegExp(pattern : String, \[flags : String\]) : RegExp](http://www.javascripture.com/RegExp#RegExp_String_String)
-* [new Date(year : Number, month : Number, \[date = 1 : Number, \[hours = 0 : Number, \[minutes = 0 : Number, \[seconds = 0 : Number, [milliseconds = 0 : Number\]\]\]\]\]) : Date](http://www.javascripture.com/Date#new_Date_Number_Number_Number_Number_Number_Number_Number)
+* [new Date(year : Number, month : Number, \[date = 1 : Number, \[hours = 0 : Number, \[minutes = 0 : Number, \[seconds = 0 : Number, \[milliseconds = 0 : Number\]\]\]\]\]) : Date](http://www.javascripture.com/Date#new_Date_Number_Number_Number_Number_Number_Number_Number)
 
 If the method takes a function as a parameter, such as a callback, you can specify parameters and return value such as:
 * [prototype.forEach(callback(item : Object, index : Number, array: Array) : undefined, \[thisArg : Object\]) : undefined](http://www.javascripture.com/Array#forEach)
@@ -107,8 +107,8 @@ After the first line of the section comes the description text for that
 member. In the description area, there is some special syntax to add
 links, code tags and examples.
 
-* Use %%*link*|*Link Description*%% to generate &lt;a href="link"&gt;Link Description&lt;a&gt;
-* Use \*\**Code*\*\* to generate &lt;code&gt;Code&lt;code&gt;
+* Use %%*link*|*Link Description*%% to generate &lt;a href="link"&gt;Link Description&lt;/a&gt;
+* Use \*\**Code*\*\* to generate &lt;code&gt;Code&lt;/code&gt;
 
 Also inside the description section you can add an example using the format:
 
