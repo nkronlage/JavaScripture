@@ -1,0 +1,101 @@
+<% 
+var renderGroup = function(name, group, obj, headerOnly) {
+  if (group && group.length) {
+    var link = name.replace(' ', '');
+
+    var res;
+
+    if (headerOnly) {
+      res = "<div class='group'>";
+      res += "<a href='#" + link + "'>" + name + '</a>';
+      res += "</div>";
+    }
+    else {
+      res = "<div class='group collapsed'>";
+      res += "<a href='#" + link + "' onclick='expandoClicked(this.parentNode); return false;'>";
+      res += "<div class='arrow'> </div>";
+      res += name + '</a>';
+      res += "<div class='subgroup'>";
+      group.forEach(function(m, i) {
+        res += "<a href='#" + getAnchorName(m) + "'" + ((m.name.length > 15) ? ' title="' + m.name + '"' : '' ) + ">" + m.name + '</a>';
+      });
+      res += "</div>"; // subgroup
+      res += "</div>"; // group
+    }
+    return res;
+  }
+  return '';
+}
+%>
+
+<nav class='leftnav'>
+
+  <div id='searchContainer'>
+    <input id='searchBox' type='text' placeholder='Search (Ctrl + S)' autocomplete='false' autofocus='autofocus'> </input>
+    <div id='resultsBox' style='display:none;'> </div>
+  </div>
+
+  <div id='apichooser'>
+    <a href='#' onclick='openApiChooser(); return false;'>
+      <div class='arrow'> </div>
+      <span id='selectedsets'></span>
+    </a>
+    <div id='obscure'> </div>
+    <div id='apisets'>
+      <ul>
+        <% for (var setName in apiSets) { %>
+          <li><label><input id='inc<%= setName %>' type='checkbox'><%= setName %></label></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+
+  <div class='toc'>
+  <% var types = [];
+     var thisSet;
+     var thisSetName;
+     for (var setName in apiSets) {
+       var set = apiSets[setName];
+       for (var i = 0; i < set.length; i++) {
+         if (obj && set[i].name === obj.name) {
+           thisSet = set;
+           thisSetName = setName;
+         }
+         types.push({ set: setName, name: set[i].name });
+       }
+     }
+     types.sort(function(x, y) { return x.name.localeCompare(y.name); });
+  %>
+
+  <% if (obj) { %>
+    <h2><%= obj.name %></h2>
+    <div class='navgroup'>
+      <%- renderGroup('Constructors', obj.constructors, obj, true) %>
+      <%- renderGroup('Instance Indexers', obj.instanceIndexers, obj, true) %>
+      <%- renderGroup('Instance Properties', obj.instanceProperties, obj) %>
+      <%- renderGroup('Instance Methods', obj.instanceMethods, obj) %>
+      <%- renderGroup('Instance Events', obj.instanceEvents, obj) %>
+      <%- renderGroup(obj.name + ' Properties', obj.properties, obj) %>
+      <%- renderGroup(obj.name + ' Methods', obj.methods, obj) %>
+      <% if (obj.details) { %>
+        <a href='<%= obj.name %>#Details'>Details</a>
+      <% } %>
+    </div>
+
+    <h2><%= obj.apiSet.name %> API</h2>
+    <div class='navgroup'>
+      <% thisSet.forEach(function(type) { %> 
+          <a href='/<%= type.name %>' class='<%= thisSetName %>'<%- (type.name.length > 15) ? ' title="' + type.name + '"' : '' %>><%= type.name %></a>
+      <% }); %>
+    </div>
+  <% } %>
+
+  <h2>All API</h2>
+  <div id='rootObjs' class='navgroup'>
+    <% types.forEach(function(type) { %>
+      <a href='/<%= type.name %>' class='<%= type.set %>'<%- (type.name.length > 15) ? ' title="' + type.name + '"' : '' %>><%= type.name %></a>
+    <% }); %>
+    <span class='empty'>No API set selected.</span>
+  </div>
+  </div>
+</nav>

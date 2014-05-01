@@ -1,0 +1,208 @@
+Number : Object
+
+A numerical value.  JavaScript stores numbers as 64 bit (8 byte) double 
+precision floats. 
+
+Primitive:
+true
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+
+----
+Number(value : Object) : Number
+
+Coerces **value** to a number.  Usually this method is not necessary since
+JavaScript will automatically coerce a value to a number when it is 
+used in a number context.  **+value** is another way to coerce a value
+to a number. This coercion is very strict and will return %%#NaN|**NaN**%%
+if the specified value cannot be converted to a **Number**. %%/Global#parseInt|**parseInt**%%
+and %%/Global#parseFloat|**paseFloat**%% can also be used to convert a %%/String|**String**%%
+to a **Number**.
+
+<example>
+var one = '1';
+console.log(one + 2); // 2 is converted to '2' and concatinated with '1'
+console.log(Number(one) + 2); // convert '1' to a number first
+console.log(+one + 2); // another way to convert to a number 
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+
+
+----
+new Number(value : Number) : Object
+
+Creates a box for **value**.
+
+<example>
+var literal = 123;
+var boxed = new Number(123);
+literal.foo = "bar";
+boxed.foo = "bar";
+console.log(literal.foo);
+console.log(boxed.foo);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+
+
+----
+prototype.toExponential([fractionalDigits : Number]) : String
+
+Returns a string representation of **this** in scientific notation. If 
+**fractionalDigits** is specified, that many digits will follow the '.'.  
+
+<example>
+var x = 123.456;
+console.log(x.toExponential());
+console.log(x.toExponential(2));
+console.log(x.toExponential(6));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=169
+
+
+----
+prototype.toFixed([fractionalDigits = 0 : Number]) : String
+
+Returns a string representation of **this** with fractionalDigits following
+the '.'. 
+
+<example>
+var x = 123.456;
+console.log(x.toFixed());
+console.log(x.toFixed(2));
+console.log(x.toFixed(6));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=168
+
+
+----
+prototype.toPrecision(precision : Number) : String
+
+Returns a string representation of **this** with **precision** 
+significant digits. 
+
+<example>
+var x = 123.456;
+console.log(x.toPrecision(1));
+console.log(x.toPrecision(2));
+console.log(x.toPrecision(3));
+console.log(x.toPrecision(4));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=170
+
+
+----
+prototype.toString([base = 10 : Number]) : String
+
+Returns a string representation of **this** in the specified base.  
+
+<example>
+var x = 0x123ABC;
+console.log(x.toString());
+console.log(x.toString(16));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+
+
+----
+prototype.toLocaleString() : String
+
+Returns a string representation of **this** that conforms to the number format
+specification of the current locale.
+
+<example>
+var x = 123.456;
+console.log(x.toString());
+console.log(x.toLocaleString());
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=168
+
+----
+MAX_VALUE : Number
+
+The largest possible Number less than infinity.
+
+<example>
+console.log(Number.MAX_VALUE);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+
+----
+MIN_VALUE : Number
+
+The smallest possible Number greater than 0.
+
+<example>
+console.log(Number.MIN_VALUE);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+
+----
+NaN : Number
+
+Floating point Not a Number. Signifies an error in a calculation.
+**NaN** is never equal to another **Number**, even if it is **NaN**.
+To check if something is **NaN**, use %%Global#isNaN|isNan()%%. 
+Also exists as %%Global#NaN|**NaN**%% in the global namespace.
+
+<example>
+console.log(Number.NaN);
+console.log(NaN);
+console.log(0/0);
+console.log(Math.sqrt(-1));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+
+
+----
+NEGATIVE_INFINITIY : Number
+
+Negative infinity.
+
+<example>
+console.log(Number.NEGATIVE_INFINITY);
+console.log(-Infinity);
+console.log(-1/0);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+
+----
+POSITIVE_INFINITIY : Number
+
+Positive infinity.
+
+Also exists as %%Global#Infinity|**Infinity**%% in the global namespace.
+
+<example>
+console.log(Number.POSITIVE_INFINITY);
+console.log(Infinity);
+console.log(1/0);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+

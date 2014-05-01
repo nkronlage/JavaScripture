@@ -1,0 +1,5 @@
+ChannelSplitterNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#ChannelSplitterNode
+

@@ -1,0 +1,186 @@
+MouseEvent : UIEvent
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#events-MouseEvent
+
+AlternateSpec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-MouseEvent
+
+----
+new MouseEvent( \
+  type : String,  \
+  [eventInit : { \
+     bubbles : Boolean, \
+     cancelable: Boolean, \
+     view : Window, \
+     detail : Number, \
+     screenX : Number, \
+     screenY : Number, \
+     clientX : Number, \
+     clientY : Number, \
+     ctrlKey : Boolean, \
+     shiftKey : Boolean, \
+     altKey : Boolean, \
+     metaKey : Boolean, \
+     button : Number, \
+     buttons : Number, \
+     relatedTarget : Element \
+  }]) : MouseEvent
+
+
+----
+instance.screenX : Number
+
+
+ReadOnly:
+true
+
+----
+instance.screenY : Number
+
+
+ReadOnly:
+true
+
+----
+instance.pageX : Number
+
+
+ReadOnly:
+true
+
+----
+instance.pageY : Number
+
+
+ReadOnly:
+true
+
+
+----
+instance.clientX : Number
+
+ReadOnly:
+true
+
+----
+instance.clientY : Number
+
+
+ReadOnly:
+true
+
+----
+instance.x : Number
+
+
+ReadOnly:
+true
+
+----
+instance.y : Number
+
+
+ReadOnly:
+true
+
+----
+instance.offsetX : Number
+
+
+ReadOnly:
+true
+
+----
+instance.offsetY : Number
+
+
+ReadOnly:
+true
+
+----
+instance.ctrlKey : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.shiftKey : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.altKey : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.metaKey : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.button : Number
+
+The mouse button that generated this event.  **0** is the primary (left) button.
+**1** is the middle button.  **2** is the secondary (right) button.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#events-MouseEvent-button
+
+ReadOnly:
+true
+
+----
+instance.buttons : Number
+
+The bitwise combinations of mouse buttons pressed.
+
+**1** is the primary (left) button.
+**2** is the secondary (right) button.
+**4** is the middle button.
+
+Will be **0** when no buttons are pressed.  
+
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#events-MouseEvent-buttons
+
+ReadOnly:
+true
+
+----
+instance.relatedTarget : Element
+
+Only applies to 
+focusin, 
+focusout, 
+mouseenter, 
+mouseleave, 
+mouseout, 
+mouseover, 
+dragenter, 
+and
+dragexit
+events.  It is the element that the receives the opposite event pair for this event.
+For example, the **relatedTarget** of a mouseenter is the element that will receive the 
+mouseleave event. 
+
+ReadOnly:
+true
+
+----
+prototype.initMouseEvent(type : String, bubbles : Boolean, cancelable : Boolean, view : Window, detail : Number, screenX: Number, screenY : Number, clientX : Number, clientY : Number, ctrlKey : Boolean, altKey : Boolean, shiftKey : Boolean, metaKey : Boolean, button : Number, [relatedTarget : Element]) : undefined
+
+
+----
+prototype.getModifierState(keyArg : String) : Boolean
+
+

@@ -1,0 +1,14 @@
+CSSPageRule : CSSRule
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSPageRule
+
+----
+instance.selectorText : String
+
+----
+instance.style : CSSStyleDeclaration
+
+ReadOnly:
+true
+

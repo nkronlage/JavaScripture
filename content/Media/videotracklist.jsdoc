@@ -1,0 +1,31 @@
+VideoTrackList : EventTarget
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#videotracklist
+
+----
+instance[index : Number] : VideoTrack
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+instance.selectedIndex : Number
+
+ReadOnly:
+true
+
+----
+prototype.getTrackById(id : String) : AudioTrack
+
+----
+event.change : listener(event : Event) : undefined
+
+----
+event.addtrack : listener(event : Event) : undefined
+
+----
+event.removetrack : listener(event : Event) : undefined

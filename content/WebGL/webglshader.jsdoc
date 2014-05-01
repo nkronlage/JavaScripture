@@ -1,0 +1,8 @@
+WebGLShader : Object
+
+**WebGLShader** describes a vertex or fragment shader. **WebGLShader**s must be compiled 
+into a %%WebGLProgram|**WebGLProgram**%%.
+**WebGLShader**s are created with %%WebGLRenderingContext#createShader|**createShader()**%%.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.8

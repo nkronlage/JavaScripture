@@ -1,0 +1,107 @@
+DOMTokenList : Object
+
+Spec:
+http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#domtokenlist
+
+
+----
+instance[index : Number] : String
+
+Retrieves the token at **index**.  You can also use the %%#item|**item()**%% method.
+
+<htmlexample>
+<span id='foo' class='bar baz'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  for (var i = 0; i < foo.classList.length; i++) {
+    console.log(foo.classList[i]);
+  }
+</script>
+</htmlexample>
+
+
+----
+instance.length : Number
+
+<htmlexample>
+<span id='foo' class='bar baz'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.classList.length);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+prototype.item(index : Number) : String
+
+Same as %%#indexer_Number|**this[index]**%%.
+
+----
+prototype.contains(token : String) : Boolean
+
+<htmlexample>
+<span id='foo' class='bar'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.classList.contains('bar'));
+  console.log(foo.classList.contains('baz'));
+</script>
+</htmlexample>
+
+----
+prototype.add(token : String) : undefined
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+  .baz { color: red; }
+</style>
+<span id='foo' class='bar'>foo</span>
+<button onclick='addClass()'>Add Class</button>
+<script>
+  var addClass = function() {
+    var foo = document.getElementById('foo');
+    foo.classList.add('baz');
+  };
+</script>
+</htmlexample>
+
+----
+prototype.remove(token : String) : undefined
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+  .baz { color: red; }
+</style>
+<span id='foo' class='bar baz'>foo</span>
+<button onclick='removeClass()'>Remove Class</button>
+<script>
+  var removeClass = function() {
+    var foo = document.getElementById('foo');
+    foo.classList.remove('baz');
+  };
+</script>
+</htmlexample>
+
+----
+prototype.toggle(token : String) : Boolean
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+  .baz { color: red; }
+</style>
+<span id='foo' class='bar baz'>foo</span>
+<button onclick='toggleClass()'>Toggle Class</button>
+<script>
+  var toggleClass = function() {
+    var foo = document.getElementById('foo');
+    foo.classList.toggle('baz');
+  };
+</script>
+</htmlexample>
+

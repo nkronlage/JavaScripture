@@ -1,0 +1,11 @@
+CanvasPattern : Object
+
+Represents a repeating pattern that can be used as the %%/CanvasRenderingContext2D#fillStyle|**fillStyle**%%
+or %%/CanvasRenderingContext2D#strokeStyle|**strokeStyle**%% of a
+%%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
+
+Created through
+%%/CanvasRenderingContext2D#createPattern|**createPattern()**%%.
+
+Spec:
+http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#canvaspattern

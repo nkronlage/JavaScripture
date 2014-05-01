@@ -1,0 +1,14 @@
+CompositionEvent : UIEvent
+
+----
+instance.data : String
+
+ReadOnly:
+true
+
+----
+instance.locale : String
+
+ReadOnly: 
+true
+

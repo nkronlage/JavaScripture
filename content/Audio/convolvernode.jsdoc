@@ -1,0 +1,13 @@
+ConvolverNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#ConvolverNode-section
+
+----
+instance.buffer : AudioBuffer
+
+
+----
+instance.normalize : Boolean
+
+

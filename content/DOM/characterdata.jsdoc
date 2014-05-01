@@ -1,0 +1,38 @@
+CharacterData : Node
+
+The base class for %%/Text|Text%%, %%/Comment|Comment%%, and
+%%/ProcessingInstruction|ProcessingInstruction%% Node types.
+
+Spec:
+https://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#characterdata
+
+----
+instance.data : String
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+prototype.appendData(data : String) : undefined
+
+----
+prototype.deleteData(offset : Number, count : Number) : undefined
+
+----
+prototype.insertData(offset : Number, data : String) : undefined
+
+
+----
+prototype.remove() : undefined
+
+
+
+----
+prototype.replaceData(offset : Number, count : Number, data : String) : undefined
+
+----
+prototype.substringData(offset : Number, count : Number) : String
+

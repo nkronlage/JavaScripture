@@ -1,0 +1,22 @@
+AudioListener : Object
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#AudioListener-section
+
+----
+instance.dopplerFactor : Number
+
+
+----
+instance.speedOfSound : Number
+
+
+----
+prototype.setPosition(x : Number, y : Number, z : Number) : undefined
+
+----
+prototype.setOrientation(x : Number, y : Number, z : Number, xUp : Number, yUp : Number, zUp : Number) : undefined
+
+----
+prototype.setVelocity(x : Number, y : Number, z : Number) : undefined
+

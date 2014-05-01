@@ -1,0 +1,16 @@
+HTMLMetaElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlmetaelement
+
+----
+instance.name : String
+
+----
+instance.httpEquiv : String
+
+
+----
+instance.content : String
+

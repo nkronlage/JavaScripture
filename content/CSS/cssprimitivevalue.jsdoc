@@ -1,0 +1,266 @@
+CSSPrimitiveValue : CSSValue
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSPrimitiveValue
+
+----
+instance.primitiveType : Number
+
+ReadOnly:
+true
+
+----
+prototype.setFloatValue(unitType : Number, floatValue : Number) : undefined
+
+----
+prototype.getFloatValue(unitType : Number) : Number
+
+----
+prototype.setStringValue(stringType : Number, stringValue : String) : undefined
+
+----
+prototype.getStringValue() : String
+
+----
+prototype.getCounterValue() : Counter
+
+----
+prototype.getRectValue() : Rect
+
+----
+prototype.getRGBColorValue() : RGBColor
+
+
+----
+CSS_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+CSS_NUMBER : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+CSS_PERCENTAGE : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+CSS_EMS : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+CSS_EXS : Number
+
+ReadOnly:
+true
+
+Value:
+4
+
+----
+CSS_PX : Number
+
+ReadOnly:
+true
+
+Value:
+5
+
+----
+CSS_CM : Number
+
+ReadOnly:
+true
+
+Value:
+6
+
+----
+CSS_MM : Number
+
+ReadOnly:
+true
+
+Value:
+7
+
+----
+CSS_IN : Number
+
+ReadOnly:
+true
+
+Value:
+8
+
+----
+CSS_PT : Number
+
+ReadOnly:
+true
+
+Value:
+9
+
+----
+CSS_PC : Number
+
+ReadOnly:
+true
+
+Value:
+10
+
+----
+CSS_DEG : Number
+
+ReadOnly:
+true
+
+Value:
+11
+
+----
+CSS_RAD : Number
+
+ReadOnly:
+true
+
+Value:
+12
+
+----
+CSS_GRAD : Number
+
+ReadOnly:
+true
+
+Value:
+13
+
+----
+CSS_MS : Number
+
+ReadOnly:
+true
+
+Value:
+14
+
+----
+CSS_S : Number
+
+ReadOnly:
+true
+
+Value:
+15
+
+----
+CSS_HZ : Number
+
+ReadOnly:
+true
+
+Value:
+16
+
+----
+CSS_KHZ : Number
+
+ReadOnly:
+true
+
+Value:
+17
+
+----
+CSS_DIMENSION : Number
+
+ReadOnly:
+true
+
+Value:
+18
+
+----
+CSS_STRING : Number
+
+ReadOnly:
+true
+
+Value:
+19
+
+----
+CSS_URI : Number
+
+ReadOnly:
+true
+
+Value:
+20
+
+----
+CSS_IDENT : Number
+
+ReadOnly:
+true
+
+Value:
+21
+
+----
+CSS_ATTR : Number
+
+ReadOnly:
+true
+
+Value:
+22
+
+----
+CSS_COUNTER : Number
+
+ReadOnly:
+true
+
+Value:
+23
+
+----
+CSS_RECT : Number
+
+ReadOnly:
+true
+
+Value:
+24
+
+----
+CSS_RGBCOLOR : Number
+
+ReadOnly:
+true
+
+Value:
+25

@@ -1,0 +1,41 @@
+DynamicsCompressorNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#DynamicsCompressorNode
+
+----
+instance.threshold : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.knee : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.ratio : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.reduction : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.attack : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.release : AudioParam
+
+ReadOnly:
+true
+

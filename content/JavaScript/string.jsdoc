@@ -1,0 +1,474 @@
+String : Object
+
+Strings contain text.  They are represented as a sequence of characters.
+JavaScript strings are immutable.
+
+Primitive:
+true
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=153
+
+----
+new String(value : String) : Object
+
+Creates a box for a string value.
+
+<example>
+var literal = 'string literal';
+var boxed = new String('boxed string');
+literal.foo = 'bar';
+boxed.foo = 'bar';
+console.log(literal.foo);
+console.log(boxed.foo);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=154
+
+----
+String(value : Object) : String
+
+Returns a string representation of **value** by calling **value.toString()**.
+
+<example>
+console.log(String(true));
+
+var x = {
+  foo: 'bar',
+  toString: function() {
+    return this.foo;
+  }
+};
+
+console.log(String(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=153
+
+----
+instance.length : Number
+
+The **length** property is the number of characters in the string.  It is 1 greater 
+than the index of the last character.
+
+<example>
+console.log(''.length);
+console.log('abc'.length);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+
+----
+prototype.charAt(pos : Number) : String
+
+Returns a **String** of length **1** that contains the character at 
+position **pos**.  Another way to retrieve a character in a string is **this[pos]**.
+
+<example>
+console.log('abc'.charAt(2));
+console.log('abc'[2]);
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=155
+
+----
+prototype.charCodeAt(pos : Number) : Number
+
+Returns the unicode value of the character at position **pos**.  Use 
+%%#fromCharCode|**String.fromCharCode()**%% to generate a string from character code values.
+
+<example>
+console.log('abc'.charCodeAt(2));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=155
+
+----
+prototype.concat(string0 : String, [string1 : String, [...]]) : String
+
+Returns a new **String** formed by joining each of the string parameters.
+
+<example>
+var x = 'a';
+console.log(x.concat('bc', 'd'));
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=155
+
+
+----
+prototype.indexOf(searchString : String, [startingIndex = 0 : Number]) : Number
+
+Returns the first location of **searchString** in **this** starting the 
+search from **startingIndex**.  Returns **-1** if **searchString** is not found.
+
+<example>
+var a = 'abcdbca';
+console.log(a.indexOf('b'));
+console.log(a.indexOf('bc', 2));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=156
+
+----
+prototype.lastIndexOf(searchString : String, [startingIndex : Number]) : Number
+
+Returns the location of **searchString** in **this** starting the search from
+**startingIndex** by searching backwards through the string.  If **startingIndex** 
+is not specified, the search starts from the end of the string.
+Returns **-1** if **searchString** is not found.
+
+<example>
+var a = 'abcdbca';
+console.log(a.lastIndexOf('b'));
+console.log(a.lastIndexOf('b', 3));
+console.log(a.lastIndexOf('ef', 2));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=156
+
+----
+prototype.localeCompare(that : String) : Number
+
+Compares **this** to **that**.  Returns a negative number if **this** would sort 
+before **that**, **0** if **this** and **that** are equal, and a positive number if 
+**this** would sort after **that**.
+
+<example>
+console.log('hey'.localeCompare('hello'));
+console.log('hey'.localeCompare('hey'));
+console.log('hey'.localeCompare('hi'));
+
+var x = ['foo', 'bar', 'baz'];
+console.log(x.sort(function(a, b) {
+  return a.localeCompare(b)
+}));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=157
+
+----
+prototype.match(regexp : RegExp) : Array<String>
+
+If **regexp** matches **this**, returns a new **Array** with item **0** equal to the
+portion of **this** that matched the regular expression, item **1** equal to the first
+capturing group in **regexp**, item **2** equal to the second capturing group in **regexp**,
+and so on.  The returned **Array** will also have an **index** property set to the
+starting index of the match and an **input** property set to **this**. 
+If **regexp** doesn't match **this**, returns **null**.
+
+<example>
+var regexp = /(\d\d\d)-(\d\d\d\d)/;
+var result = 'call me: 555-4385'.match(regexp);
+if (result) {
+  console.log(result[0]);
+  console.log(result[1]);
+  console.log(result[2]);
+
+  console.log('index: ' + result.index);
+  console.log('input: ' + result.input);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=157
+
+
+----
+prototype.replace(searchValue : String, replaceValue : String) : String
+
+Returns a new **String** where the first occurrence of **searchValue** in **this** is 
+replaced with **replaceValue**.
+
+<example>
+var x = 'abcba'
+console.log(x.replace('b', 'Z'));
+console.log(x); // x is unchanged
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+
+
+----
+prototype.replace(searchValue : String, replaceFunction(match : String, offset : Number, string : String) : String) : String
+
+<p>
+Returns a new **String** where the first occurrence of **searchValue** in **this** is 
+replaced with the value returned from calling **replaceFunction**. 
+</p>
+
+<p>
+The **match** parameter to
+**replaceFunction** is the same as **searchValue**, **offset** is the index in **this**
+where **searchValue** was found, and **string** is **this**.
+</p>
+
+<example>
+var x = 'abcba';
+var replaced = 'abcba'.replace('b', function(match, offset, string) {
+  console.log('found match of "' + match + '"');
+  console.log('  at offset ' + offset);
+  console.log('  of string "' + string + '"');
+
+  return match.toUpperCase();
+});
+
+console.log('replaced=' + replaced);
+console.log('x=' + x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+
+
+----
+prototype.replace(searchValue : RegExp, replaceValue : String) : String
+
+Returns a new **String** where **searchValue** is replaced with **replaceValue**.  
+
+If **searchValue** is a global **RegExp**,
+each match in **this** will be replaced.  Otherwise, just the first match will
+be replaced.
+
+<example>
+var x = 'abcba';
+console.log(x.replace(/b/, 'Z'));
+console.log(x.replace(/b/g, 'Z')); // global RegExp
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+
+----
+prototype.replace(searchValue : RegExp, replaceFunction(match : String, capture1 : String, capture2 : String, ..., offset : Number, string : String) : String) : String
+
+<p>
+Returns a new **String** where **searchValue** matches in **this** is 
+replaced with the value returned from calling **replaceFunction**.  If 
+**searchValue** is a global **RegExp**,
+each match in **this** will be replaced.  Otherwise, just the first match will
+be replaced.
+</p>
+
+<p>
+The **match** parameter to
+**replaceFunction** is the same as **searchValue**, 
+the **capture** parameters are the values of the capture groups in **searchValue** (if any), 
+**offset** is the index in **this** where **searchValue** was found, 
+and **string** is **this**.
+</p>
+
+<example>
+var x = 'abcba';
+var replaced = 'abcba'.replace(/b/g, function(match, offset, string) {
+  console.log('found match of "' + match + '"');
+  console.log('  at offset ' + offset);
+  console.log('  of string "' + string + '"');
+
+  return match.toUpperCase();
+});
+
+console.log('replaced=' + replaced);
+console.log('x=' + x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+
+----
+prototype.search(regexp : RegExp) : Number
+
+Executes **regexp** on **this** and returns the index of the first match. 
+Returns **-1** if **regexp** does not match **this**.
+
+<example>
+console.log('abcba'.search(/b/));
+console.log('abcba'.search(/e/));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=159
+
+----
+prototype.slice(startIndex : Number, [endIndex : Number]) : String
+
+Returns a new string composed of the section of **this** between **start** and
+**end-1**.
+If **endIndex** is not specified, **this.length** is used instead.  If 
+**startIndex** or **endIndex** is negative, **this.length** is added to it before performing
+the substring. Similar to %%#substring|**substring()**%%.
+
+<example>
+var x = 'abcde';
+console.log(x.slice(2));
+console.log(x.slice(-2));
+console.log(x.slice(2, 4));
+console.log(x.slice(2, -1));
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=159
+
+
+----
+prototype.split(separator : String, [limit : Number]) : Array<String>
+
+Splits **this** at **separator** into an **Array** of **String**s. If 
+**limit** is specified, the returned array will contain no more than
+**limit** items.
+
+<example>
+var x = 'abcba';
+console.log(x.split('b'));
+console.log(x.split('b', 2));
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=160
+
+----
+prototype.split(separator : RegExp, [limit : Number]) : Array<String>
+
+Splits **this** into an **Array** of **String**s. If **limit**
+is specified, the returned array will contain no more than 
+**limit** items.
+
+<example>
+var x = 'abcba';
+console.log(x.split(/b/));
+console.log(x.split(/b/, 2));
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=160
+
+----
+prototype.substring(start : Number, [end : Number]) : String
+
+Returns a new string composed of the section of **this** between **start** and
+**end-1**.
+Before performing the operation, **substring** may modifiy the effective values
+of **start** and **end** as follows.  If both **start** and **end** are 
+specified, and **end** is less than **start**, the values are swapped.
+If **start** is less than **0**, it is replaced with **0**.
+If **end** is negative, **this.length** is added to it before performing
+the substring.
+If **end** is not specified, **this.length** is used instead.  
+ Similar to %%#slice|**slice()**%%.
+
+<example>
+var x = 'abcde';
+console.log(x.substring(2));
+console.log(x.substring(-2));
+console.log(x.substring(2, 4));
+console.log(x.substring(4, 2));
+console.log(x.substring(2, -1));
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=162
+
+----
+prototype.toLowerCase() : String
+
+Returns a copy of **this** where each character is lower case.
+
+<example>
+var x = 'aBCdEf';
+console.log(x.toLowerCase());
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=162
+
+----
+prototype.toLocaleLowerCase() : String
+
+Returns a copy of **this** where each character is lower case.
+
+<example>
+var x = 'aBCdEf';
+console.log(x.toLocaleLowerCase());
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+
+----
+prototype.toUpperCase() : String
+
+Returns a copy of **this** where each character is upper case.
+
+<example>
+var x = 'aBCdEf';
+console.log(x.toUpperCase());
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+
+----
+prototype.toLocaleUpperCase() : String
+
+Returns a copy of **this** where each character is upper case.
+
+<example>
+var x = 'aBCdEf';
+console.log(x.toLocaleUpperCase());
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+
+----
+prototype.trim() : String
+
+Returns a copy of **this** with leading and trailing whitespace removed.
+
+<example>
+var x = ' \t ab c ';
+console.log("'" + x.trim() + "'");
+console.log("'" + x + "'"); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+
+----
+fromCharCode(char0 : Number,  [char1 : Number, [...]]) : String
+
+Returns a new string composed of characters from the specified unicode values.
+Use %%#charCodeAt|**charCodeAt()**%% to retrieve character codes from strings.
+
+<example>
+console.log(String.fromCharCode(97, 98, 99));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=154
+
+

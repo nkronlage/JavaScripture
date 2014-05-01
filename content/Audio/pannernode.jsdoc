@@ -1,0 +1,46 @@
+PannerNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#PannerNode-section
+
+----
+instance.panningModel : String
+
+
+----
+prototype.setPosition(x : Number, y : Number, z : Number) : undefined
+
+----
+prototype.setOrientation(x : Number, y : Number, z : Number) : undefined
+
+----
+prototype.setVelocity(x : Number, y : Number, z : Number) : undefined
+
+----
+instance.distanceModel : String
+
+
+----
+instance.refDistance : Number
+
+
+----
+instance.maxDistance : Number
+
+
+----
+instance.rolloffFactor : Number
+
+
+----
+instance.coneInnerAngle : Number
+
+
+----
+instance.coneOuterAngle : Number
+
+
+----
+instance.coneOuterGain : Number
+
+

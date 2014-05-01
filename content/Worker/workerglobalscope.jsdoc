@@ -1,0 +1,220 @@
+WorkerGlobalScope : Global
+
+The following are properties of the global object when running inside
+a %%/Worker|Worker%% background process.  They can be accessed from
+anywhere without additional qualifiers.
+
+Spec:
+http://dev.w3.org/html5/workers/#the-workerglobalscope-common-interface
+
+----
+instance.self : WorkerGlobalScope
+
+Returns the global object itself.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  postMessage(self.location.href);
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log(e.data);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/html5/workers/#dom-workerglobalscope-self
+
+----
+instance.location : Location
+
+Returns the location of the worker script.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  postMessage(location.href);
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log(e.data);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/html5/workers/#dom-workerglobalscope-location
+
+----
+prototype.close() : undefined
+
+Stops the worker.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  var messageCount = 0;
+  setInterval(function() {
+    postMessage(messageCount);
+
+    messageCount++;
+    if (messageCount == 4) {
+      close();
+    }
+  }, 10);
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://dev.w3.org/html5/workers/#dom-workerglobalscope-close
+
+----
+prototype.addEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.addEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.removeEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.removeEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.dispatchEvent(event : Event) : Boolean
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+
+----
+prototype.postMessage(message : Object, [transfer : Array]) : undefined
+
+
+Sends a message to the main thread.  The main thread receives the 
+message through the %%/Worker#onmessage|**onmessage**%% event. 
+**message** will be in the **event.data** property.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  postMessage('foo');
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+</script>
+</htmlexample>
+
+----
+event.message : listener(event : Event) : undefined
+
+Called when %%/Worker#postMessage|**Worker.postMessage()**%% is called.
+**event.data** contains the message passed to **postMessage()**. 
+
+<htmlexample>
+<!-- In this example, the background thread squares
+     numbers and returns them to the main thread. -->
+<script id='code' type='text/plain'>
+  onmessage = function(event) {
+    postMessage(event.data * event.data);
+  };
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+  worker.postMessage(2);
+  worker.postMessage(12);
+  worker.postMessage(30);
+</script>
+</htmlexample>
+
+----
+event.error : listener(error : String) : undefined
+
+Fired when there is an error in the worker.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  onerror = function(e) {
+    postMessage(e);
+  };
+  
+  setTimeout(function() {
+    throw 'foo';
+  }, 10);
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://dev.w3.org/html5/workers/#handler-workerglobalscope-onerror
+
+----
+event.offline : listener(event : Event) : undefined
+
+Fired when the browser loses network connection.
+
+Spec:
+http://dev.w3.org/html5/workers/#handler-workerglobalscope-onoffline
+
+----
+event.online : listener(event : Event) : undefined
+
+Fired when the browser gains network connection.
+
+Spec:
+http://dev.w3.org/html5/workers/#handler-workerglobalscope-ononline
+

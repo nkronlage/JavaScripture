@@ -1,0 +1,31 @@
+SVGStringList : Object
+
+Spec:
+
+----
+instance.numberOfItems : Number
+
+ReadOnly:
+true
+
+----
+prototype.clear() : undefined
+
+----
+prototype.initialize(newItem : String) : String
+
+----
+prototype.getItem(index : Number) : String
+
+----
+prototype.insertItemBefore(newItem : String, index : Number) : String
+
+----
+prototype.replaceItem(newItem : String, index : Number) : String
+
+----
+prototype.removeItem(index : Number) : String
+
+----
+prototype.appendItem(newItem : String) : String
+

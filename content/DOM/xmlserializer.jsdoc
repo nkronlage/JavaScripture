@@ -1,0 +1,10 @@
+XMLSerializer : Object
+
+Spec:
+http://domparsing.spec.whatwg.org/#the-xmlserializer-interface
+
+----
+new XMLSerializer() : XMLSerializer
+
+----
+prototype.serializeToString(root : Node) : String

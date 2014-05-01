@@ -1,0 +1,68 @@
+HTMLAnchorElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlanchorelement
+
+----
+instance.href : String
+
+
+----
+instance.target : String
+
+
+----
+instance.rel : String
+
+
+----
+instance.relList : DOMTokenList
+
+ReadOnly:
+true
+
+----
+instance.media : String
+
+
+----
+instance.hreflang : String
+
+
+----
+instance.type : String
+
+
+----
+instance.text : String
+
+
+----
+instance.protocol : String
+
+
+----
+instance.host : String
+
+
+----
+instance.hostname : String
+
+
+----
+instance.port : String
+
+
+----
+instance.pathname : String
+
+
+----
+instance.search : String
+
+
+----
+instance.hash : String
+
+

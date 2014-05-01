@@ -1,0 +1,87 @@
+HTMLVideoElement : HTMLMediaElement
+
+**HTMLVideoElement** is an element that displays a video.
+It corresponds to the **<video>** tag.
+
+See %%/HTMLMediaElement|HTMLMediaElement%% for the properties, methods and 
+events available on the video element.
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmlvideoelement
+
+----
+instance.width : Number
+
+The display width of the video. 
+If no display size is specified, the %%#videoWidth|**videoWidth**%% will be used.
+
+<htmlexample>
+<video id='video' src='fireworks.ogv' width='150' height='100'></video><br>
+<button onclick='video.paused ? video.play() : video.pause()'>Play/Pause</button>
+<script>
+  var video = document.getElementById('video');
+  console.log(video.width);
+</script>
+</htmlexample>
+
+----
+instance.height : Number
+
+The display height of the video. 
+If no display size is specified, the %%#videoHeight|**videoHeight**%% will be used.
+
+<htmlexample>
+<video id='video' src='fireworks.ogv' width='150' height='100'></video><br>
+<button onclick='video.paused ? video.play() : video.pause()'>Play/Pause</button>
+<script>
+  var video = document.getElementById('video');
+  console.log(video.height);
+</script>
+</htmlexample>
+
+----
+instance.videoWidth : Number
+
+The width of the video data. The video may be displayed at a different size
+by setting %%#width|**width**%% and %%#height|**height**%%.
+
+<htmlexample>
+<video id='video' src='/fireworks.ogv' width='150' height='100'></video><br>
+<button onclick='video.paused ? video.play() : video.pause()'>Play/Pause</button>
+<script>
+  var video = document.getElementById('video');
+  video.addEventListener('loadedmetadata', function() {
+    console.log(video.videoWidth);
+  });
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+instance.videoHeight : Number
+
+The height of the video data. The video may be displayed at a different size
+by setting %%#width|**width**%% and %%#height|**height**%%.
+
+<htmlexample>
+<video id='video' src='/fireworks.ogv' width='150' height='100'></video><br>
+<button onclick='video.paused ? video.play() : video.pause()'>Play/Pause</button>
+<script>
+  var video = document.getElementById('video');
+  video.addEventListener('loadedmetadata', function() {
+    console.log(video.videoHeight);
+  });
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.poster : String
+
+The url of an image to display while the video is loading.
+

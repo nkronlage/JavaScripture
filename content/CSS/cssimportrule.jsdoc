@@ -1,0 +1,23 @@
+CSSImportRule : CSSRule
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSImportRule
+
+----
+instance.href : String
+
+ReadOnly:
+true
+
+----
+instance.media : MediaList
+
+ReadOnly:
+true
+
+----
+instance.styleSheet : CSSStyleSheet
+
+ReadOnly:
+true
+

@@ -1,0 +1,108 @@
+SVGTransform : Object
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#InterfaceSVGTransform
+
+----
+instance.type : Number
+
+ReadOnly:
+true
+
+----
+instance.matrix : SVGMatrix
+
+ReadOnly:
+true
+
+----
+instance.angle : Number
+
+ReadOnly:
+true
+
+
+----
+prototype.setMatrix(matrix : SVGMatrix) : undefined
+
+
+----
+prototype.setTranslate(x : Number, y : Number) : undefined
+
+----
+prototype.setScale(x : Number, y : Number) : undefined
+
+----
+prototype.setRotate(angle : Number, centerX : Number, centerY : Number) : undefined
+
+----
+prototype.setSkewX(angle : Number) : undefined
+
+----
+prototype.setSkewY(angle : Number) : undefined
+
+  void setSkewY(in float angle) raises(DOMException);
+};
+
+----
+SVG_TRANSFORM_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_TRANSFORM_MATRIX : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_TRANSFORM_TRANSLATE : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+SVG_TRANSFORM_SCALE : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+SVG_TRANSFORM_ROTATE : Number
+
+ReadOnly:
+true
+
+Value:
+4
+
+----
+SVG_TRANSFORM_SKEWX : Number
+
+ReadOnly:
+true
+
+Value:
+5
+
+----
+SVG_TRANSFORM_SKEWY : Number
+
+ReadOnly:
+true
+
+Value:
+6

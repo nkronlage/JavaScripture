@@ -1,0 +1,174 @@
+PropertyDescriptor : Object
+
+A **PropertyDescriptor** describes a property on an %%/Object|**Object**%%.
+Any JavaScript object can be used as a **PropertyDescriptor** where
+unspecified properties will be treated as **undefined** or **false**.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=49
+
+----
+instance.configurable : Boolean
+
+Set to **true** if the property descriptor can be changed later.
+
+See the %%/Object#freeze|**Object.freeze()**%% 
+and %%/Object#seal|**Object.seal()**%% 
+methods for ways to set all configurable to false on all properties on 
+an object.
+
+<example>
+var x = {};
+Object.defineProperty(x, 'foo', { value: 1, 
+                                  writable: false,
+                                  enumerable: true,
+                                  configurable: false } );
+
+try {
+  // Attempt to override non-configurable property descriptor
+  Object.defineProperty(x, 'foo', { value: 1, 
+                                    writable: true,
+                                    enumerable: true,
+                                    configurable: false } );
+} catch(e) {
+  console.log('Error:');
+  console.log(e);
+}
+</example>
+
+----
+instance.enumerable : Boolean
+
+Set to **true** if the property is accessed during 
+**for (propertyName in object)**. 
+See the %%/Object#propertyIsEnumerable|**Object.propertyIsEnumerable()**%% 
+method.
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2, 
+                                  writable: true,
+                                  enumerable: false,
+                                  configurable: true } );
+
+// 'foo' is enumerable. 'bar' in not enumerable
+for (var propertyName in x) {
+  console.log(propertyName + ' is ' + x[propertyName]);
+}
+</example>
+
+----
+instance.get : getFunction() : Object
+
+The getter function that returns the value for the property. 
+Use %%#set|**set**%% to specified the setter function.
+
+If **get** or %%#set|**set**%%
+functions are specified, %%#value|**value**%% and %%#writable|**writable**%%
+cannot be specified.
+
+<example>
+var x = { get foo() {
+            console.log('in x.foo getter');
+            return this._foo;
+          },
+          set foo(value) {
+            console.log('in x.foo setter. value = ' + value);
+            this._foo = value;
+          }
+        };
+
+console.log('setting x.foo to 1');
+x.foo = 1;
+
+console.log('getting x.foo');
+console.log(x.foo);
+
+// Equivalent definition of 'foo' using a PropertyDescriptor
+var y = {};
+Object.defineProperty(y, 'foo', { get: function() {
+                                    console.log('in y.foo getter');
+                                    return this._foo;
+                                  },
+                                  set: function() {
+                                    console.log('in y.foo setter. value = ' + value);
+                                    return this._foo;
+                                  },
+                                  enumerable: true,
+                                  configurable: true } );
+</example>
+
+----
+instance.set : setFunction(value : Object) : undefined
+
+The setter function that is called when setting the property. 
+Use %%#get|**get**%% to specified the getter function.
+
+If **get** or %%#set|**set**%% functions are specified, 
+%%#value|**value**%% and %%#writable|**writable**%% cannot be specified.
+
+<example>
+var x = { get foo() {
+            console.log('in x.foo getter');
+            return this._foo;
+          },
+          set foo(value) {
+            console.log('in x.foo setter. value = ' + value);
+            this._foo = value;
+          }
+        };
+
+console.log('setting x.foo to 1');
+x.foo = 1;
+
+console.log('getting x.foo');
+console.log(x.foo);
+
+// Equivalent definition of 'foo' using a PropertyDescriptor
+var y = {};
+Object.defineProperty(y, 'foo', { get: function() {
+                                    console.log('in y.foo getter');
+                                    return this._foo;
+                                  },
+                                  set: function() {
+                                    console.log('in y.foo setter. value = ' + value);
+                                    return this._foo;
+                                  },
+                                  enumerable: true,
+                                  configurable: true } );
+</example>
+
+----
+instance.value : Object
+
+The value stored in the property. **value** can only be specified
+if both %%#get|**get**%% and %%#set|**set**%% functions are not specified.
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2, enumerable: true } );
+for (var propertyName in x) {
+  console.log(propertyName + ' value is ' + x[propertyName]);
+}
+</example>
+
+----
+instance.writable : Boolean
+
+Set to **true** if the property can be modified, **false** otherwise.
+**writable** can only be specified
+if both %%#get|**get**%% and %%#set|**set**%% functions are not specified.
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2,
+                                  writable: false } );
+
+x.foo = 1234;
+console.log(x.foo);
+
+// bar is not writable.  Setting it silently fails.
+x.bar = 1234;
+console.log(x.bar);
+</example>
+

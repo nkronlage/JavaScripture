@@ -1,0 +1,70 @@
+MutationRecord : Object
+
+Spec:
+http://www.w3.org/TR/domcore/#mutationrecord
+
+----
+instance.type : String
+
+ReadOnly:
+true
+
+----
+instance.target : Node
+
+
+ReadOnly:
+true
+
+----
+instance.addedNodes : NodeList
+
+
+ReadOnly:
+true
+
+----
+instance.removedNodes : NodeList
+
+
+ReadOnly:
+true
+
+----
+instance.previousSibling : Node
+
+
+ReadOnly:
+true
+
+----
+instance.nextSibling : Node
+
+
+ReadOnly:
+true
+
+
+----
+instance.attributeName : String
+
+
+ReadOnly:
+true
+
+
+----
+instance.attributeNamespace : String
+
+
+ReadOnly:
+true
+
+
+----
+instance.oldValue : String
+
+
+ReadOnly:
+true
+

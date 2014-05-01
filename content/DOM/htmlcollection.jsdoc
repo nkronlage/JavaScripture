@@ -1,0 +1,26 @@
+HTMLCollection : Object
+
+
+
+Spec:
+http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-htmlcollection
+
+----
+instance[index : Number] : Element
+
+Returns the item at **index** in the collection.  
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+prototype.item(index : Number) : Element
+
+Same as %%#indexer_Number|**this[index]**%%.
+
+----
+prototype.namedItem(name : String) : Element
+

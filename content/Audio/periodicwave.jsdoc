@@ -1,0 +1,10 @@
+PeriodicWave : Object
+
+Describes a waveform that can be used in %%/OscillatorNode|OscillatorNode%%s
+custom wave (set via %%/OscillatorNode|**setPeriodicWave()**%%.
+Use %%/AudioContext#createPeriodicWave|AudioContext.createPeriodicWave()%%
+to create a PeriodicWave.  
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#PeriodicWave
+

@@ -1,0 +1,245 @@
+HTMLInputElement : HTMLElement
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlinputelement
+
+----
+instance.accept : String
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-input-accept
+
+----
+instance.alt : String
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-input-alt
+
+----
+instance.autocomplete : String
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-input-autocomplete
+
+----
+instance.autofocus : Boolean
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-fe-autofocus
+
+----
+instance.defaultChecked : Boolean
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-input-defaultchecked
+
+----
+instance.checked : Boolean
+
+
+----
+instance.dirName : String
+
+----
+instance.disabled : Boolean
+
+
+----
+instance.form : HTMLFormElement
+
+
+ReadOnly:
+true
+
+----
+instance.files : FileList
+
+
+ReadOnly:
+true
+
+----
+instance.formAction : String
+
+
+----
+instance.formEnctype : String
+
+
+----
+instance.formMethod : String
+
+
+----
+instance.formNoValidate : Boolean
+
+
+----
+instance.formTarget : String
+
+----
+instance.height : Number
+
+
+----
+instance.indeterminate : Boolean
+
+
+----
+instance.list : HTMLElement
+
+ReadOnly:
+true
+----
+instance.max : String
+
+
+----
+instance.maxLength : Number
+
+
+----
+instance.min : String
+
+
+----
+instance.multiple : Boolean
+
+
+----
+instance.name : String
+
+
+----
+instance.pattern : String
+
+
+----
+instance.placeholder : String
+
+
+----
+instance.readOnly : Boolean
+
+----
+instance.required : Boolean
+
+
+----
+instance.size : Number
+
+
+----
+instance.src : String
+
+
+----
+instance.step : String
+
+
+----
+instance.type : String
+
+
+----
+instance.defaultValue : String
+
+
+----
+instance.value : String
+
+
+----
+instance.valueAsDate : Date
+
+----
+instance.valueAsNumber : Number
+
+----
+instance.width : Number
+
+
+----
+prototype.stepUp([n : Number]) : undefined
+
+
+----
+prototype.stepDown([n : Number]) : undefined
+
+
+----
+instance.willValidate : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.validity : ValidityState
+
+ReadOnly:
+true
+
+----
+instance.validationMessage : String
+
+
+ReadOnly:
+true
+
+----
+prototype.checkValidity() : Boolean
+
+
+----
+prototype.setCustomValidity(error : String) : undefined
+
+
+
+----
+instance.labels : NodeList
+
+
+ReadOnly:
+true
+
+----
+prototype.select() : undefined
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-select
+
+----
+instance.selectionStart : Number
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-selectionstart
+
+----
+instance.selectionEnd : Number
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-selectionend
+
+----
+instance.selectionDirection : String
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-selectiondirection
+
+----
+prototype.setSelectionRange(start : Number, end : Number, [direction : String]) : undefined
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-setselectionrange
+

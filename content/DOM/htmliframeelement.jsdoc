@@ -1,0 +1,50 @@
+HTMLIFrameElement : HTMLElement
+
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmliframeelement
+
+
+----
+instance.src : String
+
+
+----
+instance.srcdoc : String
+
+
+----
+instance.name : String
+
+----
+instance.sandbox : DOMSettableTokenList
+
+ReadOnly:
+true
+
+----
+instance.seamless : Boolean
+
+----
+instance.allowFullscreen : Boolean
+
+----
+instance.width : String
+
+----
+instance.height : String
+
+
+----
+instance.contentDocument : Document
+
+
+ReadOnly:
+true
+
+----
+instance.contentWindow : Window
+
+ReadOnly:
+true
+

@@ -1,0 +1,7646 @@
+WebGLRenderingContext : Object
+
+<p>
+The **WebGLRenderingContext** is an object that is used to issue WebGL 
+rendering commands to a canvas.  The WebGLRenderingContext is obtained by passing 
+**'webgl'** (many browsers use **'experimental-webgl'** currently) to 
+the %%HTMLCanvasElement#getContext|**HTMLCanvasElement.getContext()**%% 
+method. 
+See %%WebGLContextAttributes|**WebGLContextAttributes**%% for configuration
+options you can specify when calling **getContext()**.
+</p>
+
+<p>
+For detailed information on the shader language used by WebGL, see the
+%%http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf|GLSL Specification%%.
+</p>
+
+<p>
+While developing with WebGL, you can use the debug context to easily
+find errors in your code. The samples below use the debug context 
+to help catch errors but you should remove it in production code.  See
+%%http://www.khronos.org/webgl/wiki/Debugging|http://www.khronos.org/webgl/wiki/Debugging%%
+for more details.
+</p>
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.14
+
+IDL:
+http://www.khronos.org/registry/webgl/specs/latest/webgl.idl
+
+
+----
+instance.canvas : HTMLCanvasElement
+
+The canvas that owns this WebGL context.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+  
+  console.log(gl.canvas === canvas);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.14.1
+
+----
+prototype.getContextAttributes() : WebGLContextAttributes
+
+Returns the attributes used to construct this context.  To modify these
+attributes, pass in the desired attributes to the first call to 
+%%HTMLCanvasElement#getContext|**HTMLCanvasElement.getContext('webgl', attributes)**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var attr = gl.getContextAttributes();
+ 
+  for (var p in attr) {
+    console.log(p + ': ' + attr[p]);
+  }
+</script>
+</htmlexample>
+
+----
+instance.drawingBufferWidth : Number
+
+Returns the width of the owner canvas in pixels.
+
+<htmlexample>
+<canvas id='canvas' width='150' height='75'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+  
+  console.log(gl.drawingBufferWidth);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.drawingBufferHeight : Number
+
+Returns the height of the owner canvas in pixels.
+
+<htmlexample>
+<canvas id='canvas' width='150' height='75'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+  
+  console.log(gl.drawingBufferHeight);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+prototype.isContextLost() : Boolean
+
+IDL:
+boolean isContextLost();
+
+----
+prototype.getSupportedExtensions() : Array<String>
+
+Returns an **Array** of %%String|**String**s%% that indicate
+which extensions this canvas supports. See %%#getExtension|**getExtension()**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  gl.getSupportedExtensions().forEach(function(ext) {
+    console.log(ext);
+  });
+</script>
+</htmlexample>
+
+
+----
+prototype.getExtension(name : String) : Object
+
+Enables the specified extension and returns an object that contains 
+any constants or functions provided by the extension. Call
+%%#getSupportedExtensions|**getSupportedExtensions()**%%
+to get an array of valid extension names. If **name** is not
+in the %%/Array|**Array**%% returned by %%#getSupportedExtensions|**getSupportedExtensions()**%%,
+**getExtension()** will return null.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  gl.getSupportedExtensions().forEach(function(extName) {
+    console.log(extName);
+    var ext = gl.getExtension(extName);
+    for (var n in ext) {
+      console.log('  ' + n + ' = ' + ext[n]);
+    }
+  });
+</script>
+</htmlexample>
+
+IDL:
+object getExtension(DOMString name);
+
+
+----
+prototype.activeTexture(unit : Number) : undefined
+
+Set the texture unit subsequent texture operations apply to.  
+
+<html>
+<dl>
+<dt>
+**unit**
+<dd>
+must be 
+one of %%#TEXTURE0|**TEXTURE0**%%, %%#TEXTURE1|**TEXTURE1**%%, to
+**%%#getParameter|getParameter%%(gl.%%#MAX_COMBINED_TEXTURE_IMAGE_UNITS|MAX_COMBINED_TEXTURE_IMAGE_UNITS%%) - 1**.
+</dl>
+</html>
+
+The default value is **TEXTURE0**.
+
+A texture must be bound to the active texture unit using
+%%#bindTexture|**bindTexture()**%%.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glActiveTexture.xml
+
+----
+prototype.attachShader(program : WebGLProgram, shader : WebGLShader) : undefined
+
+Attaches **shader** to **program**. A program must have both a 
+%%#VERTEX_SHADER|**VERTEX_SHADER**%%
+and
+%%#FRAGMENT_SHADER|**FRAGMENT_SHADER**%% before it can be used.
+**shader** can be attached before its souce has been set.
+
+See also %%#detachShader|**detachShader()**%%.
+
+<htmlexample>
+<canvas id='canvas' width='100' height='100'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Create a buffer with 3 points to form a triangle
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = [
+    -0.5,  -0.5,  0.0,
+     0.5,  -0.5,  0.0,
+     0.0,   0.5,  0.0 ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glAttachShader.xml
+
+
+IDL:
+void attachShader(WebGLProgram program, WebGLShader shader);
+
+
+----
+prototype.bindAttribLocation(program : WebGLProgram, location : Number, attributeName : String) : undefined
+
+Associates a number (**location**) with an attribute (a shader input such as
+vertex position) in **program**.
+Other webgl functions (such as %%#enableVertexAttribArray|**enableVertexAttribArray()**%%
+or %%#vertexAttribPointer|**vertexAttribPointer()**%%) deal with an
+attribute location number instead of the name used in the program and **bindAttribLocation**
+is used to choose the number used for that attribute.
+
+Locations are automatically assigned if you do not call **bindAttribLocation**
+so this method is only necessary if you wish to assign a specific 
+location for an attribute. Use %%#getAttribLocation|**getAttribLocation()**%% to 
+retrieve the automatically assigned location. 
+
+**bindAttribLocation()** must be called before calling %%#linkProgram|**linkProgram(program)**%%
+and
+
+**location** must be an integer in the range **0** to
+**%%#getParameter|getParameter%%(%%#MAX_VERTEX_ATTRIBS|gl.MAX_VERTEX_ATTRIBS%%) - 1**.
+
+<htmlexample>
+<!-- Demonstrates binding the 'vertexPosition' attribute to a 
+     fixed location (in this case 7) -->
+<canvas id='canvas' width='100' height='100'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+
+  // Bind the 'vertexPosition' attribute before linking
+  var vertexPositionLocation = 7; 
+  gl.bindAttribLocation(program, vertexPositionLocation, 'vertexPosition');
+  
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  console.log('expected location: ' + vertexPositionLocation);
+
+  vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  console.log('actual location:   ' + vertexPositionLocation);
+
+  // Create a buffer with 3 points to form a triangle
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = [
+    -0.5,  -0.5,  0.0,
+     0.5,  -0.5,  0.0,
+     0.0,   0.5,  0.0 ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+</script>
+</htmlexample>
+
+IDL:
+void bindAttribLocation(WebGLProgram program, GLuint index, DOMString name);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindAttribLocation.xml
+
+----
+prototype.bindBuffer(target : Number, buffer : WebGLBuffer) : undefined
+
+Sets the current buffer for **target** to **buffer**.  **target** 
+must be either 
+%%#ARRAY_BUFFER|**ARRAY_BUFFER**%% or 
+%%#ELEMENT_ARRAY_BUFFER|**ELEMENT_ARRAY_BUFFER**%%.
+Use %%#bufferData|**bufferData()**%% to fill the bound buffer with data.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml
+
+IDL:
+void bindBuffer(GLenum target, WebGLBuffer buffer);
+
+----
+prototype.bindFramebuffer(target : Number, framebuffer : WebGLFramebuffer) : undefined
+
+Sets the current framebuffer to **framebuffer**.  **target** must be
+%%#FRAMEBUFFER|**FRAMEBUFFER**%%. 
+See %%#createFramebuffer|**createFramebuffer()**%%
+for an example of using **bindFramebuffer()**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindFramebuffer.xml
+
+IDL:
+void bindFramebuffer(GLenum target, WebGLFramebuffer framebuffer);
+----
+prototype.bindRenderbuffer(target : Number, renderbuffer : WebGLRenderbuffer) : undefined
+
+Sets the current renderbuffer to **renderbuffer**. **target** must be
+%%#RENDERBUFFER|**RENDERBUFFER**%%. 
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindRenderbuffer.xml
+
+IDL:
+void bindRenderbuffer(GLenum target, WebGLRenderbuffer renderbuffer);
+
+
+----
+prototype.bindTexture(target : Number, texture : WebGLTexture) : undefined
+
+Sets the specified **target** and **texture** (created with 
+%%#createTexture|**createTexture**%%) for 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+**target** must be one of
+%%#TEXTURE_2D|**TEXTURE_2D**%% or 
+%%#TEXTURE_CUBE_MAP|**TEXTURE_CUBE_MAP**%%
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml
+
+IDL:
+void bindTexture(GLenum target, WebGLTexture texture);
+
+----
+prototype.blendColor(red : Number, green : Number, blue : Number, alpha : Number) : undefined
+
+Specifies the blend color used with %%#blendFunc|**blendFunc()**%%.  
+Each component must be in the range **0.0** to **1.0**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendColor.xml
+
+IDL:
+void blendColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
+
+----
+prototype.blendEquation(mode : Number) : undefined
+
+Same as %%#blendEquationSeparate|**blendEquationSeparate(mode, mode)**%%.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendEquation.xml
+
+IDL:
+void blendEquation(GLenum mode);
+
+----
+prototype.blendEquationSeparate(modeRGB : Number, modeAlpha : Number) : undefined
+
+Sets how the newly rendered pixel color and alpha (src) is combined with the 
+existing framebuffer color and alpha (dst) before storing in the framebuffer.
+
+<html>
+<dl>
+<dt>
+**modeRGB** and **modeAlpha**
+<dd>
+must be one of
+%%#FUNC_ADD|**FUNC_ADD**%%, 
+%%#FUNC_SUBTRACT|**FUNC_SUBTRACT**%%, or
+%%#FUNC_REVERSE_SUBTRACT|**FUNC_REVERSE_SUBTRACT**%%.
+</dl>
+</html>
+
+If the mode is **FUNC_ADD**, the destination color will be src + dst.
+If the mode is **FUNC_SUBTRACT**, the destination color will be src - dst.
+If the mode is **FUNC_REVERSE_SUBTRACT**, the destination color will be dst - src.
+
+Both **modeRGB** and **modeAlpha** default to **FUNC_ADD**.
+
+
+Use 
+**%%#getParameter|getParameter%%(gl.%%#BLEND_EQUATION_RGB|BLEND_EQUATION_RGB%%)**
+and
+**%%#getParameter|getParameter%%(gl.%%#BLEND_EQUATION_ALPHA|BLEND_EQUATION_ALPHA%%)**
+to get the current values. 
+
+See %%#blendFuncSeparate|**blendFuncSeparate()**%% for how src and dst are computed.
+
+Blending must be enabled with 
+**%%#enable|enable%%(%%#BLEND|BLEND%%)**. 
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendEquationSeparate.xml
+
+IDL:
+void blendEquationSeparate(GLenum modeRGB, GLenum modeAlpha);
+
+----
+prototype.blendFunc(srcFactor : Number, dstFactor : Number) : undefined
+
+Same as %%#blendFuncSeparate|**blendFuncSeparate(srcFactor, dstFactor, srcFactor, dstFactor)**%%.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFunc.xml
+
+IDL:
+void blendFunc(GLenum sfactor, GLenum dfactor);
+
+----
+prototype.blendFuncSeparate(srcRGB : Number, dstRGB : Number, srcAlpha : Number, dstAlpha : Number) : undefined
+
+Adjusts the newly rendered pixel color and alpha (src) and existing framebuffer 
+color and alpha in the framebuffer (dst) before being combined
+using %%#blendEquationSeparate|**blendEquationSeparate()**%%.
+
+<html>
+<dl>
+<dt>
+**srcRGB**, **dstRGB**, **srcAlpha**, and **dstAlpha**
+<dd>
+must be one of
+%%#ZERO|**ZERO**%%, %%#ONE|**ONE**%%, %%#SRC_COLOR|**SRC_COLOR**%%,
+%%#ONE_MINUS_SRC_COLOR|**ONE_MINUS_SRC_COLOR**%%, %%#DST_COLOR|**DST_COLOR**%%,
+%%#ONE_MINUS_DST_COLOR|**ONE_MINUS_DST_COLOR**%%, %%#SRC_ALPHA|**SRC_ALPHA**%%,
+%%#ONE_MINUS_SRC_ALPHA|**ONE_MINUS_SRC_ALPHA**%%, %%#DST_ALPHA|**DST_ALPHA**%%,
+%%#ONE_MINUS_DST_ALPHA|**ONE_MINUS_DST_ALPHA**%%, %%#CONSTANT_COLOR|**CONSTANT_COLOR**%%,
+%%#ONE_MINUS_CONSTANT_COLOR|**ONE_MINUS_CONSTANT_COLOR**%%,
+%%#CONSTANT_ALPHA|**CONSTANT_ALPHA**%%,
+%%#ONE_MINUS_CONSTANT_ALPHA|**ONE_MINUS_CONSTANT_ALPHA**%%, or
+%%#SRC_ALPHA_SATURATE|**SRC_ALPHA_SATURATE**%%
+</dl>
+</html>
+
+**srcRGB** and **srcAlpha** default to %%#ONE|**ONE**%%.
+**dstRGB** and **dstAlpha** default to %%#NONE|**NONE**%%.
+
+<p>
+For traditional alpha blending, use: <br>
+**gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ZERO)**.
+</p>
+
+<p>
+For premultiplied alpha blending, use: <br>
+**gl.blendFuncSeparate(gl.ONE, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ZERO)**.
+</p>
+
+<p>
+Use 
+**%%#getParameter|getParameter%%(gl.%%#BLEND_SRC_RGB|BLEND_SRC_RGB%%)**,
+**%%#getParameter|getParameter%%(gl.%%#BLEND_DST_RGB|BLEND_DST_RGB%%)**,
+**%%#getParameter|getParameter%%(gl.%%#BLEND_SRC_ALPHA|BLEND_SRC_ALPHA%%)**,
+and
+**%%#getParameter|getParameter%%(gl.%%#BLEND_DST_ALPHA|BLEND_DST_ALPHA%%)**,
+to get the current values. 
+</p>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFuncSeparate.xml
+
+
+IDL:
+void blendFuncSeparate(GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
+
+----
+prototype.bufferData(target : Number, size : Number, usage : Number) : undefined
+
+Creates the storage for the currently bound buffer.
+
+<html>
+<dl>
+<dt>
+**target** 
+<dd>
+must be one of %%#ARRAY_BUFFER|**ARRAY_BUFFER**%% or %%#ELEMENT_ARRAY_BUFFER|**ELEMENT_ARRAY_BUFFER**%%.
+
+<dt>
+**size**
+<dd>
+the size in bytes of the buffer to allocate.
+
+<dt>
+**usage**
+<dd>
+must be one of 
+%%#STREAM_DRAW|**STREAM_DRAW**%%, 
+%%#STATIC_DRAW|**STATIC_DRAW**%%, 
+or 
+%%#DYNAMIC_DRAW|**DYNAMIC_DRAW**%%.
+
+</dl>
+</html>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml
+
+
+IDL:
+void bufferData(GLenum target, GLsizeiptr size, GLenum usage);
+
+----
+prototype.bufferData(target : Number, data : ArrayBufferView, usage : Number) : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml
+
+IDL:
+void bufferData(GLenum target, ArrayBufferView data, GLenum usage);
+
+----
+prototype.bufferData(target : Number, data : ArrayBuffer, usage : Number) : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml
+
+IDL:
+void bufferData(GLenum target, ArrayBuffer data, GLenum usage);
+
+----
+prototype.bufferSubData(target : Number, offset : Number, data : ArrayBufferView) : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferSubData.xml
+
+IDL:
+void bufferSubData(GLenum target, GLintptr offset, ArrayBufferView data);
+
+----
+prototype.bufferSubData(target : Number, offset : Number, data : ArrayBuffer) : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferSubData.xml
+
+IDL:
+void bufferSubData(GLenum target, GLintptr offset, ArrayBuffer data);
+
+----
+prototype.checkFramebufferStatus(target : Number) : Number
+
+Returns one of the following to indicate the current status of the framebuffer:
+
+%%#FRAMEBUFFER_COMPLETE|**FRAMEBUFFER_COMPLETE**%%,
+%%#FRAMEBUFFER_INCOMPLETE_ATTACHMENT|**FRAMEBUFFER_INCOMPLETE_ATTACHMENT**%%,
+%%#FRAMEBUFFER_INCOMPLETE_DIMENSIONS|**FRAMEBUFFER_INCOMPLETE_DIMENSIONS**%%,
+%%#FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT|**FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT**%%,
+or
+%%#FRAMEBUFFER_UNSUPPORTED|**FRAMEBUFFER_UNSUPPORTED**%%.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCheckFramebufferStatus.xml
+
+IDL:
+GLenum checkFramebufferStatus(GLenum target);
+
+----
+prototype.clear(mask : Number) : undefined
+
+Clears the buffers specified by **mask** where **mask** is the bitwise
+OR (**|**) of one or more of the following values:  
+%%#COLOR_BUFFER_BIT|**COLOR_BUFFER_BIT**%%,
+%%#STENCIL_BUFFER_BIT|**STENCIL_BUFFER_BIT**%%, and 
+%%#DEPTH_BUFFER_BIT|**DEPTH_BUFFER_BIT**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  gl.clearColor(0, 1, 0, 1);
+  gl.clearDepth(1);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glClear.xml
+
+----
+prototype.clearColor(red : Number, green : Number, blue : Number, alpha : Number) : undefined
+
+Specifies the color to fill the color buffer when %%#clear|**clear()**%% is 
+called with the %%#COLOR_BUFFER_BIT|**COLOR_BUFFER_BIT**%%.  The parameters 
+are clamped to the range **0** to **1**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  gl.clearColor(0, 1, 0, 1);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glClearColor.xml
+
+----
+prototype.clearDepth(depth : Number) : undefined
+
+Specifies the value to fill the depth buffer when %%#clear|**clear()**%% is called
+with the %%#DEPTH_BUFFER_BIT|**DEPTH_BUFFER_BIT**%%. **depth** is clamped to
+the range **0** (near) to **1** (far).  Defaults to **1** if not specified. 
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  gl.clearDepth(1);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glClearDepthf.xml
+
+----
+prototype.clearStencil(s : Number) : undefined
+
+Specifies the value (integer) to fill the depth buffer when %%#clear|**clear()**%% is called
+with the %%#STENCIL_BUFFER_BIT|**STENCIL_BUFFER_BIT**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  gl.clearStencil(0);
+  gl.clear(gl.STENCIL_BUFFER_BIT);
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glClearStencil.xml
+
+----
+prototype.colorMask(red : Boolean, green : Boolean, blue : Boolean, alpha : Boolean) : undefined
+
+Turns on or off writing to the specified channels of the frame buffer.
+Defaults to **true** for all channels.
+
+Use **%%#getParameter|getParameter%%(gl.%%#COLOR_WRITEMASK|COLOR_WRITEMASK%%)**
+to get the current value. 
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glColorMask.xml
+
+IDL:
+void colorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha);
+
+----
+prototype.compileShader(shader : WebGLShader) : undefined
+
+Compiles the specified shader. Must be called after setting the source with 
+%%#shaderSource|**shaderSource()**%%.  
+
+If the shader had errors during compilation,
+**%%#getShaderParameter|gl.getShaderParameter%%(shader, %%#COMPILE_STATUS|gl.COMPILE_STATUS%%)**
+will return **false** and you can use 
+%%#getShaderInfoLog|**getShaderInfoLog()**%%
+to get details about the error.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCompileShader.xml
+
+IDL:
+void compileShader(WebGLShader shader);
+
+----
+prototype.copyTexImage2D(target : Number, level : Number, internalformat : Number, x : Number, y : Number, width : Number, height : Number, border : Number) : undefined
+
+Copies pixels from the framebuffer to 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+  must be one of %%#TEXTURE_2D|**TEXTURE_2D**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_X|**TEXTURE_CUBE_MAP_POSITIVE_X**%%, 
+  %%#TEXTURE_CUBE_MAP_NEGATIVE_X|**TEXTURE_CUBE_MAP_NEGATIVE_X**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_Y|**TEXTURE_CUBE_MAP_POSITIVE_Y**%%, 
+  %%#TEXTURE_CUBE_MAP_NEGATIVE_Y|**TEXTURE_CUBE_MAP_NEGATIVE_Y**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_Z|**TEXTURE_CUBE_MAP_POSITIVE_Z**%%, 
+  or %%#TEXTURE_CUBE_MAP_NEGATIVE_Z|**TEXTURE_CUBE_MAP_NEGATIVE_Z**%%.
+
+<dt>
+**level**
+<dd>
+  specifies the mipmap level to copy into.
+
+<dt>
+**internalformat**
+<dd>
+%%#ALPHA|**ALPHA**%%,
+%%#LUMINANCE|**LUMINANCE**%%,
+%%#LUMINANCE_ALPHA|**LUMINANCE_ALPHA**%%,
+%%#RGB|**RGB**%%,
+or %%#RGBA|**RGBA**%%.
+
+<dt>
+**x**, **y**, **width**, **height**
+<dd>
+the rectangle in framebuffer to copy.
+
+<dt>
+**border**
+<dd>
+must be **0**.
+
+</dl>
+</html>
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCopyTexImage2D.xml
+
+IDL:
+void copyTexImage2D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
+
+----
+prototype.copyTexSubImage2D(target : Number, level : Number, textureX : Number, textureY : Number, framebufferX : Number, framebufferY : Number, width : Number, height : Number) : undefined
+
+Copies pixels from the framebuffer to a subregion of 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+  must be one of %%#TEXTURE_2D|**TEXTURE_2D**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_X|**TEXTURE_CUBE_MAP_POSITIVE_X**%%, 
+  %%#TEXTURE_CUBE_MAP_NEGATIVE_X|**TEXTURE_CUBE_MAP_NEGATIVE_X**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_Y|**TEXTURE_CUBE_MAP_POSITIVE_Y**%%, 
+  %%#TEXTURE_CUBE_MAP_NEGATIVE_Y|**TEXTURE_CUBE_MAP_NEGATIVE_Y**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_Z|**TEXTURE_CUBE_MAP_POSITIVE_Z**%%, 
+  or %%#TEXTURE_CUBE_MAP_NEGATIVE_Z|**TEXTURE_CUBE_MAP_NEGATIVE_Z**%%.
+
+<dt>
+**level**
+<dd>
+specifies the mipmap level to copy into.
+
+<dt>
+**textureX**, **textureY**
+<dd>
+the position in the texture to store the copied pixels.
+
+<dt>
+**framebufferX**, **framebufferY**
+<dd>
+the position in the framebuffer to read the pixels to copy.
+
+<dt>
+**width**, **height**
+<dd>
+the size of the region to copy.
+
+</dl>
+</html>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCopyTexSubImage2D.xml
+
+IDL:
+void copyTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+
+----
+prototype.createBuffer() : WebGLBuffer
+
+Creates a buffer. A buffer is memory used to store data 
+passed to the shader program through attributes.
+
+See also 
+%%#bindBuffer|**bindBuffer()**%%, 
+%%#bufferData|**bufferData()**%%, 
+%%#bufferSubData|**bufferSubData()**%%, 
+%%#deleteBuffer|**deleteBuffer()**%%, 
+%%#isBuffer|**isBuffer()**%%, 
+%%#vertexAttribPointer|**vertexAttribPointer()**%%
+and
+%%#enableVertexAttribArray|**enableVertexAttribArray()**%%.
+
+
+
+<htmlexample>
+<canvas id='canvas' width='100' height='100'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Create a buffer with 3 points to form a triangle
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = [
+    -0.5,  -0.5,  0.0,
+     0.5,  -0.5,  0.0,
+     0.0,   0.5,  0.0 ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+</script>
+</htmlexample>
+
+
+IDL:
+WebGLBuffer createBuffer();
+
+----
+prototype.createFramebuffer() : WebGLFramebuffer
+
+Creates a framebuffer that can be used for offscreen rendering.
+
+See also
+%%#bindFramebuffer|**bindFramebuffer()**%%,
+%%#checkFramebufferStatus|**checkFramebufferStatus()**%%,
+%%#deleteFramebuffer|**deleteFramebuffer()**%%,
+%%#framebufferRenderbuffer|**framebufferRenderbuffer()**%%,
+%%#framebufferTexture2D|**framebufferTexture2D()**%%,
+%%#getFramebufferAttachmentParameter|**getFramebufferAttachmentParameter()**%%,
+and
+%%#isFramebuffer|**isFramebuffer()**%%.
+
+
+<htmlexample>
+<!-- This example draws an image to a framebuffer (backed
+     by a texture) as black and white.  Then it draws the 
+     framebuffer texture to the canvas. -->
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+  uniform bool renderingToFramebuffer;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    if (renderingToFramebuffer) {
+      float bw = (textureColor.r + textureColor.g + textureColor.b) / 3.0;
+      gl_FragColor = vec4(bw, bw, bw, 1);
+    }
+    else {
+      gl_FragColor = texture2D(sampler, textureCoord);
+    }
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+    var renderingToFramebufferLocation = gl.getUniformLocation(program, 'renderingToFramebuffer');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    var createAndInitTexture = function(gl, activeTextureUnit) {
+      var texture = gl.createTexture();
+      gl.activeTexture(activeTextureUnit);
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      return texture;
+    };
+
+
+    // Make a texture to store img and track it in gl's TEXTURE0 unit
+    var imgTexture = createAndInitTexture(gl, gl.TEXTURE0);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+    // Make a framebuffer that we will render the image into
+    var framebuffer = gl.createFramebuffer();
+    var framebufferWidth = 32;
+    var framebufferHeight = 32;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+
+    // Make a texture for the framebuffer and store it in TEXTURE1
+    var framebufferTexture = createAndInitTexture(gl, gl.TEXTURE1);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, framebufferWidth, framebufferHeight, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, framebufferTexture, 0);
+
+
+    // Setup the viewport for the framebuffer
+    gl.viewport(0, 0, framebufferWidth, framebufferHeight);
+
+    // Tell the fragment shader we are drawing to the framebuffer
+    gl.uniform1i(renderingToFramebufferLocation, true); 
+
+    // Draw img to the framebuffer
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+
+    // Turn off drawing to a framebuffer (ie, draw to the canvas)
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+    // Setup the viewport for the canvas
+    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+
+    // Change sampler to use TEXTURE1 (the framebuffer)
+    gl.uniform1i(samplerLocation, 1);  
+
+    // Tell the fragment shader we are drawing to the canvas
+    gl.uniform1i(renderingToFramebufferLocation, false); 
+
+    // Draw the framebuffer to the canvas
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  };
+</script>
+</htmlexample>
+
+
+IDL:
+WebGLFramebuffer createFramebuffer();
+
+----
+prototype.createProgram() : WebGLProgram
+
+Creates a shader program. A shader program consists of a
+%%#VERTEX_SHADER|vertex shader%% 
+and 
+%%#FRAGMENT_SHADER|fragment shader%%. 
+
+Use 
+%%#attachShader|**attachShader()**%% to associate shaders
+with the program and
+%%#linkProgram|**linkProgram()**%%
+to finalize the program.
+After linking, use 
+%%#useProgram|**useProgram()**%%
+to select the program to use.
+
+
+IDL:
+WebGLProgram createProgram();
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateProgram.xml
+
+
+----
+prototype.createRenderbuffer() : WebGLRenderbuffer
+
+Creates a renderbuffer.  A renderbuffer is an offscreen section of memory used 
+to store the result of rendering, such as the color buffer, depth buffer, or stencil 
+buffer. 
+
+See also
+%%#framebufferRenderbuffer|**framebufferRenderbuffer()**%%,
+%%#renderbufferStorage|**renderbufferStorage()**%%.
+
+
+<htmlexample>
+<!-- This example draws an image to a framebuffer backed by a 
+     renderbuffer. Then it reads the contents of the renderbuffer
+     and copies it to a 2D canvas. -->
+<canvas id='output' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var output = document.getElementById('output');
+    var offscreenCanvas = document.createElement('canvas');
+    var gl = offscreenCanvas.getContext('webgl') || offscreenCanvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    // Make a texture to store img and track it in gl's TEXTURE0 unit
+    var imgTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+    // Make a framebuffer that we will render into
+    var framebuffer = gl.createFramebuffer();
+    var framebufferWidth = output.width;
+    var framebufferHeight = output.height;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+
+    // Create a renderbuffer to store the rendered result
+    var renderbuffer = gl.createRenderbuffer();
+    gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+    gl.renderbufferStorage(gl.RENDERBUFFER, gl.RGBA4, framebufferWidth, framebufferHeight);
+    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.RENDERBUFFER, renderbuffer);
+
+
+    // Setup the viewport for the framebuffer
+    gl.viewport(0, 0, framebufferWidth, framebufferHeight);
+
+    // Draw img to the framebuffer
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    // Read the contents of the render buffer
+    var data = new Uint8Array(framebufferWidth * framebufferHeight * 4);
+    gl.readPixels(0, 0, framebufferWidth, framebufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, data);
+
+    // Copy the pixels to a 2D canvas
+    var context = output.getContext('2d');
+    var imageData = context.createImageData(framebufferWidth, framebufferHeight);
+
+    imageData.data.set(data);
+    context.putImageData(imageData, 0, 0);
+  };
+</script>
+</htmlexample>
+
+IDL:
+WebGLRenderbuffer createRenderbuffer();
+
+----
+prototype.createShader(type : Number) : WebGLShader
+
+Creates a vertex or fragment shader.
+**type** must be either %%#VERTEX_SHADER|**VERTEX_SHADER**%% or  
+%%#FRAGMENT_SHADER|**FRAGMENT_SHADER**%%.  Shaders must be 
+compiled using %%#compileShader|**compileShader()**%% and then
+attached to a %%/WebGLProgram|**WebGLProgram**%% using
+%%#attachShader|**attachShader()**%% before they can be used.
+
+IDL:
+WebGLShader createShader(GLenum type);
+
+----
+prototype.createTexture() : WebGLTexture
+
+Creates a texture. Use %%#activeTexture|**activeTexture()**%%
+to select a texture unit and then %%#bindTexture|**bindTexture()**%%
+to bind a texture to that unit.
+
+See also 
+%%#copyTexImage2D|**copyTexImage2D()**%%,
+%%#copyTexSubImage2D|**copyTexSubImage2D()**%%,
+%%#deleteTexture|**deleteTexture()**%%,
+%%#framebufferTexture2D|**framebufferTexture2D()**%%,
+%%#getTexParameter|**getTexParameter()**%%,
+%%#isTexture|**isTexture()**%%,
+%%#texImage2D|**texImage2D()**%%,
+%%#texParameterf|**texParameterf()**%%,
+%%#texParameteri|**texParameteri()**%%,
+and
+%%#texSubImage2D|**texSubImage2D()**%%.
+
+<htmlexample>
+<!-- This example draws an image to the canvas -->
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    // Make a texture to store img and track it in gl's TEXTURE0 unit
+    var imgTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+    // Draw the img
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  };
+</script>
+</htmlexample>
+
+IDL:
+WebGLTexture createTexture();
+
+----
+prototype.cullFace(mode : Number) : undefined
+
+Sets which side of the triangle is culled (not drawn).  
+**mode** must be one of %%#BACK|**BACK**%%,
+%%#FRONT|**FRONT**%%, or %%#FRONT_AND_BACK|**FRONT_AND_BACK**%%.
+Defaults to %%#BACK|**BACK**%%.
+
+To turn on culling, you must call **%%#enable|enable%%(%%#CULL_FACE|CULL_FACE%%)**.
+To select which face is the front or back, use %%#frontFace|**frontFace()**%%.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
+
+IDL:
+void cullFace(GLenum mode);
+
+----
+prototype.deleteBuffer(buffer : WebGLBuffer) : undefined
+
+Deletes the specified **buffer**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteBuffer.xml
+
+IDL:
+void deleteBuffer(WebGLBuffer buffer);
+
+----
+prototype.deleteFramebuffer(framebuffer : WebGLFramebuffer) : undefined
+
+Deletes the specified **framebuffer**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteFramebuffer.xml
+
+IDL:
+void deleteFramebuffer(WebGLFramebuffer framebuffer);
+
+----
+prototype.deleteProgram(program : WebGLProgram) : undefined
+
+Deletes the specified **program**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteProgram.xml
+
+IDL:
+void deleteProgram(WebGLProgram program);
+
+----
+prototype.deleteRenderbuffer(renderbuffer : WebGLRenderbuffer) : undefined
+
+Deletes the specified **renderprogram**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteRenderbuffer.xml
+
+IDL:
+void deleteRenderbuffer(WebGLRenderbuffer renderbuffer);
+
+----
+prototype.deleteShader(shader : WebGLShader) : undefined
+
+Deletes the specified **shader**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteShader.xml
+
+IDL:
+void deleteShader(WebGLShader shader);
+
+----
+prototype.deleteTexture(texture : WebGLTexture) : undefined
+
+Deletes the specified **texture**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteTexture.xml
+
+IDL:
+void deleteTexture(WebGLTexture texture);
+
+----
+prototype.depthFunc(func : Number) : undefined
+
+Specifies what function used to compare the
+rendered depth with the existing depth in the framebuffer
+to determine if the pixel will be written to the framebuffer.
+
+**func** must be one of
+%%#NEVER|**NEVER**%%,
+%%#LESS|**LESS**%%, 
+%%#EQUAL|**EQUAL**%%, 
+%%#LEQUAL|**LEQUAL**%%,
+%%#GREATER|**GREATER**%%,
+%%#NOTEQUAL|**NOTEQUAL**%%,
+%%#GEQUAL|**GEQUAL**%%,
+or 
+%%#ALWAYS|**ALWAYS**%%.
+
+Defaults to %%#LESS|**LESS**%%.
+
+Depth test will only be used if enabled with
+**%%#enable|enable%%(%%/WebGLRenderingContext#DEPTH_TEST|DEPTH_TEST%%)**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDepthFunc.xml
+
+IDL:
+void depthFunc(GLenum func);
+
+----
+prototype.depthMask(write : Boolean) : undefined
+
+Turns on or off writing to the depth buffer.  Defaults to **true**.
+Use **%%#getParameter|getParameter%%(gl.%%#DEPTH_WRITEMASK|DEPTH_WRITEMASK%%)**
+to get the current value. 
+
+Depth test will only be used if enabled with
+**%%#enable|enable%%(%%/WebGLRenderingContext#DEPTH_TEST|DEPTH_TEST%%)**.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDepthMask.xml
+
+IDL:
+void depthMask(GLboolean flag);
+
+----
+prototype.depthRange(zNear : Number, zFar : Number) : undefined
+
+Sets how z values returned from the vertex shader are mapped to values to store in
+the depth buffer.  
+
+This mapping is necessary because the 
+vertex shader output z values will be clipped to the range **-1** to **1** 
+but 
+the depth buffer stores depth values in the range **0** to **1**. 
+
+<html>
+<dl>
+<dt>
+**zNear**
+<dd>
+specifies what the vertex shader's **-1** maps to in the depth buffer.
+
+<dt>
+**zFar**
+<dd>
+specifies what the vertex shader's **1** maps to in the depth buffer.
+</dl>
+</html>
+
+By default, **zNear** is **0** and **zFar** is **1**.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDepthRange.xml
+
+
+IDL:
+void depthRange(GLclampf zNear, GLclampf zFar);
+
+----
+prototype.detachShader(program : WebGLProgram, shader : WebGLShader) : undefined
+
+Detaches **shader** from **program**. **shader** must have been 
+attached to **program** using %%#attachShader|**attachShader()**%%.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDetachShader.xml
+
+
+IDL:
+void detachShader(WebGLProgram program, WebGLShader shader);
+
+----
+prototype.disable(capability : Number) : undefined
+
+Turns off a capability. See %%#enable|**enable()**%% for a 
+list of capabilities.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDisable.xml
+
+IDL:
+void disable(GLenum cap);
+
+----
+prototype.disableVertexAttribArray(index : Number) : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDisableVertexAttribArray.xml
+
+IDL:
+void disableVertexAttribArray(GLuint index);
+
+----
+prototype.drawArrays(mode : Number, vertexOffset : Number, vertexCount : Number) : undefined
+
+Draws primitives using the vertex buffer data (stored in the 
+
+%%#ARRAY_BUFFER|**ARRAY_BUFFER**%%
+buffer).
+
+
+<html>
+<dl>
+<dt>
+**mode**
+<dd>
+must be one of
+%%#POINTS|**POINTS**%%,
+%%#LINE_STRIP|**LINE_STRIP**%%,
+%%#LINE_LOOP|**LINE_LOOP**%%,
+%%#LINES|**LINES**%%,
+%%#TRIANGLE_STRIP|**TRIANGLE_STRIP**%%,
+%%#TRIANGLE_FAN|**TRIANGLE_FAN**%%, or
+%%#TRIANGLES|**TRIANGLES**%%.
+
+
+<dt>
+**vertexOffset**
+<dd>
+specifies the index of the first vertex to draw.
+
+<dt>
+**vertexCount**
+<dd>
+specifies the number of vertices to draw.
+</dl>
+</html>
+
+You must call 
+%%#enableVertexAttribArray|**enableVertexAttribArray()**%%
+for each attribute in the vertex shader that uses the vertex data.
+
+See also %%#drawElements|**drawElements()**%%.
+
+
+<htmlexample>
+<canvas id='canvas' width='100' height='100'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Create a buffer with 3 points to form a triangle
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = [
+    -0.5,  -0.5,  0.0,
+     0.5,  -0.5,  0.0,
+     0.0,   0.5,  0.0 ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+</script>
+</htmlexample>
+
+IDL:
+void drawArrays(GLenum mode, GLint first, GLsizei count);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDrawArrays.xml
+
+
+----
+prototype.drawElements(mode : Number, indicesCount : Number, indicesNumberType : Number, indicesOffset : Number) : undefined
+
+Draws primitives using the vertex buffer data (stored in the 
+
+%%#ARRAY_BUFFER|**ARRAY_BUFFER**%%
+buffer) 
+
+and the index buffer data (stored in the 
+
+%%#ELEMENT_ARRAY_BUFFER|**ELEMENT_ARRAY_BUFFER**%%
+buffer).
+
+<html>
+<dl>
+<dt>
+**mode**
+<dd>
+must be one of
+%%#POINTS|**POINTS**%%,
+%%#LINE_STRIP|**LINE_STRIP**%%,
+%%#LINE_LOOP|**LINE_LOOP**%%,
+%%#LINES|**LINES**%%,
+%%#TRIANGLE_STRIP|**TRIANGLE_STRIP**%%,
+%%#TRIANGLE_FAN|**TRIANGLE_FAN**%%, or
+%%#TRIANGLES|**TRIANGLES**%%.
+
+<dt>
+**indicesCount**
+<dd>
+specifies the number of number of indices to use.
+
+<dt>
+**indicesNumberType**
+<dd>
+must be one of
+%%#UNSIGNED_BYTE|**UNSIGNED_BYTE**%%
+or 
+%%#UNSIGNED_SHORT|**UNSIGNED_SHORT**%%.
+
+<dt>
+**indicesOffset**
+<dd>
+specifies the index into the indices array of the first element to draw.
+
+</dl>
+</html>
+
+You must call 
+%%#enableVertexAttribArray|**enableVertexAttribArray()**%%
+for each attribute in the vertex shader that uses the vertex data.
+
+See also %%#drawArrays|**drawArrays()**%%.
+
+
+<htmlexample>
+<canvas id='canvas' width='100' height='100'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Create a buffer with 4 points to form a square
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = [
+    -0.5,  -0.5,  0.0,
+     0.5,  -0.5,  0.0,
+    -0.5,   0.5,  0.0, 
+     0.5,   0.5,  0.0];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  var indicesBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indicesBuffer);
+  var indices = [
+    0, 1, 2,  // Lower left
+    2, 1, 3]; // Upper right
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+  gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+</script>
+</htmlexample>
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDrawElements.xml
+
+IDL:
+void drawElements(GLenum mode, GLsizei count, GLenum type, GLintptr offset);
+
+----
+prototype.enable(capability : Number) : undefined
+
+Turns on a capability.
+
+**capability** must be one of the following:
+
+<html>
+<dl>
+<dt>
+%%#BLEND|**BLEND**%%
+<dd>
+if enabled, will combine the color generated by the fragment shader with the 
+existing color in the framebuffer using the method specified by 
+%%#blendFunc|**blendFunc()**%%. Most commonly used to enable alpha blending. 
+Defaults to disabled.
+
+<dt>
+%%#CULL_FACE|**CULL_FACE**%%
+<dd>
+if enabled, will cull (not draw) triangles based on which face is 
+visible.  See %%#cullFace|**cullFace()**%% and 
+%%#frontFace|**frontFace()**%% to configure culling.
+Defaults to disabled.
+
+<dt>
+%%#DEPTH_TEST|**DEPTH_TEST**%%
+<dd>
+if enabled, fragments will only be written to the framebuffer if they pass
+the depth function (set with %%/WebGLRenderingContext#depthFunc|**gl.depthFunc()**%%).
+See also %%#depthMask|**depthMask()**%%, and
+%%#depthRange|**depthRange()**%%.
+Most commonly used to draw closer objects on top of further away objects.
+Defaults to disabled.
+
+<dt>
+%%#DITHER|**DITHER**%%
+<dd>
+if enabled, the colors will be dithered when written to the color buffer.
+Defaults to enabled.
+
+<dt>
+%%#POLYGON_OFFSET_FILL|**POLYGON_OFFSET_FILL**%%
+<dd>
+if enabled, the offset specified by %%#polygonOffset|**polygonOffset**%% 
+will be added to the depth for the fragment when writing to the depth buffer.
+Most commonly used to draw decals on top of already drawn surfaces.
+Defaults to disabled.
+
+
+<dt>
+%%#SAMPLE_COVERAGE|**SAMPLE_COVERAGE**%%
+<dd>
+Defaults to disabled.
+
+<dt>
+%%#SAMPLE_ALPHA_TO_COVERAGE|**SAMPLE_ALPHA_TO_COVERAGE**%%
+<dd>
+Defaults to disabled.
+
+
+<dt>
+%%#SCISSOR_TEST|**SCISSOR_TEST**%%
+<dd>
+if enabled, fragments outside the scissor rectangle (set with %%#scissor|**scissor()**%%
+will not be drawn.
+Defaults to disabled.
+
+<dt>
+%%#STENCIL_TEST|**STENCIL_TEST**%%
+<dd>
+if enabled, perform a stencil test on each fragment and 
+update the stencil buffer. 
+See also %%#stencilFunc|**stencilFunc**%% and 
+%%#stencilOp|**stencilOp**%%.
+Defaults to disabled.
+
+</dl>
+</html>
+
+Use %%#disable|**disable()**%% to turn off the capability.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnable.xml
+
+IDL:
+void enable(GLenum cap);
+
+----
+prototype.enableVertexAttribArray(attributeLocation : Number) : undefined
+
+Turns on passing data to the vertex shader from the vertex buffer 
+for the specified attribute.
+
+Use %%#getAttribLocation|**getAttribLocation()**%% to retrieve the location
+of an attribute by name.
+
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnableVertexAttribArray.xml
+
+IDL:
+void enableVertexAttribArray(GLuint index);
+
+----
+prototype.finish() : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFinish.xml
+
+IDL:
+void finish();
+
+----
+prototype.flush() : undefined
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFlush.xml
+
+IDL:
+void flush();
+
+----
+prototype.framebufferRenderbuffer(target : Number, attachment : Number, renderbuffertarget : Number, renderbuffer : WebGLRenderbuffer) : undefined
+
+Specifies the **renderbuffer** to use as destination of rendering for 
+the current framebuffer (set 
+with the most recent %%#bindFramebuffer|**bindFramebuffer()**%% call).
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be %%#FRAMEBUFFER|**FRAMEBUFFER**%%.
+
+<dt>
+**attachment**
+<dd>
+determines what is rendered into **renderbuffer**.
+Pass
+%%#COLOR_ATTACHMENT0|**COLOR_ATTACHMENT0**%% for color data, 
+%%#DEPTH_ATTACHMENT|**DEPTH_ATTACHMENT**%% for depth data, 
+or 
+%%#STENCIL_ATTACHMENT|**STENCIL_ATTACHMENT**%% for stencil data.
+
+<dt>
+**renderbuffertarget**
+<dd>
+must be %%#RENDERBUFFER|**RENDERBUFFER**%%.
+
+<dt>
+**renderbuffer**
+<dd>
+the buffer to store the rendered output.
+</dl>
+</html>
+
+<htmlexample>
+<!-- This example draws an image to a framebuffer backed by a 
+     renderbuffer. Then it reads the contents of the renderbuffer
+     and copies it to a 2D canvas. -->
+<canvas id='output' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var output = document.getElementById('output');
+    var offscreenCanvas = document.createElement('canvas');
+    var gl = offscreenCanvas.getContext('webgl') || offscreenCanvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    // Make a texture to store img and track it in gl's TEXTURE0 unit
+    var imgTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+    // Make a framebuffer that we will render into
+    var framebuffer = gl.createFramebuffer();
+    var framebufferWidth = output.width;
+    var framebufferHeight = output.height;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+
+    // Create a renderbuffer to store the rendered result
+    var renderbuffer = gl.createRenderbuffer();
+    gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+    gl.renderbufferStorage(gl.RENDERBUFFER, gl.RGBA4, framebufferWidth, framebufferHeight);
+    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.RENDERBUFFER, renderbuffer);
+
+
+    // Setup the viewport for the framebuffer
+    gl.viewport(0, 0, framebufferWidth, framebufferHeight);
+
+    // Draw img to the framebuffer
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    // Read the contents of the render buffer
+    var data = new Uint8Array(framebufferWidth * framebufferHeight * 4);
+    gl.readPixels(0, 0, framebufferWidth, framebufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, data);
+
+    // Copy the pixels to a 2D canvas
+    var context = output.getContext('2d');
+    var imageData = context.createImageData(framebufferWidth, framebufferHeight);
+
+    imageData.data.set(data);
+    context.putImageData(imageData, 0, 0);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFramebufferRenderbuffer.xml
+
+IDL:
+void framebufferRenderbuffer(GLenum target, GLenum attachment, GLenum renderbuffertarget, WebGLRenderbuffer renderbuffer);
+
+----
+prototype.framebufferTexture2D(target : Number, attachment : Number, textarget : Number, texture : WebGLTexture, level : Number) : undefined
+
+Specifies the **texture** to use as destination of rendering for 
+the current framebuffer (set 
+with the most recent %%#bindFramebuffer|**bindFramebuffer()**%% call).
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be %%#FRAMEBUFFER|**FRAMEBUFFER**%%.  
+
+<dt>
+**attachment** 
+
+<dd>
+determines what is rendered into **renderbuffer**.
+Pass
+%%#COLOR_ATTACHMENT0|**COLOR_ATTACHMENT0**%% for color data, 
+%%#DEPTH_ATTACHMENT|**DEPTH_ATTACHMENT**%% for depth data, 
+or 
+%%#STENCIL_ATTACHMENT|**STENCIL_ATTACHMENT**%% for stencil data.
+
+<dt>
+**target** 
+<dd>must be one of
+  %%#TEXTURE_2D|**TEXTURE_2D**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_X|**TEXTURE_CUBE_MAP_POSITIVE_X**%%, 
+  %%#TEXTURE_CUBE_MAP_NEGATIVE_X|**TEXTURE_CUBE_MAP_NEGATIVE_X**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_Y|**TEXTURE_CUBE_MAP_POSITIVE_Y**%%, 
+  %%#TEXTURE_CUBE_MAP_NEGATIVE_Y|**TEXTURE_CUBE_MAP_NEGATIVE_Y**%%, 
+  %%#TEXTURE_CUBE_MAP_POSITIVE_Z|**TEXTURE_CUBE_MAP_POSITIVE_Z**%%, 
+  or %%#TEXTURE_CUBE_MAP_NEGATIVE_Z|**TEXTURE_CUBE_MAP_NEGATIVE_Z**%%.
+
+<dt>
+**texture**
+<dd>
+the texture to store the rendered output.
+
+<dt>
+**level**
+<dd>
+must be **0**.
+</dl>
+</html>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFramebufferTexture2D.xml
+
+----
+prototype.frontFace(mode : Number) : undefined
+
+Determines which side of triangles is the front face.
+**mode** must be one of
+%%#CW|**CW**%% or
+%%#CCW|**CCW**%%.
+
+To turn on culling, you must call **%%#enable|enable%%(%%#CULL_FACE|CULL_FACE%%)**.
+To select which face is culled, use %%#cullFace|**cullFace()**%%.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFrontFace.xml
+
+IDL:
+void frontFace(GLenum mode);
+
+----
+prototype.generateMipmap(target : Number) : undefined
+
+Generate the mipmap for 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+A mipmap is a set of textures that are 1/2, 1/4, 1/8,
+etc of the original image.  The mipmap allows higher
+quality rendering when drawing the texture at smaller 
+sizes.
+
+**target** must be one of 
+%%#TEXTURE_2D|**TEXTURE_2D**%%
+or 
+%%#TEXTURE_CUBE_MAP|**TEXTURE_CUBE_MAP**%%.
+
+Note, you can only generate mipmaps for textures where the
+width and height are both powers of **2** (such as **128**, **256**, **512**, etc).
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenerateMipmap.xml
+
+IDL:
+void generateMipmap(GLenum target);
+
+----
+prototype.getActiveAttrib(program : WebGLProgram, index : Number) : WebGLActiveInfo
+
+Returns information about an attribute in **program**. **program** must 
+be %%#linkProgram|linked%% before calling **getActiveAttrib()**.
+**index** must be between **0** and 
+**%%#getProgramParameter|gl.getProgramParameter%%(program, %%#ACTIVE_ATTRIBUTES|ACTIVE_ATTRIBUTES%%) - 1**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveAttrib.xml
+
+IDL:
+WebGLActiveInfo getActiveAttrib(WebGLProgram program, GLuint index);
+
+----
+prototype.getActiveUniform(program : WebGLProgram, index : Number) : WebGLActiveInfo
+
+Returns information about a uniform in **program**. **program** must 
+be %%#linkProgram|linked%% before calling **getActiveUniform()**.
+**index** must be between **0** and 
+**%%#getProgramParameter|gl.getProgramParameter%%(program, %%#ACTIVE_UNIFORMS|ACTIVE_UNIFORMS%%) - 1**.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveUniform.xml
+
+IDL:
+WebGLActiveInfo getActiveUniform(WebGLProgram program, GLuint index);
+
+----
+prototype.getAttachedShaders(program : WebGLProgram) : Array<WebGLShader>
+
+IDL:
+WebGLShader[ ] getAttachedShaders(WebGLProgram program);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetAttachedShaders.xml
+
+----
+prototype.getAttribLocation(program : WebGLProgram, name : String) : Number
+
+
+
+
+IDL:
+GLint getAttribLocation(WebGLProgram program, DOMString name);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetAttribLocation.xml
+
+
+----
+prototype.getParameter(parameter : Number) : Object
+
+**parameter** must be one of
+%%#ACTIVE_TEXTURE|**ACTIVE_TEXTURE**%%,
+%%#ALIASED_LINE_WIDTH_RANGE|**ALIASED_LINE_WIDTH_RANGE**%%,
+%%#ALIASED_POINT_SIZE_RANGE|**ALIASED_POINT_SIZE_RANGE**%%,
+%%#ALPHA_BITS|**ALPHA_BITS**%%,
+%%#ARRAY_BUFFER_BINDING|**ARRAY_BUFFER_BINDING**%%,
+%%#BLEND|**BLEND**%%,
+%%#BLEND_DST_ALPHA|**BLEND_DST_ALPHA**%%,
+%%#BLEND_DST_RGB|**BLEND_DST_RGB**%%,
+%%#BLEND_EQUATION_ALPHA|**BLEND_EQUATION_ALPHA**%%,
+%%#BLEND_EQUATION_RGB|**BLEND_EQUATION_RGB**%%,
+%%#BLEND_SRC_ALPHA|**BLEND_SRC_ALPHA**%%,
+%%#BLEND_SRC_RGB|**BLEND_SRC_RGB**%%,
+%%#BLUE_BITS|**BLUE_BITS**%%,
+%%#COLOR_CLEAR_VALUE|**COLOR_CLEAR_VALUE**%%,
+%%#COLOR_WRITEMASK|**COLOR_WRITEMASK**%%,
+%%#COMPRESSED_TEXTURE_FORMATS|**COMPRESSED_TEXTURE_FORMATS**%%,
+%%#CULL_FACE|**CULL_FACE**%%,
+%%#CULL_FACE_MODE|**CULL_FACE_MODE**%%,
+%%#CURRENT_PROGRAM|**CURRENT_PROGRAM**%%,
+%%#DEPTH_BITS|**DEPTH_BITS**%%,
+%%#DEPTH_CLEAR_VALUE|**DEPTH_CLEAR_VALUE**%%,
+%%#DEPTH_FUNC|**DEPTH_FUNC**%%,
+%%#DEPTH_RANGE|**DEPTH_RANGE**%%,
+%%#DEPTH_TEST|**DEPTH_TEST**%%,
+%%#DEPTH_WRITEMASK|**DEPTH_WRITEMASK**%%,
+%%#DITHER|**DITHER**%%,
+%%#ELEMENT_ARRAY_BUFFER_BINDING|**ELEMENT_ARRAY_BUFFER_BINDING**%%,
+%%#FRAMEBUFFER_BINDING|**FRAMEBUFFER_BINDING**%%,
+%%#FRONT_FACE|**FRONT_FACE**%%,
+%%#GENERATE_MIPMAP_HINT|**GENERATE_MIPMAP_HINT**%%,
+%%#GREEN_BITS|**GREEN_BITS**%%,
+%%#LINE_WIDTH|**LINE_WIDTH**%%,
+%%#MAX_COMBINED_TEXTURE_IMAGE_UNITS|**MAX_COMBINED_TEXTURE_IMAGE_UNITS**%%,
+%%#MAX_CUBE_MAP_TEXTURE_SIZE|**MAX_CUBE_MAP_TEXTURE_SIZE**%%,
+%%#MAX_FRAGMENT_UNIFORM_VECTORS|**MAX_FRAGMENT_UNIFORM_VECTORS**%%,
+%%#MAX_RENDERBUFFER_SIZE|**MAX_RENDERBUFFER_SIZE**%%,
+%%#MAX_TEXTURE_IMAGE_UNITS|**MAX_TEXTURE_IMAGE_UNITS**%%,
+%%#MAX_TEXTURE_SIZE|**MAX_TEXTURE_SIZE**%%,
+%%#MAX_VARYING_VECTORS|**MAX_VARYING_VECTORS**%%,
+%%#MAX_VERTEX_ATTRIBS|**MAX_VERTEX_ATTRIBS**%%,
+%%#MAX_VERTEX_TEXTURE_IMAGE_UNITS|**MAX_VERTEX_TEXTURE_IMAGE_UNITS**%%,
+%%#MAX_VERTEX_UNIFORM_VECTORS|**MAX_VERTEX_UNIFORM_VECTORS**%%,
+%%#MAX_VIEWPORT_DIMS|**MAX_VIEWPORT_DIMS**%%,
+%%#NUM_COMPRESSED_TEXTURE_FORMATS|**NUM_COMPRESSED_TEXTURE_FORMATS**%%,
+%%#PACK_ALIGNMENT|**PACK_ALIGNMENT**%%,
+%%#POLYGON_OFFSET_FACTOR|**POLYGON_OFFSET_FACTOR**%%,
+%%#POLYGON_OFFSET_FILL|**POLYGON_OFFSET_FILL**%%,
+%%#POLYGON_OFFSET_UNITS|**POLYGON_OFFSET_UNITS**%%,
+%%#RED_BITS|**RED_BITS**%%,
+%%#RENDERBUFFER_BINDING|**RENDERBUFFER_BINDING**%%,
+%%#RENDERER|**RENDERER**%%,
+%%#SAMPLE_ALPHA_TO_COVERAGE|**SAMPLE_ALPHA_TO_COVERAGE**%%,
+%%#SAMPLE_BUFFERS|**SAMPLE_BUFFERS**%%,
+%%#SAMPLE_COVERAGE|**SAMPLE_COVERAGE**%%,
+%%#SAMPLE_COVERAGE_INVERT|**SAMPLE_COVERAGE_INVERT**%%,
+%%#SAMPLE_COVERAGE_VALUE|**SAMPLE_COVERAGE_VALUE**%%,
+%%#SAMPLES|**SAMPLES**%%,
+%%#SCISSOR_BOX|**SCISSOR_BOX**%%,
+%%#SCISSOR_TEST|**SCISSOR_TEST**%%,
+%%#SHADING_LANGUAGE_VERSION|**SHADING_LANGUAGE_VERSION**%%,
+%%#STENCIL_BACK_FAIL|**STENCIL_BACK_FAIL**%%,
+%%#STENCIL_BACK_FUNC|**STENCIL_BACK_FUNC**%%,
+%%#STENCIL_BACK_PASS_DEPTH_FAIL|**STENCIL_BACK_PASS_DEPTH_FAIL**%%,
+%%#STENCIL_BACK_PASS_DEPTH_PASS|**STENCIL_BACK_PASS_DEPTH_PASS**%%,
+%%#STENCIL_BACK_REF|**STENCIL_BACK_REF**%%,
+%%#STENCIL_BACK_VALUE_MASK|**STENCIL_BACK_VALUE_MASK**%%,
+%%#STENCIL_BACK_WRITEMASK|**STENCIL_BACK_WRITEMASK**%%,
+%%#STENCIL_BITS|**STENCIL_BITS**%%,
+%%#STENCIL_CLEAR_VALUE|**STENCIL_CLEAR_VALUE**%%,
+%%#STENCIL_FAIL|**STENCIL_FAIL**%%,
+%%#STENCIL_FUNC|**STENCIL_FUNC**%%,
+%%#STENCIL_PASS_DEPTH_FAIL|**STENCIL_PASS_DEPTH_FAIL**%%,
+%%#STENCIL_PASS_DEPTH_PASS|**STENCIL_PASS_DEPTH_PASS**%%,
+%%#STENCIL_REF|**STENCIL_REF**%%,
+%%#STENCIL_TEST|**STENCIL_TEST**%%,
+%%#STENCIL_VALUE_MASK|**STENCIL_VALUE_MASK**%%,
+%%#STENCIL_WRITEMASK|**STENCIL_WRITEMASK**%%,
+%%#SUBPIXEL_BITS|**SUBPIXEL_BITS**%%,
+%%#TEXTURE_BINDING_2D|**TEXTURE_BINDING_2D**%%,
+%%#TEXTURE_BINDING_CUBE_MAP|**TEXTURE_BINDING_CUBE_MAP**%%,
+%%#UNPACK_ALIGNMENT|**UNPACK_ALIGNMENT**%%,
+%%#VIEWPORT|**VIEWPORT**%%,
+%%#VENDOR|**VENDOR**%%,
+or
+%%#VERSION|**VERSION**%%.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var names = {};
+  Object.keys(gl).forEach(function(key) {
+    names[gl[key]] = key;
+  });
+
+  console.log(names[gl.getParameter(gl.BLEND_EQUATION_RGB)]);
+</script>
+</htmlexample>
+
+IDL:
+any getParameter(GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml
+
+AlternateSpec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetString.xml
+
+----
+prototype.getBufferParameter(target : Number, parameter : Number) : Object
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be one of %%#ARRAY_BUFFER|**ARRAY_BUFFER**%% 
+or %%#ELEMENT_ARRAY_BUFFER|**ELEMENT_ARRAY_BUFFER**%%.
+
+<dt>
+**parameter**
+<dd>
+must be one of %%#BUFFER_SIZE|**BUFFER_SIZE**%% or %%#BUFFER_USAGE|**BUFFER_USAGE**%%.
+</dl>
+</html>
+
+
+IDL:
+any getBufferParameter(GLenum target, GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetBufferParameteriv.xml
+
+----
+prototype.getError() : Number
+
+Returns the first error hit since the last time **getError()** was called.
+
+The returned value will be one of
+
+%%#NO_ERROR|**NO_ERROR**%%,
+%%#INVALID_ENUM|**INVALID_ENUM**%%,
+%%#INVALID_VALUE|**INVALID_VALUE**%%,
+%%#INVALID_OPERATION|**INVALID_OPERATION**%%,
+%%#INVALID_FRAMEBUFFER_OPERATION|**INVALID_FRAMEBUFFER_OPERATION**%%,
+or
+%%#OUT_OF_MEMORY|**OUT_OF_MEMORY**%%.
+
+
+IDL:
+GLenum getError();
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetError.xml
+
+----
+prototype.getFramebufferAttachmentParameter(target : Number, attachment : Number, parameter : Number) : Object
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be %%#FRAMEBUFFER|**FRAMEBUFFER**%%.
+
+<dt>
+**attachment**
+<dd>
+the render target to query.
+Must be one of 
+%%#COLOR_ATTACHMENT0|**COLOR_ATTACHMENT0**%% for color data, 
+%%#DEPTH_ATTACHMENT|**DEPTH_ATTACHMENT**%% for depth data, 
+or 
+%%#STENCIL_ATTACHMENT|**STENCIL_ATTACHMENT**%% for stencil data.
+
+
+<dt>
+**parameter**
+<dd>
+the parameter to query.  Must be one of
+%%#FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE|**FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE**%%, 
+%%#FRAMEBUFFER_ATTACHMENT_OBJECT_NAME|**FRAMEBUFFER_ATTACHMENT_OBJECT_NAME**%%, 
+%%#FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL|**FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL**%%, 
+or 
+%%#FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE|**FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE**%%.
+
+
+</dl>
+</html>
+
+IDL:
+any getFramebufferAttachmentParameter(GLenum target, GLenum attachment, GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetFramebufferAttachmentParameteriv.xml
+
+----
+prototype.getProgramParameter(program : WebGLProgram, parameter : Number) : Object
+
+**parameter** must be one of
+%%#DELETE_STATUS|**DELETE_STATUS**%%,
+%%#LINK_STATUS|**LINK_STATUS**%%, 
+%%#VALIDATE_STATUS|**VALIDATE_STATUS**%%, 
+%%#INFO_LOG_LENGTH|**INFO_LOG_LENGTH**%%, 
+%%#ATTACHED_SHADERS|**ATTACHED_SHADERS**%%, 
+%%#ACTIVE_ATTRIBUTES|**ACTIVE_ATTRIBUTES**%%, 
+%%#ACTIVE_ATTRIBUTE_MAX_LENGTH|**ACTIVE_ATTRIBUTE_MAX_LENGTH**%%, 
+%%#ACTIVE_UNIFORMS|**ACTIVE_UNIFORMS**%%, 
+or
+%%#ACTIVE_UNIFORM_MAX_LENGTH|**ACTIVE_UNIFORM_MAX_LENGTH**%%.
+
+
+
+IDL:
+any getProgramParameter(WebGLProgram program, GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetProgramiv.xml
+
+----
+prototype.getProgramInfoLog(program : WebGLProgram) : String
+
+IDL:
+DOMString getProgramInfoLog(WebGLProgram program);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetProgramInfoLog.xml
+
+----
+prototype.getRenderbufferParameter(target : Number, parameter : Number) : Object
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be %%#RENDERBUFFER|**RENDERBUFFER**%%.
+
+<dt>
+**parameter**
+<dd>
+must be one of
+%%#RENDERBUFFER_WIDTH|**RENDERBUFFER_WIDTH**%%, 
+%%#RENDERBUFFER_HEIGHT|**RENDERBUFFER_HEIGHT**%%, 
+%%#RENDERBUFFER_INTERNAL_FORMAT|**RENDERBUFFER_INTERNAL**%%, 
+%%#RENDERBUFFER_RED_SIZE|**RENDERBUFFER_RED_SIZE**%%, 
+%%#RENDERBUFFER_GREEN_SIZE|**RENDERBUFFER_GREEN_SIZE**%%, 
+%%#RENDERBUFFER_BLUE_SIZE|**RENDERBUFFER_BLUE_SIZE**%%, 
+%%#RENDERBUFFER_ALPHA_SIZE|**RENDERBUFFER_ALPHA_SIZE**%%, 
+%%#RENDERBUFFER_DEPTH_SIZE|**RENDERBUFFER_DEPTH_SIZE**%%, 
+or 
+%%#RENDERBUFFER_STENCIL_SIZE|**RENDERBUFFER_STENCIL_SIZE**%%.
+</dl>
+</html>
+
+
+IDL:
+any getRenderbufferParameter(GLenum target, GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetRenderbufferParameteriv.xml
+
+----
+prototype.getShaderParameter(shader : WebGLShader, parameter : Number) : Object
+
+
+**parameter** must be one of
+
+%%#SHADER_TYPE|**SHADER_TYPE**%%,
+%%#DELETE_STATUS|**DELETE_STATUS**%%, 
+%%#COMPILE_STATUS|**COMPILE_STATUS**%%, 
+%%#INFO_LOG_LENGTH|**INFO_LOG_LENGTH**%%, 
+or
+%%#SHADER_SOURCE_LENGTH|**SHADER_SOURCE_LENGTH**%%.
+
+IDL:
+any getShaderParameter(WebGLShader shader, GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetShaderiv.xml
+
+----
+prototype.getShaderPrecisionFormat(shadertype : Number, precisiontype : Number) : WebGLShaderPrecisionFormat
+
+Returns information about the numerical precision limits of shader data types.
+
+**target** must be one of 
+%%#FRAGMENT_SHADER|**FRAGMENT_SHADER**%%
+or %%#VERTEX_SHADER|**VERTEX_SHADER**%%. 
+
+**precisiontype** must be one of
+%%#LOW_FLOAT|**LOW_FLOAT**%%, 
+%%#MEDIUM_FLOAT|**MEDIUM_FLOAT**%%, 
+%%#HIGH_FLOAT|**HIGH_FLOAT**%%, 
+%%#LOW_INT|**LOW_INT**%%, 
+%%#MEDIUM_INT|**MEDIUM_INT**%%, 
+or %%#HIGH_INT|**HIGH_INT**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var precisionTypes = ['LOW_FLOAT', 'MEDIUM_FLOAT', 'HIGH_FLOAT',
+                        'LOW_INT',   'MEDIUM_INT',   'HIGH_INT'];
+  var targetTypes = ['FRAGMENT_SHADER', 'VERTEX_SHADER'];
+
+  precisionTypes.forEach(function(precisionType) {
+    targetTypes.forEach(function(targetType) {
+      var format = gl.getShaderPrecisionFormat(gl[targetType], gl[precisionType]);
+      console.log(targetType + ', ' + precisionType);
+      console.log('    precision: ' + format.precision +
+                  ', rangeMin: ' + format.rangeMin +
+                  ', rangeMax: ' + format.rangeMax);
+    });
+  });
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetShaderPrecisionFormat.xml
+
+----
+prototype.getShaderInfoLog(shader : WebGLShader) : String
+
+IDL:
+DOMString getShaderInfoLog(WebGLShader shader);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetShaderInfoLog.xml
+
+
+----
+prototype.getShaderSource(shader : WebGLShader) : String
+
+IDL:
+DOMString getShaderSource(WebGLShader shader);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetShaderSource.xml
+
+
+----
+prototype.getTexParameter(target : Number, parameter : Number) : Object
+
+Returns the value of the specified **parameter** for the 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+
+Use 
+
+%%#texParameterf|**texParameterf()**%% and 
+%%#texParameteri|**texParameteri()**%% to set texture parameters.
+
+<html>
+<dl>
+**target** 
+<dd>
+must be one of 
+%%#TEXTURE_2D|**TEXTURE_2D**%%
+or 
+%%#TEXTURE_CUBE_MAP|**TEXTURE_CUBE_MAP**%%.
+
+<dt>
+**parameter** 
+<dd>
+must be one of
+
+%%#TEXTURE_MAG_FILTER|**TEXTURE_MAG_FILTER**%%,
+%%#TEXTURE_MIN_FILTER|**TEXTURE_MIN_FILTER**%%, 
+%%#TEXTURE_WRAP_S|**TEXTURE_WRAP_S**%%, 
+or
+%%#TEXTURE_WRAP_T|**TEXTURE_WRAP_T**%%.
+</dl>
+</html>
+
+IDL:
+any getTexParameter(GLenum target, GLenum pname);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetTexParameter.xml
+
+
+----
+prototype.getUniform(program : WebGLProgram, location : WebGLUniformLocation) : Object
+
+Retrieves the value stored in **location** by a **uniform*()** call.
+
+<htmlexample>
+<!-- This example draws an image to the canvas -->
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    // Make a texture to store img and track it in gl's TEXTURE0 unit
+    var imgTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE6);
+    gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform1i(samplerLocation, 6);  // bind fragment shader's 'sampler' to TEXTURE6
+
+    console.log('sampler: ' + gl.getUniform(program, samplerLocation));
+
+    // Draw the img
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  };
+</script>
+</htmlexample>
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml
+
+
+IDL:
+any getUniform(WebGLProgram program, WebGLUniformLocation location);
+
+----
+prototype.getUniformLocation(program : WebGLProgram, name : String) : WebGLUniformLocation
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml
+
+
+IDL:
+WebGLUniformLocation getUniformLocation(WebGLProgram program, DOMString name);
+
+----
+prototype.getVertexAttrib(index : Number, parameter : Number) : Object
+
+
+**parameter** must be one of
+
+%%#VERTEX_ATTRIB_ARRAY_BUFFER_BINDING|**VERTEX_ATTRIB_ARRAY_BUFFER_BINDING**%%,
+%%#VERTEX_ATTRIB_ARRAY_ENABLED|**VERTEX_ATTRIB_ARRAY_ENABLED**%%,
+%%#VERTEX_ATTRIB_ARRAY_SIZE|**VERTEX_ATTRIB_ARRAY_SIZE**%%,
+%%#VERTEX_ATTRIB_ARRAY_STRIDE|**VERTEX_ATTRIB_ARRAY_STRIDE**%%,
+%%#VERTEX_ATTRIB_ARRAY_TYPE |**VERTEX_ATTRIB_ARRAY_TYPE **%%,
+%%#VERTEX_ATTRIB_ARRAY_NORMALIZED|**VERTEX_ATTRIB_ARRAY_NORMALIZED**%%,
+or
+%%#CURRENT_VERTEX_ATTRIB|**CURRENT_VERTEX_ATTRIB**%%.
+
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetVertexAttrib.xml
+
+
+IDL:
+any getVertexAttrib(GLuint index, GLenum pname);
+
+----
+prototype.getVertexAttribOffset(index : Number, parameter : Number) : Number
+
+**parameter** must be 
+%%#VERTEX_ATTRIB_ARRAY_POINTER|**VERTEX_ATTRIB_ARRAY_POINTER**%%.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetVertexAttribPointerv.xml
+
+
+IDL:
+GLsizeiptr getVertexAttribOffset(GLuint index, GLenum pname);
+
+----
+prototype.hint(target : Number, mode : Number) : undefined
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be %%#GENERATE_MIPMAP_HINT|**GENERATE_MIPMAP_HINT**%%.
+
+<dt>
+**mode**
+<dd>
+must be one of 
+%%#FASTEST|**FASTEST**%%,
+%%#NICEST|**NICEST**%%, or
+%%#DONT_CARE|**DONT_CARE**%%.
+</dl>
+</html>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glHint.xml
+
+IDL:
+void hint(GLenum target, GLenum mode);
+
+----
+prototype.isBuffer(buffer : WebGLBuffer) : Boolean
+
+Returns **true** if **buffer** is a valid, bound buffer.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var buffer = gl.createBuffer();
+  console.log(gl.isBuffer(buffer));
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  console.log(gl.isBuffer(buffer));
+
+  gl.deleteBuffer(buffer);
+  console.log(gl.isBuffer(buffer));
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsBuffer.xml
+
+
+IDL:
+GLboolean isBuffer(WebGLBuffer buffer);
+
+----
+prototype.isEnabled(capability : Number) : Boolean
+
+Returns **true** if specified capability is enabled. See
+%%#enable|**enable()**%% for a list of capabilities.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsEnabled.xml
+
+IDL:
+GLboolean isEnabled(GLenum cap);
+
+----
+prototype.isFramebuffer(framebuffer : WebGLFramebuffer) : Boolean
+
+Returns **true** if **framebuffer** is a valid, bound framebuffer.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var framebuffer = gl.createFramebuffer();
+  console.log(gl.isFramebuffer(framebuffer));
+
+  gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+  console.log(gl.isFramebuffer(framebuffer));
+
+  gl.deleteFramebuffer(framebuffer);
+  console.log(gl.isFramebuffer(framebuffer));
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsFramebuffer.xml
+
+IDL:
+GLboolean isFramebuffer(WebGLFramebuffer framebuffer);
+
+
+----
+prototype.isProgram(program : WebGLProgram) : Boolean
+
+Returns **true** if **program** is a valid program.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var program = gl.createProgram();
+  console.log(gl.isProgram(program));
+
+  gl.deleteProgram(program);
+  console.log(gl.isProgram(program));
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsProgram.xml
+
+IDL:
+GLboolean isProgram(WebGLProgram program);
+
+----
+prototype.isRenderbuffer(renderbuffer : WebGLRenderbuffer) : Boolean
+
+Returns **true** if **renderbuffer** is a valid, bound renderbuffer.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var renderbuffer = gl.createRenderbuffer();
+  console.log(gl.isRenderbuffer(renderbuffer));
+
+  gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+  console.log(gl.isRenderbuffer(renderbuffer));
+
+  gl.deleteRenderbuffer(renderbuffer);
+  console.log(gl.isRenderbuffer(renderbuffer));
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsRenderbuffer.xml
+
+IDL:
+GLboolean isRenderbuffer(WebGLRenderbuffer renderbuffer);
+
+----
+prototype.isShader(shader : WebGLShader) : Boolean
+
+Returns **true** if **shader** is a valid shader.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var shader = gl.createShader(gl.VERTEX_SHADER);
+  console.log(gl.isShader(shader));
+
+  gl.deleteShader(shader);
+  console.log(gl.isShader(shader));
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsShader.xml
+
+
+IDL:
+GLboolean isShader(WebGLShader shader);
+
+----
+prototype.isTexture(texture : WebGLTexture) : Boolean
+
+Returns **true** if **texture** is a valid, bound texture.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var texture = gl.createTexture();
+  console.log(gl.isTexture(texture));
+
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  console.log(gl.isTexture(texture));
+
+  gl.deleteTexture(texture);
+  console.log(gl.isTexture(texture));
+</script>
+</htmlexample>
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsTexture.xml
+
+
+IDL:
+GLboolean isTexture(WebGLTexture texture);
+
+----
+prototype.lineWidth(width : Number) : undefined
+
+IDL:
+void lineWidth(GLfloat width);
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glLineWidth.xml
+
+
+----
+prototype.linkProgram(program : WebGLProgram) : undefined
+
+IDL:
+void linkProgram(WebGLProgram program);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml
+
+----
+prototype.pixelStorei(parameter : Number, value : Number) : undefined
+
+Sets options that affect %%#readPixels|**readPixels**%%,
+%%#texImage2D|**texImage2D**%%,  %%#texSubImage2D|**texSubImage2D**%%.
+
+<html>
+<table>
+  <tr>
+    <th>parameter</th>
+    <th>Valid Values</th>
+    <th>Initial Value</th>
+  </tr>
+  <tr> 
+    <td>%%#PACK_ALIGNMENT|**PACK_ALIGNMENT**%%</td>
+    <td>**1**, **2**, **4**, or **8**</td>
+    <td>**4**</td>
+  </tr>
+
+  <tr>
+    <td>%%#UNPACK_ALIGNMENT|**UNPACK_ALIGNMENT**%%</td>
+    <td>**1**, **2**, **4**, or **8**</td>
+    <td>**4**</td>
+  </tr>
+
+  <tr>
+    <td>%%#UNPACK_FLIP_Y_WEBGL|**UNPACK_FLIP_Y_WEBGL**%%</td>
+    <td>**true** or **false**</td>
+    <td>**false**</td>
+  </tr>
+
+  <tr>
+    <td>%%#UNPACK_PREMULTIPLY_ALPHA_WEBGL|**UNPACK_PREMULTIPLY_ALPHA_WEBGL**%%</td>
+    <td>**true** or **false**</td>
+    <td>**false**</td>
+  </tr>
+
+  <tr>
+    <td>%%#UNPACK_COLORSPACE_CONVERSION_WEBGL|**UNPACK_COLORSPACE_CONVERSION_WEBGL**%%</td>
+    <td>%%#BROWSER_DEFAULT_WEBGL|**BROWSER_DEFAULT_WEBGL**%% or %%#NONE|**NONE**%%</td>
+    <td>%%#BROWSER_DEFAULT_WEBGL|**BROWSER_DEFAULT_WEBGL**%%</td>
+  </tr>
+</table>
+</html>
+
+IDL:
+void pixelStorei(GLenum pname, GLint param);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml
+
+----
+prototype.polygonOffset(factor : Number, units : Number) : undefined
+
+IDL:
+void polygonOffset(GLfloat factor, GLfloat units);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPolygonOffset.xml
+
+----
+prototype.readPixels(x : Number, y : Number, width : Number, height : Number, format : Number, type : Number, data : ArrayBufferView) : undefined
+
+Reads pixels from the framebuffer and copies them to **data**.
+
+<html>
+<dl>
+<dt>
+**x**, **y**, **width**, **height**
+<dd>
+the region of the framebuffer to read.
+
+<dt>
+**format**
+<dd>
+must be one of
+%%#ALPHA|**ALPHA**%%, 
+%%#RGB|**RGB**%%, 
+or
+%%#RGBA|**RGBA**%%.
+
+<dt>
+**type**
+<dd>
+must be one of
+%%#UNSIGNED_BYTE|**UNSIGNED_BYTE**%%, 
+%%#UNSIGNED_SHORT_5_6_5|**UNSIGNED_SHORT_5_6_5**%%, 
+%%#UNSIGNED_SHORT_4_4_4_4|**UNSIGNED_SHORT_4_4_4_4**%%, or 
+%%#UNSIGNED_SHORT_5_5_5_1|**UNSIGNED_SHORT_5_5_5_1**%%.
+
+<dt>
+**data**
+<dd>
+stores the read pixels
+</dl>
+</html>
+
+The read data is affected by the 
+%%#pixelStorei|**pixelStorei()**%% options.
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glReadPixels.xml
+
+IDL:
+void readPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, ArrayBufferView pixels);
+
+
+----
+prototype.renderbufferStorage(target : Number, internalformat : Number, width : Number, height : Number) : undefined
+
+Creates and initializes the backing storage for a renderbuffer.
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>
+must be %%#RENDERBUFFER|**RENDERBUFFER**%%.
+
+<dt>
+**internalformat**
+<dd>
+must be one of
+%%#RGBA4|**RGBA4**%%, 
+%%#RGB565|**RGB565**%%, 
+%%#RGB5_A1|**RGB5_A1**%%, 
+%%#DEPTH_COMPONENT16|**DEPTH_COMPONENT16**%%, 
+or 
+%%#STENCIL_INDEX8|**STENCIL_INDEX8**%%.
+
+<dt>
+**width**, **height**
+<dd>
+the size of the renderbuffer.
+</dl>
+</html>
+
+See also %%#createRenderbuffer|**createRenderbuffer()**%%.
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glRenderbufferStorage.xml
+
+IDL:
+void renderbufferStorage(GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+
+----
+prototype.sampleCoverage(value : Number, invert : Boolean) : undefined
+
+IDL:
+void sampleCoverage(GLclampf value, GLboolean invert);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glSampleCoverage.xml
+
+
+----
+prototype.scissor(x : Number, y : Number, width : Number, height : Number) : undefined
+
+IDL:
+void scissor(GLint x, GLint y, GLsizei width, GLsizei height);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glScissor.xml
+
+
+----
+prototype.shaderSource(shader : WebGLShader, source : String) : undefined
+
+IDL:
+void shaderSource(WebGLShader shader, DOMString source);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml
+
+
+----
+prototype.stencilFunc(function : Number, reference : Number, mask : Number) : undefined
+
+Same as %%#stencilFuncSeparate|**stencilFuncSeparate()**%% with **face** set to
+%%#FRONT_AND_BACK|**FRONT_AND_BACK**%%.
+
+IDL:
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilFunc.xml
+
+----
+prototype.stencilFuncSeparate(face : Number, func : Number, ref : Number, mask : Number) : undefined
+
+Sets the stencil function. 
+
+To use stencil tests, you must set the
+%%/WebGLContextAttributes#stencil|**WebGLContextAttributes.stencil**%% parameter to **true**
+when calling %%/HTMLCanvasElement#getContext|**getContext('webgl', contextAttributes)**%%
+and enable with 
+**%%#enable|enable%%(%%#STENCIL_TEST|STENCIL_TEST%%)**.
+
+<html>
+<dl>
+<dt>
+**face**
+<dd>
+must be one of
+FRONT, 
+BACK, 
+or
+FRONT_AND_BACK
+
+<dt>
+**function**
+<dd>
+must be one of 
+NEVER, 
+LESS, 
+LEQUAL, 
+GREATER, 
+GEQUAL, 
+EQUAL, 
+NOTEQUAL, 
+or 
+ALWAYS. 
+Defaults to 
+ALWAYS.
+
+<dt>
+**reference**
+<dd>
+The value to compare with the value in the stencil buffer.  It is also the value
+that be written to the stencil buffer if %%#stencilOp|**stencilOp**%% is set to
+%%#REPLACE|**REPLACE**%%.
+
+<dt>
+**mask**
+<dd>
+A value bitwise ANDed with **reference** and the value in the stencil buffer
+before performing the stencil function.
+
+</dl>
+</html>
+
+
+IDL:
+void stencilFuncSeparate(GLenum face, GLenum func, GLint ref, GLuint mask);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilFuncSeparate.xml
+
+----
+prototype.stencilMask(mask : Number) : undefined
+
+IDL:
+void stencilMask(GLuint mask);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilMask.xml
+
+----
+prototype.stencilMaskSeparate(face : Number, mask : Number) : undefined
+
+IDL:
+void stencilMaskSeparate(GLenum face, GLuint mask);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilMaskSeparate.xml
+
+
+----
+prototype.stencilOp(fail : Number, zfail : Number, zpass : Number) : undefined
+
+IDL:
+void stencilOp(GLenum fail, GLenum zfail, GLenum zpass);
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilOp.xml
+
+----
+prototype.stencilOpSeparate(face : Number, fail : Number, zfail : Number, zpass : Number) : undefined
+
+IDL:
+void stencilOpSeparate(GLenum face, GLenum fail, GLenum zfail, GLenum zpass);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilOpSeparate.xml
+
+----
+prototype.texImage2D(target : Number, level : Number, internalformat : Number, width : Number, height : Number, border : Number, format : Number, type : Number, data : ArrayBufferView) : undefined
+
+Specifies the size and data of 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>must be one of
+%%#TEXTURE_2D|**TEXTURE_2D**%%, 
+%%#TEXTURE_CUBE_MAP_POSITIVE_X|**TEXTURE_CUBE_MAP_POSITIVE_X**%%, 
+%%#TEXTURE_CUBE_MAP_NEGATIVE_X|**TEXTURE_CUBE_MAP_NEGATIVE_X**%%, 
+%%#TEXTURE_CUBE_MAP_POSITIVE_Y|**TEXTURE_CUBE_MAP_POSITIVE_Y**%%, 
+%%#TEXTURE_CUBE_MAP_NEGATIVE_Y|**TEXTURE_CUBE_MAP_NEGATIVE_Y**%%, 
+%%#TEXTURE_CUBE_MAP_POSITIVE_Z|**TEXTURE_CUBE_MAP_POSITIVE_Z**%%, 
+or %%#TEXTURE_CUBE_MAP_NEGATIVE_Z|**TEXTURE_CUBE_MAP_NEGATIVE_Z**%%.
+
+<dt>
+**level**
+<dd>is the mipmap level (**0** is base level).  
+
+<dt>
+**internalformat**
+<dd>must be one of
+%%#ALPHA|**ALPHA**%%,
+%%#LUMINANCE|**LUMINANCE**%%,
+%%#LUMINANCE_ALPHA|**LUMINANCE_ALPHA**%%,
+%%#RGB|**RGB**%%,
+or %%#RGBA|**RGBA**%%.
+
+<dt>
+**width** and **height**
+<dd>
+are the size of the texture.
+
+<dt>
+**border**
+<dd>
+must be **0**. 
+
+<dt>
+**format**
+<dd>must match **internalformat**.
+
+<dt>
+**type**
+<dd>must be one of 
+%%#UNSIGNED_BYTE|**UNSIGNED_BYTE**%%,
+%%#UNSIGNED_SHORT_5_6_5|**UNSIGNED_SHORT_5_6_5**%%,
+%%#UNSIGNED_SHORT_4_4_4_4|**UNSIGNED_SHORT_4_4_4_4**%%,
+or %%#UNSIGNED_SHORT_5_5_5_1|**UNSIGNED_5_5_5_1**%%;
+
+<dt>
+**data**
+<dd>
+is the data to load into the texture.  May be **null** to allocate the texture without data.  
+</dl>
+</html>
+
+The loaded data is affected by the 
+%%#pixelStorei|**pixelStorei()**%% options.
+
+You can also use %%#copyTexSubImage2D|**copyTexSubImage2D**%%
+or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
+
+<htmlexample>
+<!-- This example creates a texture from randomly generated 
+     RGBA data stored in a Uint8Array -->
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    // Make a texture to store the random data
+    var texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+    var textureWidth = 128;
+    var textureHeight = 128;
+
+    var data = new Uint8Array(4 * textureWidth * textureHeight);
+    for (var i = 0; i < data.length; i++) {
+      data[i] = Math.random() * 256;
+    }
+    // Load the data into the texture
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, textureWidth, textureHeight, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+
+    gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+    // Draw the texture
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+</script>
+</htmlexample>
+
+IDL:
+void texImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, ArrayBufferView pixels);
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml
+
+----
+prototype.texImage2D(target : Number, level : Number, internalformat : Number, format : Number, type : Number, data : ImageData) : undefined
+
+Specifies the data for
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+
+<html>
+<dl>
+<dt>
+**target**
+<dd>must be one of
+%%#TEXTURE_2D|**TEXTURE_2D**%%, 
+%%#TEXTURE_CUBE_MAP_POSITIVE_X|**TEXTURE_CUBE_MAP_POSITIVE_X**%%, 
+%%#TEXTURE_CUBE_MAP_NEGATIVE_X|**TEXTURE_CUBE_MAP_NEGATIVE_X**%%, 
+%%#TEXTURE_CUBE_MAP_POSITIVE_Y|**TEXTURE_CUBE_MAP_POSITIVE_Y**%%, 
+%%#TEXTURE_CUBE_MAP_NEGATIVE_Y|**TEXTURE_CUBE_MAP_NEGATIVE_Y**%%, 
+%%#TEXTURE_CUBE_MAP_POSITIVE_Z|**TEXTURE_CUBE_MAP_POSITIVE_Z**%%, 
+or %%#TEXTURE_CUBE_MAP_NEGATIVE_Z|**TEXTURE_CUBE_MAP_NEGATIVE_Z**%%.
+
+<dt>
+**level**
+<dd>
+is the mipmap level (**0** is base level).  
+
+<dt>
+**internalformat**
+<dd>must be one of
+%%#ALPHA|**ALPHA**%%,
+%%#LUMINANCE|**LUMINANCE**%%,
+%%#LUMINANCE_ALPHA|**LUMINANCE_ALPHA**%%,
+%%#RGB|**RGB**%%,
+or %%#RGBA|**RGBA**%%.
+
+
+<dt>
+**format**
+<dd>must match **internalformat**.
+
+<dt>
+**type**
+<dd>
+
+must be one of 
+%%#UNSIGNED_BYTE|**UNSIGNED_BYTE**%%,
+%%#UNSIGNED_SHORT_5_6_5|**UNSIGNED_SHORT_5_6_5**%%,
+%%#UNSIGNED_SHORT_4_4_4_4|**UNSIGNED_SHORT_4_4_4_4**%%,
+or %%#UNSIGNED_SHORT_5_5_5_1|**UNSIGNED_5_5_5_1**%%;
+
+<dt>
+**data**
+<dd>
+is the data to load into the texture.
+</dl>
+</html>
+
+The loaded data is affected by the 
+%%#pixelStorei|**pixelStorei()**%% options.
+
+You can also use %%#copyTexSubImage2D|**copyTexSubImage2D**%%
+or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
+
+<htmlexample>
+<!-- This example creates a texture from randomly generated 
+     RGBA data stored in an ImageData -->
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create the shader program
+  var program = gl.createProgram();
+
+  // Create the vertex shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+  gl.attachShader(program, vertexShader);
+
+  // Create fragment shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+  gl.attachShader(program, fragmentShader);
+
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Get the attribute and uniform locations from the program
+  var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+  // Create a buffer with 4 points to form a square
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = new Float32Array([
+     -1, -1,   // bottom left
+      1, -1,   // bottom right
+     -1,  1,   // top left
+      1,  1]); // top right 
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+
+  // Make a texture to store the random data
+  var texture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+  // Render a circle in a 2D canvas
+  var canvas2D = document.createElement('canvas');
+  var context2D = canvas2D.getContext('2d');
+
+  context2D.beginPath();
+  context2D.arc(50, 50, 30, Math.PI, 0); // Top half
+  context2D.arc(50, 50, 30, 0, Math.PI); // Bottom half
+  context2D.stroke();
+
+  var data = context2D.getImageData(0, 0, 200, 200);
+
+  // Load the data into the texture
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, data);
+
+  gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+  // Draw the texture
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+</script>
+</htmlexample>
+
+
+IDL:
+void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, ImageData pixels);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml
+
+----
+prototype.texImage2D(target : Number, level : Number, internalformat : Number, format : Number, type : Number, image : HTMLImageElement) : undefined
+
+
+<htmlexample>
+<!-- This example draws an image to the canvas -->
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    gl_FragColor = texture2D(sampler, textureCoord);
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl);
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Get the attribute and uniform locations from the program
+    var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+    var samplerLocation = gl.getUniformLocation(program, 'sampler');
+
+    // Create a buffer with 4 points to form a square
+    var triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var vertices = new Float32Array([
+       -1, -1,   // bottom left
+        1, -1,   // bottom right
+       -1,  1,   // top left
+        1,  1]); // top right 
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+    gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(vertexPositionLocation);
+
+    // Make a texture to store img and track it in gl's TEXTURE0 unit
+    var imgTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
+
+    // Draw the img
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  };
+</script>
+</htmlexample>
+
+IDL:
+void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, HTMLImageElement image) raises (DOMException);
+
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml
+
+----
+prototype.texImage2D(target : Number, level : Number, internalformat : Number, format : Number, type : Number, canvas : HTMLCanvasElement) : undefined
+
+IDL:
+void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, HTMLCanvasElement canvas) raises (DOMException);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml
+
+----
+prototype.texImage2D(target : Number, level : Number, internalformat : Number, format : Number, type : Number, video : HTMLVideoElement) : undefined
+
+IDL:
+void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, HTMLVideoElement video) raises (DOMException);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml
+
+----
+prototype.texParameterf(target : Number, parameter : Number, value : Number) : undefined
+
+Same as %%#texParameteri|**texParameteri()**%%.
+
+
+
+IDL:
+void texParameterf(GLenum target, GLenum pname, GLfloat param);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml
+
+----
+prototype.texParameteri(target : Number, parameter : Number, value : Number) : undefined
+
+Sets the value of the specified **parameter** for 
+
+the bound texture in the active texture unit
+(set through %%#activeTexture|**activeTexture()**%%
+and %%#bindTexture|**bindTexture**%%). 
+
+
+Use 
+%%#getTexParameter|**getTexParameter()**%% to get texture parameters.
+
+<html>
+<table>
+  <tr>
+    <th>parameter</th>
+    <th>Valid Values</th>
+    <th>Initial Value</th>
+  </tr>
+  <tr> 
+    <td>%%#TEXTURE_MIN_FILTER|**TEXTURE_MIN_FILTER**%%</td>
+    <td>
+    %%#NEAREST|**NEAREST**%%,
+    %%#LINEAR|**LINEAR**%%,
+    %%#NEAREST_MIPMAP_NEAREST|**NEAREST_MIPMAP_NEAREST**%%,
+    %%#LINEAR_MIPMAP_NEAREST|**LINEAR_MIPMAP_NEAREST**%%,
+    %%#NEAREST_MIPMAP_LINEAR|**NEAREST_MIPMAP_LINEAR**%%,
+    or
+    %%#LINEAR_MIPMAP_LINEAR|**LINEAR_MIPMAP_LINEAR**%%
+    </td>
+    <td>%%#NEAREST_MIPMAP_LINEAR|**NEAREST_MIPMAP_LINEAR**%%</td>
+  </tr>
+
+  <tr>
+    <td>%%#TEXTURE_MAG_FILTER|**TEXTURE_MAG_FILTER**%%</td>
+    <td>
+    %%#NEAREST|**NEAREST**%% 
+    or
+    %%#LINEAR|**LINEAR**%%
+    </td>
+    <td>%%#LINEAR|**LINEAR**%%</td>
+  </tr>
+
+  <tr>
+    <td>%%#TEXTURE_WRAP_S|**TEXTURE_WRAP_S**%%</td>
+    <td>
+    %%#CLAMP_TO_EDGE|**CLAMP_TO_EDGE**%%,
+    %%#MIRRORED_REPEAT|**MIRRORED_REPEAT**%%,
+    or
+    %%#REPEAT|**REPEAT**%%
+    </td>
+    <td>%%#REPEAT|**REPEAT**%%</td>
+  </tr>
+
+  <tr>
+    <td>%%#TEXTURE_WRAP_T|**TEXTURE_WRAP_T**%%</td>
+    <td>
+    %%#CLAMP_TO_EDGE|**CLAMP_TO_EDGE**%%,
+    %%#MIRRORED_REPEAT|**MIRRORED_REPEAT**%%,
+    or
+    %%#REPEAT|**REPEAT**%%
+    </td>
+    <td>%%#REPEAT|**REPEAT**%%</td>
+  </tr>
+</table>
+</html>
+
+
+IDL:
+void texParameteri(GLenum target, GLenum pname, GLint param);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml
+
+----
+prototype.texSubImage2D(target : Number, level : Number, xoffset : Number, yoffset : Number, width : Number, height : Number, format : Number, type : Number, pixels : ArrayBufferView) : undefined
+
+
+The loaded data is affected by the 
+%%#pixelStorei|**pixelStorei()**%% options.
+
+
+IDL:
+void texSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, ArrayBufferView pixels);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
+
+----
+prototype.texSubImage2D(target : Number, level : Number, xoffset : Number, yoffset : Number, format : Number, type : Number, pixels : ImageData) : undefined
+
+IDL:
+void texSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLenum format, GLenum type, ImageData pixels);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
+
+----
+prototype.texSubImage2D(target : Number, level : Number, xoffset : Number, yoffset : Number, format : Number, type : Number, image : HTMLImageElement) : undefined
+
+
+IDL:
+void texSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLenum format, GLenum type, HTMLImageElement image) raises (DOMException);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
+
+----
+prototype.texSubImage2D(target : Number, level : Number, xoffset : Number, yoffset : Number, format : Number, type : Number, canvas : HTMLCanvasElement) : undefined
+
+IDL:
+void texSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLenum format, GLenum type, HTMLCanvasElement canvas) raises (DOMException);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
+
+----
+prototype.texSubImage2D(target : Number, level : Number, xoffset : Number, yoffset : Number, format : Number, type : Number, video : HTMLVideoElement) : undefined
+
+IDL:
+void texSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLenum format, GLenum type, HTMLVideoElement video) raises (DOMException);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexSubImage2D.xml
+
+
+----
+prototype.uniform1f(uniformLocation : WebGLUniformLocation, x : Number) : undefined
+
+IDL:
+void uniform1f(WebGLUniformLocation location, GLfloat x);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform1fv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform1fv(WebGLUniformLocation location, FloatArray v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform1fv(uniformLocation : WebGLUniformLocation, v : Float32Array) : undefined
+
+IDL:
+void uniform1fv(WebGLUniformLocation location, sequence<float> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform1i(uniformLocation : WebGLUniformLocation, x : Number) : undefined
+
+IDL:
+void uniform1i(WebGLUniformLocation location, GLint x);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform1iv(uniformLocation : WebGLUniformLocation, v : Int32Array) : undefined
+
+IDL:
+void uniform1iv(WebGLUniformLocation location, Int32Array v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform1iv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform1iv(WebGLUniformLocation location, sequence<long> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform2f(uniformLocation : WebGLUniformLocation, x : Number, y : Number) : undefined
+
+IDL:
+void uniform2f(WebGLUniformLocation location, GLfloat x, GLfloat y);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform2fv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform2fv(WebGLUniformLocation location, FloatArray v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform2fv(uniformLocation : WebGLUniformLocation, v : Float32Array) : undefined
+
+IDL:
+void uniform2fv(WebGLUniformLocation location, sequence<float> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform2i(uniformLocation : WebGLUniformLocation, x : Number, y : Number) : undefined
+
+IDL:
+void uniform2i(WebGLUniformLocation location, GLint x, GLint y);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform2iv(uniformLocation : WebGLUniformLocation, v : Int32Array) : undefined
+
+IDL:
+void uniform2iv(WebGLUniformLocation location, Int32Array v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform2iv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform2iv(WebGLUniformLocation location, sequence<long> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform3f(uniformLocation : WebGLUniformLocation, x : Number, y : Number, z : Number) : undefined
+
+IDL:
+void uniform3f(WebGLUniformLocation location, GLfloat x, GLfloat y, GLfloat z);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform3fv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform3fv(WebGLUniformLocation location, FloatArray v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform3fv(uniformLocation : WebGLUniformLocation, v : Float32Array) : undefined
+
+IDL:
+void uniform3fv(WebGLUniformLocation location, sequence<float> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform3i(uniformLocation : WebGLUniformLocation, x : Number, y : Number, z : Number) : undefined
+
+IDL:
+void uniform3i(WebGLUniformLocation location, GLint x, GLint y, GLint z);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform3iv(uniformLocation : WebGLUniformLocation, v : Int32Array) : undefined
+
+IDL:
+void uniform3iv(WebGLUniformLocation location, Int32Array v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform3iv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform3iv(WebGLUniformLocation location, sequence<long> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform4f(uniforLocation : WebGLUniformLocation, x : Number, y : Number, z : Number, w : Number) : undefined
+
+IDL:
+void uniform4f(WebGLUniformLocation location, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform4fv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform4fv(WebGLUniformLocation location, FloatArray v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform4fv(uniformLocation : WebGLUniformLocation, v : Float32Array) : undefined
+
+IDL:
+void uniform4fv(WebGLUniformLocation location, sequence<float> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform4i(uniformLocation : WebGLUniformLocation, x : Number, y : Number, z : Number, w : Number) : undefined
+
+IDL:
+void uniform4i(WebGLUniformLocation location, GLint x, GLint y, GLint z, GLint w);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform4iv(uniformLocation : WebGLUniformLocation, v : Int32Array) : undefined
+
+IDL:
+void uniform4iv(WebGLUniformLocation location, Int32Array v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniform4iv(uniformLocation : WebGLUniformLocation, v : Array) : undefined
+
+IDL:
+void uniform4iv(WebGLUniformLocation location, sequence<long> v);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+
+----
+prototype.uniformMatrix2fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Array) : undefined
+
+IDL:
+void uniformMatrix2fv(WebGLUniformLocation location, GLboolean transpose, FloatArray value);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniformMatrix2fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Float32Array) : undefined
+
+IDL:
+void uniformMatrix2fv(WebGLUniformLocation location, GLboolean transpose, sequence<float> value);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniformMatrix3fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Array) : undefined
+
+IDL:
+void uniformMatrix3fv(WebGLUniformLocation location, GLboolean transpose, FloatArray value);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniformMatrix3fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Float32Array) : undefined
+
+IDL:
+void uniformMatrix3fv(WebGLUniformLocation location, GLboolean transpose, sequence<float> value);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniformMatrix4fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Array) : undefined
+
+IDL:
+void uniformMatrix4fv(WebGLUniformLocation location, GLboolean transpose, FloatArray value);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+----
+prototype.uniformMatrix4fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Float32Array) : undefined
+
+IDL:
+void uniformMatrix4fv(WebGLUniformLocation location, GLboolean transpose, sequence<float> value);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
+
+
+----
+prototype.useProgram(program : WebGLProgram) : undefined
+
+IDL:
+void useProgram(WebGLProgram program);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml
+
+----
+prototype.validateProgram(program : WebGLProgram) : undefined
+
+Validates **program** is can be used (via %%#useProgram|**useProgram()**%%).
+
+If the program is valid 
+**%%#getProgramParameter|gl.getProgramParameter%%(program, gl.%%#VALIDATE_STATUS|VALIDATE_STATUS%%)**
+will return **true**.
+
+<htmlexample>
+<canvas id='canvas' width='100' height='100'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  void main() {
+    // References undeclared identifier 'foo'
+    gl_Position = vec4(foo, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+
+  gl.validateProgram(program);
+  console.log(gl.getProgramParameter(program, gl.VALIDATE_STATUS));
+  console.log(gl.getProgramInfoLog(program));
+</script>
+</htmlexample>
+
+IDL:
+void validateProgram(WebGLProgram program);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glValidateProgram.xml
+
+----
+prototype.vertexAttrib1f(attributeLocation : Number, x : Number) : undefined
+
+IDL:
+void vertexAttrib1f(GLuint indx, GLfloat x);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+
+----
+prototype.vertexAttrib1fv(attribLocation : Number, values : Array) : undefined
+
+IDL:
+void vertexAttrib1fv(GLuint attribLocation, FloatArray values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib1fv(attribLocation : Number, values : Float32Array) : undefined
+
+IDL:
+void vertexAttrib1fv(GLuint attribLocation, sequence<float> values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib2f(attribLocation : Number, x : Number, y : Number) : undefined
+
+IDL:
+void vertexAttrib2f(GLuint attribLocation, GLfloat x, GLfloat y);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib2fv(attribLocation : Number, values : Array) : undefined
+
+IDL:
+void vertexAttrib2fv(GLuint attribLocation, FloatArray values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib2fv(attribLocation : Number, values : Float32Array) : undefined
+
+IDL:
+void vertexAttrib2fv(GLuint attribLocation, sequence<float> values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib3f(attribLocation : Number, x : Number, y : Number, z : Number) : undefined
+
+IDL:
+void vertexAttrib3f(GLuint attribLocation, GLfloat x, GLfloat y, GLfloat z);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib3fv(attribLocation : Number, values : Array) : undefined
+
+IDL:
+void vertexAttrib3fv(GLuint attribLocation, FloatArray values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib3fv(attribLocation : Number, values : Float32Array) : undefined
+
+IDL:
+void vertexAttrib3fv(GLuint attribLocation, sequence<float> values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib4f(attribLocation : Number, x : Number, y : Number, z : Number, w : Number) : undefined
+
+IDL:
+void vertexAttrib4f(GLuint attribLocation, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib4fv(attribLocation : Number, values : Array) : undefined
+
+IDL:
+void vertexAttrib4fv(GLuint attribLocation, FloatArray values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttrib4fv(attribLocation : Number, values : Float32Array) : undefined
+
+IDL:
+void vertexAttrib4fv(GLuint attribLocation, sequence<float> values);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml
+
+----
+prototype.vertexAttribPointer(attribLocation : Number, size : Number, dataType : Number, normalized : Boolean, stride : Number, offset : Number) : undefined
+
+Defines the data for the specified shader attribute.
+
+<html>
+<dl>
+**attribLocation**
+<dd>
+is the location of the shader attribute. Use %%#getAttribLocation|**getAttribLocation()**%%
+to get the location if you did not specify it explicitly with
+%%#bindAttribLocation|**bindAttribLocation()**%%.
+
+<dt>
+**size** 
+<dd>
+is the number of components for each attribute and must be **1**, **2**, **3**, or **4**. 
+
+<dt>
+**dataType** 
+<dd>
+must be one of %%#BYTE|**BYTE**%%, %%#UNSIGNED_BYTE|**UNSIGNED_BYTE**%%, 
+%%#SHORT|**SHORT**%%, %%#UNSIGNED_SHORT|**UNSIGNED_SHORT**%%, 
+or %%#FLOAT|**FLOAT**%%. 
+
+<dt>
+**normalized**
+<dd>
+if **true** and **dataType**
+is not **FLOAT**, the data will be mapped to the range **-1** to **1** for signed types and
+the range **0** to **1** for unsigned types.  
+
+
+<dt>
+**stride**
+<dd>
+indicates the number of bytes
+between the consecutive attributes.  If **stride** is **0**,  **size * sizeof(dataType)**
+will be used.  
+
+<dt>
+**offset**
+<dd>
+is the number of bytes before the first attribute.
+</dl>
+</html>
+
+IDL:
+void vertexAttribPointer(GLuint indx, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLintptr offset);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttribPointer.xml
+
+----
+prototype.viewport(x : Number, y : Number, width : Number, height : Number) : undefined
+
+IDL:
+void viewport(GLint x, GLint y, GLsizei width, GLsizei height);
+
+Spec:
+http://www.khronos.org/opengles/sdk/docs/man/xhtml/glViewport.xml
+
+
+----
+DEPTH_BUFFER_BIT : Number
+
+
+IDL:
+    /* ClearBufferMask */
+    const GLenum DEPTH_BUFFER_BIT               = 0x00000100;
+
+ReadOnly:
+true
+
+----
+STENCIL_BUFFER_BIT : Number
+
+IDL:
+    const GLenum STENCIL_BUFFER_BIT             = 0x00000400;
+
+ReadOnly:
+true
+
+
+----
+COLOR_BUFFER_BIT : Number
+
+IDL:
+    const GLenum COLOR_BUFFER_BIT               = 0x00004000;
+
+ReadOnly:
+true
+
+    
+----
+POINTS : Number
+
+IDL:
+    /* BeginMode */
+    const GLenum POINTS                         = 0x0000;
+
+ReadOnly:
+true
+
+
+----
+LINES : Number
+
+IDL:
+const GLenum LINES                          = 0x0001;
+
+
+ReadOnly:
+true
+
+----
+LINE_LOOP : Number
+
+IDL:
+const GLenum LINE_LOOP                      = 0x0002;
+
+ReadOnly:
+true
+
+
+----
+LINE_STRIP : Number
+
+IDL:
+const GLenum LINE_STRIP                     = 0x0003;
+
+ReadOnly:
+true
+
+
+----
+TRIANGLES : Number
+
+IDL:
+const GLenum TRIANGLES                      = 0x0004;
+
+ReadOnly:
+true
+
+
+----
+TRIANGLE_STRIP : Number
+
+IDL:
+const GLenum TRIANGLE_STRIP                 = 0x0005;
+
+ReadOnly:
+true
+
+
+----
+TRIANGLE_FAN : Number
+
+IDL:
+const GLenum TRIANGLE_FAN                   = 0x0006;
+
+/* AlphaFunction (not supported in ES20) */
+/*      NEVER */
+/*      LESS */
+/*      EQUAL */
+/*      LEQUAL */
+/*      GREATER */
+/*      NOTEQUAL */
+/*      GEQUAL */
+/*      ALWAYS */
+
+ReadOnly:
+true
+
+
+----
+ZERO : Number
+
+ReadOnly:
+true
+
+IDL:
+/* BlendingFactorDest */
+const GLenum ZERO                           = 0;
+
+----
+ONE : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE                            = 1;
+
+----
+SRC_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum SRC_COLOR                      = 0x0300;
+
+----
+ONE_MINUS_SRC_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE_MINUS_SRC_COLOR            = 0x0301;
+
+----
+SRC_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum SRC_ALPHA                      = 0x0302;
+
+----
+ONE_MINUS_SRC_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE_MINUS_SRC_ALPHA            = 0x0303;
+
+----
+DST_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum DST_ALPHA                      = 0x0304;
+
+----
+ONE_MINUS_DST_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE_MINUS_DST_ALPHA            = 0x0305;
+
+----
+DST_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+/* BlendingFactorSrc */
+/*      ZERO */
+/*      ONE */
+const GLenum DST_COLOR                      = 0x0306;
+
+----
+ONE_MINUS_DST_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE_MINUS_DST_COLOR            = 0x0307;
+
+----
+SRC_ALPHA_SATURATE : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum SRC_ALPHA_SATURATE             = 0x0308;
+/*      SRC_ALPHA */
+/*      ONE_MINUS_SRC_ALPHA */
+/*      DST_ALPHA */
+/*      ONE_MINUS_DST_ALPHA */
+
+----
+FUNC_ADD : Number
+
+ReadOnly:
+true
+
+IDL:
+/* BlendEquationSeparate */
+const GLenum FUNC_ADD                       = 0x8006;
+
+----
+BLEND_EQUATION : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum BLEND_EQUATION                 = 0x8009;
+
+----
+BLEND_EQUATION_RGB : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum BLEND_EQUATION_RGB             = 0x8009;   /* same as BLEND_EQUATION */
+
+----
+BLEND_EQUATION_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum BLEND_EQUATION_ALPHA           = 0x883D;
+
+----
+FUNC_SUBTRACT : Number
+
+ReadOnly:
+true
+
+IDL:
+/* BlendSubtract */
+const GLenum FUNC_SUBTRACT                  = 0x800A;
+
+----
+FUNC_REVERSE_SUBTRACT :  Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum FUNC_REVERSE_SUBTRACT          = 0x800B;
+
+
+----
+BLEND_DST_RGB : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns unsigned long
+
+/* Separate Blend Functions */
+const GLenum BLEND_DST_RGB                  = 0x80C8;
+
+----
+BLEND_SRC_RGB : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum BLEND_SRC_RGB                  = 0x80C9;
+
+----
+BLEND_DST_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum BLEND_DST_ALPHA                = 0x80CA;
+
+----
+BLEND_SRC_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum BLEND_SRC_ALPHA                = 0x80CB;
+
+----
+CONSTANT_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum CONSTANT_COLOR                 = 0x8001;
+
+----
+ONE_MINUS_CONSTANT_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE_MINUS_CONSTANT_COLOR       = 0x8002;
+
+----
+CONSTANT_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum CONSTANT_ALPHA                 = 0x8003;
+
+----
+ONE_MINUS_CONSTANT_ALPHA : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ONE_MINUS_CONSTANT_ALPHA       = 0x8004;
+
+----
+BLEND_COLOR : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns Float32Array of length 4
+
+const GLenum BLEND_COLOR                    = 0x8005;
+
+----
+ARRAY_BUFFER : Number
+
+ReadOnly:
+true
+
+IDL:
+/* Buffer Objects */
+const GLenum ARRAY_BUFFER                   = 0x8892;
+
+----
+ELEMENT_ARRAY_BUFFER : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ELEMENT_ARRAY_BUFFER           = 0x8893;
+
+
+----
+ARRAY_BUFFER_BINDING : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns WebGLBuffer
+
+const GLenum ARRAY_BUFFER_BINDING           = 0x8894;
+
+----
+ELEMENT_ARRAY_BUFFER_BINDING : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum ELEMENT_ARRAY_BUFFER_BINDING   = 0x8895;
+
+----
+STREAM_DRAW : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum STREAM_DRAW                    = 0x88E0;
+----
+STATIC_DRAW : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum STATIC_DRAW                    = 0x88E4;
+----
+DYNAMIC_DRAW : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum DYNAMIC_DRAW                   = 0x88E8;
+
+----
+BUFFER_SIZE : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum BUFFER_SIZE                    = 0x8764;
+----
+BUFFER_USAGE : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum BUFFER_USAGE                   = 0x8765;
+
+----
+CURRENT_VERTEX_ATTRIB : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum CURRENT_VERTEX_ATTRIB          = 0x8626;
+
+/* CullFaceMode */
+----
+FRONT : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum FRONT                          = 0x0404;
+----
+BACK : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum BACK                           = 0x0405;
+----
+FRONT_AND_BACK : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum FRONT_AND_BACK                 = 0x0408;
+
+/* DepthFunction */
+/*      NEVER */
+/*      LESS */
+/*      EQUAL */
+/*      LEQUAL */
+/*      GREATER */
+/*      NOTEQUAL */
+/*      GEQUAL */
+/*      ALWAYS */
+
+/* EnableCap */
+----
+TEXTURE_2D : Number
+
+ReadOnly:
+true
+
+IDL:
+const GLenum TEXTURE_2D                     = 0x0DE1;
+
+----
+CULL_FACE : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter returns Boolean
+
+const GLenum CULL_FACE                      = 0x0B44;
+
+----
+BLEND : Number
+
+ReadOnly:
+true
+
+IDL:
+getParameter return Boolean
+
+const GLenum BLEND                          = 0x0BE2;
+
+----
+DITHER : Number
+
+<htmlexample>
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vertexPosition;
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  void main() {
+    float x = 0.4 + gl_FragCoord.x / 600.0;
+
+    gl_FragColor = vec4(x, x, x, 1.0);
+
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  // Create Vertex Shader
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+  gl.compileShader(vertexShader);
+
+  // Create Fragment Shader
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+  gl.compileShader(fragmentShader);
+
+  // Create Shader Program
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Create a buffer with 3 points to form a triangle
+  var triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var vertices = [
+    -1, -1, 0,
+     1, -1, 0,
+    -1,  1, 0,
+     1,  1, 0 ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
+  var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+
+  gl.disable(gl.DITHER);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+IDL:
+const GLenum DITHER                         = 0x0BD0;
+
+----
+STENCIL_TEST : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_TEST                   = 0x0B90;
+
+----
+DEPTH_TEST : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum DEPTH_TEST                     = 0x0B71;
+
+----
+SCISSOR_TEST : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum SCISSOR_TEST                   = 0x0C11;
+
+----
+POLYGON_OFFSET_FILL : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum POLYGON_OFFSET_FILL            = 0x8037;
+
+----
+SAMPLE_ALPHA_TO_COVERAGE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum SAMPLE_ALPHA_TO_COVERAGE       = 0x809E;
+
+----
+SAMPLE_COVERAGE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum SAMPLE_COVERAGE                = 0x80A0;
+
+/* ErrorCode */
+
+----
+NO_ERROR : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum NO_ERROR                       = 0;
+
+----
+INVALID_ENUM : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum INVALID_ENUM                   = 0x0500;
+
+----
+INVALID_VALUE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum INVALID_VALUE                  = 0x0501;
+
+----
+INVALID_OPERATION : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum INVALID_OPERATION              = 0x0502;
+
+----
+OUT_OF_MEMORY : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum OUT_OF_MEMORY                  = 0x0505;
+
+/* FrontFaceDirection */
+
+----
+CW : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum CW                             = 0x0900;
+
+----
+CCW : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum CCW                            = 0x0901;
+
+/* GetPName */
+
+----
+LINE_WIDTH : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum LINE_WIDTH                     = 0x0B21;
+
+----
+ALIASED_POINT_SIZE_RANGE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns Float32Array of length 2 
+
+const GLenum ALIASED_POINT_SIZE_RANGE       = 0x846D;
+
+----
+ALIASED_LINE_WIDTH_RANGE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns Float32Array of length 2 
+
+const GLenum ALIASED_LINE_WIDTH_RANGE       = 0x846E;
+
+----
+CULL_FACE_MODE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum CULL_FACE_MODE                 = 0x0B45;
+
+----
+FRONT_FACE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum FRONT_FACE                     = 0x0B46;
+
+----
+DEPTH_RANGE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns Float32Array of length 2
+
+const GLenum DEPTH_RANGE                    = 0x0B70;
+
+----
+DEPTH_WRITEMASK : Number
+
+Use **%%#getParameter|getParameter%%(gl.%%#DEPTH_WRITEMASK|DEPTH_WRITEMASK%%)**
+to get a %%/Boolean|**Boolean**%% value indicating if render
+operations will write to the depth buffer.  Use
+%%#depthMask|**depthMask()**%% to change the value. 
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.DEPTH_WRITEMASK));
+
+  gl.depthMask(false);
+  console.log(gl.getParameter(gl.DEPTH_WRITEMASK));
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum DEPTH_WRITEMASK                = 0x0B72;
+
+----
+DEPTH_CLEAR_VALUE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns float
+
+const GLenum DEPTH_CLEAR_VALUE              = 0x0B73;
+
+----
+DEPTH_FUNC : Number
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum DEPTH_FUNC                     = 0x0B74;
+
+----
+STENCIL_CLEAR_VALUE : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_CLEAR_VALUE            = 0x0B91;
+
+----
+STENCIL_FUNC : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_FUNC                   = 0x0B92;
+
+----
+STENCIL_FAIL : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_FAIL                   = 0x0B94;
+
+----
+STENCIL_PASS_DEPTH_FAIL : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_PASS_DEPTH_FAIL        = 0x0B95;
+
+----
+STENCIL_PASS_DEPTH_PASS : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_PASS_DEPTH_PASS        = 0x0B96;
+
+----
+STENCIL_REF : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_REF                    = 0x0B97;
+
+----
+STENCIL_VALUE_MASK : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_VALUE_MASK             = 0x0B93;
+
+----
+STENCIL_WRITEMASK : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_WRITEMASK              = 0x0B98;
+
+----
+STENCIL_BACK_FUNC : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_FUNC              = 0x8800;
+
+----
+STENCIL_BACK_FAIL : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_FAIL              = 0x8801;
+
+----
+STENCIL_BACK_PASS_DEPTH_FAIL : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_PASS_DEPTH_FAIL   = 0x8802;
+
+----
+STENCIL_BACK_PASS_DEPTH_PASS : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_PASS_DEPTH_PASS   = 0x8803;
+
+----
+STENCIL_BACK_REF : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_REF               = 0x8CA3;
+
+----
+STENCIL_BACK_VALUE_MASK : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_VALUE_MASK        = 0x8CA4;
+
+----
+STENCIL_BACK_WRITEMASK : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum STENCIL_BACK_WRITEMASK         = 0x8CA5;
+
+----
+VIEWPORT : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum VIEWPORT                       = 0x0BA2;
+
+----
+SCISSOR_BOX : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum SCISSOR_BOX                    = 0x0C10;
+/*      SCISSOR_TEST */
+
+----
+COLOR_CLEAR_VALUE : Number
+
+Use **%%#getParameter|getParameter%%(gl.COLOR_CLEAR_VALUE)**
+to get a %%/Float32Array|**Float32Array**%% 
+containing the 
+current clear color set by the most recent
+%%#clearColor|**clearColor()**%% call. 
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  var color = gl.getParameter(gl.COLOR_CLEAR_VALUE);
+  console.log(color[0], color[1], color[2], color[3]);
+
+  gl.clearColor(0.25, 0.5, 0.75, 1);
+
+  color = gl.getParameter(gl.COLOR_CLEAR_VALUE);
+  console.log(color[0], color[1], color[2], color[3]);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns Float32Array of length 4
+
+const GLenum COLOR_CLEAR_VALUE              = 0x0C22;
+
+----
+COLOR_WRITEMASK : Number
+
+Use **%%#getParameter|getParameter%%(gl.COLOR_WRITEMASK)**
+to get an %%/Array|**Array**%% of %%/Boolean|**Boolean**%% values
+indicating if render
+operations will write to the color channels of the framebuffer.  Use
+%%#colorMask|**colorMask()**%% to change the values. 
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.COLOR_WRITEMASK).join(', '));
+
+  gl.colorMask(true, false, false, false);
+  console.log(gl.getParameter(gl.COLOR_WRITEMASK).join(', '));
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+IDL:
+getParameter returns Array of length 4 with Booleans
+
+const GLenum COLOR_WRITEMASK                = 0x0C23;
+
+----
+UNPACK_ALIGNMENT : Number
+
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum UNPACK_ALIGNMENT               = 0x0CF5;
+
+----
+PACK_ALIGNMENT : Number
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum PACK_ALIGNMENT                 = 0x0D05;
+
+----
+MAX_TEXTURE_SIZE : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_TEXTURE_SIZE));
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum MAX_TEXTURE_SIZE               = 0x0D33;
+
+----
+MAX_VIEWPORT_DIMS : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+  
+  var maxViewportDims = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
+  console.log(maxViewportDims[0]);
+  console.log(maxViewportDims[1]);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+IDL:
+const GLenum MAX_VIEWPORT_DIMS              = 0x0D3A;
+
+----
+SUBPIXEL_BITS : Number
+
+IDL:
+const GLenum SUBPIXEL_BITS                  = 0x0D50;
+
+ReadOnly:
+true
+
+
+----
+RED_BITS : Number
+
+IDL:
+const GLenum RED_BITS                       = 0x0D52;
+
+ReadOnly:
+true
+
+
+----
+GREEN_BITS : Number
+
+IDL:
+const GLenum GREEN_BITS                     = 0x0D53;
+
+ReadOnly:
+true
+
+----
+BLUE_BITS : Number
+
+IDL:
+getParameter returns long
+
+const GLenum BLUE_BITS                      = 0x0D54;
+
+ReadOnly:
+true
+
+----
+ALPHA_BITS : Number
+
+IDL:
+getParameter returns long
+
+const GLenum ALPHA_BITS                     = 0x0D55;
+
+ReadOnly:
+true
+
+----
+DEPTH_BITS : Number
+
+IDL:
+getParameter returns long
+
+const GLenum DEPTH_BITS                     = 0x0D56;
+
+ReadOnly:
+true
+
+----
+STENCIL_BITS : Number
+
+IDL:
+const GLenum STENCIL_BITS                   = 0x0D57;
+
+ReadOnly:
+true
+
+----
+POLYGON_OFFSET_UNITS : Number
+
+IDL:
+const GLenum POLYGON_OFFSET_UNITS           = 0x2A00;
+/*      POLYGON_OFFSET_FILL */
+
+ReadOnly:
+true
+
+----
+POLYGON_OFFSET_FACTOR : Number
+
+IDL:
+const GLenum POLYGON_OFFSET_FACTOR          = 0x8038;
+
+ReadOnly:
+true
+
+----
+TEXTURE_BINDING_2D : Number
+
+IDL:
+const GLenum TEXTURE_BINDING_2D             = 0x8069;
+
+ReadOnly:
+true
+
+----
+SAMPLE_BUFFERS : Number
+
+IDL:
+const GLenum SAMPLE_BUFFERS                 = 0x80A8;
+
+ReadOnly:
+true
+
+----
+SAMPLES : Number
+
+IDL:
+const GLenum SAMPLES                        = 0x80A9;
+
+ReadOnly:
+true
+
+----
+SAMPLE_COVERAGE_VALUE : Number
+
+IDL:
+const GLenum SAMPLE_COVERAGE_VALUE          = 0x80AA;
+
+ReadOnly:
+true
+
+----
+SAMPLE_COVERAGE_INVERT : Number
+
+IDL:
+const GLenum SAMPLE_COVERAGE_INVERT         = 0x80AB;
+
+/* GetTextureParameter */
+/*      TEXTURE_MAG_FILTER */
+/*      TEXTURE_MIN_FILTER */
+/*      TEXTURE_WRAP_S */
+/*      TEXTURE_WRAP_T */
+
+ReadOnly:
+true
+
+
+----
+NUM_COMPRESSED_TEXTURE_FORMATS : Number
+
+IDL:
+const GLenum NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2;
+
+ReadOnly:
+true
+
+----
+COMPRESSED_TEXTURE_FORMATS : Number
+
+IDL:
+getParameter returns Uint32Array
+
+const GLenum COMPRESSED_TEXTURE_FORMATS     = 0x86A3;
+
+/* HintMode */
+
+ReadOnly:
+true
+
+----
+DONT_CARE : Number
+
+IDL:
+const GLenum DONT_CARE                      = 0x1100;
+
+ReadOnly:
+true
+
+----
+FASTEST : Number
+
+IDL:
+const GLenum FASTEST                        = 0x1101;
+
+ReadOnly:
+true
+
+----
+NICEST : Number
+
+IDL:
+const GLenum NICEST                         = 0x1102;
+
+/* HintTarget */
+
+ReadOnly:
+true
+
+----
+GENERATE_MIPMAP_HINT : Number
+
+IDL:
+const GLenum GENERATE_MIPMAP_HINT            = 0x8192;
+
+/* DataType */
+
+ReadOnly:
+true
+
+----
+BYTE : Number
+
+IDL:
+const GLenum BYTE                           = 0x1400;
+
+ReadOnly:
+true
+
+----
+UNSIGNED_BYTE : Number
+
+IDL:
+const GLenum UNSIGNED_BYTE                  = 0x1401;
+
+ReadOnly:
+true
+
+----
+SHORT : Number
+
+IDL:
+const GLenum SHORT                          = 0x1402;
+
+ReadOnly:
+true
+
+----
+UNSIGNED_SHORT : Number
+
+IDL:
+const GLenum UNSIGNED_SHORT                 = 0x1403;
+
+ReadOnly:
+true
+
+----
+INT : Number
+
+IDL:
+const GLenum INT                            = 0x1404;
+
+ReadOnly:
+true
+
+----
+UNSIGNED_INT : Number
+
+IDL:
+const GLenum UNSIGNED_INT                   = 0x1405;
+
+ReadOnly:
+true
+
+----
+FLOAT : Number
+
+IDL:
+const GLenum FLOAT                          = 0x1406;
+
+/* PixelFormat */
+
+ReadOnly:
+true
+
+----
+DEPTH_COMPONENT : Number
+
+IDL:
+const GLenum DEPTH_COMPONENT                = 0x1902;
+
+ReadOnly:
+true
+
+----
+ALPHA : Number
+
+IDL:
+const GLenum ALPHA                          = 0x1906;
+
+ReadOnly:
+true
+
+----
+RGB : Number
+
+IDL:
+const GLenum RGB                            = 0x1907;
+
+ReadOnly:
+true
+
+----
+RGBA : Number
+
+IDL:
+const GLenum RGBA                           = 0x1908;
+
+ReadOnly:
+true
+
+----
+LUMINANCE : Number
+
+IDL:
+const GLenum LUMINANCE                      = 0x1909;
+
+ReadOnly:
+true
+
+----
+LUMINANCE_ALPHA : Number
+
+IDL:
+const GLenum LUMINANCE_ALPHA                = 0x190A;
+
+/* PixelType */
+/*      UNSIGNED_BYTE */
+
+ReadOnly:
+true
+
+----
+UNSIGNED_SHORT_4_4_4_4 : Number
+
+IDL:
+const GLenum UNSIGNED_SHORT_4_4_4_4         = 0x8033;
+
+ReadOnly:
+true
+
+----
+UNSIGNED_SHORT_5_5_5_1 : Number
+
+IDL:
+const GLenum UNSIGNED_SHORT_5_5_5_1         = 0x8034;
+
+ReadOnly:
+true
+
+----
+UNSIGNED_SHORT_5_6_5 : Number
+
+IDL:
+const GLenum UNSIGNED_SHORT_5_6_5           = 0x8363;
+
+/* Shaders */
+
+ReadOnly:
+true
+
+----
+FRAGMENT_SHADER : Number
+
+Use %%#createShader|**gl.createShader(gl.FRAGMENT_SHADER)**%%
+to create a fragment shader.  
+
+
+Fragment shaders (also called pixel shaders) are functions that run 
+for each pixel drawn by WebGL. They run after the 
+%%#VERTEX_SHADER|vertex shader%% has transformed vertices from 3D 
+space to 2D space.  
+
+The fragment shader should set the built in **gl_FragColor** variable.
+
+For detailed information on the shader language used by WebGL, see the
+%%http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf|GLSL Specification%%.
+
+IDL:
+const GLenum FRAGMENT_SHADER                  = 0x8B30;
+
+ReadOnly:
+true
+
+----
+VERTEX_SHADER : Number
+
+Use %%#createShader|**gl.createShader(gl.VERTEX_SHADER)**%%
+to create a vertex shader.  
+
+
+Vertex shaders are functions that run for each vertex and transform
+the vertex from 3D space to the 2D canvas space.
+
+They can also manipulate other attributes such as texture coordinates and 
+normals which are then passed to the %%#FRAGMENT_SHADER|fragment shader%%.
+
+The vertex shader should set the built in **gl_Position** variable and may also 
+set the **gl_PointSize** variable.
+
+For detailed information on the shader language used by WebGL, see the
+%%http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf|GLSL Specification%%.
+
+
+IDL:
+const GLenum VERTEX_SHADER                    = 0x8B31;
+
+ReadOnly:
+true
+
+----
+MAX_VERTEX_ATTRIBS : Number
+
+The maximum number of attributes a vertex shader may define.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_VERTEX_ATTRIBS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_VERTEX_ATTRIBS               = 0x8869;
+
+ReadOnly:
+true
+
+
+----
+MAX_VERTEX_UNIFORM_VECTORS : Number
+
+The maximum number of uniforms a program may define.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_VERTEX_UNIFORM_VECTORS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_VERTEX_UNIFORM_VECTORS       = 0x8DFB;
+
+
+ReadOnly:
+true
+
+
+----
+MAX_VARYING_VECTORS : Number
+
+The maximum number of varying vectors a program may define.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_VARYING_VECTORS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_VARYING_VECTORS              = 0x8DFC;
+
+
+ReadOnly:
+true
+
+
+----
+MAX_COMBINED_TEXTURE_IMAGE_UNITS : Number
+
+Use **%%#getParameter|getParameter%%(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS)**
+to get the number of texture units available.
+See
+%%#activeTexture|**activeTexture()**%%.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
+
+
+
+ReadOnly:
+true
+
+----
+MAX_VERTEX_TEXTURE_IMAGE_UNITS : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_VERTEX_TEXTURE_IMAGE_UNITS   = 0x8B4C;
+
+ReadOnly:
+true
+
+
+
+
+----
+MAX_TEXTURE_IMAGE_UNITS : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_TEXTURE_IMAGE_UNITS          = 0x8872;
+
+
+ReadOnly:
+true
+
+
+----
+MAX_FRAGMENT_UNIFORM_VECTORS : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_FRAGMENT_UNIFORM_VECTORS     = 0x8DFD;
+
+ReadOnly:
+true
+
+----
+SHADER_TYPE : Number
+
+IDL:
+const GLenum SHADER_TYPE                      = 0x8B4F;
+
+ReadOnly:
+true
+
+----
+DELETE_STATUS : Number
+
+IDL:
+const GLenum DELETE_STATUS                    = 0x8B80;
+
+ReadOnly:
+true
+
+----
+LINK_STATUS : Number
+
+IDL:
+const GLenum LINK_STATUS                      = 0x8B82;
+
+ReadOnly:
+true
+
+----
+VALIDATE_STATUS : Number
+
+IDL:
+const GLenum VALIDATE_STATUS                  = 0x8B83;
+
+ReadOnly:
+true
+
+----
+ATTACHED_SHADERS : Number
+
+IDL:
+const GLenum ATTACHED_SHADERS                 = 0x8B85;
+
+ReadOnly:
+true
+
+----
+ACTIVE_UNIFORMS : Number
+
+IDL:
+const GLenum ACTIVE_UNIFORMS                  = 0x8B86;
+
+ReadOnly:
+true
+
+----
+ACTIVE_UNIFORM_MAX_LENGTH : Number
+
+IDL:
+const GLenum ACTIVE_UNIFORM_MAX_LENGTH        = 0x8B87;
+
+ReadOnly:
+true
+
+----
+ACTIVE_ATTRIBUTES : Number
+
+IDL:
+const GLenum ACTIVE_ATTRIBUTES                = 0x8B89;
+
+ReadOnly:
+true
+
+----
+ACTIVE_ATTRIBUTE_MAX_LENGTH : Number
+
+IDL:
+const GLenum ACTIVE_ATTRIBUTE_MAX_LENGTH      = 0x8B8A;
+
+ReadOnly:
+true
+
+----
+SHADING_LANGUAGE_VERSION : Number
+
+IDL:
+const GLenum SHADING_LANGUAGE_VERSION         = 0x8B8C;
+
+ReadOnly:
+true
+
+----
+CURRENT_PROGRAM : Number
+
+IDL:
+getParameter returns WebGLProgram
+
+const GLenum CURRENT_PROGRAM                  = 0x8B8D;
+
+/* StencilFunction */
+
+ReadOnly:
+true
+----
+NEVER : Number
+
+IDL:
+const GLenum NEVER                          = 0x0200;
+
+ReadOnly:
+true
+
+----
+LESS : Number
+
+IDL:
+const GLenum LESS                           = 0x0201;
+
+ReadOnly:
+true
+
+----
+EQUAL : Number
+
+IDL:
+const GLenum EQUAL                          = 0x0202;
+
+ReadOnly:
+true
+
+----
+LEQUAL : Number
+
+IDL:
+const GLenum LEQUAL                         = 0x0203;
+
+ReadOnly:
+true
+
+----
+GREATER : Number
+
+IDL:
+const GLenum GREATER                        = 0x0204;
+
+ReadOnly:
+true
+
+----
+NOTEQUAL : Number
+
+IDL:
+const GLenum NOTEQUAL                       = 0x0205;
+
+ReadOnly:
+true
+
+----
+GEQUAL : Number
+
+IDL:
+const GLenum GEQUAL                         = 0x0206;
+
+ReadOnly:
+true
+
+----
+ALWAYS : Number
+
+IDL:
+const GLenum ALWAYS                         = 0x0207;
+
+/* StencilOp */
+/*      ZERO */
+
+ReadOnly:
+true
+
+----
+KEEP : Number
+
+IDL:
+const GLenum KEEP                           = 0x1E00;
+
+ReadOnly:
+true
+
+----
+REPLACE : Number
+
+IDL:
+const GLenum REPLACE                        = 0x1E01;
+
+ReadOnly:
+true
+
+----
+INCR : Number
+
+IDL:
+const GLenum INCR                           = 0x1E02;
+
+ReadOnly:
+true
+
+----
+DECR : Number
+
+IDL:
+const GLenum DECR                           = 0x1E03;
+
+ReadOnly:
+true
+
+----
+INVERT : Number
+
+IDL:
+const GLenum INVERT                         = 0x150A;
+
+ReadOnly:
+true
+
+----
+INCR_WRAP : Number
+
+IDL:
+const GLenum INCR_WRAP                      = 0x8507;
+
+ReadOnly:
+true
+
+----
+DECR_WRAP : Number
+
+IDL:
+const GLenum DECR_WRAP                      = 0x8508;
+
+/* StringName */
+
+ReadOnly:
+true
+
+----
+VENDOR : Number
+
+IDL:
+const GLenum VENDOR                         = 0x1F00;
+
+ReadOnly:
+true
+
+----
+RENDERER : Number
+
+IDL:
+const GLenum RENDERER                       = 0x1F01;
+
+ReadOnly:
+true
+
+----
+VERSION : Number
+
+IDL:
+const GLenum VERSION                        = 0x1F02;
+/* TextureMagFilter */
+
+ReadOnly:
+true
+
+----
+NEAREST : Number
+
+IDL:
+const GLenum NEAREST                        = 0x2600;
+
+ReadOnly:
+true
+
+----
+LINEAR : Number
+
+IDL:
+const GLenum LINEAR                         = 0x2601;
+
+ReadOnly:
+true
+
+/* TextureMinFilter */
+/*      NEAREST */
+/*      LINEAR */
+----
+NEAREST_MIPMAP_NEAREST : Number
+
+Note, you can only use **NEAREST_MIPMAP_NEAREST** for textures where the
+width and height are both powers of **2** (such as 128, 256, 512, etc).
+
+
+IDL:
+const GLenum NEAREST_MIPMAP_NEAREST         = 0x2700;
+
+ReadOnly:
+true
+
+----
+LINEAR_MIPMAP_NEAREST : Number
+
+Note, you can only use **LINEAR_MIPMAP_NEAREST** for textures where the
+width and height are both powers of **2** (such as 128, 256, 512, etc).
+
+
+IDL:
+const GLenum LINEAR_MIPMAP_NEAREST          = 0x2701;
+
+ReadOnly:
+true
+
+----
+NEAREST_MIPMAP_LINEAR : Number
+
+Note, you can only use **NEAREST_MIPMAP_LINEAR** for textures where the
+width and height are both powers of **2** (such as 128, 256, 512, etc).
+
+IDL:
+const GLenum NEAREST_MIPMAP_LINEAR          = 0x2702;
+
+ReadOnly:
+true
+
+----
+LINEAR_MIPMAP_LINEAR : Number
+
+Note, you can only use **LINEAR_MIPMAP_LINEAR** for textures where the
+width and height are both powers of **2** (such as 128, 256, 512, etc).
+
+IDL:
+const GLenum LINEAR_MIPMAP_LINEAR           = 0x2703;
+
+ReadOnly:
+true
+
+/* TextureParameterName */
+----
+TEXTURE_MAG_FILTER : Number
+
+IDL:
+const GLenum TEXTURE_MAG_FILTER             = 0x2800;
+
+ReadOnly:
+true
+
+----
+TEXTURE_MIN_FILTER : Number
+
+IDL:
+const GLenum TEXTURE_MIN_FILTER             = 0x2801;
+
+ReadOnly:
+true
+
+----
+TEXTURE_WRAP_S : Number
+
+IDL:
+const GLenum TEXTURE_WRAP_S                 = 0x2802;
+
+ReadOnly:
+true
+
+----
+TEXTURE_WRAP_T : Number
+
+IDL:
+const GLenum TEXTURE_WRAP_T                 = 0x2803;
+
+ReadOnly:
+true
+
+/* TextureTarget */
+/*      TEXTURE_2D */
+----
+TEXTURE : Number
+
+IDL:
+const GLenum TEXTURE                        = 0x1702;
+
+ReadOnly:
+true
+
+----
+TEXTURE_CUBE_MAP : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP               = 0x8513;
+
+ReadOnly:
+true
+----
+TEXTURE_BINDING_CUBE_MAP : Number
+
+IDL:
+const GLenum TEXTURE_BINDING_CUBE_MAP       = 0x8514;
+
+ReadOnly:
+true
+----
+TEXTURE_CUBE_MAP_POSITIVE_X : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP_POSITIVE_X    = 0x8515;
+
+ReadOnly:
+true
+----
+TEXTURE_CUBE_MAP_NEGATIVE_X : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP_NEGATIVE_X    = 0x8516;
+
+ReadOnly:
+true
+----
+TEXTURE_CUBE_MAP_POSITIVE_Y : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP_POSITIVE_Y    = 0x8517;
+
+ReadOnly:
+true
+----
+TEXTURE_CUBE_MAP_NEGATIVE_Y : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP_NEGATIVE_Y    = 0x8518;
+
+ReadOnly:
+true
+----
+TEXTURE_CUBE_MAP_POSITIVE_Z : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP_POSITIVE_Z    = 0x8519;
+
+ReadOnly:
+true
+----
+TEXTURE_CUBE_MAP_NEGATIVE_Z : Number
+
+IDL:
+const GLenum TEXTURE_CUBE_MAP_NEGATIVE_Z    = 0x851A;
+
+ReadOnly:
+true
+----
+MAX_CUBE_MAP_TEXTURE_SIZE : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+  
+  console.log(gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_CUBE_MAP_TEXTURE_SIZE      = 0x851C;
+
+
+ReadOnly:
+true
+
+
+/* TextureUnit */
+----
+TEXTURE0 : Number
+
+IDL:
+const GLenum TEXTURE0                       = 0x84C0;
+
+ReadOnly:
+true
+----
+TEXTURE1 : Number
+
+IDL:
+const GLenum TEXTURE1                       = 0x84C1;
+
+ReadOnly:
+true
+----
+TEXTURE2 : Number
+
+IDL:
+const GLenum TEXTURE2                       = 0x84C2;
+
+ReadOnly:
+true
+----
+TEXTURE3 : Number
+
+IDL:
+const GLenum TEXTURE3                       = 0x84C3;
+
+ReadOnly:
+true
+----
+TEXTURE4 : Number
+
+IDL:
+const GLenum TEXTURE4                       = 0x84C4;
+
+ReadOnly:
+true
+----
+TEXTURE5 : Number
+
+IDL:
+const GLenum TEXTURE5                       = 0x84C5;
+
+ReadOnly:
+true
+----
+TEXTURE6 : Number
+
+IDL:
+const GLenum TEXTURE6                       = 0x84C6;
+
+ReadOnly:
+true
+----
+TEXTURE7 : Number
+
+IDL:
+const GLenum TEXTURE7                       = 0x84C7;
+
+ReadOnly:
+true
+----
+TEXTURE8 : Number
+
+IDL:
+const GLenum TEXTURE8                       = 0x84C8;
+
+ReadOnly:
+true
+----
+TEXTURE9 : Number
+
+IDL:
+const GLenum TEXTURE9                       = 0x84C9;
+
+ReadOnly:
+true
+----
+TEXTURE10 : Number
+
+IDL:
+const GLenum TEXTURE10                      = 0x84CA;
+
+ReadOnly:
+true
+----
+TEXTURE11 : Number
+
+IDL:
+const GLenum TEXTURE11                      = 0x84CB;
+
+ReadOnly:
+true
+----
+TEXTURE12 : Number
+
+IDL:
+const GLenum TEXTURE12                      = 0x84CC;
+
+ReadOnly:
+true
+----
+TEXTURE13 : Number
+
+IDL:
+const GLenum TEXTURE13                      = 0x84CD;
+
+ReadOnly:
+true
+----
+TEXTURE14 : Number
+
+IDL:
+const GLenum TEXTURE14                      = 0x84CE;
+
+ReadOnly:
+true
+----
+TEXTURE15 : Number
+
+IDL:
+const GLenum TEXTURE15                      = 0x84CF;
+
+ReadOnly:
+true
+----
+TEXTURE16 : Number
+
+IDL:
+const GLenum TEXTURE16                      = 0x84D0;
+
+ReadOnly:
+true
+----
+TEXTURE17 : Number
+
+IDL:
+const GLenum TEXTURE17                      = 0x84D1;
+
+ReadOnly:
+true
+----
+TEXTURE18 : Number
+
+IDL:
+const GLenum TEXTURE18                      = 0x84D2;
+
+ReadOnly:
+true
+----
+TEXTURE19 : Number
+
+IDL:
+const GLenum TEXTURE19                      = 0x84D3;
+
+ReadOnly:
+true
+----
+TEXTURE20 : Number
+
+IDL:
+const GLenum TEXTURE20                      = 0x84D4;
+
+ReadOnly:
+true
+----
+TEXTURE21 : Number
+
+IDL:
+const GLenum TEXTURE21                      = 0x84D5;
+
+ReadOnly:
+true
+----
+TEXTURE22 : Number
+
+IDL:
+const GLenum TEXTURE22                      = 0x84D6;
+
+ReadOnly:
+true
+----
+TEXTURE23 : Number
+
+IDL:
+const GLenum TEXTURE23                      = 0x84D7;
+
+ReadOnly:
+true
+----
+TEXTURE24 : Number
+
+IDL:
+const GLenum TEXTURE24                      = 0x84D8;
+
+ReadOnly:
+true
+----
+TEXTURE25 : Number
+
+IDL:
+const GLenum TEXTURE25                      = 0x84D9;
+
+ReadOnly:
+true
+----
+TEXTURE26 : Number
+
+IDL:
+const GLenum TEXTURE26                      = 0x84DA;
+
+ReadOnly:
+true
+----
+TEXTURE27 : Number
+
+IDL:
+const GLenum TEXTURE27                      = 0x84DB;
+
+ReadOnly:
+true
+----
+TEXTURE28 : Number
+
+IDL:
+const GLenum TEXTURE28                      = 0x84DC;
+
+ReadOnly:
+true
+----
+TEXTURE29 : Number
+
+IDL:
+const GLenum TEXTURE29                      = 0x84DD;
+
+ReadOnly:
+true
+----
+TEXTURE30 : Number
+
+IDL:
+const GLenum TEXTURE30                      = 0x84DE;
+
+ReadOnly:
+true
+----
+TEXTURE31 : Number
+
+IDL:
+const GLenum TEXTURE31                      = 0x84DF;
+
+ReadOnly:
+true
+----
+ACTIVE_TEXTURE : Number
+
+Use **%%#getParameter|getParameter%%(gl.ACTIVE_TEXTURE)**
+to get the active texture unit set by the most recent
+%%#activeTexture|**activeTexture()**%% call.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.ACTIVE_TEXTURE) - gl.TEXTURE0);
+
+  gl.activeTexture(gl.TEXTURE4);
+  console.log(gl.getParameter(gl.ACTIVE_TEXTURE) - gl.TEXTURE0);
+</script>
+</htmlexample>
+
+
+IDL:
+getParameter returns unsigned long
+
+const GLenum ACTIVE_TEXTURE                 = 0x84E0;
+
+ReadOnly:
+true
+
+/* TextureWrapMode */
+----
+REPEAT : Number
+
+Note, you can only use **REPEAT** for textures where the
+width and height are both powers of **2** (such as 128, 256, 512, etc).
+
+
+IDL:
+const GLenum REPEAT                         = 0x2901;
+
+ReadOnly:
+true
+----
+CLAMP_TO_EDGE : Number
+
+IDL:
+const GLenum CLAMP_TO_EDGE                  = 0x812F;
+
+ReadOnly:
+true
+----
+MIRRORED_REPEAT : Number
+
+Note, you can only use **MIRRORED_REPEAT** for textures where the
+width and height are both powers of **2** (such as 128, 256, 512, etc).
+
+
+IDL:
+const GLenum MIRRORED_REPEAT                = 0x8370;
+
+ReadOnly:
+true
+
+/* Uniform Types */
+----
+FLOAT_VEC2 : Number
+
+IDL:
+const GLenum FLOAT_VEC2                     = 0x8B50;
+
+ReadOnly:
+true
+----
+FLOAT_VEC3 : Number
+
+IDL:
+const GLenum FLOAT_VEC3                     = 0x8B51;
+
+ReadOnly:
+true
+----
+FLOAT_VEC4 : Number
+
+IDL:
+const GLenum FLOAT_VEC4                     = 0x8B52;
+
+ReadOnly:
+true
+----
+INT_VEC2 : Number
+
+IDL:
+const GLenum INT_VEC2                       = 0x8B53;
+
+ReadOnly:
+true
+----
+INT_VEC3 : Number
+
+IDL:
+const GLenum INT_VEC3                       = 0x8B54;
+
+ReadOnly:
+true
+----
+INT_VEC4 : Number
+
+IDL:
+const GLenum INT_VEC4                       = 0x8B55;
+
+ReadOnly:
+true
+----
+BOOL : Number
+
+IDL:
+const GLenum BOOL                           = 0x8B56;
+
+ReadOnly:
+true
+----
+BOOL_VEC2 : Number
+
+IDL:
+const GLenum BOOL_VEC2                      = 0x8B57;
+
+ReadOnly:
+true
+----
+BOOL_VEC3 : Number
+
+IDL:
+const GLenum BOOL_VEC3                      = 0x8B58;
+
+ReadOnly:
+true
+----
+BOOL_VEC4 : Number
+
+IDL:
+const GLenum BOOL_VEC4                      = 0x8B59;
+
+ReadOnly:
+true
+----
+FLOAT_MAT2 : Number
+
+IDL:
+const GLenum FLOAT_MAT2                     = 0x8B5A;
+
+ReadOnly:
+true
+----
+FLOAT_MAT3 : Number
+
+IDL:
+const GLenum FLOAT_MAT3                     = 0x8B5B;
+
+ReadOnly:
+true
+----
+FLOAT_MAT4 : Number
+
+IDL:
+const GLenum FLOAT_MAT4                     = 0x8B5C;
+
+ReadOnly:
+true
+----
+SAMPLER_2D : Number
+
+IDL:
+const GLenum SAMPLER_2D                     = 0x8B5E;
+
+ReadOnly:
+true
+----
+SAMPLER_CUBE : Number
+
+IDL:
+const GLenum SAMPLER_CUBE                   = 0x8B60;
+
+ReadOnly:
+true
+
+/* Vertex Arrays */
+----
+VERTEX_ATTRIB_ARRAY_ENABLED : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_ENABLED        = 0x8622;
+
+ReadOnly:
+true
+----
+VERTEX_ATTRIB_ARRAY_SIZE : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_SIZE           = 0x8623;
+
+ReadOnly:
+true
+----
+VERTEX_ATTRIB_ARRAY_STRIDE : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_STRIDE         = 0x8624;
+
+ReadOnly:
+true
+----
+VERTEX_ATTRIB_ARRAY_TYPE : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_TYPE           = 0x8625;
+
+ReadOnly:
+true
+----
+VERTEX_ATTRIB_ARRAY_NORMALIZED : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_NORMALIZED     = 0x886A;
+
+ReadOnly:
+true
+----
+VERTEX_ATTRIB_ARRAY_POINTER : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_POINTER        = 0x8645;
+
+ReadOnly:
+true
+----
+VERTEX_ATTRIB_ARRAY_BUFFER_BINDING : Number
+
+IDL:
+const GLenum VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
+
+ReadOnly:
+true
+
+/* Shader Source */
+----
+COMPILE_STATUS : Number
+
+IDL:
+const GLenum COMPILE_STATUS                 = 0x8B81;
+
+ReadOnly:
+true
+----
+INFO_LOG_LENGTH : Number
+
+IDL:
+const GLenum INFO_LOG_LENGTH                = 0x8B84;
+
+ReadOnly:
+true
+----
+SHADER_SOURCE_LENGTH : Number
+
+IDL:
+const GLenum SHADER_SOURCE_LENGTH           = 0x8B88;
+
+ReadOnly:
+true
+
+/* Shader Precision-Specified Types */
+----
+LOW_FLOAT : Number
+
+IDL:
+const GLenum LOW_FLOAT                      = 0x8DF0;
+
+ReadOnly:
+true
+----
+MEDIUM_FLOAT : Number
+
+IDL:
+const GLenum MEDIUM_FLOAT                   = 0x8DF1;
+
+ReadOnly:
+true
+----
+HIGH_FLOAT : Number
+
+IDL:
+const GLenum HIGH_FLOAT                     = 0x8DF2;
+
+ReadOnly:
+true
+----
+LOW_INT : Number
+
+IDL:
+const GLenum LOW_INT                        = 0x8DF3;
+
+ReadOnly:
+true
+----
+MEDIUM_INT : Number
+
+IDL:
+const GLenum MEDIUM_INT                     = 0x8DF4;
+
+ReadOnly:
+true
+----
+HIGH_INT : Number
+
+IDL:
+const GLenum HIGH_INT                       = 0x8DF5;
+
+ReadOnly:
+true
+
+/* Framebuffer Object. */
+----
+FRAMEBUFFER : Number
+
+IDL:
+const GLenum FRAMEBUFFER                    = 0x8D40;
+
+ReadOnly:
+true
+----
+RENDERBUFFER : Number
+
+IDL:
+const GLenum RENDERBUFFER                   = 0x8D41;
+
+ReadOnly:
+true
+
+----
+RGBA4 : Number
+
+IDL:
+const GLenum RGBA4                          = 0x8056;
+
+ReadOnly:
+true
+----
+RGB5_A1 : Number
+
+IDL:
+const GLenum RGB5_A1                        = 0x8057;
+
+ReadOnly:
+true
+----
+RGB565 : Number
+
+IDL:
+const GLenum RGB565                         = 0x8D62;
+
+ReadOnly:
+true
+----
+DEPTH_COMPONENT16 : Number
+
+IDL:
+const GLenum DEPTH_COMPONENT16              = 0x81A5;
+
+ReadOnly:
+true
+----
+STENCIL_INDEX : Number
+
+IDL:
+const GLenum STENCIL_INDEX                  = 0x1901;
+
+ReadOnly:
+true
+----
+STENCIL_INDEX8 : Number
+
+IDL:
+const GLenum STENCIL_INDEX8                 = 0x8D48;
+
+ReadOnly:
+true
+----
+DEPTH_STENCIL : Number
+
+IDL:
+const GLenum DEPTH_STENCIL                  = 0x84F9;
+
+ReadOnly:
+true
+
+----
+RENDERBUFFER_WIDTH : Number
+
+IDL:
+const GLenum RENDERBUFFER_WIDTH             = 0x8D42;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_HEIGHT : Number
+
+IDL:
+const GLenum RENDERBUFFER_HEIGHT            = 0x8D43;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_INTERNAL_FORMAT : Number
+
+IDL:
+const GLenum RENDERBUFFER_INTERNAL_FORMAT   = 0x8D44;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_RED_SIZE : Number
+
+IDL:
+const GLenum RENDERBUFFER_RED_SIZE          = 0x8D50;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_GREEN_SIZE : Number
+
+IDL:
+const GLenum RENDERBUFFER_GREEN_SIZE        = 0x8D51;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_BLUE_SIZE : Number
+
+IDL:
+const GLenum RENDERBUFFER_BLUE_SIZE         = 0x8D52;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_ALPHA_SIZE : Number
+
+IDL:
+const GLenum RENDERBUFFER_ALPHA_SIZE        = 0x8D53;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_DEPTH_SIZE : Number
+
+IDL:
+const GLenum RENDERBUFFER_DEPTH_SIZE        = 0x8D54;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_STENCIL_SIZE : Number
+
+IDL:
+const GLenum RENDERBUFFER_STENCIL_SIZE      = 0x8D55;
+
+ReadOnly:
+true
+
+----
+FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE : Number
+
+IDL:
+const GLenum FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE           = 0x8CD0;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_ATTACHMENT_OBJECT_NAME : Number
+
+IDL:
+const GLenum FRAMEBUFFER_ATTACHMENT_OBJECT_NAME           = 0x8CD1;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL : Number
+
+IDL:
+const GLenum FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL         = 0x8CD2;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE : Number
+
+IDL:
+const GLenum FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8CD3;
+
+ReadOnly:
+true
+
+----
+COLOR_ATTACHMENT0 : Number
+
+IDL:
+const GLenum COLOR_ATTACHMENT0              = 0x8CE0;
+
+ReadOnly:
+true
+----
+DEPTH_ATTACHMENT : Number
+
+IDL:
+const GLenum DEPTH_ATTACHMENT               = 0x8D00;
+
+ReadOnly:
+true
+----
+STENCIL_ATTACHMENT : Number
+
+IDL:
+const GLenum STENCIL_ATTACHMENT             = 0x8D20;
+
+ReadOnly:
+true
+----
+DEPTH_STENCIL_ATTACHMENT : Number
+
+IDL:
+const GLenum DEPTH_STENCIL_ATTACHMENT       = 0x821A;
+
+ReadOnly:
+true
+
+----
+NONE : Number
+
+IDL:
+const GLenum NONE                           = 0;
+
+ReadOnly:
+true
+
+----
+FRAMEBUFFER_COMPLETE : Number
+
+Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
+to indicate that framebuffer is set up completely.
+
+IDL:
+const GLenum FRAMEBUFFER_COMPLETE                      = 0x8CD5;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_INCOMPLETE_ATTACHMENT : Number
+
+
+Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
+to indicate that there is an image attached to the framebuffer
+that cannot be rendered too.
+
+Possibilities include empty sized images or the image cannot be the target of
+color, depth, or stencil rendering.
+
+Color images must be of the formats 
+
+%%#RGBA4|**RGBA4**%%, 
+%%#RGB5_A1|**RGB5_A1**%%, 
+or 
+%%#RGB565|**RGB565**%%.
+
+Depth images must be of the format 
+%%#DEPTH_COMPONENT16|**DEPTH_COMPONENT16**%%. 
+
+Stencil images must be of the format 
+%%#STENCIL_INDEX8|**STENCIL_INDEX8**%%.
+
+
+IDL:
+const GLenum FRAMEBUFFER_INCOMPLETE_ATTACHMENT         = 0x8CD6;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT : Number
+
+Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
+to indicate that no images are attached to the framebuffer.
+
+IDL:
+const GLenum FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_INCOMPLETE_DIMENSIONS : Number
+
+Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
+to indicate that the images attached to the framebuffer 
+have differing widths and heights.
+
+IDL:
+const GLenum FRAMEBUFFER_INCOMPLETE_DIMENSIONS         = 0x8CD9;
+
+ReadOnly:
+true
+----
+FRAMEBUFFER_UNSUPPORTED : Number
+
+
+Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
+to indicate that the images attached to the framebuffer 
+are not supported by the current implementation.
+
+IDL:
+const GLenum FRAMEBUFFER_UNSUPPORTED                   = 0x8CDD;
+
+ReadOnly:
+true
+
+----
+FRAMEBUFFER_BINDING : Number
+
+IDL:
+const GLenum FRAMEBUFFER_BINDING            = 0x8CA6;
+
+ReadOnly:
+true
+----
+RENDERBUFFER_BINDING : Number
+
+IDL:
+const GLenum RENDERBUFFER_BINDING           = 0x8CA7;
+
+ReadOnly:
+true
+----
+MAX_RENDERBUFFER_SIZE : Number
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script src='/webgl-debug.js'></script>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  gl = WebGLDebugUtils.makeDebugContext(gl);
+
+  console.log(gl.getParameter(gl.MAX_RENDERBUFFER_SIZE));
+</script>
+</htmlexample>
+
+IDL:
+const GLenum MAX_RENDERBUFFER_SIZE          = 0x84E8;
+
+ReadOnly:
+true
+
+
+----
+INVALID_FRAMEBUFFER_OPERATION : Number
+
+IDL:
+const GLenum INVALID_FRAMEBUFFER_OPERATION  = 0x0506;
+
+ReadOnly:
+true
+
+/* WebGL-specific enums */
+----
+UNPACK_FLIP_Y_WEBGL : Number
+
+IDL:
+const GLenum UNPACK_FLIP_Y_WEBGL            = 0x9240;
+
+ReadOnly:
+true
+
+----
+UNPACK_PREMULTIPLY_ALPHA_WEBGL : Number
+
+IDL:
+const GLenum UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241;
+
+ReadOnly:
+true
+
+----
+CONTEXT_LOST_WEBGL : Number
+
+IDL:
+const GLenum CONTEXT_LOST_WEBGL             = 0x9242;
+
+ReadOnly:
+true
+
+----
+UNPACK_COLORSPACE_CONVERSION_WEBGL : Number
+
+IDL:
+const GLenum UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243;
+
+ReadOnly:
+true
+
+----
+BROWSER_DEFAULT_WEBGL : Number
+
+IDL:
+const GLenum BROWSER_DEFAULT_WEBGL          = 0x9244;
+
+ReadOnly:
+true

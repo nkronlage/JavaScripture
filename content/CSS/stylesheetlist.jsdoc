@@ -1,0 +1,50 @@
+StyleSheetList : Object
+
+A list of %%/StyleSheet|StyleSheets%%.  Returned from the 
+%%/Document#styleSheets|**document.styleSheets**%% property.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSRuleList
+
+----
+instance.length : Number
+
+The number of StyleSheets in the list.
+
+<htmlexample>
+<style> #foo { color: red; } </style>
+<style> #foo { font-weight: bold; } </style>
+<span id='foo'>foo</span>
+<script>
+  console.log(document.styleSheets.length);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance[index : Number] : StyleSheet
+
+Returns the StyleSheet at the specified **index**. You can also use the
+%%#item|**item()**%% method to retrieve the item. The returned 
+StyleSheet will generally be a %%/CSSStyleSheet|CSSStyleSheet%%.
+
+<htmlexample>
+<style> #foo { color: red; } </style>
+<style> #foo { font-weight: bold; } </style>
+<span id='foo'>foo</span>
+<script>
+  // The following are equivalent
+  var styleSheet0 = document.styleSheets[0];
+  var styleSheet0Item = document.styleSheets.item(0);
+
+  console.log(styleSheet0 === styleSheet0Item);
+</script>
+
+</htmlexample>
+
+----
+prototype.item(index : Number) : StyleSheet
+
+Same as %%#indexer_Number|**this[index]**%%. 

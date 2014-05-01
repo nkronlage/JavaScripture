@@ -1,0 +1,66 @@
+StyleSheet : Object
+
+The base type for %%/CSSStyleSheet|CSSStyleSheet%%.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/stylesheets.html#StyleSheets-StyleSheet
+
+----
+instance.type : String
+
+ReadOnly:
+true
+
+----
+instance.disabled : Boolean
+
+Set to true to turn off all the rules in the StyleSheet. This property 
+mirrors the %%/HTMLStyleElement#disabled|**this.ownerNode.disabled**%%
+property.
+
+<htmlexample>
+<style>
+  #foo {
+    color: red;
+  } 
+</style>
+<span id='foo'>foo</span>
+<script>
+  document.styleSheets[0].disabled = true;
+</script>
+</htmlexample>
+
+
+----
+instance.ownerNode : Node
+
+The Node that owns **this**.  Typically it is an
+%%/HTMLStyleElement|HTMLStyleElement%%.
+
+ReadOnly:
+true
+
+----
+instance.parentStyleSheet : StyleSheet
+
+ReadOnly:
+true
+
+----
+instance.href : String
+
+ReadOnly:
+true
+
+----
+instance.title : String
+
+ReadOnly:
+true
+
+----
+instance.media : MediaList
+
+ReadOnly:
+true
+

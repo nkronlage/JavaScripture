@@ -1,0 +1,9 @@
+WebGLProgram : Object
+
+**WebGLProgram** describes a complete program created by joining a vertex
+%%WebGLShader|**WebGLShader**%% and fragment **WebGLShader**.
+**WebGLProgram**s are created with 
+%%WebGLRenderingContext#createProgram|**createProgram()**%%
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.6

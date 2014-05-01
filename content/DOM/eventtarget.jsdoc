@@ -1,0 +1,83 @@
+EventTarget : Object
+
+----
+prototype.addEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
+
+Adds **listener** to the list of callbacks called when the specified
+event is fired. If **useCapture** is true, **listener** will be called 
+in the capture phase of the event routing (ie, during the walk down the tree
+to the target instead of on the way up after firing on the target). 
+
+Unlike using the **on<type>** style of listening to 
+events, **addEventListener** allows more than one listener
+to be associated with the event. 
+
+Use %%#removeEventListener|**removeEventListener()**%%
+to stop listening to the event.
+
+<htmlexample>
+<!-- This example demonstrates adding 'click' listeners and capture/bubbling -->
+<body>
+  <div id='div'>
+    <button id='button'>click</button>
+  </div>
+</body>
+<script>
+var body = document.body;
+body.addEventListener('click', function(event) {
+  console.log('body capture');
+}, true);
+
+var div = document.getElementById('div');
+div.addEventListener('click', function(event) {
+  console.log('div capture');
+}, true);
+
+var button = document.getElementById('button');
+button.addEventListener('click', function(event) {
+  console.log('button capture');
+}, true);
+
+button.addEventListener('click', function(event) {
+  console.log('button bubble');
+}, false);
+
+div.addEventListener('click', function(event) {
+  console.log('div bubble');
+}, false);
+
+body.addEventListener('click', function(event) {
+  console.log('body bubble');
+}, false);
+</script>
+</htmlexample>
+
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.addEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
+
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.removeEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.removeEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+
+----
+prototype.dispatchEvent(event : Event) : Boolean
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
+

@@ -1,0 +1,23 @@
+Counter : Object
+
+Spec:
+http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-Counter
+
+----
+instance.identifier : String
+
+ReadOnly:
+true
+
+----
+instance.listStyle : String
+
+ReadOnly:
+true
+
+----
+instance.separator : String
+
+ReadOnly:
+true
+

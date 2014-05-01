@@ -1,0 +1,121 @@
+SVGMatrix : Object
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#InterfaceSVGMatrix
+
+----
+instance.a : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__a
+
+
+----
+instance.b : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__b
+
+
+----
+instance.c : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__c
+
+
+----
+instance.d : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__d
+
+
+----
+instance.e : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__e
+
+
+----
+instance.f : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__f
+
+
+----
+prototype.multiply(matrix : SVGMatrix) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__multiply
+
+
+----
+prototype.inverse() : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__inverse
+
+
+----
+prototype.translate(x : Number, y : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__translate
+
+
+----
+prototype.scale(scaleFactor : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__scale
+
+
+----
+prototype.scaleNonUniform(scaleFactorX : Number, scaleFactorY : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__scaleNonUniform
+
+
+----
+prototype.rotate(angle : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__rotate
+
+
+----
+prototype.rotateFromVector(x : Number, y : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__rotateFromVector
+
+
+----
+prototype.flipX() : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__flipX
+
+
+----
+prototype.flipY() : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__flipY
+
+
+----
+prototype.skewX(angle : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__skewX
+
+----
+prototype.skewY(angle : Number) : SVGMatrix
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGMatrix__skewY

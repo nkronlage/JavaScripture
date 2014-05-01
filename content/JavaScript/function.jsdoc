@@ -1,0 +1,149 @@
+Function : Object
+
+Functions are reusable pieces of code that can be executed with
+different parameters. 
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=129
+
+----
+Function([param1 : String, [param2 : String, [...]]], body : String) : Function
+
+Creates a new **Function** that has the supplied parameter names and body.
+If any parameter name contains a **','**, it will be split on the **','** and
+each component will be added as a parameter. Unless the **body** needs to
+be modified at run time, **Function**s are typically created with the
+**function** keyword.
+
+<example>
+// The following result in equivalent behavior, but the first
+// should be used unless the body changes at run time.
+var x = function(x, y) { return x + y; };
+var y = Function('x', 'y','return x + y;');
+var z = Function('x, y', 'return x + y;');
+var w = new Function('x', 'y', 'return x + y;');
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=129
+
+----
+new Function([param1 : String, [param2 : String, [...]]], body : String) : Function
+
+Same as %%#Function_String_String_dotdotdot_String|**Function(param1, param2, ..., body)**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=129
+
+----
+prototype.apply([thisArg : Object, [parameters : Array]]) : Object
+
+Call **this** with the **this** value inside the function bound to **thisArg**
+and the parameters to the function from **parameters**. Returns the result
+of the function call.
+
+<example>
+var whatsThis = function() { console.log(this); }
+whatsThis.apply('hello');
+
+// Call a function that takes a variable number of args
+var numbers = [3, 20, 1, 45];
+console.log(Math.max.apply(undefined, numbers));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=131
+
+
+----
+prototype.call([thisArg : Object, [param1 : Object, [param2 : Object, [...]]]]) : Object
+
+Call **this** with the **this** value inside the function bound to **thisArg**
+and parameters **(param1, param2, ...)**. Returns the result of the function call.
+
+<example>
+var whatsThis = function() { console.log(this); }
+whatsThis.call('hello');
+
+// Call a function that takes a variable number of args
+console.log(Math.max.call(undefined, 3, 20, 1, 45));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=131
+
+
+----
+prototype.bind(thisArg : Object, [param1 : Object, [param2 : Object, [...]]]) : Function
+
+Returns a new function that, when called, will have **this** equal to **thisArg**,
+the first parameter equal to **param1**, the second parameter equal to **param2**,
+etc.  
+
+<example>
+var Button = function(content) { 
+  this.content = content;
+};
+Button.prototype.click = function() {
+  console.log(this.content + ' clicked');
+}
+
+var myButton = new Button('OK');
+myButton.click();
+
+var looseClick = myButton.click;
+looseClick();
+
+var boundClick = myButton.click.bind(myButton);
+boundClick();
+
+// Example showing binding some parameters
+var sum = function(a, b) {
+  return a + b;
+};
+
+var add5 = sum.bind(null, 5);
+console.log(add5(10));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=131
+
+
+----
+instance.length : Number
+
+The number of parameters specified when the function was defined.
+
+<example>
+var add = function(x, y) { return x + y; };
+console.log(add.length);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=130
+
+
+----
+instance.prototype : Object
+
+The prototype for objects created by calling this function
+with the **new** keyword.
+
+<example>
+var Button = function(content) { 
+  this.content = content;
+};
+Button.prototype.click = function() {
+  console.log(this.content + ' clicked');
+}
+
+var myButton = new Button('OK');
+myButton.click();
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=130

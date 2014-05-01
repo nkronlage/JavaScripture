@@ -1,0 +1,47 @@
+MessageEvent : Event
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#messageevent
+
+----
+new MessageEvent( \
+  type : String, \
+  [eventInit : { \
+     data : Object, \
+     origin: String, \
+     lastEventId : String, \
+     channel : String, \
+     source : Object, \
+     ports : Array<MessagePort> \
+  }]) : MessageEvent
+
+----
+instance.data : Object
+
+ReadOnly:
+true
+
+----
+instance.origin : String
+
+ReadOnly:
+true
+
+----
+instance.lastEventId : String
+
+ReadOnly:
+true
+
+----
+instance.source : Object
+
+ReadOnly:
+true
+
+----
+instance.ports : Array<MessagePort>
+
+ReadOnly:
+true
+

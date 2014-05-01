@@ -1,0 +1,100 @@
+JSON : Object
+
+Contains methods for encoding and decoding JSON strings.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=214
+
+----
+parse(str : String) : Object
+
+Parses the specified string of JSON and converts it to an **Object**.
+
+<example>
+var x = JSON.parse('{"foo": 1, "bar": 2}');
+console.log(x.foo);
+console.log(x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=215
+
+----
+parse(str : String, reviver(key : String, value : String) : Object) : Object
+
+Parses the specified string of JSON and converts it to an **Object**. 
+**reviver** will be called for each parsed key/value pair
+and the function's return value is used in place of the value.
+
+<example>
+var reviver = function(key, value) {
+  console.log('reviver called with key="' + key + '", value=' + value);
+  if (key === 'foo') {
+    return value * 10;
+  }
+  return value;
+};
+var x = JSON.parse('{"foo": 1, "bar": 2}', reviver);
+console.log(x.foo);
+console.log(x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=215
+
+----
+stringify(value : Object) : String
+
+Converts **value** to a JSON string. If **value** has a **toJSON()** method
+on it, the return value of that method will be used.
+
+<example>
+var x = { foo: 1, bar: 2 };
+console.log(JSON.stringify(x));
+
+x.toJSON = function() {
+  return { baz: 3 };
+};
+console.log(JSON.stringify(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=217
+
+----
+stringify(value : Object, replacer(key : String, value : Object) : String, [indent : String]) : String
+
+Converts **value** to a JSON string. The **replacer** function is called
+for each key/value pair and the return value is used as the value in
+the final string.  If **indent** is specified, each key/value pair will
+be on a new line with the **indent** string before the key. 
+
+<example>
+var x = { foo: 1, bar: 2 };
+
+var replacer = function(key, value) {
+  console.log('replacer called with key="' + key + '", value=' + value);
+  if (key === 'foo') return value * 10;
+  return value;
+}
+console.log(JSON.stringify(x, replacer, ' '));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=217
+
+----
+stringify(value : Object, keyNames : Array<String>, [indent : String]) : String
+
+Converts **value** to a JSON string. If **keyNames** is not **null**, only key/value pairs where the key is in **keyNames**
+will be in the JSON string.  If **indent** is specified, each key/value pair will
+be on a new line with the **indent** string before the key. 
+
+<example>
+var x = { foo: 1, bar: 2 };
+console.log(JSON.stringify(x, ['foo']));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=217
+

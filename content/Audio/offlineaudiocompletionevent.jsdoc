@@ -1,0 +1,11 @@
+OfflineAudioCompletionEvent : Event
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#OfflineAudioCompletionEvent-section
+
+----
+instance.renderedBuffer : AudioBuffer
+
+ReadOnly:
+true
+

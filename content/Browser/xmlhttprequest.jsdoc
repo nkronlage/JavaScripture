@@ -1,0 +1,388 @@
+XMLHttpRequest : EventTarget
+
+XMLHttpRequest is used to make an http request to a server. It can be used
+to download data by making a GET request (pass **'GET'** as the method when calling
+%%#open|**open()**%%) or to send data to the server by making a POST
+request (send **'POST'** as the method when calling %%#open|**open()**%%.
+
+Spec:
+http://www.w3.org/TR/XMLHttpRequest/#interface-xmlhttprequest
+
+----
+new XMLHttpRequest() : XMLHttpRequest
+
+Creates a new **XMLHttpRequest** object.  Use %%#open|**open()**%% to 
+specify the url of the resource to request and %%#send|**send()**%%
+to begin the request.
+
+<example>
+var request = new XMLHttpRequest();
+request.open('GET', '/', /* async = */ false);
+request.send(); 
+console.log('response head: ' + request.responseText.substring(0, 15) + '...');
+</example>
+
+----
+instance.readyState : Number
+
+The current state of **this**.  Will be one of 
+%%#UNSENT|**UNSENT**%%,
+%%#OPENED|**OPENED**%%,
+%%#HEADERS_RECEIVED|**HEADERS_RECEIVED**%%,
+%%#LOADING|**LOADING**%%,
+or %%#DONE|**DONE**%%.
+
+<example>
+var request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+  console.log('readyStatechange:  ' + request.readyState);
+};
+console.log('Before open: ' + request.readyState);
+request.open('GET', '/Home');
+request.send(); 
+console.log('After send: ' + request.readyState);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.responseType : String
+
+Determines the type returned by %%#response|**response**%%.
+
+Must be set to one of the following: 
+<html>
+<table>
+<tr>
+<th>**responseType**</th><th>%%#response|**response**%% returns</th>
+</tr>
+
+<tr>
+<td>**''** (default)</td>
+<td>Same as **'text'**</td>
+</tr>
+
+<tr>
+<td>**'text'**</td>
+<td>%%/String|**String**%%</td>
+</tr>
+
+<tr>
+<td>**'arraybuffer'**</td>
+<td>%%/ArrayBuffer|**ArrayBuffer**%%</td>
+</tr>
+
+<tr>
+<td>**'blob'**</td>
+<td>%%/Blob|**Blob**%%</td>
+</tr>
+
+<tr>
+<td>**'document'**</td>
+<td>%%/Document|**Document**%%</td>
+</tr>
+
+<tr>
+<td>**'json'**</td>
+<td>%%/Object|**Object**%%</td>
+</tr>
+
+</table>
+<br>
+</html>
+
+Must be set before %%#readyState|**readyState**%% reaches %%#LOADING|**LOADING**%%.
+
+<example>
+var request = new XMLHttpRequest();
+request.responseType = 'arraybuffer';
+request.open('GET', '/Home');
+request.onload = function() {
+  console.log(request.response);
+  console.log(request.response.byteLength);
+};
+request.send(); 
+</example>
+
+----
+instance.response : Object
+
+Returns the response from the server in the type specified by %%#responseType|**responseType**%%.
+Only valid after the %%#onload|**load**%% event fires.
+
+<example>
+var request = new XMLHttpRequest();
+request.responseType = 'arraybuffer';
+request.open('GET', '/Home');
+request.onload = function() {
+  console.log(request.response);
+  console.log(request.response.byteLength);
+};
+request.send(); 
+</example>
+
+ReadOnly:
+true
+
+----
+instance.responseText : String
+
+Returns the response from the server as a string. 
+Only valid after the %%#onload|**load**%% event fires and if %%#responseType|**responseType**%% is
+set to **''** (the default) or **'text'**.
+
+<example>
+var request = new XMLHttpRequest();
+request.open('GET', '/Home', /* async = */ false);
+request.send(); 
+console.log(request.responseText.substring(0, 150));
+console.log('...');
+</example>
+
+ReadOnly:
+true
+
+----
+instance.responseXML : Document
+
+
+ReadOnly:
+true
+
+----
+prototype.open(method : String, url : String, [async = true : Boolean, [user : String, [password : String]]]) : undefined
+
+Specifies the **url** to read from and the http method 
+(**'GET'**, **'POST'**, **'PUT'**, **'DELETE'**, etc)
+to use when reading the url.  If **async** is **true**, the read will be asynchronous and you should provide an
+%%#onload|**onload**%% callback to be called when the read completes.  
+In general, it is best to use the asynchronous read so the browser 
+remains responsive while the read is in progress.
+Call %%#send|**send()**%% to begin the network request.
+
+<example>
+var syncRequest = new XMLHttpRequest();
+syncRequest.open('GET', '/Home', /* async = */ false);
+syncRequest.send(); 
+
+console.log('sync status code: ' + syncRequest.status);
+console.log('sync response length: ' + syncRequest.responseText.length);
+console.log('sync response head: ' + syncRequest.responseText.substring(0, 15) + '...');
+console.log('');
+
+var asyncRequest = new XMLHttpRequest();
+asyncRequest.open('GET', '/Home', true);
+asyncRequest.onload = function() {
+  console.log('async status code: ' + asyncRequest.status);
+  console.log('async response length: ' + asyncRequest.responseText.length);
+  console.log('async response: ' + asyncRequest.responseText.substring(0, 15) + '...');
+};
+asyncRequest.send();
+</example>
+
+----
+prototype.setRequestHeader(header : String, value : String) : undefined
+
+----
+instance.timeout : Number
+
+
+----
+instance.withCredentials : Boolean
+
+
+----
+instance.upload : XMLHttpRequestUpload
+
+Returns an %%/XMLHttpRequestUpload|**XMLHttpRequestUpload**%% object 
+associated with this XMLHttpRequest that can be used
+to track the upload status of the %%#send|**send()**%% call.
+
+ReadOnly:
+true
+
+----
+prototype.send() : undefined
+
+
+----
+prototype.send(data : ArrayBuffer) : undefined
+
+
+----
+prototype.send(data : Blob) : undefined
+
+
+----
+prototype.send(data : Document) : undefined
+
+
+----
+prototype.send(data : String) : undefined
+
+
+----
+prototype.send(data : FormData) : undefined
+
+
+----
+prototype.abort() : undefined
+
+
+
+----
+instance.status : Number
+
+The http status code for the request. See %%#statusText|**statusText**%% for 
+a description of the code.
+
+<example>
+var request = new XMLHttpRequest();
+request.open('GET', '/Home', /* async = */ false);
+request.send(); 
+console.log('status code: ' + request.status);
+
+request = new XMLHttpRequest();
+request.open('GET', 'www.example.com/', /* async = */ false);
+request.send(); 
+console.log('status code: ' + request.status);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.statusText : String
+
+A description of the %%#status|status return code%%.
+
+
+<example>
+var request = new XMLHttpRequest();
+request.open('GET', '/Home', /* async = */ false);
+request.send(); 
+console.log('status: ' + request.statusText);
+
+request = new XMLHttpRequest();
+request.open('GET', 'www.example.com/', /* async = */ false);
+request.send(); 
+console.log('status: ' + request.statusText);
+</example>
+
+ReadOnly:
+true
+
+----
+prototype.getResponseHeader(header : String) : String
+
+Returns the value for the specified **header**.  Returns
+**null** if the headers do not contain a value for **header**.
+
+<example>
+var request = new XMLHttpRequest();
+request.open('GET', '/Home', /* async = */ false);
+request.send(); 
+console.log(request.getResponseHeader('content-type'));
+</example>
+
+----
+prototype.getAllResponseHeaders() : String
+
+Returns a string containing all header value pairs from
+the response.
+
+<example>
+var request = new XMLHttpRequest();
+request.open('GET', '/Home', /* async = */ false);
+request.send(); 
+console.log(request.getAllResponseHeaders());
+</example>
+
+----
+prototype.overrideMimeType(mime : String) : undefined
+
+
+----
+event.loadstart : listener(event : ProgressEvent) : undefined
+
+
+----
+event.progress : listener(event : ProgressEvent) : undefined
+
+
+----
+event.abort : listener(event : ProgressEvent) : undefined
+
+
+----
+event.error : listener(event : ProgressEvent) : undefined
+
+
+----
+event.load : listener(event : ProgressEvent) : undefined
+
+
+----
+event.timeout : listener(event : ProgressEvent) : undefined
+
+
+----
+event.loadend : listener(event : ProgressEvent) : undefined
+
+
+----
+event.readystatechange : listener(event : Event) : undefined
+
+
+----
+UNSENT : Number
+
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+OPENED : Number
+
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+HEADERS_RECEIVED : Number
+
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+LOADING : Number
+
+
+ReadOnly:
+true
+
+Value:
+3
+
+
+----
+DONE : Number
+
+
+ReadOnly:
+true
+
+Value:
+4
+

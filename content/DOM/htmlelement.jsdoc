@@ -1,0 +1,585 @@
+HTMLElement : Element
+
+HTMLElement represents an element in the HTML document tree.
+HTMLElement is the base type for
+%%/HTMLDivElement|HTMLDivElement%%,
+%%/HTMLSpanElement|HTMLSpanElement%%,
+%%/HTMLImageElement|HTMLImageElement%%,
+and many others.
+
+Spec:
+http://www.w3.org/TR/html5/dom.html#htmlelement
+
+----
+instance.innerHTML : String
+
+Gets or sets the html content inside this element. The element itself 
+is not modified.  Compare to %%#outerHTML|**outerHTML**%%.
+
+<htmlexample>
+<strong id='foo'>foo</strong>
+<script>
+  var foo = document.getElementById('foo');
+  foo.innerHTML = '<em>bar</em>';
+</script>
+</htmlexample>
+
+----
+instance.outerHTML : String
+
+Gets or sets the html content inside this element. The element itself 
+is replaced by the provided HTML.  Compare to %%#innerHTML|**innerHTML**%%.
+
+<htmlexample>
+<strong id='foo'>foo</strong>
+<script>
+  var foo = document.getElementById('foo');
+  foo.outerHTML = '<em>bar</em>';
+</script>
+</htmlexample>
+
+
+
+----
+instance.offsetTop : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsettop
+
+----
+instance.offsetLeft : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetleft
+
+----
+instance.offsetWidth : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetwidth
+
+----
+instance.offsetHeight : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetheight
+
+----
+instance.offsetParent : Element
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetparent
+
+
+----
+prototype.scrollIntoView([top = false : Boolean]) : undefined
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#widl-Element-scrollIntoView-void-boolean-top
+
+----
+prototype.insertAdjacentHTML(position : String, html : String) : undefined
+
+<htmlexample>
+<strong id='foo'>foo</strong>
+<script>
+  var foo = document.getElementById('foo');
+  foo.insertAdjacentHTML('beforebegin', '1');
+  foo.insertAdjacentHTML('afterbegin',  '2');
+  foo.insertAdjacentHTML('beforeend',   '3');
+  foo.insertAdjacentHTML('afterend',    '4');
+</script>
+</htmlexample>
+
+
+----
+instance.title : String
+
+
+Spec:
+http://www.w3.org/TR/html5/dom.html#dom-title
+
+----
+instance.lang : String
+
+Spec:
+http://www.w3.org/TR/html5/dom.html#dom-lang
+
+----
+instance.dir : String
+
+Spec:
+http://www.w3.org/TR/html5/dom.html#dom-dir
+
+----
+instance.className : String
+
+
+----
+instance.classList : DOMTokenList
+
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+  .baz { color: red; }
+</style>
+<span id='foo' class='bar'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.className);
+  foo.classList.add('baz');
+  console.log(foo.className);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+----
+instance.hidden : Boolean
+
+----
+prototype.click() : undefined
+
+
+----
+instance.tabIndex : Number
+
+
+----
+prototype.focus() : undefined
+
+
+----
+prototype.blur() : undefined
+
+
+----
+instance.accessKey : String
+
+
+----
+instance.accessKeyLabel : String
+
+ReadOnly:
+true
+
+----
+instance.draggable : Boolean
+
+
+----
+instance.dropzone : DOMSettableTokenList
+
+ReadOnly:
+true
+
+----
+instance.contentEditable : String
+
+
+----
+instance.isContentEditable : Boolean
+
+ReadOnly:
+true
+
+----
+instance.contextMenu : HTMLMenuElement
+
+
+----
+instance.spellcheck : Boolean
+
+
+----
+instance.commandType : String
+
+ReadOnly:
+true
+
+----
+instance.commandLabel : String
+
+ReadOnly:
+true
+
+
+----
+instance.commandIcon : String
+
+ReadOnly:
+true
+
+
+----
+instance.commandHidden : Boolean
+
+ReadOnly:
+true
+
+
+----
+instance.commandDisabled : Boolean
+
+ReadOnly:
+true
+
+
+----
+instance.commandChecked : Boolean 
+
+ReadOnly:
+true
+
+----
+instance.style : CSSStyleDeclaration
+
+Contains CSS styles directly set on **this**.  Use
+%%/Window#getComputedStyle|**window.getComputedStyle(element)**%% 
+to get the effective style including styles from CSS rules.
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+</style>
+<span id='foo' class='bar' style='color: red'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log('color:  ' + foo.style.color);
+  console.log('weight: ' + foo.style.fontWeight);
+
+  var computedStyle = window.getComputedStyle(foo);
+  console.log('computed color:  ' + computedStyle.color);
+  console.log('computed weight: ' + computedStyle.fontWeight);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+event.abort : listener(event : Event) : undefined
+
+
+Bubbles:
+false
+
+Cancelable:
+false
+
+----
+event.blur : listener(event : FocusEvent) : undefined
+
+
+Bubbles:
+false
+
+Cancelable:
+false
+
+
+----
+event.change : listener(event : Event) : undefined
+
+----
+event.click : listener(event : MouseEvent) : undefined
+
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+----
+event.compositionstart : listener(event : CompositionEvent) : undefined
+
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+----
+event.compositionupdate : listener(event : CompositionEvent) : undefined
+
+
+Bubbles:
+true
+
+Cancelable:
+false
+
+----
+event.compositionend : listener(event : CompositionEvent) : undefined
+
+
+Bubbles:
+true
+
+Cancelable:
+false
+
+----
+event.contextmenu : listener(event : Event) : undefined
+
+
+----
+event.dblclick : listener(event : MouseEvent) : undefined
+
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+
+----
+event.drag : listener(event : Event) : undefined
+
+----
+event.dragend : listener(event : Event) : undefined
+
+----
+event.dragenter : listener(event : Event) : undefined
+
+----
+event.dragleave : listener(event : Event) : undefined
+
+----
+event.dragover : listener(event : Event) : undefined
+
+----
+event.dragstart : listener(event : Event) : undefined
+
+----
+event.drop : listener(event : Event) : undefined
+
+----
+event.error : listener(event : Event, source : String, line : Number, column : Number) : undefined
+
+Bubbles:
+false
+
+Cancelable:
+false
+
+----
+event.focus : listener(event : FocusEvent) : undefined
+
+Bubbles:
+false
+
+Cancelable:
+false
+
+----
+event.focusin : listener(event : FocusEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+false
+
+----
+event.focusout : listener(event : FocusEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+false
+
+----
+event.input : listener(event : Event) : undefined
+
+
+----
+event.invalid : listener(event : Event) : undefined
+
+
+----
+event.keydown : listener(event : KeyboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+----
+event.keypress : listener(event : KeyboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+
+----
+event.keyup : listener(event : KeyboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+----
+event.load : listener(event : Event) : undefined
+
+
+----
+event.loadeddata : listener(event : Event) : undefined
+
+----
+event.loadedmetadata : listener(event : Event) : undefined
+
+----
+event.loadstart : listener(event : Event) : undefined
+
+----
+event.mousedown : listener(event : MouseEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+----
+event.mouseenter : listener(event : MouseEvent) : undefined
+
+Bubbles:
+false
+
+Cancelable:
+false 
+
+----
+event.mouseleave : listener(event : MouseEvent) : undefined
+
+Called when the mouse leaves the element or any of its descendant nodes.
+
+Bubbles:
+false
+
+Cancelable:
+false 
+
+----
+event.mousemove : listener(event : MouseEvent) : undefined
+
+Called when the mouse moves within the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+----
+event.mouseout : listener(event : MouseEvent) : undefined
+
+Called when the mouse leaves the element.
+
+Bubbles:
+true
+
+Cancelable:
+true 
+
+----
+event.mouseover : listener(event : MouseEvent) : undefined
+
+Called when the mouse enters the element.
+
+Bubbles:
+true
+
+Cancelable:
+true 
+
+----
+event.mouseup : listener(event : MouseEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true 
+
+
+----
+event.mousewheel : listener(event : MouseEvent) : undefined
+
+
+----
+event.resize : listener(event : UIEvent) : undefined
+
+Bubbles:
+false
+
+Cancelable:
+false 
+
+----
+event.scroll : listener(event : UIEvent) : undefined
+
+Async:
+true
+
+Cancelable:
+false 
+
+----
+event.select : listener(event : Event) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+false 
+
+----
+event.unload : listener(event : Event) : undefined
+
+Bubbles:
+false
+
+Cancelable:
+false
+
+----
+event.wheel : listener(event : MouseEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+

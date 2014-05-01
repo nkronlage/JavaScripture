@@ -1,0 +1,53 @@
+CSSStyleSheet : StyleSheet
+
+Represents a css style sheet.
+Use the 
+%%/Document#styleSheets|document.styleSheets%% property
+to get a list of all CSSStyleSheets for a document.
+
+Can be created by creating an 
+%%/HTMLStyleElement|HTMLStyleElement%%, adding it to the document,
+and then finding the CSSStyleSheet in document.styleSheets
+that has ownerNode equal to HTMLStyleElement.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSStyleSheet
+
+Spec2:
+http://dev.w3.org/csswg/cssom/#the-cssstylesheet-interface
+
+----
+instance.cssRules : CSSRuleList
+
+----
+instance.ownerRule : CSSRule
+
+----
+prototype.deleteRule(index : Number) : undefined
+
+<htmlexample>
+<style>
+  #foo {
+    color: red;
+  } 
+</style>
+<span id='foo'>foo</span>
+<script>
+  document.styleSheets[0].deleteRule(0);
+</script>
+</htmlexample>
+
+----
+prototype.insertRule(rule : String, index : Number) : Number
+
+<htmlexample>
+<style>
+  #foo {
+    font-weight: bold;
+  } 
+</style>
+<span id='foo'>foo</span>
+<script>
+  document.styleSheets[0].insertRule('#foo { color: red; }', 0);
+</script>
+</htmlexample>

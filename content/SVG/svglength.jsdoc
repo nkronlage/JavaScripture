@@ -1,0 +1,108 @@
+SVGLength : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGLength
+
+
+----
+instance.unitType : Number
+  
+
+<htmlexample>
+<svg id='svgelement' xmlns='http://www.w3.org/2000/svg' version='1.1'>
+  <rect id='foo' width='30' height='40' fill='black'/>
+</svg>
+<script>
+  var svgelement = document.getElementById('svgelement');
+  console.log(svgelement.x.baseVal.value);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+----
+instance.value : Number
+
+
+----
+instance.valueInSpecificUnits : Number
+
+
+----
+instance.valueAsString : String
+
+
+----
+prototype.newValueSpecifiedUnits(unitType : Number, valueInSpecifiedUnits : Number) : undefined
+
+
+
+----
+prototype.convertToSpecifiedUnits(unitType : Number) : undefined
+
+
+----
+SVG_LENGTHTYPE_UNKNOWN : Number
+
+ReadOnly:
+true
+
+----
+SVG_LENGTHTYPE_NUMBER : Number
+
+ReadOnly:
+true
+
+----
+SVG_LENGTHTYPE_PERCENTAGE : Number
+
+ReadOnly:
+true
+----
+
+
+SVG_LENGTHTYPE_EMS : Number
+
+ReadOnly:
+true
+
+----
+SVG_LENGTHTYPE_EXS : Number
+
+ReadOnly:
+true
+
+----
+SVG_LENGTHTYPE_PX : Number
+
+ReadOnly:
+true
+----
+SVG_LENGTHTYPE_CM : Number
+
+ReadOnly:
+true
+
+----
+SVG_LENGTHTYPE_MM : Number
+
+ReadOnly:
+true
+
+----
+SVG_LENGTHTYPE_IN : Number
+
+ReadOnly:
+true
+----
+SVG_LENGTHTYPE_PT : Number
+
+ReadOnly:
+true
+----
+SVG_LENGTHTYPE_PC : Number
+
+ReadOnly:
+true

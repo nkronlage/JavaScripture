@@ -1,0 +1,31 @@
+FocusEvent : UIEvent
+
+----
+new FocusEvent( \
+  type : String,  \
+  [eventInit : { \
+     bubbles : Boolean, \
+     cancelable: Boolean, \
+     view : Window, \
+     detail : Number, \
+     relatedTarget : Element \
+  }]) : Event
+
+----
+instance.view : Window
+
+
+ReadOnly:
+true
+
+----
+detail : Number
+
+ReadOnly:
+true
+
+----
+prototype.initUIEvent(type : String, bubbles : Boolean, cancelable : Boolean, view : Window, detail : Number) : undefined
+
+
+

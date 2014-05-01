@@ -1,0 +1,140 @@
+Blob : Object
+
+Blobs are immutable objects that represent raw data.  
+
+%%/File|File%% is a derivation of
+Blob that represents data from the file system.
+
+Use %%/FileReader|FileReader%% to read data from a Blob or File.
+
+Blobs allow you to construct file like objects on the client that you can
+pass to apis that expect urls instead of requiring the server provides 
+the file.  
+
+For example, you can construct a blob containing the data for an 
+image, use 
+%%/URL#createObjectURL|**URL.createObjectURL()**%% 
+to generate a url, and pass that url to 
+%%/HTMLImageElement#src|**HTMLImageElement.src**%%
+to display the image you created without talking to a server.
+
+Spec:
+http://www.w3.org/TR/FileAPI/#blob
+
+----
+new Blob() : Blob
+
+Creates a new **Blob** with %%#size|**size**%% set to **0**.
+
+<example>
+var blob = new Blob();
+
+console.log(blob.size);
+console.log(blob.type);
+</example>
+
+----
+new Blob( \
+    blobParts : Array, \
+    [blobPropertyBag : { \
+        type : String /* A valid mime type such as **'text/plain'** */, \ 
+        endings = 'transparent' : String /* Must be either **'transparent'** or **'native'** */ \ 
+    }]) : Blob
+
+Creates a new **Blob**. The elements of **blobParts** must be of the types
+%%/ArrayBuffer|**ArrayBuffer**%%, 
+%%/ArrayBufferView|**ArrayBufferView**%%, 
+%%/Blob|**Blob**%%, or
+%%/String|**String**%%.  
+If **ending** is set to **'native'**, the line endings in the blob will be 
+converted to the system line endings, such as **'\r\n'** for Windows or **'\n'** for 
+Mac.
+
+<example>
+var blob = new Blob(['foo', 'bar']);
+
+console.log('size=' + blob.size);
+console.log('type=' + blob.type);
+
+var testEndings = function(string, endings) {
+  var blob = new Blob([string], { type: 'plain/text',
+                                        endings: endings });
+  var reader = new FileReader();
+  reader.onload = function(event){
+    console.log(endings + ' of ' + JSON.stringify(string) + 
+                ' => ' + JSON.stringify(reader.result));
+  };
+  reader.readAsText(blob);
+};
+
+testEndings('foo\nbar',   'native');
+testEndings('foo\r\nbar', 'native');
+testEndings('foo\nbar',   'transparent');
+testEndings('foo\r\nbar', 'transparent');
+</example>
+
+----
+instance.size : Number
+
+The size of the blob in bytes.
+
+<example>
+var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
+                                      endings: 'native' });
+
+console.log(blob.size);
+</example>
+
+Spec:
+http://www.w3.org/TR/FileAPI/#dfn-size
+
+ReadOnly:
+true
+
+----
+instance.type : String
+
+The type of the blob.
+
+<example>
+var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
+                                      endings: 'native' });
+
+console.log(blob.type);
+</example>
+
+Spec:
+http://www.w3.org/TR/FileAPI/#dfn-type
+
+ReadOnly:
+true
+
+----
+prototype.slice([start = 0: Number, [end : Number, [contentType : String]]]) : Blob
+
+Returns a new blob that contains the bytes **start** to **end - 1** from **this**.
+If **start** or **end** is negative, the value is added to %%#size|**this.size**%% before 
+performing the slice. If **end** is not specified, **this.size** is used.
+The returned blob's %%#type|**type**%% will be **contentType** if specified,
+otherwise it will be **''**.
+
+
+<example>
+var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
+                                      endings: 'native' });
+console.log('blob size:', blob.size);
+console.log('blob type:', blob.type);
+
+var copy = blob.slice()
+console.log('copy size:', copy.size);
+console.log('copy type:', copy.type);
+
+var slice = blob.slice(1, 4, 'foo-type')
+console.log('slice size:', slice.size);
+console.log('slice type:', slice.type);
+</example>
+
+
+Spec:
+http://www.w3.org/TR/FileAPI/#dfn-slice
+

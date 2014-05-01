@@ -1,0 +1,32 @@
+UIEvent : Event
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#events-UIEvent
+
+----
+new UIEvent( \
+  type : String,  \
+  [eventInit : { \
+     bubbles : Boolean, \
+     cancelable: Boolean, \
+     view : Window, \
+     detail : Number \
+  }]) : UIEvent
+
+----
+instance.view : Window
+
+
+ReadOnly:
+true
+
+----
+detail : Number
+
+ReadOnly:
+true
+
+----
+prototype.initUIEvent(type : String, bubbles : Boolean, cancelable : Boolean, view : Window, detail : Number) : undefined
+
+

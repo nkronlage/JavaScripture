@@ -1,0 +1,251 @@
+Document : Node
+
+Spec:
+http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-document
+
+AlternateSpec:
+http://dev.w3.org/html5/spec/single-page.html#document
+
+----
+instance.body : HTMLBodyElement
+
+
+----
+instance.activeElement : Element
+
+Returns the currently focused element. If there is no focused element,
+returns %%#body|**this.body**%%.
+
+----
+prototype.hasFocus() : Boolean
+
+
+----
+instance.readyState : String
+
+Returns **'loading'** during Document is load, **'interactive'**
+when **this** has loaded but not all subresources are loaded, and 
+**'complete'** once **this** and all subresources are loaded.
+
+
+----
+instance.implementation : DOMImplementation
+
+Spec:
+http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#dom-document-implementation
+
+ReadOnly:
+true
+
+----
+instance.URL : String
+
+----
+instance.documentURI : String
+
+<htmlexample>
+<script>
+  console.log(document.URL);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-documentURI
+
+----
+instance.styleSheets : StyleSheetList
+
+
+
+
+
+
+----
+instance.compatMode : String
+
+----
+instance.characterSet : String
+
+
+----
+instance.contentType : String
+
+----
+instance.doctype : DocumentType
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-B63ED1A31
+
+ReadOnly:
+true
+
+----
+instance.documentElement : Element
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-87CD092
+
+ReadOnly:
+true
+
+
+----
+prototype.getElementsByTagName(tagname : String) : NodeList
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-A6C9094
+
+----
+prototype.getElementsByTagNameNS(namespaceURI : String, localName : String) : NodeList
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBTNNS
+
+----
+prototype.getElementsByClassName(classNames : String) : NodeList
+
+----
+prototype.getElementById(elementId : String) : Element
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBId
+
+
+----
+prototype.createElement(tagName : String) : Element
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-2141741547
+
+----
+prototype.createElementNS(namespaceURI : String, qualifiedName : String) : Element
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-DocCrElNS
+
+
+----
+prototype.createDocumentFragment() : DocumentFragment
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-35CB04B5
+
+
+----
+prototype.createTextNode(data : String) : Text
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1975348127
+
+
+----
+prototype.createComment(data : String) : Comment
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1334481328
+
+
+----
+prototype.createProcessingInstruction(target : String, data : String) : ProcessingInstruction
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-135944439
+
+----
+prototype.importNode(importedNode : Node, deep : Boolean) : Node
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Core-Document-importNode
+
+----
+prototype.adoptNode(source : Node) : Node
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-adoptNode
+
+
+----
+prototype.createEvent(eventInterfaceName : String) : Event
+
+
+----
+prototype.createRange() : Range
+
+----
+prototype.createNodeIterator(root : Node, [whatToShow : Number, [filter : NodeFilter]]) : NodeIterator
+
+----
+prototype.createTreeWalker(root : Node, [whatToShow : Number, [filter : NodeFilter]]) : TreeWalker
+
+----
+prototype.prepend(node0 : Node, [node1 : Node, [...]]) : undefined
+
+----
+prototype.append(node0 : Node, [node1 : Node, [...]]) : undefined
+
+
+----
+prototype.querySelector(selectors : String) : Element
+
+Returns the first **Element** that matches the CSS selector. 
+
+<htmlexample>
+<span id='foo'>foo1</span>
+<span class='bar'>
+  <span class='baz'>baz1</span>
+</span>
+<span class='baz'>baz2</span>
+<script>
+  var foo = document.querySelector('#foo');
+  console.log(foo.innerHTML);
+
+  var baz = document.querySelector('.baz');
+  console.log(baz.innerHTML);
+
+  var baz2 = document.querySelector('body > .baz');
+  console.log(baz2.innerHTML);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/selectors-api/#queryselector
+
+----
+prototype.querySelectorAll(cssSelector : String) : NodeList
+
+Returns a **NodeList** containing the **Element**s in the document that
+match the CSS selector. 
+
+<htmlexample>
+<span id='foo'>foo1</span>
+<span class='bar'>
+  <span class='baz'>baz1</span>
+</span>
+<span class='baz'>baz2</span>
+<script>
+  var all = document.querySelectorAll('#foo, .baz');
+  console.log(all.length);
+  for (var i = 0; i < all.length; i++) {
+    console.log(all[i].innerHTML);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/selectors-api/#queryselectorall
+
+----
+event.abort : listener(event : Event) : undefined
+
+----
+event.load : listener(event : Event) : undefined
+
+----
+event.readystatechange : listener(event : Event) : undefined
+

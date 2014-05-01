@@ -1,0 +1,121 @@
+ApplicationCache : EventTarget
+
+Obtained through the %%/Window#applicationCache|**window.applicationCache**%%
+property.
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#appcache
+
+
+----
+instance[index : Number] : String
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#length6
+
+----
+instance.status : Number
+
+The current status of the cache.  Will be one of 
+%%#UNCACHED|**UNCACHED**%%,
+%%#IDLE|**IDLE**%%,
+%%#CHECKING|**CHECKING**%%,
+%%#DOWNLOADING|**DOWNLOADING**%%,
+or
+%%#UPDATEREADY|**UPDATEREADY**%%.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#status0
+
+----
+prototype.update() : undefined
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#update1
+
+----
+prototype.swapCache() : undefined
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#swapcache
+
+----
+prototype.item(index : Number) : String
+
+Same as %%#indexer_Number|**this[index]**%%.
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#itemindex4
+
+----
+prototype.add(uri : String) : undefined
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#adduri
+
+----
+prototype.remove(uri : String) : undefined
+
+Spec:
+http://www.w3.org/TR/2008/WD-html5-20080122/#remove1
+
+----
+event.checking : listener(event : Event) : undefined
+
+----
+event.error : listener(event : Event) : undefined
+
+----
+event.noupdate : listener(event : Event) : undefined
+
+----
+event.downloading : listener(event : Event) : undefined
+
+----
+event.progress : listener(event : Event) : undefined
+
+----
+event.updateready : listener(event : Event) : undefined
+
+----
+event.cached : listener(event : Event) : undefined
+
+----
+UNCACHED : Number
+
+ReadOnly:
+true
+
+----
+IDLE : Number
+
+ReadOnly:
+true
+
+----
+CHECKING : Number
+
+ReadOnly:
+true
+
+----
+DOWNLOADING : Number
+
+ReadOnly:
+true
+
+----
+UPDATEREADY : Number
+
+ReadOnly:
+true
+

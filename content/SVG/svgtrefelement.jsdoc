@@ -1,0 +1,5 @@
+SVGTRefElement : SVGTextPositioningElement
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#InterfaceSVGTRefElement
+

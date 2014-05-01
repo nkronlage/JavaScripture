@@ -1,0 +1,74 @@
+SVGAngle : Object
+
+Spec:
+http://www.w3.org/TR/SVG11/types.html#InterfaceSVGAngle
+
+----
+instance.unitType : Number
+
+ReadOnly:
+true
+
+----
+instance.value : Number
+
+
+----
+instance.valueInSpecifiedUnits : Number
+
+----
+instance.valueAsString : Number
+
+
+----
+prototype.newValueSpecifiedUnits(unitType : Number, valueInSpecifiedUnits : Number) : undefined
+
+
+----
+prototype.convertToSpecifiedUnits(unitType : Number) : undefined
+
+
+----
+SVG_ANGLETYPE_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_ANGLETYPE_UNSPECIFIED : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_ANGLETYPE_DEG : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+SVG_ANGLETYPE_RAD : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+SVG_ANGLETYPE_GRAD : Number
+
+ReadOnly:
+true
+
+Value:
+4

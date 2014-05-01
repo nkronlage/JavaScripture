@@ -1,0 +1,160 @@
+KeyboardEvent : UIEvent
+
+
+----
+instance.keyCode : Number
+
+<htmlexample>
+<input id='input'>
+<div>keyCode: <span id='keyCodeOutput'></span></div>
+<div>which: <span id='whichOutput'></span></div>
+<script>
+  var input = document.getElementById('input');
+  var keyCodeOutput = document.getElementById('keyCodeOutput');
+  var whichOutput = document.getElementById('whichOutput');
+
+  input.onkeydown = function(event) {
+    keyCodeOutput.textContent = event.keyCode;
+    whichOutput.textContent = event.which;
+    event.preventDefault();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.which : Number
+
+<htmlexample>
+<input id='input'>
+<div>keyCode: <span id='keyCodeOutput'></span></div>
+<div>which: <span id='whichOutput'></span></div>
+<script>
+  var input = document.getElementById('input');
+  var keyCodeOutput = document.getElementById('keyCodeOutput');
+  var whichOutput = document.getElementById('whichOutput');
+
+  input.onkeydown = function(event) {
+    keyCodeOutput.textContent = event.keyCode;
+    whichOutput.textContent = event.which;
+    event.preventDefault();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.charCode : Number
+
+The effective character.  Only valid for keypress events.  Use 
+%%/String#fromCharCode|**String.fromCharCode()**%%
+to get a string version of the pressed character.
+
+<htmlexample>
+<input id='input'>
+<div>charCode: <span id='charCodeOutput'></span></div>
+<div>string: <span id='stringOutput'></span></div>
+<script>
+  var input = document.getElementById('input');
+  var charCodeOutput = document.getElementById('charCodeOutput');
+  var stringOutput = document.getElementById('stringOutput');
+
+  input.onkeypress = function(event) {
+    charCodeOutput.textContent = event.charCode;
+    stringOutput.textContent = "'" + String.fromCharCode(event.charCode) + "'";
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.ctrlKey : Boolean
+
+Returns **true** if the keyboard's control key is pressed.
+
+<htmlexample>
+<input id='input'>
+<div>ctrlKey: <span id='output'>false</span></div>
+<script>
+  var input = document.getElementById('input');
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.ctrlKey;
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.shiftKey : Boolean
+
+Returns **true** if the keyboard's shift key is pressed.
+
+<htmlexample>
+<input id='input'>
+<div>shiftKey: <span id='output'>false</span></div>
+<script>
+  var input = document.getElementById('input');
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.shiftKey;
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.altKey : Boolean
+
+Returns **true** if the keyboard's alt (Option on Mac) key is pressed.
+
+<htmlexample>
+<input id='input'>
+<div>altKey: <span id='output'>false</span></div>
+<script>
+  var input = document.getElementById('input');
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.altKey;
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.metaKey : Boolean
+
+Returns **true** if the keyboard's meta (Command on Mac, not available on Windows) 
+key is pressed.
+
+<htmlexample>
+<input id='input'>
+<div>metaKey: <span id='output'>false</span></div>
+<script>
+  var input = document.getElementById('input');
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.metaKey;
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+

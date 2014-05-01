@@ -1,0 +1,78 @@
+Location : Object
+
+
+Spec:
+http://url.spec.whatwg.org/#api
+
+AlternateSpec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#location
+
+
+----
+instance.href : String
+
+----
+instance.origin : String
+
+ReadOnly:
+true
+
+----
+instance.protocol : String
+
+ReadOnly:
+true
+----
+instance.username : String
+
+ReadOnly:
+true
+----
+instance.password : String
+
+ReadOnly:
+true
+----
+instance.host : String
+
+ReadOnly:
+true
+----
+instance.hostname : String
+
+ReadOnly:
+true
+----
+instance.port : String
+
+ReadOnly:
+true
+----
+instance.path : String
+
+ReadOnly:
+true
+----
+instance.search : String
+
+ReadOnly:
+true
+----
+instance.query : Object
+
+ReadOnly:
+true
+----
+instance.hash : String
+
+ReadOnly:
+true
+
+----
+prototype.assign(url : String) : undefined
+
+----
+prototype.replace(url : String) : undefined
+
+----
+prototype.reload() : undefined

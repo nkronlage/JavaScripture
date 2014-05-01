@@ -1,0 +1,11 @@
+GainNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#GainNode
+
+----
+instance.gain : AudioParam
+
+ReadOnly:
+true
+

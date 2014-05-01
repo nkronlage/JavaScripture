@@ -1,0 +1,13 @@
+SVGAnimatedNumber : Object
+
+Spec:
+
+----
+instance.baseVal : Number
+
+----
+instance.animVal : Number
+
+ReadOnly:
+true
+

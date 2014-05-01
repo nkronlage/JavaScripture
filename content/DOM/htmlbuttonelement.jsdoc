@@ -1,0 +1,80 @@
+HTMLButtonElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlbuttonelement
+
+----
+instance.autofocus : Boolean
+
+
+----
+instance.disabled : Boolean
+
+
+----
+instance.form : HTMLFormElement
+
+ReadOnly:
+true
+
+----
+instance.formAction : String
+
+----
+instance.formEnctype : String
+
+
+----
+instance.formMethod : String
+
+
+----
+instance.formNoValidate : Boolean
+
+
+----
+instance.formTarget : String
+
+
+----
+instance.name : String
+
+
+----
+instance.type : String
+
+
+----
+instance.value : String
+
+----
+instance.willValidate : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.validity : ValidityState
+
+ReadOnly:
+true
+
+----
+instance.validationMessage : String
+
+ReadOnly:
+true
+
+----
+prototype.checkValidity() : Boolean
+
+
+----
+prototype.setCustomValidity(error : String) : undefined
+
+
+----
+instance.labels : NodeList
+

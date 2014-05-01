@@ -1,0 +1,19 @@
+WebGLRenderbuffer : Object
+
+**WebGLRenderBuffer** is used as an offscreen destination of rendering by
+attaching it to a %%WebGLFramebuffer|**WebGLFramebuffer**%%.
+**WebGLRenderBuffer**s are created with 
+%%/WebGLRenderingContext#createRenderbuffer|**createRenderbuffer()**%%.
+
+
+Use %%/WebGLRenderingContext#readPixels|readPixels()%%
+to retrieve the contents of the buffer.
+
+If you need to draw the offscreen rendered content into the canvas,
+use a 
+%%/WebGLTexture|**WebGLTexture**%% as the destination
+of the frame buffer instead of a render buffer.
+
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.7

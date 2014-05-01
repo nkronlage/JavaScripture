@@ -1,0 +1,153 @@
+NodeFilter : Object
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#Traversal-NodeFilter
+
+----
+prototype.acceptNode(n : Node) : Number
+
+----
+FILTER_ACCEPT : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+FILTER_REJECT : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+FILTER_SKIP : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+SHOW_ALL : Number
+
+ReadOnly:
+true
+
+Value:
+4294967295
+
+----
+SHOW_ELEMENT : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SHOW_ATTRIBUTE : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+SHOW_TEXT : Number
+
+ReadOnly:
+true
+
+Value:
+4
+
+----
+SHOW_CDATA_SECTION : Number
+
+ReadOnly:
+true
+
+Value:
+8
+
+----
+SHOW_ENTITY_REFERENCE : Number
+
+ReadOnly:
+true
+
+Value:
+16
+
+----
+SHOW_ENTITY : Number
+
+ReadOnly:
+true
+
+Value:
+32
+
+----
+SHOW_PROCESSING_INSTRUCTION : Number
+
+ReadOnly:
+true
+
+Value:
+64
+
+----
+SHOW_COMMENT : Number
+
+ReadOnly:
+true
+
+Value:
+128
+
+----
+SHOW_DOCUMENT : Number
+
+ReadOnly:
+true
+
+Value:
+256
+
+----
+SHOW_DOCUMENT_TYPE : Number
+
+ReadOnly:
+true
+
+Value:
+512
+
+----
+SHOW_DOCUMENT_FRAGMENT : Number
+
+ReadOnly:
+true
+
+Value:
+1024
+
+----
+SHOW_NOTATION : Number
+
+ReadOnly:
+true
+
+Value:
+2048
+
+

@@ -1,0 +1,29 @@
+TextMetrics : Object
+
+Contains sizing information for text drawn in a %%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
+
+Obtained through
+%%/CanvasRenderingContext2D#measureText|**measureText()**%%.
+
+----
+instance.width : Number
+
+The width of the text in pixels.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillText('hello world', 0, 30);
+
+  var textMetrics = context.measureText('hello world');
+  
+  context.fillRect(0, 35, textMetrics.width, 1);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true

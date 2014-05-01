@@ -1,0 +1,55 @@
+TextTrack : EventTarget
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#texttrack
+
+----
+instance.id : String
+
+ReadOnly:
+true
+
+----
+instance.label : String
+
+ReadOnly:
+true
+
+----
+instance.language : String
+
+ReadOnly:
+true
+
+----
+instance.enabled : Boolean
+
+----
+instance.kind : String
+
+Returns one of 
+**'subtitles'**,
+**'captions'**,
+**'descriptions'**,
+**'chapters'**, 
+or
+**'metadata'**.
+
+ReadOnly:
+true
+
+----
+instance.mode : String
+
+Must be set to one of 
+**'disabled'**,
+**'hidden'**,
+or
+**'showing'**.
+
+----
+instance.inBandMetadataTrackDispatchType : String
+
+ReadOnly:
+true
+

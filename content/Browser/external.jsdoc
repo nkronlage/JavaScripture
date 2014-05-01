@@ -1,0 +1,11 @@
+External : Object
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/webappapis.html#external
+
+----
+prototype.AddSearchProvider(url : String) : undefined
+
+----
+prototype.IsSearchProviderInstalled(url : String) : Number
+

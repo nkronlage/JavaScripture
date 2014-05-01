@@ -1,0 +1,23 @@
+CSSMediaRule : CSSRule
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSMediaRule
+
+----
+instance.media : MediaList
+
+ReadOnly:
+true
+
+----
+instance.cssRules : CSSRuleList
+
+ReadOnly:
+true
+
+----
+prototype.insertRule(rule : String, index : Number) : Number
+
+----
+prototype.deleteRule(index : Number) : undefined
+

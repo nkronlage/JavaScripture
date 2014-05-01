@@ -1,0 +1,39 @@
+SVGImageElement : SVGElement
+
+
+Spec:
+http://www.w3.org/TR/SVG/struct.html#InterfaceSVGImageElement
+
+----
+instance.x : SVGAnimatedLength
+
+ReadOnly:
+true
+
+
+----
+instance.y : SVGAnimatedLength
+
+ReadOnly:
+true
+
+
+----
+instance.width : SVGAnimatedLength
+
+ReadOnly:
+true
+
+
+----
+instance.height : SVGAnimatedLength
+
+ReadOnly:
+true
+
+
+----
+instance.preserveAspectRatio : SVGAnimatedPreserveAspectRatio
+
+ReadOnly:
+true

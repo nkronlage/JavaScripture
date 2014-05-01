@@ -1,0 +1,503 @@
+Array : Object
+
+Arrays are containers that allow access to its items 
+through numerical indices.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+
+----
+new Array() : Array
+
+Same as %%#Array_|**Array()**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+
+
+----
+Array() : Array
+
+Creates an empty **Array** (**length** = 0).
+Can also be constructed as **[]**.
+
+<example>
+// The following are equivalent
+var x = [];
+var y = Array();
+var z = new Array(); 
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+
+----
+new Array(length:Number) : Array
+
+Same as %%#Array_Number|**Array(length)**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=135
+
+
+----
+Array(length:Number) : Array
+
+Creates an **Array** of the specified length where each item starts as **undefined**. 
+
+<example>
+var squares = Array(5);
+for (var i = 0; i < squares.length; i++) {
+  squares[i] = i * i;
+}
+console.log('squares = ' + squares);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=135
+
+
+----
+new Array(item0:Object, [item1:Object, [...]]) : Array
+
+Same as %%#Array_Object_Object_dotdotdot|**Array(item0, item1, ...)**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+
+
+----
+Array(item0:Object, [item1:Object, [...]]) : Array
+
+Creates an **Array** with the specified parameters as the 0th, 1st, ... items 
+of the **Array**.
+Can also be constructed as **[item0, item1, ...]**.
+
+<example>
+// The following are equivalent
+var x = ['a', 'b', 'c'];
+var y = Array('a', 'b', 'c');
+var z = new Array('a', 'b', 'c');
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+
+
+----
+isArray(value:Object) : Boolean
+
+Returns **true** if **value** is an **Array**.
+
+<example>
+console.log(Array.isArray([]));
+console.log(Array.isArray({}));
+console.log(Array.isArray(53));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=135
+
+----
+instance[index : Number] : Object
+
+Gets and sets the item in **this** at **index**. **index** should be between **0** and
+**%%#length|this.length%% - 1**.  If setting to an index greater than 
+**length - 1**, **length** will be increased to **index + 1**.
+
+<example>
+var x = ['a', 'b', 'c'];
+for (var i = 0; i < x.length; i++) {
+  console.log(x[i]);
+}
+
+console.log(x.length);
+x[7] = 'h';
+console.log(x[7]);
+console.log(x.length);
+</example>
+
+----
+instance.length : Number
+
+The number of items in **this**.  It is 1 greater 
+than the index of the last item.
+
+<example>
+console.log([].length);
+console.log(['a', 'b', 'c'].length);
+console.log(Array(100).length);
+var x = [];
+x[50] = 'foo';
+console.log(x.length);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=153
+
+----
+prototype.concat(item0:Object, [item1:Object, [...]]) : Array
+
+Returns a new Array composed of the items of **this** followed by
+**item0, item1, ...**. 
+
+If any of the parameters are Arrays themselves, the values of that Array
+will be concatenated into the new Array.
+
+
+<example>
+var x = [1, 2, 3];
+var concatenated = x.concat(4, 5, [6, 7]);
+
+console.log(concatenated);
+console.log(concatenated.length);
+console.log(x); // x is unchanged
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=137
+
+
+----
+prototype.every(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Boolean
+
+Returns **true** if **callback** returns **true** for every item in **this**.
+Otherwise returns **false**. 
+
+The **Array** passed to **callback** is the **this** of the call to **every**.
+
+
+<example>
+var isEven = function(x) { return (x % 2) === 0; }
+console.log([2, 22, 36].every(isEven));
+console.log([6, 19, 18].every(isEven));
+console.log([5, 19, 17].every(isEven));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=146
+
+
+----
+prototype.filter(callback(item:Object, index:Number, array:Array):Boolean, [thisArg:Object]):Array
+
+Returns a new **Array** containing only the items in **this** that **callback** returned
+**true** for.
+
+The **Array** passed to **callback** is the **this** of the call to **filter**.
+
+<example>
+var isEven = function(x) { return (x % 2) === 0; }
+var numbers = [1, 2, 4, 5, 7, 9, 12];
+console.log(numbers.filter(isEven));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=137
+
+
+----
+prototype.forEach(callback(item:Object, index:Number, array:Array):undefined, [thisArg:Object]):undefined
+
+Calls **callback** for each item in **this**.
+
+The **Array** passed to **callback** is the **this** of the call to **forEach**.
+
+<example>
+var x = ['a', 'b', 'c'];
+x.forEach(function(item, index) {
+  console.log('item at ' + index + ' = ' + item);
+});
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=148
+
+
+----
+prototype.indexOf(item:Object, [startingIndex = 0 : Number]):Number
+
+Returns the first location of **item** in **this** starting the search from
+**startingIndex**.
+If **startingIndex**
+is negative, **this.length** is added to it before starting the search. 
+Returns **-1** if **item** is not found.
+
+<example>
+var x = ['a', 'b', 'c', 'd', 'b', 'c', 'a'];
+console.log(x.indexOf('b'));
+console.log(x.indexOf('b', 2));
+console.log(x.indexOf('b', -4));
+console.log(x.indexOf('e', 2));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=145
+
+
+----
+prototype.join([separator=',':String]):String
+
+Returns a String created by joining the **toString()** of each item of 
+**this** separated by **separator**.
+
+<example>
+var x = ['a', 'b', 'c'];
+console.log(x.join());
+console.log(x.join(' -- '));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=138
+
+
+----
+prototype.lastIndexOf(item:Object, [startingIndex:Number]):Number
+
+Returns the location of **item** in **this** starting the search from 
+**startingIndex** by searching backwards through the array.  
+If **startingIndex** is not specified, the search starts from the 
+end of the array. 
+If **startingIndex**
+is negative, **this.length** is added to it before starting the search. 
+Returns **-1** if **item** is not found.
+
+<example>
+var x = ['a', 'b', 'c', 'd', 'b', 'c', 'a'];
+console.log(x.lastIndexOf('b'));
+console.log(x.lastIndexOf('b', 3));
+console.log(x.lastIndexOf('b', -4));
+console.log(x.lastIndexOf('e', 2));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=145
+
+----
+prototype.map(callback(item:Object, index:Number, array:Array):Object, [thisArg:Object]):Array
+
+Returns a new **Array** with where each item is the result of calling
+**callback** on each item in **this**.
+
+The **Array** passed to **callback** is the **this** of the call to **map**.
+
+<example>
+var numbers = [1, 2, 3, 4];
+var squares = numbers.map(function(x) { return x * x; });
+console.log(squares);
+console.log(numbers);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=148
+
+
+----
+prototype.pop():Object
+
+Removes the last item from **this** and returns the removed item.
+Returns **undefined** if **this** is empty.
+Use with %%#push|**push**%% to treat an **Array** as a stack.
+
+<example>
+var x = ['a', 'b', 'c']; 
+console.log(x.pop());
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=138
+
+
+----
+prototype.push(item0:Object, [item1:Object, [...]]):Number
+
+Appends the specified items to the end of **this** and returns the new
+value of **this.length**. Use with %%#pop|**pop**%% to treat an **Array** as a 
+stack.
+
+<example>
+var x = ['a', 'b', 'c']; 
+console.log(x.push('d', 'e'));
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=139
+
+
+----
+prototype.reduce(callback(previous:Object, current:Object,index:Number,array:Array):Object, [initialValue:Object]):Object
+
+Calls **callback** for each item in **this** and passes the return
+value of **callback** as the previous parameter to the next **callback** invocation.
+Returns the result from the last call to **callback**.
+If **initialValue** is not specified, **callback** will first
+be called on **this[1]** with **previous** set to **this[0]**.
+
+The **Array** passed to **callback** is the **this** of the call to **reduce**.
+
+<example>
+var join = function(prev, cur) { return prev + cur; } 
+console.log(['b', 'c'].reduce(join, 'a'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=150
+
+
+----
+prototype.reduceRight(callback(previous:Object, current:Object,index:Number,array:Array):Object, [initialValue:Object]):Object
+
+Calls **callback** for each item in **this** in reverse order and passes the return
+value of **callback** as the **previous** parameter to the next **callback** invocation.
+Returns the result from the last call to **callback**.
+If **initialValue** is not specified, **callback** will first
+be called on **this[this.length - 2]** with **previous** set to **this[this.length - 1]**.
+
+The **Array** passed to **callback** is the **this** of the call to **reduceRight**.
+
+<example>
+var join = function(prev, cur) { return prev + cur; } 
+console.log(['b', 'c'].reduceRight(join, 'a'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=151
+
+
+----
+prototype.reverse():Array
+
+Reverses the order of the items in **this** and returns **this**.
+
+<example>
+var x = ['a', 'b', 'c']; 
+console.log(x.reverse());
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=139
+
+----
+prototype.shift():Object
+
+Removes the first item of **this** and shifts the
+remaining items down by **1**.  Returns the removed item.
+
+<example>
+var x = ['a', 'b', 'c']; 
+console.log(x.shift());
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=140
+
+
+----
+prototype.slice(start:Number, [end:Number]):Array
+
+Returns a new **Array** which is composed of the items **this[start],
+this[start + 1], ..., this[end - 1]**. Note that  
+**item[end]** is not included.  If **start** or **end**
+is negative, the value is added to **this.length** before performing
+the slice. If **end** is not specified, **this.length** is used.
+
+<example>
+var x = ['a', 'b', 'c', 'd', 'e']; 
+console.log(x.slice(2));
+console.log(x.slice(2, 3));
+console.log(x.slice(1, -2));
+console.log(x.slice(-4, -1));
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=140
+
+
+----
+prototype.some(callback(item : Object, index : Number, array:Array):Boolean, [thisArg:Object]) : Boolean
+
+Returns **true** if **callback** returns **true** for at least one item in 
+**this**. Otherwise returns **false**.
+
+The **Array** passed to **callback** is the **this** of the call to **some**.
+
+<example>
+var isEven = function(x) { return (x % 2) === 0; }
+console.log([2, 22, 36].some(isEven));
+console.log([6, 19, 18].some(isEven));
+console.log([5, 19, 17].some(isEven));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=147
+
+
+----
+prototype.sort([comparisonFunction(x:Object, y:Object):Number]):Array
+
+Sort the items of **this** using **comparisonFunction** to determine 
+the sort order and returns **this**.
+The Number returned by **comparisonFunction** should be **0** if **x** and 
+**y** are equal, negative if **x** is less than **y**, or positive if **x**
+is greater than **y**. If **comparisonFunction** is not specified, the **toString()**
+of the items will be sorted in alphanumeric order.  
+Returns **this**.
+
+<example>
+var x = [52, 7, 14, 22, 9]; 
+
+// Sort alphanumerically
+console.log(x.sort());
+console.log(x);
+
+// Sort numerically 
+var numericComparison = function(x, y) { 
+  return x - y;
+};
+console.log(x.sort(numericComparison));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=141
+
+
+----
+prototype.splice(start:Number, count:Number, [item0:Object, [item1:Object, [...]]]):Array
+
+Removes **count** items from **this** starting at index 
+**start**.  If the optional **items** are specified, they are 
+inserted into **this** at **start**.  Returns a new **Array** containing 
+the removed items.
+
+<example>
+var x = ['a', 'b', 'c', 'd', 'e']; 
+console.log(x.splice(2, 1));
+console.log(x);
+console.log(x.splice(1, 2, 'X', 'Y', 'Z'));
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=143
+
+----
+prototype.unshift(item0:Object, [item1:Object, [...]]):Number
+
+Inserts the specified items at the start of **this**.  
+Returns the new value of **this.length**.
+
+<example>
+var x = ['c', 'd', 'e'];
+console.log(x.unshift('a', 'b'));
+console.log(x);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=144
+

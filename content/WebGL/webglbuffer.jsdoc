@@ -1,0 +1,23 @@
+WebGLBuffer : Object
+
+**WebGLBuffer** is memory
+used to store data that is passed to the shader program
+through attributes. 
+
+**WebGLBuffer**s are created with
+%%WebGLRenderingContext#createBuffer|**createBuffer()**%%
+and should be destroyed with 
+%%WebGLRenderingContext#deleteBuffer|**deleteBuffer()**%%
+when no longer needed.
+
+See also 
+%%WebGLRenderingContext#bindBuffer|**bindBuffer()**%%, 
+%%WebGLRenderingContext#bufferData|**bufferData()**%%, 
+%%WebGLRenderingContext#bufferSubData|**bufferSubData()**%%, 
+%%WebGLRenderingContext#isBuffer|**isBuffer()**%%, 
+%%WebGLRenderingContext#vertexAttribPointer|**vertexAttribPointer()**%%
+and
+%%WebGLRenderingContext#enableVertexAttribArray|**enableVertexAttribArray()**%%.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.4

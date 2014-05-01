@@ -1,0 +1,32 @@
+Storage : Object
+
+
+
+----
+instance.length : Number
+
+
+ReadOnly:
+true
+
+----
+prototype.key(index : Number) : String
+
+
+----
+prototype.getItem(key : String) : String
+
+
+
+----
+prototype.setItem(key : String, value : String) : undefined
+
+
+
+----
+prototype.removeItem(key : String) : undefined
+
+
+----
+prototype.clear() : undefined
+

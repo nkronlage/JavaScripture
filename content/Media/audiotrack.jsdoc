@@ -1,0 +1,31 @@
+AudioTrack : Object
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#audiotrack
+
+----
+instance.id : String
+
+ReadOnly:
+true
+
+----
+instance.kind : String
+
+ReadOnly:
+true
+
+----
+instance.label : String
+
+ReadOnly:
+true
+
+----
+instance.language : String
+
+ReadOnly:
+true
+
+----
+instance.enabled : Boolean

@@ -1,0 +1,56 @@
+<h1 class='declaration'>
+<span class='hide'>JavaScript</span>
+<span class='object'><%= obj.name %></span> 
+<% if (obj.type !== 'undefined') { %>
+ <span class=' type'> : <a href='/<%= obj.type %>'><%= obj.type %></a></span>
+<% } %>
+</h1>
+<div class='metadata'>
+<% if (obj.constructors && obj.constructors.length) { %>
+<span>constructor</span>
+<% } %>
+<% if (obj.primitive) { %>
+<span>primitive</span>
+<% } %>
+</div>
+
+<div class='objectdescription'>
+<%- obj.description %>
+<% if (obj.spec) { %>
+<div class='membermetadata'> 
+  <a href='<%= obj.spec %>' class='spec'>Spec</a>
+</div>
+<% } %>
+</div>
+
+
+<%- render('membergroup', { name: '', 
+                            group: obj.overloads}) %>
+
+<%- render('membergroup', { name: 'Constructors', 
+                            group: obj.constructors}) %>
+
+<%- render('membergroup', { name: 'Instance Indexers', 
+                            group: obj.instanceIndexers }) %>
+
+<%- render('membergroup', { name: 'Instance Properties', 
+                            group: obj.instanceProperties}) %>
+
+<%- render('membergroup', { name: 'Instance Methods', 
+                            group: obj.instanceMethods}) %>
+
+<%- render('membergroup', { name: 'Instance Events', 
+                            group: obj.instanceEvents}) %>
+
+<%- render('membergroup', { name: obj.name + ' Properties', 
+                            group: obj.properties}) %>
+
+<%- render('membergroup', { name: obj.name + ' Methods', 
+                            group: obj.methods}) %>
+
+<% if (obj.details) { %>
+<a name='Details'></a>
+<h2>Details</h2>
+<%- obj.details %>
+<% } %>
+

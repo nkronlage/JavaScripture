@@ -1,0 +1,17 @@
+SVGAnimatedNumberList : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedNumberList
+
+----
+instance.baseVal : SVGNumberList
+
+ReadOnly:
+true
+
+----
+instance.animVal : SVGNumberList
+
+ReadOnly:
+true
+

@@ -1,0 +1,33 @@
+HTMLScriptElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlscriptelement
+
+----
+instance.src : String
+
+----
+instance.type : String
+
+
+----
+instance.async : Boolean
+
+
+----
+instance.defer : Boolean
+
+
+----
+instance.type : String
+
+
+----
+instance.charset : String
+
+
+----
+instance.text : String
+
+

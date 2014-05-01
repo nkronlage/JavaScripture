@@ -1,0 +1,9 @@
+HTMLQuoteElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlquoteelement
+
+----
+instance.cite : String
+

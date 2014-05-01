@@ -1,0 +1,72 @@
+Boolean : Object
+
+A true or false value.
+
+Primitive:
+true
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+
+
+----
+Boolean(value : Object) : Boolean
+
+Coerces **value** into a boolean value.  You can also use **!!value** to
+do the coercion.
+
+<example>
+console.log(Boolean(''));
+console.log(Boolean('0'));
+console.log(Boolean(0));
+console.log(Boolean(1));
+console.log(Boolean([]));
+console.log(Boolean(undefined));
+console.log(!!undefined);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+
+
+----
+new Boolean(value : Object) : Object
+
+Creates a box for a boolean value.
+
+
+<example>
+var literal = true;
+var boxed = new Boolean(true);
+
+console.log(literal === true);
+console.log(boxed === true);
+console.log(boxed.valueOf() === true);
+console.log();
+
+// Literals cannot hold other properties but boxes can
+literal.foo = 'bar';
+boxed.foo = 'bar';
+console.log(literal.foo);
+console.log(boxed.foo);
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+
+
+----
+prototype.toString() : String
+
+Returns a string representation of **this**.
+
+<example>
+console.log(true.toString());
+console.log(false.toString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=165
+
+

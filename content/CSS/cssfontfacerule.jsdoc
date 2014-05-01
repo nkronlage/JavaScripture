@@ -1,0 +1,11 @@
+CSSFontFaceRule : CSSRule
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSFontFaceRule
+
+----
+instance.style : CSSStyleDeclaration
+
+ReadOnly:
+true
+

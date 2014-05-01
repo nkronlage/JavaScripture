@@ -1,0 +1,16 @@
+SVGAnimatedPreserveAspectRatio : Object
+
+Spec:
+
+----
+instance.baseVal : SVGPreserveAspectRatio
+
+ReadOnly:
+true
+
+----
+instance.animVal : SVGPreserveAspectRatio
+
+ReadOnly:
+true
+

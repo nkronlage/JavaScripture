@@ -1,0 +1,10 @@
+CanvasRenderingContext : Object
+
+The object used to render into a %%/HTMLCanvasElement|Canvas%% element.
+There are currently 2 types of contexts, the
+%%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%% 
+and
+%%/WebGLRenderingContext|**WebGLRenderingContext**%%.  You can retrieve
+these contexts for the canvas by passing in **'2d'** or **'webgl'**
+into %%/HTMLCanvasElement#getContext|**canvas.getContext()**%%.
+

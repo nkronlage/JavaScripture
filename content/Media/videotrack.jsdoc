@@ -1,0 +1,29 @@
+VideoTrack : Object
+
+----
+instance.id : String
+
+ReadOnly:
+true
+
+----
+instance.kind : String
+
+ReadOnly:
+true
+
+----
+instance.label : String
+
+ReadOnly:
+true
+
+----
+instance.language : String
+
+ReadOnly:
+true
+
+----
+instance.selected : Boolean
+

@@ -1,0 +1,84 @@
+Error : Object
+
+An object thrown when an error occurs. 
+
+There are several specific constructor functions for different types of 
+error conditions: 
+**EvalError**,
+**RangeError**,
+**ReferenceError**,
+**SyntaxError**,
+**TypeError**,
+**URIError**,
+**NativeError**.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+
+----
+Error(message : String) : Error
+
+Creates a new **Error** with the specified **message** that describes the error.
+
+<example>
+var divide = function(x, y) {
+  if (y === 0) {
+    throw Error('divide by zero');
+  }
+  return x / y;
+};
+
+try {
+  console.log(divide(10, 0)); 
+}
+catch (error) {
+  console.log(error.name);
+  console.log(error.message);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=210
+
+----
+new Error(message : String) : Error
+
+Same as %%#Error_String|**Error(message)**%%
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=210
+
+----
+prototype.name : String
+
+The type of error.
+
+<example>
+try {
+  foo; 
+}
+catch (error) {
+  console.log(error.name);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=211
+
+----
+prototype.message : String
+
+A human readable message that describes the error.
+
+<example>
+try {
+  foo; 
+}
+catch (error) {
+  console.log(error.message);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=211
+

@@ -1,0 +1,270 @@
+DataView : ArrayBufferView
+
+DataViews allow heterogeneous access to data stored in an 
+%%ArrayBuffer|**ArrayBuffer**%%.  Values can be read and stored at 
+any byte offset without alignment constraints.
+
+Spec:
+http://www.khronos.org/registry/typedarray/specs/latest/#8
+
+----
+new DataView(buffer : ArrayBuffer, [byteOffset = 0 : Number, [byteLength : Number]]) : DataView
+
+Creates a new **DataView** for **buffer** at the specified offset.  If **length**
+is not specified, **buffer.byteLength  - byteOffset** will be used. 
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer, 0);
+x.setInt8(0, 22);
+x.setFloat32(1, Math.PI);
+console.log(x.getInt8(0)); 
+console.log(x.getFloat32(1)); 
+</example>
+
+----
+instance.buffer : ArrayBuffer
+
+Returns the underlying buffer for **this**.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer);
+console.log(x.buffer === buffer);
+</example>
+
+----
+instance.byteOffset : Number
+
+The offset into **this.buffer** where the view starts.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer, 4, 2);
+console.log(x.byteOffset); 
+</example>
+
+
+----
+instance.byteLength : Number
+
+The length of **this** in bytes. 
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer, 4, 2);
+console.log(x.byteLength); 
+</example>
+
+----
+prototype.getInt8(byteOffset : Number) : Number
+
+Returns a signed byte out of **this** at the specified offset.
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setInt8(1, 123);
+console.log(x.getInt8(1)); 
+</example>
+
+
+----
+prototype.getUint8(byteOffset : Number) : Number
+
+Returns an unsigned byte out of **this** at the specified offset.
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setUint8(1, 123);
+console.log(x.getUint8(1)); 
+</example>
+
+----
+prototype.getInt16(byteOffset : Number, [littleEndian = false : Boolean]) : Number
+
+Returns a signed 16 bit integer out of **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be read as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 1**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setInt16(1, 1234);
+console.log(x.getInt16(1)); 
+</example>
+
+----
+prototype.getUint16(byteOffset : Number, [littleEndian = false : Boolean]) : Number
+
+Returns an unsigned 16 bit integer out of **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be read as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 1**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setUint16(1, 1234);
+console.log(x.getUint16(1)); 
+</example>
+
+
+----
+prototype.getInt32(byteOffset : Number, [littleEndian = false : Boolean]) : Number
+
+Returns a signed 32 bit integer out of **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be read as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setInt32(1, 1234);
+console.log(x.getInt32(1)); 
+</example>
+
+
+----
+prototype.getUint32(byteOffset : Number, [littleEndian = false : Boolean]) : Number
+
+Returns an usigned 32 bit integer out of **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be read as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setUint32(1, 1234);
+console.log(x.getUint32(1)); 
+</example>
+
+
+----
+prototype.getFloat32(byteOffset : Number, [littleEndian = false : Boolean]) : Number
+
+Returns a 32 bit floating point number out of **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be read as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setFloat32(1, Math.PI);
+console.log(x.getFloat32(1)); 
+console.log(Math.PI); 
+</example>
+
+
+----
+prototype.getFloat64(byteOffset : Number, [littleEndian = false : Boolean]) : Number
+
+Returns a 64 bit floating point number out of **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be read as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 7**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setFloat64(1, Math.PI);
+console.log(x.getFloat64(1)); 
+console.log(Math.PI); 
+</example>
+
+----
+prototype.setInt8(byteOffset : Number, value : Number) : undefined 
+
+Stores a signed byte into **this** at the specified offset. 
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setInt8(1, 123);
+console.log(x.getInt8(1)); 
+</example>
+
+
+----
+prototype.setUint8(byteOffset : Number, value : Number) : undefined 
+
+Stores an unsigned byte into **this** at the specified offset. 
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setUint8(1, 123);
+console.log(x.getUint8(1)); 
+</example>
+
+
+----
+prototype.setInt16(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 
+
+Stores a signed 16 bit integer into **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be stored as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 1**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setInt16(1, 1234);
+console.log(x.getInt16(1)); 
+</example>
+
+----
+prototype.setUint16(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 
+
+Stores an unsigned 16 bit integer into **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be stored as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 1**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setUint16(1, 1234);
+console.log(x.getUint16(1)); 
+</example>
+
+----
+prototype.setInt32(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 
+
+Stores a signed 32 bit integer into **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be stored as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setInt32(1, 1234);
+console.log(x.getInt32(1)); 
+</example>
+
+----
+prototype.setUint32(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 
+
+Stores an unsigned 32 bit integer into **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be stored as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setUint32(1, 1234);
+console.log(x.getUint32(1)); 
+</example>
+
+----
+prototype.setFloat32(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 
+
+Converts **value** to a 32 bit floating point number and stores it into **this** 
+at the specified offset. 
+If **littleEndian** is **true**, the value will be stored as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setFloat32(1, Math.PI);
+console.log(x.getFloat32(1)); 
+console.log(Math.PI); 
+</example>
+
+----
+prototype.setFloat64(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 
+
+Stores **value** as a 64 bit floating point number in **this** at the specified offset. 
+If **littleEndian** is **true**, the value will be stored as little endian 
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 7**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setFloat64(1, Math.PI);
+console.log(x.getFloat64(1)); 
+console.log(Math.PI);
+</example>
+

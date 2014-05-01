@@ -1,0 +1,36 @@
+BiquadFilterNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#BiquadFilterNode
+
+----
+instance.type : String
+
+
+----
+instance.frequency : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.detune : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.Q : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.gain : AudioParam
+
+ReadOnly:
+true
+
+----
+prototype.getFrequencyResponse(frequencyHz : Float32Array, magResponse : Float32Array, phaseResponse : Float32Array) : undefined
+

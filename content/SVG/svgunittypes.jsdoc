@@ -1,0 +1,31 @@
+SVGUnitTypes : Object
+
+Spec:
+
+----
+SVG_UNIT_TYPE_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_UNIT_TYPE_USERSPACEONUSE : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_UNIT_TYPE_OBJECTBOUNDINGBOX : Number
+
+ReadOnly:
+true
+
+Value:
+2
+

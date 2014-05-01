@@ -1,0 +1,120 @@
+Event : Object
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#events-Event
+
+----
+new Event( \
+  type : String,  \
+  [eventInit : { \
+     bubbles : Boolean, \
+     cancelable: Boolean \
+  }]) : Event
+
+----
+instance.type : String
+
+ReadOnly:
+true
+
+----
+instance.target : Object
+
+The **Object** that originated this event. See %%#currentTarget|**currentTarget**%%.
+
+ReadOnly:
+true
+
+----
+instance.currentTarget : Object
+
+The **Object** that the current callback is running for.  
+This will be different than %%#target|**target**%% if this
+event is in the bubble or capture phase.
+
+ReadOnly:
+true
+
+----
+instance.eventPhase : Number
+
+The current phase of the event.  Will be one of 
+%%#NONE|**NONE**%%,
+%%#CAPTURING_PHASE|**CAPTURING_PHASE**%%,
+%%#AT_TARGET|**AT_TARGET**%%, or
+%%#BUBBLING_PHASE|**BUBBLING_PHASE**%%.
+
+ReadOnly:
+true
+
+----
+instance.bubbles : Boolean
+
+ReadOnly:
+true
+
+----
+instance.cancelable : Boolean
+
+ReadOnly:
+true
+
+----
+instance.timeStamp : Number
+
+ReadOnly:
+true
+
+----
+instance.defaultPrevented : Boolean
+
+ReadOnly:
+true
+
+----
+instance.isTrusted : Boolean
+
+ReadOnly:
+true
+
+----
+prototype.stopPropagation() : undefined
+
+----
+prototype.stopImmediatePropagation() : undefined
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#events-event-type-stopImmediatePropagation
+
+----
+prototype.preventDefault() : undefined
+
+
+----
+prototype.initEvent(type : String, canBubble : Boolean, cancelable : Boolean) : undefined
+
+
+----
+NONE : Number 
+
+ReadOnly:
+true
+
+----
+CAPTURING_PHASE : Number 
+
+ReadOnly:
+true
+
+----
+AT_TARGET : Number
+
+ReadOnly:
+true
+
+----
+BUBBLING_PHASE : Number
+
+
+ReadOnly:
+true

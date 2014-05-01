@@ -1,0 +1,59 @@
+ArrayBufferView : Object
+
+ArrayBufferView is an abstract type that is the 
+base for the following types: 
+%%DataView|**DataView**%%,
+%%Float32Array|**Float32Array**%%,
+%%Float64Array|**Float64Array**%%,
+%%Int8Array|**Int8Array**%%,
+%%Int16Array|**Int16Array**%%,
+%%Int32Array|**Int32Array**%%,
+%%Uint8Array|**Uint8Array**%%,
+%%Uint8ClampedArray|**Uint8ClampedArray**%%,
+%%Uint16Array|**Uint16Array**%%,
+%%Uint32Array|**Uint32Array**%%.
+
+Spec:
+http://www.khronos.org/registry/typedarray/specs/latest/#6
+
+----
+instance.buffer : ArrayBuffer
+
+Returns the underlying buffer for **this**.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer);
+console.log(x.buffer === buffer);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.byteOffset : Number
+
+The offset into **this.buffer** where the view starts.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer, 4, 2);
+console.log(x.byteOffset); 
+</example>
+
+ReadOnly:
+true
+
+----
+instance.byteLength : Number
+
+The length of **this** in bytes. 
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new DataView(buffer, 4, 2);
+console.log(x.byteLength); 
+</example>
+
+ReadOnly:
+true

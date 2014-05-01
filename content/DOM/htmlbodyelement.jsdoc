@@ -1,0 +1,60 @@
+HTMLBodyElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlbodyelement
+
+----
+event.afterprint : listener(event : Event) : undefined
+
+----
+event.beforeprint : listener(event : Event) : undefined
+
+----
+event.beforeunload : listener(event : Event) : undefined
+
+----
+event.blur : listener(event : Event) : undefined
+
+----
+event.error : listener(event : Event) : undefined
+
+----
+event.focus : listener(event : Event) : undefined
+
+----
+event.hashchange : listener(event : Event) : undefined
+
+----
+event.load : listener(event : Event) : undefined
+
+----
+event.message : listener(event : Event) : undefined
+
+----
+event.offline : listener(event : Event) : undefined
+
+----
+event.online : listener(event : Event) : undefined
+
+----
+event.popstate : listener(event : Event) : undefined
+
+----
+event.pagehide : listener(event : Event) : undefined
+
+----
+event.pageshow : listener(event : Event) : undefined
+
+----
+event.resize : listener(event : Event) : undefined
+
+----
+event.scroll : listener(event : Event) : undefined
+
+----
+event.storage : listener(event : Event) : undefined
+
+----
+event.unload : listener(event : Event) : undefined
+

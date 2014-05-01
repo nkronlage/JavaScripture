@@ -1,0 +1,12 @@
+SVGTSpanElement : SVGTextPositioningElement
+
+Corresponds to the **<tspan>** tag in SVG.  
+
+Similar to the %%/HTMLSpanElement|HTMLSpanElement%%.
+
+Use %%/Document#createTextNode|**document.createTextNode()**%% to 
+create the text nodes that define the actual text content of the TSpan.
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#InterfaceSVGTSpanElement
+

@@ -1,0 +1,25 @@
+DOMImplementation : Object
+
+Spec:
+http://dom.spec.whatwg.org/#domimplementation
+
+----
+prototype.createDocumentType(qualifiedName : String, publicId : String, systemId : String) : DocumentType
+
+----
+prototype.createDocument(namespace : String, qualifiedName : String, [documentType : DocumentType]) : XMLDocument
+
+----
+prototype.createHTMLDocument([title : String]) : Document
+
+
+----
+prototype.hasFeature(feature : String, version : String) : Boolean
+
+----
+prototype.createCSSStyleSheet(title : String, media : String) : CSSStyleSheet
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-DOMImplementationCSS
+
+

@@ -1,0 +1,74 @@
+SVGTextContentElement : SVGElement
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#InterfaceSVGTextContentElement
+
+----
+instance.textLength : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.lengthAdjust : SVGAnimatedEnumeration 
+
+ReadOnly:
+true
+
+----
+prototype.getNumberOfChars() : Number
+
+----
+prototype.getComputedTextLength() : Number
+
+----
+prototype.getSubStringLength(charnum : Number, nchars : Number) : Number
+
+----
+prototype.getStartPositionOfChar(charnum : Number) : SVGPoint 
+
+----
+prototype.getEndPositionOfChar(charnum : Number) : SVGPoint 
+
+----
+prototype.getExtentOfChar(charnum : Number) : SVGRect 
+
+----
+prototype.getRotationOfChar(charnum : Number) : Number
+
+----
+prototype.getCharNumAtPosition(point : SVGPoint) : Number
+
+----
+prototype.selectSubString(charnum : Number, nchars : Number) : undefined
+
+
+----
+LENGTHADJUST_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+LENGTHADJUST_SPACING : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+LENGTHADJUST_SPACINGANDGLYPHS : Number
+
+
+ReadOnly:
+true
+
+Value:
+2
+
+

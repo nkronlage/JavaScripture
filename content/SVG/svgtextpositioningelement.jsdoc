@@ -1,0 +1,37 @@
+SVGTextPositioningElement : SVGTextContentElement
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#InterfaceSVGTextPositioningElement
+
+----
+instance.x : SVGAnimatedLengthList
+
+ReadOnly:
+true
+
+
+----
+instance.y : SVGAnimatedLengthList
+
+ReadOnly:
+true
+
+----
+instance.dx : SVGAnimatedLengthList
+
+ReadOnly:
+true
+
+
+----
+instance.dy : SVGAnimatedLengthList
+
+ReadOnly:
+true
+
+----
+instance.rotate : SVGAnimatedNumberList
+
+ReadOnly:
+true
+

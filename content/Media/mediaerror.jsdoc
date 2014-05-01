@@ -1,0 +1,48 @@
+MediaError : Object
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#mediaerror
+
+----
+instance.code : Number
+
+ReadOnly:
+true
+
+----
+MEDIA_ERR_ABORTED : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+MEDIA_ERR_NETWORK : Number
+
+ReadOnly:
+true
+
+Value;
+2
+
+----
+MEDIA_ERR_DECODE : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+MEDIA_ERR_SRC_NOT_SUPPORTED : Number
+
+ReadOnly:
+true
+
+Value;
+4
+
+

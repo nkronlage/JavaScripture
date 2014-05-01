@@ -1,0 +1,13 @@
+<% if (group && group.length) { %>
+  <div class='methodgroup'>
+    <a name='<%= group.name %>'></a>
+    <span class='membername primary'><%= group.name %></span>
+    <%= group.length %> variants
+    <div class='mode'>
+      <% for (var i = 0; i < group.length; i++) {  %>
+         <%  var member = group[i]; %>
+         <%- render('member', { property: member, inGroup: true }) %>
+      <% } %>
+    </div>
+  </div>
+<% } %>

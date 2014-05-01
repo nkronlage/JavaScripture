@@ -1,0 +1,122 @@
+HTMLFormElement : HTMLElement
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlformelement
+
+----
+instance[index : Number] : Element
+
+Returns the input element at **index** in the form.
+
+<htmlexample>
+<form id='form'>
+  <input name='text' value='foo'>
+  <label> <input type='radio' name='letters'>A</label>
+  <label> <input type='radio' name='letters' checked>B</label>
+  <label> <input type='radio' name='letters'>C</label>
+</form>
+<script>
+  var form = document.getElementById('form');
+
+  var text = form[0];
+  console.log(text.value);
+
+  var b = form[2];
+  console.log(b.checked);
+</script>
+</htmlexample>
+
+----
+instance[name : String] : Object
+
+Returns the element in the form with the specified **name**. The returned value
+will be of the type
+
+%%/HTMLInputElement|HTMLInputElement%%,
+%%/HTMLImageElement|HTMLImageElement%%, or
+%%/NodeList|NodeList%%.
+NodeList is returned if **name** used on radio input elements.
+
+<htmlexample>
+<form id='form'>
+  <input name='text' value='foo'>
+  <label> <input type='radio' name='letters'>A</label>
+  <label> <input type='radio' name='letters'>B</label>
+  <label> <input type='radio' name='letters'>C</label>
+</form>
+<script>
+  var form = document.getElementById('form');
+
+  var text = form['text'];
+  console.log(text.value);
+
+  var nodeList = form['letters'];
+  console.log(nodeList.length);
+</script>
+</htmlexample>
+
+----
+instance.acceptCharset : String
+
+
+----
+instance.action : String
+
+
+----
+instance.autocomplete : String
+
+
+----
+instance.enctype : String
+
+
+----
+instance.encoding : String
+
+
+----
+instance.method : String
+
+
+----
+instance.name : String
+
+
+----
+instance.noValidate : Boolean
+
+
+----
+instance.target : String
+
+
+----
+instance.elements : HTMLFormControlsCollection
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+prototype.submit() : undefined
+
+
+----
+prototype.reset() : undefined
+
+
+----
+prototype.checkValidity() : Boolean 
+
+----
+event.submit : listener() : Boolean
+
+Called before the form is submitted to the server.  Return **false** to
+stop the form from being submitted.
+

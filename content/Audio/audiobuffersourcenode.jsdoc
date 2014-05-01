@@ -1,0 +1,37 @@
+AudioBufferSourceNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#AudioBufferSourceNode
+
+----
+instance.buffer : AudioBuffer
+
+
+----
+instance.playbackRate : AudioParam
+
+ReadOnly:
+true
+
+----
+instance.loop : Boolean
+
+
+----
+instance.loopStart : Number
+
+
+----
+instance.loopEnd : Number
+
+
+----
+prototype.start([when = 0 : Number, [offset = 0 : Number, [duration : Number]]]) : undefined
+
+----
+prototype.stop([when = 0 : Number]) : undefined
+
+----
+event.ended : listener(event : Event) : undefined
+
+

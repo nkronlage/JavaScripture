@@ -1,0 +1,13 @@
+SVGAnimatedBoolean : Object
+
+Spec:
+
+----
+instance.baseVal : Boolean
+
+----
+instance.animVal : Boolean
+
+ReadOnly:
+true
+

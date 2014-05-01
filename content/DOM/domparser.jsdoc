@@ -1,0 +1,17 @@
+DOMParser : Object
+
+Spec:
+http://domparsing.spec.whatwg.org/#the-domparser-interface
+
+----
+new DOMParser() : DOMParser
+
+----
+prototype.parseFromString(string : String, mimeType : String) : Document
+
+**mimeType** must be one of: **'text/html'**, **'text/xml'**, 
+**'application/xml'**, 
+**'application/xhtml+xml'**, **'image/svg+xml'**.
+
+Spec:
+http://domparsing.spec.whatwg.org/#dom-domparser-parsefromstring

@@ -1,0 +1,56 @@
+SVGAnimatedLength : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedLength
+
+----
+instance.baseVal : SVGLength
+
+
+<htmlexample>
+baseVal: <span id='baseOutput'></span> <br>
+animVal: <span id='animOutput'></span> <br>
+<svg id='svgelement' xmlns='http://www.w3.org/2000/svg' version='1.1'>
+  <rect id='foo' width='30' height='15' fill='black'>
+    <animate attributeName='height' from='30' to='70' dur='5s' repeatCount='indefinite' />
+  </rect>
+</svg>
+<script>
+  var baseOutput = document.getElementById('baseOutput');
+  var animOutput = document.getElementById('animOutput');
+  setInterval(function() {
+    var svgelement = document.getElementById('foo');
+    baseOutput.textContent = svgelement.height.baseVal.value;
+    animOutput.textContent = svgelement.height.animVal.value;
+  }, 100);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+----
+instance.animVal : SVGLength
+
+<htmlexample>
+baseVal: <span id='baseOutput'></span> <br>
+animVal: <span id='animOutput'></span> <br>
+<svg id='svgelement' xmlns='http://www.w3.org/2000/svg' version='1.1'>
+  <rect id='foo' width='30' height='15' fill='black'>
+    <animate attributeName='height' from='30' to='70' dur='5s' repeatCount='indefinite' />
+  </rect>
+</svg>
+<script>
+  var baseOutput = document.getElementById('baseOutput');
+  var animOutput = document.getElementById('animOutput');
+  setInterval(function() {
+    var svgelement = document.getElementById('foo');
+    baseOutput.textContent = svgelement.height.baseVal.value;
+    animOutput.textContent = svgelement.height.animVal.value;
+  }, 100);
+</script>
+</htmlexample>
+
+ReadOnly:
+true

@@ -1,0 +1,182 @@
+Global : Object
+
+The following are properties of the global object.  They can be accessed from
+anywhere without additional qualifiers.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=115
+
+
+----
+NaN : Number
+
+Floating point Not a Number. Signifies an error in a calculation.
+**NaN** is never equal to another **Number**, even if it is **NaN**.
+To check if something is **NaN**, use %%#isNaN|**isNaN()**%%.
+
+<example>
+console.log(NaN);
+console.log(0/0);
+console.log(Math.sqrt(-1));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=115
+
+----
+Infinity : Number
+
+Positive infinity.
+
+<example>
+console.log(Infinity);
+console.log(1/0);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+
+
+----
+undefined: undefined
+
+Returns the **undefined** type.  This value signifies no value has been
+set on a property or that a method returned no value.
+
+<example>
+var x = {};
+console.log(x.foo);
+var noReturn = function() {};
+console.log(noReturn());
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+
+----
+eval(code : String) : Object
+
+Treats **code** as JavaScript and executes it, returning the result.
+
+<example>
+console.log(eval('1 + 1'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+
+----
+parseInt(str : String, [base : Number]) : Number
+
+Converts **str** into an integral number. If **base** is not specified, **parseInt** 
+will attempt to determine the base to use depending on the input. **parseInt** is 
+more forgiving than **Number(str)** (or equivalently **+str**) in that it will ignore
+extra characters after the numeric portion of the string.  If the first character
+is not a valid number in the specified **base**, **parseInt** will return %%#NaN|**NaN**%%.
+
+<example>
+console.log(parseInt('12'));
+console.log(parseInt('0x12'));    // Detected hex
+console.log(parseInt('012'));     // Detected octal
+console.log(parseInt('012', 10)); // Force decimal
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+
+
+----
+parseFloat(str : String) : Number
+
+Converts **str** into a floating point number.
+
+<example>
+console.log(parseFloat('3.14') * 2);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=117
+
+----
+isNaN(x : Number) : Boolean
+
+Returns **true** if **x** is %%/Number#NaN|**NaN**%%.
+**NaN** is never equal to another **Number**, even if it is **NaN**,
+so you must use **isNaN** to check for **NaN**.
+
+<example>
+var x = 0/0;
+console.log(x === NaN); 
+console.log(isNaN(x)); 
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=117
+
+
+----
+isFinite(x: Number) : Boolean
+
+Returns **true** if **x** is not **NaN**, **+Infinity**, or **-Infinity**.
+
+<example>
+console.log(isFinite(0/0)); // 0/0 is NaN
+console.log(isFinite(1/0)); // 1/0 is infinity
+console.log(isFinite(1.2)); // 1.2 is finite
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=117
+
+----
+decodeURI(encodedURI : String) : String
+
+Returns a string that is the decoded version of %%#encodeURI|**encodeURI**%%.
+
+<example>
+console.log(decodeURI('http://foo/bar%20baz'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=121
+
+----
+decodeURIComponent(encodedURIComponent : String) : String
+
+Returns a string that is the decoded version of %%#encodeURIComponent|**encodeURIComponent**%%.
+
+<example>
+console.log(decodeURIComponent('http%3A%2F%2Ffoo%2Fbar%20baz'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=121
+
+----
+encodeURI(uri : String) : String
+
+Returns a string that is the encoded version of **uri**.
+
+<example>
+console.log(encodeURI('http://foo/bar baz'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=122
+
+----
+encodeURIComponent(component : String) : String
+
+Returns an encoded version of **component** that is suitable as a uri 
+parameter.
+
+<example>
+console.log(encodeURIComponent('http://foo/bar baz'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=122
+

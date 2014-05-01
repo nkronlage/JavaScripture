@@ -1,0 +1,197 @@
+Uint8Array : ArrayBufferView
+
+Uint8Array is similar to an %%/Array|**Array**%% where each item is an
+8 bit (1 byte) unsigned integer. Uint8Arrays cannot change size after creation.
+
+Spec:
+http://www.khronos.org/registry/typedarray/specs/latest/#7
+
+----
+new Uint8Array(length : Number) : Uint8Array
+
+Creates a new **Uint8Array** of the specified length where
+each item starts out as **0**
+
+
+<example>
+var x = new Uint8Array(2);
+x[0] = 17;
+console.log(x[0]);
+console.log(x[1]);
+console.log(x.length);
+</example>
+
+
+----
+new Uint8Array(array : Array) : Uint8Array
+
+Creates a new **Uint8Array** and copies the items of **array** into 
+**this**. The copied items are converted to 8 bit unsigned integers before
+being stored in **this**.
+
+
+<example>
+var x = new Uint8Array([17, -45.3]);
+console.log(x[0]);
+console.log(x[1]);
+console.log(x.length);
+</example>
+
+----
+new Uint8Array(array : Uint8Array) : Uint8Array
+
+Creates a new **Uint8Array** and copies the items of **array** into 
+**this**. **array** can be any of the typed array types and the copied 
+items will be converted to 8 bit unsigned integers before being stored in **this**. 
+
+
+<example>
+var x = new Uint8Array([17, -45.3]);
+var y = new Uint8Array(x);
+console.log(x[0]);
+console.log(x[1]);
+console.log(x.length);
+x[0] = -2;
+console.log(y[0]); // y is not modified
+</example>
+
+
+----
+new Uint8Array(buffer : ArrayBuffer, [byteOffset = 0 : Number, [length : Number]]) : Uint8Array
+
+Creates a view on top of the specified **buffer** starting at **byteOffset** of
+**length** items. Changes to the items in **this** actual affect the underlying
+**buffer**, and vice versa.  If **length** is not specified, 
+**length** will be **buffer.length - byteOffset**.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new Uint8Array(buffer, 0);
+// Make another view of 5th to 7th bytes of the buffer
+var y = new Uint8Array(buffer, 4, 2);
+x[4] = 4;
+console.log(y[0]); // y is a live view on the buffer
+</example>
+
+----
+instance[index : Number] : Number
+
+Gets and sets the element in **this** at **index**. 
+**index** should be between **0** and
+**%%#length|this.length%% - 1**.
+
+<example>
+var x = new Uint8Array(2);
+x[0] = 17;
+console.log(x[0]);
+console.log(x[1]);
+</example>
+
+
+----
+instance.buffer : ArrayBuffer
+
+Returns the underlying buffer for this Uint8Array.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new Uint8Array(buffer, 0, 2);
+var y = new Uint8Array(x.buffer, 4, 2);
+console.log(x.buffer === y.buffer); 
+</example>
+
+----
+instance.byteOffset : Number
+
+The offset into **this.buffer** where the 0th item is stored.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new Uint8Array(buffer, 4, 2);
+console.log(x.byteOffset); 
+</example>
+
+
+----
+instance.byteLength : Number
+
+The length of **this** in bytes. 
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new Uint8Array(buffer, 4, 2);
+console.log(x.byteLength); 
+console.log(x.length * Uint8Array.BYTES_PER_ELEMENT); 
+</example>
+
+----
+instance.length : Number
+
+The number of elements in **this**. It is 1 greater than the index
+of the last item.
+
+<example>
+var x = new Uint8Array(10);
+console.log(x.length);
+</example>
+
+ReadOnly:
+true
+
+----
+prototype.set(array : Array, [offset = 0 : Number]) : undefined
+
+Copies items from **array** into **this** starting at **this[offset]**.
+Copied items are converted to 8 bit unsigned integers before storing in **this**.
+
+<example>
+var x = new Uint8Array(10);
+x.set([18, 93, 42], 3);
+console.log(x[3]);
+console.log(x[4]);
+console.log(x[5]);
+</example>
+
+----
+prototype.set(array : Uint8Array, [offset = 0 : Number]) : undefined
+
+Copies items from **array** into **this** starting at **this[offset]**.
+**array** can be any of the typed array types and the copied items will be
+converted to 8 bit unsigned integers before storing in **this**.
+
+<example>
+var x = new Uint8Array(10);
+x.set(new Uint8Array([18, 93, 42]), 3);
+console.log(x[3]);
+console.log(x[4]);
+console.log(x[5]);
+</example>
+
+----
+prototype.subarray(begin : Number, [end : Number]) : Uint8Array
+
+Returns a new Uint8Array that is a view on top of **this** containing items
+**this[begin]**, **this[begin + 1]**, ..., **this[end - 1]**.  The
+0th item in the returned array in the same memory location as 
+**this[begin]**. If **end** is not specified, **this.length** is used.
+
+<example>
+var x = new Uint8Array([0, 1, 2, 3, 4, 5]); // length=6
+var y = x.subarray(2, 5);
+console.log(y.length);
+console.log(y[0]);
+console.log(y[1]);
+y[0] = -1;
+console.log(x[2]);
+</example>
+
+
+----
+BYTES_PER_ELEMENT : Number
+
+Returns the size in bytes of an item in a Uint8Array.
+
+<example>
+console.log(Uint8Array.BYTES_PER_ELEMENT);
+</example>
+

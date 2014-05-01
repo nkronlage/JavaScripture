@@ -1,0 +1,420 @@
+FileReader : EventTarget
+
+FileReader is used to read the contents of a %%/Blob|**Blob**%% or
+%%/File|**File**%%.
+
+Spec:
+http://www.w3.org/TR/FileAPI/#FileReader-interface
+
+----
+new FileReader() : FileReader
+
+<htmlexample>
+<input type='file' accept='image/*' onchange='openFile(event)'><br>
+<img id='output'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      var dataURL = event.target.result;
+      var output = document.getElementById('output');
+      output.src = dataURL;
+      
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/FileAPI/#dfn-filereader
+
+----
+prototype.readAsArrayBuffer(blob : Blob) : undefined
+
+Begins reading from **blob** as an %%/ArrayBuffer|**ArrayBuffer**%%.  
+The result will 
+be stored on %%#result|**this.result**%% after the %%#onload|**'load'**%% event
+fires.
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      var reader = event.target;
+      var arrayBuffer = reader.result;
+
+      console.log(arrayBuffer.byteLength);
+    };
+    reader.readAsArrayBuffer(input.files[0]);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/FileAPI/#readAsArrayBuffer
+
+----
+prototype.readAsText(blob : Blob, [encoding : String]) : undefined
+
+Begins reading from **blob** as a string.  The result will 
+be stored on %%#result|**this.result**%% after the %%#onload|**'load'**%% event fires.
+For the valid values of **encoding**, see %%http://www.iana.org/assignments/character-sets/character-sets.xhtml|character
+sets%%.
+
+<htmlexample>
+<input type='file' accept='text/plain' onchange='openFile(event)'><br>
+<img id='output'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      var reader = event.target;
+
+      var text = reader.result;
+      console.log(reader.result.substring(0, 200));
+    };
+    reader.readAsText(input.files[0]);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/FileAPI/#readAsDataText
+
+----
+prototype.readAsDataURL(blob : Blob) : undefined
+
+Begins reading from **blob** as a **'data:'** url string.  The result will 
+be stored on %%#result|**this.result**%% after the %%#onload|**'load'**%% 
+event fires.
+
+<htmlexample>
+<input type='file' accept='image/*' onchange='openFile(event)'><br>
+<img id='output'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      var reader = event.target;
+      var dataURL = reader.result;
+      var output = document.getElementById('output');
+      output.src = dataURL;
+      
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/FileAPI/#readAsDataURL
+
+----
+prototype.abort() : undefined
+
+Stops the current read operation.
+
+Spec:
+http://www.w3.org/TR/FileAPI/#abort
+
+----
+instance.readyState : Number
+
+The current state of the reader.  Will be one of %%#EMPTY|**EMPTY**%%,
+%%#LOADING|**LOADING**%%, or %%#DONE|**DONE**%%.
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var stateNames = {};
+  stateNames[FileReader.EMPTY]   = 'EMPTY';
+  stateNames[FileReader.LOADING] = 'LOADING';
+  stateNames[FileReader.DONE]    = 'DONE';
+
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      console.log('After load: ' + stateNames[reader.readyState]);
+    };
+
+    console.log('Before read: ' + stateNames[reader.readyState]);
+    reader.readAsDataURL(input.files[0]);
+    console.log('After read: ' + stateNames[reader.readyState]);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.result : Object
+
+The result from the previous read.  The result will be either a 
+%%/String|**String**%% or an %%/ArrayBuffer|**ArrayBuffer**%%.
+The result is only available after the %%#onload|**load**%% event
+fires.
+
+<htmlexample>
+<input type='file' accept='image/*' onchange='openFile(event)'><br>
+<img id='output'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      var dataURL = event.target.result;
+      var output = document.getElementById('output');
+      output.src = dataURL;
+      
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/FileAPI/#dfn-result
+
+----
+instance.error : Error
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/FileAPI/#dfn-error
+
+----
+event.loadstart : listener(event : ProgressEvent) : undefined
+
+Called after starting a read operation.
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    console.log('entering openFile()');
+    var input = event.target;
+
+    var printEventType = function(event) {
+      console.log('got event: ' + event.type);
+    };
+
+    var reader = new FileReader();
+    reader.onloadstart = printEventType;
+    reader.onprogress = printEventType;
+    reader.onload = printEventType;
+    reader.onloadend = printEventType;
+
+    console.log('  starting read');
+    reader.readAsDataURL(input.files[0]);
+    console.log('leaving openFile()');
+  };
+</script>
+</htmlexample>
+
+
+----
+event.progress : listener(event : ProgressEvent) : undefined
+
+Called during a read operation to report the current progress.
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+
+<script>
+  var openFile = function(event) {
+    console.log('entering openFile()');
+    var input = event.target;
+
+    var printEventType = function(event) {
+      console.log('got event: ' + event.type);
+    };
+
+    var reader = new FileReader();
+    reader.onloadstart = printEventType;
+    reader.onprogress = printEventType;
+    reader.onload = printEventType;
+    reader.onloadend = printEventType;
+
+    console.log('  starting read');
+    reader.readAsDataURL(input.files[0]);
+    console.log('leaving openFile()');
+  };
+</script>
+</htmlexample>
+
+----
+event.load : listener(event : ProgressEvent) : undefined
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    console.log('entering openFile()');
+    var input = event.target;
+
+    var printEventType = function(event) {
+      console.log('got event: ' + event.type);
+    };
+
+    var reader = new FileReader();
+    reader.onloadstart = printEventType;
+    reader.onprogress = printEventType;
+    reader.onload = printEventType;
+    reader.onloadend = printEventType;
+
+    console.log('  starting read');
+    reader.readAsDataURL(input.files[0]);
+    console.log('leaving openFile()');
+  };
+</script>
+</htmlexample>
+
+----
+event.abort : listener(event : ProgressEvent) : undefined
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    console.log('entering openFile()');
+    var input = event.target;
+
+    var printEventType = function(event) {
+      console.log('got event: ' + event.type);
+
+      if (event.type === 'loadstart') {
+        reader.abort();
+      }
+    };
+
+    var reader = new FileReader();
+    reader.onloadstart = printEventType;
+    reader.onprogress = printEventType;
+    reader.onload = printEventType;
+    reader.onloadend = printEventType;
+    reader.onabort = printEventType;
+    reader.onerror = printEventType;
+
+    console.log('  starting read');
+    reader.readAsDataURL(input.files[0]);
+    console.log('leaving openFile()');
+  };
+</script>
+</htmlexample>
+
+----
+event.error : listener(event : ProgressEvent) : undefined
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    console.log('entering openFile()');
+    var input = event.target;
+
+    var printEventType = function(event) {
+      console.log('got event: ' + event.type);
+
+      if (event.type === 'loadstart') {
+        reader.abort();
+      }
+    };
+
+    var reader = new FileReader();
+    reader.onloadstart = printEventType;
+    reader.onprogress = printEventType;
+    reader.onload = printEventType;
+    reader.onloadend = printEventType;
+    reader.onabort = printEventType;
+    reader.onerror = printEventType;
+
+    console.log('  starting read');
+    reader.readAsDataURL(input.files[0]);
+    console.log('leaving openFile()');
+  };
+</script>
+</htmlexample>
+
+----
+event.loadend : listener(event : ProgressEvent) : undefined
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    console.log('entering openFile()');
+    var input = event.target;
+
+    var printEventType = function(event) {
+      console.log('got event: ' + event.type);
+    };
+
+    var reader = new FileReader();
+    reader.onloadstart = printEventType;
+    reader.onprogress = printEventType;
+    reader.onload = printEventType;
+    reader.onloadend = printEventType;
+
+    console.log('  starting read');
+    reader.readAsDataURL(input.files[0]);
+    console.log('leaving openFile()');
+  };
+</script>
+</htmlexample>
+
+----
+EMPTY : Number
+
+The value returned by %%#readyState|**readyState**%% before the
+one of the read methods has been called.
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+LOADING : Number
+
+The value returned by %%#readyState|**readyState**%% after
+one of the read methods has been called but before the %%#onload|**onload**%%
+callback has been called.
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+DONE : Number
+
+The value returned by %%#readyState|**readyState**%% after
+the %%#onload|**onload**%% callback has been called.
+
+ReadOnly:
+true
+
+Value:
+2

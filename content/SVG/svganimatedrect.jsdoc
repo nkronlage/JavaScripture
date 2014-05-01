@@ -1,0 +1,17 @@
+SVGAnimatedRect : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedRect
+
+----
+instance.baseVal : SVGRect
+
+ReadOnly:
+true
+
+----
+instance.animVal : SVGRect
+
+ReadOnly:
+true
+

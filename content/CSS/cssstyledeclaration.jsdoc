@@ -1,0 +1,569 @@
+CSSStyleDeclaration : Object
+
+CSSStyleDeclaration allows styling %%/HTMLElement|HTMLElement%%s. 
+
+The %%HTMLElement#style|HTMLElement.style%% property contains 
+the style rules directly set on the element.  
+
+Use the 
+%%Window#getComputedStyle|**window.getComputedStyle()**%% method
+to get the computed style of an element.
+
+Spec:
+http://www.w3.org/TR/CSS/#properties
+
+----
+instance.cssText : String
+
+The string of CSS rules of the style.
+
+<htmlexample>
+<span id='foo' style='color: red; font-weight: bold'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.style.cssText);
+</script>
+</htmlexample>
+
+----
+instance.parentRule : String
+
+----
+instance.length : String
+
+The number of rules set in the style.
+
+<htmlexample>
+<span id='foo' style='color: red; font-weight: bold'>foo</span>
+<span id='bar' style='color: blue'>bar</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.style.length);
+
+  var bar = document.getElementById('bar');
+  console.log(bar.style.length);
+</script>
+</htmlexample>
+
+----
+instance.alignmentBaseline : String
+
+<htmlexample>
+<svg id='svg' width='250' height='500' xmlns='http://www.w3.org/2000/svg' version='1.1'></svg>
+<script>
+  var svg = document.getElementById('svg');
+ 
+  var alignmentBaselines = [
+    'after-edge', 'alphabetic', 'auto', 'baseline',
+    'before-edge', 'central', 'hanging', 'ideographic',
+    'inherit', 'initial', 'mathematical', 'middle',
+    'text-after-edge', 'text-before-edge'];
+
+  alignmentBaselines.forEach(function(option, i) {
+    
+    var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('y', (i + 1) * 30);
+
+    var textNode = document.createTextNode('alignmentBaseline: ');
+    text.appendChild(textNode);
+
+    // Create a tspan that can be styled
+    var tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+    tspan.style.alignmentBaseline = option;
+
+    textNode = document.createTextNode(option);
+    tspan.appendChild(textNode);
+
+    text.appendChild(tspan);
+
+    svg.appendChild(text);
+  });
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#AlignmentBaselineProperty
+
+CSSName:
+alignment-baseline
+
+----
+instance.background : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background
+
+----
+instance.backgroundAttachment : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background-attachment
+
+----
+instance.backgroundClip : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background-clip
+
+----
+instance.backgroundColor : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background-color
+
+----
+instance.backgroundImage : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background-image
+
+----
+instance.backgroundOrigin : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background-origin
+
+----
+instance.backgroundPosition : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#the-background-position
+
+----
+instance.backgroundPositionX : String
+
+----
+instance.backgroundPositionY : String
+
+----
+instance.backgroundRepeat : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#background-repeat
+
+----
+instance.backgroundRepeatX : String
+
+----
+instance.backgroundRepeatY : String
+
+----
+instance.backgroundSize : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#background-size
+
+----
+instance.baselineShift : String
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#BaselineShiftProperty
+
+----
+instance.border : String
+
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#border
+
+----
+instance.borderBottom : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#border-bottom
+
+----
+instance.borderBottomColor : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#border-bottom-color
+
+----
+instance.borderBottomLeftRadius : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#border-bottom-left-radius
+
+----
+instance.borderBottomRightRadius : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#border-bottom-right-radius
+
+----
+instance.borderBottomStyle : String
+
+----
+instance.borderBottomWidth : String
+
+----
+instance.borderCollapse : String
+
+----
+instance.borderColor : String
+
+----
+instance.borderImage : String
+
+----
+instance.borderImageOutset : String
+
+----
+instance.borderImageRepeat : String
+----
+instance.borderImageSlice : String
+----
+instance.borderImageSource : String
+----
+instance.borderImageWidth : String
+----
+instance.borderLeft : String
+----
+instance.borderLeftColor : String
+----
+instance.borderLeftStyle : String
+----
+instance.borderLeftWidth : String
+----
+instance.borderRadius : String
+----
+instance.borderRight : String
+----
+instance.borderRightColor : String
+----
+instance.borderRightStyle : String
+----
+instance.borderRightWidth : String
+----
+instance.borderSpacing : String
+----
+instance.borderStyle : String
+
+Spec:
+http://dev.w3.org/csswg/css-backgrounds/#border-style
+
+----
+instance.borderTop : String
+----
+instance.borderTopColor : String
+----
+instance.borderTopLeftRadius : String
+----
+instance.borderTopRightRadius : String
+----
+instance.borderTopStyle : String
+----
+instance.borderTopWidth : String
+----
+instance.borderWidth : String
+----
+instance.bottom : String
+----
+instance.boxShadow : String
+----
+instance.boxSizing : String
+----
+instance.captionSide : String
+----
+instance.clear : String
+----
+instance.clip : String
+----
+instance.clipPath : String
+----
+instance.clipRule : String
+----
+instance.color : String
+----
+instance.colorInterpolation : String
+----
+instance.colorInterpolationFilters : String
+----
+instance.colorProfile : String
+----
+instance.colorRendering : String
+----
+instance.content : String
+----
+instance.counterIncrement : String
+----
+instance.counterReset : String
+----
+instance.cursor : String
+
+
+
+<htmlexample>
+<body></body>
+<script>
+var cursorTypes = ['auto', 'none', 'alias', 'crosshair',
+                   'default', 'hand', 'help', 'context-menu',
+                   'pointer', 'progress', 'wait', 'cell',
+                   'copy', 'no-drop', 'not-allowed', 'text',
+                   'vertical-text', 'all-scroll', 'move',
+                   'col-resize', 'row-resize', 'n-resize',
+                   'ne-resize', 'e-resize', 'se-resize',
+                   's-resize', 'sw-resize', 'w-resize',
+                   'nw-resize', 'ew-resize', 'ns-resize',
+                   'nwse-resize', 'nesw-resize'];
+cursorTypes.forEach(function(type) {
+  var div = document.createElement('div');
+
+  div.textContent = type;
+  div.style.cursor = type;
+
+  document.body.appendChild(div);
+});
+</script>
+</htmlexample>
+----
+instance.direction : String
+----
+instance.display : String
+----
+instance.dominantBaseline : String
+
+Spec:
+http://www.w3.org/TR/SVG/text.html#DominantBaselineProperty
+----
+instance.emptyCells : String
+----
+instance.enableBackground : String
+----
+instance.fill : String
+----
+instance.fillOpacity : String
+----
+instance.fillRule : String
+----
+instance.filter : String
+----
+instance.float : String
+----
+instance.floodColor : String
+----
+instance.floodOpacity : String
+----
+instance.font : String
+----
+instance.fontFamily : String
+----
+instance.fontSize : String
+----
+instance.fontStretch : String
+----
+instance.fontStyle : String
+----
+instance.fontVariant : String
+----
+instance.fontWeight : String
+----
+instance.glyphOrientationHorizontal : String
+----
+instance.glyphOrientationVertical : String
+----
+instance.height : String
+----
+instance.imageRendering : String
+----
+instance.kerning : String
+----
+instance.left : String
+----
+instance.letterSpacing : String
+----
+instance.lightingColor : String
+----
+instance.lineHeight : String
+----
+instance.listStyle : String
+----
+instance.listStyleImage : String
+----
+instance.listStylePosition : String
+----
+instance.listStyleType : String
+----
+instance.margin : String
+----
+instance.marginBottom : String
+----
+instance.marginLeft : String
+----
+instance.marginRight : String
+----
+instance.marginTop : String
+----
+instance.marker : String
+----
+instance.markerEnd : String
+----
+instance.markerMid : String
+----
+instance.markerStart : String
+----
+instance.mask : String
+----
+instance.maxHeight : String
+----
+instance.maxWidth : String
+----
+instance.minHeight : String
+----
+instance.minWidth : String
+----
+instance.opacity : String
+----
+instance.orphans : String
+----
+instance.outline : String
+----
+instance.outlineColor : String
+----
+instance.outlineOffset : String
+----
+instance.outlineStyle : String
+----
+instance.outlineWidth : String
+----
+instance.overflow : String
+----
+instance.overflowX : String
+----
+instance.overflowY : String
+----
+instance.padding : String
+----
+instance.paddingBottom : String
+----
+instance.paddingLeft : String
+----
+instance.paddingRight : String
+----
+instance.paddingTop : String
+----
+instance.page : String
+----
+instance.pageBreakAfter : String
+----
+instance.pageBreakBefore : String
+----
+instance.pageBreakInside : String
+----
+instance.pointerEvents : String
+----
+instance.position : String
+----
+instance.quotes : String
+----
+instance.resize : String
+----
+instance.right : String
+----
+instance.shapeRendering : String
+----
+instance.size : String
+----
+instance.speak : String
+----
+instance.src : String
+----
+instance.stopColor : String
+----
+instance.stopOpacity : String
+----
+instance.stroke : String
+----
+instance.strokeDasharray : String
+----
+instance.strokeDashoffset : String
+----
+instance.strokeLinecap : String
+----
+instance.strokeLinejoin : String
+----
+instance.strokeMiterlimit : String
+----
+instance.strokeOpacity : String
+----
+instance.strokeWidth : String
+----
+instance.tabSize : String
+----
+instance.tableLayout : String
+----
+instance.textAlign : String
+----
+instance.textAnchor : String
+----
+instance.textDecoration : String
+----
+instance.textIndent : String
+----
+instance.textLineThrough : String
+----
+instance.textLineThroughColor : String
+----
+instance.textLineThroughMode : String
+----
+instance.textLineThroughStyle : String
+----
+instance.textLineThroughWidth : String
+----
+instance.textOverflow : String
+----
+instance.textOverline : String
+----
+instance.textOverlineColor : String
+----
+instance.textOverlineMode : String
+----
+instance.textOverlineStyle : String
+----
+instance.textOverlineWidth : String
+----
+instance.textRendering : String
+----
+instance.textShadow : String
+----
+instance.textTransform : String
+----
+instance.textUnderline : String
+----
+instance.textUnderlineColor : String
+----
+instance.textUnderlineMode : String
+----
+instance.textUnderlineStyle : String
+----
+instance.textUnderlineWidth : String
+----
+instance.top : String
+----
+instance.unicodeBidi : String
+----
+instance.unicodeRange : String
+----
+instance.vectorEffect : String
+----
+instance.verticalAlign : String
+----
+instance.visibility : String
+----
+instance.whiteSpace : String
+----
+instance.widows : String
+----
+instance.width : String
+----
+instance.wordBreak : String
+----
+instance.wordSpacing : String
+----
+instance.wordWrap : String
+----
+instance.writingMode : String
+----
+instance.zIndex : String
+----
+instance.zoom : String

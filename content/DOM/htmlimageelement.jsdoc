@@ -1,0 +1,140 @@
+HTMLImageElement : HTMLElement
+
+**HTMLImageElement** is an element that displays an image.
+It corresponds to the **<img>** tag.
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlimageelement
+
+----
+instance.alt : String
+
+Alternate text describing the image.
+
+<htmlexample>
+<img id='sunset' src='/pic.jpg' alt='BVI Sunset'>
+<script>
+  var img = document.getElementById('sunset');
+  console.log(img.alt);
+</script>
+</htmlexample>
+
+----
+instance.src : String
+
+The location of the image.
+
+<htmlexample>
+<img id='sunset' src='/pic.jpg' alt='BVI Sunset'>
+<script>
+  var img = document.getElementById('sunset');
+  console.log(img.src);
+</script>
+</htmlexample>
+
+----
+instance.width : Number
+
+The display width (in pixels) of the image. If not set, the width
+will be %%#naturalWidth|**naturalWidth**%% after the
+image loads.
+
+<htmlexample>
+<img id='sunset' src='/pic.jpg' width='120' height='90'>
+<script>
+  var img = document.getElementById('sunset');
+  console.log(img.height);
+</script>
+</htmlexample>
+
+----
+instance.height : Number
+
+The display height (in pixels) of the image. If not set, the height
+will be %%#naturalHeight|**naturalHeight**%% after the
+image loads.
+
+<htmlexample>
+<img id='sunset' src='/pic.jpg' width='120' height='90'>
+<script>
+  var img = document.getElementById('sunset');
+  console.log(img.height);
+</script>
+</htmlexample>
+
+
+----
+instance.naturalWidth : Number
+
+The pixel width of the image buffer. May be different than the width
+displayed on screen if %%#width|**width**%% is set on the image.
+
+<htmlexample>
+<img id='sunset' src='/pic.jpg' width='120' height='90'>
+<script>
+  var img = document.getElementById('sunset');
+  img.onload = function() {
+    console.log('width: ' + img.width);
+    console.log('naturalWidth: ' + img.naturalWidth);
+  }
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.naturalHeight : Number
+
+The pixel height of the image buffer. May be different than the height
+displayed on screen if %%#height|**height**%% is set on the image.
+
+<htmlexample>
+<img id='sunset' src='/pic.jpg' width='120' height='90'>
+<script>
+  var img = document.getElementById('sunset');
+  img.onload = function() {
+    console.log('height: ' + img.height);
+    console.log('naturalHeight: ' + img.naturalHeight);
+  }
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.complete : Boolean
+
+Returns **true** once the image has loaded.
+
+<htmlexample>
+<img id='sunset'>
+<script>
+  var img = document.getElementById('sunset');
+  img.src = '/pic.jpg';
+  console.log('before load, complete=' + img.complete);
+  img.onload = function() {
+    console.log('after load, complete=' + img.complete);
+  }
+</script>
+</htmlexample>
+
+----
+event.load : listener(event : Event) : undefined
+
+Fired when the image has loaded. After this point %%#complete|**this.complete**%%
+will be true.
+
+<htmlexample>
+<img id='sunset'>
+<script>
+  var img = document.getElementById('sunset');
+  img.src = '/pic.jpg';
+  console.log('before load, complete=' + img.complete);
+  img.onload = function() {
+    console.log('after load, complete=' + img.complete);
+  }
+</script>
+</htmlexample>
+

@@ -1,0 +1,78 @@
+SVGElement : Element
+
+SVGElement represents an element in the SVG document tree.
+SVGElement is the base type for
+%%/SVGSVGElement|SVGSVGElement%%,
+%%/SVGRectElement|SVGRectElement%%,
+%%/SVGImageElement|SVGImageElement%%,
+and many others.
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGElement
+
+----
+instance.id : String
+
+<htmlexample>
+<svg xmlns='http://www.w3.org/2000/svg' version='1.1' >
+  <rect id='foo' width='30' height='40' fill='black'/>
+</svg>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.id);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#__svg__SVGElement__id
+
+           
+----
+instance.xmlbase : String
+
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#__svg__SVGElement__xmlbase
+
+
+----
+instance.ownerSVGElement : SVGSVGElement
+
+<htmlexample>
+<svg id='svgelement' xmlns='http://www.w3.org/2000/svg' version='1.1'>
+  <rect id='foo' width='30' height='40' fill='black'/>
+</svg>
+<script>
+  var svgelement = document.getElementById('svgelement');
+  var foo = document.getElementById('foo');
+  console.log(foo.ownerSVGElement === svgelement);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#__svg__SVGElement__ownerSVGElement
+
+----
+instance.viewportElement : SVGElement
+
+<htmlexample>
+<svg id='svgelement' xmlns='http://www.w3.org/2000/svg' version='1.1'>
+  <rect id='foo' width='30' height='40' fill='black'/>
+</svg>
+<script>
+  var svgelement = document.getElementById('svgelement');
+  var foo = document.getElementById('foo');
+  console.log(foo.viewportElement === svgelement);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#__svg__SVGElement__viewportElement
+
+

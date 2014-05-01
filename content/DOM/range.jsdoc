@@ -1,0 +1,131 @@
+Range : Object
+
+A Range is a selection of the content of a document. 
+Create a Range with %%/Document#createRange|**document.createRange()**%%.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Interface
+
+----
+instance.startContainer : Node
+
+ReadOnly:
+true
+
+----
+instance.startOffset : Number
+
+ReadOnly:
+true
+
+----
+instance.endContainer : Node
+
+ReadOnly:
+true
+
+----
+instance.endOffset : Number
+
+ReadOnly:
+true
+
+----
+instance.collapsed : Boolean
+
+ReadOnly:
+true
+
+----
+instance.commonAncestorContainer : Node
+
+ReadOnly:
+true
+
+----
+prototype.setStart(refNode : Node, offset : Number) : undefined
+
+----
+prototype.setEnd(refNode : Node, offset : Number) : undefined
+
+----
+prototype.setStartBefore(refNode : Node) : undefined
+
+----
+prototype.setStartAfter(refNode : Node) : undefined
+
+----
+prototype.setEndBefore(refNode : Node) : undefined
+
+----
+prototype.setEndAfter(refNode : Node) : undefined
+
+----
+prototype.collapse(toStart : Boolean) : undefined
+
+----
+prototype.selectNode(refNode : Node) : undefined
+
+----
+prototype.selectNodeContents(refNode : Node) : undefined
+
+----
+prototype.compareBoundaryPoints(how : Number, sourceRange : Range) : Number
+
+----
+prototype.deleteContents() : undefined
+
+----
+prototype.extractContents() : DocumentFragment
+
+----
+prototype.cloneContents() : DocumentFragment
+
+----
+prototype.insertNode(newNode : Node) : undefined
+
+----
+prototype.surroundContents(newParent : Node) : undefined
+
+----
+prototype.cloneRange() : Range
+
+----
+prototype.detach() : undefined
+
+
+----
+START_TO_START : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+START_TO_END : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+END_TO_END : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+END_TO_START : Number
+
+ReadOnly:
+true
+
+Value:
+3

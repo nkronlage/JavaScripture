@@ -1,0 +1,53 @@
+History : Object
+
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#history-1
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-length
+
+----
+instance.state : Object
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-state
+
+----
+prototype.go([delta : Number]) : undefined
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-go
+
+----
+prototype.back() : undefined
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-back
+
+----
+prototype.forward() : undefined
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-forward
+
+----
+prototype.pushState(state : Object, title : String, [url : String]) : undefined
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-pushstate
+
+----
+prototype.replaceState(state : Object, title : String, [url : String]) : undefined
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-replacestate

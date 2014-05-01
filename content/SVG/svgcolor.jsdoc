@@ -1,0 +1,68 @@
+SVGColor : CSSValue
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGColor
+
+----
+SVG_COLORTYPE_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_COLORTYPE_RGBCOLOR : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_COLORTYPE_RGBCOLOR_ICCCOLOR : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+SVG_COLORTYPE_CURRENTCOLOR : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+instance.colorType : Number
+
+ReadOnly:
+true
+
+----
+instance.rgbColor : RGBColor
+
+ReadOnly:
+true
+
+----
+instance.iccColor : SVGICCColor
+
+ReadOnly:
+true
+
+----
+prototype.setRGBColor(rgbColor : String) : undefined
+
+----
+prototype.setRGBColorICCColor(rgbColor : String, iccColor : String) : undefined
+
+----
+prototype.setColor(colorType : Number, rgbColor : String, iccColor : String) : undefined
+

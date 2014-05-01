@@ -1,0 +1,17 @@
+File : Blob
+
+Spec:
+http://www.w3.org/TR/FileAPI/#file
+
+----
+instance.name : String
+
+ReadOnly:
+true
+
+----
+instance.lastModifiedDate : Date
+
+ReadOnly:
+true
+

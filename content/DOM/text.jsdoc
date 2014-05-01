@@ -1,0 +1,22 @@
+Text : CharacterData
+
+Represents the text content of the document. 
+
+Spec:
+http://www.w3.org/TR/dom/#interface-text
+
+----
+new Text([data = '' : String]) : Text
+
+Creates a new Text with the specified **data**. 
+Can also be created with %%/Document#createTextNode|**document.createTextNode()**%%.
+
+----
+instance.wholeText : String
+
+ReadOnly:
+true
+
+----
+prototype.splitText(offset : Number) : Text
+

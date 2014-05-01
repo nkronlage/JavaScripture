@@ -1,0 +1,36 @@
+CanvasGradient : Object
+
+Defines a linear or radial gradient that can be used as the %%/CanvasRenderingContext2D#fillStyle|**fillStyle**%%
+or %%/CanvasRenderingContext2D#strokeStyle|**strokeStyle**%% of a
+%%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
+
+Created through
+%%/CanvasRenderingContext2D#createLinearGradient|**createLinearGradient()**%% or 
+%%/CanvasRenderingContext2D#createRadialGradient|**createRadialGradient()**%%.
+
+Spec:
+http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#canvasgradient
+
+----
+prototype.addColorStop(offset : Number, color : String) : undefined
+
+Adds a color stop in the gradient.  **offset** must be between **0** and
+**1**, where **0** is the start of the gradient and **1** is the end of the gradient.
+**color** is a string representation of the color such as **'black'**,
+**'#000'**, **'rgba(0, 0, 0, 1)'**, etc.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var g = context.createLinearGradient(0,0,canvas.width,0);
+  g.addColorStop(0, 'white');
+  g.addColorStop(1, 'blue');
+
+  context.fillStyle = g;
+  context.fillRect(0,0,canvas.width,canvas.height);
+</script>
+</htmlexample>
+

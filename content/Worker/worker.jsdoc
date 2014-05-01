@@ -1,0 +1,148 @@
+Worker : EventTarget
+
+Worker allows a page to run Javascript on a background thread so 
+the main UI thread can remain responsive. Workers do not have access
+to the DOM or any global variables in the main UI thread and must use
+the 
+%%WorkerGlobalScope#postMessage|**postMessage()**%% method to communicate
+with the main thread.
+
+See 
+%%/WorkerGlobalScope|WorkerGlobalScope%% for the global properties and methods
+available inside the worker.
+
+
+Spec:
+http://dev.w3.org/html5/workers/#worker
+
+----
+new Worker(scriptURL : String) : Worker
+
+Creates and starts a background thread that runs the 
+code pointed at by **scriptURL**.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  postMessage('foo');
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+</script>
+</htmlexample>
+
+----
+prototype.terminate() : undefined
+
+Stops the worker.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  setInterval(function() {
+    postMessage('foo');
+  }, 10);
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+
+  var messageCount = 0;
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+
+    messageCount++;
+    if (messageCount == 4) {
+      worker.terminate();
+    }
+  };
+</script>
+</htmlexample>
+
+----
+prototype.postMessage(message : Object, [transfer : Array]) : undefined
+
+Sends a message to the worker.  The worker receives the message through
+the %%/WorkerGlobalScope#onmessage|**onmessage**%% event.
+**message** will be in the **event.data** property.
+
+<htmlexample>
+<!-- In this example, the background thread squares
+     numbers and returns them to the main thread. -->
+<script id='code' type='text/plain'>
+  onmessage = function(event) {
+    postMessage(event.data * event.data);
+  };
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+  worker.postMessage(2);
+  worker.postMessage(12);
+  worker.postMessage(30);
+</script>
+</htmlexample>
+
+----
+event.message : listener(event : MessageEvent) : undefined
+
+Fires when the worker calls %%WorkerGlobalScope#postMessage|**postMessage()**%%.
+The message passed to **postMessage** is in **event.data**.
+
+<htmlexample>
+<!-- In this example, the background thread squares
+     numbers and returns them to the main thread. -->
+<script id='code' type='text/plain'>
+  onmessage = function(event) {
+    postMessage(event.data * event.data);
+  };
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+  worker.postMessage(2);
+  worker.postMessage(12);
+  worker.postMessage(30);
+</script>
+</htmlexample>
+
+----
+event.error : listener(event : Event) : undefined
+
+Fires when an error occurs in the worker.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  postMessage('foo');
+  throw 'bar';
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+  worker.onerror = function(e) {
+    console.log('worker error: ', e.message);
+  };
+</script>
+</htmlexample>
+

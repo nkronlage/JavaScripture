@@ -1,0 +1,81 @@
+DocumentFragment : Node
+
+A **DocumentFragment** is a container for %%Node|**Node**%%s.  When adding a **DocumentFragment**
+to a **Node**, all the children of the **DocumentFragment** become direct children 
+of the **Node**. Use %%Document#createDocumentFragment|**document.createDocumentFragment()**%%
+to create a **DocumentFragment**.
+
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-B63ED1A3
+
+----
+prototype.querySelector(cssSelector : String) : Element
+
+Returns the first %%/Element|**Element**%% that matches the CSS selector. 
+
+<htmlexample>
+<span id='foo'>foo1</span>
+<span class='bar'>
+  <span class='baz'>baz1</span>
+</span>
+<span class='baz'>baz2</span>
+<script>
+  var fragment = document.createDocumentFragment();
+
+  // Clone the contents of body into the fragment
+  var element = document.body.firstChild;
+  while (element) {
+    fragment.appendChild(element.cloneNode(true));
+    element = element.nextSibling;
+  }
+
+  var foo = fragment.querySelector('#foo');
+  console.log(foo.innerHTML);
+
+  var baz = fragment.querySelector('.baz');
+  console.log(baz.innerHTML);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/selectors-api/#queryselector
+
+
+----
+prototype.querySelectorAll(cssSelector : String) : NodeList
+
+Returns a **NodeList** containing the %%/Element|**Element**%%s in the 
+document that match the CSS selector. 
+
+
+<htmlexample>
+<body>
+  <span id='foo'>foo1</span>
+  <span class='bar'>
+    <span class='baz'>baz1</span>
+  </span>
+  <span class='baz'>baz2</span>
+</body>
+<script>
+  var fragment = document.createDocumentFragment();
+
+  // Clone the contents of body into the fragment
+  var element = document.body.firstChild;
+  while (element) {
+    fragment.appendChild(element.cloneNode(true));
+    element = element.nextSibling;
+  }
+
+  var all = fragment.querySelectorAll('#foo, .baz');
+  console.log(all.length);
+  for (var i = 0; i < all.length; i++) {
+    console.log(all[i].innerHTML);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/selectors-api/#queryselectorall
+
+

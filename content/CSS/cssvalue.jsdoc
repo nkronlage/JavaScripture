@@ -1,0 +1,51 @@
+CSSValue : Object
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSValue
+
+----
+instance.cssText : String
+
+----
+instance.cssValueType : Number
+
+ReadOnly:
+true
+
+
+----
+CSS_INHERIT : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+CSS_PRIMITIVE_VALUE : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+CSS_VALUE_LIST : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+CSS_CUSTOM : Number
+
+ReadOnly:
+true
+
+Value:
+3
+

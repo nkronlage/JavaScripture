@@ -1,0 +1,21 @@
+HTMLEmbedElement : HTMLElement
+
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmlembedelement
+
+----
+instance.src : String
+
+
+----
+instance.type : String
+
+
+----
+instance.width : String
+
+
+----
+instance.height : String
+

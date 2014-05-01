@@ -1,0 +1,10 @@
+SVGNumber : Object
+
+Spec:
+http://www.w3.org/TR/SVG11/types.html#InterfaceSVGNumber
+
+----
+instance.value : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/types.html#__svg__SVGNumber__value

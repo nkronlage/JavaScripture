@@ -1,0 +1,84 @@
+CSSRule : Object
+
+The base object for the 
+%%/CSSCharsetRule|CSSCharsetRule%%,
+%%/CSSFontFaceRule|CSSFontFaceRule%%,
+%%/CSSImportRule|CSSImportRule%%,
+%%/CSSMediaRule|CSSMediaRule%%,
+%%/CSSPageRule|CSSPageRule%%,
+and 
+%%/CSSStyleRule|CSSStyleRule%% 
+types.  
+
+The 
+%%/CSSStyleRule|CSSStyleRule%% is the most
+commonly used derivative of CSSRule.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSRule
+
+----
+instance.type : Number
+
+ReadOnly:
+true
+
+----
+instance.cssText : String
+
+
+----
+instance.parentStyleSheet : CSSStyleSheet
+
+ReadOnly:
+true
+
+----
+instance.parentRule : CSSRule
+
+ReadOnly:
+true
+
+
+----
+UNKNOWN_RULE : Number
+
+Value:
+0
+
+----
+STYLE_RULE : Number
+
+Value:
+1
+
+----
+CHARSET_RULE : Number
+
+Value:
+2
+
+----
+IMPORT_RULE : Number
+
+Value:
+3
+
+----
+MEDIA_RULE : Number
+
+Value:
+4
+
+----
+FONT_FACE_RULE : Number
+
+Value:
+5
+
+----
+PAGE_RULE : Number
+
+Value:
+6
+

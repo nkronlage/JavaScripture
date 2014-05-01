@@ -1,0 +1,109 @@
+WebGLShaderPrecisionFormat : Object
+
+**WebGLShaderPrecisionFormat** describes the precision of a %%WebGLShader|**WebGLShader**%%. 
+
+**WebGLShaderPrecisionFormat**s are returned from
+%%WebGLRenderingContext#getShaderPrecisionFormat|**getShaderPrecisionFormat()**%%.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.12
+
+----
+instance.rangeMin : Number
+
+The log base 2 of the absolute value of the minimum (ie, most negative) value
+that can be represented by the specified
+type.  For example, if **rangeMin** is **31**, the minimum value that can be
+represented is
+**-Math.pow(2, 31)**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+  var precisionTypes = ['LOW_FLOAT', 'MEDIUM_FLOAT', 'HIGH_FLOAT',
+                        'LOW_INT',   'MEDIUM_INT',   'HIGH_INT'];
+  var targetTypes = ['FRAGMENT_SHADER', 'VERTEX_SHADER'];
+
+  precisionTypes.forEach(function(precisionType) {
+    targetTypes.forEach(function(targetType) {
+      var format = gl.getShaderPrecisionFormat(gl[targetType], gl[precisionType]);
+      console.log(targetType + ', ' + precisionType);
+      console.log('    precision: ' + format.precision +
+                  ', rangeMin: ' + format.rangeMin +
+                  ', rangeMax: ' + format.rangeMax);
+    });
+  });
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.rangeMax : Number
+
+The log base 2 of the maximum value that can be represented by the specified
+type.  For example, if **rangeMax** is **31**, the maximum value that can be represented
+is
+**Math.pow(2, 31)**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+  var precisionTypes = ['LOW_FLOAT', 'MEDIUM_FLOAT', 'HIGH_FLOAT',
+                        'LOW_INT',   'MEDIUM_INT',   'HIGH_INT'];
+  var targetTypes = ['FRAGMENT_SHADER', 'VERTEX_SHADER'];
+
+  precisionTypes.forEach(function(precisionType) {
+    targetTypes.forEach(function(targetType) {
+      var format = gl.getShaderPrecisionFormat(gl[targetType], gl[precisionType]);
+      console.log(targetType + ', ' + precisionType);
+      console.log('    precision: ' + format.precision +
+                  ', rangeMin: ' + format.rangeMin +
+                  ', rangeMax: ' + format.rangeMax);
+    });
+  });
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+instance.precision : Number
+
+The number of bits of precision for the specified type. INT types always 
+return **0**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+  var precisionTypes = ['LOW_FLOAT', 'MEDIUM_FLOAT', 'HIGH_FLOAT',
+                        'LOW_INT',   'MEDIUM_INT',   'HIGH_INT'];
+  var targetTypes = ['FRAGMENT_SHADER', 'VERTEX_SHADER'];
+
+  precisionTypes.forEach(function(precisionType) {
+    targetTypes.forEach(function(targetType) {
+      var format = gl.getShaderPrecisionFormat(gl[targetType], gl[precisionType]);
+      console.log(targetType + ', ' + precisionType);
+      console.log('    precision: ' + format.precision +
+                  ', rangeMin: ' + format.rangeMin +
+                  ', rangeMax: ' + format.rangeMax);
+    });
+  });
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+

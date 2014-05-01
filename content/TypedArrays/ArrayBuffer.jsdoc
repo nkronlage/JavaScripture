@@ -1,0 +1,72 @@
+ArrayBuffer : Object
+
+ArrayBuffers are fixed length buffer of bytes. The bytes in
+an ArrayBuffer are only accessible through a %%DataView|**DataView**%% 
+(for heterogenous data)
+or one of the typed arrays (for homogeneous data):
+%%Float32Array|**Float32Array**%%,
+%%Float64Array|**Float64Array**%%,
+%%Int8Array|**Int8Array**%%,
+%%Int16Array|**Int16Array**%%,
+%%Int32Array|**Int32Array**%%,
+%%Uint8Array|**Uint8Array**%%,
+%%Uint8ClampedArray|**Uint8ClampedArray**%%,
+%%Uint16Array|**Uint16Array**%%,
+%%Uint32Array|**Uint32Array**%%.
+Multiple DataView and typed arrays can be applied to one ArrayBuffer
+and changes to one view can be seen in the others immediately.
+
+Spec:
+http://www.khronos.org/registry/typedarray/specs/latest/#5
+
+----
+new ArrayBuffer(byteLength : Number) : ArrayBuffer
+
+Allocates a new **ArrayBuffer** of the specified length where 
+each byte starts as **0**.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var dataView = new DataView(buffer);
+var int8View = new Int8Array(buffer);
+dataView.setInt32(0, 0x1234ABCD);
+console.log(dataView.getInt32(0).toString(16)); 
+console.log(dataView.getInt8(0).toString(16)); 
+console.log(int8View[0].toString(16));
+</example>
+
+
+----
+instance.byteLength : Number
+
+The length of **this** in bytes. 
+
+<example>
+var buffer = new ArrayBuffer(12);
+console.log(buffer.byteLength);
+</example>
+
+ReadOnly:
+true
+
+----
+prototype.slice(beginByte : Number, [endByte : Number]) : ArrayBuffer
+
+Creates a new ArrayBuffer with a copy of the bytes of **this** between
+**beginByte** (inclusive) and **endByte** (exclusive).  If **endByte** is 
+not specified, **this.byteLength** is used. Changes to **this** do not
+affect the copy returned by **slice**.
+
+<example>
+var buffer = new ArrayBuffer(12);
+var x = new Int32Array(buffer);
+x[1] = 1234;
+var slice = buffer.slice(4);
+var y = new Int32Array(slice);
+console.log(x[1]); 
+console.log(y[0]);
+x[1] = 6789;
+console.log(x[1]); 
+console.log(y[0]);
+</example>
+

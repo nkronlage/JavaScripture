@@ -1,0 +1,14 @@
+SVGICCColor : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGICCColor
+
+----
+instance.colorProfile : String
+
+----
+instance.colors : SVGNumberList
+
+ReadOnly:
+true
+

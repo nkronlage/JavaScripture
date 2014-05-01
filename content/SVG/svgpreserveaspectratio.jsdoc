@@ -1,0 +1,136 @@
+SVGPreserveAspectRatio : Object
+
+Spec:
+
+----
+SVG_PRESERVEASPECTRATIO_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_PRESERVEASPECTRATIO_NONE : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_PRESERVEASPECTRATIO_XMINYMIN : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+SVG_PRESERVEASPECTRATIO_XMIDYMIN : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+SVG_PRESERVEASPECTRATIO_XMAXYMIN : Number
+
+ReadOnly:
+true
+
+Value:
+4
+
+----
+SVG_PRESERVEASPECTRATIO_XMINYMID : Number
+
+ReadOnly:
+true
+
+Value:
+5
+
+----
+SVG_PRESERVEASPECTRATIO_XMIDYMID : Number
+
+ReadOnly:
+true
+
+Value:
+6
+
+----
+SVG_PRESERVEASPECTRATIO_XMAXYMID : Number
+
+ReadOnly:
+true
+
+Value:
+7
+
+----
+SVG_PRESERVEASPECTRATIO_XMINYMAX : Number
+
+ReadOnly:
+true
+
+Value:
+8
+
+----
+SVG_PRESERVEASPECTRATIO_XMIDYMAX : Number
+
+ReadOnly:
+true
+
+Value:
+9
+
+----
+SVG_PRESERVEASPECTRATIO_XMAXYMAX : Number
+
+ReadOnly:
+true
+
+Value:
+10
+
+----
+SVG_MEETORSLICE_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_MEETORSLICE_MEET : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_MEETORSLICE_SLICE : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+instance.align : Number
+
+----
+instance.meetOrSlice : Number
+

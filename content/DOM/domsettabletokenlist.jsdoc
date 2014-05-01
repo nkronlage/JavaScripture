@@ -1,0 +1,10 @@
+DOMSettableTokenList : DOMTokenList
+
+Spec:
+https://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#domsettabletokenlist
+
+----
+instance.value : String
+
+Spec:
+https://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#dom-domsettabletokenlist-value

@@ -1,0 +1,32 @@
+AudioBuffer : Object
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#AudioBuffer
+
+----
+instance.sampleRate : Number
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+instance.duration : Number
+
+ReadOnly:
+true
+
+----
+instance.numberOfChannels : Number
+
+ReadOnly:
+true
+
+----
+prototype.getChannelData(channel : Number) : Float32Array
+

@@ -1,0 +1,17 @@
+SVGAnimatedLengthList : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedLengthList
+
+----
+instance.baseVal : SVGLengthList
+
+ReadOnly:
+true
+
+----
+instance.animVal : SVGLengthList
+
+ReadOnly:
+true
+

@@ -1,0 +1,42 @@
+HTMLLinkElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmllinkelement
+
+----
+instance.disabled : Boolean
+
+
+----
+instance.href : String
+
+
+----
+instance.rel : String
+
+
+----
+instance.relList : DOMTokenList
+
+ReadOnly:
+true
+
+----
+instance.media : String
+
+
+----
+instance.hreflang : String
+
+
+----
+instance.type : String
+
+
+----
+instance.sizes : DOMSettableTokenList
+
+ReadOnly:
+true
+

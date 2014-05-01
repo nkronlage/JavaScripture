@@ -1,0 +1,31 @@
+EventListener : Object
+
+EventListener is an object that handles an event.  
+It can be passed to %%/EventTarget#addEventListener|**addEventListener()**%% 
+instead of passing a %%/Function|**Function**%%. Any JavaScript object
+with a %%#handleEvent|**handleEvent**%% method can be used as an EventListener.
+
+Spec:
+http://www.w3.org/TR/domcore/#eventlistener
+
+----
+instance.handleEvent(event : Event) : undefined
+
+The method called when the event is raised.
+
+<htmlexample>
+<button id='myButton'>click</button>
+
+<script>
+  var myButton = document.getElementById('myButton');
+
+  var listener = { 
+    name: 'foo',
+    handleEvent: function(event) {
+      console.log(this.name + ' handling ' + event.type); 
+    }
+  };
+
+  myButton.addEventListener('click', listener);
+</script>
+</htmlexample>

@@ -1,0 +1,413 @@
+HTMLMediaElement : HTMLElement
+
+HTMLMediaElement is the base class for the 
+%%/HTMLAudioElement|HTMLAudioElement%% and the
+%%/HTMLVideoElement|HTMLVideoElement%%.
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmlmediaelement
+
+----
+instance.error : MediaError
+
+ReadOnly:
+true
+
+
+----
+instance.src : String
+
+----
+instance.currentSrc : String
+
+ReadOnly:
+true
+
+----
+instance.crossOrigin : String
+
+----
+instance.networkState : Number
+
+ReadOnly:
+true
+
+----
+instance.preload : String
+
+----
+instance.buffered : TimeRanges
+
+ReadOnly:
+true
+
+
+----
+instance.readyState : Number
+
+Returns one of 
+%%#HAVE_NOTHING|**HAVE_NOTHING**%%,
+%%#HAVE_METADATA|**HAVE_METADATA**%%,
+%%#HAVE_CURRENT_DATA|**HAVE_CURRENT_DATA**%%,
+%%#HAVE_FUTURE_DATA|**HAVE_FUTURE_DATA**%%,
+or
+%%#HAVE_ENOUGH_DATA|**HAVE_ENOUGH_DATA**%% 
+based on the amount of data downloaded for the
+media.
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#dom-media-readystate
+
+ReadOnly:
+true
+
+----
+instance.seeking : Boolean
+
+ReadOnly:
+true
+
+----
+instance.currentTime : Number
+
+----
+prototype.load() : undefined
+
+----
+prototype.canPlayType(mimeType : String) : String
+
+Returns one of **''**, **'maybe'**, or **'probably'** depending
+on the ability of the browser to play the specified type of video.
+
+
+----
+prototype.fastSeek(time : Number) : undefined
+
+----
+instance.duration : Number
+
+The duration of the media in seconds.  May return **NaN** or
+**Infinity** if the duration is not known yet.
+
+ReadOnly:
+true
+
+
+----
+prototype.getStartDate() : Date
+
+----
+instance.paused : Boolean
+
+Returns **true** if the media is paused. Use %%#pause|**pause()**%% and 
+%%#play|**play()**%% methods to pause and play the media.
+
+ReadOnly:
+true
+
+----
+instance.defaultPlaybackRate : Number
+
+----
+instance.playbackRate : Number
+
+<htmlexample>
+<video id='video' src='fireworks.ogv' width='150' height='100'></video><br>
+<button onclick='video.paused ? video.play() : video.pause()'>Play/Pause</button>
+<script>
+  var video = document.getElementById('video');
+  video.playbackRate = 0.25;
+</script>
+</htmlexample>
+
+----
+instance.played : TimeRanges
+
+Returns a list of ranges of the media that has been played.
+
+<htmlexample>
+<!-- Draws a bar below the video with the played ranges -->
+<video id='video' src='fireworks.ogv' width='150' height='100'></video><br>
+<canvas id='buffered' width='150' height='10'></canvas><br>
+<button onclick='video.paused ? video.play() : video.pause()'>Play/Pause</button>
+<script>
+  var video = document.getElementById('video');
+  video.addEventListener('timeupdate', function() {
+    var canvas = document.getElementById('buffered');
+    var context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    var ranges = video.played;
+
+    for (var i = 0; i < ranges.length; i++) {
+      var startPercent = ranges.start(i) / video.duration;
+      var endPercent = ranges.end(i) / video.duration;
+
+      context.fillRect(startPercent * canvas.width, 0,
+                       (endPercent - startPercent) * canvas.width, canvas.height);
+    }
+  });
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.seekable : TimeRanges
+
+ReadOnly:
+true
+
+----
+instance.ended : Boolean
+
+Returns **true** when the media has played to the end.
+
+ReadOnly:
+true
+
+----
+instance.autoplay : Boolean
+
+----
+instance.loop : Boolean
+
+----
+instance.play() : undefined
+
+----
+instance.pause() : undefined
+
+----
+instance.mediaGroup : String
+
+----
+instance.controller : MediaController
+
+----
+instance.controls : Boolean
+
+----
+instance.volume : Number
+
+----
+instance.muted : Boolean
+
+----
+instance.defaultMuted : Boolean
+
+----
+instance.audioTracks : AudioTrackList
+
+ReadOnly:
+true
+
+----
+instance.videoTracks : VideoTrackList
+
+ReadOnly:
+true
+
+----
+instance.textTracks : TextTrackList
+
+ReadOnly:
+true
+
+----
+prototype.addTextTrack(kind : String, [label : String, [language : String]]) : TextTrack
+
+**kind** must be one of 
+**'subtitles'**,
+**'captions'**,
+**'descriptions'**,
+**'chapters'**, 
+or
+**'metadata'**.
+
+----
+event.abort : listener(event : Event) : undefined
+
+----
+event.canplay : listener(event : Event) : undefined
+
+----
+event.canplaythrough : listener(event : Event) : undefined
+
+----
+event.durationchange : listener(event : Event) : undefined
+
+----
+event.emptied : listener(event : Event) : undefined
+
+----
+event.error : listener(event : Event) : undefined
+
+----
+event.emptied : listener(event : Event) : undefined
+
+----
+event.ended : listener(event : Event) : undefined
+
+----
+event.loadedmetadata : listener(event : Event) : undefined
+
+----
+event.loadeddata : listener(event : Event) : undefined
+
+----
+event.loadstart : listener(event : Event) : undefined
+
+----
+event.pause : listener(event : Event) : undefined
+
+----
+event.play : listener(event : Event) : undefined
+
+----
+event.playing : listener(event : Event) : undefined
+
+----
+event.progress : listener(event : Event) : undefined
+
+----
+event.ratechange : listener(event : Event) : undefined
+
+----
+event.seeked : listener(event : Event) : undefined
+
+----
+event.seeking : listener(event : Event) : undefined
+
+----
+event.suspend : listener(event : Event) : undefined
+
+----
+event.timeupdate : listener(event : Event) : undefined
+
+----
+event.volumechange : listener(event : Event) : undefined
+
+----
+event.waiting : listener(event : Event) : undefined
+
+----
+NETWORK_EMPTY : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+NETWORK_IDLE : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+NETWORK_LOADING : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+NETWORK_NO_SOURCE : Number
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+HAVE_NOTHING : Number
+
+Returned by %%#readyState|**readyState**%% when no data
+for the media has loaded yet.  
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+HAVE_METADATA : Number
+
+Returned by %%#readyState|**readyState**%% when the metadata for
+the media has loaded but no data for the media has loaded yet.  
+
+Listen to the 
+%%#loadedmetadata|**loadedmetadata**%% event to know when the 
+metadata has loaded.
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+HAVE_CURRENT_DATA : Number
+
+Returned by %%#readyState|**readyState**%% when the 
+the metadatad for the media has loaded and some of the data for the current
+position has loaded.  
+
+Listen to the 
+%%#loadeddata|**loadeddata**%% event to know when the current data
+has loaded.
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+HAVE_FUTURE_DATA : Number
+
+Returned by %%#readyState|**readyState**%% when the 
+the metadatad for the media has loaded and enough of the 
+data for the current position has loaded to start playing (but not 
+necessarily enough to play to the end).  
+
+Listen to the 
+%%#canplay|**canplay**%% event to know when the future data
+has loaded.
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+HAVE_ENOUGH_DATA : Number
+
+Returned by %%#readyState|**readyState**%% when the 
+the metadatad for the media has loaded and enough of the 
+data for the current position has loaded so the media
+will play to the end without needing to pause for buffering.
+
+Listen to the 
+%%#canplaythrough|**canplaythrough**%% event to know when 
+enough data has loaded.
+
+ReadOnly:
+true
+
+Value:
+4
+
+

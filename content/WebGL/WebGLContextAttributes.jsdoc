@@ -1,0 +1,81 @@
+WebGLContextAttributes : Object
+
+**WebGLContexAttributes** allow you to configure 
+
+%%WebGLRenderingContext|**WebGLRenderingContext**%%
+
+creation options when passed as an 
+additional context attributes parameter to 
+%%HTMLCanvasElement#getContext|**HTMLCanvasElement.getContext()**%%.
+Any JavaScript object can be used as the **WebGLContextAttributes** 
+and if the properties below are specified on it, they will be used
+instead of the default values.  Only the options passed to the first 
+call to **getContext** will apply, subsequent calls will ignore the
+attributes.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.2
+
+----
+instance.alpha : Boolean
+
+If set to **true**, the context will have an alpha (transparency) channel. 
+Defaults to **true**.
+
+----
+instance.depth : Boolean
+
+If set to **true**, the context will have a 16 bit depth buffer.
+Defaults to **true**.
+
+Use **%%/WebGLRenderingContext#enable|gl.enable%%(%%/WebGLRenderingContext#DEPTH_TEST|DEPTH_TEST%%)**
+to enable the depth test and 
+%%/WebGLRenderingContext#depthFunc|**gl.depthFunc()**%%,
+%%/WebGLRenderingContext#depthMask|**gl.depthMask()**%%, and
+%%/WebGLRenderingContext#depthRange|**gl.depthRange()**%% to configure the
+depth test.
+
+----
+instance.stencil : Boolean
+
+If set to **true**, the context will have an 8 bit stencil buffer.
+Defaults to **false**.
+
+Use **%%/WebGLRenderingContext#enable|gl.enable%%(%%/WebGLRenderingContext#STENCIL_TEST|STENCIL_TEST%%)**
+to enable depth test and 
+%%/WebGLRenderingContext#stencilFunc|**gl.stencilFunc()**%%,
+%%/WebGLRenderingContext#stencilFuncSeparate|**gl.stencilFuncSeparate()**%%,
+%%/WebGLRenderingContext#stencilMask|**gl.stencilMask()**%%,
+%%/WebGLRenderingContext#stencilMaskSeparate|**gl.stencilMaskSeparate()**%%,
+%%/WebGLRenderingContext#stencilOp|**gl.stencilOp()**%%, and
+%%/WebGLRenderingContext#stencilOpSeparate|**gl.stencilOpSeparate()**%% to configure the
+stencil test.
+
+----
+instance.antialias : Boolean
+
+If set to **true**, the context will attempt to perform antialiased
+rendering if possible. Defaults to **true**.
+
+----
+instance.premultipliedAlpha : Boolean
+
+If set to **true**, the color channels in the framebuffer will be stored
+premultipled by the alpha channel to improve performance.
+
+Defaults to **true**.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#PREMULTIPLIED_ALPHA
+
+----
+instance.preserveDrawingBuffer : Boolean
+
+If set to **false**, the buffer will be cleared after rendering. If you wish to
+use %%HTMLCanvasElement#toDataURL|**canvas.toDataURL()**%%, you will either need to draw
+to the canvas immediately before calling **toDataURL()**, or set **preserveDrawingBuffer**
+to true to keep the buffer available after the browser has displayed the buffer (at the cost 
+of increased memory use).
+Defaults to **false**.
+
+

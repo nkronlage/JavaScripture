@@ -1,0 +1,50 @@
+WebGLActiveInfo : Object
+
+**WebGLActiveInfo** describes an attribute or uniform. 
+
+**WebGLActiveInfo**s are obtained from 
+%%WebGLRenderingContext#getActiveAttrib|**getActiveAttrib()**%%
+and %%WebGLRenderingContext#getActiveUniform|**getActiveUniform()**%%.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.11
+
+----
+instance.name : String
+
+The name of the attribute or uniform.  
+
+ReadOnly:
+true
+
+----
+instance.size : Number
+
+If the attribute or uniform is an array, this will be the number of elements in the array. 
+Otherwise, this will be **1**.
+
+ReadOnly:
+true
+
+----
+instance.type : Number
+
+The data type of the attribute or uniform. Will be one of:
+
+%%/WebGLRenderingContext#FLOAT|**FLOAT**%%,
+%%/WebGLRenderingContext#FLOAT_MAT2|**FLOAT_MAT2**%%,
+%%/WebGLRenderingContext#FLOAT_MAT3|**FLOAT_MAT3**%%,
+%%/WebGLRenderingContext#FLOAT_MAT4|**FLOAT_MAT4**%%,
+%%/WebGLRenderingContext#FLOAT_VEC2|**FLOAT_VEC2**%%,
+%%/WebGLRenderingContext#FLOAT_VEC3|**FLOAT_VEC3**%%,
+%%/WebGLRenderingContext#FLOAT_VEC4|**FLOAT_VEC4**%%,
+%%/WebGLRenderingContext#INT|**INT**%%,
+%%/WebGLRenderingContext#INT_VEC2|**INT_VEC2**%%,
+%%/WebGLRenderingContext#INT_VEC3|**INT_VEC3**%%,
+%%/WebGLRenderingContext#INT_VEC4|**INT_VEC4**%%,
+or
+%%/WebGLRenderingContext#UNSIGNED_INT|**UNSIGNED_INT**%%.
+
+ReadOnly:
+true
+

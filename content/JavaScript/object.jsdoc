@@ -1,0 +1,455 @@
+Object : undefined
+
+Object is the base in the prototype chain. 
+
+JavaScript **Object**s can have any number values stored as properties
+(specified by %%/String|**String**%% names).
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=123
+
+----
+Object() : Object
+
+Creates an empty object.  
+Can also be constructed as **{}**.
+
+<example>
+// The following are all equivalent
+var x = {};
+var y = Object();
+var z = new Object();
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+
+----
+Object(value : Object) : Object
+
+If **value** is a primitive type, creates a box for **value**.  Otherwise,
+returns **value**.
+
+<example>
+var x = true;
+console.log(typeof x + ' / ' + typeof Object(x));
+console.log(x === Object(x));
+var y = {};
+console.log(typeof y + ' / ' + typeof Object(y));
+console.log(y === Object(y));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+
+----
+new Object() : Object
+
+Same as %%#Object_|**Object()**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+
+----
+new Object(value : Object) : Object
+
+Same as %%#Object_Object|**Object(value)**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+
+----
+instance[propertyName : String] : Object
+
+Returns the value stored in this at the specified **propertyName**.
+This is the same as the **.** style access but also allows the 
+property name to be specified at runtime using a String of being hardcoded.
+
+<example>
+var x = { foo: 'bar'};
+
+// The following are equivalent
+console.log(x.foo);
+console.log(x['foo']);
+
+// Use [] indexing when the name is not known ahead of time
+var propertyName = 'f' + 'oo';
+console.log(x[propertyName]);
+</example>
+
+
+----
+getPrototypeOf(obj : Object) : Object
+
+Returns the prototype of **obj**.
+
+<example>
+console.log(Object.getPrototypeOf([]) === Array.prototype);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+
+----
+getOwnPropertyDescriptor(obj : Object, propertyName : String) : PropertyDescriptor
+
+Returns a **PropertyDescriptor** that describes the **propertyName** property on **obj**. 
+
+<example>
+var x = { foo: 1,
+          get bar() {
+            return 'a';
+          } };
+Object.defineProperty(x, 'baz', { value: 2, 
+                                  writable: true,
+                                  enumerable: false,
+                                  configurable: true } );
+console.dir(Object.getOwnPropertyDescriptor(x, 'foo'));
+console.dir(Object.getOwnPropertyDescriptor(x, 'bar'));
+console.dir(Object.getOwnPropertyDescriptor(x, 'baz'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+
+----
+getOwnPropertyNames(obj : Object) : Array<String>
+
+Returns an **Array** of the names of all properties set on **obj** including 
+those that are not enumerable.
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2, 
+                                  writable: true,
+                                  enumerable: false,
+                                  configurable: true } );
+console.log(Object.keys(x));
+console.log(Object.getOwnPropertyNames(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+
+
+----
+create(prototype : Object, [propertyDescriptors : Object]) : Object
+
+Returns a new **Object** with prototype equal to **prototype**. Pass
+**null** for **prototype** to create an object with no prototype.
+
+Calls 
+%%#defineProperties|**defineProperties(obj, propertyDescriptors)**%%
+with the new object if **propertyDescriptors** is specified.
+
+<example>
+var x = Object.create({}, { foo: { value: 1, 
+                                   writable: true,
+                                   enumerable: true,
+                                   configurable: true },
+                            bar: { value: 2, 
+                                   writable: true,
+                                   enumerable: false,
+                                   configurable: true }});
+console.log(x.foo);
+console.log(x.bar);
+console.log(Object.keys(x));
+console.log(Object.getOwnPropertyNames(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+
+----
+defineProperty(obj : Object, propertyName : String, propertyDescriptor : PropertyDescriptor) : Object
+
+Defines a new property with name equal to **propertyName** on **obj** with the 
+supplied descriptor. Returns **obj**. 
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2, 
+                                  writable: true,
+                                  enumerable: false,
+                                  configurable: true } );
+console.log(x.foo);
+console.log(x.bar);
+console.log(Object.keys(x));
+console.log(Object.getOwnPropertyNames(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+
+----
+defineProperties(obj : Object, propertyDescriptors : Object) : Object
+
+For each property on **propertyDescriptors**, defines a new property on
+**obj** with the same name and supplied %%/PropertyDescriptor|**PropertyDescriptor**%%.  
+Returns **obj**.
+
+<example>
+var x = {};
+Object.defineProperties(x, { foo: { value: 1, 
+                                    writable: true,
+                                    enumerable: true,
+                                    configurable: true },
+                             bar: { value: 2, 
+                                    writable: true,
+                                    enumerable: false,
+                                    configurable: true }});
+console.log(x.foo);
+console.log(x.bar);
+console.log(Object.keys(x));
+console.log(Object.getOwnPropertyNames(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+
+----
+seal(obj : Object) : Object
+
+Same as %%#preventExtensions|**preventExtensions**%% except it also
+sets each property as not 
+%%/PropertyDescriptor#configurable|**configurable**%%.  Returns **obj**.
+
+<example>
+var x = { foo: 1 };
+Object.seal(x);
+x.foo = 3;
+console.log(x.foo);
+x.bar = 1;
+console.log(x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+
+----
+freeze(obj : Object) : Object
+
+For each property on **obj**, sets its 
+%%/PropertyDescriptor#configurable|**PropertyDescriptor.configurable**%%
+property to **false** and 
+
+%%/PropertyDescriptor#writable|**PropertyDescriptor.writable**%%
+property to **false**.  Also calls 
+%%#preventExtensions|**preventExtensions**%% on **obj**.  Returns **obj**.
+
+<example>
+var x = { foo: 1 };
+Object.freeze(x);
+x.foo = 3;
+console.log(x.foo);
+x.bar = 1;
+console.log(x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+
+----
+preventExtensions(obj : Object) : Object
+
+Prevents new properties from being added to **obj**.  Unlike %%#freeze|**freeze**%%, existing
+properties can be modified.  Returns **obj**.
+
+<example>
+var x = { foo: 1 };
+Object.preventExtensions(x);
+x.foo = 3;
+console.log(x.foo);
+x.bar = 1;
+console.log(x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+
+
+----
+isSealed(obj : Object) : Boolean
+
+Returns **true** if %%#seal|**seal**%% was called on **obj**.  A sealed object cannot have
+new properties added to it but the value of existing properties can be changed.
+
+<example>
+var x = { foo: 1 };
+Object.seal(x);
+console.log(Object.isSealed(x));
+console.log(Object.isExtensible(x));
+console.log(Object.isFrozen(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+
+
+----
+isFrozen(obj : Object) : Boolean
+
+Returns **true** if %%#freeze|**freeze**%% was called on **obj**.  A frozen object cannot have
+new properties added and existing properties cannot be modified.
+
+<example>
+var x = { foo: 1 };
+Object.freeze(x);
+console.log(Object.isSealed(x));
+console.log(Object.isExtensible(x));
+console.log(Object.isFrozen(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+
+----
+isExtensible(obj : Object) : Boolean
+
+Returns **false** if %%#preventExtensions|**preventExtensions**%% was called on **obj**.  A
+non-extensible object cannot have new properties added to it.
+
+<example>
+var x = { foo: 1 };
+console.log(Object.isExtensible(x));
+Object.preventExtensions(x);
+console.log(Object.isExtensible(x));
+console.log(Object.isSealed(x));
+console.log(Object.isFrozen(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+
+----
+keys(obj : Object) : Array<String>
+
+Returns an **Array** containing the enumerable properties on **obj**.
+
+<example>
+var x = { foo: 1, bar: 2 };
+console.log(Object.keys(x));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+
+----
+prototype.constructor : Function
+
+The **Function** that constructed **this**.
+
+<example>
+console.log({}.constructor === Object);
+console.log([].constructor === Array);
+console.log('foo'.constructor === String);
+</example>
+
+
+----
+prototype.toString() : String
+
+Returns a string representation of **this**.  This method is called
+each time the object is used in a place a string is expected.  Define your own
+**toString** to give a better string representation to your objects.
+
+<example>
+var pt = { x: 1, y: 2 };
+console.log(pt);
+pt.toString = function() { 
+  return '(' + this.x + ', ' + this.y + ')';
+};
+console.log(pt);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+
+----
+prototype.toLocaleString() : String
+
+Returns a locale specific (if possible) string representation of **this**. 
+
+<example>
+var x = 1.234;
+console.log(x.toString());
+console.log(x.toLocaleString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+
+
+----
+prototype.valueOf() : Object
+
+For boxed primitive types, returns the unboxed value.
+
+<example>
+var x = Object(1);
+console.log(x === 1);
+console.log(x.valueOf() === 1);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+
+----
+prototype.hasOwnProperty(propertyName : String) : Boolean
+
+Returns **true** if **this** has a property named **propertyName** stored on it.
+This method can be used to see if a property is set on the object, even
+if the value is set to **undefined**.
+Properties stored in the prototype chain do not count.
+
+<example>
+var x = { foo: 1 };
+console.log(x.hasOwnProperty('foo'));
+console.log(x.hasOwnProperty('bar'));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+
+----
+prototype.isPrototypeOf(obj : Object) : Boolean
+
+Returns **true** if **this** is in the prototype chain of **obj**.
+
+<example>
+// Array instances are Objects
+console.log(Object.prototype.isPrototypeOf(Array.prototype));
+// Array instances are not Functions
+console.log(Function.prototype.isPrototypeOf(Array.prototype));
+// Array constructor is a Function
+console.log(Function.prototype.isPrototypeOf(Array));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+
+----
+prototype.propertyIsEnumerable(propertyName : String) : Boolean
+
+Returns **true** if the property named **propertyName** on **this** is
+enumerable and should be returned during a **for (x in y)** loop.
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2, 
+                                  writable: true,
+                                  enumerable: false,
+                                  configurable: true } );
+console.log(x.propertyIsEnumerable('foo'));
+console.log(x.propertyIsEnumerable('bar'));
+
+for (var propertyName in x) {
+  console.log(propertyName + ' is ' + x[propertyName]);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+

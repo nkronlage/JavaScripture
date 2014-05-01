@@ -1,0 +1,62 @@
+ValidityState : Object
+
+Spec:
+http://dev.w3.org/html5/spec/constraints.html#validitystate
+
+----
+instance.valueMissing : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.typeMismatch : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.patternMismatch : Boolean
+
+ReadOnly:
+true
+
+----
+instance.tooLong : Boolean
+
+
+ReadOnly:
+true
+
+----
+instance.rangeUnderflow : Boolean
+
+ReadOnly:
+true
+
+----
+instance.rangeOverflow : Boolean
+
+ReadOnly:
+true
+
+----
+instance.stepMismatch : Boolean
+
+ReadOnly:
+true
+
+----
+instance.customError : Boolean
+
+ReadOnly:
+true
+
+----
+instance.valid : Boolean 
+
+ReadOnly:
+true
+

@@ -1,0 +1,9 @@
+undefined : Object
+
+**undefined** is the return value from methods that do
+not pass anything to the **return** statement. It is also the 
+value returned from a property that has not been set. 
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=40
+

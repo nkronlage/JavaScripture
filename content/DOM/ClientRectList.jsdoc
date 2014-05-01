@@ -1,0 +1,28 @@
+ClientRectList : Object
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#clientrectlist
+
+----
+instance[index : Number] : ClientRect
+
+Returns the ClientRect at the specified **index**. You can also use the
+%%#item|**item()**%% method to retrieve the item. 
+
+
+----
+instance.length : Number
+
+The number of ClientRects in the list.
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-clientrectlist-length
+
+
+----
+prototype.item(index : Number) : ClientRect
+
+Same as %%#indexer_Number|**this[index]**%%.
+
+Spec: 
+http://dev.w3.org/csswg/cssom-view/#dom-clientrectlist-item

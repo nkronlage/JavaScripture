@@ -1,0 +1,13 @@
+HTMLModElement : HTMLElement
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlmodelement
+
+----
+instance.cite : String
+
+
+----
+instance.dateTime : String
+

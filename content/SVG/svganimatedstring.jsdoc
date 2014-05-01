@@ -1,0 +1,13 @@
+SVGAnimatedString : Object
+
+Spec:
+
+----
+instance.baseVal : String
+
+----
+instance.animVal : String
+
+ReadOnly:
+true
+

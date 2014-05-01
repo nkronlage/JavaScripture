@@ -1,0 +1,24 @@
+SVGPoint : Object
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#InterfaceSVGPoint
+
+----
+instance.x : Number
+
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGPoint__x
+
+----
+instance.y : Number
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGPoint__y
+
+----
+prototype.matrixTransform(matrix : SVGMatrix) : SVGPoint
+
+Spec:
+http://www.w3.org/TR/SVG11/coords.html#__svg__SVGPoint__matrixTransform
+

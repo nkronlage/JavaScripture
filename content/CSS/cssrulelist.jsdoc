@@ -1,0 +1,54 @@
+CSSRuleList : Object
+
+A list of %%/CSSRule|CSSRules%%.  Returned from the 
+%%/CSSStyleSheet#cssRules|**CSSStyleSheet.cssRules**%% property.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSRuleList
+
+----
+instance.length : Number
+
+The number of CSSRules in the list.
+
+<htmlexample>
+<style> 
+  #foo { color: red; } 
+  #foo { font-weight: bold; } 
+</style>
+<span id='foo'>foo</span>
+<script>
+  var cssRules = document.styleSheets[0].cssRules;
+  console.log(cssRules.length);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance[index : Number] : CSSRule
+
+Returns the CSSRule at the specified **index**.  You can also use the
+%%#item|**item()**%% method to retrieve the item.
+
+<htmlexample>
+<style> 
+  #foo { color: red; } 
+  span { font-weight: bold; } 
+</style>
+<span id='foo'>foo</span>
+<script>
+  var cssRules = document.styleSheets[0].cssRules;
+  for (var i = 0; i < cssRules.length; i++) {
+    // The following ways to index into the list are equivalent
+    console.log(cssRules[i].cssText);
+    console.log(cssRules.item(i).cssText);
+  }
+</script>
+</htmlexample>
+
+----
+prototype.item(index : Number) : CSSRule
+
+Same as %%#indexer_Number|**this[index]**%%.

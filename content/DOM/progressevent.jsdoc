@@ -1,0 +1,16 @@
+ProgressEvent : Event
+
+Spec:
+http://www.w3.org/TR/progress-events/#interface-progressevent
+
+----
+new ProgressEvent(type : String, [args : Object]) : ProgressEvent
+
+----
+instance.lengthComputable : Boolean
+
+----
+instance.loaded : Number
+
+----
+instance.total : Number

@@ -1,0 +1,122 @@
+MediaController : Object
+
+The MediaController is used to synchronize multiple 
+%%/HTMLMediaElement|HTMLMediaElements%%.
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#mediacontroller
+
+----
+new MediaController() : MediaController
+
+----
+instance.readyState : Number
+
+ReadOnly:
+true
+
+----
+instance.buffered : TimeRanges
+
+ReadOnly:
+true
+
+----
+instance.seekable : TimeRanges
+
+ReadOnly:
+true
+
+----
+instance.duration : Number
+
+ReadOnly:
+true
+
+----
+instance.currentTime : Number
+
+----
+instance.paused : Boolean
+
+ReadOnly:
+true
+
+----
+instance.playbackState : String
+
+Returns one of **'waiting'**, **'playing'** or **'ended'**.
+
+ReadOnly:
+true
+
+----
+instance.played : TimeRanges
+
+ReadOnly:
+true
+
+----
+instance.defaultPlaybackRate : Number
+
+----
+instance.playbackRate : Number
+
+----
+instance.volume : Number
+
+----
+instance.muted : Boolean
+
+----
+prototype.pause() : undefined
+
+----
+prototype.unpause() : undefined
+
+----
+prototype.play() : undefined
+
+----
+event.canplay : listener(event : Event) : undefined
+
+
+----
+event.canplaythrough : listener(event : Event) : undefined
+
+----
+event.durationchange : listener(event : Event) : undefined
+
+----
+event.emptied : listener(event : Event) : undefined
+
+----
+event.ended : listener(event : Event) : undefined
+
+----
+event.loadedmetadata : listener(event : Event) : undefined
+
+----
+event.loadeddata : listener(event : Event) : undefined
+
+----
+event.pause : listener(event : Event) : undefined
+
+----
+event.play : listener(event : Event) : undefined
+
+----
+event.playing : listener(event : Event) : undefined
+
+----
+event.ratechange : listener(event : Event) : undefined
+
+----
+event.timeupdate : listener(event : Event) : undefined
+
+----
+event.volumechange : listener(event : Event) : undefined
+
+----
+event.waiting : listener(event : Event) : undefined
+

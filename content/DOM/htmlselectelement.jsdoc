@@ -1,0 +1,125 @@
+HTMLSelectElement : HTMLElement 
+
+
+Spec:
+http://dev.w3.org/html5/spec/single-page.html#htmlselectelement
+
+
+----
+instance.labels : NodeList
+
+ReadOnly:
+true
+
+
+----
+instance.autofocus : Boolean
+
+
+----
+instance.disabled : Boolean
+
+
+----
+instance.form : HTMLFormElement
+
+
+ReadOnly:
+true
+
+----
+instance.multiple : Boolean
+
+
+----
+instance.name : String
+
+
+----
+instance.required : Boolean
+
+
+----
+instance.size : Number
+
+
+----
+instance.type : String
+
+
+ReadOnly:
+true
+
+----
+instance.options : HTMLOptionsCollection
+
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+
+----
+prototype.add(element : HTMLOptionElement, [before : HTMLElement]) : undefined
+
+
+----
+prototype.add(element : HTMLOptionElement, [before : Number]) : undefined
+
+
+----
+prototype.add(element : HTMLOptGroupElement, [before : HTMLElement]) : undefined
+
+
+----
+prototype.add(element : HTMLOptGroupElement, [before : Number]) : undefined
+
+
+----
+prototype.remove(index : Number) : undefined
+
+
+
+
+----
+instance.selectedOptions : HTMLCollection
+
+
+ReadOnly:
+true
+
+----
+instance.selectedIndex : Number
+
+
+----
+instance.value : String
+
+
+----
+instance.willValidate : Boolean
+
+ReadOnly:
+true
+
+----
+instance.validity : ValidityState
+
+ReadOnly:
+true
+
+----
+instance.validationMessage : String
+
+ReadOnly:
+true
+
+----
+prototype.checkValidity : Boolean
+
+
+----
+prototype.setCustomValidity(error : String) : undefined
+

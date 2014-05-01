@@ -1,0 +1,56 @@
+MutationObserver : Object
+
+Spec:
+http://www.w3.org/TR/domcore/#interface-mutationobserver
+
+----
+new MutationObserver(callback(mutations : Array, observer : MutationObserver) : undefined) : MutationObserver
+
+**mutations** is an Array of %%/MutationRecord|**MutationRecord**%%s.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      for (var i = 0; i < mutation.addedNodes.length; i++) {
+        console.log(mutation.addedNodes[i].textContent + ' added');      
+      }
+      
+      for (var i = 0; i < mutation.removedNodes.length; i++) {
+        console.log(mutation.removedNodes[i].textContent + ' removed');      
+      }
+    });
+  });
+  observer.observe(foo, { childList: true });
+
+  var bar = document.createElement('div');
+  bar.textContent = 'bar';
+  foo.appendChild(bar);
+  foo.removeChild(bar);
+</script>
+</htmlexample>
+
+
+----
+prototype.observe( \
+  target : Node, \
+  options : { \
+    childList : Boolean             /*  */, \
+    attributes : Boolean            /*  */, \
+    characterData : Boolean         /*  */, \
+    subtree : Boolean, \
+    attributeOldValue : Boolean, \
+    characterDataOldValue : Boolean, \
+    attributeFilter : Array<String> \
+  }) : undefined
+
+
+----
+prototype.disconnect() : undefined
+
+----
+prototype.takeRecords() : Array
+

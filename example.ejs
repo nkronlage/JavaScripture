@@ -1,0 +1,16 @@
+<div class='example'>
+  <div class='codePanel'> 
+    <h4>Example:</h4>
+    <textarea class='code' rows="<%= Math.min(code.split('\n').length + 1, 17) %>" cols='60' wrap='off'><%= code %></textarea>
+
+    <a onclick='executeExample(this.parentNode.parentNode, "<%= objectName + '.' + propertyName %>"); return false' href='#' class='run'>Run</a>
+  </div>
+
+  <div class='resultsPanel'>
+    <h4>Results:</h4>
+    <div style='position: relative'>
+      <div class='errormessage' style='display: none'></div>
+      <pre class="results"> </pre>
+    </div>
+  </div>
+</div>

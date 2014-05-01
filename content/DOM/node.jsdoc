@@ -1,0 +1,779 @@
+Node : EventTarget
+
+Node represents a node in a tree (usually the DOM/document tree). Node is the base
+type for 
+%%/Element|Element%%, 
+%%/Text|Text%%,
+%%/Document|Document%%,
+%%/Comment|Comment%%,
+and others.
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+
+----
+instance.nodeType : Number
+
+The type of this Node.
+
+Will be one of
+%%#ELEMENT_NODE|**ELEMENT_NODE**%%
+%%#ATTRIBUTE_NODE|**ATTRIBUTE_NODE**%%
+%%#TEXT_NODE|**TEXT_NODE**%%
+%%#CDATA_SECTION_NODE|**CDATA_SECTION_NODE**%%
+%%#ENTITY_REFERENCE_NODE|**ENTITY_REFERENCE_NODE**%%
+%%#ENTITY_NODE|**ENTITY_NODE**%%
+%%#PROCESSING_INSTRUCTION_NODE|**PROCESSING_INSTRUCTION_NODE**%%
+%%#COMMENT_NODE|**COMMENT_NODE**%%
+%%#DOCUMENT_NODE|**DOCUMENT_NODE**%%
+%%#DOCUMENT_TYPE_NODE|**DOCUMENT_TYPE_NODE**%%
+%%#DOCUMENT_FRAGMENT_NODE|**DOCUMENT_FRAGMENT_NODE**%%
+or
+%%#NOTATION_NODE|**NOTATION_NODE**%%.
+
+<htmlexample>
+<script id='myscript'>
+  console.log(document.createElement('div').nodeType == Node.ELEMENT_NODE);
+  console.log(document.createTextNode('').nodeType == Node.TEXT_NODE);
+  console.log(document.createProcessingInstruction('myscript','').nodeType == Node.PROCESSING_INSTRUCTION_NODE);
+  console.log(document.createComment('').nodeType == Node.COMMENT_NODE);
+  console.log(document.nodeType == Node.DOCUMENT_NODE);
+  console.log(document.doctype.nodeType == Node.DOCUMENT_TYPE_NODE);
+  console.log(document.createDocumentFragment().nodeType == Node.DOCUMENT_FRAGMENT_NODE);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+instance.nodeName : String
+
+The name of the node. The value of **nodeName** depends on the
+type of **this**.  
+
+For %%/Element|**Element**s%%, 
+the **nodeName**
+is the same as %%/Element#tagName|**Element.tagName**%%. 
+
+For %%/ProcessingInstruction|**ProcessingInstructions**s%%, 
+the **nodeName** is the same as
+%%/ProcessingInstruction|**ProcessingInstruction.target**%%.
+
+<htmlexample>
+<script id='myscript'>
+  console.log(document.createComment('').nodeName);
+  console.log(document.createDocumentFragment().nodeName);
+  console.log(document.nodeName);
+  console.log(document.doctype.nodeName);
+
+  // nodeName for Element is same as tagName 
+  console.log(document.createElement('div').nodeName);
+
+  // nodeName for a ProcessingInstruction is the same as the target
+  console.log(document.createProcessingInstruction('myscript','').nodeName);
+
+  console.log(document.createTextNode('').nodeName);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.baseURI : String
+
+ReadOnly:
+true
+
+----
+instance.ownerDocument : Document
+
+The Document that owns this Node.
+
+<htmlexample>
+<span id='foo'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.ownerDocument === document);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+instance.parentNode : Node
+
+The parent of **this**. 
+
+<htmlexample>
+<span id='foo'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.parentNode === document.body);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.parentElement : Element
+
+The parent of **this**.  **parentElement** will return the same value
+as %%#parentNode|**parentNode**%% if the parent is also an %%/Element|**Element**%%.
+The %%Document|**document**%% is one **Node** that is not also an %%/Element|**Element**%%.
+
+<htmlexample>
+<body></body>
+<script>
+  var documentElement = document.documentElement;
+  console.log(documentElement.parentNode === document);
+  console.log(documentElement.parentNode);
+  console.log(documentElement.parentElement);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+prototype.hasChildNodes() : Boolean
+
+Returns **true** if **this** has children.
+
+<htmlexample>
+<div id='parent'>
+  #parent has children
+<div>
+<span id='empty'></span>
+<script>
+  console.log(document.getElementById('parent').hasChildNodes());
+  console.log(document.getElementById('empty').hasChildNodes());
+</script>
+</htmlexample>
+
+----
+instance.childNodes : NodeList
+
+A NodeList containing the children Nodes of **this**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  for (var i = 0; i < parent.childNodes.length; i++) {
+    console.log(parent.childNodes[i].nodeName);
+  }
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.firstChild : Node
+
+The first child Node in **this**.  If **this** has no children, 
+**firstChild** will be **null**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <div>A nested div</div>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var firstChild = parent.lastChild;
+  var firstChildNode = parent.childNodes[0];
+  console.log(firstChild === firstChildNode);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.lastChild : Node
+
+The last child Node in **this**.  If **this** has no children, 
+**lastChild** will be **null**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <div>A nested div</div>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var lastChild = parent.lastChild;
+  var lastChildNode = parent.childNodes[parent.childNodes.length - 1];
+  console.log(lastChild === lastChildNode);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.previousSibling : Node
+
+The sibling Node before **this** in %%#parentNode|**this.parentNode**%%'s children. 
+If **this** is the first child in **parentNode** or **this** has
+no **parentNode**,
+**previousSibling** will be **null**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <div>A nested div</div>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var child = parent.lastChild;
+  while (child) {
+    console.log(child.nodeName);
+    child = child.previousSibling;
+  }
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+instance.nextSibling : Node
+
+The sibling Node after **this** in %%#parentNode|**this.parentNode**%%'s children. 
+If **this** is the last child in **parentNode** or **this** has
+no **parentNode**,
+**nextSibling** will be **null**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <div>A nested div</div>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var child = parent.firstChild;
+  while (child) {
+    console.log(child.nodeName);
+    child = child.nextSibling;
+  }
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+prototype.compareDocumentPosition(other : Node) : Number
+
+Returns a value that indicates where **other** is relative
+to **this**.  The return value will be a number that is the
+bitwise AND (&) of one or more of the following values:
+%%#DOCUMENT_POSITION_CONTAINED_BY|**DOCUMENT_POSITION_CONTAINED_BY**%%,
+%%#DOCUMENT_POSITION_CONTAINS|**DOCUMENT_POSITION_CONTAINS**%%,
+%%#DOCUMENT_POSITION_DISCONNECTED|**DOCUMENT_POSITION_DISCONNECTED**%%,
+%%#DOCUMENT_POSITION_FOLLOWING|**DOCUMENT_POSITION_FOLLOWING**%%,
+%%#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC|**DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**%%,
+or
+%%#DOCUMENT_POSITION_PRECEDING|**DOCUMENT_POSITION_PRECEDING**%%.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <div>A nested div</div>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var child = parent.firstChild;
+  var nextChild = child.nextSibling;
+
+  console.log(child.compareDocumentPosition(nextChild) & Node.DOCUMENT_POSITION_FOLLOWING !== 0);
+  console.log(nextChild.compareDocumentPosition(child) & Node.DOCUMENT_POSITION_PRECEDING !== 0);
+</script>
+</htmlexample>
+
+
+----
+prototype.contains(other : Node) : Boolean
+
+Returns **true** if **other** is a descendant of **this**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <div>
+    <div id='nested'>A nested div</div>
+  </div>
+</div>
+<div id='sibling'>Sibling</div>
+<script>
+  var parent = document.getElementById('parent');
+  var nested = document.getElementById('nested');
+  var sibling = document.getElementById('sibling');
+
+  console.log(parent.contains(nested));
+  console.log(nested.contains(parent));
+  console.log(parent.contains(sibling));
+</script>
+</htmlexample>
+
+
+----
+instance.nodeValue : String
+
+The text content of **this** (not including any descendants).
+Note, %%/Element|**Element**%%s do not have text content, 
+the text is placed in a %%/Text|**Text**%% Node inside the **Element**.
+See also %%#textContent|**textContent**%%.
+
+<htmlexample>
+<span id='parent'>
+  This text becomes a Text Node.
+  <span>So does this.</span>
+</span>
+<script>
+  var parent = document.getElementById('parent');
+
+  // Elements do not have nodeValue
+  console.log(parent.nodeValue); 
+
+  // Text is placed in a Text node
+  var textNode = parent.firstChild;
+  console.log('"' + textNode.nodeValue + '"');
+
+  // Use textContent to get all the text in descendants
+  console.log('"' + parent.textContent + '"');
+</script>
+</htmlexample>
+
+
+----
+instance.textContent : String
+
+The text content of this node and all descendants.
+See also %%#nodeValue|**nodeValue**%%.
+
+<htmlexample>
+<span id='parent'>
+  This text becomes a Text Node.
+  <span>So does this.</span>
+</span>
+<script>
+  var parent = document.getElementById('parent');
+
+  // Use textContent to get all the text in descendants
+  console.log('"' + parent.textContent + '"');
+</script>
+</htmlexample>
+
+
+----
+prototype.insertBefore(newChild : Node, [refChild : Node]) : Node
+
+Inserts **newChild** before **refChild** in **this**.  If **refChild**
+is not provided, **newChild** is inserted at the end of the children.
+Returns **newChild**.
+
+See also %%#appendChild|**appendChild()**%%,
+%%#removeChild|**removeChild()**%%,
+and
+%%#replaceChild|**replaceChild()**%%.
+
+<htmlexample>
+<div id='parent'>
+  <span id='foo'>foo</span>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var foo = document.getElementById('foo');
+
+  var bar = document.createElement('span');
+  bar.textContent = 'bar ';
+  parent.insertBefore(bar, foo);
+
+  var baz = document.createElement('span');
+  baz.textContent = ' baz';
+  parent.insertBefore(baz);
+</script>
+</htmlexample>
+
+----
+prototype.appendChild(newChild : Node) : Node
+
+Inserts **newChild** at the end of the children of **this**. 
+Returns **newChild**.
+
+See also %%#insertBefore|**insertBefore()**%%,
+%%#removeChild|**removeChild()**%%,
+and
+%%#replaceChild|**replaceChild()**%%.
+
+<htmlexample>
+<div id='parent'>
+  <span id='foo'>foo</span>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+
+  var bar = document.createElement('span');
+  bar.textContent = 'bar ';
+  parent.appendChild(bar);
+</script>
+</htmlexample>
+
+----
+prototype.replaceChild(newChild : Node, oldChild : Node) : Node
+
+Removes **oldChild** from the children of **this** and replaces
+it with **newChild** (so **newChild** is in the same position as
+**oldChild** was). 
+Returns **oldChild**.
+
+See also %%#appendChild|**appendChild()**%%,
+%%#insertBefore|**insertBefore()**%%,
+and
+%%#removeChild|**removeChild()**%%.
+
+<htmlexample>
+<div id='parent'>
+  <span id='foo'>foo</span>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var foo = document.getElementById('foo');
+
+  var bar = document.createElement('span');
+  bar.textContent = 'bar ';
+  parent.replaceChild(bar, foo);
+</script>
+</htmlexample>
+
+
+----
+prototype.removeChild(oldChild : Node) : Node
+
+Removes **oldChild** from the children of **this**.
+Returns **oldChild**.
+
+See also %%#appendChild|**appendChild()**%%,
+%%#insertBefore|**insertBefore()**%%,
+and
+%%#replaceChild|**replaceChild()**%%.
+
+<htmlexample>
+<div id='parent'>
+  <span id='foo'>foo</span><span>bar</span>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var foo = document.getElementById('foo');
+  parent.removeChild(foo);
+</script>
+</htmlexample>
+
+
+
+----
+prototype.normalize() : undefined
+
+Removes empty %%/Text|**Text**%% nodes within **this** and joins
+adjacent **Text** nodes into one node.
+
+<htmlexample>
+<div id='parent'>
+  Text from html.
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  var firstText = parent.firstChild;
+
+  parent.appendChild(document.createTextNode(''));
+
+  var text = document.createTextNode('Text from JS.');
+
+  parent.appendChild(text);
+
+  console.log(parent.childNodes.length);
+  console.log('"' + firstText.nodeValue.trim() + '"');
+
+  parent.normalize();
+
+  console.log(parent.childNodes.length);
+  console.log('"' + firstText.nodeValue.trim() + '"');
+</script>
+</htmlexample>
+
+----
+prototype.cloneNode(deep : Boolean) : Node
+
+Creates a copy of **this**.  Only the %%/Element#attributes|**attributes**%%
+of the element are copied (any other properties set will not be copied).
+If **deep** is true, all descendants will be copied and added as children of the 
+clone. Otherwise the returned value will not have children.
+
+<htmlexample>
+<span id='parent'>
+  An element <span id='child'>with a child.</span>
+</span>
+<script>
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  var shallowClone = parent.cloneNode(false);
+  console.log('"' + shallowClone.textContent + '"');
+
+  var deepClone = parent.cloneNode(true);
+  console.log('"' + deepClone.textContent.trim() + '"');
+</script>
+</htmlexample>
+
+
+----
+prototype.isEqualNode(arg : Node) : Boolean
+
+
+----
+prototype.lookupPrefix(namespaceURI : String) : String
+
+----
+prototype.lookupNamespaceURI(prefix : String) : String
+
+----
+prototype.isDefaultNamespace(namespaceURI : Boolean) : Boolean
+
+
+----
+ELEMENT_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is an
+%%/Element|**Element**%%.
+
+<htmlexample>
+<script>
+  console.log(document.createElement('div').nodeType == Node.ELEMENT_NODE);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+ATTRIBUTE_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is an
+%%/Attr|**Attr**%%.
+
+<htmlexample>
+<script id='myscript'>
+  var element = document.getElementById('myscript');
+  console.log(element.attributes[0].nodeType == Node.ATTRIBUTE_NODE);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+TEXT_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is an
+%%/Text|**Text**%%.
+
+<htmlexample>
+<script>
+  console.log(document.createTextNode('').nodeType == Node.TEXT_NODE);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+CDATA_SECTION_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is an
+CDATA node.
+
+ReadOnly:
+true
+
+
+----
+ENTITY_REFERENCE_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is an
+entity reference node.
+
+ReadOnly:
+true
+
+
+----
+ENTITY_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is an
+entity node.
+
+ReadOnly:
+true
+
+
+----
+PROCESSING_INSTRUCTION_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is a
+%%/ProcessingInstruction|**ProcessingInstruction**%%.
+
+<htmlexample>
+<script id='myscript'>
+  console.log(document.createProcessingInstruction('myscript','').nodeType == Node.PROCESSING_INSTRUCTION_NODE);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+COMMENT_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is a
+%%/Comment|**Comment**%%.
+
+<htmlexample>
+<script>
+  console.log(document.createComment('').nodeType == Node.COMMENT_NODE);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+DOCUMENT_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is a
+%%/Document|**Document**%%.
+
+<htmlexample>
+<script>
+  console.log(document.nodeType == Node.DOCUMENT_NODE);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+DOCUMENT_TYPE_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is a
+%%/DocumentType|**DocumentType**%%.
+
+<htmlexample>
+<script>
+  console.log(document.doctype.nodeType == Node.DOCUMENT_NODE);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+DOCUMENT_FRAGMENT_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is a
+%%/DocumentFragment|**DocumentFragment**%%.
+
+<htmlexample>
+<script>
+  console.log(document.createDocumentFragment().nodeType == Node.DOCUMENT_FRAGMENT_NODE);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+NOTATION_NODE : Number
+
+Returned by %%#nodeType|**nodeType**%% when **this** is a
+notation node.
+
+ReadOnly:
+true
+
+
+----
+DOCUMENT_POSITION_DISCONNECTED : Number
+
+Bitmask value returned by 
+%%#compareDocumentPosition|**compareDocumentPosition()**%%.
+
+ReadOnly:
+true
+
+----
+DOCUMENT_POSITION_PRECEDING : Number
+
+Bitmask value returned by 
+%%#compareDocumentPosition|**compareDocumentPosition()**%%.
+
+ReadOnly:
+true
+
+----
+DOCUMENT_POSITION_FOLLOWING : Number
+
+Bitmask value returned by 
+%%#compareDocumentPosition|**compareDocumentPosition()**%%.
+
+ReadOnly:
+true
+
+----
+DOCUMENT_POSITION_CONTAINS : Number
+
+Bitmask value returned by 
+%%#compareDocumentPosition|**compareDocumentPosition()**%%.
+
+ReadOnly:
+true
+
+----
+DOCUMENT_POSITION_CONTAINED_BY : Number
+
+Bitmask value returned by 
+%%#compareDocumentPosition|**compareDocumentPosition()**%%.
+
+ReadOnly:
+true
+
+----
+DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC : Number
+
+Bitmask value returned by 
+%%#compareDocumentPosition|**compareDocumentPosition()**%%.
+
+ReadOnly:
+true
+

@@ -1,0 +1,5 @@
+Image : HTMLImageElement
+
+----
+new Image([width : Number, [height : Number]]) : Image
+

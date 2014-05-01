@@ -1,0 +1,15 @@
+ScriptProcessorNode : AudioNode
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#ScriptProcessorNode
+
+----
+event.audioprocess : listener(event : AudioProcessingEvent) : undefined
+
+
+----
+instance.bufferSize : Number
+
+ReadOnly:
+true
+

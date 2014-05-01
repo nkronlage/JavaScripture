@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- Copyright JavaScripture.com 
+     All code displayed on the site is free to use.  
+     All other code may not be used without permission. -->
+<html>  
+<head>
+  <meta charset='utf-8'>
+  <title><%= title %></title>
+  <% if (locals.obj) { %>
+  <meta name="description" content="<%= getPageDescription(obj) %>" />
+  <% } else { %>
+  <meta name="description" content="<%= locals.description || "Interactive JavaScript API reference. Learn JavaScript quickly and easily." %>" />
+  <% } %>
+
+  <link rel='stylesheet' type='text/css' href='styles.css'/>
+<script type='text/javascript'>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+
+<div class='topnav'>
+  <a href='/'>JavaScripture</a>
+
+  <div class='bookmarks'>
+    <a class='bookmark contribute' href='https://github.com/nkronlage/JavaScripture'>Contribute via GitHub</a>
+    <a class='bookmark' href='/feedback'>Feedback</a>
+    <div class='social'>
+      <div class="g-plusone" data-size="medium"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <%- render('leftnav', { apiSets: apiSets, obj: locals.obj }) %>
+
+  <div class='content'>
+    <%- body %>
+
+    <div class='bottomnav'>
+      <a href='/'>home</a>
+      <a href='/contribute'>contribute</a>
+      <a href='/feedback'>feedback</a>
+    </div>
+    <div class='copyright'>
+      Copyright © JavaScripture.com
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script src='javascripture.js'></script>
+</html>

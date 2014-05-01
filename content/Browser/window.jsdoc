@@ -1,0 +1,536 @@
+Window : Global
+
+Window is the global object in the browser.
+
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#the-window-object
+
+----
+instance.window : Window
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#dom-window
+
+----
+instance.self : Window
+
+ReadOnly:
+true
+
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#dom-self
+
+----
+instance.document : Document
+
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#dom-document-0
+
+----
+instance.name : String
+
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#dom-name
+
+----
+instance.location : Location
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#dom-location
+
+----
+instance.history : History
+
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/html5/spec/Overview.html#dom-history
+
+
+----
+instance.status : String
+
+
+----
+instance.localStorage : Storage
+
+ReadOnly:
+true
+
+----
+instance.sessionStorage : Storage
+
+ReadOnly:
+true
+
+----
+prototype.btoa(encoded : String) : String
+
+Converts a base64 encoded string into an unecoded string. 
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#dom-windowbase64-btoa
+
+----
+prototype.atob(unencoded : String) : String
+
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#dom-windowbase64-atob
+
+----
+prototype.setTimeout(callback : Function, [timeout = 0: Number, [...]]) : Number
+
+Schedules **callback** to be called once after **timeout** milliseconds. Any extra
+parameters after **timeout** are passed to **callback**.
+
+Returns a unique handle that can be passed to %%#clearTimeout|**clearTimeout()**%% 
+to stop **callback** from being called.
+
+See also %%#setInterval|**setInterval()**%% and %%#requestAnimationFrame|**requestAnimationFrame()**%%.
+
+<htmlexample>
+<script>
+  var handle = setTimeout(function(parameter1, parameter2) {
+    console.log('in callback');
+    console.log('  parameter1=' + parameter1);
+    console.log('  parameter2=' + parameter2);
+  }, 1000, 'foo', 'bar');
+  console.log('after setTimeout');
+</script>
+</htmlexample>
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#dom-windowtimers-settimeout
+
+----
+prototype.setTimeout(callback : String, [timeout = 0: Number, [...]]) : Number
+
+Same as %%#setTimeout_Function_Number_dotdotdot|setTimeout()%% where the 
+**callback** string is passed to %%/Global#eval|eval%% when the time has elapsed.
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#dom-windowtimers-settimeout
+
+----
+prototype.clearTimeout(handle : Number) : undefined
+
+Stops a timeout from running.  **handle** is the value returned by %%#setTimeout|**setTimeout()**%%.
+
+<htmlexample>
+<script>
+  var handle1 = setTimeout(function() {
+    console.log('in timeout callback 1');
+  }, 100);
+
+  var handle2 = setTimeout(function() {
+    console.log('in timeout callback 2');
+  }, 100);
+
+  clearTimeout(handle1);
+</script>
+</htmlexample>
+
+----
+prototype.requestAnimationFrame(callback(time : Number) : undefined) : Number
+
+Schedules **callback** to be called before the next time the browser renders a 
+frame to the screen. Must be called each time you'd like to schedule another 
+frame.
+
+Returns a unique handle that can be passed to %%#cancelAnimationFrame|**cancelAnimationFrame()**%% 
+to stop **callback** from being called.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var callback = function(time) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillRect(10, 10, 30 * (Math.sin(time / 1000) + 1), 30);
+
+    requestAnimationFrame(callback);
+  };
+
+  requestAnimationFrame(callback);
+</script>
+</htmlexample>
+
+----
+prototype.cancelAnimationFrame(handle : Number) : undefined
+
+Stops an animation frame callback from running.  **handle** is the 
+value returned by %%#requestAnimationFrame|**requestAnimationFrame()**%%.
+
+<htmlexample>
+<script>
+  var handle1 = requestAnimationFrame(function() {
+    console.log('in animation callback 1');
+  });
+
+  var handle2 = requestAnimationFrame(function() {
+    console.log('in animation callback 2');
+  });
+
+  cancelAnimationFrame(handle1);
+</script>
+</htmlexample>
+
+----
+prototype.setInterval(callback : Function, [timeout : Number, [...]]) : Number
+
+Schedules **callback** to be called repeatedly, every **timeout** milliseconds. 
+Any extra parameters after **timeout** are passed to **callback**.
+
+Returns a unique handle that can be passed to %%#clearInterval|**clearInterval()**%% 
+to stop **callback** from being called.
+
+See also %%#setTimeout|**setTimeout()**%% and %%#requestAnimationFrame|**requestAnimationFrame()**%%.
+
+<htmlexample>
+<script>
+  var callCount = 0;
+
+  var handle = setInterval(function(parameter1, parameter2) {
+    console.log('in callback count=' + callCount);
+    console.log('  parameter1=' + parameter1);
+    console.log('  parameter2=' + parameter2);
+    
+    callCount++;
+    if (callCount === 5) {
+      clearInterval(handle);
+    }
+  }, 500, 'foo', 'bar');
+</script>
+</htmlexample>
+
+
+----
+prototype.setInterval(callback : String, [timeout : Number, [...]]) : Number
+
+Same as %%#setInterval_Function_Number_dotdotdot|setInterval()%% where the 
+**callback** string is passed to %%/Global#eval|eval%% when the time has elapsed.
+
+----
+prototype.clearInterval(handle : Number) : undefined
+
+Stops an %%#setInterval|**setInterval()**%% callback from running.  
+**handle** is the value returned by **setInterval()**.
+
+<htmlexample>
+<script>
+  var callCount = 0;
+
+  var handle = setInterval(function(parameter1, parameter2) {
+    console.log('in callback count=' + callCount);
+    console.log('  parameter1=' + parameter1);
+    console.log('  parameter2=' + parameter2);
+    
+    callCount++;
+    if (callCount === 5) {
+      clearInterval(handle);
+    }
+  }, 500, 'foo', 'bar');
+</script>
+</htmlexample>
+
+
+
+----
+prototype.close() : undefined
+
+
+----
+prototype.stop() : undefined
+
+
+----
+prototype.focus() : undefined
+
+
+
+----
+prototype.blur() : undefined
+
+
+----
+instance.frames : Window
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+instance.top : Window
+
+ReadOnly:
+true
+
+----
+instance.opener : Window
+
+
+----
+instance.parent : Window
+
+
+ReadOnly:
+true
+
+----
+instance.frameElement : Element
+
+ReadOnly:
+true
+
+----
+prototype.open([url : String, [target = '_blank' : String, [features : String, [replace : Boolean]]]]) : Window
+
+Opens the specified **url**.
+
+<html>
+<dl>
+<dt>
+**url**
+<dd>
+the url to open.
+
+
+<dt>
+**target**
+<dd>
+must be one of:
+  **'_blank'** (open in new window, the default),
+  **'_parent'** (open in parent page/frame),
+  **'_self'** (open in current page/frame),
+  **'_top'** (open in top page),
+  **'&lt;name&gt;'** (open in the window with the specified name).
+
+<dt>
+**features**
+<dd>
+is a comma separated list of **'&lt;name&gt;=&lt;value&gt;'** pairs where the
+valid names are **'left'**, **'top'**, **'height'**, **'width'**.
+
+<dt>
+**replace**
+<dd>
+pass **true** to replace the contents instead of opening a new window.
+</dl>
+</html>
+
+
+----
+instance.external : External
+
+
+ReadOnly:
+true
+
+----
+instance.applicationCache : ApplicationCache
+
+
+ReadOnly:
+true
+
+----
+prototype.alert(message : String) : undefined
+
+----
+prototype.confirm(message : String) : Boolean
+
+----
+prototype.prompt(message : String, [defaults : String]) : String
+
+
+----
+prototype.print() : undefined
+
+
+----
+prototype.showModalDialog(url : String, [arguments : Object]) : Object
+
+
+----
+prototype.getComputedStyle(element : Element, [pseudoElement : String]) : CSSStyleDeclaration
+
+Computes the effective style for **element** including all CSS rules that
+apply to **element**. See also %%/HTMLElement#style|**element.style**%%.
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+</style>
+<span id='foo' class='bar' style='color: red'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log('color:  ' + foo.style.color);
+  console.log('weight: ' + foo.style.fontWeight);
+
+  var computedStyle = window.getComputedStyle(foo);
+  console.log('computed color:  ' + computedStyle.color);
+  console.log('computed weight: ' + computedStyle.fontWeight);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSview-getComputedStyle
+
+
+----
+event.abort : listener(event : Event) : undefined
+----
+event.afterprint : listener(event : Event) : undefined
+----
+event.beforeprint : listener(event : Event) : undefined
+----
+event.beforeunload : listener(event : Event) : undefined
+----
+event.blur : listener(event : Event) : undefined
+----
+event.canplay : listener(event : Event) : undefined
+----
+event.canplaythrough : listener(event : Event) : undefined
+----
+event.change : listener(event : Event) : undefined
+----
+event.click : listener(event : Event) : undefined
+----
+event.contextmenu : listener(event : Event) : undefined
+----
+event.cuechange : listener(event : Event) : undefined
+----
+event.dblclick : listener(event : Event) : undefined
+----
+event.drag : listener(event : Event) : undefined
+----
+event.dragend : listener(event : Event) : undefined
+----
+event.dragenter : listener(event : Event) : undefined
+----
+event.dragleave : listener(event : Event) : undefined
+----
+event.dragover : listener(event : Event) : undefined
+----
+event.dragstart : listener(event : Event) : undefined
+----
+event.drop : listener(event : Event) : undefined
+----
+event.durationchange : listener(event : Event) : undefined
+----
+event.emptied : listener(event : Event) : undefined
+----
+event.ended : listener(event : Event) : undefined
+----
+event.error : listener(event : Event, source : String, line : Number, column : Number) : undefined
+----
+event.focus : listener(event : Event) : undefined
+----
+event.hashchange : listener(event : Event) : undefined
+----
+event.input : listener(event : Event) : undefined
+----
+event.invalid : listener(event : Event) : undefined
+----
+event.keydown : listener(event : Event) : undefined
+----
+event.keypress : listener(event : Event) : undefined
+----
+event.keyup : listener(event : Event) : undefined
+----
+event.load : listener(event : Event) : undefined
+----
+event.loadeddata : listener(event : Event) : undefined
+----
+event.loadedmetadata : listener(event : Event) : undefined
+----
+event.loadstart : listener(event : Event) : undefined
+----
+event.message : listener(event : Event) : undefined
+----
+event.mousedown : listener(event : Event) : undefined
+----
+event.mousemove : listener(event : Event) : undefined
+----
+event.mouseout : listener(event : Event) : undefined
+----
+event.mouseover : listener(event : Event) : undefined
+----
+event.mouseup : listener(event : Event) : undefined
+----
+event.mousewheel : listener(event : Event) : undefined
+----
+event.offline : listener(event : Event) : undefined
+----
+event.online : listener(event : Event) : undefined
+----
+event.pause : listener(event : Event) : undefined
+----
+event.play : listener(event : Event) : undefined
+----
+event.playing : listener(event : Event) : undefined
+----
+event.pagehide : listener(event : Event) : undefined
+----
+event.pageshow : listener(event : Event) : undefined
+----
+event.popstate : listener(event : Event) : undefined
+----
+event.progress : listener(event : Event) : undefined
+----
+event.ratechange : listener(event : Event) : undefined
+----
+event.reset : listener(event : Event) : undefined
+----
+event.resize : listener(event : Event) : undefined
+----
+event.scroll : listener(event : Event) : undefined
+----
+event.seeked : listener(event : Event) : undefined
+----
+event.seeking : listener(event : Event) : undefined
+----
+event.select : listener(event : Event) : undefined
+----
+event.show : listener(event : Event) : undefined
+----
+event.stalled : listener(event : Event) : undefined
+----
+event.storage : listener(event : Event) : undefined
+----
+event.submit : listener(event : Event) : undefined
+----
+event.suspend : listener(event : Event) : undefined
+----
+event.timeupdate : listener(event : Event) : undefined
+----
+event.unload : listener(event : Event) : undefined
+----
+event.volumechange : listener(event : Event) : undefined
+----
+event.storage : listener(event : StorageEvent) : undefined
+

@@ -1,0 +1,17 @@
+SVGAnimatedAngle : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedAngle
+
+----
+instance.baseVal : SVGAngle
+
+ReadOnly:
+true
+
+----
+instance.animVal : SVGAngle
+
+ReadOnly:
+true
+

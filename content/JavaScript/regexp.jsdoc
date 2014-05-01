@@ -1,0 +1,152 @@
+RegExp : Object
+
+RegExp represents a regular expression that can be used for
+searching and extracting parts of %%/String|**String**%%s.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=192
+
+----
+RegExp(pattern : String, [flags : String]) : RegExp
+
+Constructs a new **RegExp** for the specified **pattern**. 
+If **flags** contains **'g'**, %%#global|**this.global**%% will be set to **true**.  
+If **flags** contains **'i'**, %%#ignoreCase|**this.ignoreCase**%% will be set to **true**.  
+If **flags** contains **'m'**, %%#multiline|**this.multiline**%% will be set to **true**. 
+
+**RegExp**s can also be constructed using **/pattern/flags** syntax.
+
+<example>
+// The following are equivalent
+var x = /pattern/i;
+var y = RegExp('pattern', 'i');
+var z = new RegExp('pattern', 'i');
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=206
+
+
+----
+new RegExp(pattern : String, [flags : String]) : RegExp
+
+Same as %%#RegExp_String_String|**RegExp(pattern, flags)**%%.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=206
+
+----
+prototype.exec(str : String) : Array<String>
+
+If **this** matches **str**, returns a new **Array** with item **0** equal to the
+portion of **str** that matched the regular expression, item **1** equal to the first
+capturing group in **this**, item **2** equal to the second capturing group in **this**,
+and so on.  If **this** doesn't match **str**, returns **null**.
+
+<example>
+var regexp = /(\d\d\d)-(\d\d\d\d)/;
+var result = regexp.exec('call me: 555-4385');
+if (result) {
+  console.log(result[0]);
+  console.log(result[1]);
+  console.log(result[2]);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=208
+
+
+----
+prototype.test(str : String) : Boolean
+
+Returns **true** if **this** matches **str**.
+
+<example>
+var regexp = /(\d\d\d)-(\d\d\d\d)/;
+console.log(regexp.test('555-4385'));
+console.log(regexp.test('KL5-4385'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=208
+
+----
+instance.source : String
+
+The pattern of this regular expression.
+
+<example>
+var regexp = /(\d\d\d)-(\d\d\d\d)/;
+console.log(regexp);
+console.log(regexp.source);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+
+
+----
+instance.global : Boolean
+
+**true** if the **RegExp** was created with the **'g'** flag.  Global 
+**RegExp**s will match each place %%#source|**this.source**%% occurs in the string, not 
+just the first match.
+
+<example>
+console.log('abcba'.replace(/b/, 'X'));
+console.log('abcba'.replace(/b/g, 'X'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+
+----
+instance.ignoreCase : Boolean
+
+**true** if the **RegExp** was created with the **'i'** flag.  IgnoreCase 
+**RegExp**s will do case insensitive matching.
+
+<example>
+console.log(/hello/.test('Hello'));
+console.log(/hello/i.test('Hello'));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+
+----
+instance.multiline : Boolean
+
+**true** if the **RegExp** was created with the **'m'** flag. Multiline 
+**RegExp**s will match **'^'** to the beginning of lines as well as the 
+beginning of the string and match **'$'** to the end of lines as well as 
+the end of the string.
+
+<example>
+var str = 'hello\nworld';
+console.log(/^world/.test(str));
+console.log(/^world/m.test(str));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+
+----
+instance.lastIndex : Number
+
+The starting index into the string for the next search.  Is automatically set to the
+index after a successful match. This property only applies if the **RegExp** is %%#global|**global**%%.
+
+<example>
+var regexp = /foo|bar|baz/g;
+console.log(regexp.exec('foo bar baz')[0]);
+console.log(regexp.lastIndex);
+regexp.lastIndex = 5;
+console.log(regexp.exec('foo bar baz')[0]);
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+

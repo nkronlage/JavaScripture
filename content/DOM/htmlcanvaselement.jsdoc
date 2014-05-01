@@ -1,0 +1,103 @@
+HTMLCanvasElement : HTMLElement
+
+**HTMLCanvasElement** is an element that allows programmatically creating
+images in the browser.  
+It corresponds to the **<canvas>** tag.
+
+----
+prototype.getContext(contextType : String, [contextAttributes : Object]) : CanvasRenderingContext
+
+Returns a context that can be used to draw into the canvas. **contextType** can be
+either **'2d'** to retrieve a %%CanvasRenderingContext2D|**CanvasRenderingContext2D**%%
+or **'webgl'** to retrieve a %%WebGLRenderingContext|**WebGLRenderingContext**%%. When
+specifying **'webgl'**, you can configure how the context is initialized by passing
+a %%/WebGLContextAttributes|**WebGLContextAttributes**%% as the second parameter.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(10, 10, 20, 40);
+
+  context.fillStyle = 'rgba(0,0,255,0.7)';
+  context.fillRect(20, 20, 40, 20);
+</script>
+</htmlexample>
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-getcontext
+
+----
+prototype.toDataURL([type = 'image/png': String, [jpegCompressionRatio : Number]]) : String
+
+Returns a **'data:'** string representation of the canvas. **type** can be 
+**'image/png'** or **'image/jpeg'**. 
+When using **'image/jgeg'**, you may pass an additional value between 
+**0.0** and **1.0** to change the compression rate.
+
+Note, if you are using WebGL, you must paint to the canvas immediately before 
+calling **toDataURL**, or set %%WebGLContextAttributes#preserveDrawingBuffer|**preserveDrawingBuffer**%%
+to **true** to keep the buffer available after the browser has displayed the 
+contents.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<img id='img'>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(10, 10, 20, 40);
+
+  context.fillStyle = 'rgba(0,0,255,0.7)';
+  context.fillRect(20, 20, 40, 20);
+
+  // Apply the dataURL to a image's src property
+  var img = document.getElementById('img');
+  img.src = canvas.toDataURL();
+  console.log(img.src);
+</script>
+</htmlexample>
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-todataurl
+
+----
+instance.width : Number
+
+The width of **this** in pixels.  Setting **width** clears the buffer.
+
+<htmlexample>
+<canvas id='canvas' width='150' height='75'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+
+  console.log(canvas.width);
+</script>
+</htmlexample>
+
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-width
+
+----
+instance.height : Number
+
+The height of **this** in pixels.  Setting **height** clears the buffer.
+
+<htmlexample>
+<canvas id='canvas' width='150' height='75'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+
+  console.log(canvas.height);
+</script>
+</htmlexample>
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-height
+

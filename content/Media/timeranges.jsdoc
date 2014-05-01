@@ -1,0 +1,26 @@
+TimeRanges : Object
+
+Represents a list of time ranges.
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#timeranges
+
+----
+instance.length : Number
+
+The number of ranges in the list.
+
+ReadOnly:
+true
+
+----
+prototype.start(index : Number) : Number
+
+Returns the start time of the range specified by **index**.  
+**index** must be between **0** and **this.length - 1**.
+
+----
+prototype.end(index : Number) : Number
+
+Returns the end time of the range specified by **index**.  
+**index** must be between **0** and **this.length - 1**.

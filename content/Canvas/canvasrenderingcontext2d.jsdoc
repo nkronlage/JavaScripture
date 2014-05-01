@@ -1,0 +1,1612 @@
+CanvasRenderingContext2D : CanvasRenderingContext
+
+The **CanvasRenderingContext2D** is an object that is used to issue 2D drawing
+commands to a %%/HTMLCanvasElement|canvas%%.  It is obtained by passing 
+**'2d'** to the 
+%%HTMLCanvasElement#getContext|**HTMLCanvasElement.getContext()**%% 
+method.
+
+Spec:
+http://www.w3.org/TR/2012/CR-2dcontext-20121217/
+
+Spec2:
+http://dev.w3.org/html5/2dcontext/
+
+----
+instance.canvas : HTMLCanvasElement
+
+The canvas that owns this context.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  
+  console.log(context.canvas === canvas);
+</script>
+</htmlexample>
+
+Spec:
+http://dev.w3.org/html5/2dcontext/#dom-context-2d-canvas
+
+ReadOnly:
+true
+
+----
+prototype.save() : undefined
+
+Saves the current state of the **this** onto the stack.
+Call %%#restore|**restore()**%% to restore the saved state.
+
+The saved state consists of: %%#setTransform|transformation matrix%%, 
+%%#clip|clip region%%,
+%%#fillStyle|**fillStyle**%%, 
+%%#font|**font**%%, 
+%%#globalAlpha|**globalAlpha**%%, 
+%%#globalCompositeOperation|**globalCompositeOperation**%%, 
+%%#lineCap|**lineCap**%%, 
+%%#lineJoin|**lineJoin**%%, 
+%%#lineWidth|**lineWidth**%%, 
+%%#miterLimit|**miterLimit**%%, 
+%%#shadowBlur|**shadowBlur**%%, 
+%%#shadowColor|**shadowColor**%%, 
+%%#shadowOffsetX|**shadowOffsetX**%%, 
+%%#shadowOffsetY|**shadowOffsetY**%%, 
+%%#strokeStyle|**strokeStyle**%%, 
+%%#textAlign|**textAlign**%%, and
+%%#textBaseline|**textBaseline**%%.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.save();
+  context.translate(100, 20);
+  context.fillStyle = 'red';
+  context.fillRect(0, 0, 20, 40);
+
+  context.restore();
+  context.fillStyle = 'blue';
+  context.fillRect(0, 0, 20, 40);
+</script>
+</htmlexample>
+
+----
+prototype.restore() : undefined
+
+Restores the state from the the previous %%#save|**save()**%% call. 
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.save();
+  context.translate(100, 20);
+  context.fillStyle = 'red';
+  context.fillRect(0, 0, 20, 40);
+
+  context.restore();
+  context.fillStyle = 'blue';
+  context.fillRect(0, 0, 20, 40);
+</script>
+</htmlexample>
+
+----
+instance.globalAlpha : Number
+
+The alpha to use for subsequent paint operations. Must be between
+**0** and **1**. Defaults to **1**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(10, 10, 20, 40);
+
+  context.globalAlpha = 0.3;
+  context.fillRect(50, 10, 20, 40);
+</script>
+</htmlexample>
+
+
+----
+instance.globalCompositeOperation : String
+
+Determines how subsequent paint operations combine with the back buffer. Must be one of the following
+(**source** refers to the current drawing operation and **destination** refers 
+to the existing contents of the canvas):
+
+<html>
+<table>
+<tr>
+<th>Value</th><th>Operation</th>
+</tr>
+<tr>
+<td>**'source-over'**</td>
+<td>Draw the source on the canvas normally.</td>
+</tr>
+
+<tr>
+<td>**'source-in'**</td>
+<td>Keep the source where the destination is opaque.</td>
+</tr>
+
+<tr>
+<td>**'source-out'**</td>
+<td>Keep the source where the destination is transparent.</td>
+</tr>
+
+<tr>
+<td>**'source-atop'** </td>
+<td>Draw the source on the destination but only keep pixels that were
+opaque in the destination.</td>
+</tr>
+
+<tr>
+<td>**'destination-over'**</td>
+<td>Draw the source under the destination.</td>
+</tr>
+
+<tr>
+<td>**'destination-in'**</td>
+<td>Keep the destination where the source is opaque.</td>
+</tr>
+
+<tr>
+<td>**'destination-out'**</td>
+<td>Keep the destination where the source is transparent.</td>
+</tr>
+
+<tr>
+<td>**'destination-atop'**</td>
+<td>Draw the destination on the source but only keep pixels that were 
+opaque in the source.</td>
+</tr>
+
+<tr>
+<td>**'lighter'**</td>
+<td>Increase the brightness of pixels under the source.</td>
+</tr>
+
+<tr>
+<td>**'copy'**</td>
+<td>Keep only the source.</td>
+</tr>
+
+<tr>
+<td>**'xor'**</td>
+<td>Exclusive OR of the source and destination.</td>
+</tr>
+</table>
+<br>
+</html>
+
+Defaults to **'source-over'**.
+
+
+<htmlexample>
+<select id='select' onchange='draw()'></select>
+<canvas id='canvas'></canvas>
+<script>
+  var options = ['source-over', 'source-in', 'source-out', 'source-atop',
+                 'destination-over', 'destination-in', 'destination-out', 'destination-atop', 
+                 'lighter', 'darker', 'copy', 'xor'];
+  var select = document.getElementById('select');
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  var draw = function() { 
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.globalCompositeOperation = 'source-over';
+    context.fillStyle = 'red';
+    context.fillRect(10, 10, 80, 140);
+
+    context.globalCompositeOperation = select.value;
+    context.fillStyle = 'blue';
+    context.fillRect(40, 40, 100, 60);
+  }
+  draw();
+</script>
+</htmlexample>
+
+
+Spec:
+http://dev.w3.org/html5/2dcontext/#dom-context-2d-globalcompositeoperation
+
+----
+instance.strokeStyle : Object
+
+The brush used to fill the stroke of shapes.  Must be a css color %%/String|**String**%% 
+(such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%, 
+or a %%/CanvasPattern|**CanvasPattern**%%.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.strokeStyle = 'red';
+  context.strokeRect(10, 10, 20, 40);
+
+  context.strokeStyle = 'rgba(0,0,255,0.7)';
+  context.strokeRect(20, 20, 40, 20);
+</script>
+</htmlexample>
+
+IDL:
+  // colors and styles (see also the CanvasLineStyles interface)
+           attribute any strokeStyle; // (default black)
+
+Spec:
+http://dev.w3.org/html5/2dcontext/#dom-context-2d-strokestyle
+
+----
+instance.fillStyle : Object
+
+The brush used to fill the area of shapes.  Must be a css color %%/String|**String**%% 
+(such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%, 
+or a %%/CanvasPattern|**CanvasPattern**%%.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(10, 10, 20, 40);
+
+  context.fillStyle = 'rgba(0,0,255,0.7)';
+  context.fillRect(20, 20, 40, 20);
+</script>
+</htmlexample>
+
+
+IDL:
+           attribute any fillStyle; // (default black)
+
+----
+instance.createLinearGradient(x0 : Number, y0 : Number, x1 : Number, y1 : Number) : CanvasGradient
+
+Creates a linear gradient from **x0**, **y0** to **x1**, **y1**.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var g = context.createLinearGradient(0,0,canvas.width,0);
+  g.addColorStop(0, 'white');
+  g.addColorStop(1, 'blue');
+
+  context.fillStyle = g;
+  context.fillRect(0,0,canvas.width,canvas.height);
+</script>
+</htmlexample>
+
+IDL:
+  CanvasGradient createLinearGradient(double x0, double y0, double x1, double y1);
+
+----
+instance.createRadialGradient(x0 : Number, y0 : Number, r0 : Number, x1 : Number, y1 : Number, r1 : Number) : CanvasGradient
+
+Creates a radial gradient from the circle at **x0**, **y0** with radius **r0** to 
+the circle at **x1**, **y1** with radius **r1**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var g = context.createRadialGradient(150,75,0, 150,75,150);
+  g.addColorStop(0, 'white');
+  g.addColorStop(1, 'blue');
+
+  context.fillStyle = g;
+  context.fillRect(0,0,canvas.width,canvas.height);
+</script>
+</htmlexample>
+
+IDL:
+  CanvasGradient createRadialGradient(double x0, double y0, double r0, double x1, double y1, double r1);
+
+
+----
+instance.createPattern(image : HTMLImageElement, repetition : String) : CanvasPattern
+
+Creates a pattern for the specified **image**.  
+
+**image** can be either a
+%%/HTMLImageElement|**HTMLImageElement**%%,
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLVideoElement|**HTMLVideoElement**%%.
+  
+**repetition** must be one of
+**'repeat'**, **'repeat-x'**, **'repeat-y'**, or **'no-repeat'**.
+
+<htmlexample>
+<select id='select' onchange='draw()'></select>
+<canvas id='canvas'></canvas>
+<script>
+  var options = ['repeat', 'repeat-x', 'repeat-y', 'no-repeat'];
+  var select = document.getElementById('select');
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  var draw = function() { 
+    var patternCanvas = document.createElement('canvas');
+    patternCanvas.width = patternCanvas.height = 50;
+    var patternContext = patternCanvas.getContext('2d');
+    patternContext.drawImage(img, 0, 0, patternCanvas.width, patternCanvas.height);
+
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = context.createPattern(patternCanvas, select.value);
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = draw;
+</script>
+</htmlexample>
+
+
+----
+instance.shadowOffsetX : Number
+
+Determines the x offset of the shadow from the drawn shape.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.shadowBlur = 3;
+  context.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  context.shadowOffsetX = 3;
+  context.shadowOffsetY = 6;
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+
+  context.fillStyle = 'red';
+  context.fillRect(100, 20, 30, 30);
+</script>
+</htmlexample>
+
+IDL:
+  // shadows
+           attribute double shadowOffsetX; // (default 0)
+
+
+----
+instance.shadowOffsetY : Number
+
+Determines the y offset of the shadow from the drawn shape.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.shadowBlur = 3;
+  context.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  context.shadowOffsetX = 3;
+  context.shadowOffsetY = 6;
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+
+  context.fillStyle = 'red';
+  context.fillRect(100, 20, 30, 30);
+</script>
+</htmlexample>
+
+IDL:
+           attribute double shadowOffsetY; // (default 0)
+
+----
+instance.shadowBlur : Number
+
+Describes how big the shadow blur is. Larger numbers are 
+blurrier. Defaults to **0**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.shadowBlur = 3;
+  context.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  context.shadowOffsetX = 3;
+  context.shadowOffsetY = 6;
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+
+  context.fillStyle = 'red';
+  context.fillRect(100, 20, 30, 30);
+</script>
+</htmlexample>
+
+----
+instance.shadowColor : String 
+
+The css color string of the shadow. Defaults to **transparent**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.shadowBlur = 3;
+  context.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  context.shadowOffsetX = 3;
+  context.shadowOffsetY = 6;
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+
+  context.fillStyle = 'red';
+  context.fillRect(100, 20, 30, 30);
+</script>
+</htmlexample>
+
+IDL:
+           attribute DOMString shadowColor; // (default transparent black)
+
+----
+prototype.clearRect(x : Number, y : Number, w : Number, h : Number) : undefined
+
+Clears a rectangular portion of the canvas to transparent.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(20, 60, 100, 50);
+</script>
+</htmlexample>
+
+
+IDL:
+  // rects
+  void clearRect(double x, double y, double w, double h);
+
+----
+prototype.fillRect(x : Number, y : Number, w : Number, h : Number) : undefined
+
+Fills a rectangle with the %%#fillStyle|**fillStyle**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillRect(10, 10, 20, 40);
+</script>
+</htmlexample>
+
+IDL:
+  void fillRect(double x, double y, double w, double h);
+
+
+----
+prototype.strokeRect(x : Number, y : Number, w : Number, h : Number) : undefined
+
+Draws a rectangular path with the 
+current %%#strokeStyle|**strokeStyle**%% and
+%%#lineWidth|**lineWidth**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.strokeRect(10, 10, 20, 40);
+</script>
+</htmlexample>
+
+IDL:
+  void strokeRect(double x, double y, double w, double h);
+
+----
+prototype.beginPath() : undefined
+
+Begins a path. Use with
+%%#moveTo|**moveTo()**%%, 
+%%#lineTo|**lineTo()**%%,
+%%#quadraticCurveTo|**quadraticCurveTo()**%%, 
+%%#bezierCurveTo|**bezierCurveTo()**%%,
+%%#arc|**arc()**%%,
+%%#arcTo|**arcTo()**%%, and
+%%#closePath|**closePath()**%%
+to define the shape of the path.
+
+Draw the path with %%#fill|**fill()**%% or 
+%%#stroke|**stroke()**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.lineWidth = 20;
+
+  context.beginPath(); 
+  context.moveTo(20,20); 
+  context.lineTo(60,60); 
+  context.lineTo(100,20);
+  context.stroke();
+</script>
+</htmlexample>
+
+IDL:
+  // current default path API (see also CanvasPathMethods)
+  void beginPath();
+
+----
+prototype.fill() : undefined
+
+Fills the current path with the current %%#fillStyle|**fillStyle**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.fill();
+</script>
+</htmlexample>
+
+IDL:
+  void fill();
+
+
+----
+prototype.stroke() : undefined
+
+Draws a line around the current path with the 
+current %%#strokeStyle|**strokeStyle**%% and
+%%#lineWidth|**lineWidth**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+</script>
+</htmlexample>
+
+----
+prototype.clip() : undefined
+
+Replaces the current clip region with the intersection 
+of the current path and the current clip region.
+Use %%#save|**save()**%% and %%#restore|**restore()**%%
+to save and restore clip regions.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+  context.clip();
+
+  context.font = '48px sans-serif';
+  context.strokeText('canvas test', 10, 55);
+</script>
+</htmlexample>
+
+
+IDL:
+  void clip();
+
+
+----
+prototype.isPointInPath(x : Number, y : Number) : Boolean
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'black';
+  context.beginPath(); 
+  context.moveTo(20, 20); 
+  context.lineTo(60, 60); 
+  context.lineTo(100, 20);
+  context.fill();
+
+  context.fillStyle = 'red'
+  context.fillRect(50, 30, 4, 4);
+  context.fillText('isPointInPath = ' + context.isPointInPath(50, 30), 0, 100);
+
+  context.fillStyle = 'blue'
+  context.fillRect(90, 50, 4, 4);
+  context.fillText('isPointInPath = ' + context.isPointInPath(50, 70), 0, 120);
+</script>
+</htmlexample>
+
+IDL:
+  boolean isPointInPath(double x, double y);
+
+
+----
+prototype.fillText(text : String, x : Number, y : Number, [maxWidth : Number]) : undefined
+
+Draws the specified string at **x** and **y** using 
+%%#fillStyle|**fillStyle**%%, 
+%%#font|**font**%%,
+%%#textAlign|**textAlign**%%, and
+%%#textBaseline|**textBaseline**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.font = '48px sans-serif';
+  context.fillText('canvas test', 10, 35);
+</script>
+</htmlexample>
+
+
+----
+prototype.strokeText(text : String, x : Number, y : Number, [maxWidth : Number]) : undefined
+
+
+Draws an outline of the specified string at **x** and **y** using 
+
+%%#strokeStyle|**strokeStyle**%%, 
+%%#lineWidth|**lineWidth**%%, 
+%%#font|**font**%%,
+%%#textAlign|**textAlign**%%, and
+%%#textBaseline|**textBaseline**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.font = '48px sans-serif';
+  context.strokeText('canvas test', 10, 35);
+</script>
+</htmlexample>
+
+IDL:
+  void strokeText(DOMString text, double x, double y, optional double maxWidth);
+
+
+----
+prototype.measureText(text : String) : TextMetrics
+
+Retrieves information about the rendered size of **text**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillText('hello world', 0, 30);
+
+  var textMetrics = context.measureText('hello world');
+  
+  context.fillRect(0, 35, textMetrics.width, 1);
+</script>
+</htmlexample>
+
+----
+prototype.drawImage(image : HTMLImageElement, dx : Number, dy : Number) : undefined
+
+Draws **image** to the canvas at **dx**, **dy** using the natural size of the image.
+
+**image** can be either an
+%%/HTMLImageElement|**HTMLImageElement**%%,
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLVideoElement|**HTMLVideoElement**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0);
+  };
+</script>
+</htmlexample>
+
+IDL:
+  // drawing images
+  void drawImage((HTMLImageElement or HTMLCanvasElement or HTMLVideoElement) image, double dx, double dy);
+
+
+----
+prototype.drawImage(image : HTMLImageElement, dx : Number, dy : Number, dw : Number, dh : Number) : undefined
+
+Draws **image** to the canvas at **dx**, **dy** of size **dw** by **dh**.
+
+**image** can be either an
+%%/HTMLImageElement|**HTMLImageElement**%%,
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLVideoElement|**HTMLVideoElement**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+  };
+</script>
+</htmlexample>
+
+IDL:
+  void drawImage((HTMLImageElement or HTMLCanvasElement or HTMLVideoElement) image, double dx, double dy, double dw, double dh);
+
+----
+prototype.drawImage(image : HTMLImageElement, sx : Number, sy : Number, sw : Number, sh : Number, dx : Number, dy : Number, dw : Number, dh : Number) : undefined
+
+Draws the subregion of **image** starting at **sx**, **sy** of size **sw** by **sh** 
+into the subregion of the canvas at **dx**, **dy** of size **dw** by **dh**.
+The image will be stretched and scaled if **sw**, **sh** does not match **dw** by **dh**.
+
+**image** can be either an
+%%/HTMLImageElement|**HTMLImageElement**%%,
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLVideoElement|**HTMLVideoElement**%%.
+
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.drawImage(img, 40, 100, 50, 50, 0, 0, 100, 100);
+  };
+</script>
+</htmlexample>
+
+
+IDL:
+  void drawImage((HTMLImageElement or HTMLCanvasElement or HTMLVideoElement) image, double sx, double sy, double sw, double sh, double dx, double dy, double dw, double dh);
+
+----
+prototype.createImageData(sw : Number, sh : Number) : ImageData
+
+Creates a buffer of size **sw** by **sh** that can be filled with pixel 
+data and later copied into the canvas using %%#putImageData|**putImageData()**%%.
+The buffer is initialized to transparent.
+
+See also %%#getImageData|**getImageData()**%% and
+%%#putImageData|**putImageData()**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var imageData = context.createImageData(100, 100);
+
+  for (var i = 0; i < imageData.data.length; i++) {
+    imageData.data[i] = Math.round(255 * Math.random());
+  }
+
+  context.putImageData(imageData, 0, 0);
+</script>
+</htmlexample>
+
+
+IDL:
+  // pixel manipulation
+  ImageData createImageData(double sw, double sh);
+
+----
+prototype.createImageData(imageData : ImageData) : ImageData
+
+Creates a buffer of the same size as **imageData** that can be filled with pixel 
+data and later copied into the canvas using %%#putImageData|**putImageData()**%%.
+The buffer is initialized to transparent.
+
+See also %%#getImageData|**getImageData()**%% and
+%%#putImageData|**putImageData()**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var imageData1 = context.createImageData(100, 100);
+  var imageData2 = context.createImageData(imageData1);
+
+  console.log(imageData1.width + ', ' + imageData1.height);
+  console.log(imageData2.width + ', ' + imageData2.height);
+</script>
+</htmlexample>
+
+IDL:
+  ImageData createImageData(ImageData imagedata);
+
+----
+prototype.getImageData(sx : Number, sy : Number, sw : Number, sh : Number) : ImageData
+
+Retrieves the contents of the canvas starting at **sx**, **sy** of 
+size **sw** by **sh**. 
+
+See also %%#createImageData|**createImageData()**%% and
+%%#putImageData|**putImageData()**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0);
+
+    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    for (var i = 0; i < imageData.data.length; i++) {
+      imageData.data[i] *= 1.5; // Increase brightness of each component
+    }
+
+    context.putImageData(imageData, 0, 0);
+  };
+</script>
+</htmlexample>
+
+
+IDL:
+  ImageData getImageData(double sx, double sy, double sw, double sh);
+
+----
+prototype.putImageData(imageData : ImageData, dx : Number, dy : Number, [dirtyX : Number, dirtyY : Number, dirtyWidth : Number, dirtyHeight : Number]) : undefined
+
+Copies the contents of **imageData** into the canvas at **dx**, **dy**.  
+If the **dirty** parameters are specified, only that region of the 
+**imageData** is copied.
+
+See also %%#createImageData|**createImageData()**%% and
+%%#getImageData|**getImageData()**%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  // create a 100x100 region of random colors
+  var imageData = context.createImageData(100, 100);
+
+  for (var i = 0; i < imageData.data.length; i++) {
+    imageData.data[i] = Math.round(255 * Math.random());
+  }
+
+  context.putImageData(imageData, 0, 0);
+</script>
+</htmlexample>
+
+IDL:
+  void putImageData(ImageData imagedata, double dx, double dy);
+
+----
+prototype.scale(x : Number, y : Number) : undefined
+
+Applies a scale transform to the current transform
+so subsequent drawing operations are
+scale by **x**, **y**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillText('hello', 10, 30);
+
+  context.scale(6, 2);
+
+  context.fillStyle = 'blue';
+  context.fillText('hello', 10, 30);
+</script>
+</htmlexample>
+
+IDL:
+  // transformations (default transform is the identity matrix)
+  void scale(double x, double y);
+
+----
+prototype.rotate(angle : Number) : undefined
+
+Applies a rotation transform to the current transform
+so subsequent drawing operations are
+rotated by **angle** radians. Positive **angle**s are clockwise.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  context.rotate(Math.PI / 6);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+</htmlexample>
+
+IDL:
+  void rotate(double angle);
+
+
+----
+prototype.translate(x : Number, y : Number) : undefined
+
+Applies a translate transform to the current transform so 
+subsequent drawing operations are
+shifted by **x**, **y**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(0, 0, 20, 40);
+
+  context.translate(100, 20);
+
+  context.fillStyle = 'blue';
+  context.fillRect(0, 0, 20, 40);
+</script>
+</htmlexample>
+
+IDL:
+  void translate(double x, double y);
+
+----
+prototype.transform(a : Number, b : Number, c : Number, d : Number, e : Number, f : Number) : undefined
+
+Applies the following transform to the current transform. 
+
+<html>
+<table>
+<tr><td>**a**</td><td>**c**</td><td>**e**</td></tr>
+<tr><td>**b**</td><td>**d**</td><td>**f**</td></tr>
+<tr><td>**0**</td><td>**0**</td><td>**1**</td></tr>
+</table>
+</html>
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var scale = 2;
+  var translateX = 50;
+  var translateY = 20;
+
+  context.transform(     scale,          0, 
+                             0,      scale, 
+                    translateX, translateY);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+</htmlexample>
+
+
+IDL:
+  void transform(double a, double b, double c, double d, double e, double f);
+
+
+----
+prototype.setTransform(a : Number, b : Number, c : Number, d : Number, e : Number, f : Number) : undefined
+
+Replaces the current transform with following matrix:
+
+<html>
+<table>
+<tr><td>**a**</td><td>**c**</td><td>**e**</td></tr>
+<tr><td>**b**</td><td>**d**</td><td>**f**</td></tr>
+<tr><td>**0**</td><td>**0**</td><td>**1**</td></tr>
+</table>
+</html>
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var scale = 2;
+  var translateX = 50;
+  var translateY = 20;
+
+  context.setTransform(     scale,          0, 
+                                0,      scale, 
+                       translateX, translateY);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+</htmlexample>
+
+
+
+Spec:
+http://www.w3.org/TR/2012/CR-2dcontext-20121217/#dom-context-2d-settransform
+
+IDL:
+  void setTransform(double a, double b, double c, double d, double e, double f);
+
+----
+instance.lineWidth : Number
+
+The width of the stroke. Defaults to **1**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.lineWidth = 20;
+
+  context.beginPath(); 
+  context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
+  context.stroke();
+</script>
+</htmlexample>
+
+
+IDL:
+interface CanvasLineStyles {
+  // line caps/joins
+           attribute double lineWidth; // (default 1)
+
+----
+instance.lineCap : String
+
+Determines the shape of line endings.  Must be one of 
+
+**'butt'**,
+**'round'**,
+or **'square'**.
+
+Defaults to **'butt'**.
+
+<htmlexample>
+<select id='select' onchange='draw()'></select>
+<canvas id='canvas'></canvas>
+<script>
+  var options = ['butt', 'round', 'square'];
+  var select = document.getElementById('select');
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  var draw = function() { 
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.lineCap = select.value;
+    context.strokeStyle = 'black';
+    context.lineWidth = 20;
+
+    context.beginPath();
+    context.moveTo(20,20);
+    context.lineTo(100,100);
+    context.lineTo(180,20);
+    context.stroke();
+  
+    context.strokeStyle = 'white';
+    context.lineWidth = 1;
+    context.stroke();
+  }
+  draw();
+</script>
+</htmlexample>
+
+IDL:
+           attribute DOMString lineCap; // "butt", "round", "square" (default "butt")
+
+----
+instance.lineJoin : String
+
+Determines how lines meet.  Must be one of 
+
+**'miter'**,
+**'round'**, or
+**'bevel'**.
+
+Defaults to **'miter'**.
+
+
+
+<htmlexample>
+<select id='select' onchange='draw()'></select>
+<canvas id='canvas'></canvas>
+<script>
+  var options = ['miter', 'round', 'bevel'];
+  var select = document.getElementById('select');
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  var draw = function() { 
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.lineJoin = select.value;
+    context.strokeStyle = 'black';
+    context.lineWidth = 20;
+
+    context.beginPath();
+    context.moveTo(20,20);
+    context.lineTo(100,100);
+    context.lineTo(180,20);
+    context.stroke();
+  
+    context.strokeStyle = 'white';
+    context.lineWidth = 1;
+    context.stroke();
+  }
+  draw();
+</script>
+</htmlexample>
+
+IDL:
+           attribute DOMString lineJoin; // "round", "bevel", "miter" (default "miter")
+
+----
+instance.miterLimit : Number
+
+Adjusts the maximum distance the miter point can extend from 
+the joint.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.strokeStyle = 'black';
+  context.lineWidth = 20;
+
+  context.miterLimit = 1;
+    
+  // Top left
+  context.beginPath(); 
+  context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
+  context.stroke();
+  
+  // Top right
+  context.beginPath();
+  context.moveTo(140,20); context.lineTo(155,60); context.lineTo(170,20);
+  context.stroke();
+
+  context.miterLimit = 10;
+
+  // Bottom left
+  context.beginPath(); 
+  context.moveTo(20,80); context.lineTo(60,120); context.lineTo(100,80);
+  context.stroke();
+  
+  // Bottom right
+  context.beginPath();
+  context.moveTo(140,80); context.lineTo(155,120); context.lineTo(170,80);
+  context.stroke();
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#dom-context-2d-linecap
+
+IDL:
+           attribute double miterLimit; // (default 10)
+};
+
+
+----
+instance.font : String
+
+The css string describing the font used to draw text.  Defaults
+to **'10px sans-serif'**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.font = '48px sans-serif';
+  context.fillText('canvas test', 10, 35);
+</script>
+</htmlexample>
+
+IDL:
+[NoInterfaceObject]
+interface CanvasText {
+  // text
+           attribute DOMString font; // (default 10px sans-serif)
+
+----
+instance.textAlign : String
+
+Determines which edge of the text to place at the **x** coordinate
+passed to %%#fillText|**fillText**%% or %%#strokeText|**strokeText**%%.
+Must be one of **'start'**, **'end'**, **'left'**, **'right'**, **'center'**.
+Defaults to **'start'**.
+
+<htmlexample>
+<select id='select' onchange='draw()'></select>
+<canvas id='canvas'></canvas>
+<script>
+  var options = ['start', 'end', 'left', 'right', 'center'];
+  var select = document.getElementById('select');
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  var draw = function() { 
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.font = '20px sans-serif';
+    context.textAlign = select.value;
+    context.fillStyle = 'black';
+    context.fillText('test', canvas.width / 2, canvas.height / 2);
+
+    context.fillStyle = 'red';
+    context.fillRect(canvas.width / 2 - 2, canvas.height / 2 - 2, 4, 4);
+  }
+  draw();
+</script>
+</htmlexample>
+
+
+Spec:
+http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#dom-context-2d-textalign
+
+
+IDL:
+attribute DOMString textAlign; // "start", "end", "left", "right", "center" (default: "start")
+
+
+----
+instance.textBaseline : String
+
+Determines which edge of the text to place at the **y** coordinate
+passed to %%#fillText|**fillText**%% or %%#strokeText|**strokeText**%%.
+Must be one of **'top'**, **'hanging'**, **'middle'**, **'alphabetic'**, 
+**'ideographic'**, **'bottom'**.
+
+Defaults to **'alphabetic'**.
+
+<htmlexample>
+<select id='select' onchange='draw()'></select>
+<canvas id='canvas'></canvas>
+<script>
+  var options = ['top', 'hanging', 'middle', 'alphabetic', 
+                 'ideographic', 'bottom'];
+  var select = document.getElementById('select');
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  var draw = function() { 
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.font = '20px sans-serif';
+    context.textBaseline = select.value;
+    context.fillStyle = 'black';
+    context.fillText('test', canvas.width / 2, canvas.height / 2);
+
+    context.fillStyle = 'red';
+    context.fillRect(canvas.width / 2 - 2, canvas.height / 2 - 2, 4, 4);
+  }
+  draw();
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#dom-context-2d-textbaseline
+
+IDL:
+           attribute DOMString textBaseline; // "top", "hanging", "middle", "alphabetic", "ideographic", "bottom" (default: "alphabetic")
+};
+
+----
+prototype.closePath() : undefined
+
+Joins the last line segment to the beginning of the path.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.lineWidth = 20;
+
+  context.beginPath(); 
+  context.moveTo(20,20);
+  context.lineTo(60,60); 
+  context.lineTo(100,20);
+  context.closePath();
+  context.stroke();
+</script>
+</htmlexample>
+
+
+IDL:
+[NoInterfaceObject]
+interface CanvasPathMethods {
+  // shared path API methods
+  void closePath();
+
+----
+prototype.moveTo(x : Number, y : Number) : undefined
+
+Move current point of the current path to **x**, **y** 
+without connecting the stroke.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath(); 
+  context.moveTo(20,20); 
+  context.lineTo(60,60); 
+
+  context.moveTo(80,20); 
+  context.lineTo(120,60);
+  context.stroke();
+</script>
+</htmlexample>
+
+IDL:
+  void moveTo(double x, double y);
+
+----
+prototype.lineTo(x : Number, y : Number) : undefined
+
+Draw a line from current point of the current path to 
+**x**, **y**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath(); 
+  context.moveTo(20,20); 
+  context.lineTo(60,60); 
+  context.lineTo(100,20); 
+  context.stroke(); 
+</script>
+</htmlexample>
+
+----
+prototype.quadraticCurveTo(cpx : Number, cpy : Number, x : Number, y : Number) : undefined
+
+Draw a quadratic curve from the current point to **x**, **y** using
+**cpx**, **cpy** as a control point. The curve generally does not pass through
+the control point.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath(); 
+  context.moveTo(20, 20); 
+  context.quadraticCurveTo(60, 60, 100, 20);
+  context.stroke();
+
+  context.fillRect(60, 60, 2, 2);
+</script>
+</htmlexample>
+
+IDL:
+  void quadraticCurveTo(double cpx, double cpy, double x, double y);
+
+----
+prototype.bezierCurveTo(cp1x : Number, cp1y : Number, cp2x : Number, cp2y : Number, x : Number, y : Number) : undefined
+
+Draw a bezier curve from the current point to **x**, **y** using
+**cp1x**, **cp1y** and **cp2x**, **cp2y** as control points. The curve generally
+does not pass through the control points.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath(); 
+  context.moveTo(20, 20); 
+  context.bezierCurveTo(40, 60, 80, 5, 100, 20);
+  context.stroke();
+
+  context.fillRect(40, 60, 2, 2);
+  context.fillRect(80, 5, 2, 2);
+</script>
+</htmlexample>
+
+
+IDL:
+  void bezierCurveTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y);
+
+----
+prototype.arcTo(controlX : Number, controlY : Number, endX : Number, endY : Number, radius : Number) : undefined
+
+
+Draws 2 imaginary lines between the previous point and the control point
+and between the control point and the end point. **arcTo** fits a circle of 
+
+the specified
+radius between these lines.  The drawn figure is a line from the previous
+point to the place where the circle touches the first imaginary line and an
+arc along the circle to the point where it touches the second imaginary line.
+This method will not draw all the way to the end point (unless the end point 
+matches the spot where the circle touches the secondary imaginary line).
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath();
+  context.moveTo(20, 20);
+  context.arcTo(70, 70, 120, 20, 30);
+  context.lineTo(120, 20);
+  context.stroke();
+
+  context.fillRect(70, 70, 2, 2);
+</script>
+</htmlexample>
+
+
+IDL:
+  void arcTo(double x1, double y1, double x2, double y2, double radius); 
+
+
+
+----
+prototype.rect(x : Number, y : Number, w : Number, h : Number) : undefined
+
+Add a closed rectangle to the current path.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath(); 
+  context.rect(20, 20, 60, 40); 
+  context.rect(100, 20, 60, 40); 
+  context.stroke();
+</script>
+</htmlexample>
+
+IDL:
+  void rect(double x, double y, double w, double h);
+
+
+----
+prototype.arc(x : Number, y : Number, radius : Number, startAngle : Number, endAngle : Number, [counterclockwise = false : Boolean]) : undefined
+
+Continues the current path by creating an arc of circle centered at
+**x**, **y** of radius **radius** from **startAngle** to **endAngle**.
+The angles are specified in radians where **0** points to the right,
+**Math.PI / 2** points down, **Math.PI** points to the left, etc.
+The **counterclockwise** parameter determines which part of the circle 
+is used for the path.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+</script>
+</htmlexample>
+
+IDL:
+  void arc(double x, double y, double radius, double startAngle, double endAngle, optional boolean anticlockwise); 
+};
+

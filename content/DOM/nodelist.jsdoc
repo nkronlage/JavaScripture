@@ -1,0 +1,30 @@
+NodeList : Object
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-536297177
+
+----
+instance[index : Number] : Node
+
+Returns the ClientRect at the specified **index**. You can also use the
+%%#item|**item()**%% method to retrieve the item. 
+
+----
+instance.length : Number
+
+The number of Nodes in the list.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-203510337
+
+----
+prototype.item(index : Number) : Node
+
+Same as %%#indexer_Number|**this[index]**%%.
+
+
+Spec: 
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-844377136

@@ -1,0 +1,90 @@
+ImageData : Object
+
+Contains the pixel data of for a %%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
+
+Created through 
+%%/CanvasRenderingContext2D#createImageData|**CanvasRenderingContext2D.createImageData()**%%
+or
+%%/CanvasRenderingContext2D#createImageData|**CanvasRenderingContext2D.getImageData()**%%.
+
+
+Spec:
+http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#imagedata
+
+----
+instance.width : Number
+
+The width of the buffer in pixels.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var imageData = context.createImageData(100, 150);
+
+  console.log(imageData.width);
+</script>
+</htmlexample>
+
+
+IDL:
+readonly attribute unsigned long width;
+
+ReadOnly:
+true
+
+----
+instance.height : Number
+
+The height of the buffer in pixels.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var imageData = context.createImageData(100, 150);
+
+  console.log(imageData.height);
+</script>
+</htmlexample>
+
+
+IDL:
+readonly attribute unsigned long height;
+
+ReadOnly:
+true
+
+----
+instance.data : Uint8ClampedArray
+
+The pixel color values. The data is stored in RGBA order so
+**data[0]** is pixel 0's red channel,
+**data[1]** is pixel 0's green channel,
+**data[2]** is pixel 0's blue channel,
+**data[3]** is pixel 0's alpha channel,
+**data[4]** is pixel 1's red channel, etc.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var imageData = context.createImageData(100, 100);
+
+  for (var i = 0; i < imageData.data.length; i++) {
+    imageData.data[i] = Math.round(255 * Math.random());
+  }
+
+  context.putImageData(imageData, 0, 0);
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true

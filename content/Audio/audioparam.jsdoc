@@ -1,0 +1,32 @@
+AudioParam : Object
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#AudioParam
+
+----
+instance.value : Number
+
+----
+instance.defaultValue : Number
+
+ReadOnly:
+true
+
+----
+prototype.setValueAtTime(value : Number, startTime : Number) : undefined
+
+----
+prototype.linearRampToValueAtTime(value : Number, endTime : Number) : undefined
+
+----
+prototype.exponentialRampToValueAtTime(value : Number, endTime : Number) : undefined
+
+----
+prototype.setTargetAtTime(target : Number, startTime : Number, timeConstant : Number) : undefined
+
+----
+prototype.setValueCurveAtTime(values : Float32Array, startTime : Number, duration : Number) : undefined
+
+----
+prototype.cancelScheduledValues(startTime : Number) : undefined
+

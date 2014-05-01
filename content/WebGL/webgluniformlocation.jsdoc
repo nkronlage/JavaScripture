@@ -1,0 +1,39 @@
+WebGLUniformLocation : Object
+
+**WebGLUniformLocation** tracks the location of a shader's uniform.
+
+Uniforms are inputs into the shader program that are constant for each
+vertex or fragment.
+
+**WebGLUniformLocation**s are retrieved with 
+%%/WebGLRenderingContext#getUniformLocation|**getUniformLocation()**%%.
+
+Use
+%%/WebGLRenderingContext#uniform1f|**uniform1f()**%%,
+%%/WebGLRenderingContext#uniform1fv|**uniform1fv()**%%,
+%%/WebGLRenderingContext#uniform1iv|**uniform1iv()**%%,
+
+%%/WebGLRenderingContext#uniform2f|**uniform2f()**%%,
+%%/WebGLRenderingContext#uniform2fv|**uniform2fv()**%%,
+%%/WebGLRenderingContext#uniform2iv|**uniform2iv()**%%,
+
+%%/WebGLRenderingContext#uniform3f|**uniform3f()**%%,
+%%/WebGLRenderingContext#uniform3fv|**uniform3fv()**%%,
+%%/WebGLRenderingContext#uniform3iv|**uniform3iv()**%%,
+
+%%/WebGLRenderingContext#uniform4f|**uniform4f()**%%,
+%%/WebGLRenderingContext#uniform4fv|**uniform4fv()**%%,
+%%/WebGLRenderingContext#uniform4iv|**uniform4iv()**%%,
+
+%%/WebGLRenderingContext#uniformMatrix3fv|**uniformMatrix3fv()**%%,
+and
+%%/WebGLRenderingContext#uniformMatrix4fv|**uniformMatrix4fv()**%%
+to set the value of the uniform.
+
+
+Use
+%%/WebGLRenderingContext#getUniform|**getUniform()**%%
+to get the value stored in the uniform.
+
+Spec:
+http://www.khronos.org/registry/webgl/specs/latest/#5.10

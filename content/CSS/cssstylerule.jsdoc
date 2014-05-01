@@ -1,0 +1,24 @@
+CSSStyleRule : CSSRule
+
+Represents a CSS rule consisting of a CSS selector of which
+elements to apply the rule to and a style to apply to the
+matching elements.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSStyleRule
+
+----
+instance.selectorText : String
+
+The CSS selector for the rule that defines which elements to apply
+the %%#style|style%% to.
+
+----
+instance.style : CSSStyleDeclaration
+
+The style to apply to elements that match the %%#selectorText|css selector%% of 
+this rule.
+
+ReadOnly:
+true
+

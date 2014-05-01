@@ -1,0 +1,22 @@
+RGBColor : Object
+
+Spec:
+http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-RGBColor
+
+----
+instance.red : CSSPrimitiveValue
+
+ReadOnly:
+true
+
+----
+instance.green : CSSPrimitiveValue
+
+ReadOnly:
+true
+
+----
+instance.blue : CSSPrimitiveValue
+
+ReadOnly:
+true

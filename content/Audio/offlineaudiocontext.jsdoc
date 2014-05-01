@@ -1,0 +1,15 @@
+OfflineAudioContext : AudioContext
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#OfflineAudioContext-section
+
+----
+new OfflineAudioContext(numberOfChannels : Number, length : Number, sampleRate : Number) : OfflineAudioContext
+
+----
+prototype.startRendering() : undefined
+
+----
+event.complete : listener(event : OfflineAudioCompletionEvent) : undefined
+
+

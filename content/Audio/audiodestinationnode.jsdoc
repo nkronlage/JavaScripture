@@ -1,0 +1,27 @@
+AudioDestinationNode : AudioNode
+
+The output of the audio system.  Available through the 
+%%/AudioContext#destination|AudioContext.destination%% property.
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#AudioDestinationNode
+
+----
+instance.maxChannelCount : Number
+
+The number of channels (speakers) available on the system.
+
+<htmlexample>
+<script>
+  // Temporary workaround until AudioContext is standardized 
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+  var context = new AudioContext();
+
+  console.log(context.destination.maxChannelCount);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+

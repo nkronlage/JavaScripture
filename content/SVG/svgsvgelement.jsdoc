@@ -1,0 +1,329 @@
+SVGSVGElement : SVGElement
+
+Create using %%/Document#createElementNS|**document.createElementNS('http://www.w3.org/2000/svg', 'svg')**%%
+and 
+%%/Element#setAttribute|**this.setAttribute('version', '1.1')**%% to set 
+the version.
+
+Spec:
+http://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElement
+
+----
+instance.x : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.y : SVGAnimatedLength
+
+ReadOnly:
+true
+
+
+----
+instance.width : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.height : SVGAnimatedLength
+
+ReadOnly:
+true
+
+
+----
+instance.contentScriptType : String
+
+<htmlexample>
+<body></body>
+<script>
+  var mySvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  mySvg.setAttribute('version', '1.1');
+
+  var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('width', '30');
+  rect.setAttribute('height', '40');
+  rect.setAttribute('fill', 'black');
+  mySvg.appendChild(rect);
+
+  document.body.appendChild(mySvg);
+</script>
+</htmlexample>
+
+
+----
+instance.contentStyleType : String
+
+
+----
+instance.viewport : SVGRect
+
+ReadOnly:
+true
+
+----
+instance.pixelUnitToMillimeterX : Number
+
+ReadOnly:
+true
+
+----
+instance.pixelUnitToMillimeterY : Number
+
+ReadOnly:
+true
+
+----
+instance.screenPixelToMillimeterX : Number
+
+ReadOnly:
+true
+
+----
+instance.screenPixelToMillimeterY : Number
+
+ReadOnly:
+true
+
+----
+instance.useCurrentView : Boolean
+
+ReadOnly:
+true
+
+----
+instance.currentView : SVGViewSpec
+
+ReadOnly:
+true
+
+----
+instance.currentScale : Number
+
+
+----
+instance.currentTranslate : SVGPoint
+
+ReadOnly:
+true
+
+----
+prototype.suspendRedraw(maxWaitMilliseconds : Number) : Number
+
+
+----
+prototype.unsuspendRedraw(suspendHandleID : Number) : undefined
+
+
+----
+prototype.unsuspendRedrawAll() : undefined
+
+
+----
+prototype.forceRedraw() : undefined
+
+
+----
+prototype.pauseAnimations() : undefined
+
+----
+prototype.unpauseAnimations() : undefined
+
+
+----
+prototype.animationsPaused() : Boolean
+
+
+----
+prototype.getCurrentTime() : Number
+
+----
+prototype.setCurrentTime() : Number
+
+
+----
+prototype.getIntersectionList(rect : SVGRect, referenceElement : SVGElement) : NodeList
+
+
+----
+prototype.getEnclosureList(rect : SVGRect, referenceElement : SVGElement) : NodeList
+
+
+----
+prototype.checkIntersection(element : SVGElement, rect : SVGRect) : Boolean
+
+
+----
+prototype.checkEnclosure(element : SVGElement, rect : SVGRect) : Boolean
+
+
+----
+prototype.deselectAll() : undefined
+
+
+----
+prototype.createSVGNumber() : SVGNumber
+
+
+----
+prototype.createSVGLength() : SVGLength
+
+
+
+----
+prototype.createSVGAngle() : SVGAngle
+
+
+----
+prototype.createSVGPoint() : SVGPoint
+
+
+----
+prototype.createSVGMatrix() : SVGMatrix
+
+
+----
+prototype.createSVGRect() : SVGRect
+
+
+----
+prototype.createSVGTransform() : SVGTransform
+
+
+----
+prototype.createSVGTransformFromMatrix(matrix : SVGMatrix) : SVGTransform
+
+
+
+----
+prototype.getElementById(elementId : String) : Element
+
+----
+prototype.getComputedStyle(element : Element, [pseudoElement : String]) : CSSStyleDeclaration
+
+----
+instance.requiredFeatures : SVGStringList
+
+ReadOnly:
+true
+
+----
+instance.requiredExtensions : SVGStringList
+
+ReadOnly:
+true
+
+----
+instance.systemLanguage : SVGStringList
+
+ReadOnly:
+true
+
+----
+prototype.hasExtension(extension : String) : Boolean
+
+----
+instance.xmllang : String
+
+----
+instance.xmlspace : String
+
+----
+instance.externalResourcesRequired : SVGAnimatedBoolean
+
+ReadOnly:
+true
+
+----
+instance.className : SVGAnimatedString
+
+ReadOnly:
+true
+
+----
+instance.style : CSSStyleDeclaration
+
+ReadOnly:
+true
+
+----
+prototype.getPresentationAttribute(name : String) : CSSValue
+
+instance.nearestViewportElement : SVGElement
+
+ReadOnly:
+true
+
+----
+instance.farthestViewportElement : SVGElement
+
+ReadOnly:
+true
+
+----
+prototype.getBBox() : SVGRect
+
+----
+prototype.getCTM() : SVGMatrix
+
+----
+prototype.getScreenCTM() : SVGMatrix
+
+----
+prototype.getTransformToElement(element : SVGElement) : SVGMatrix
+
+----
+instance.viewBox : SVGAnimatedRect
+
+ReadOnly:
+true
+
+----
+instance.preserveAspectRatio : SVGAnimatedPreserveAspectRatio
+
+ReadOnly:
+true
+
+
+----
+SVG_ZOOMANDPAN_UNKNOWN : Number
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+SVG_ZOOMANDPAN_DISABLE : Number
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+SVG_ZOOMANDPAN_MAGNIFY : Number
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+instance.zoomAndPan : Number
+
+
+----
+prototype.createEvent(eventType : String) : Event
+
+
+----
+prototype.getOverrideStyle(elt : Element, pseudoElt : String) : CSSStyleDeclaration
+
+

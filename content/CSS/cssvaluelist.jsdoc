@@ -1,0 +1,18 @@
+CSSValueList : CSSValue
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSValueList
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+instance[index : Number] : CSSValue
+
+----
+prototype.item(index : Number) : CSSValue
+
+Same as %%#indexer_Number|**this[index]**%%.

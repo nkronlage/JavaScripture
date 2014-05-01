@@ -1,0 +1,18 @@
+<% 
+  /* Renders a group of members, for example 'instance methods', or 'instance properties' */
+
+  if (group && group.length) { %>
+  <div>
+    <a name='<%= name.replace(' ', '') %>'></a>
+    <h2><%= name %></h2>
+    <% for (var i = 0; i < group.length; i++) {  %>
+       <%  var member = group[i]; %>
+
+       <% if (Array.isArray(member)) { %>
+         <%- render('methodgroup', { group: member }) %>
+       <% } else { %>
+         <%- render('member', { property: member, inGroup: false }) %>
+       <% } %>
+    <% } %>
+  </div>
+<% } %>

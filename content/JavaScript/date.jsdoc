@@ -1,0 +1,749 @@
+Date : Object
+
+An object that represents a date and time.  Internally the time is stored
+as the number of milliseconds since 01 January, 1970 UTC.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=177
+
+----
+Date() : String
+
+Returns a string representation of the current date and time.
+
+<example>
+console.log(Date());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=182
+
+----
+new Date() : Date
+
+Returns a new **Date** object that represents the current date and time.
+
+<example>
+var d = new Date();
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+
+----
+new Date(year : Number, month : Number, [date = 1 : Number, [hours = 0: Number, [minutes = 0: Number, [seconds = 0: Number, [milliseconds = 0: Number]]]]]) : Date
+
+Returns a new **Date** object that represents the specified date and time. 
+
+**month** 0 is January, 1 is February, etc.
+**date** is the calendar day, starting with 1 and will be at most 31.
+
+<example>
+var d = new Date(2002, 5, 24, 18, 30);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=182
+
+----
+new Date(millisecondsSince1970 : Number) : Date
+
+Returns a new **Date** object that is the specified number of milliseconds from
+01 January, 1970 UTC.
+
+
+<example>
+var d = new Date(365 * 24 * 60 * 60 * 1000);
+console.log(d.toUTCString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+
+----
+new Date(string : String) : Date
+
+Parses **string** and returns a new Date object representing the specified date and time.
+
+See also %%#parse|**Date.parse(string)**%%.
+
+<example>
+var d = new Date('Fri, 01 Jan 1971 00:00:00 GMT');
+console.log(d.getUTCFullYear());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+
+
+----
+parse(string : String) : Number
+
+Parses **string** into a date and returns the number of milliseconds this date
+is from 01 January, 1970 UTC. 
+
+Use %%#new_Date_String|**new Date(string)**%% to get a Date object from a string.
+
+<example>
+var d = Date.parse('Fri, 01 Jan 1971 00:00:00 GMT');
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+
+----
+UTC(year : Number, month : Number, [date = 1 : Number, [hour = 0: Number, [minutes = 0: Number, [seconds = 0: Number, [milliseconds = 0: Number]]]]]) : Number
+
+Returns the number of milliseconds fom 01 January, 1970 UTC of the specified
+date and time in UTC.
+
+**month** 0 is January, 1 is February, etc.
+**date** is the calendar day, starting with 1 and will be at most 31.
+
+<example>
+var d = Date.UTC(1971, 0, 1);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=184
+
+----
+now() : Number
+
+Returns the number of milliseconds from 01 January, 1970 of the current
+time in UTC. 
+
+<example>
+var now = Date.now();
+console.log(now);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=184
+
+----
+prototype.toDateString() : String
+
+Returns a string representing the date portion of **this**.
+
+<example>
+var d = new Date();
+console.log(d.toDateString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+
+----
+prototype.toTimeString() : String
+
+Returns a string representing the time portion of **this**.
+
+<example>
+var d = new Date();
+console.log(d.toTimeString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+
+----
+prototype.toLocaleString() : String
+
+Returns a human readable string of **this** in the local time.
+
+<example>
+var d = new Date();
+console.log(d.toLocaleString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+
+
+----
+prototype.toLocaleDateString() : String
+
+Returns a human readable string of the date portion of **this** in
+local time.
+
+<example>
+var d = new Date();
+console.log(d.toLocaleDateString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+
+----
+prototype.toLocaleTimeString() : String
+
+Returns a human readable string of the time potion of **this** in
+local time.
+
+<example>
+var d = new Date();
+console.log(d.toLocaleTimeString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+
+----
+prototype.valueOf() : Number
+
+Returns the number of milliseconds since 01 January, 1970 UTC for **this**.
+You can also obtain the value by using the date in a number context such as **+date**.
+If you need the value of the current time, use %%#now|**Date.now()**%% to 
+avoid the cost of creating a **Date** object.
+
+<example>
+var d = new Date();
+console.log(d.valueOf());
+console.log(+d);
+console.log(d / 1000 / 60 / 60 / 24 / 365 + ' years since 1970');
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+
+
+----
+prototype.getTime() : Number
+
+Returns the number of milliseconds since 01 January, 1970 for **this**.
+
+<example>
+var d = new Date();
+console.log(d.getTime());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getFullYear() : Number
+
+Returns the year of **this** in local time.
+
+<example>
+var d = new Date();
+console.log(d.getFullYear());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getUTCFullYear() : Number
+
+Returns the year of **this** in UTC time.
+
+<example>
+var d = new Date();
+console.log(d.getUTCFullYear());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getMonth() : Number
+
+Returns the month of **this** in local time.
+
+0 is January, 1 is February, etc.
+
+<example>
+var d = new Date();
+console.log(d.getMonth());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getUTCMonth() : Number
+
+Returns the month of **this** in UTC time.
+0 is January, 1 is February, etc.
+
+<example>
+var d = new Date();
+console.log(d.getUTCMonth());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+
+----
+prototype.getDate() : Number
+
+Returns the date of **this** in local time.
+Date is the calendar day, starting with 1 and will be at most 31.
+
+
+<example>
+var d = new Date();
+console.log(d.getDate());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+
+----
+prototype.getUTCDate() : Number
+
+Returns the date of **this** in UTC time.
+Date is the calendar day, starting with 1 and will be at most 31.
+
+<example>
+var d = new Date();
+console.log(d.getUTCDate());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getDay() : Number
+
+Returns the day of the week of **this** in local time.  0 = Sunday, 1 = Monday,
+2 = Tuesday, etc.
+
+<example>
+var d = new Date();
+console.log(d.getDay());
+var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+console.log(dayNames[d.getDay()]);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getUTCDay() : Number
+
+Returns the day of the week of **this** in UTC time.  0 = Sunday, 1 = Monday,
+2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday.
+
+<example>
+var d = new Date();
+console.log(d.getUTCDay());
+var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+console.log(dayNames[d.getUTCDay()]);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getHours() : Number
+
+Returns the hours of **this** in local time.
+
+<example>
+var d = new Date();
+console.log(d.getHours());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+
+----
+prototype.getUTCHours() : Number
+
+Returns the hours of **this** in UTC time.
+
+<example>
+var d = new Date();
+console.log(d.getUTCHours());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.getMinutes() : Number
+
+Returns the minutes of **this** in local time.
+
+<example>
+var d = new Date();
+console.log(d.getMinutes());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.getUTCMinutes() : Number
+
+Returns the minutes of **this** in UTC time.
+
+<example>
+var d = new Date();
+console.log(d.getUTCMinutes());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+
+----
+prototype.getSeconds() : Number
+
+Returns the seconds of **this** in local time.
+
+<example>
+var d = new Date();
+console.log(d.getSeconds());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.getUTCSeconds() : Number
+
+Returns the seconds of **this** in UTC time.
+
+<example>
+var d = new Date();
+console.log(d.getUTCSeconds());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.getMilliseconds() : Number
+
+Returns the milliseconds of **this** in local time.
+
+<example>
+var d = new Date();
+console.log(d.getMilliseconds());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.getUTCMilliseconds() : Number
+
+Returns the milliseconds of **this** in UTC time.
+
+<example>
+var d = new Date();
+console.log(d.getUTCMilliseconds());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.getTimezoneOffset() : Number
+
+Returns the number of minutes between local time and UTC time.
+
+<example>
+var d = new Date();
+console.log(d.getTimezoneOffset());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=197
+
+----
+prototype.setTime(millisecondsSince1970 : Number) : Number
+
+Set this date to be the specified number of milliseconds from
+01 January, 1970 UTC.
+
+<example>
+var d = new Date();
+d.setTime(365 * 24 * 60 * 60 * 1000);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+
+----
+prototype.setMilliseconds(milliseconds : Number) : Number
+
+Sets the number of milliseconds of **this**.
+The other time components remain unchanged. Returns the time value
+of **this**.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setMilliseconds(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+
+----
+prototype.setUTCMilliseconds(milliseconds : Number) : Number
+
+Sets the number of milliseconds of **this**.
+The other time components remain unchanged. Returns the time value
+of **this**.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCMilliseconds(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+
+----
+prototype.setSeconds(seconds : Number, [milliseconds : Number]) : Number
+
+Sets the number of seconds (and optionally milliseconds) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setSeconds(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+
+----
+prototype.setUTCSeconds(seconds : Number, [milliseconds : Number]) : Number
+
+Sets the number of seconds (and optionally milliseconds) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCSeconds(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+
+----
+prototype.setMinutes(minutes : Number, [seconds : Number, [milliseconds : Number]]) : Number
+
+Sets the number of minutes (and optionally seconds and milliseconds) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setMinutes(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+
+
+----
+prototype.setUTCMinutes(minutes : Number, [seconds : Number, [milliseconds : Number]]) : Number
+
+Sets the number of minutes (and optionally seconds and milliseconds) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCMinutes(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=189
+
+----
+prototype.setHours(hours : Number, [minutes : Number, [seconds : Number, [milliseconds : Number]]]) : Number
+
+Sets the number of hours (and optionally minutes, seconds and milliseconds) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setHours(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=189
+
+----
+prototype.setUTCHours(hours : Number, [minutes : Number, [seconds : Number, [milliseconds : Number]]]) : Number
+
+Sets the number of hours (and optionally minutes, seconds and milliseconds) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCHours(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=189
+
+----
+prototype.setDate(date : Number) : Number
+
+Sets the date of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setDate(1);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+
+----
+prototype.setUTCDate(date : Number) : Number
+
+Sets the date of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCDate(1);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+
+----
+prototype.setMonth(month : Number, [date : Number]) : Number
+
+Sets the month (and optionally date) of **this**.  
+Month 0 is January, 1 is February, etc.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setMonth(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+
+
+----
+prototype.setUTCMonth(month : Number, [date : Number]) : Number
+
+Sets the month (and optionally date) of **this**.  
+Month 0 is January, 1 is February, etc.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCMonth(0);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+
+
+----
+prototype.setFullYear(year : Number, [month : Number, [date : Number]]) : Number
+
+Sets the year (and optionally month and date) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setFullYear(1980);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+
+
+----
+prototype.setUTCFullYear(year : Number, [month : Number, [date : Number]]) : Number
+
+Sets the year (and optionally month and date) of **this**.
+The other time components remain unchanged.
+
+<example>
+var d = new Date();
+console.log(d);
+d.setUTCFullYear(1980);
+console.log(d);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+
+----
+prototype.toUTCString() : String
+
+Returns a human readable string of **this** in UTC.
+
+<example>
+var d = new Date();
+console.log(d.toUTCString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+
+----
+prototype.toISOString() : String
+
+Returns a string representation if **this** in ISO 8601 format.
+
+<example>
+var d = new Date();
+console.log(d.toISOString());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+
+----
+prototype.toJSON() : String
+
+Returns a string representation of **this** suitable for storage in JSON.
+
+<example>
+var d = new Date();
+console.log(d.toJSON());
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+

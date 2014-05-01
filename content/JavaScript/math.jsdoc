@@ -1,0 +1,518 @@
+Math : Object
+
+Contains math related constants and functions.
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+
+
+----
+E : Number
+
+The constant e = 2.718...
+
+<example>
+console.log(Math.E);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+
+ReadOnly:
+true
+
+----
+LN10 : Number
+
+The value of the natural log of 10. 
+It is the reciprocal of %%#LOG10E|**LOG10E**%%.
+
+Useful for computing the %%#log|log%% base 10 of a number.
+
+
+<example>
+console.log(Math.LN10);
+console.log(Math.log(10));
+console.log(1 / Math.LOG10E);
+
+var log10 = function(x) {
+  return Math.log(x) / Math.LN10;
+};
+console.log(log10(10000));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+
+ReadOnly:
+true
+
+----
+LN2 : Number
+
+The value of the natural log of 2.
+
+It is the reciprocal of %%#LOG2E|**LOG2E**%%.
+
+Useful for computing the %%#log|log%% base 2 of a number.
+
+<example>
+console.log(Math.LN2);
+console.log(Math.log(2));
+console.log(1 / Math.LOG2E);
+
+var log2 = function(x) {
+  return Math.log(x) / Math.LN2;
+};
+console.log(log2(64));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+
+ReadOnly:
+true
+
+----
+LOG2E : Number
+
+The value of the log base 2 of e.
+
+It is the reciprocal of %%#LN2|**LN2**%%.
+
+Useful for computing the %%#log|log%% base 2 of a number.
+
+<example>
+console.log(Math.LOG2E);
+console.log(Math.log(Math.E) / Math.log(2));
+console.log(1 / Math.LN2);
+
+var log2 = function(x) {
+  return Math.log(x) * Math.LOG2E;
+};
+console.log(log2(32));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+
+ReadOnly:
+true
+
+----
+LOG10E : Number
+
+The value of the log base 10 of e. 
+
+It is the reciprocal of %%#LN10|**LN10**%%.
+
+Useful for computing the %%#log|log%% base 10 of a number.
+
+<example>
+console.log(Math.LOG10E);
+console.log(Math.log(Math.E) / Math.log(10));
+console.log(1 / Math.LN10);
+
+var log10 = function(x) {
+  return Math.log(x) * Math.LOG10E;
+};
+console.log(log10(10000));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+
+ReadOnly:
+true
+
+----
+PI : Number
+
+The constant pi = 3.14...
+
+<example>
+console.log(Math.PI);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+
+ReadOnly:
+true
+
+----
+SQRT1_2 : Number
+
+The value of **1 / %%#sqrt|sqrt%%(2)**.
+
+<example>
+console.log(Math.SQRT1_2);
+console.log(1 / Math.sqrt(2));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+
+ReadOnly:
+true
+
+----
+SQRT2 : Number
+
+The value of **%%#sqrt|sqrt%%(2)**.
+
+<example>
+console.log(Math.SQRT2);
+console.log(Math.sqrt(2));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+
+ReadOnly:
+true
+
+
+----
+abs(x : Number) : Number
+
+Returns the absolute value of **x**.
+
+<example>
+console.log(Math.abs(10));
+console.log(Math.abs(-10));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+
+----
+acos(x : Number) : Number
+
+Returns the angle (in radians between 0 and pi) whose cosine is **x**.
+
+See also %%#cos|**cos()**%%.
+
+<example>
+console.log(Math.acos(1));
+console.log(Math.acos(0));
+console.log(Math.acos(-1));
+
+var acosDegrees = function(x) {
+  return Math.acos(x) * 180 / Math.PI;
+};
+console.log(acosDegrees(0));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+
+----
+asin(x : Number) : Number
+
+Returns the angle (in radians between -pi/2 and pi/2) whose sine is **x**.
+
+See also %%#sin|**sin()**%%.
+
+<example>
+console.log(Math.asin(1));
+console.log(Math.asin(0));
+console.log(Math.asin(-1));
+
+var asinDegrees = function(x) {
+  return Math.asin(x) * 180 / Math.PI;
+};
+console.log(asinDegrees(1));
+</example>
+
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+
+----
+atan(x: Number) : Number
+
+Returns the angle (in radians between -pi/2 and pi/2) whose tangent is **x**.
+
+See also %%#atan2|**atan2()**%% and %%#tan|**tan()**%%.
+
+<example>
+console.log(Math.atan(1));
+console.log(Math.atan(0));
+console.log(Math.atan(-1));
+
+var atanDegrees = function(x) {
+  return Math.atan(x) * 180 / Math.PI;
+};
+console.log(atanDegrees(1));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+
+----
+atan2(y : Number, x : Number) : Number
+
+Returns the angle (in radians between -pi and pi) between the positive x axis and 
+the line segment from the origin to the point at (**x**, **y**).  
+
+See also %%#atan|**atan()**%% and %%#tan|**tan()**%%.
+
+<example>
+console.log(Math.atan2(1, 0));
+console.log(Math.atan2(0, 1));
+console.log(Math.atan2(-1, 0));
+console.log(Math.atan2(0, -1));
+
+var atan2Degrees = function(y, x) {
+  return Math.atan2(y, x) * 180 / Math.PI;
+};
+console.log(atan2Degrees(1, 0));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+
+----
+ceil(x: Number) : Number
+
+Returns the next integer greater than or equal to **x**.
+
+See also %%#round|**round()**%% and %%#floor|**floor()**%%.
+
+<example>
+console.log(Math.ceil(1.9));
+console.log(Math.ceil(2));
+console.log(Math.ceil(-1.9));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+
+
+
+----
+cos(x: Number) : Number
+
+Returns the cosine of **x** (in radians).
+
+See also %%#acos|**acos()**%%.
+
+<example>
+console.log(Math.cos(0));
+console.log(Math.cos(Math.PI / 2));
+console.log(Math.cos(Math.PI));
+
+var cosDegrees = function(x) {
+  return Math.cos(x * Math.PI / 180);
+};
+console.log(cosDegrees(45));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+
+
+----
+exp(x: Number) : Number
+
+Returns %%#E|e%% raised to the **x** power.
+
+See also %%#log|**log()**%%.
+
+<example>
+console.log(Math.exp(2));
+console.log(Math.E * Math.E);
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+
+----
+floor(x: Number) : Number
+
+Returns the previous integer less than or equal to **x**.
+
+See also %%#round|**round()**%% and %%#ceil|**ceil()**%%.
+
+<example>
+console.log(Math.floor(1.9));
+console.log(Math.floor(2));
+console.log(Math.floor(-1.9));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+
+
+----
+log(x : Number) : Number
+
+Returns the natural logarithm (base %%#E|e%%) of **x**. To compute the 
+logarithm with respect to a different base **b**, use the 
+formula **Math.log(x) / Math.log(b)**.
+For base 10, you can use
+**Math.log(x) * %%#LOG10E|Math.LOG10E%%**
+and for base 2, you can use
+**Math.log(x) * %%#LOG2E|Math.LOG2E%%**.
+
+See also %%#exp|**exp()**%%.
+
+
+<example>
+var x = Math.exp(2);
+console.log(x);
+console.log(Math.log(x));
+
+var logb = function(x, b) {
+  return Math.log(x) / Math.log(b);
+};
+var log10 = function(x) {
+  return Math.log(x) * Math.LOG10E;
+};
+console.log(logb(10000, 10));
+console.log(log10(10000));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+
+
+----
+max(x1 : Number, x2: Number, [...]) : Number
+
+Returns the largest number among the parameters.
+
+<example>
+var x = 3, y = 1, z = 4;
+console.log(Math.max(x, y, z));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+
+
+----
+min(x1 : Number, x2 : Number, [...]) : Number
+
+Returns the smallest number among the parameters.
+
+<example>
+var x = 3, y = 1, z = 4;
+console.log(Math.min(x, y, z));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+
+
+----
+pow(x : Number, y : Number) : Number
+
+Returns **x** raised to the **y** power.
+
+<example>
+console.log(Math.pow(2, 3));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+
+
+----
+random() : Number
+
+Returns a random number between **0** (inclusive) and **1** (exclusive). 
+
+<example>
+console.log(Math.random());
+console.log(Math.random());
+console.log(Math.random());
+
+// Random integer between min (inclusive) and max (exclusive)
+var randomInt = function(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+console.log(randomInt(0, 100));
+console.log(randomInt(0, 100));
+console.log(randomInt(0, 100));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+
+
+----
+round(x : Number) : Number
+
+Returns the closest integer to **x**.
+
+See also %%#floor|**floor()**%% and %%#ceil|**ceil()**%%.
+
+<example>
+console.log(Math.round(2.2));
+console.log(Math.round(2.5));
+console.log(Math.round(-2.5));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+
+
+----
+sin(x: Number) : Number
+
+Returns the sine of **x** (in radians).
+
+See also %%#asin|**asin()**%%.
+
+<example>
+console.log(Math.sin(0));
+console.log(Math.sin(Math.PI / 2));
+console.log(Math.sin(Math.PI));
+
+var sinDegrees = function(x) {
+  return Math.sin(x * Math.PI / 180);
+};
+console.log(sinDegrees(45));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+
+
+----
+sqrt(x : Number) : Number
+
+Returns the square root of **x**.
+
+<example>
+console.log(Math.sqrt(16));
+console.log(Math.sqrt(49));
+console.log(Math.sqrt(100));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+
+----
+tan(x : Number) : Number
+
+Returns the tangent of **x** (in radians).
+
+See also %%#atan|**atan()**%%.
+
+<example>
+console.log(Math.tan(0));
+console.log(Math.tan(Math.PI / 4));
+console.log(Math.tan(Math.PI));
+
+var tanDegrees = function(x) {
+  return Math.tan(x * Math.PI / 180);
+};
+console.log(tanDegrees(45));
+</example>
+
+Spec:
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=177
+

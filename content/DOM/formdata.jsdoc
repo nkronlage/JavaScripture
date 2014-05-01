@@ -1,0 +1,20 @@
+FormData : Object
+
+Use with %%XMLHttpRequest#send_FormData|**XMLHttpRequest.send()**%% to 
+send form results to a server without navigating.
+
+Spec:
+http://www.w3.org/TR/XMLHttpRequest2/#interface-formdata
+
+----
+new FormData() : FormData
+
+----
+new FormData(form : HTMLFormElement) : FormData
+
+
+----
+prototype.append(name : String, value : Blob, [filename : String]) : undefined
+
+----
+prototype.append(name : String, value : String) : undefined

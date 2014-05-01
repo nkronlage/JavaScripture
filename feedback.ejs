@@ -1,0 +1,28 @@
+<%
+locals.title = 'Feedback - JavaScripture';
+locals.description = 'Send feedback about JavaScripture.com to help improve the accuracy, readability and usefulness of the content and examples on the site';
+%>
+
+<h1>Feedback</h1>
+Please send us comments with your suggestions or any bugs, typos, or inconsistencies
+you've found with the site and documentation. Your comments help 
+make JavaScripture.com the best JavaScript resource!
+
+<form action='http://feedback.nrksw.com/sendfeedback' method='post'>
+  <input name='feedbackid' type='hidden' value='javascripture'/>
+  <input name='redirect' type='hidden' value='/thankyou'/>
+  <script>
+    var referrer = document.referrer || '';
+    referrer = referrer.replace(location.origin, '');
+    document.write("<input name='referrer' type='hidden' value='" + referrer + "'/>");
+  </script>
+
+  <h3>Comment</h3> 
+  <textarea name='comment' rows='6' cols='50' maxlength='500'></textarea>
+  
+  <h3>Your Email (optional)</h3> 
+  <input name='email' type='text' />
+  
+  <input type='submit' value='Submit'/>
+
+</form>

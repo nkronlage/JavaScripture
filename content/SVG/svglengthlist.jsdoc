@@ -1,0 +1,32 @@
+SVGLengthList : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGLengthList
+
+----
+instance.numberOfItems : Number
+
+ReadOnly:
+true
+
+----
+prototype.clear() : undefined
+
+----
+prototype.initialize(newItem : SVGLength) : SVGLength
+
+----
+prototype.getItem(index : Number) : SVGLength
+
+----
+prototype.insertItemBefore(newItem : SVGLength, index : Number) : SVGLength
+
+----
+prototype.replaceItem(newItem : SVGLength, index : Number) : SVGLength
+
+----
+prototype.removeItem(index : Number) : SVGLength
+
+----
+prototype.appendItem(newItem : SVGLength) : SVGLength
+

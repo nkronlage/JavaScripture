@@ -1,0 +1,24 @@
+XMLHttpRequestUpload : EventTarget
+
+XMLHttpRequestUpload is returned by the 
+%%/XMLHttpRequest#upload|**XMLHttpRequest.upload**%%
+property and is used to track the upload status of the 
+%%/XMLHttpRequest#send|**send()**%% call.
+
+----
+event.loadstart : listener(event : ProgressEvent) : undefined
+
+----
+event.progress : listener(event : ProgressEvent) : undefined
+
+----
+event.abort : listener(event : ProgressEvent) : undefined
+
+----
+event.error : listener(event : ProgressEvent) : undefined
+
+----
+event.load : listener(event : ProgressEvent) : undefined
+
+----
+event.loadend : listener(event : ProgressEvent) : undefined

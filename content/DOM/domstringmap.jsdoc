@@ -1,0 +1,5 @@
+DOMStringMap : Object
+
+An map of %%/String|**String**%% key and %%/String|**String**%% value pairs.
+Attempting to set any other data type as the key or value will first convert
+the object to a string.

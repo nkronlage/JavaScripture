@@ -1,0 +1,32 @@
+SVGNumberList : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGNumberList
+
+----
+instance.numberOfItems : Number
+
+ReadOnly:
+true
+
+----
+prototype.clear() : undefined
+
+----
+prototype.initialize(newItem : SVGNumber) : SVGNumber
+
+----
+prototype.getItem(index : Number) : SVGNumber
+
+----
+prototype.insertItemBefore(newItem : SVGNumber, index : Number) : SVGNumber
+
+----
+prototype.replaceItem(newItem : SVGNumber, index : Number) : SVGNumber
+
+----
+prototype.removeItem(index : Number) : SVGNumber
+
+----
+prototype.appendItem(newItem : SVGNumber) : SVGNumber
+

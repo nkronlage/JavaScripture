@@ -1,0 +1,36 @@
+StorageEvent : Event
+
+----
+instance.key : String
+
+
+ReadOnly:
+true
+
+----
+instance.oldValue : String
+
+
+ReadOnly:
+true
+----
+instance.newValue : String
+
+
+ReadOnly:
+true
+
+----
+instance.url : String
+
+
+ReadOnly:
+true
+  
+----
+instance.storageArea : Storage
+
+
+ReadOnly:
+true
+

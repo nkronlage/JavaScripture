@@ -1,0 +1,17 @@
+MessagePort : EventTarget
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport
+
+----
+prototype.postMessage(message : Object, [transfer : Array]) : undefined
+
+----
+instance.start() : undefined
+
+----
+instance.close() : undefined
+
+----
+event.message : listener(event : ProgressEvent) : undefined
+

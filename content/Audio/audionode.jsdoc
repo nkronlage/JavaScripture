@@ -1,0 +1,44 @@
+AudioNode : EventTarget
+
+Spec:
+http://www.w3.org/TR/2013/WD-webaudio-20131010/#AudioNode-section
+
+----
+prototype.connect(destination : AudioNode, [output = 0 : Number, [input = 0 : Number]]) : undefined
+
+----
+prototype.connect(destination : AudioParam, [output = 0 : Number]) : undefined
+
+----
+prototype.disconnect([output = 0 : Number]) : undefined
+
+----
+instance.context : AudioContext
+
+ReadOnly:
+true
+
+----
+instance.numberOfInputs : Number
+
+ReadOnly:
+true
+
+----
+instance.numberOfOutputs : Number
+
+ReadOnly:
+true
+
+----
+instance.channelCount : Number
+
+
+----
+instance.channelCountMode : String
+
+
+----
+instance.channelInterpretation : String
+
+

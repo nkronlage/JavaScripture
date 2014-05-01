@@ -1,0 +1,421 @@
+Element : Node
+
+Element represents an element in the DOM/document tree.  Element is the base
+type for
+%%/HTMLElement|HTMLElement%% 
+and 
+%%/SVGElement|SVGElement%%.
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-745549614
+
+AlternateSpec:
+http://dev.w3.org/csswg/cssom-view/#extensions-to-the-element-interface
+
+----
+instance.namespaceURI : String
+
+----
+instance.prefix : String
+
+----
+instance.localName : String
+
+
+----
+instance.tagName : String
+
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-104682815
+
+----
+instance.id : String
+
+----
+instance.className : String
+
+Gets or sets the class name of the Element.  **className** 
+corresponds to the HTML **class** attribute.
+
+See also %%#classList|**classList**%%.
+
+<htmlexample>
+<style>
+  .bar { color: red; }
+  .baz { color: blue; }
+</style>
+<div id='foo' class='bar'>
+  Example of the classList property.
+</div>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.className);
+  foo.className = 'baz';
+</script>
+</htmlexample>
+
+----
+instance.classList : DOMTokenList
+
+----
+instance.attributes : Array<Attr>
+
+----
+prototype.getAttribute(name : String) : String
+
+
+----
+prototype.getAttributeNS(namespaceURI : String, localName : String) : String
+
+
+----
+prototype.setAttribute(name : String, value : String) : undefined
+
+----
+prototype.setAttributeNS(namespaceURI : String, qualifiedName : String, value : String) : undefined
+
+----
+prototype.removeAttribute(name : String) : undefined
+
+----
+prototype.removeAttributeNS(namespaceURI : String, localName : String) : undefined
+
+
+----
+prototype.hasAttribute(name : String) : Boolean
+
+----
+prototype.hasAttributeNS(namespaceURI : String, localName : String) : Boolean
+
+----
+prototype.hasAttributes() : Boolean
+
+
+----
+prototype.getElementsByTagName(name : String) : NodeList
+
+Returns a list of descendants of **this** that match the specified
+tag name.
+
+See also 
+%%#getElementsByTagNameNS|**getElementsByTagNameNS()**%%,
+%%#getElementsByClassName|**getElementsByClassName()**%%,
+%%#querySelector|**querySelector()**%%,
+and
+%%#querySelectorAll|**querySelectorAll()**%%.
+
+<htmlexample>
+<div>
+  <div id='foo'>
+    <a>Anchor inside foo.</a>
+    <div>
+      <a>Nested anchor.</a>
+    </div>
+  </div>
+  <a>Anchor outside foo.</a>
+</div>
+<script>
+  var foo = document.getElementById('foo');
+  var anchors = foo.getElementsByTagName('a');
+  
+  console.log(anchors.length);
+  for (var i = 0; i < anchors.length; i++) {
+    console.log(anchors[i].innerText);
+  }
+</script>
+</htmlexample>
+
+
+----
+prototype.getElementsByTagNameNS(namespaceURI : String, localName : String) : NodeList
+
+----
+prototype.getElementsByClassName(classNames : String) : NodeList
+
+Returns a list of descendants of **this** that match the specified
+class name.
+
+See also 
+%%#getElementsByTagName|**getElementsByTagName()**%%,
+%%#querySelector|**querySelector()**%%,
+and
+%%#querySelectorAll|**querySelectorAll()**%%.
+
+<htmlexample>
+<div>
+  <div id='foo'>
+    <a class='bar'>'bar' inside foo.</a>
+    <div class='bar baz'>
+      <a>Nested anchor.</a>
+    </div>
+  </div>
+  <a class='bar'>'bar' outside foo.</a>
+</div>
+<script>
+  var foo = document.getElementById('foo');
+  var bars = foo.getElementsByClassName('bar');
+  
+  console.log(bars.length);
+  for (var i = 0; i < bars.length; i++) {
+    console.log(bars[i].tagName);
+  }
+</script>
+</htmlexample>
+
+----
+prototype.querySelector(selector : String) : Element
+
+Returns the first **Element** that matches the CSS **selector**. 
+
+See also 
+%%#querySelectorAll|**querySelectorAll()**%%,
+%%#getElementsByTagName|**getElementsByTagName()**%%,
+and
+%%#getElementsByClassName|**getElementsByClassName()**%%.
+
+<htmlexample>
+<span id='foo'>foo1</span>
+<span class='bar'>
+  <span class='baz'>baz1</span>
+</span>
+<span class='baz'>baz2</span>
+<script>
+  var foo = document.querySelector('#foo');
+  console.log(foo.innerHTML);
+
+  var baz = document.querySelector('.baz');
+  console.log(baz.innerHTML);
+
+  var baz2 = document.querySelector('body > .baz');
+  console.log(baz2.innerHTML);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/selectors-api/#queryselector
+
+
+----
+prototype.querySelectorAll(cssSelector : String) : NodeList
+
+Returns a **NodeList** containing the **Element**s in the document that
+match the CSS selector. 
+
+See also 
+%%#querySelector|**querySelector()**%%,
+%%#getElementsByTagName|**getElementsByTagName()**%%,
+and
+%%#getElementsByClassName|**getElementsByClassName()**%%.
+
+<htmlexample>
+<body>
+  <span id='foo'>foo1</span>
+  <span class='bar'>
+    <span class='baz'>baz1</span>
+  </span>
+  <span class='baz'>baz2</span>
+</body>
+<script>
+  var all = document.querySelectorAll('#foo, .baz');
+  console.log(all.length);
+  for (var i = 0; i < all.length; i++) {
+    console.log(all[i].innerHTML);
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/selectors-api/#queryselectorall
+
+----
+instance.children : HTMLCollection
+
+----
+instance.firstElementChild : Element
+
+----
+instance.lastElementChild : Element
+
+----
+instance.previousElementSibling : Element
+
+----
+instance.nextElementSibling : Element
+
+
+----
+instance.childElementCount : Number
+
+Returns the number of direct children of **this**.
+
+
+----
+prototype.getClientRects() : ClientRectList
+
+Returns a list of rectangles where **this** is in the document. 
+
+This method is similar to 
+%%#getBoundingClientRect|**getBoundingClientRect()**%%
+except it will return a %%/ClientRect|ClientRect%% for each
+part of the element 
+(eg, 
+text elements split on multiple lines will return a list with
+**length** > 1).
+
+<htmlexample>
+<div style='width: 120px'>
+<span id='foo'>This is a string of wrapping text</span>
+</div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var clientRects = foo.getClientRects();
+
+  console.log('length = ' + clientRects.length);
+
+  for (var i = 0; i < clientRects.length; i++) {
+    console.log('clientRect[' + i + '] = ');
+    console.log(JSON.stringify(clientRects[i], null, ' '));
+    console.log();
+  }
+</script>
+</htmlexample>
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-getclientrects
+
+----
+prototype.getBoundingClientRect() : ClientRect
+
+Returns the rectangular bounds of **this** relative to the 
+viewport. If this is a text element that is split on multiple lines,
+the rectangle will be enlarged to contain all portions.
+Use %%#getClientRects|**getClientRects()**%% to get the rectangles
+of each portion.
+
+<htmlexample>
+<span id='foo'>This is a string of text</span>
+<script>
+  var foo = document.getElementById('foo');
+
+  var boundingClientRect = foo.getBoundingClientRect();
+
+  console.log(JSON.stringify(boundingClientRect, null, ' '));
+</script>
+</htmlexample>
+
+
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-getboundingclientrect
+
+----
+prototype.scrollIntoView([top = false : Boolean]) : undefined
+
+Scolls the element into view. 
+
+<htmlexample>
+<div style='height: 100px; overflow: scroll'>
+  <div>A</div><div>B</div><div>C</div><div>D</div>
+  <div>E</div><div>F</div><div>G</div><div id='h'>H</div>
+</div>
+<button onclick='doScroll(true)'>Scroll 'H' to top</button>
+<button onclick='doScroll()'>Scroll 'H' to bottom</button>
+<script>
+  var doScroll = function(top) {
+    document.getElementById('h').scrollIntoView(top);
+  }
+</script>
+</htmlexample>
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollintoview
+
+----
+instance.scrollTop : Number
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrolltop
+
+----
+instance.scrollLeft : Number
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollleft
+
+----
+instance.scrollWidth : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollwidth
+
+----
+instance.scrollHeight : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollheight
+
+----
+instance.clientTop : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clienttop
+
+----
+instance.clientLeft : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clientleft
+
+----
+instance.clientWidth : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clientwidth
+
+----
+instance.clientHeight : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clientheight
+
+
+----
+instance.dataset : DOMStringMap
+
+Map of custom **'data-'** prefixed attributes on **this**. Attribute names
+are converted to camel case.
+
+<htmlexample>
+<div id='foo' data-bar-baz='value'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.dataset.barBaz);
+</script>
+</htmlexample>
+
+
