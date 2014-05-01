@@ -4,9 +4,6 @@ JavaScripture
 the fastest and easiest to use JavaScript API reference site by
 providing simple descriptions and interactive examples.
 
-Mention specs and example provide the details
-
-
 Contributing to the Documentation
 ---------------------------------
 JavaScripture's HTML is generated from a series of text files that
