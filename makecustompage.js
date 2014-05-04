@@ -22,7 +22,7 @@ var locals = {
   wrapInPageTemplate: true
 };
 
-var bodyTemplateFileName = process.argv[2].replace('.ejs', '');
+var bodyTemplateFileName = process.argv[2].replace('.ejs', '').replace('templates/', '');
 
 var output = template.render(bodyTemplateFileName, locals);
 if (locals.wrapInPageTemplate) {

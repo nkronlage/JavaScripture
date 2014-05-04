@@ -70,7 +70,7 @@ var currentObj;
 var templates = {};
 
 var render = function(filename, locals) {
-  var template = templates[filename] || fs.readFileSync(filename + '.ejs', 'utf8');
+  var template = templates[filename] || fs.readFileSync('templates/' + filename + '.ejs', 'utf8');
   templates[filename] = template;
 
   if (filename === 'object') {

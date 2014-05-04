@@ -1,5 +1,6 @@
 CONTENT_FOLDERS = $(shell ls -d content/*)
 vpath %.jsdoc $(CONTENT_FOLDERS)
+vpath %.ejs templates
 
 OUTPUT=site
 TEMP=tmp
@@ -17,22 +18,23 @@ OTHER_HTML_SOURCES = \
 
 OTHER_HTML = $(addprefix $(OUTPUT)/, $(OTHER_HTML_SOURCES))
 
-EXTRA_FILES = \
+STATIC_FILES = \
 	favicon.ico \
 	fireworks.ogv \
 	pic.jpg \
 	webgl-debug.js \
 
-OUTPUT_EXTRA_FILES = $(addprefix $(OUTPUT)/, $(EXTRA_FILES))
+INPUT_STATIC_FILES = $(addprefix static/, $(STATIC_FILES))
+OUTPUT_STATIC_FILES = $(addprefix $(OUTPUT)/, $(STATIC_FILES))
 
 SOURCES = \
 	$(CONTENT_HTML) \
 	$(OTHER_HTML) \
 	$(OUTPUT)/styles.css \
 	$(OUTPUT)/javascripture.js \
-	$(OUTPUT_EXTRA_FILES) \
+	$(OUTPUT_STATIC_FILES) \
 
-TEMPLATES = \
+TEMPLATES_FILES = \
 	bottomnav.ejs \
 	example.ejs \
 	htmlexample.ejs \
@@ -42,6 +44,8 @@ TEMPLATES = \
 	methodgroup.ejs \
 	object.ejs \
 	page.ejs \
+
+TEMPLATES = $(addprefix templates/, $(TEMPLATES_FILES))
 
 .PHONY: all clean
 
@@ -79,7 +83,7 @@ $(OUTPUT)/javascripture.js: javascripture.ejs $(TEMP)/apisets.json
 $(OUTPUT)/styles.css: styles.scss
 	sass styles.scss $(OUTPUT)/styles.css
 
-$(OUTPUT_EXTRA_FILES): $(OUTPUT)/%: %
+$(OUTPUT_STATIC_FILES): $(OUTPUT)/%: static/%
 	cp $< site/
 
 clean: 
