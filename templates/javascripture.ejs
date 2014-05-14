@@ -43,7 +43,7 @@ var getAPI = function(sets) {
 %>
 "use strict";
 
-var apiSets = <%= getAPI(apiSets) %>;
+var apiSets = <%- getAPI(apiSets) %>;
 
 var styleSheet = document.styleSheets[0];
 for (var i = 0; i < apiSets.length; i++) {

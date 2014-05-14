@@ -41,7 +41,7 @@ The canvas that owns this WebGL context.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code 
   
   console.log(gl.canvas === canvas);
 </script>
@@ -66,7 +66,7 @@ attributes, pass in the desired attributes to the first call to
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var attr = gl.getContextAttributes();
  
@@ -87,7 +87,7 @@ Returns the width of the owner canvas in pixels.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
   
   console.log(gl.drawingBufferWidth);
 </script>
@@ -107,7 +107,7 @@ Returns the height of the owner canvas in pixels.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
   
   console.log(gl.drawingBufferHeight);
 </script>
@@ -134,7 +134,7 @@ which extensions this canvas supports. See %%#getExtension|**getExtension()**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   gl.getSupportedExtensions().forEach(function(ext) {
     console.log(ext);
@@ -159,7 +159,7 @@ in the %%/Array|**Array**%% returned by %%#getSupportedExtensions|**getSupported
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   gl.getSupportedExtensions().forEach(function(extName) {
     console.log(extName);
@@ -228,7 +228,7 @@ See also %%#detachShader|**detachShader()**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -313,7 +313,7 @@ and
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -546,7 +546,7 @@ Use
 **%%#getParameter|getParameter%%(gl.%%#BLEND_DST_RGB|BLEND_DST_RGB%%)**,
 **%%#getParameter|getParameter%%(gl.%%#BLEND_SRC_ALPHA|BLEND_SRC_ALPHA%%)**,
 and
-**%%#getParameter|getParameter%%(gl.%%#BLEND_DST_ALPHA|BLEND_DST_ALPHA%%)**,
+**%%#getParameter|getParameter%%(gl.%%#BLEND_DST_ALPHA|BLEND_DST_ALPHA%%)**
 to get the current values. 
 </p>
 
@@ -663,7 +663,7 @@ OR (**|**) of one or more of the following values:
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   gl.clearColor(0, 1, 0, 1);
   gl.clearDepth(1);
@@ -687,7 +687,7 @@ are clamped to the range **0** to **1**.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   gl.clearColor(0, 1, 0, 1);
   gl.clear(gl.COLOR_BUFFER_BIT);
@@ -710,7 +710,7 @@ the range **0** (near) to **1** (far).  Defaults to **1** if not specified.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   gl.clearDepth(1);
   gl.clear(gl.COLOR_BUFFER_BIT);
@@ -732,7 +732,7 @@ with the %%#STENCIL_BUFFER_BIT|**STENCIL_BUFFER_BIT**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   gl.clearStencil(0);
   gl.clear(gl.STENCIL_BUFFER_BIT);
@@ -920,7 +920,7 @@ and
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -1019,7 +1019,7 @@ and
   img.onload = function() {
     var canvas = document.getElementById('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -1194,7 +1194,7 @@ See also
     var output = document.getElementById('output');
     var offscreenCanvas = document.createElement('canvas');
     var gl = offscreenCanvas.getContext('webgl') || offscreenCanvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -1347,7 +1347,7 @@ and
   img.onload = function() {
     var canvas = document.getElementById('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -1666,7 +1666,7 @@ See also %%#drawElements|**drawElements()**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -1782,7 +1782,7 @@ See also %%#drawArrays|**drawArrays()**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -2031,7 +2031,7 @@ the buffer to store the rendered output.
     var output = document.getElementById('output');
     var offscreenCanvas = document.createElement('canvas');
     var gl = offscreenCanvas.getContext('webgl') || offscreenCanvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -2364,7 +2364,7 @@ or
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var names = {};
   Object.keys(gl).forEach(function(key) {
@@ -2580,7 +2580,7 @@ or %%#HIGH_INT|**HIGH_INT**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var precisionTypes = ['LOW_FLOAT', 'MEDIUM_FLOAT', 'HIGH_FLOAT',
                         'LOW_INT',   'MEDIUM_INT',   'HIGH_INT'];
@@ -2704,7 +2704,7 @@ Retrieves the value stored in **location** by a **uniform*()** call.
   img.onload = function() {
     var canvas = document.getElementById('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -2854,7 +2854,7 @@ Returns **true** if **buffer** is a valid, bound buffer.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var buffer = gl.createBuffer();
   console.log(gl.isBuffer(buffer));
@@ -2897,7 +2897,7 @@ Returns **true** if **framebuffer** is a valid, bound framebuffer.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var framebuffer = gl.createFramebuffer();
   console.log(gl.isFramebuffer(framebuffer));
@@ -2928,7 +2928,7 @@ Returns **true** if **program** is a valid program.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var program = gl.createProgram();
   console.log(gl.isProgram(program));
@@ -2955,7 +2955,7 @@ Returns **true** if **renderbuffer** is a valid, bound renderbuffer.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var renderbuffer = gl.createRenderbuffer();
   console.log(gl.isRenderbuffer(renderbuffer));
@@ -2985,7 +2985,7 @@ Returns **true** if **shader** is a valid shader.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var shader = gl.createShader(gl.VERTEX_SHADER);
   console.log(gl.isShader(shader));
@@ -3013,7 +3013,7 @@ Returns **true** if **texture** is a valid, bound texture.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var texture = gl.createTexture();
   console.log(gl.isTexture(texture));
@@ -3442,7 +3442,7 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
 <script>
     var canvas = document.getElementById('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -3609,7 +3609,7 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create the shader program
   var program = gl.createProgram();
@@ -3722,7 +3722,7 @@ prototype.texImage2D(target : Number, level : Number, internalformat : Number, f
   img.onload = function() {
     var canvas = document.getElementById('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    gl = WebGLDebugUtils.makeDebugContext(gl);
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
     // Create the shader program
     var program = gl.createProgram();
@@ -4250,7 +4250,7 @@ will return **true**.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -5009,7 +5009,7 @@ DITHER : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   // Create Vertex Shader
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -5273,7 +5273,7 @@ operations will write to the depth buffer.  Use
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.DEPTH_WRITEMASK));
 
@@ -5500,7 +5500,7 @@ current clear color set by the most recent
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   var color = gl.getParameter(gl.COLOR_CLEAR_VALUE);
   console.log(color[0], color[1], color[2], color[3]);
@@ -5537,7 +5537,7 @@ operations will write to the color channels of the framebuffer.  Use
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.COLOR_WRITEMASK).join(', '));
 
@@ -5585,7 +5585,7 @@ MAX_TEXTURE_SIZE : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_TEXTURE_SIZE));
 </script>
@@ -5607,7 +5607,7 @@ MAX_VIEWPORT_DIMS : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
   
   var maxViewportDims = gl.getParameter(gl.MAX_VIEWPORT_DIMS);
   console.log(maxViewportDims[0]);
@@ -6037,7 +6037,7 @@ The maximum number of attributes a vertex shader may define.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_VERTEX_ATTRIBS));
 </script>
@@ -6061,7 +6061,7 @@ The maximum number of uniforms a program may define.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_VERTEX_UNIFORM_VECTORS));
 </script>
@@ -6086,7 +6086,7 @@ The maximum number of varying vectors a program may define.
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_VARYING_VECTORS));
 </script>
@@ -6115,7 +6115,7 @@ See
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS));
 </script>
@@ -6138,7 +6138,7 @@ MAX_VERTEX_TEXTURE_IMAGE_UNITS : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS));
 </script>
@@ -6162,7 +6162,7 @@ MAX_TEXTURE_IMAGE_UNITS : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS));
 </script>
@@ -6185,7 +6185,7 @@ MAX_FRAGMENT_UNIFORM_VECTORS : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS));
 </script>
@@ -6659,7 +6659,7 @@ MAX_CUBE_MAP_TEXTURE_SIZE : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
   
   console.log(gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE));
 </script>
@@ -6943,7 +6943,7 @@ to get the active texture unit set by the most recent
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.ACTIVE_TEXTURE) - gl.TEXTURE0);
 
@@ -7577,7 +7577,7 @@ MAX_RENDERBUFFER_SIZE : Number
 <script>
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  gl = WebGLDebugUtils.makeDebugContext(gl);
+  gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
 
   console.log(gl.getParameter(gl.MAX_RENDERBUFFER_SIZE));
 </script>

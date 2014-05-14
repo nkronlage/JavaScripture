@@ -50,13 +50,11 @@ document that match the CSS selector.
 
 
 <htmlexample>
-<body>
-  <span id='foo'>foo1</span>
-  <span class='bar'>
-    <span class='baz'>baz1</span>
-  </span>
-  <span class='baz'>baz2</span>
-</body>
+<span id='foo'>foo1</span>
+<span class='bar'>
+  <span class='baz'>baz1</span>
+</span>
+<span class='baz'>baz2</span>
 <script>
   var fragment = document.createDocumentFragment();
 

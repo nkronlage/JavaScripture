@@ -9,6 +9,8 @@ http://www.w3.org/TR/FileAPI/#FileReader-interface
 ----
 new FileReader() : FileReader
 
+Constructs a new FileReader.
+
 <htmlexample>
 <input type='file' accept='image/*' onchange='openFile(event)'><br>
 <img id='output'>
@@ -17,11 +19,10 @@ new FileReader() : FileReader
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(event){
-      var dataURL = event.target.result;
+    reader.onload = function(){
+      var dataURL = reader.result;
       var output = document.getElementById('output');
       output.src = dataURL;
-      
     };
     reader.readAsDataURL(input.files[0]);
   };
@@ -46,8 +47,7 @@ fires.
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(event){
-      var reader = event.target;
+    reader.onload = function(){
       var arrayBuffer = reader.result;
 
       console.log(arrayBuffer.byteLength);
@@ -76,9 +76,7 @@ sets%%.
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(event){
-      var reader = event.target;
-
+    reader.onload = function(){
       var text = reader.result;
       console.log(reader.result.substring(0, 200));
     };
@@ -105,12 +103,10 @@ event fires.
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(event){
-      var reader = event.target;
+    reader.onload = function(){
       var dataURL = reader.result;
       var output = document.getElementById('output');
       output.src = dataURL;
-      
     };
     reader.readAsDataURL(input.files[0]);
   };
@@ -146,7 +142,7 @@ The current state of the reader.  Will be one of %%#EMPTY|**EMPTY**%%,
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(event){
+    reader.onload = function(){
       console.log('After load: ' + stateNames[reader.readyState]);
     };
 
@@ -176,11 +172,10 @@ fires.
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(event){
-      var dataURL = event.target.result;
+    reader.onload = function(){
+      var dataURL = reader.result;
       var output = document.getElementById('output');
       output.src = dataURL;
-      
     };
     reader.readAsDataURL(input.files[0]);
   };
@@ -195,6 +190,28 @@ http://www.w3.org/TR/FileAPI/#dfn-result
 
 ----
 instance.error : Error
+
+The error encountered during load.
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onloadstart = function() {
+      reader.abort();
+    };
+
+    reader.onloadend = function() {
+      console.log(reader.error.message);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -265,6 +282,8 @@ Called during a read operation to report the current progress.
 ----
 event.load : listener(event : ProgressEvent) : undefined
 
+Called when a read operation successfully completes.
+
 <htmlexample>
 <input type='file' onchange='openFile(event)'>
 <script>
@@ -291,6 +310,8 @@ event.load : listener(event : ProgressEvent) : undefined
 
 ----
 event.abort : listener(event : ProgressEvent) : undefined
+
+Called when the read is aborted with %%#abort|**abort()**%%.
 
 <htmlexample>
 <input type='file' onchange='openFile(event)'>
@@ -325,6 +346,8 @@ event.abort : listener(event : ProgressEvent) : undefined
 ----
 event.error : listener(event : ProgressEvent) : undefined
 
+Called when there is an error during the load.
+
 <htmlexample>
 <input type='file' onchange='openFile(event)'>
 <script>
@@ -357,6 +380,9 @@ event.error : listener(event : ProgressEvent) : undefined
 
 ----
 event.loadend : listener(event : ProgressEvent) : undefined
+
+Called after a read completes (either successfully or
+unsuccessfully).
 
 <htmlexample>
 <input type='file' onchange='openFile(event)'>
@@ -398,8 +424,8 @@ Value:
 LOADING : Number
 
 The value returned by %%#readyState|**readyState**%% after
-one of the read methods has been called but before the %%#onload|**onload**%%
-callback has been called.
+one of the read methods has been called but before the %%#onload|**load**%%
+event has fired.
 
 ReadOnly:
 true
@@ -411,7 +437,7 @@ Value:
 DONE : Number
 
 The value returned by %%#readyState|**readyState**%% after
-the %%#onload|**onload**%% callback has been called.
+the %%#onload|**load**%% event has fired.
 
 ReadOnly:
 true

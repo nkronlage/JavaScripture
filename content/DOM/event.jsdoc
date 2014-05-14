@@ -1,5 +1,8 @@
 Event : Object
 
+Event contains information describing the current event such as a click or
+download event. It is the first parameter to event listener callbacks.
+
 Spec:
 http://www.w3.org/TR/DOM-Level-3-Events/#events-Event
 
@@ -11,8 +14,64 @@ new Event( \
      cancelable: Boolean \
   }]) : Event
 
+Creates a new Event. Use %%/EventTarget#dispatchEvent|**dispatchEvent()**%% to 
+fire the event.
+
+<htmlexample>
+<div id='parent'>
+  Parent
+  <div id='child'>
+    --Child
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var listener = function(event) {
+    console.log(' phase=' + phaseNames[event.eventPhase] + 
+                ' type=' + event.type);
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('customEvent', listener, /* capture = */ true);
+  child.addEventListener('customEvent', listener);
+  parent.addEventListener('customEvent', listener);
+
+  console.log('dispatching bubbles=false event')
+  var nonBubblingEvent = new Event('customEvent');
+  child.dispatchEvent(nonBubblingEvent);
+
+  console.log('\ndispatching bubbles=true event')
+  var nonBubblingEvent = new Event('customEvent', { bubbles: true });
+  child.dispatchEvent(nonBubblingEvent);
+</script>
+</htmlexample>
+
 ----
 instance.type : String
+
+A string describing the type of event.
+
+<htmlexample>
+<div id='element'>
+  Click Me
+</div>
+<script>
+  var eventListener = function(event) {
+    console.log(event.type);
+  };
+  var element = document.getElementById('element');
+
+  element.addEventListener('click', eventListener);
+  element.addEventListener('mouseout', eventListener);
+  element.addEventListener('mouseover', eventListener);
+  element.addEventListener('mouseenter', eventListener);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -20,7 +79,34 @@ true
 ----
 instance.target : Object
 
-The **Object** that originated this event. See %%#currentTarget|**currentTarget**%%.
+The **Object** that originated this event. See also %%#currentTarget|**currentTarget**%%.
+
+<htmlexample>
+<div id='parent'>
+  Click Me (parent)
+  <div id='child'>
+    --Click Me (child)
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var clickListener = function(event) {
+    console.log('phase=' + phaseNames[event.eventPhase] + 
+                ' target=' + event.target.id +
+                ' currentTarget=' + event.currentTarget.id);
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('click', clickListener, /* capture = */ true);
+  child.addEventListener('click', clickListener);
+  parent.addEventListener('click', clickListener);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -29,8 +115,36 @@ true
 instance.currentTarget : Object
 
 The **Object** that the current callback is running for.  
-This will be different than %%#target|**target**%% if this
+This will be the element that registered the listener and 
+will different than %%#target|**target**%% if this
 event is in the bubble or capture phase.
+
+<htmlexample>
+<div id='parent'>
+  Click Me (parent)
+  <div id='child'>
+    --Click Me (child)
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var clickListener = function(event) {
+    console.log('phase=' + phaseNames[event.eventPhase] + 
+                ' target=' + event.target.id +
+                ' currentTarget=' + event.currentTarget.id);
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('click', clickListener, /* capture = */ true);
+  child.addEventListener('click', clickListener);
+  parent.addEventListener('click', clickListener);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -44,11 +158,41 @@ The current phase of the event.  Will be one of
 %%#AT_TARGET|**AT_TARGET**%%, or
 %%#BUBBLING_PHASE|**BUBBLING_PHASE**%%.
 
+<htmlexample>
+<div id='parent'>
+  Click Me (parent)
+  <div id='child'>
+    --Click Me (child)
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var clickListener = function(event) {
+    console.log('phase=' + phaseNames[event.eventPhase] + 
+                ' target=' + event.target.id +
+                ' currentTarget=' + event.currentTarget.id);
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('click', clickListener, /* capture = */ true);
+  child.addEventListener('click', clickListener);
+  parent.addEventListener('click', clickListener);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
 ----
 instance.bubbles : Boolean
+
+Returns **true** if the event will bubble up through the ancestor 
+hierarchy.
 
 ReadOnly:
 true
@@ -56,17 +200,66 @@ true
 ----
 instance.cancelable : Boolean
 
+Returns **true** if the event can be canceled (by calling %%#preventDefault|**preventDefault()**%%).
+
 ReadOnly:
 true
 
 ----
 instance.timeStamp : Number
 
+The time (in milliseconds since 01 January, 1970 UTC) that the event fired. Use
+%%/Date|Date%% to convert to a human readable time.
+
+<htmlexample>
+<div id='element'>
+  Click Me
+</div>
+<script>
+  var element = document.getElementById('element');
+
+  element.addEventListener('click', function(event) {
+    console.log(new Date(event.timeStamp));
+  });
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
 ----
 instance.defaultPrevented : Boolean
+
+Returns **true** if %%#preventDefault|**preventDefault()**%% has been called on
+**this**.
+
+<htmlexample>
+<div id='parent'>
+  Click Me (parent)
+  <div id='child'>
+    --Click Me (child)
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var clickListener = function(event) {
+    console.log('phase=' + phaseNames[event.eventPhase] + 
+                ' defaultPrevented=' + event.defaultPrevented);
+
+    event.preventDefault();
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('click', clickListener, /* capture = */ true);
+  child.addEventListener('click', clickListener);
+  parent.addEventListener('click', clickListener);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -80,8 +273,80 @@ true
 ----
 prototype.stopPropagation() : undefined
 
+Stops event listeners on other nodes in the event route from running. Other 
+listeners attached to %%#currentTarget|**currentTarget**%% will still run.
+See also
+%%#stopImmediatePropagation|**stopImmediatePropagation()**%%.
+
+<htmlexample>
+<div id='parent'>
+  Click Me (parent)
+  <div id='child'>
+    --Click Me (child)
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var clickListener = function(event) {
+    console.log('phase=' + phaseNames[event.eventPhase] + 
+                ' target=' + event.target.id +
+                ' currentTarget=' + event.currentTarget.id);
+
+    if (event.currentTarget.id === 'parent') {
+      event.stopPropagation();
+    }
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('click', clickListener, /* capture = */ true);
+  child.addEventListener('click', clickListener);
+  parent.addEventListener('click', clickListener);
+</script>
+</htmlexample>
+
 ----
 prototype.stopImmediatePropagation() : undefined
+
+Stops other event listeners on this node and on other nodes in the event route 
+from running. See also
+%%#stopPropagation|**stopPropagation()**%%.
+
+<htmlexample>
+<div id='parent'>
+  Click Me (parent)
+  <div id='child'>
+    --Click Me (child)
+  </div>
+</div>
+<script>
+  var phaseNames = { };
+  phaseNames[Event.CAPTURING_PHASE] = 'capture';
+  phaseNames[Event.AT_TARGET] = 'atTarget';
+  phaseNames[Event.BUBBLING_PHASE] = 'bubble';
+
+  var clickListener = function(event) {
+    console.log('phase=' + phaseNames[event.eventPhase] + 
+                ' target=' + event.target.id +
+                ' currentTarget=' + event.currentTarget.id);
+
+    if (event.currentTarget.id === 'parent') {
+      event.stopImmediatePropagation();
+    }
+  };
+  var parent = document.getElementById('parent');
+  var child = document.getElementById('child');
+
+  parent.addEventListener('click', clickListener, /* capture = */ true);
+  child.addEventListener('click', clickListener);
+  parent.addEventListener('click', clickListener);
+</script>
+</htmlexample>
+
 
 Spec:
 http://www.w3.org/TR/DOM-Level-3-Events/#events-event-type-stopImmediatePropagation
@@ -89,13 +354,25 @@ http://www.w3.org/TR/DOM-Level-3-Events/#events-event-type-stopImmediatePropagat
 ----
 prototype.preventDefault() : undefined
 
+Stops the browser's default behavior from running for the current event.
 
-----
-prototype.initEvent(type : String, canBubble : Boolean, cancelable : Boolean) : undefined
-
+<htmlexample>
+<textarea id='textarea'>Try typing</textarea><br>
+<input id='checkbox' type='checkbox' checked> preventDefault
+<script>
+  var textarea = document.getElementById('textarea');
+  textarea.addEventListener('keydown', function(event) {
+    if (document.getElementById('checkbox').checked) {
+      event.preventDefault();
+    }
+  });
+</script>
+</htmlexample>
 
 ----
 NONE : Number 
+
+Returned by %%#eventPhase|**eventPhase**%% before the event is routed.
 
 ReadOnly:
 true
@@ -103,11 +380,16 @@ true
 ----
 CAPTURING_PHASE : Number 
 
+Returned by %%#eventPhase|**eventPhase**%% during the capture phase of the 
+event route.
+
 ReadOnly:
 true
 
 ----
 AT_TARGET : Number
+
+Returned by %%#eventPhase|**eventPhase**%% when at the target that originated the event.
 
 ReadOnly:
 true
@@ -115,6 +397,8 @@ true
 ----
 BUBBLING_PHASE : Number
 
+Returned by %%#eventPhase|**eventPhase**%% during the bubbling phase of the 
+event route.
 
 ReadOnly:
 true

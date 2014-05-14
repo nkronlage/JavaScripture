@@ -17,11 +17,9 @@ to stop listening to the event.
 
 <htmlexample>
 <!-- This example demonstrates adding 'click' listeners and capture/bubbling -->
-<body>
-  <div id='div'>
-    <button id='button'>click</button>
-  </div>
-</body>
+<div id='div'>
+  <button id='button'>click</button>
+</div>
 <script>
 var body = document.body;
 body.addEventListener('click', function(event) {
