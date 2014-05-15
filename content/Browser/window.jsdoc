@@ -498,7 +498,13 @@ event.pagehide : listener(event : Event) : undefined
 ----
 event.pageshow : listener(event : Event) : undefined
 ----
-event.popstate : listener(event : Event) : undefined
+event.popstate : listener(event : PopStateEvent) : undefined
+
+Called when the page navigation changes.  See also %%/History|History%%.
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#handler-window-onpopstate
+
 ----
 event.progress : listener(event : Event) : undefined
 ----

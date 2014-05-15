@@ -1,0 +1,26 @@
+PopStateEvent : Event
+
+See %%/Window#onpopstate|**window.onpopstate**%%.
+
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#the-popstateevent-interface
+
+----
+new PopStateEvent( \
+  type : String,  \
+  [eventInit : { \
+     state : Object, \
+     bubbles : Boolean, \
+     cancelable : Boolean \
+  }]) : Event
+
+
+----
+instance.state : Object
+
+ReadOnly:
+true
+
+Spec:
+http://www.whatwg.org/specs/web-apps/current-work/#dom-popstateevent-state

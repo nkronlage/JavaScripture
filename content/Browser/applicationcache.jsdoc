@@ -1,11 +1,16 @@
 ApplicationCache : EventTarget
 
+The ApplicationCache describes the state of files cached for the current 
+page.
+
+Pages set the **manifest="<location to manifest>"** attribute on the **<html>**
+tag to define the set of files to be cached.
+
 Obtained through the %%/Window#applicationCache|**window.applicationCache**%%
 property.
 
 Spec:
 http://www.w3.org/TR/2008/WD-html5-20080122/#appcache
-
 
 ----
 instance[index : Number] : String
@@ -39,11 +44,18 @@ http://www.w3.org/TR/2008/WD-html5-20080122/#status0
 ----
 prototype.update() : undefined
 
+Checks to see if there is an updated manifest file on the server. This automatically
+happens once when the page first loads.
+
 Spec:
 http://www.w3.org/TR/2008/WD-html5-20080122/#update1
 
 ----
 prototype.swapCache() : undefined
+
+Replaces application cache with the updated list of files from the server.  This
+does not automatically update the resources of the page.  You can use 
+%%Location#reload|**location.reload()**%% to update the page.
 
 Spec:
 http://www.w3.org/TR/2008/WD-html5-20080122/#swapcache
@@ -71,8 +83,14 @@ http://www.w3.org/TR/2008/WD-html5-20080122/#remove1
 ----
 event.checking : listener(event : Event) : undefined
 
+Event fired when the browser is going to check to see if the manifest has been
+updated on the server.
+
 ----
 event.error : listener(event : Event) : undefined
+
+Event fired when the server returned an error status when attempting to download
+the app manifest.
 
 ----
 event.noupdate : listener(event : Event) : undefined
@@ -80,11 +98,16 @@ event.noupdate : listener(event : Event) : undefined
 ----
 event.downloading : listener(event : Event) : undefined
 
+Event fired when the manifest has upated and the browser is going to start
+downloading it.
+
 ----
-event.progress : listener(event : Event) : undefined
+event.progress : listener(event : ProgressEvent) : undefined
 
 ----
 event.updateready : listener(event : Event) : undefined
+
+Event fired when all resources listed in the manifest have been downloaded. 
 
 ----
 event.cached : listener(event : Event) : undefined

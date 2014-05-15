@@ -1,5 +1,11 @@
 History : Object
 
+Represents the history of pages displayed to the user.
+Allows the webpage to manipulate the history by adding new pages
+or navigating between pages already in the history.
+
+Use the %%Window#onpopstate|**window.onpopstate**%% event
+to listen to navigation changes.
 
 Spec:
 http://www.w3.org/html/wg/drafts/html/master/browsers.html#history-1

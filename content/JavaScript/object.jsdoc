@@ -63,7 +63,9 @@ instance[propertyName : String] : Object
 
 Returns the value stored in this at the specified **propertyName**.
 This is the same as the **.** style access but also allows the 
-property name to be specified at runtime using a String of being hardcoded.
+property name to be specified at runtime using a String of being hardcoded and allows
+access to properties that are invalid identifiers (such as including spaces or
+starting with a number).
 
 <example>
 var x = { foo: 'bar'};
