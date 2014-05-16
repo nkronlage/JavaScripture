@@ -276,7 +276,8 @@ prototype.stopPropagation() : undefined
 Stops event listeners on other nodes in the event route from running. Other 
 listeners attached to %%#currentTarget|**currentTarget**%% will still run.
 See also
-%%#stopImmediatePropagation|**stopImmediatePropagation()**%%.
+%%#stopImmediatePropagation|**stopImmediatePropagation()**%%
+and %%#preventDefault|**preventDefault()**%%.
 
 <htmlexample>
 <div id='parent'>
@@ -314,7 +315,8 @@ prototype.stopImmediatePropagation() : undefined
 
 Stops other event listeners on this node and on other nodes in the event route 
 from running. See also
-%%#stopPropagation|**stopPropagation()**%%.
+%%#stopPropagation|**stopPropagation()**%% and
+and %%#preventDefault|**preventDefault()**%%.
 
 <htmlexample>
 <div id='parent'>
@@ -355,6 +357,9 @@ http://www.w3.org/TR/DOM-Level-3-Events/#events-event-type-stopImmediatePropagat
 prototype.preventDefault() : undefined
 
 Stops the browser's default behavior from running for the current event.
+Only %%#cancelable|**cancelable**%% events can have their default behavior prevented.
+See also %%#stopPropagation|**stopPropagation()**%%
+and %%#stopImmediatePropagation|**stopImmediatePropagation()**%%.
 
 <htmlexample>
 <textarea id='textarea'>Try typing</textarea><br>
