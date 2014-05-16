@@ -9,6 +9,9 @@ tag to define the set of files to be cached.
 Obtained through the %%/Window#applicationCache|**window.applicationCache**%%
 property.
 
+See %%http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html|Offline WebPage Spec%% for 
+more details.
+
 Spec:
 http://www.w3.org/TR/2008/WD-html5-20080122/#appcache
 
