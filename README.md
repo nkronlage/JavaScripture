@@ -141,7 +141,7 @@ After the description comes additional metadata for the member.  The metadata is
 The possible MetadataNames are:
 * Spec - the value should be the link to the specification 
 * ReadOnly - value should be true if the property is read only.  Defaults to false.
-* Value - the value of the property such as [seen here](http://localhost:8080/XMLHttpRequest#DONE)
+* Value - the value of the property such as [seen here](http://www.javascripture.com/XMLHttpRequest#DONE)
 
 
 ### Testing the changes
