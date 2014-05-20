@@ -12,7 +12,6 @@ new Int8Array(length : Number) : Int8Array
 Creates a new **Int8Array** of the specified length where
 each item starts out as **0**
 
-
 <example>
 var x = new Int8Array(2);
 x[0] = 17;
@@ -20,7 +19,6 @@ console.log(x[0]);
 console.log(x[1]);
 console.log(x.length);
 </example>
-
 
 ----
 new Int8Array(array : Array) : Int8Array
@@ -53,7 +51,6 @@ x[0] = -2;
 console.log(y[0]); // y is not modified
 </example>
 
-
 ----
 new Int8Array(buffer : ArrayBuffer, [byteOffset = 0 : Number, [length : Number]]) : Int8Array
 
@@ -85,7 +82,6 @@ console.log(x[0]);
 console.log(x[1]);
 </example>
 
-
 ----
 instance.buffer : ArrayBuffer
 
@@ -98,6 +94,9 @@ var y = new Int8Array(x.buffer, 4, 2);
 console.log(x.buffer === y.buffer); 
 </example>
 
+ReadOnly:
+true
+
 ----
 instance.byteOffset : Number
 
@@ -108,6 +107,9 @@ var buffer = new ArrayBuffer(12);
 var x = new Int8Array(buffer, 4, 2);
 console.log(x.byteOffset); 
 </example>
+
+ReadOnly:
+true
 
 ----
 instance.byteLength : Number
@@ -120,6 +122,9 @@ var x = new Int8Array(buffer, 4, 2);
 console.log(x.byteLength); 
 console.log(x.length * Int8Array.BYTES_PER_ELEMENT); 
 </example>
+
+ReadOnly:
+true
 
 ----
 instance.length : Number

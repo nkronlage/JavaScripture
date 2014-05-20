@@ -27,7 +27,6 @@ Creates a new **Float32Array** and copies the items of **array** into
 **this**. The copied items are converted to 32 bit floats before
 being stored in **this**.
 
-
 <example>
 var x = new Float32Array([17, -45.3]);
 console.log(x[0]);
@@ -42,7 +41,6 @@ Creates a new **Float32Array** and copies the items of **array** into
 **this**. **array** can be any of the typed array types and the copied 
 items will be converted to 32 bit floats before being stored in **this**. 
 
-
 <example>
 var x = new Float32Array([17, -45.3]);
 var y = new Float32Array(x);
@@ -52,7 +50,6 @@ console.log(x.length);
 x[0] = -2;
 console.log(y[0]); // y is not modified
 </example>
-
 
 ----
 new Float32Array(buffer : ArrayBuffer, [byteOffset = 0 : Number, [length : Number]]) : Float32Array
@@ -87,7 +84,6 @@ console.log(x[0]);
 console.log(x[1]);
 </example>
 
-
 ----
 instance.buffer : ArrayBuffer
 
@@ -100,6 +96,9 @@ var y = new Float32Array(x.buffer, 4, 2);
 console.log(x.buffer === y.buffer); 
 </example>
 
+ReadOnly:
+true
+
 ----
 instance.byteOffset : Number
 
@@ -111,6 +110,8 @@ var x = new Float32Array(buffer, 4, 2);
 console.log(x.byteOffset); 
 </example>
 
+ReadOnly:
+true
 
 ----
 instance.byteLength : Number
@@ -123,6 +124,9 @@ var x = new Float32Array(buffer, 4, 2);
 console.log(x.byteLength); 
 console.log(x.length * Float32Array.BYTES_PER_ELEMENT); 
 </example>
+
+ReadOnly:
+true
 
 ----
 instance.length : Number

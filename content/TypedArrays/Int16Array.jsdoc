@@ -12,7 +12,6 @@ new Int16Array(length : Number) : Int16Array
 Creates a new **Int16Array** of the specified length where
 each item starts out as **0**
 
-
 <example>
 var x = new Int16Array(2);
 x[0] = 17;
@@ -21,14 +20,12 @@ console.log(x[1]);
 console.log(x.length);
 </example>
 
-
 ----
 new Int16Array(array : Array) : Int16Array
 
 Creates a new **Int16Array** and copies the items of **array** into 
 **this**. The copied items are converted to 16 bit integers before
 being stored in **this**.
-
 
 <example>
 var x = new Int16Array([17, -45.3]);
@@ -43,7 +40,6 @@ new Int16Array(array : Int16Array) : Int16Array
 Creates a new **Int16Array** and copies the items of **array** into 
 **this**. **array** can be any of the typed array types and the copied 
 items will be converted to 16 bit integers before being stored in **this**. 
-
 
 <example>
 var x = new Int16Array([17, -45.3]);
@@ -89,7 +85,6 @@ console.log(x[0]);
 console.log(x[1]);
 </example>
 
-
 ----
 instance.buffer : ArrayBuffer
 
@@ -102,6 +97,9 @@ var y = new Int16Array(x.buffer, 4, 2);
 console.log(x.buffer === y.buffer); 
 </example>
 
+ReadOnly:
+true
+
 ----
 instance.byteOffset : Number
 
@@ -113,6 +111,8 @@ var x = new Int16Array(buffer, 4, 2);
 console.log(x.byteOffset); 
 </example>
 
+ReadOnly:
+true
 
 ----
 instance.byteLength : Number
@@ -125,6 +125,9 @@ var x = new Int16Array(buffer, 4, 2);
 console.log(x.byteLength); 
 console.log(x.length * Int16Array.BYTES_PER_ELEMENT); 
 </example>
+
+ReadOnly:
+true
 
 ----
 instance.length : Number

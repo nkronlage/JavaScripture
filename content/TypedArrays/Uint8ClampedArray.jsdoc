@@ -26,7 +26,6 @@ console.log(x[2]);
 console.log(x.length);
 </example>
 
-
 ----
 new Uint8ClampedArray(array : Array) : Uint8ClampedArray
 
@@ -59,7 +58,6 @@ console.log(x.length);
 x[0] = -2;
 console.log(y[0]); // y is not modified
 </example>
-
 
 ----
 new Uint8ClampedArray(buffer : ArrayBuffer, [byteOffset = 0 : Number, [length : Number]]) : Uint8ClampedArray
@@ -104,6 +102,9 @@ var y = new Uint8ClampedArray(x.buffer, 4, 2);
 console.log(x.buffer === y.buffer); 
 </example>
 
+ReadOnly:
+true
+
 ----
 instance.byteOffset : Number
 
@@ -115,6 +116,8 @@ var x = new Uint8ClampedArray(buffer, 4, 2);
 console.log(x.byteOffset); 
 </example>
 
+ReadOnly:
+true
 
 ----
 instance.byteLength : Number
@@ -127,6 +130,9 @@ var x = new Uint8ClampedArray(buffer, 4, 2);
 console.log(x.byteLength); 
 console.log(x.length * Uint8ClampedArray.BYTES_PER_ELEMENT); 
 </example>
+
+ReadOnly:
+true
 
 ----
 instance.length : Number

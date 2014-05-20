@@ -12,7 +12,6 @@ new Uint16Array(length : Number) : Uint16Array
 Creates a new **Uint16Array** of the specified length where
 each item starts out as **0**
 
-
 <example>
 var x = new Uint16Array(2);
 x[0] = 17;
@@ -20,7 +19,6 @@ console.log(x[0]);
 console.log(x[1]);
 console.log(x.length);
 </example>
-
 
 ----
 new Uint16Array(array : Array) : Uint16Array
@@ -52,7 +50,6 @@ console.log(x.length);
 x[0] = -2;
 console.log(y[0]); // y is not modified
 </example>
-
 
 ----
 new Uint16Array(buffer : ArrayBuffer, [byteOffset = 0 : Number, [length : Number]]) : Uint16Array
@@ -99,6 +96,9 @@ var y = new Uint16Array(x.buffer, 4, 2);
 console.log(x.buffer === y.buffer); 
 </example>
 
+ReadOnly:
+true
+
 ----
 instance.byteOffset : Number
 
@@ -110,6 +110,8 @@ var x = new Uint16Array(buffer, 4, 2);
 console.log(x.byteOffset); 
 </example>
 
+ReadOnly:
+true
 
 ----
 instance.byteLength : Number
@@ -122,6 +124,9 @@ var x = new Uint16Array(buffer, 4, 2);
 console.log(x.byteLength); 
 console.log(x.length * Uint16Array.BYTES_PER_ELEMENT); 
 </example>
+
+ReadOnly:
+true
 
 ----
 instance.length : Number

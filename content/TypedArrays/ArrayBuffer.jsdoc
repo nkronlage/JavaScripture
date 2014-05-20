@@ -35,7 +35,6 @@ console.log(dataView.getInt8(0).toString(16));
 console.log(int8View[0].toString(16));
 </example>
 
-
 ----
 instance.byteLength : Number
 
@@ -70,3 +69,13 @@ console.log(x[1]);
 console.log(y[0]);
 </example>
 
+----
+isView(value : Object) : Boolean
+
+Returns **true** if **value** is an %%/ArrayBufferView|ArrayBufferView%%.
+
+<example>
+console.log(ArrayBuffer.isView(new Int32Array()));
+console.log(ArrayBuffer.isView(new Float64Array()));
+console.log(ArrayBuffer.isView(new Array()));
+</example>
