@@ -1,5 +1,7 @@
 AnalyserNode : AudioNode
 
+Created by %%/AudioContext#createAnalyser|**audioContext.createAnalyser()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#AnalyserNode
 
