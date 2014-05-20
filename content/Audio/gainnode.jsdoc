@@ -1,5 +1,7 @@
 GainNode : AudioNode
 
+Created by %%/AudioContext#createGain|**audioContext.createGain()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#GainNode
 

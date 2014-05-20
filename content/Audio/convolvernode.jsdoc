@@ -1,5 +1,7 @@
 ConvolverNode : AudioNode
 
+Created by %%/AudioContext#createConvolver|**audioContext.createConvolver()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#ConvolverNode-section
 

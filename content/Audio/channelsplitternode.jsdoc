@@ -1,5 +1,7 @@
 ChannelSplitterNode : AudioNode
 
+Created by %%/AudioContext#createChannelSplitter|**audioContext.createChannelSplitter()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#ChannelSplitterNode
 

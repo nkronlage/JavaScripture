@@ -1,5 +1,7 @@
 WaveShaperNode : AudioNode
 
+Created by %%/AudioContext#createWaveShaper|**audioContext.createWaveShaper()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#WaveShaperNode
 

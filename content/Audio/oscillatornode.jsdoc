@@ -4,6 +4,8 @@ OscillatorNode is an audio source that generates a periodic waveform
 such as a sine, triangle, sawtooth, or square wave (specified by the
 %%#type|**type**%% property.
 
+Created by %%/AudioContext#createOscillator|**audioContext.createOscillator()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#OscillatorNode
 

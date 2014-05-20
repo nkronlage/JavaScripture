@@ -1,5 +1,7 @@
 MediaStreamAudioSourceNode : AudioNode
 
+Created by %%/AudioContext#createMediaStreamSource|**audioContext.createMediaStreamSource()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#MediaStreamAudioSourceNode
 

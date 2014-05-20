@@ -1,5 +1,7 @@
 BiquadFilterNode : AudioNode
 
+Created by %%/AudioContext#createBiquadFilter|**audioContext.createBiquadFilter()**%%.
+
 Spec:
 http://www.w3.org/TR/2013/WD-webaudio-20131010/#BiquadFilterNode
 
