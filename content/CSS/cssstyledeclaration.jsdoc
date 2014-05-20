@@ -291,7 +291,7 @@ instance.counterReset : String
 ----
 instance.cursor : String
 
-
+The shape of the mouse cursor while over the styled element.
 
 <htmlexample>
 <body></body>
@@ -320,6 +320,9 @@ cursorTypes.forEach(function(type) {
 instance.direction : String
 ----
 instance.display : String
+
+See also %%/HTMLElement#hidden|**HTMLElement.hidden**%%.
+
 ----
 instance.dominantBaseline : String
 

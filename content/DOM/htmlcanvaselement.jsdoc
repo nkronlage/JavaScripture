@@ -38,7 +38,7 @@ Returns a **'data:'** string representation of the canvas. **type** can be
 When using **'image/jgeg'**, you may pass an additional value between 
 **0.0** and **1.0** to change the compression rate.
 
-Note, if you are using WebGL, you must paint to the canvas immediately before 
+Note, if you are using %%/WebGLRenderingContext|WebGL%%, you must paint to the canvas immediately before 
 calling **toDataURL**, or set %%WebGLContextAttributes#preserveDrawingBuffer|**preserveDrawingBuffer**%%
 to **true** to keep the buffer available after the browser has displayed the 
 contents.

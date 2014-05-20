@@ -129,10 +129,16 @@ http://www.w3.org/TR/html5/dom.html#dom-dir
 ----
 instance.className : String
 
+A space separated list of CSS class names for this element.  Corresponds to the
+**class** attribute in HTML. See %%#classList|**classList**%% for an easier way
+to manipulate the classes.
+
 
 ----
 instance.classList : DOMTokenList
 
+An object that makes it easy to manipulate the class names applied to this element.
+See also %%#className|**className**%%.
 
 <htmlexample>
 <style>

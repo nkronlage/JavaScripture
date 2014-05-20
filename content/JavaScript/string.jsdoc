@@ -153,7 +153,7 @@ console.log('hey'.localeCompare('hi'));
 
 var x = ['foo', 'bar', 'baz'];
 console.log(x.sort(function(a, b) {
-  return a.localeCompare(b)
+  return a.localeCompare(b);
 }));
 </example>
 
