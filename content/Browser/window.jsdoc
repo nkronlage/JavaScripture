@@ -79,6 +79,9 @@ ReadOnly:
 true
 
 ----
+instance.navigator : Navigator
+
+----
 prototype.btoa(encoded : String) : String
 
 Converts a base64 encoded string into an unecoded string. 

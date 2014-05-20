@@ -1,0 +1,96 @@
+MediaStreamTrack : EventTarget
+
+Spec:
+http://dev.w3.org/2011/webrtc/editor/getusermedia.html#idl-def-MediaStreamTrack
+
+----
+instance.kind : String
+
+ReadOnly: 
+true
+
+----
+instance.id : String
+
+ReadOnly: 
+true
+
+----
+instance.label : String
+
+ReadOnly: 
+true
+
+----
+instance.enabled : Boolean
+
+----
+instance.muted : Boolean
+
+ReadOnly: 
+true
+
+----
+instance.muted : Boolean
+
+ReadOnly: 
+true
+
+----
+instance._readonly : Boolean
+
+ReadOnly: 
+true
+
+----
+instance.remote : Boolean
+
+ReadOnly: 
+true
+
+----
+instance.readyState : String
+
+Will be one of **'new'**, **'live'**, or **'ended'**.
+
+
+ReadOnly: 
+true
+
+
+----
+prototype.getNativeSettings() : Object
+
+
+----
+prototype.clone() : MediaStreamTrack
+
+----
+prototype.stop() : undefined
+
+----
+prototype.getCapabilities() : Object
+
+
+----
+prototype.getConstraints() : Object
+
+----
+prototype.getSettings() : Object
+
+
+----
+prototype.applyConstraints(constraints : Object, successCallback() : undefined, errorCallback(error : MediaStreamError) : undefined) : undefined
+
+----
+event.mute : listener(event : Event) : undefined
+
+----
+event.unmute : listener(event : Event) : undefined
+
+----
+event.started : listener(event : Event) : undefined
+
+----
+event.ended : listener(event : Event) : undefined
+

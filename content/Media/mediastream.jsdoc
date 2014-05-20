@@ -1,0 +1,57 @@
+MediaStream : EventTarget
+
+Spec:
+http://dev.w3.org/2011/webrtc/editor/getusermedia.html#mediastream
+
+----
+new MediaStream() : MediaStream
+
+----
+new MediaStream(stream : MediaStream) : MediaStream
+
+----
+new MediaStream(tracks : Array<MediaStreamTrack>) : MediaStream
+
+----
+instance.id : String
+
+ReadOnly:
+true
+
+----
+prototype.getAudioTracks() : Array<MediaStreamTrack>
+
+----
+prototype.getVideoTracks() : Array<MediaStreamTrack>
+
+----
+prototype.getTrackById(id : String) : MediaStreamTrack
+
+----
+prototype.addTrack(track : MediaStreamTrack) : undefined
+
+----
+prototype.removeTrack(track : MediaStreamTrack) : undefined
+
+
+----
+prototype.clone() : MediaStream
+
+
+----
+instance.active : Boolean
+
+ReadOnly:
+true
+
+----
+event.active : listener(event : Event) : undefined
+
+----
+event.inactive : listener(event : Event) : undefined
+
+----
+event.addtrack : listener(event : MediaStreamTrackEvent) : undefined
+
+----
+event.removetrack : listener(event : MediaStreamTrackEvent) : undefined

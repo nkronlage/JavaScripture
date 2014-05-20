@@ -1,0 +1,16 @@
+Navigator : Object
+
+Available through %%Window#navigator|**window.navigator**%%.
+
+----
+prototype.getUserMedia( \
+    constraints : { \
+        video = false : Object /* Must be either a %%/Boolean|Boolean%% or MediaTrackConstraint */, \ 
+        audio = false : Object /* Must be either a %%/Boolean|Boolean%% or MediaTrackConstraint */ \ 
+    },  \
+    successCallback(stream : MediaStream) : undefined, \
+    errorCallback(error : MediaStreamError) : undefined) : undefined 
+
+
+Spec:
+http://dev.w3.org/2011/webrtc/editor/getusermedia.html#dom-navigator-getusermedia
