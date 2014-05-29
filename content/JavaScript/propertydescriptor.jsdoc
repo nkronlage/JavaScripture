@@ -5,7 +5,7 @@ Any JavaScript object can be used as a **PropertyDescriptor** where
 unspecified properties will be treated as **undefined** or **false**.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=49
+http://www.ecma-international.org/ecma-262/5.1/#sec-8.10
 
 ----
 instance.configurable : Boolean
@@ -14,7 +14,7 @@ Set to **true** if the property descriptor can be changed later.
 
 See the %%/Object#freeze|**Object.freeze()**%% 
 and %%/Object#seal|**Object.seal()**%% 
-methods for ways to set all configurable to false on all properties on 
+methods for ways to set configurable to false on all properties on 
 an object.
 
 <example>

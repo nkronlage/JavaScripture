@@ -3,8 +3,7 @@ Math : Object
 Contains math related constants and functions.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8
 
 ----
 E : Number
@@ -16,7 +15,7 @@ console.log(Math.E);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.1
 
 ReadOnly:
 true
@@ -42,7 +41,7 @@ console.log(log10(10000));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.2
 
 ReadOnly:
 true
@@ -68,7 +67,7 @@ console.log(log2(64));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.3
 
 ReadOnly:
 true
@@ -94,7 +93,7 @@ console.log(log2(32));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=171
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.4
 
 ReadOnly:
 true
@@ -120,7 +119,7 @@ console.log(log10(10000));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.5
 
 ReadOnly:
 true
@@ -135,7 +134,7 @@ console.log(Math.PI);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.6
 
 ReadOnly:
 true
@@ -151,7 +150,7 @@ console.log(1 / Math.sqrt(2));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.7
 
 ReadOnly:
 true
@@ -167,7 +166,7 @@ console.log(Math.sqrt(2));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.1.8
 
 ReadOnly:
 true
@@ -184,7 +183,7 @@ console.log(Math.abs(-10));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=172
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.1
 
 ----
 acos(x : Number) : Number
@@ -205,7 +204,7 @@ console.log(acosDegrees(0));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.2
 
 ----
 asin(x : Number) : Number
@@ -225,9 +224,8 @@ var asinDegrees = function(x) {
 console.log(asinDegrees(1));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.3
 
 ----
 atan(x: Number) : Number
@@ -248,7 +246,7 @@ console.log(atanDegrees(1));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.4
 
 ----
 atan2(y : Number, x : Number) : Number
@@ -271,7 +269,7 @@ console.log(atan2Degrees(1, 0));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=173
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.5
 
 ----
 ceil(x: Number) : Number
@@ -287,9 +285,7 @@ console.log(Math.ceil(-1.9));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
-
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.6
 
 ----
 cos(x: Number) : Number
@@ -310,7 +306,7 @@ console.log(cosDegrees(45));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.7
 
 
 ----
@@ -326,7 +322,7 @@ console.log(Math.E * Math.E);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.8
 
 ----
 floor(x: Number) : Number
@@ -342,7 +338,7 @@ console.log(Math.floor(-1.9));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=174
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.9
 
 
 ----
@@ -375,7 +371,7 @@ console.log(log10(10000));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.10
 
 
 ----
@@ -389,7 +385,7 @@ console.log(Math.max(x, y, z));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.11
 
 
 ----
@@ -403,7 +399,7 @@ console.log(Math.min(x, y, z));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.12
 
 
 ----
@@ -416,7 +412,7 @@ console.log(Math.pow(2, 3));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=175
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.13
 
 
 ----
@@ -439,7 +435,7 @@ console.log(randomInt(0, 100));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.14
 
 
 ----
@@ -456,7 +452,7 @@ console.log(Math.round(-2.5));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.15
 
 
 ----
@@ -478,7 +474,7 @@ console.log(sinDegrees(45));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.16
 
 
 ----
@@ -493,7 +489,7 @@ console.log(Math.sqrt(100));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=176
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.17
 
 ----
 tan(x : Number) : Number
@@ -514,5 +510,5 @@ console.log(tanDegrees(45));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=177
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.18
 

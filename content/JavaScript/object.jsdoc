@@ -6,10 +6,26 @@ JavaScript **Object**s can have any number values stored as properties
 (specified by %%/String|**String**%% names).
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=123
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2
 
 ----
 Object() : Object
+
+Same as %%#new_Object_|**new Object()**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.1.1
+
+----
+Object(value : Object) : Object
+
+Same as %%#new_Object_Object|**new Object(value)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.1.1
+
+----
+new Object() : Object
 
 Creates an empty object.  
 Can also be constructed as **{}**.
@@ -21,11 +37,12 @@ var y = Object();
 var z = new Object();
 </example>
 
+
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.2.1
 
 ----
-Object(value : Object) : Object
+new Object(value : Object) : Object
 
 If **value** is a primitive type, creates a box for **value**.  Otherwise,
 returns **value**.
@@ -40,23 +57,7 @@ console.log(y === Object(y));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
-
-----
-new Object() : Object
-
-Same as %%#Object_|**Object()**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
-
-----
-new Object(value : Object) : Object
-
-Same as %%#Object_Object|**Object(value)**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.2.1
 
 ----
 instance[propertyName : String] : Object
@@ -90,7 +91,7 @@ console.log(Object.getPrototypeOf([]) === Array.prototype);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=124
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.2
 
 ----
 getOwnPropertyDescriptor(obj : Object, propertyName : String) : PropertyDescriptor
@@ -112,7 +113,7 @@ console.dir(Object.getOwnPropertyDescriptor(x, 'baz'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.3
 
 ----
 getOwnPropertyNames(obj : Object) : Array<String>
@@ -131,7 +132,7 @@ console.log(Object.getOwnPropertyNames(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.4
 
 
 ----
@@ -160,7 +161,7 @@ console.log(Object.getOwnPropertyNames(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.5
 
 ----
 defineProperty(obj : Object, propertyName : String, propertyDescriptor : PropertyDescriptor) : Object
@@ -181,7 +182,7 @@ console.log(Object.getOwnPropertyNames(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.6
 
 ----
 defineProperties(obj : Object, propertyDescriptors : Object) : Object
@@ -207,7 +208,7 @@ console.log(Object.getOwnPropertyNames(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=125
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.7
 
 ----
 seal(obj : Object) : Object
@@ -226,7 +227,7 @@ console.log(x.bar);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.8
 
 ----
 freeze(obj : Object) : Object
@@ -249,7 +250,7 @@ console.log(x.bar);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.9
 
 ----
 preventExtensions(obj : Object) : Object
@@ -267,7 +268,7 @@ console.log(x.bar);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.10
 
 
 ----
@@ -285,7 +286,7 @@ console.log(Object.isFrozen(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=126
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.11
 
 
 ----
@@ -303,7 +304,7 @@ console.log(Object.isFrozen(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.12
 
 ----
 isExtensible(obj : Object) : Boolean
@@ -321,7 +322,7 @@ console.log(Object.isFrozen(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.13
 
 ----
 keys(obj : Object) : Array<String>
@@ -334,7 +335,7 @@ console.log(Object.keys(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.14
 
 ----
 prototype.constructor : Function
@@ -365,7 +366,7 @@ console.log(pt);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=127
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.2
 
 ----
 prototype.toLocaleString() : String
@@ -379,7 +380,7 @@ console.log(x.toLocaleString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.3
 
 
 ----
@@ -394,7 +395,7 @@ console.log(x.valueOf() === 1);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.4
 
 ----
 prototype.hasOwnProperty(propertyName : String) : Boolean
@@ -410,9 +411,8 @@ console.log(x.hasOwnProperty('foo'));
 console.log(x.hasOwnProperty('bar'));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5
 
 ----
 prototype.isPrototypeOf(obj : Object) : Boolean
@@ -430,7 +430,7 @@ console.log(Function.prototype.isPrototypeOf(Array));
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.6
 
 ----
 prototype.propertyIsEnumerable(propertyName : String) : Boolean
@@ -453,5 +453,5 @@ for (var propertyName in x) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=128
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.7
 

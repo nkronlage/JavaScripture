@@ -7,7 +7,7 @@ Primitive:
 true
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7
 
 ----
 Number(value : Object) : Number
@@ -28,7 +28,7 @@ console.log(+one + 2); // another way to convert to a number
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.1.1
 
 
 ----
@@ -46,7 +46,7 @@ console.log(boxed.foo);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.2.1
 
 
 ----
@@ -63,7 +63,7 @@ console.log(x.toExponential(6));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=169
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.6
 
 
 ----
@@ -80,7 +80,7 @@ console.log(x.toFixed(6));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=168
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.5
 
 
 ----
@@ -98,7 +98,7 @@ console.log(x.toPrecision(4));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=170
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.7
 
 
 ----
@@ -113,7 +113,7 @@ console.log(x.toString(16));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.2
 
 
 ----
@@ -128,33 +128,34 @@ console.log(x.toString());
 console.log(x.toLocaleString());
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=168
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.3
 
 ----
 MAX_VALUE : Number
 
-The largest possible Number less than infinity.
+The largest possible Number less than infinity that can be represented in
+JavaScript.
 
 <example>
 console.log(Number.MAX_VALUE);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2
 
 ----
 MIN_VALUE : Number
 
-The smallest possible Number greater than 0.
+The smallest possible Number greater than 0 that can be represented in
+JavaScript.
 
 <example>
 console.log(Number.MIN_VALUE);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=166
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.3
 
 ----
 NaN : Number
@@ -173,7 +174,7 @@ console.log(Math.sqrt(-1));
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.4
 
 
 ----
@@ -188,7 +189,7 @@ console.log(-1/0);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.5
 
 ----
 POSITIVE_INFINITIY : Number
@@ -204,5 +205,5 @@ console.log(1/0);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=167
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.6
 

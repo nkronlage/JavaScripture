@@ -7,7 +7,7 @@ Primitive:
 true
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=153
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5
 
 ----
 new String(value : String) : Object
@@ -24,7 +24,7 @@ console.log(boxed.foo);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=154
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.2.1
 
 ----
 String(value : Object) : String
@@ -45,7 +45,7 @@ console.log(String(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=153
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.1.1
 
 ----
 instance.length : Number
@@ -59,7 +59,7 @@ console.log('abc'.length);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.5.1
 
 ----
 prototype.charAt(pos : Number) : String
@@ -74,7 +74,7 @@ console.log('abc'[2]);
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=155
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.4
 
 ----
 prototype.charCodeAt(pos : Number) : Number
@@ -86,9 +86,8 @@ Returns the unicode value of the character at position **pos**.  Use
 console.log('abc'.charCodeAt(2));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=155
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.5
 
 ----
 prototype.concat(string0 : String, [string1 : String, [...]]) : String
@@ -102,7 +101,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=155
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.6
 
 
 ----
@@ -117,9 +116,8 @@ console.log(a.indexOf('b'));
 console.log(a.indexOf('bc', 2));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=156
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.7
 
 ----
 prototype.lastIndexOf(searchString : String, [startingIndex : Number]) : Number
@@ -137,7 +135,7 @@ console.log(a.lastIndexOf('ef', 2));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=156
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.8
 
 ----
 prototype.localeCompare(that : String) : Number
@@ -158,7 +156,7 @@ console.log(x.sort(function(a, b) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=157
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.9
 
 ----
 prototype.match(regexp : RegExp) : Array<String>
@@ -184,8 +182,7 @@ if (result) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=157
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.10
 
 ----
 prototype.replace(searchValue : String, replaceValue : String) : String
@@ -199,9 +196,8 @@ console.log(x.replace('b', 'Z'));
 console.log(x); // x is unchanged
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 
 
 ----
@@ -233,8 +229,7 @@ console.log('x=' + x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 
 ----
 prototype.replace(searchValue : RegExp, replaceValue : String) : String
@@ -253,7 +248,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 
 ----
 prototype.replace(searchValue : RegExp, replaceFunction(match : String, capture1 : String, capture2 : String, ..., offset : Number, string : String) : String) : String
@@ -289,7 +284,7 @@ console.log('x=' + x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=158
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 
 ----
 prototype.search(regexp : RegExp) : Number
@@ -303,7 +298,7 @@ console.log('abcba'.search(/e/));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=159
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.12
 
 ----
 prototype.slice(startIndex : Number, [endIndex : Number]) : String
@@ -324,8 +319,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=159
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.13
 
 ----
 prototype.split(separator : String, [limit : Number]) : Array<String>
@@ -342,7 +336,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=160
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.14
 
 ----
 prototype.split(separator : RegExp, [limit : Number]) : Array<String>
@@ -359,7 +353,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=160
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.14
 
 ----
 prototype.substring(start : Number, [end : Number]) : String
@@ -386,7 +380,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=162
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.15
 
 ----
 prototype.toLowerCase() : String
@@ -400,7 +394,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=162
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.16
 
 ----
 prototype.toLocaleLowerCase() : String
@@ -414,7 +408,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.17
 
 ----
 prototype.toUpperCase() : String
@@ -428,7 +422,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.18
 
 ----
 prototype.toLocaleUpperCase() : String
@@ -442,7 +436,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.19
 
 ----
 prototype.trim() : String
@@ -456,7 +450,7 @@ console.log("'" + x + "'"); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=163
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.20
 
 ----
 fromCharCode(char0 : Number,  [char1 : Number, [...]]) : String
@@ -469,6 +463,6 @@ console.log(String.fromCharCode(97, 98, 99));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=154
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.3.2
 
 

@@ -4,10 +4,19 @@ RegExp represents a regular expression that can be used for
 searching and extracting parts of %%/String|**String**%%s.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=192
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10
 
 ----
 RegExp(pattern : String, [flags : String]) : RegExp
+
+Same as %%#new_RegExp_String_String|**new RegExp(pattern, flags)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.3.1
+
+----
+new RegExp(pattern : String, [flags : String]) : RegExp
+
 
 Constructs a new **RegExp** for the specified **pattern**. 
 If **flags** contains **'g'**, %%#global|**this.global**%% will be set to **true**.  
@@ -24,16 +33,7 @@ var z = new RegExp('pattern', 'i');
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=206
-
-
-----
-new RegExp(pattern : String, [flags : String]) : RegExp
-
-Same as %%#RegExp_String_String|**RegExp(pattern, flags)**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=206
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.4.1
 
 ----
 prototype.exec(str : String) : Array<String>
@@ -54,7 +54,7 @@ if (result) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=208
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.6.2
 
 
 ----
@@ -69,7 +69,7 @@ console.log(regexp.test('KL5-4385'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=208
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.6.3
 
 ----
 instance.source : String
@@ -82,8 +82,11 @@ console.log(regexp);
 console.log(regexp.source);
 </example>
 
+ReadOnly:
+true
+
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.1
 
 
 ----
@@ -98,8 +101,11 @@ console.log('abcba'.replace(/b/, 'X'));
 console.log('abcba'.replace(/b/g, 'X'));
 </example>
 
+ReadOnly:
+true
+
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.2
 
 ----
 instance.ignoreCase : Boolean
@@ -112,8 +118,11 @@ console.log(/hello/.test('Hello'));
 console.log(/hello/i.test('Hello'));
 </example>
 
+ReadOnly:
+true
+
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.3
 
 ----
 instance.multiline : Boolean
@@ -129,8 +138,11 @@ console.log(/^world/.test(str));
 console.log(/^world/m.test(str));
 </example>
 
+ReadOnly:
+true
+
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.4
 
 ----
 instance.lastIndex : Number
@@ -148,5 +160,5 @@ console.log(regexp.exec('foo bar baz')[0]);
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.5
 
