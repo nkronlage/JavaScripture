@@ -155,11 +155,12 @@ a:hover {
 
 
 #selectedsets {
-  display: block;
+  display: inline-block;
   font-size: 0.6em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 18em;
 }
 
 #apisets {
