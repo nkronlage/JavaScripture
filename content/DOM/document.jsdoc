@@ -9,6 +9,22 @@ http://dev.w3.org/html5/spec/single-page.html#document
 ----
 instance.body : HTMLBodyElement
 
+----
+instance.title : String
+
+Sets the title of the window.
+
+<htmlexample>
+<button onclick="setTitle()">Set Title</button>
+<script>
+  var setTitle = function() {
+    // Grab the parent of the example (ie, the 
+    // www.javascripture.com window) and set its title.
+    var javascriptureWindow = window.parent;
+    javascriptureWindow.document.title = 'foo';
+  }
+</script>
+</htmlexample>
 
 ----
 instance.activeElement : Element
