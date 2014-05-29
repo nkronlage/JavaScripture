@@ -4,10 +4,18 @@ Functions are reusable pieces of code that can be executed with
 different parameters. 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=129
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3
 
 ----
 Function([param1 : String, [param2 : String, [...]]], body : String) : Function
+
+Same as %%#new_Function_String_String_dotdotdot_String|**new Function(param1, param2, ..., body)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.1.1
+
+----
+new Function([param1 : String, [param2 : String, [...]]], body : String) : Function
 
 Creates a new **Function** that has the supplied parameter names and body.
 If any parameter name contains a **','**, it will be split on the **','** and
@@ -25,15 +33,7 @@ var w = new Function('x', 'y', 'return x + y;');
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=129
-
-----
-new Function([param1 : String, [param2 : String, [...]]], body : String) : Function
-
-Same as %%#Function_String_String_dotdotdot_String|**Function(param1, param2, ..., body)**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=129
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.2.1
 
 ----
 prototype.apply([thisArg : Object, [parameters : Array]]) : Object
@@ -51,9 +51,8 @@ var numbers = [3, 20, 1, 45];
 console.log(Math.max.apply(undefined, numbers));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=131
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.3
 
 
 ----
@@ -72,7 +71,7 @@ console.log(Math.max.call(undefined, 3, 20, 1, 45));
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=131
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.4
 
 
 ----
@@ -108,9 +107,8 @@ var add5 = sum.bind(null, 5);
 console.log(add5(10));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=131
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.5
 
 
 ----
@@ -124,7 +122,7 @@ console.log(add.length);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=130
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.5.1
 
 
 ----
@@ -146,4 +144,4 @@ myButton.click();
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=130
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.5.2

@@ -3,7 +3,7 @@ JSON : Object
 Contains methods for encoding and decoding JSON strings.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=214
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.12
 
 ----
 parse(str : String) : Object
@@ -17,7 +17,7 @@ console.log(x.bar);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=215
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2
 
 ----
 parse(str : String, reviver(key : String, value : String) : Object) : Object
@@ -40,7 +40,7 @@ console.log(x.bar);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=215
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2
 
 ----
 stringify(value : Object) : String
@@ -59,7 +59,7 @@ console.log(JSON.stringify(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=217
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.3
 
 ----
 stringify(value : Object, replacer(key : String, value : Object) : String, [indent : String]) : String
@@ -81,7 +81,7 @@ console.log(JSON.stringify(x, replacer, ' '));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=217
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.3
 
 ----
 stringify(value : Object, keyNames : Array<String>, [indent : String]) : String
@@ -96,5 +96,5 @@ console.log(JSON.stringify(x, ['foo']));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=217
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.3
 

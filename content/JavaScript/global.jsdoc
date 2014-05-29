@@ -4,7 +4,7 @@ The following are properties of the global object.  They can be accessed from
 anywhere without additional qualifiers.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=115
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1
 
 
 ----
@@ -21,7 +21,7 @@ console.log(Math.sqrt(-1));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=115
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.1.1
 
 ----
 Infinity : Number
@@ -34,8 +34,7 @@ console.log(1/0);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.1.2
 
 ----
 undefined: undefined
@@ -52,7 +51,7 @@ console.log(noReturn());
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.1.3
 
 ----
 eval(code : String) : Object
@@ -64,7 +63,7 @@ console.log(eval('1 + 1'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.1
 
 ----
 parseInt(str : String, [base : Number]) : Number
@@ -84,7 +83,7 @@ console.log(parseInt('012', 10)); // Force decimal
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=116
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.2
 
 
 ----
@@ -97,7 +96,7 @@ console.log(parseFloat('3.14') * 2);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=117
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.3
 
 ----
 isNaN(x : Number) : Boolean
@@ -113,8 +112,7 @@ console.log(isNaN(x));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=117
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.4
 
 ----
 isFinite(x: Number) : Boolean
@@ -129,7 +127,7 @@ console.log(isFinite(1.2)); // 1.2 is finite
 
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=117
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.5
 
 ----
 decodeURI(encodedURI : String) : String
@@ -141,7 +139,7 @@ console.log(decodeURI('http://foo/bar%20baz'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=121
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.1
 
 ----
 decodeURIComponent(encodedURIComponent : String) : String
@@ -153,7 +151,7 @@ console.log(decodeURIComponent('http%3A%2F%2Ffoo%2Fbar%20baz'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=121
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.2
 
 ----
 encodeURI(uri : String) : String
@@ -165,7 +163,7 @@ console.log(encodeURI('http://foo/bar baz'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=122
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.3
 
 ----
 encodeURIComponent(component : String) : String
@@ -178,5 +176,5 @@ console.log(encodeURIComponent('http://foo/bar baz'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=122
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.4
 
