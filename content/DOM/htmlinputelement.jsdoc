@@ -145,6 +145,67 @@ instance.step : String
 ----
 instance.type : String
 
+Determines the type of input to receive. Must be one of 
+**'button'**,
+**'checkbox'**,
+**'color'**,
+**'date'**,
+**'datetime'**,
+**'datetime-local'**,
+**'email'**,
+**'file'**,
+**'hidden'**,
+**'image'**,
+**'month'**,
+**'number'**,
+**'password'**,
+**'radio'**,
+**'range'**,
+**'reset'**,
+**'search'**,
+**'sumbit'**,
+**'tel'**,
+**'text'**,
+**'time'**,
+**'url'**,
+or
+**'week'**.
+
+The default value is **'text'**.
+
+<htmlexample>
+<table id='table'></table>
+<script>
+  var types = ['button', 'checkbox', 'color', 'date', 'datetime',
+               'datetime-local', 'email', 'file', 'hidden',
+               'image', 'month', 'number', 'password', 'radio',
+               'range', 'reset', 'search', 'submit', 'tel', 'text',
+               'time', 'url', 'week'];
+
+  var table = document.getElementById('table');
+
+  types.forEach(function(type) {
+    var row = document.createElement('tr');
+    var typeTableData = document.createElement('td');
+    typeTableData.textContent = type;
+    row.appendChild(typeTableData);
+
+    var input = document.createElement('input');
+    input.type = type;
+
+    var inputTableData = document.createElement('td');
+    inputTableData.appendChild(input);
+    row.appendChild(inputTableData);
+
+    table.appendChild(row);
+  });
+</script>
+</htmlexample>
+
+
+
+
+
 
 ----
 instance.defaultValue : String
