@@ -13,17 +13,25 @@ error conditions:
 **NativeError**.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=209
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.11
 
 ----
 Error(message : String) : Error
+
+Same as %%#new_Error_String|**new Error(message)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.1.1
+
+----
+new Error(message : String) : Error
 
 Creates a new **Error** with the specified **message** that describes the error.
 
 <example>
 var divide = function(x, y) {
   if (y === 0) {
-    throw Error('divide by zero');
+    throw new Error('divide by zero');
   }
   return x / y;
 };
@@ -38,15 +46,7 @@ catch (error) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=210
-
-----
-new Error(message : String) : Error
-
-Same as %%#Error_String|**Error(message)**%%
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=210
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.2.1
 
 ----
 prototype.name : String
@@ -63,7 +63,7 @@ catch (error) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=211
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4.2
 
 ----
 prototype.message : String
@@ -80,5 +80,5 @@ catch (error) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=211
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4.3
 

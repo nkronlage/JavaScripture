@@ -7,7 +7,7 @@ Use %%#new_Date|**new Date()** to get a Date for the current time or
 01 January, 1970 UTC.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=177
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9
 
 ----
 Date() : String
@@ -19,7 +19,7 @@ console.log(Date());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=182
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.2
 
 ----
 new Date() : Date
@@ -32,7 +32,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.3.3
 
 ----
 new Date(year : Number, month : Number, [date = 1 : Number, [hours = 0: Number, [minutes = 0: Number, [seconds = 0: Number, [milliseconds = 0: Number]]]]]) : Date
@@ -48,7 +48,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=182
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.3.1
 
 ----
 new Date(millisecondsSince1970 : Number) : Date
@@ -63,7 +63,7 @@ console.log(d.toUTCString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.3.1
 
 ----
 new Date(string : String) : Date
@@ -78,7 +78,7 @@ console.log(d.getUTCFullYear());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.3.2
 
 
 ----
@@ -95,7 +95,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=183
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.4.2
 
 ----
 UTC(year : Number, month : Number, [date = 1 : Number, [hour = 0: Number, [minutes = 0: Number, [seconds = 0: Number, [milliseconds = 0: Number]]]]]) : Number
@@ -112,7 +112,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=184
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.4.3
 
 ----
 now() : Number
@@ -126,7 +126,7 @@ console.log(now);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=184
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.4.4
 
 ----
 prototype.toDateString() : String
@@ -139,7 +139,7 @@ console.log(d.toDateString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.3
 
 ----
 prototype.toTimeString() : String
@@ -152,7 +152,7 @@ console.log(d.toTimeString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.4
 
 ----
 prototype.toLocaleString() : String
@@ -165,8 +165,7 @@ console.log(d.toLocaleString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.5
 
 ----
 prototype.toLocaleDateString() : String
@@ -180,7 +179,7 @@ console.log(d.toLocaleDateString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.6
 
 ----
 prototype.toLocaleTimeString() : String
@@ -194,7 +193,7 @@ console.log(d.toLocaleTimeString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.7
 
 ----
 prototype.valueOf() : Number
@@ -212,7 +211,7 @@ console.log(d / 1000 / 60 / 60 / 24 / 365 + ' years since 1970');
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=185
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.8
 
 
 ----
@@ -226,7 +225,7 @@ console.log(d.getTime());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.9
 
 ----
 prototype.getFullYear() : Number
@@ -239,7 +238,7 @@ console.log(d.getFullYear());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.10
 
 ----
 prototype.getUTCFullYear() : Number
@@ -252,7 +251,7 @@ console.log(d.getUTCFullYear());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.11
 
 ----
 prototype.getMonth() : Number
@@ -267,7 +266,7 @@ console.log(d.getMonth());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.12
 
 ----
 prototype.getUTCMonth() : Number
@@ -281,8 +280,7 @@ console.log(d.getUTCMonth());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.13
 
 ----
 prototype.getDate() : Number
@@ -297,8 +295,7 @@ console.log(d.getDate());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.14
 
 ----
 prototype.getUTCDate() : Number
@@ -312,7 +309,7 @@ console.log(d.getUTCDate());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.15
 
 ----
 prototype.getDay() : Number
@@ -328,7 +325,7 @@ console.log(dayNames[d.getDay()]);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.16
 
 ----
 prototype.getUTCDay() : Number
@@ -344,7 +341,7 @@ console.log(dayNames[d.getUTCDay()]);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.17
 
 ----
 prototype.getHours() : Number
@@ -357,7 +354,7 @@ console.log(d.getHours());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=186
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.18
 
 ----
 prototype.getUTCHours() : Number
@@ -370,7 +367,7 @@ console.log(d.getUTCHours());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.19
 
 ----
 prototype.getMinutes() : Number
@@ -383,7 +380,7 @@ console.log(d.getMinutes());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.20
 
 ----
 prototype.getUTCMinutes() : Number
@@ -396,7 +393,7 @@ console.log(d.getUTCMinutes());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.21
 
 
 ----
@@ -410,7 +407,7 @@ console.log(d.getSeconds());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.22
 
 ----
 prototype.getUTCSeconds() : Number
@@ -423,7 +420,7 @@ console.log(d.getUTCSeconds());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.23
 
 ----
 prototype.getMilliseconds() : Number
@@ -436,7 +433,7 @@ console.log(d.getMilliseconds());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.24
 
 ----
 prototype.getUTCMilliseconds() : Number
@@ -449,7 +446,7 @@ console.log(d.getUTCMilliseconds());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.25
 
 ----
 prototype.getTimezoneOffset() : Number
@@ -462,7 +459,7 @@ console.log(d.getTimezoneOffset());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=197
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.26
 
 ----
 prototype.setTime(millisecondsSince1970 : Number) : Number
@@ -477,7 +474,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=187
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.27
 
 ----
 prototype.setMilliseconds(milliseconds : Number) : Number
@@ -494,7 +491,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.28
 
 ----
 prototype.setUTCMilliseconds(milliseconds : Number) : Number
@@ -511,7 +508,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.29
 
 ----
 prototype.setSeconds(seconds : Number, [milliseconds : Number]) : Number
@@ -527,7 +524,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.30
 
 ----
 prototype.setUTCSeconds(seconds : Number, [milliseconds : Number]) : Number
@@ -543,7 +540,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.31
 
 ----
 prototype.setMinutes(minutes : Number, [seconds : Number, [milliseconds : Number]]) : Number
@@ -559,8 +556,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=188
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.32
 
 ----
 prototype.setUTCMinutes(minutes : Number, [seconds : Number, [milliseconds : Number]]) : Number
@@ -576,7 +572,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=189
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.33
 
 ----
 prototype.setHours(hours : Number, [minutes : Number, [seconds : Number, [milliseconds : Number]]]) : Number
@@ -592,7 +588,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=189
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.34
 
 ----
 prototype.setUTCHours(hours : Number, [minutes : Number, [seconds : Number, [milliseconds : Number]]]) : Number
@@ -608,7 +604,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=189
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.35
 
 ----
 prototype.setDate(date : Number) : Number
@@ -624,7 +620,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.36
 
 ----
 prototype.setUTCDate(date : Number) : Number
@@ -640,7 +636,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.37
 
 ----
 prototype.setMonth(month : Number, [date : Number]) : Number
@@ -657,8 +653,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.38
 
 ----
 prototype.setUTCMonth(month : Number, [date : Number]) : Number
@@ -675,8 +670,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.39
 
 ----
 prototype.setFullYear(year : Number, [month : Number, [date : Number]]) : Number
@@ -692,7 +686,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=190
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.40
 
 
 ----
@@ -709,7 +703,7 @@ console.log(d);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.41
 
 ----
 prototype.toUTCString() : String
@@ -722,7 +716,7 @@ console.log(d.toUTCString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.42
 
 ----
 prototype.toISOString() : String
@@ -735,7 +729,7 @@ console.log(d.toISOString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.43
 
 ----
 prototype.toJSON() : String
@@ -748,5 +742,5 @@ console.log(d.toJSON());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=191
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.44
 

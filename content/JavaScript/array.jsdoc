@@ -4,19 +4,10 @@ Arrays are containers that allow access to its items
 through numerical indices.
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4
 
 ----
 new Array() : Array
-
-Same as %%#Array_|**Array()**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
-
-
-----
-Array() : Array
 
 Creates an empty **Array** (**length** = 0).
 Can also be constructed as **[]**.
@@ -29,19 +20,18 @@ var z = new Array();
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2
+
+----
+Array() : Array
+
+Same as %%#Array_|**new Array()**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1
 
 ----
 new Array(length:Number) : Array
-
-Same as %%#Array_Number|**Array(length)**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=135
-
-
-----
-Array(length:Number) : Array
 
 Creates an **Array** of the specified length where each item starts as **undefined**. 
 
@@ -54,20 +44,18 @@ console.log('squares = ' + squares);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=135
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2.1
 
+----
+Array(length:Number) : Array
+
+Same as %%#new_Array_Number|**new Array(length)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
 
 ----
 new Array(item0:Object, [item1:Object, [...]]) : Array
-
-Same as %%#Array_Object_Object_dotdotdot|**Array(item0, item1, ...)**%%.
-
-Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
-
-
-----
-Array(item0:Object, [item1:Object, [...]]) : Array
 
 Creates an **Array** with the specified parameters as the 0th, 1st, ... items 
 of the **Array**.
@@ -81,8 +69,15 @@ var z = new Array('a', 'b', 'c');
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=134
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2.1
 
+----
+Array(item0:Object, [item1:Object, [...]]) : Array
+
+Same as %%#new_Array_Object_Object_dotdotdot|**Array(item0, item1, ...)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
 
 ----
 isArray(value:Object) : Boolean
@@ -96,7 +91,7 @@ console.log(Array.isArray(53));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=135
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.3.2
 
 ----
 instance[index : Number] : Object
@@ -133,7 +128,7 @@ console.log(x.length);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=153
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.5.2
 
 ----
 prototype.concat(item0:Object, [item1:Object, [...]]) : Array
@@ -143,7 +138,6 @@ Returns a new Array composed of the items of **this** followed by
 
 If any of the parameters are Arrays themselves, the values of that Array
 will be concatenated into the new Array.
-
 
 <example>
 var x = [1, 2, 3];
@@ -155,7 +149,7 @@ console.log(x); // x is unchanged
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=137
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.4
 
 
 ----
@@ -166,7 +160,6 @@ Otherwise returns **false**.
 
 The **Array** passed to **callback** is the **this** of the call to **every**.
 
-
 <example>
 var isEven = function(x) { return (x % 2) === 0; }
 console.log([2, 22, 36].every(isEven));
@@ -175,8 +168,7 @@ console.log([5, 19, 17].every(isEven));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=146
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.16
 
 ----
 prototype.filter(callback(item:Object, index:Number, array:Array):Boolean, [thisArg:Object]):Array
@@ -193,8 +185,7 @@ console.log(numbers.filter(isEven));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=137
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.20
 
 ----
 prototype.forEach(callback(item:Object, index:Number, array:Array):undefined, [thisArg:Object]):undefined
@@ -211,8 +202,7 @@ x.forEach(function(item, index) {
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=148
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.18
 
 ----
 prototype.indexOf(item:Object, [startingIndex = 0 : Number]):Number
@@ -232,8 +222,7 @@ console.log(x.indexOf('e', 2));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=145
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.14
 
 ----
 prototype.join([separator=',':String]):String
@@ -248,7 +237,7 @@ console.log(x.join(' -- '));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=138
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.5
 
 
 ----
@@ -271,7 +260,7 @@ console.log(x.lastIndexOf('e', 2));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=145
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.15
 
 ----
 prototype.map(callback(item:Object, index:Number, array:Array):Object, [thisArg:Object]):Array
@@ -289,8 +278,7 @@ console.log(numbers);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=148
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.19
 
 ----
 prototype.pop():Object
@@ -306,7 +294,7 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=138
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.6
 
 
 ----
@@ -323,7 +311,7 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=139
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.7
 
 
 ----
@@ -343,7 +331,7 @@ console.log(['b', 'c'].reduce(join, 'a'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=150
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.21
 
 
 ----
@@ -363,11 +351,11 @@ console.log(['b', 'c'].reduceRight(join, 'a'));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=151
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.22
 
 
 ----
-prototype.reverse():Array
+prototype.reverse() : Array
 
 Reverses the order of the items in **this** and returns **this**.
 
@@ -378,7 +366,7 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=139
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.8
 
 ----
 prototype.shift():Object
@@ -393,7 +381,7 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=140
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.9
 
 
 ----
@@ -415,7 +403,7 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=140
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.10
 
 
 ----
@@ -433,9 +421,8 @@ console.log([6, 19, 18].some(isEven));
 console.log([5, 19, 17].some(isEven));
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=147
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.17
 
 
 ----
@@ -464,7 +451,7 @@ console.log(x.sort(numericComparison));
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=141
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.11
 
 
 ----
@@ -484,7 +471,7 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=143
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.12
 
 ----
 prototype.unshift(item0:Object, [item1:Object, [...]]):Number
@@ -499,5 +486,5 @@ console.log(x);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=144
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.13
 

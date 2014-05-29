@@ -6,8 +6,7 @@ Primitive:
 true
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
-
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.6
 
 ----
 Boolean(value : Object) : Boolean
@@ -26,14 +25,13 @@ console.log(!!undefined);
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.6.1
 
 
 ----
 new Boolean(value : Object) : Object
 
 Creates a box for a boolean value.
-
 
 <example>
 var literal = true;
@@ -51,9 +49,8 @@ console.log(literal.foo);
 console.log(boxed.foo);
 </example>
 
-
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=164
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.6.2
 
 
 ----
@@ -67,6 +64,6 @@ console.log(false.toString());
 </example>
 
 Spec:
-http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=165
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.6.4.2
 
 
