@@ -358,6 +358,10 @@ instance.fontStretch : String
 instance.fontStyle : String
 ----
 instance.fontVariant : String
+
+Must be one of **'normal'**, **'small-caps'**, **'initial'** or
+**'inherit'**.
+
 ----
 instance.fontWeight : String
 ----
