@@ -12,6 +12,32 @@ one JavaScript type.  The text files are grouped in folders under the
 content/ directory. These folders generate the sets available in the
 drop down under the search box on the website.
 
+### Getting the code and making changes
+
+To contribute, you first need to fork the JavaScripture repository into
+your GitHub account where you will make your local changes.  Then
+you will issue a pull request to get the get your changes into the main 
+repository that the website is built out of.
+
+Here are some helpful links to the GitHub documentation on using GitHub.
+* [https://help.github.com/articles/fork-a-repo](Fork a Repo)
+* [https://help.github.com/articles/using-pull-requests](Pull Requests)
+
+### Building the documentation
+
+After forking the repository (or making changes to your repository), you can 
+build the site's html files.
+
+Prerequisites for building
+* [Node](http://nodejs.org/download/)
+* [Sass](http://sass-lang.com/install)
+
+To build the documentation, run:
+
+* make
+
+From the root folder. The generated files are in the site/ folder.
+
 ### Documentation File Format
 The information for each type is stored in a .jsdoc file.  This is a
 custom file format that describes a JavaScript type.
@@ -108,7 +134,7 @@ member. In the description area, there is some special syntax to add
 links, code tags and examples.
 
 * Use %%*link*|*Link Description*%% to generate &lt;a href="link"&gt;Link Description&lt;/a&gt;
-* Use \*\**Code*\*\* to generate &lt;code&gt;Code&lt;/code&gt;
+* Use \*\* *Code* \*\* to generate &lt;code&gt;Code&lt;/code&gt;
 
 Also inside the description section you can add an example using the format:
 
@@ -142,22 +168,6 @@ The possible MetadataNames are:
 * Spec - the value should be the link to the specification 
 * ReadOnly - value should be true if the property is read only.  Defaults to false.
 * Value - the value of the property such as [seen here](http://www.javascripture.com/XMLHttpRequest#DONE)
-
-
-### Testing the changes
-
-After editing or adding a JSDoc file, you can build the documentation
-to see if how your changes look.
-
-Prerequisites for building
-* [Node](http://nodejs.org/download/)
-* [Sass](http://sass-lang.com/install)
-
-To build the documentation, run:
-
-* make
-
-From the root folder. The generated files are in the site/ folder.
 
 Places For Contribution
 -----------------------
