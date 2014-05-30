@@ -1,1 +1,41 @@
 SVGRectElement : SVGElement
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#InterfaceSVGRectElement
+
+----
+instance.x : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.y : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.width : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.height : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.rx : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+instance.ry : SVGAnimatedLength
+
+ReadOnly:
+true
+
