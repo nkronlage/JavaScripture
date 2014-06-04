@@ -108,8 +108,19 @@ a:hover {
     display: inline-block;
     margin-top: 0.2em;
     margin-left: 1em;
-    width: 90px;
+    width: 170px;
     height: 20px;
+
+    a { 
+      font-size: 0;
+      color: black !important;
+    }
+
+    .g-plusone {
+      display: inline-block;
+      width: 90px;
+      height:20px;
+    }
   }
 }
 
