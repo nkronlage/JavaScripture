@@ -12,6 +12,15 @@ one JavaScript type.  The text files are grouped in folders under the
 content/ directory. These folders generate the sets available in the
 drop down under the search box on the website.
 
+### Copyright and License
+
+Before contributing, be aware that the examples on the site are
+in the [http://creativecommons.org/publicdomain/zero/1.0/](public domain).
+The remaining documentation and code are available under the 
+[http://creativecommons.org/licenses/by-sa/2.5/](Create Commons Attribution-ShareAlike license).
+By contributing, you agree that the works produced are your own and
+to release the works under the corresponding license(s) listed above.
+
 ### Getting the code and making changes
 
 To contribute, you first need to fork the JavaScripture repository into

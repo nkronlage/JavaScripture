@@ -12,8 +12,9 @@ JS_METADATA = $(addprefix $(TEMP)/, $(FLAT_JSDOC_FILES:%.jsdoc=%.json))
 CONTENT_HTML = $(addprefix $(OUTPUT)/, $(FLAT_JSDOC_FILES:%.jsdoc=%.html))
 
 OTHER_HTML_SOURCES = \
-	home.html \
 	feedback.html \
+	home.html \
+	license.html \
 	thankyou.html \
 
 OTHER_HTML = $(addprefix $(OUTPUT)/, $(OTHER_HTML_SOURCES))
