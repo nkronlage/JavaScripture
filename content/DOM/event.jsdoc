@@ -2,6 +2,11 @@ Event : Object
 
 Event contains information describing the current event such as a click or
 download event. It is the first parameter to event listener callbacks.
+See
+%%/MouseEvent|MouseEvent%%,
+%%/KeyboardEvent|KeyboardEvent%%,
+and
+%%/ProgressEvent|ProgressEvent%% for some derivations of Event.
 
 Spec:
 http://www.w3.org/TR/DOM-Level-3-Events/#events-Event
