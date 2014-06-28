@@ -2,7 +2,7 @@ Date : Object
 
 An object that represents a date and time.  Internally the time is stored
 as the number of milliseconds since 01 January, 1970 UTC.
-Use %%#new_Date|**new Date()** to get a Date for the current time or
+Use %%#new_Date|**new Date()**%% to get a Date for the current time or
 %%#now|Date.now()%% to get the current time in milliseconds since 
 01 January, 1970 UTC.
 
@@ -202,10 +202,12 @@ Returns the number of milliseconds since 01 January, 1970 UTC for **this**.
 You can also obtain the value by using the date in a number context such as **+date**.
 If you need the value of the current time, use %%#now|**Date.now()**%% to 
 avoid the cost of creating a **Date** object.
+See also %%#getTime|**getTime()**%%.
 
 <example>
 var d = new Date();
 console.log(d.valueOf());
+console.log(d.getTime());
 console.log(+d);
 console.log(d / 1000 / 60 / 60 / 24 / 365 + ' years since 1970');
 </example>
@@ -217,11 +219,14 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.8
 ----
 prototype.getTime() : Number
 
-Returns the number of milliseconds since 01 January, 1970 for **this**.
+Returns the number of milliseconds since 01 January, 1970 for **this**. 
+See also %%#valueOf|**valueOf()**%%.
 
 <example>
 var d = new Date();
 console.log(d.getTime());
+console.log(d.valueOf());
+console.log(+d);
 </example>
 
 Spec:
