@@ -84,13 +84,42 @@ instance.navigator : Navigator
 ----
 prototype.btoa(encoded : String) : String
 
-Converts a base64 encoded string into an unecoded string. 
+Converts a unicode/binary string into an ascii encoded string 
+(%%http://en.wikipedia.org/wiki/Base64|base64%%). 
+See also %%#atob|**atob()**%%.
+
+<htmlexample>
+<script>
+  var string = 'Hello world!';
+  var base64 = btoa(string);
+  var decoded = atob(base64);
+
+  console.log(base64);
+  console.log(decoded);
+</script>
+</htmlexample>
 
 Spec:
 http://www.whatwg.org/specs/web-apps/current-work/#dom-windowbase64-btoa
 
 ----
 prototype.atob(unencoded : String) : String
+
+Converts an ascii encoded string 
+(%%http://en.wikipedia.org/wiki/Base64|base64%%)
+into a unicode/binary string.
+See also %%#btob|**btob()**%%.
+
+<htmlexample>
+<script>
+  var string = 'Hello world!';
+  var base64 = btoa(string);
+  var decoded = atob(base64);
+
+  console.log(base64);
+  console.log(decoded);
+</script>
+</htmlexample>
 
 
 Spec:
@@ -411,7 +440,24 @@ event.afterprint : listener(event : Event) : undefined
 ----
 event.beforeprint : listener(event : Event) : undefined
 ----
-event.beforeunload : listener(event : Event) : undefined
+event.beforeunload : listener(event : Event) : String
+
+Called before the page is navigated away from.  Return a non-empty 
+String from **listener** to display a dialog box that gives the user 
+the option to remain on the current page.
+
+<htmlexample>
+<button onclick="addBeforeunload()">Add onbeforeunload callback</button><br>
+<a href="http://www.javascripture.com">Click to leave</a>
+<script>
+  var addBeforeunload = function() {
+    window.onbeforeunload = function() {
+      return 'Returned by onbeforeunload';
+    };
+  }
+</script>
+</htmlexample>
+
 ----
 event.blur : listener(event : Event) : undefined
 ----
