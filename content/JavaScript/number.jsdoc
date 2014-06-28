@@ -104,7 +104,8 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.7
 ----
 prototype.toString([base = 10 : Number]) : String
 
-Returns a string representation of **this** in the specified base.  
+Returns a string representation of **this** in the specified **base**.  
+**base** must be an integer between **2** and **36**.
 
 <example>
 var x = 0x123ABC;
