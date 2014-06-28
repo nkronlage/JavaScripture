@@ -114,6 +114,20 @@ http://dev.w3.org/csswg/css-backgrounds/#the-background-color
 ----
 instance.backgroundImage : String
 
+The image to place in the background of the element. See also
+%%#backgroundPosition|**backgroundPosition**%%,
+%%#backgroundRepeat|**backgroundRepeat**%%,
+and
+%%#backgroundSize|**backgroundSize**%%.
+
+<htmlexample>
+<div id="element" style="height: 200px"></div>
+<script>
+  var element = document.getElementById('element');
+  element.style.backgroundImage = 'url(/pic.jpg)';
+</script>
+</htmlexample>
+
 Spec:
 http://dev.w3.org/csswg/css-backgrounds/#the-background-image
 
