@@ -185,6 +185,9 @@ Schedules **callback** to be called before the next time the browser renders a
 frame to the screen. Must be called each time you'd like to schedule another 
 frame.
 
+The **time** parameter to callback is the number of milliseconds since the 
+page loaded.
+
 Returns a unique handle that can be passed to %%#cancelAnimationFrame|**cancelAnimationFrame()**%% 
 to stop **callback** from being called.
 
@@ -197,6 +200,7 @@ to stop **callback** from being called.
   var callback = function(time) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillRect(10, 10, 30 * (Math.sin(time / 1000) + 1), 30);
+    context.fillText(time, 10, 75);
 
     requestAnimationFrame(callback);
   };
