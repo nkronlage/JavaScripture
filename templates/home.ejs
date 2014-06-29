@@ -9,11 +9,133 @@ locals.title = 'JavaScripture - The word on JavaScript';
 </div>
 
 <p>
-JavaScript
-is the programming language of the web and is quickly gaining traction
+JavaScript is the programming language of the web and is quickly gaining traction
 outside of the browser. JavaScripture.com is your definitive API reference
-for JavaScript. Each reference page contains detailed descriptions
+for JavaScript.  
+</p>
+
+<h2>Interactive Examples</h2>
+<p>
+Each reference page contains detailed descriptions
 and examples you can modify and run to quickly learn by doing. 
 </p>
+
+<div class='htmlexample'>
+  <div class='codePanel'> 
+    <h4>Example:</h4>
+    <textarea class='code' rows="19" cols='60' wrap='off'>
+<!-- Interactive examples running in your browser -->
+<canvas id='canvas'></canvas>
+<script>
+  console.log('See console.log output here');
+
+  var strings = ['Your html displays here',
+                 'Interactive examples',
+                 'Simple descriptions',
+                 'Edit me now!',
+                 ''];
+
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  // Save off the center of the canvas
+  var centerX = canvas.width / 2;
+  var centerY = canvas.height / 2;
+
+  var fontHeight = 24;
+  
+  // Set the font properties
+  context.font = fontHeight + 'px Helvetica';
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
+
+  // Linear Interpolation
+  var lerp = function(from, to, t) {
+    return (to - from) * t + from;
+  };
+
+  // Create a simple list of keyframe
+  var keyframes = [
+    // Slide the text down
+    { time: 350, /* ms */
+      transform: function(context, t) {
+        // Animate the position
+        context.translate(0, lerp(-(centerY + fontHeight), 0, Math.sin(t * Math.PI / 2)));
+      }
+    },
+    
+    // Delay
+    { time: 1000 }, /* ms */
+
+    // Slide the text down
+    { time: 350, /* ms */
+      transform: function(context, t) {
+        context.translate(0, lerp(0, centerY + fontHeight, Math.sin(t * Math.PI / 2)));
+      }
+    },
+
+    // Stay offscreen
+    { time: 350, /* ms */
+      transform: function(context, t) {
+        context.translate(0, centerY + fontHeight);
+      }
+    },
+  ];
+
+  // Get the total length of the animation
+  var totalTime = keyframes.reduce(function(t, keyframe) {
+    return t + keyframe.time;
+  }, 0);
+
+  // Create a function that draws one frame of the animation
+  var drawFrame = function(time) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    var string = strings[((time / totalTime) | 0) % strings.length];
+
+    time = time % totalTime;
+
+    var keyframe;
+    for (var i = 0; i < keyframes.length; i++) {
+      keyframe = keyframes[i];
+      if (time < keyframe.time) {
+        break;
+      }
+      time -= keyframe.time
+    }
+
+    // Save the context's state (transforms, colors, etc)
+    context.save();
+
+    if (keyframe.transform) {
+      keyframe.transform(context, time / keyframe.time);
+    }
+
+    context.fillText(string, centerX, centerY);
+
+    // Restore the state
+    context.restore();
+
+    // Register our callback for the next frame
+    requestAnimationFrame(drawFrame);
+  };
+
+  requestAnimationFrame(drawFrame);
+</script>
+</textarea>
+    <a onclick='executeHTMLExample(this.parentNode.parentNode, "Home Example"); return false' href='#' class='run'>Run</a>
+  </div>
+
+  <div class='resultsPanel'>
+    <h4>Results:</h4>
+    <div style='position: relative'>
+      <div class='htmlerrormessage' style='display: none'></div>
+      <iframe class='output' width='350' height='200'></iframe>
+      <pre class="results"> </pre>
+    </div>
+  </div>
+</div>
+
+
 
 

@@ -82,7 +82,8 @@ var render = function(filename, locals) {
   locals.getPageDescription = getPageDescription;
   locals.getAnchorName = getAnchorName;
 
-  var result = ejs.render(template, { locals: locals});
+  var result = ejs.render(template, { locals: locals, 
+                                      filename: __dirname + '/templates/' + filename});
 
   if (filename === 'object') {
     currentObj = undefined;
