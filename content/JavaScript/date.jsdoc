@@ -3,7 +3,7 @@ Date : Object
 An object that represents a date and time.  Internally the time is stored
 as the number of milliseconds since 01 January, 1970 UTC.
 Use %%#new_Date|**new Date()**%% to get a Date for the current time or
-%%#now|Date.now()%% to get the current time in milliseconds since 
+%%#now|**Date.now()**%% to get the current time in milliseconds since 
 01 January, 1970 UTC.
 
 Spec:
