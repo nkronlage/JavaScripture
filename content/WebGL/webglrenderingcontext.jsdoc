@@ -1182,7 +1182,6 @@ See also
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -1336,7 +1335,6 @@ and
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -2019,7 +2017,6 @@ the buffer to store the rendered output.
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -2693,7 +2690,6 @@ Retrieves the value stored in **location** by a **uniform*()** call.
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -3434,7 +3430,6 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -3601,7 +3596,6 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -3711,7 +3705,6 @@ prototype.texImage2D(target : Number, level : Number, internalformat : Number, f
   varying vec2 textureCoord;
  
   void main() {
-    vec4 textureColor = texture2D(sampler, textureCoord);
     gl_FragColor = texture2D(sampler, textureCoord);
   }
 </script>
@@ -5002,7 +4995,6 @@ DITHER : Number
     float x = 0.4 + gl_FragCoord.x / 600.0;
 
     gl_FragColor = vec4(x, x, x, 1.0);
-
   }
 </script>
 <script src='/webgl-debug.js'></script>
