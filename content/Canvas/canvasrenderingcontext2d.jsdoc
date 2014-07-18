@@ -655,6 +655,9 @@ IDL:
 ----
 prototype.isPointInPath(x : Number, y : Number) : Boolean
 
+Returns **true** if the specified location is in the current path (from the most 
+recent call to %%#beginPath|**beginPath()**%%).
+
 <htmlexample>
 <canvas id='canvas'></canvas>
 <script>
