@@ -504,6 +504,10 @@ event.error : listener(event : Event, source : String, line : Number, column : N
 event.focus : listener(event : Event) : undefined
 ----
 event.hashchange : listener(event : Event) : undefined
+
+Fired when the **'#'** portion of the url changes.  See also
+%%/Location#hash|**location.hash**%%.
+
 ----
 event.input : listener(event : Event) : undefined
 ----

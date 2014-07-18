@@ -2,7 +2,8 @@ Location : Object
 
 <p>
 Location describes the url of the current page. It is available
-through the %%/Window#location|**window.location**%% property.
+through the %%/Window#location|**window.location**%% property. 
+See also %%/History|History%%.
 </p>
 
 <p>
@@ -256,7 +257,7 @@ http://url.spec.whatwg.org/#dom-url-pathname
 ----
 instance.search : String
 
-The search portion of Location. This is the '?' and everything following it.
+The search portion of Location. This is the **'?'** and everything following it.
 
 <htmlexample>
 <script>
@@ -270,11 +271,24 @@ http://url.spec.whatwg.org/#dom-url-search
 ----
 instance.hash : String
 
-The hash portion of Location. This is the '#' and everything following it.
+The hash portion of Location. This is the **'#'** and everything following it.
+Use the %%/Window#onhashchange|**window.onhashchange**%% event to listen for 
+changes to the hash.
 
 <htmlexample>
+<a id='foo' href='#bar'>Go to #bar</a>
+<div style='height: 1000px'></div>
+<a id='bar' href='#foo'>Go to #foo</a>
+
 <script>
-  console.log("'" + window.location.hash + "'");
+  var printHash = function() {
+    console.log("'" + window.location.hash + "'");
+  };
+
+  // Print initial hash
+  printHash();
+
+  window.onhashchange = printHash;
 </script>
 </htmlexample>
 
