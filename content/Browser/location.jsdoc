@@ -1,78 +1,297 @@
 Location : Object
 
+<p>
+Location describes the url of the current page. It is available
+through the %%/Window#location|**window.location**%% property.
+</p>
+
+<p>
+<html>
+Here's an example:<br>
+<table class='location-table'>
+  <tr>
+    <th>
+      Property
+    </th>
+    <th>
+      Value
+    </th>
+  </tr>
+  <tr>
+    <td>
+      %%#href|**href**%%
+    </td>
+    <td>
+      **'http://username:password@www.javascripture.com:80/pathname?search=terms#hash'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#protocol|**protocol**%%
+    </td>
+    <td>
+      **'http:'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#username|**username**%%
+    </td>
+    <td>
+      **'username'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#password|**password**%%
+    </td>
+    <td>
+      **'password'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#hostname|**hostname**%%
+    </td>
+    <td>
+      **'www.javascripture.com'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#port|**port**%%
+    </td>
+    <td>
+      **'80'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#host|**host**%%
+    </td>
+    <td>
+      **'www.javascripture.com:80'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#origin|**origin**%%
+    </td>
+    <td>
+      **'http://www.javascripture.com:80'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#pathname|**pathname**%%
+    </td>
+    <td>
+      **'/pathname'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#search|**search**%%
+    </td>
+    <td>
+      **'?search=terms'**
+    </td>
+  </tr>
+  <tr>
+    <td>
+      %%#hash|**hash**%%
+    </td>
+    <td>
+      **'#hash'**
+    </td>
+  </tr>
+</table>
+</html>
+</p>
 
 Spec:
 http://url.spec.whatwg.org/#api
 
-AlternateSpec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#location
-
-
 ----
 instance.href : String
+
+The concatenation of all parts of the Location into
+one string. You can set **href** to cause the browser to navigate
+to a new location.
+
+<htmlexample>
+<button onclick='goHome()'>Go Home</button>
+<script>
+  console.log('current href: ' + window.location.href);
+
+  var goHome = function() {
+    window.location.href = 'http://www.javascripture.com/';
+  };
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-href
 
 ----
 instance.origin : String
 
+The origin of the current Location. Composed of the %%#protocol|**protocol**%%,
+%%#hostname|**hostname**%%,
+and %%#port|**port**%% (if any).
+
+<htmlexample>
+<script>
+  console.log(window.location.origin);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-origin
 
 ----
 instance.protocol : String
 
-ReadOnly:
-true
+The protocol of the current Location. 
+
+<htmlexample>
+<script>
+  console.log(window.location.protocol);
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-protocol
+
 ----
 instance.username : String
 
-ReadOnly:
-true
+The username of Location or **undefined** if not specified. 
+
+<htmlexample>
+<script>
+  console.log(window.location.username);
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-username
+
 ----
 instance.password : String
 
-ReadOnly:
-true
+The password of Location or **undefined** if not specified.
+
+<htmlexample>
+<script>
+  console.log(window.location.password);
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-password
+
 ----
 instance.host : String
 
-ReadOnly:
-true
+The host of the current Location. Composed of 
+%%#hostname|**hostname**%%
+and %%#port|**port**%% (if any).
+
+<htmlexample>
+<script>
+  console.log(window.location.host);
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-host
+
 ----
 instance.hostname : String
 
-ReadOnly:
-true
+The hostname of the current Location. 
+
+<htmlexample>
+<script>
+  console.log(window.location.hostname);
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-hostname
+
 ----
 instance.port : String
 
-ReadOnly:
-true
-----
-instance.path : String
+The port of the current Location. May be **''** if the port is the
+not specified in the Location.
 
-ReadOnly:
-true
+<htmlexample>
+<script>
+  console.log("'" + window.location.port + "'");
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-port
+
+----
+instance.pathname : String
+
+The path of Location.
+
+<htmlexample>
+<script>
+  console.log(window.location.pathname);
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-pathname
+
 ----
 instance.search : String
 
-ReadOnly:
-true
-----
-instance.query : Object
+The search portion of Location. This is the '?' and everything following it.
 
-ReadOnly:
-true
+<htmlexample>
+<script>
+  console.log("'" + window.location.search + "'");
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-search
+
 ----
 instance.hash : String
 
-ReadOnly:
-true
+The hash portion of Location. This is the '#' and everything following it.
+
+<htmlexample>
+<script>
+  console.log("'" + window.location.hash + "'");
+</script>
+</htmlexample>
+
+Spec:
+http://url.spec.whatwg.org/#dom-url-hash
 
 ----
 prototype.assign(url : String) : undefined
 
+Navigates to the specified url.  The current page is stored in the user's history.
+
 ----
 prototype.replace(url : String) : undefined
 
+Navigates to the specified url.  The current page is removed from the user's history.
+
 ----
 prototype.reload() : undefined
+
+Reloads the current page.
