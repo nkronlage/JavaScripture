@@ -503,10 +503,24 @@ event.error : listener(event : Event, source : String, line : Number, column : N
 ----
 event.focus : listener(event : Event) : undefined
 ----
-event.hashchange : listener(event : Event) : undefined
+event.hashchange : listener(event : HashChangeEvent) : undefined
 
 Fired when the **'#'** portion of the url changes.  See also
 %%/Location#hash|**location.hash**%%.
+
+<htmlexample>
+<a id='foo' href='#bar'>Go to #bar</a>
+<div style='height: 1000px'></div>
+<a id='bar' href='#foo'>Go to #foo</a>
+
+<script>
+  window.onhashchange = function(event) {
+    console.log('oldURL: ' + event.oldURL);
+    console.log('newURL: ' + event.newURL);
+  };
+
+</script>
+</htmlexample>
 
 ----
 event.input : listener(event : Event) : undefined
