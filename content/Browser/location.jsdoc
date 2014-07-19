@@ -298,12 +298,14 @@ http://url.spec.whatwg.org/#dom-url-hash
 ----
 prototype.assign(url : String) : undefined
 
-Navigates to the specified url.  The current page is stored in the user's history.
+Navigates to the specified url.  The current page is stored in the browser's 
+navigation stack.
 
 ----
 prototype.replace(url : String) : undefined
 
-Navigates to the specified url.  The current page is removed from the user's history.
+Navigates to the specified url.  The current page is removed from the browser's
+navigation stack.
 
 ----
 prototype.reload() : undefined
