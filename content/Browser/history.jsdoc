@@ -5,57 +5,403 @@ Allows the webpage to manipulate the history by adding new pages
 or navigating between pages already in the history.
 
 Use the %%Window#onpopstate|**window.onpopstate**%% event
-to listen to navigation changes.
+to listen to the user changing the page through the browser's
+back/forward buttons.
 
 See also %%/Location|Location%%.
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#history-1
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#the-history-interface
 
 ----
 instance.length : Number
 
+The number of items in the browser session's history. 
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-length
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-length
 
 ----
 instance.state : Object
 
+The data passed to %%#pushState|**pushState()**%% or 
+%%#replaceState|**replaceState()**%% for the current page.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-state
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-state
 
 ----
 prototype.go([delta : Number]) : undefined
 
+Navigates through the session history by the specified amount.  If
+**delta** is not provided, **go()** acts the same as 
+%%Location#reload|**location.reload()**%% and reloads the current page.
+See also %%#back|**back()**%% and %%#forward|**forward()**%%.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-go
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-go
 
 ----
 prototype.back() : undefined
 
+Navigates back one page in the session history. Equivalent to
+%%#go|**go(-1)**%%.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-back
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-back
 
 ----
 prototype.forward() : undefined
 
+Navigates forward one page in the session history. Equivalent to
+%%#go|**go(1)**%%.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-forward
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-forward
 
 ----
 prototype.pushState(state : Object, title : String, [url : String]) : undefined
 
+Adds a new entry to the session history. 
+**state** is available on the %%#state|**history.state**%% property.  
+**title** is applied to %%Document#title|**document.title**%%. 
+If **url** is specified, the %%Location#href|**location.href**%% is 
+changed to the provided value.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
+
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-pushstate
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-pushstate
 
 ----
 prototype.replaceState(state : Object, title : String, [url : String]) : undefined
 
+Replaces the current entry in the session history with the provided values. 
+**state** is available on the %%#state|**history.state**%% property.  
+**title** is applied to %%Document#title|**document.title**%%. 
+If **url** is specified, the %%Location#href|**location.href**%% is 
+changed to the provided value.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
+
+
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/browsers.html#dom-history-replacestate
+http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-replacestate
