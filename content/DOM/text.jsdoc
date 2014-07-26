@@ -1,6 +1,8 @@
 Text : CharacterData
 
-Represents the text content of the document. 
+Text is a %%/Node|Node%% that represents the text content of the document. 
+The text content of elements like %%/HTMLSpanElement|Spans%% is stored 
+in Text nodes. 
 
 Spec:
 http://www.w3.org/TR/dom/#interface-text
@@ -8,15 +10,85 @@ http://www.w3.org/TR/dom/#interface-text
 ----
 new Text([data = '' : String]) : Text
 
-Creates a new Text with the specified **data**. 
+Creates a new **Text** with the specified **data**. 
 Can also be created with %%/Document#createTextNode|**document.createTextNode()**%%.
+
+<htmlexample>
+<div id='foo'>
+  Initial Text.
+</div>
+<script>
+  var extraText = new Text('Extra Text.');
+  document.getElementById('foo').appendChild(extraText);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/dom/#dom-text
 
 ----
 instance.wholeText : String
 
+Returns a string containing the %%/CharacterData#data|**data**%% of
+**this** and **data** of all adjacent
+%%/Text|**Text**%% siblings of **this**. Only the **data** of **Text**s
+is joined, **wholeText** does not walk into other adjacent %%/Node|**Node**%%
+types to pull out the text.
+
+<htmlexample>
+<div id='foo'>Initial Text. <span>In Span</span></div>
+<script>
+  var foo = document.getElementById('foo');
+  var initialText = foo.firstChild;
+
+  var insertedText = new Text('Inserted Text. ');
+  document.getElementById('foo').insertBefore(insertedText, initialText);
+
+  console.log('data: "' + initialText.data + '"');
+  console.log('wholeText: "' + initialText.wholeText + '"');
+</script>
+</htmlexample>
+
 ReadOnly:
 true
+
+Spec:
+http://www.w3.org/TR/dom/#dom-text-wholetext
 
 ----
 prototype.splitText(offset : Number) : Text
 
+Splits **this** into 2 %%/Text|**Text**%% nodes at the specified **offset** into
+%%/CharacterData#data|**data**%%. The first portion of **data** stays in **this**
+and the remainder is placed in a new **Text** that is returned by the call to 
+**splitText()**. The remainder **Text** is inserted after **this** in 
+%%/Node#parentNode|**this.parentNode**%%.
+
+<htmlexample>
+<div id='foo'>Initial Text.</div>
+<script>
+  var foo = document.getElementById('foo');
+  var initialText = foo.firstChild;
+
+  console.log('length before split: ' + foo.childNodes.length);
+
+  for (var i = 0; i < foo.childNodes.length; i++) {
+    console.log('  ' + i +': "' + foo.childNodes[i].data + '"');
+  }
+  console.log();
+  
+  var remainder = initialText.splitText(3);
+  console.log('initialText after split: "' + initialText.data + '"');
+  console.log('remainder after split: "' + remainder.data + '"');
+  console.log();
+
+  console.log('length after split: ' + foo.childNodes.length);
+
+  for (var i = 0; i < foo.childNodes.length; i++) {
+    console.log('  ' + i +': "' + foo.childNodes[i].data + '"');
+  }
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/dom/#dom-text-splittext
