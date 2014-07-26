@@ -418,4 +418,6 @@ are converted to camel case.
 </script>
 </htmlexample>
 
+ReadOnly:
+true
 
