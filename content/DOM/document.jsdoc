@@ -10,6 +10,62 @@ http://dev.w3.org/html5/spec/single-page.html#document
 instance.body : HTMLBodyElement
 
 ----
+instance.cookie : String
+
+Returns the cookies sent to the server when requesting resources.
+You can add additional cookies by setting **'key=value'** strings
+to **cookie**.  This will replace any existing value for the specified 
+cookie but will not affect other cookies. You may append additional metadata
+for the cookie by adding **';metadata-key1=metadata-value1;metadata-key2=metadata-value2;...'**
+to the end of the string when setting the cookie.  See
+%%http://www.ietf.org/rfc/rfc2965.txt|Set Cookie Syntax (on page 5)%% for more 
+details on the supported metadata keys and values.
+
+<htmlexample>
+<script>
+  var getCookies = function() {
+    if (document.cookie.length === 0) {
+      return {};
+    }
+
+    // Split on ';' followed by spaces
+    var pairs = document.cookie.split(/;\s*/g);
+
+    pairs = pairs.map(function(pair) {
+      return pair.split('=');
+    });
+
+    return pairs.reduce(function(object, pair) {
+      object[pair[0]] = pair[1];
+      return object;
+    }, {});
+  };
+
+  var clearCookies = function() {
+    var cookies = getCookies();
+    for (var key in cookies) {
+      // Remove a cookie by setting its expires time in the past
+      document.cookie = key + '=;expires=' + new Date(0).toUTCString();
+    }
+  };
+
+  clearCookies();
+
+  document.cookie = 'MyCookie=ChocolateChip';
+  console.log(document.cookie);
+
+  document.cookie = 'MyIceCream=Mint';
+  console.log(document.cookie);
+
+  var cookies = getCookies();
+  console.dir(cookies)
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-8747038
+
+----
 instance.title : String
 
 Sets the title of the window.
@@ -32,17 +88,80 @@ instance.activeElement : Element
 Returns the currently focused element. If there is no focused element,
 returns %%#body|**this.body**%%.
 
+See also 
+%%/hasFocus|**hasFocus()**%%,
+%%/Window#onblur|**window.onblur**%%, and 
+%%/Window#onfocus|**window.onfocus**%%.
+
+<htmlexample>
+<!-- Try tabbing around the elements in the example -->
+<input value='input 1'><br>
+<button>button</button><br>
+<input value='input 3'>
+<div>
+  activeElement: <span id='activeElement'></span>
+</div>
+<script>
+  var activeElementOutput = document.getElementById('activeElement');
+
+  var onFocusChange = function() {
+    activeElementOutput.textContent = document.activeElement.tagName;
+  };
+
+  window.addEventListener('focus', onFocusChange, true);
+  window.addEventListener('blur', onFocusChange, true);
+</script>
+</htmlexample>
+
 ----
 prototype.hasFocus() : Boolean
 
+Returns **true** if the document has keyboard focus.
+See also 
+%%/activeElement|**activeElement**%%,
+%%/Window#onblur|**window.onblur**%%, and 
+%%/Window#onfocus|**window.onfocus**%%.
+
+<htmlexample>
+<!-- Click between this box and example to change focus -->
+<input id='input'>
+<div>
+  Has focus: <span id='hasFocus'></span>
+</div>
+<script>
+  var hasFocusElement = document.getElementById('hasFocus');
+
+  var onFocusChange = function() {
+    hasFocusElement.textContent = document.hasFocus();
+  };
+
+  window.addEventListener('focus', onFocusChange);
+  window.addEventListener('blur', onFocusChange);
+</script>
+</htmlexample>
 
 ----
 instance.readyState : String
 
-Returns **'loading'** during Document is load, **'interactive'**
-when **this** has loaded but not all subresources are loaded, and 
+Returns 
+**'loading'** while **this** is loading, 
+**'interactive'** when **this** has loaded but not all subresources are loaded, 
+and 
 **'complete'** once **this** and all subresources are loaded.
 
+<htmlexample>
+<script>
+  console.log('in script: ' + document.readyState);
+
+  window.addEventListener('DOMContentLoaded', function() {
+    console.log('in DOMContentLoaded: ' + document.readyState);
+  });
+
+  window.onload = function() {
+    console.log('in onload: ' + document.readyState);
+  };
+</script>
+</htmlexample>
 
 ----
 instance.implementation : DOMImplementation
@@ -72,10 +191,6 @@ http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-docu
 instance.styleSheets : StyleSheetList
 
 
-
-
-
-
 ----
 instance.compatMode : String
 
@@ -98,6 +213,8 @@ true
 
 ----
 instance.documentElement : Element
+
+Usually a %%/HTMLHtmlElement|**HTMLHtmlElement**%%.
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-87CD092
@@ -264,4 +381,5 @@ event.load : listener(event : Event) : undefined
 
 ----
 event.readystatechange : listener(event : Event) : undefined
+
 
