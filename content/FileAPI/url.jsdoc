@@ -11,10 +11,12 @@ http://www.w3.org/TR/FileAPI/#URL-object
 createObjectURL(blob : Blob) : String
 
 Creates a url for the specified **blob** that can be passed to 
-methods that expect a url. When done with the return url, call
-%%#revokeObjectURL|**revokeObjectURL()**%%.
+methods that expect a url. When done with the returned url, call
+%%#revokeObjectURL|**revokeObjectURL()**%% to free the resources
+associated with the created url.
 
 <htmlexample>
+<!-- Creates a Worker using a local script instead of a remote url -->
 <script id='code' type='text/plain'>
   postMessage('foo');
 </script>
@@ -42,6 +44,7 @@ Frees the resources associated with the **url** created by
 %%#createObjectURL|**createObjectURL()**%%.
 
 <htmlexample>
+<!-- Creates a Worker using a local script instead of a remote url -->
 <script id='code' type='text/plain'>
   postMessage('foo');
 </script>
