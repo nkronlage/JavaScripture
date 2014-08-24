@@ -10,7 +10,7 @@ http://www.w3.org/TR/dom/#interface-text
 ----
 new Text([data = '' : String]) : Text
 
-Creates a new **Text** with the specified **data**. 
+Creates a new **Text** with the specified %%/CharacterData#data|**data**%%.
 Can also be created with %%/Document#createTextNode|**document.createTextNode()**%%.
 
 <htmlexample>

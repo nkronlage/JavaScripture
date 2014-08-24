@@ -9,8 +9,30 @@ https://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#characterdata
 ----
 instance.data : String
 
+The text in the node.
+
+<htmlexample>
+<div id='foo'>Foo</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  console.log(text.data);
+</script>
+</htmlexample>
+
 ----
 instance.length : Number
+
+The length of %%#data|**data**%%.
+
+<htmlexample>
+<div id='foo'>Foo</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  console.log(text.length);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -18,21 +40,88 @@ true
 ----
 prototype.appendData(data : String) : undefined
 
+Appends **data** to the end of the %%#data|**this.data**%%.
+
+<htmlexample>
+<div id='foo'>Foo</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  text.appendData('Bar');
+</script>
+</htmlexample>
+
 ----
 prototype.deleteData(offset : Number, count : Number) : undefined
+
+Deletes **count** characters of %%#data|**this.data**%% starting at **offset**.
+
+<htmlexample>
+<div id='foo'>Some Text Data</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  text.deleteData(4, 5);
+</script>
+</htmlexample>
 
 ----
 prototype.insertData(offset : Number, data : String) : undefined
 
+Inserts **data** into %%#data|**this.data**%% at **offset**.
+
+<htmlexample>
+<div id='foo'>Some Data</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  text.insertData(4, ' Text');
+</script>
+</htmlexample>
 
 ----
 prototype.remove() : undefined
 
+Removes **this** from %%/Node#parentNode|**parentNode**%%'s children.
 
+<htmlexample>
+<div id='foo'>Some Data</div>
+<script>
+  var div = document.getElementById('foo');
+  console.log(div.childNodes.length);
+
+  var text = div.firstChild;
+  text.remove();
+  console.log(div.childNodes.length);
+</script>
+</htmlexample>
 
 ----
 prototype.replaceData(offset : Number, count : Number, data : String) : undefined
 
+Replaces **count** characters of text at **offset** in %%#data|**this.data**%%
+with **data**.
+
+<htmlexample>
+<div id='foo'>Some Text Data</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  text.replaceData(5, 4, 'Replaced')
+</script>
+</htmlexample>
+
 ----
 prototype.substringData(offset : Number, count : Number) : String
 
+Returns a substring of %%#data|this.data%% starting at **offset** and of 
+the specified **count** of characters.
+
+<htmlexample>
+<div id='foo'>Some Text Data</div>
+<script>
+  var div = document.getElementById('foo');
+  var text = div.firstChild;
+  console.log(text.substringData(5, 9));
+</script>
+</htmlexample>
