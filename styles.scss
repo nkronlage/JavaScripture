@@ -597,3 +597,54 @@ div.popup {
     opacity: 0; 
   } 
 }
+
+$expandMembersArrowHeight: 0.42em;
+$expandMembersArrowHalfBase: 0.7 * $expandMembersArrowHeight; 
+
+$expandMembersBoxSize: 1.2em;
+$expandMembersTopMargin: $expandMembersBoxSize / 2 - $expandMembersArrowHeight / 2;
+$expandMembersLeftMargin: $expandMembersBoxSize / 2 - $expandMembersArrowHalfBase;
+
+.member {
+  position: relative;
+}
+
+.expand-members {
+  position: absolute;
+  right: 0;
+  width: $expandMembersBoxSize;
+  height: $expandMembersBoxSize;
+  opacity: 0.3;
+}
+
+.expand-members:hover {
+  opacity: 0.7;
+}
+
+.expand-members:active {
+  opacity: 0.9;
+}
+
+.expand-members:after {
+  content: ' ';
+  position:absolute;
+  margin-top: $expandMembersTopMargin;
+  margin-left: $expandMembersLeftMargin;
+
+  border-left: $expandMembersArrowHalfBase solid transparent;
+  border-bottom: $expandMembersArrowHeight solid currentcolor;
+  border-right: $expandMembersArrowHalfBase solid transparent;
+  border-top: 0;
+}
+
+.members-collapsed .expand-members:after {
+  border-left: $expandMembersArrowHalfBase solid transparent;
+  border-top: $expandMembersArrowHeight solid currentcolor;
+  border-right: $expandMembersArrowHalfBase solid transparent;
+  border-bottom: 0;
+}
+
+.members-collapsed .member-body {
+  display: none;
+}
+

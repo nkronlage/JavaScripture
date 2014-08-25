@@ -169,6 +169,7 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
 %>
 
 <div class='member'>
+  <div class='expand-members' title='Toggle showing all descriptions and examples'></div>
 <% if (property.source === 'event') { %>
   <a name='<%= property.name %>'></a>
   <a name='<%= property.onname %>'></a>
@@ -178,16 +179,18 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
     <div class="subfunction"><%- renderMember(property.type) %></div>
   </div>
 
+  <div class='member-body'>
 
-  <p class='description'>
-    <%- property.description %>
-  </p>
+    <p class='description'>
+      <%- property.description %>
+    </p>
 
-  <% if (property.spec) { %>
-    <div class='membermetadata'> 
-      <a href='<%= property.spec %>' class='spec'>Spec</a>
-    </div>
-  <% } %>
+    <% if (property.spec) { %>
+      <div class='membermetadata'> 
+        <a href='<%= property.spec %>' class='spec'>Spec</a>
+      </div>
+    <% } %>
+  </div>
 
 <% } else { %>
 
@@ -213,14 +216,17 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
          </div>
     <% }); %>
   </div>
-  <p class='description'>
-    <%- property.description %>
-  </p>
 
-  <% if (property.spec) { %>
-    <div class='membermetadata'> 
-      <a href='<%= property.spec %>' class='spec'>Spec</a>
-    </div>
-  <% } %>
+  <div class='member-body'>
+    <p class='description'>
+      <%- property.description %>
+    </p>
+
+    <% if (property.spec) { %>
+      <div class='membermetadata'> 
+        <a href='<%= property.spec %>' class='spec'>Spec</a>
+      </div>
+    <% } %>
+  </div>
 <% } %>
 </div>

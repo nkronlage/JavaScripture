@@ -678,3 +678,27 @@ if (localStorage.getItem('newCount') < 20) {
     localStorage.setItem('newCount', (+localStorage.getItem('newCount') || 0) + 1);
   }, 2500);
 }
+
+// The expand/collapse arrows on each item
+var expanders = document.querySelectorAll('.expand-members');
+for (var i = 0; i < expanders.length; i++) {
+  var expander = expanders[i];
+  expander.addEventListener('click', function(event) {
+    // Remember the position of the arrow
+    var oldTopOffset = event.target.getBoundingClientRect().top;
+
+    document.body.classList.toggle('members-collapsed');
+    sessionStorage.collapsed = document.body.classList.contains('members-collapsed');
+    event.target.scrollIntoView(event.target);
+
+    // Scroll the page back so the arrow is in the same place
+    var newTopOffset = event.target.getBoundingClientRect().top;
+    var scroller = document.getElementsByClassName('content')[0];
+    scroller.scrollTop += newTopOffset - oldTopOffset;
+  });
+}
+
+if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}
+
