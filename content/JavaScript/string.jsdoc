@@ -236,7 +236,7 @@ prototype.replace(searchValue : RegExp, replaceValue : String) : String
 
 Returns a new **String** where **searchValue** is replaced with **replaceValue**.  
 
-If **searchValue** is a global **RegExp**,
+If **searchValue** is a %%/RegExp#global|global **RegExp**%%,
 each match in **this** will be replaced.  Otherwise, just the first match will
 be replaced.
 
@@ -256,7 +256,7 @@ prototype.replace(searchValue : RegExp, replaceFunction(match : String, capture1
 <p>
 Returns a new **String** where **searchValue** matches in **this** is 
 replaced with the value returned from calling **replaceFunction**.  If 
-**searchValue** is a global **RegExp**,
+**searchValue** is a %%/RegExp#global|global **RegExp**%%,
 each match in **this** will be replaced.  Otherwise, just the first match will
 be replaced.
 </p>
