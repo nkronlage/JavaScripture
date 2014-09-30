@@ -1,0 +1,15 @@
+BeforeUnloadEvent : Event
+
+BeforeUnloadEvent is passed to the 
+%%/Window#onbeforeunload|**window.onbeforeunload**%% event.
+
+Spec:
+https://html.spec.whatwg.org/multipage/browsers.html#beforeunloadevent
+
+----
+instance.returnValue : String
+
+The string that will be displayed to the user.
+
+Spec:
+https://html.spec.whatwg.org/multipage/browsers.html#dom-beforeunloadevent-returnvalue

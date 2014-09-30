@@ -1,13 +1,31 @@
 Window : Global
 
-Window is the global object in the browser.
-
+Window is the global object in the browser that represents the
+browser window for the page.  The window object itself
+is available through the %%#window|**window**%% property and all 
+properties on the Window are available directly in scripts.
+The Window object is also available as **this** in the root scope of 
+a script (ie, outside of any %%/Function|Function%%.
 
 Spec:
 http://dev.w3.org/html5/spec/Overview.html#the-window-object
 
 ----
 instance.window : Window
+
+Returns the global object for the browser. Also available 
+through the %%#self|**self**%% property and through **this**
+in the root scope.
+
+<htmlexample>
+<script>
+  // At the root scope, 'this' is the window.
+  console.log(this === window);
+  console.log(window === self);
+  console.log(window === window.window);
+  console.log(window === window.self);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -18,15 +36,37 @@ http://dev.w3.org/html5/spec/Overview.html#dom-window
 ----
 instance.self : Window
 
+Returns the global object for the browser. Also available 
+through the %%#window|**window**%% property and through **this**
+in the root scope.
+
+<htmlexample>
+<script>
+  // At the root scope, 'this' is the window.
+  console.log(this === window);
+  console.log(window === self);
+  console.log(window === window.window);
+  console.log(window === window.self);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
-
 
 Spec:
 http://dev.w3.org/html5/spec/Overview.html#dom-self
 
 ----
 instance.document : Document
+
+Returns the document for this window. 
+
+<htmlexample>
+<div>Hello World</div>
+<script>
+  console.log(document.body.firstChild.textContent);
+</script>
+</htmlexample>
 
 
 ReadOnly:
@@ -45,6 +85,20 @@ http://dev.w3.org/html5/spec/Overview.html#dom-name
 ----
 instance.location : Location
 
+Describes the url of the current page. See %%/Location|Location%% for 
+more details.
+
+<htmlexample>
+<script>
+  console.log(location.href);
+  console.log(location.protocol);
+  console.log(location.hostname);
+  console.log(location.pathname);
+  console.log(location.search);
+  console.log(location.hash);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
@@ -54,6 +108,54 @@ http://dev.w3.org/html5/spec/Overview.html#dom-location
 ----
 instance.history : History
 
+Represents the user's browser history and allows the page
+to manipulate the history by adding pages or navigating between
+pages. See %%/History|History%% for more details.
+
+<htmlexample>
+<button onclick='pushState()'>Push State</button><br>
+<button onclick='replaceState()'>Replace State</button><br>
+<button onclick='history.back()'>Back</button><br>
+<button onclick='history.forward()'>Forward</button><br>
+<input id='goAmount' value='-1'><button onclick='go()'>Go</button>
+<div>
+  history.state = <span id='historyState'></span>
+</div>
+<div>
+  history.length = <span id='historyLength'></span>
+</div>
+<div>
+  href = <span id='locationHref'></span>
+</div>
+<script>
+  var onStateChange = function() {
+    document.getElementById('historyState').textContent = history.state;
+    document.getElementById('historyLength').textContent = history.length;
+    document.getElementById('locationHref').textContent = location.href;
+  };
+
+  window.onpopstate = onStateChange;
+
+  onStateChange();
+
+  var pushState = function() {
+    var newState = (history.state || 0) + 1;
+    history.pushState(newState, 'Pushed: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var replaceState = function() {
+    var newState = (history.state || 0) + 1;
+    history.replaceState(newState, 'Replaced: ' + newState, '/History?state=' + newState);
+    onStateChange();
+  };
+
+  var go = function() {
+    var amount = +document.getElementById('goAmount').value;
+    history.go(amount);
+  };
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -61,19 +163,63 @@ true
 Spec:
 http://dev.w3.org/html5/spec/Overview.html#dom-history
 
-
 ----
 instance.status : String
 
-
 ----
 instance.localStorage : Storage
+
+**localStorage** allows saving data in the web browser
+that can be retrieved in future views of the web page.
+The data is saved across browser sessions and computer
+reboots.
+See also %%#sessionStorage|**sessionStorage**%% and
+%%/Storage|Storage%% for more details.
+
+<htmlexample>
+<input id='tosave'>
+<button onclick='save()'>Save</button>
+<div id='lastsaved'></div>
+<script>
+  var lastSavedElement = document.getElementById('lastsaved');
+  lastSavedElement.textContent = localStorage['saved'];
+
+  var save = function() {
+    var value = document.getElementById('tosave').value;
+    localStorage['saved'] = value
+    lastSavedElement.textContent = value;
+  };
+</script>
+</htmlexample>
 
 ReadOnly:
 true
 
 ----
 instance.sessionStorage : Storage
+
+**sessionStorage** allows saving data in the web browser
+that can be retrieved in future views of the web page.
+The data is only saved for the current session, that is until 
+the user closes the web browser.
+See also %%#localStorage|**localStorage**%% and
+%%/Storage|Storage%% for more details.
+
+<htmlexample>
+<input id='tosave'>
+<button onclick='save()'>Save</button>
+<div id='lastsaved'></div>
+<script>
+  var lastSavedElement = document.getElementById('lastsaved');
+  lastSavedElement.textContent = sessionStorage['saved'];
+
+  var save = function() {
+    var value = document.getElementById('tosave').value;
+    sessionStorage['saved'] = value
+    lastSavedElement.textContent = value;
+  };
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -395,12 +541,78 @@ true
 ----
 prototype.alert(message : String) : undefined
 
+Displays a message box to the user with the specified message.
+
+Script execution is paused while the message box is displayed.
+
+See also 
+%%#confirm|**confirm()**%% 
+and 
+%%#prompt|**prompt()**%%.
+
+<htmlexample>
+<button onclick="alert('In alert')">Show alert</button>
+</htmlexample>
+
 ----
 prototype.confirm(message : String) : Boolean
 
-----
-prototype.prompt(message : String, [defaults : String]) : String
+Displays an Ok/Cancel message box to the user with the specified message.
+Returns **true** if the user clicked Ok. 
 
+Script execution is paused while the message box is displayed.
+
+See also 
+%%#alert|**alert()**%% 
+and 
+%%#prompt|**prompt()**%%.
+
+<htmlexample>
+<button onclick="showConfirm()">Show confirm</button>
+<script>
+  var showConfirm = function() {
+    if (confirm('In confirm')) {
+      console.log('user clicked ok');
+    }
+    else {
+      console.log('user clicked cancel');
+    }
+  };
+</script>
+</htmlexample>
+
+----
+prototype.prompt(message : String, [default : String]) : String
+
+Displays a message box containing an input box to the user with 
+the specified message. The input box will be prepopulated with
+**default** if it is specified.
+
+Returns the String the user typed in the input box if the user clicks
+ok and **null** if they click cancel.
+
+Script execution is paused while the message box is displayed.
+
+See also 
+%%#alert|**alert()**%% 
+and 
+%%#confirm|**confirm()**%%.
+
+<htmlexample>
+<button onclick="showPrompt()">Show prompt</button>
+<script>
+  var showPrompt = function() {
+    var result = prompt('In prompt', 'With default');
+
+    if (result !== null) {
+      console.log('prompt returned "' + result + '"');
+    }
+    else {
+      console.log('user clicked cancel');
+    }
+  };
+</script>
+</htmlexample>
 
 ----
 prototype.print() : undefined
@@ -444,7 +656,7 @@ event.afterprint : listener(event : Event) : undefined
 ----
 event.beforeprint : listener(event : Event) : undefined
 ----
-event.beforeunload : listener(event : Event) : String
+event.beforeunload : listener(event : BeforeUnloadEvent) : String
 
 Called before the page is navigated away from.  Return a non-empty 
 String from **listener** to display a dialog box that gives the user 
