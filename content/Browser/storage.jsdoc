@@ -1,0 +1,254 @@
+Storage : Object
+
+Storage allows saving data in the web browser
+that can be retrieved in future views of the web page.
+
+The browser has two types of storage:
+%%/Window#localStorage|**localStorage**%% which stores
+data across page views, browser restarts and computer restarts,
+and 
+
+%%/Window#sessionStorage|**sessionStorage**%% which only stores
+data across page views. **sessionStorage** is deleted when the
+user closes the browser.
+
+----
+instance[key : String] : String
+
+Gets or sets the data for **key** in the Storage.  Only
+Strings may be saved in Storage. 
+
+You can also use 
+%%#getItem|**getItem()**%% to retrieve the value and
+%%#setItem|**setItem()**%% to set the value.
+
+For **keys** that are 
+valid JavaScript property names, you can access the 
+value by using the **storage.key** syntax.
+
+<htmlexample>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log('"' + key + '" = "' + sessionStorage[key] + '"');
+  }
+</script>
+</htmlexample>
+
+----
+instance.length : Number
+
+Returns the number of items saved in the Storage.
+
+<htmlexample>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  console.log(sessionStorage.length + ' items in storage');
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log('"' + key + '" = "' + sessionStorage[key] + '"');
+  }
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+prototype.key(index : Number) : String
+
+Returns the key for the item at **index** in **this**. Use
+%%#indexer_String|**this[key]**%% or %%#getItem|**this.getItem(key)**%%
+to retrieve the value for the returned key.
+
+<htmlexample>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log('"' + key + '" = "' + sessionStorage[key] + '"');
+  }
+</script>
+</htmlexample>
+
+----
+prototype.getItem(key : String) : String
+
+Gets the data for **key** in the Storage. 
+
+You may also use 
+%%#indexer_String|**this[key]**%% to retrieve the value.
+
+For **keys** that are 
+valid JavaScript property names, you can access the 
+value by using the **storage.key** syntax.
+
+<htmlexample>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log('"' + key + '" = "' + sessionStorage.getItem(key) + '"');
+  }
+</script>
+</htmlexample>
+
+----
+prototype.setItem(key : String, value : String) : undefined
+
+Sets the data for **key** in the Storage.  Only
+Strings may be saved in Storage. 
+
+You can also use 
+%%#getItem|**getItem()**%% to retrieve the value and
+%%#setItem|**setItem()**%% to set the value.
+
+For **keys** that are 
+valid JavaScript property names, you can access the 
+value by using the **storage.key** syntax.
+
+<htmlexample>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log('"' + key + '" = "' + sessionStorage[key] + '"');
+  }
+</script>
+</htmlexample>
+
+
+----
+prototype.removeItem(key : String) : undefined
+
+Removes the item with the specified **key** from the storage.
+You may also use the **delete storage[key]** syntax or 
+**delete storage.key** syntax to remove the item.
+See also %%#clear|**clear()**%%.
+
+<htmlexample>
+<button onclick='removeItems()'>Remove Items</button>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  var printStorage = function() {
+    console.log(sessionStorage.length + ' items in storage');
+    for (var i = 0; i < sessionStorage.length; i++) {
+      var key = sessionStorage.key(i);
+      console.log('  "' + key + '" = "' + sessionStorage[key] + '"');
+    }
+  };
+
+  var removeItems = function() {
+    // The following are all equivalent ways of deleting a key
+    delete sessionStorage.simpleKey;
+    sessionStorage.removeItem('complex key!');
+    delete sessionStorage['createdExamples'];
+
+    printStorage();
+  };
+</script>
+</htmlexample>
+
+----
+prototype.clear() : undefined
+
+Removes all items from the storage. See also %%#removeItem|**removeItem()**%%.
+
+<htmlexample>
+<button onclick='clearStorage()'>Clear Storage</button>
+<script>
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = 'foo';
+    sessionStorage['complex key!'] = 'bar';
+    sessionStorage.createdExamples = 'true';
+
+    console.log('Added examples to sessionStorage');
+  }
+  else {
+    console.log('Using existing examples in sessionStorage');
+  }
+
+  var printStorage = function() {
+    console.log(sessionStorage.length + ' items in storage');
+    for (var i = 0; i < sessionStorage.length; i++) {
+      var key = sessionStorage.key(i);
+      console.log('  "' + key + '" = "' + sessionStorage[key] + '"');
+    }
+  };
+
+  var clearStorage = function() {
+    sessionStorage.clear();
+
+    printStorage();
+  };
+</script>
+</htmlexample>
+
