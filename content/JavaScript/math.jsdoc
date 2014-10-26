@@ -432,6 +432,25 @@ var randomInt = function(min, max) {
 console.log(randomInt(0, 100));
 console.log(randomInt(0, 100));
 console.log(randomInt(0, 100));
+
+// Produce a normally distributed random number using the Box-Muller transform
+var randn = function() {
+  if (randn.hasValues) {
+    randn.hasValues = false;
+    return randn.distance * Math.sin(randn.angle);
+  }
+
+  var random = Math.max(Math.random(), 1e-100);
+  randn.distance = Math.sqrt(-2 * Math.log(random));
+  randn.angle = Math.random() * Math.PI * 2;
+  randn.hasValues = true;
+
+  return randn.distance * Math.cos(randn.angle);
+}
+
+console.log(randn());
+console.log(randn());
+console.log(randn());
 </example>
 
 Spec:
