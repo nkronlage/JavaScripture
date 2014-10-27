@@ -1,0 +1,273 @@
+Map : Object
+
+Maps allow associating keys and values similar to normal %%/Object|Objects%%
+except Maps allow any Object to be used as a key instead of just
+%%/String|Strings%% and %%/Symbol|Symbols%%.  
+
+Maps use %%#get|get()%% and %%#set|set()%% methods to access the values stored in the Map.
+
+A Map are often called a HashTable or a Dictionary in other languages.
+
+Iterable:
+true
+
+Version:
+ECMAScript 6
+
+----
+Map() : Map
+
+Same as %%#new_Map|**new Map()**%%.
+
+----
+Map(iterable : Object) : Map
+
+Same as %%#new_Map_Object|**new Map(iterable)**%%.
+
+----
+new Map() : Map
+
+Creates an empty Map.
+
+<example>
+var objectKey = { foo: 'bar' };
+
+var x = new Map();
+x.set(1, 'keys are not converted to strings');
+x.set('1', 'this is stored separately than the previous value');
+x.set(objectKey, ['you use arbitrary objects as keys and values']);
+
+console.log(x.get(1));
+console.log(x.get('1'));
+console.log(x.get(objectKey));
+</example>
+
+----
+new Map(iterable : Object) : Map
+
+Creates a Map by iterating over **iterable** and using
+the first element of the iterator value as the key and
+second element as the value.
+
+<example>
+var objectKey = { foo: 'bar' };
+
+var fromArray = new Map([[0, 'array0'], [objectKey, 'array1']]);
+
+console.log(fromArray.get(0));
+console.log(fromArray.get(objectKey));
+console.log();
+
+var generator = function*() {
+  yield [0, 'generator0'];
+  yield [objectKey, 'generator1'];
+};
+
+var fromGenerator = new Map(generator());
+console.log(fromGenerator.get(0));
+console.log(fromGenerator.get(objectKey));
+</example>
+
+----
+instance.size : Number
+
+The number of key/value pairs in **this**.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+console.log(x.size);
+
+x.set('d', 'value D');
+
+console.log(x.size);
+
+x.clear();
+
+console.log(x.size);
+</example>
+
+----
+prototype.clear() : undefined
+
+Clears the key/value pairs from **this**.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+console.log(x.size);
+
+x.clear();
+
+console.log(x.size);
+</example>
+
+----
+prototype.delete(key : Object) : Boolean
+
+Removes **key** and its corresponding value from **this**.
+Returns **true** if **key** was in **this** before deleting it.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+console.log('size before delete: ' + x.size);
+console.log('deleted "a" = ' + x.delete('a'));
+
+console.log('size after delete: ' + x.size);
+console.log('value for "a" = ' + x.get('a'));
+
+console.log('deleted "foo" = ' + x.delete('foo'));
+</example>
+
+----
+prototype.entries() : Iterator<Array>
+
+Returns an iterator of the index and items in **this** where the 
+%%Iterator#next|**values**s%% of the iterator are of the form
+**[key : %%/Object|Object%%, item : %%/Object|Object%%]**.
+
+The **entries** function is also returned for 
+**this[%%/Symbol#iterator|Symbol.iterator%%]** so you can 
+iterate over **this** directly to get the entries.
+
+See also %%#keys|**keys()**%% and %%#values|**values()**%%.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+// entries is returned by x[Symbol.iterator] so you can just 
+// use x directly in the for (... of ...) loop
+for (var value of x) {
+  console.dir(value);
+}
+
+// You can iterate over entries explicitly
+for (var entry of x.entries()) {
+  console.dir(entry);
+}
+
+// Or access the iterator manually
+var entries = x.entries();
+
+console.dir(entries.next());
+console.dir(entries.next());
+console.dir(entries.next());
+console.dir(entries.next());
+</example>
+
+----
+prototype.forEach(callback(value : Object, key : Object, map : Map) : undefined, [thisArg : Object]) : undefined
+
+Calls **callback** for each key/value pair in **this**.
+
+The **Map** passed to **callback** is the **this** of the call to **forEach**.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+x.forEach(function(value, key, map) {
+  console.log('key: "' + key + '", value: "' + value + '"');
+});
+</example>
+
+----
+prototype.get(key : Object) : Object
+
+Returns the value stored for **key**. If no value is stored,
+returns %%/undefined|**undefined**%%.
+See also %%#has|**has()**%% and %%#set|**set()**%%.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+console.log(x.get('a'));
+console.log(x.get('b'));
+
+// Notice the values stored in the map are not properties on
+// the object. get() is the only way to retrieve the values.
+console.log(x['b']);
+</example>
+
+----
+prototype.has(key : Object) : Boolean
+
+Returns **true** if the map has a value stored for **key**.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+console.log(x.has('a'));
+console.log(x.has('foo'));
+
+// has() lets you check if a value is stored, even if 
+// the value is undefined
+x.set('e', undefined);
+console.log(x.has('e') + ' ' + x.get('e'));
+console.log(x.has('f') + ' ' + x.get('f'));
+</example>
+
+----
+prototype.keys() : Iterator
+
+Returns an iterator of the keys in **this**.
+See also %%#entries|**entries()**%% and %%#values|**values()**%%.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+// Use for (... of ...) to loop over the iterator
+for (var key of x.keys()) {
+  console.dir(key);
+}
+
+// Or access the iterator manually
+var keys = x.keys();
+
+console.dir(keys.next());
+console.dir(keys.next());
+console.dir(keys.next());
+console.dir(keys.next());
+</example>
+
+----
+prototype.set(key : Object, value : Object) : Map
+
+Stores **value** in **this** at the specified **key**.  If
+a value is already stored for that **key**, it is replaced with
+**value**.
+Returns **this**.
+See also %%#get|**get()**%% and %%#has|**has()**%%.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+console.log(x.get('a'));
+
+x.set('a', 'a different value');
+console.log(x.get('a'));
+</example>
+
+----
+prototype.values() : Iterator
+
+Returns an iterator of the values in **this**.
+See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = new Map([['a', 'value A'], ['b', 'value B'], ['c', 'value C']]);
+
+// Use for (... of ...) to loop over the iterator
+for (var value of x.values()) {
+  console.dir(value);
+}
+
+// Or access the iterator manually
+var values = x.values();
+
+console.dir(values.next());
+console.dir(values.next());
+console.dir(values.next());
+console.dir(values.next());
+</example>
+
