@@ -105,26 +105,44 @@ Returns **true** if **x** is %%/Number#NaN|**NaN**%%.
 **NaN** is never equal to another **Number**, even if it is **NaN**,
 so you must use **isNaN** to check for **NaN**.
 
+If **x** is not a %%/Number|Number%%, it is first converted to a Number 
+before checking if it is NaN. Use %%/Number#isNaN|**Number.isNaN(x)**%%
+to prevent any conversion from happening.
+
 <example>
 var x = 0/0;
 console.log(x === NaN); 
 console.log(isNaN(x)); 
+
+console.log();
+
+// Compare Number.isNaN and global isNaN methods
+console.log(Number.isNaN('NaN')); // 'NaN' is a string, not a Number
+console.log(isNaN('NaN')); // The 'NaN' string is first converted to a Number
 </example>
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.4
 
 ----
-isFinite(x: Number) : Boolean
+isFinite(x : Object) : Boolean
 
 Returns **true** if **x** is not **NaN**, **+Infinity**, or **-Infinity**.
+If **x** is not a %%/Number|Number%%, it is first converted to a Number 
+before checking if it is finite. Use %%/Number#isFinite|**Number.isFinite(x)**%%
+to prevent any conversion from happening.
 
 <example>
-console.log(isFinite(0/0)); // 0/0 is NaN
-console.log(isFinite(1/0)); // 1/0 is infinity
-console.log(isFinite(1.2)); // 1.2 is finite
-</example>
+console.log(Number.isFinite(0/0)); // 0/0 is NaN
+console.log(Number.isFinite(1/0)); // 1/0 is infinity
+console.log(Number.isFinite(1.2)); // 1.2 is finite
 
+console.log();
+
+// Compare Number.isFinite and global isFinite methods
+console.log(Number.isFinite('0')); // '0' is a string, not a Number
+console.log(isFinite('0')); // The '0' string is first converted to a Number
+</example>
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.5
