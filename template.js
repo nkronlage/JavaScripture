@@ -65,6 +65,15 @@ var getPageDescription = function(obj) {
   return pageDesc.substring(0, 200);
 };
 
+var getVersionClass = function(version) {
+  if (version === 'ECMAScript 6') {
+    return 'ecmascript6';
+  }
+  else {
+    throw Error('unknown version: ' + version);
+  }
+};
+
 
 var currentObj;
 var templates = {};
@@ -81,6 +90,7 @@ var render = function(filename, locals) {
   locals.currentObj = currentObj;
   locals.getPageDescription = getPageDescription;
   locals.getAnchorName = getAnchorName;
+  locals.getVersionClass = getVersionClass;
 
   var result = ejs.render(template, { locals: locals, 
                                       filename: __dirname + '/templates/' + filename});

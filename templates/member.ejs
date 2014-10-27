@@ -81,6 +81,11 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
     name = 'this';
   }
   
+  if (isPrimary && !name) {
+    throw Error('name not specified');
+  }
+  name = name || 'return';
+
   res += wrap(name, 'membername' + (isPrimary ? ' primary' : ''));
 
   if (member.defaultValue) {
@@ -106,8 +111,15 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
       }
       return res;
     }
-    else {
+    else if (type.type === 'Object') {
+      return wrapLink(type.type, 'membertype');
+    }
+    else if (typeof type === 'string') {
       return wrapLink(type, 'membertype');
+    }
+    else {
+      console.log(type);
+      throw Error('unexpected type');
     }
   };
 
@@ -123,7 +135,9 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
       }
 
       res += '(' + renderParameters(member.parameters) + ')';
-      res += '&nbsp;:&nbsp;' + renderType(member.returnType);
+      res += '&nbsp;:&nbsp;';
+
+      res += renderType(member.returnType);
     }
   }
   else if (!nestedRenderMember && member.type === 'Indexer') {
@@ -222,9 +236,14 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
       <%- property.description %>
     </p>
 
-    <% if (property.spec) { %>
+    <% if (property.spec || property.version) { %>
       <div class='membermetadata'> 
-        <a href='<%= property.spec %>' class='spec'>Spec</a>
+        <% if (property.version) { %>
+          <span class='<%= getVersionClass(property.version) %>'><%= property.version %></span>
+        <% } %>
+        <% if (property.spec) { %>
+          <a href='<%= property.spec %>' class='spec'>Spec</a>
+        <% } %>
       </div>
     <% } %>
   </div>

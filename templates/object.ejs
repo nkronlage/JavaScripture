@@ -12,13 +12,21 @@
 <% if (obj.primitive) { %>
 <span>primitive</span>
 <% } %>
+<% if (obj.iterable) { %>
+<span>iterable</span>
+<% } %>
 </div>
 
 <div class='objectdescription'>
 <%- obj.description %>
-<% if (obj.spec) { %>
+<% if (obj.spec || obj.version) { %>
 <div class='membermetadata'> 
-  <a href='<%= obj.spec %>' class='spec'>Spec</a>
+  <% if (obj.version) { %>
+    <span class='<%= getVersionClass(obj.version) %>'><%= obj.version %></span>
+  <% } %>
+  <% if (obj.version) { %>
+    <a href='<%= obj.spec %>' class='spec'>Spec</a>
+  <% } %>
 </div>
 <% } %>
 </div>

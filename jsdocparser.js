@@ -403,12 +403,16 @@ var parseMember = function(member) {
       continue;
     }
 
+    // See if the character is one of the parens
     for (var j = 0; j < parens.length; j++) {
       var pair = parens[j];
+
+      // If it is a left paren, push it on the stack
       if (member[i] === pair[0]) {
         parenStack.push(member[i]);
       }
       else if (member[i] === pair[1]) {
+        // If it is a right paren, see if it matches the top paren of on the stack
         if (!parenStack.length) {
           throw Error('empty paren stack');
         }
@@ -435,6 +439,13 @@ var parseMember = function(member) {
   if (defaultValueSplit !== -1) {
     name = member.substring(0, defaultValueSplit).trim();
     defaultValue = member.substring(defaultValueSplit + 1, split).trim();
+  }
+  else if (split === -1) {
+    var res = member.match(/\{(.*)\}/);
+    if (!res) throw Error('parse error');
+
+    return { type: 'Object',
+             properties: parseParamList(res[1])};
   }
   else {
     if (split === -1) throw Error('parse error');

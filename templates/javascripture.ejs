@@ -407,6 +407,9 @@ var dumpObject = function(x, depth) {
 
     r += isArray ? ' ]' : ' }';
   }
+  else if (typeof x === 'string') {
+    r = "'" + x + "'";
+  }
   return r;
 }
 var executeExample = function(example, prop) {

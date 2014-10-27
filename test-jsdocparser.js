@@ -230,6 +230,18 @@ testParse('a(b : { c : d, e : f }) : g', // object
     returnType: 'g'
   });
 
+testParse('a(b : c) : { d : e, f : g }', // function returning object parameter
+  { name: 'a',
+    type: 'Function',
+    parameters: [ { name: 'b',
+                    type: 'c' } ],
+    returnType: { type: 'Object',
+                  properties: [ { name: 'd',
+                                  type: 'e' },
+                                { name: 'f',
+                                  type: 'g' } ] }
+  });
+
 testParse('a : b<c>', // template types
   { name: 'a',
     type: { name: 'b',
