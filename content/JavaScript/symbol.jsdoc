@@ -1,0 +1,78 @@
+Symbol : Object
+
+Symbols are an alternate to using %%/String|Strings%% as the
+keys for properties. Symbols allow hiding properties on Objects
+since you can only access the values if you have the symbol to set
+the value.
+You access a property with a Symbol key using 
+%%/Object#indexer_Symbol|object[symbol]%%.
+
+Version:
+ECMAScript 6
+
+Primitive:
+true
+
+----
+Symbol([description : String]) : Symbol
+
+Creates a new Symbol with an optional description.
+
+<example>
+var myObject = { foo: 'bar' };
+
+var mySymbol = Symbol('MySymbol');
+
+myObject[mySymbol] = 'baz';
+
+console.log(myObject[mySymbol]);
+
+// The property cannot be accessed using a string
+console.log(myObject['MySymbol']);
+</example>
+
+----
+hasInstance : Symbol
+
+----
+isConcatSpreadable : Symbol
+
+----
+isRegExp : Symbol
+
+----
+iterator : Symbol
+
+The Symbol that retrieves the iterator on the Object.
+
+<example>
+// Array's iterator function is also exposed as 'values'
+var arrayIterator = Array.prototype[Symbol.iterator];
+console.log(arrayIterator === Array.prototype.values);
+
+var x = ['a', 'b', 'c'];
+
+// The following are all equivalent:
+for (var item of x[Symbol.iterator]()) {
+  console.log(item);
+}
+
+// for (... of ...) automatically invokes the iterator function
+for (var item of x) { 
+  console.log(item);
+}
+
+// Array[Symbol.iterator] is also available through Array.values
+for (var item of x.values()) {
+  console.log(item);
+}
+</example>
+
+----
+toPrimitive : Symbol
+
+----
+toStringTag : Symbol
+
+----
+unscopables : Symbol
