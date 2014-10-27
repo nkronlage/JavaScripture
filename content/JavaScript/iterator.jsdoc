@@ -1,0 +1,71 @@
+Iterator : Object
+
+An Iterator is an Object that returns a sequence of values.  
+
+Calling an ECMAScript 6 generator function (**function*() {}**) return
+an Iterator.  
+
+You may create your own iterable object by assigning the
+%%Symbol#iterator|**Symbol.iterator**%% property to an 
+object with a **next()** method.
+
+
+Version:
+ECMAScript 6
+
+Spec:
+http://people.mozilla.org/~jorendorff/es6-draft.html#sec-iterator-interface
+
+
+----
+instance.next() : { value : Object, done : Boolean }
+
+Returns an object containing the next value in the iterator. 
+If all items have been returned, **done** will be **true**.
+
+<example>
+// Generator functions create iterators when called
+function* generator(){
+  yield 'foo';
+  yield 'bar';
+}
+
+// Usually you will iterate over it using for (... of ...)
+// which will call next() for you automatically
+for (var item of generator()) {
+  console.log(item);
+}
+
+// You can also get the iterator and manually call next()
+var iterator = generator();
+
+console.dir(iterator.next());
+console.dir(iterator.next());
+console.dir(iterator.next());
+
+// You can create iterable objects manually
+var myIterable = { };
+myIterable[Symbol.iterator] = function() {
+  var count = 0;
+  return { 
+    next: function() {
+      if (count >= 2) return { value: undefined, done: true };
+      count++;
+      return { value: 'my item' + count, done: false };
+    }
+  }
+};
+
+// Using for (... of ...) calls the next() defined above
+for (var item of myIterable) {
+  console.log(item);
+}
+
+// You can also call it manually
+iterator = myIterable[Symbol.iterator]();
+
+console.dir(iterator.next());
+console.dir(iterator.next());
+console.dir(iterator.next());
+</example>
+
