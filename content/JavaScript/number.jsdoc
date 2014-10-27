@@ -133,6 +133,25 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.3
 
 ----
+MAX_SAFE_INTEGER : Number
+
+The largest possible integer such that **MAX_SAFE_INTEGER** 
+and **MAX_SAFE_INTEGER + 1** can both be represented exactly 
+in JavaScript.
+
+See also %%#MIN_SAFE_INTEGER|**MIN_SAFE_INTEGER**%% and 
+%%#isSafeInteger|**Number.isSafeInteger()**%%.
+
+<example>
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MAX_SAFE_INTEGER + 1);
+console.log(Number.MAX_SAFE_INTEGER + 2);
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2
+
+----
 MAX_VALUE : Number
 
 The largest possible Number less than infinity that can be represented in
@@ -144,6 +163,22 @@ console.log(Number.MAX_VALUE);
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2
+
+----
+MIN_SAFE_INTEGER : Number
+
+The smallest possible integer such that **MIN_SAFE_INTEGER** 
+and **MIN_SAFE_INTEGER - 1** can both be represented exactly 
+in JavaScript.
+
+See also %%#MAX_SAFE_INTEGER|**MAX_SAFE_INTEGER**%% and 
+%%#isSafeInteger|**Number.isSafeInteger()**%%.
+
+<example>
+console.log(Number.MIN_SAFE_INTEGER);
+console.log(Number.MIN_SAFE_INTEGER - 1);
+console.log(Number.MIN_SAFE_INTEGER - 2);
+</example>
 
 ----
 MIN_VALUE : Number
@@ -163,7 +198,9 @@ NaN : Number
 
 Floating point Not a Number. Signifies an error in a calculation.
 **NaN** is never equal to another **Number**, even if it is **NaN**.
-To check if something is **NaN**, use %%Global#isNaN|isNan()%%. 
+To check if something is **NaN**, use 
+%%Global#isNaN|isNan()%% or
+%%#isNaN|Number.isNan()%%.
 Also exists as %%Global#NaN|**NaN**%% in the global namespace.
 
 <example>
@@ -207,4 +244,77 @@ console.log(1/0);
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.6
+
+----
+isFinite(x : Number) : Boolean
+
+Returns **true** if **x** is not **NaN**, **+Infinity**, or **-Infinity**.
+See also the global %%/Global#isFinite|**isFinite(x)**%% method.
+
+<example>
+console.log(Number.isFinite(0/0)); // 0/0 is NaN
+console.log(Number.isFinite(1/0)); // 1/0 is infinity
+console.log(Number.isFinite(1.2)); // 1.2 is finite
+
+console.log();
+
+// Compare Number.isFinite and global isFinite methods
+console.log(Number.isFinite('0')); // The string '0' is not a Number
+console.log(isFinite('0')); // The string '0' is converted to a Number
+</example>
+
+Version:
+ECMAScript 6
+
+----
+isInteger(x : Number) : Boolean
+
+Returns **true** if **x** is an integer.
+
+<example>
+console.log(Number.isInteger(0)); 
+console.log(Number.isInteger(1.0));
+console.log(Number.isInteger(1.2));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+isSafeInteger(x : Number) : Boolean
+
+Returns **true** if **x** is greater than or equal to
+%%Number#MIN_SAFE_INTEGER|**MIN_SAFE_INTEGER**%%
+and less than or equal to 
+%%Number#MAX_SAFE_INTEGER|**MAX_SAFE_INTEGER**%%.
+Adding or subtracting **1** to numbers outside this range may not
+produce a change in the value due to lack of floating point precision.
+
+<example>
+console.log(Number.isInteger(42)); 
+console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER));
+console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+isNaN(x : Number) : Boolean
+
+Returns **true** if **x** is %%/Number#NaN|**NaN**%%.
+**NaN** is never equal to another **Number**, even if it is **NaN**,
+so you must use **isNaN** to check for **NaN**.
+
+See also the global %%/Global#isNaN|**isNaN(x)**%% method.
+
+<example>
+var x = 0/0;
+console.log(x === NaN); 
+console.log(Number.isNaN(x)); 
+
+</example>
+
+Version:
+ECMAScript 6
 
