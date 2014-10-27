@@ -3,6 +3,9 @@ Array : Object
 Arrays are containers that allow access to its items 
 through numerical indices.
 
+Iterable:
+true
+
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4
 
@@ -25,7 +28,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2
 ----
 Array() : Array
 
-Same as %%#Array_|**new Array()**%%.
+Same as %%#new_Array|**new Array()**%%.
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1
@@ -74,24 +77,10 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2.1
 ----
 Array(item0:Object, [item1:Object, [...]]) : Array
 
-Same as %%#new_Array_Object_Object_dotdotdot|**Array(item0, item1, ...)**%%.
+Same as %%#new_Array_Object_Object_dotdotdot|**new Array(item0, item1, ...)**%%.
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
-
-----
-isArray(value:Object) : Boolean
-
-Returns **true** if **value** is an **Array**.
-
-<example>
-console.log(Array.isArray([]));
-console.log(Array.isArray({}));
-console.log(Array.isArray(53));
-</example>
-
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.3.2
 
 ----
 instance[index : Number] : Object
@@ -151,6 +140,68 @@ console.log(x); // x is unchanged
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.4
 
+----
+prototype.copyWithin(target : Number, start : Number, [end : Number]) : Array
+
+Copies **this[start], this[start + 1], ... this[end - 1]** to 
+**this[target], this[target + 1], ... this[target + start - end - 1]**.
+
+If **end** is not specified, **this.length** will be used.
+
+If **end** is greater than **this.length**, it is clamped to
+**this.length**. 
+
+Note, no elements are copied past **this.length - 1** (ie, **copyWithin()**
+will not increase the length of **this**).
+
+Returns **this**.
+
+<example>
+var x = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+// Copy elements at end to the beginning 
+console.log(x.copyWithin(0, 3));
+
+x = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+// Copy elements at the beginning to the end 
+console.log(x.copyWithin(3, 0));
+
+x = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+// Copy first 3 elements to middle
+console.log(x.copyWithin(2, 0, 3));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+prototype.entries() : Iterator<Array>
+
+Returns an iterator of the index and items in **this** where the 
+%%Iterator#next|**values**s%% of the iterator are of the form
+**[index : %%/Number|Number%%, item : %%/Object|Object%%]**.
+See also %%#values|**values()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = ['a', 'b'];
+
+// Use for (... of ...) to loop over the iterator
+for (var entry of x.entries()) {
+  console.dir(entry);
+}
+
+// Or access the iterator manually
+var entries = x.entries();
+
+console.dir(entries.next());
+console.dir(entries.next());
+console.dir(entries.next());
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 prototype.every(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Boolean
@@ -188,6 +239,65 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.20
 
 ----
+prototype.find(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Object
+
+Returns the first item in **this** where **callback** returns
+**true**.
+
+The **Array** passed to **callback** is the **this** of the call to **find**.
+
+See also %%#findIndex|**findIndex()**%%.
+
+<example>
+var x = ['a', 'b', 'foo', 'd', 'e'];
+
+console.log(x.find(function(item) {
+  return item.length > 1;
+}));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+prototype.findIndex(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Object
+
+Returns the index of the first item in **this** where **callback** returns
+**true**.
+
+See also %%#find|**find()**%%.
+
+<example>
+var x = ['a', 'b', 'foo', 'd', 'e'];
+
+console.log(x.findIndex(function(item) {
+  return item.length > 1;
+}));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+prototype.fill(value : Object, [start = 0 : Number, [end : Number]]) : Array
+
+Fills **this[start]**, **this[start + 1]**, ... **this[end - 1]** with
+**value**. 
+If **end** is not specified, **this.length** is used.
+Returns **this**.
+
+<example>
+var x = Array(5);
+
+console.log(x.fill('a'));
+console.log(x.fill('b', 3));
+console.log(x.fill('c', 0, 2));
+</example>
+
+Version:
+ECMAScript 6
+
+----
 prototype.forEach(callback(item:Object, index:Number, array:Array):undefined, [thisArg:Object]):undefined
 
 Calls **callback** for each item in **this**.
@@ -205,11 +315,11 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.18
 
 ----
-prototype.indexOf(item:Object, [startingIndex = 0 : Number]):Number
+prototype.indexOf(item:Object, [start = 0 : Number]):Number
 
 Returns the first location of **item** in **this** starting the search from
-**startingIndex**.
-If **startingIndex**
+**start**.
+If **start**
 is negative, **this.length** is added to it before starting the search. 
 Returns **-1** if **item** is not found.
 
@@ -239,15 +349,40 @@ console.log(x.join(' -- '));
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.5
 
+----
+prototype.keys() : Iterator<Number>
+
+Returns an iterator of the indicies in **this**.
+See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = ['a', 'b'];
+
+// Use for (... of ...) to loop over the iterator
+for (var key of x.keys()) {
+  console.dir(key);
+}
+
+// Or access the iterator manually
+var keys = x.keys();
+
+console.dir(keys.next());
+console.dir(keys.next());
+console.dir(keys.next());
+</example>
+
+Version:
+ECMAScript 6
+
 
 ----
-prototype.lastIndexOf(item:Object, [startingIndex:Number]):Number
+prototype.lastIndexOf(item:Object, [start:Number]):Number
 
 Returns the location of **item** in **this** starting the search from 
-**startingIndex** by searching backwards through the array.  
+**start** by searching backwards through the array.  
 If **startingIndex** is not specified, the search starts from the 
 end of the array. 
-If **startingIndex**
+If **start**
 is negative, **this.length** is added to it before starting the search. 
 Returns **-1** if **item** is not found.
 
@@ -488,3 +623,120 @@ console.log(x);
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.13
 
+----
+prototype.values() : Iterator
+
+Returns an iterator of the items in **this**. 
+The **values** function is also returned for 
+**this[%%/Symbol#iterator|Symbol.iterator%%]** so you can 
+iterate over **this** directly to get the values.
+See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = ['a', 'b'];
+
+// values is returned by x[Symbol.iterator] so you can just 
+// use x directly in the for (... of ...) loop
+for (var value of x) {
+  console.dir(value);
+}
+
+// You can iterate over values explicitly
+for (var value of x.values()) {
+  console.dir(value);
+}
+
+// Or access the iterator manually
+var values = x.values();
+
+console.dir(values.next());
+console.dir(values.next());
+console.dir(values.next());
+</example>
+
+Version:
+ECMAScript 6
+
+----
+from(arrayLike : Object, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
+
+Returns a new **Array** with the elements of **arrayLike**.  
+
+**from()** will return
+a new **Array** of length **arrayLike.length** where the elements are 
+**arrayLike[0]**, **arrayLike[1]**, ..., **arrayLike[arrayLike.length - 1]**.
+
+<example>
+// From a string
+console.log(Array.from('foo'));
+
+// With a map function
+var mapFunction = function(value) {
+  return value.toUpperCase();
+};
+
+console.log(Array.from('foo', mapFunction));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+from(iterator : Iterator, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
+
+Returns a new **Array** with the elements of **iterator** containing the
+items returned by the iterator until the iterator is **done**.
+
+<example>
+var generator = function*() {
+  yield* ['a', 'b', 'c'];
+};
+
+console.log(Array.from(generator()));
+
+// With a map function
+var mapFunction = function(value) {
+  return value.toUpperCase();
+};
+
+console.log(Array.from(generator(), mapFunction));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+isArray(value:Object) : Boolean
+
+Returns **true** if **value** is an **Array**.
+
+<example>
+console.log(Array.isArray([]));
+console.log(Array.isArray({}));
+console.log(Array.isArray(53));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.3.2
+
+----
+of(item0:Object, [item1:Object, [...]]) : Array
+
+Creates an **Array** with the specified parameters as the 
+0th, 1st, ... items of the **Array**.
+Can also be constructed as **[item0, item1, ...]**.
+Note that **of(x)** will always create an array of length **1**
+containing **x**,
+while %%#new_Array_Number|**new Array(x)**%% which will create 
+an array of length **x** if **x** is an integer.
+
+<example>
+// The following are equivalent
+var w = ['a', 'b', 'c'];
+var x = Array('a', 'b', 'c');
+var y = new Array('a', 'b', 'c');
+var z = Array.of('a', 'b', 'c');
+</example>
+
+Version:
+ECMAScript 6
