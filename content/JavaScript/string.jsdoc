@@ -6,6 +6,9 @@ JavaScript strings are immutable.
 Primitive:
 true
 
+Iterable:
+true
+
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5
 
