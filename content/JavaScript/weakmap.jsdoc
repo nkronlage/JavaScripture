@@ -1,0 +1,167 @@
+WeakMap : Object
+
+WeakMaps allow associating keys and values similar to %%/Map|Map%%
+except WeakMap does not allow iterating over its keys or values.
+If WeakMap would be the only object holding on to the key/value
+pair, the pair will be released from memory.
+The keys cannot be primitive values
+(%%/Boolean|Boolean%%,
+%%/Number|Number%%,
+%%/String|String%%, 
+or
+%%/undefined|undefined%%).
+
+Version:
+ECMAScript 6
+
+----
+new WeakMap() : WeakMap
+
+Creates an empty WeakMap.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
+
+console.log(x.get(key1));
+console.log(x.get(key2));
+</example>
+
+----
+new WeakMap(iterable : Object) : WeakMap
+
+Creates a WeakMap by iterating over **iterable** and using
+the first element of the iterator value as the key and
+second element as the value.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var fromArray = new WeakMap([[key1, 'array0'], [key2, 'array1']]);
+
+console.log(fromArray.get(key1));
+console.log(fromArray.get(key2));
+console.log();
+
+var generator = function*() {
+  yield [key1, 'generator0'];
+  yield [key2, 'generator1'];
+};
+
+var fromGenerator = new WeakMap(generator());
+console.log(fromGenerator.get(key1));
+console.log(fromGenerator.get(key2));
+</example>
+
+----
+prototype.clear() : undefined
+
+Clears the key/value pairs from **this**.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
+
+console.log(x.get(key1));
+console.log(x.get(key2));
+
+x.clear();
+
+console.log(x.get(key1));
+console.log(x.get(key2));
+</example>
+
+----
+prototype.delete(key : Object) : Boolean
+
+Removes **key** and its corresponding value from **this**.
+Returns **true** if **key** was in **this** before deleting it.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
+
+console.log(x.get(key1));
+console.log(x.get(key2));
+
+x.delete(key1);
+
+console.log(x.get(key1));
+console.log(x.get(key2));
+</example>
+
+----
+prototype.get(key : Object) : Object
+
+Returns the value stored for **key**. If no value is stored,
+returns %%/undefined|**undefined**%%.
+See also %%#has|**has()**%% and %%#set|**set()**%%.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
+
+console.log(x.get(key1));
+console.log(x.get(key2));
+
+// get returns undefined for keys not in the WeakMap
+var key3 = { language: 'JavaScript' };
+console.log(x.get(key3));
+</example>
+
+----
+prototype.has(key : Object) : Boolean
+
+Returns **true** if the map has a value stored for **key**.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakMap();
+
+x.set(key1, undefined);
+
+// has() lets you check if a value is stored, even if 
+// the value is undefined
+console.log(x.has(key1) + ' ' + x.get(key1));
+console.log(x.has(key2) + ' ' + x.get(key2));
+</example>
+
+----
+prototype.set(key : Object, value : Object) : WeakMap
+
+Stores **value** in **this** at the specified **key**.  
+**key** cannot be a primitive value 
+(%%/Boolean|Boolean%%,
+%%/Number|Number%%,
+%%/String|String%%, 
+or
+%%/undefined|undefined%%).
+If a value is already stored for that **key**, it is replaced with
+**value**.
+Returns **this**.
+See also %%#get|**get()**%% and %%#has|**has()**%%.
+
+<example>
+var key1 = { foo: 1 };
+var key2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
+
+console.log(x.get(key1));
+
+x.set(key1, 'a different value');
+
+console.log(x.get(key1));
+</example>
+
