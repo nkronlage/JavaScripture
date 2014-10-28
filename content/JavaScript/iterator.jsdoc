@@ -9,13 +9,8 @@ You may create your own iterable object by assigning the
 %%Symbol#iterator|**Symbol.iterator**%% property to an 
 object with a **next()** method.
 
-
 Version:
 ECMAScript 6
-
-Spec:
-http://people.mozilla.org/~jorendorff/es6-draft.html#sec-iterator-interface
-
 
 ----
 instance.next() : { value : Object, done : Boolean }
