@@ -15,16 +15,6 @@ Version:
 ECMAScript 6
 
 ----
-Map() : Map
-
-Same as %%#new_Map|**new Map()**%%.
-
-----
-Map(iterable : Object) : Map
-
-Same as %%#new_Map_Object|**new Map(iterable)**%%.
-
-----
 new Map() : Map
 
 Creates an empty Map.

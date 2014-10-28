@@ -10,16 +10,6 @@ Version:
 ECMAScript 6
 
 ----
-Set() : Set
-
-Same as %%#new_Set|**new Set()**%%.
-
-----
-Set(iterable : Object) : Set
-
-Same as %%#new_Set_Object|**new Set(iterable)**%%.
-
-----
 new Set() : Set
 
 Creates an empty Set.
