@@ -118,6 +118,7 @@ console.log('size after delete: ' + x.size);
 console.log('value for "a" = ' + x.get('a'));
 
 console.log('deleted "foo" = ' + x.delete('foo'));
+console.log('size after delete: ' + x.size);
 </example>
 
 ----
@@ -125,7 +126,7 @@ prototype.entries() : Iterator<Array>
 
 Returns an iterator of the index and items in **this** where the 
 %%Iterator#next|**values**s%% of the iterator are of the form
-**[key : %%/Object|Object%%, item : %%/Object|Object%%]**.
+**[key : %%/Object|Object%%, value : %%/Object|Object%%]**.
 
 The **entries** function is also returned for 
 **this[%%/Symbol#iterator|Symbol.iterator%%]** so you can 
