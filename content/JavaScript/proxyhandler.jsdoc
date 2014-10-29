@@ -1,0 +1,277 @@
+ProxyHandler : Object
+
+The ProxyHandler is used by %%/Proxy|Proxy%% to intercept and modify
+the behavior of the proxied object.  You may use any JavaScript object
+as a ProxyHandler. If any of the following methods are not provided,
+the Proxy will use the default behavior for that method.
+
+Version:
+ECMAScript 6
+
+----
+instance.apply(target : Function, thisArg : Object, parameters : Array) : Object
+
+Called when
+**proxy(...)**,
+%%/Function#apply|**proxy.apply(thisArg, parameters)**%%,
+or
+%%/Function#call|**Function.call(thisArg, ...parameters)**%%
+are called on the proxy.
+
+<example>
+var x = function(arg1, arg2) {
+  console.log('in x(' + arg1 + ', ' + arg2 + ')');
+};
+
+var proxy = new Proxy(x, {
+  apply: function(target, thisArg, parameters) {
+    console.log('in apply');
+
+    return target.apply(thisArg, parameters);
+  }
+});
+
+proxy('direct1', 'direct2');
+proxy.apply(null, ['apply1', 'apply2']);
+proxy.call(null, 'call1', 'call2');
+</example>
+
+----
+instance.construct(target : Function, parameters : Array) : Object
+
+Called when **new target(...parameters)** is called.
+
+<example>
+var Button = function(text) {
+  this.text = text;
+};
+
+var ButtonProxy = new Proxy(Button, {
+  construct: function(target, parameters) {
+    console.log('in construct');
+
+    var button = Object.create(target.prototype);
+    target.apply(button, parameters);
+    return button;
+  }
+});
+
+var button = new ButtonProxy('OK');
+console.log(button.text);
+</example>
+
+----
+instance.defineProperty(target : Object, name : String, propertyDescriptor : PropertyDescriptor) : undefined
+
+Called when %%/Object#defineProperty|**Object.defineProperty()**%%
+is called on the proxy.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  defineProperty: function(target, name, propertyDescriptor) {
+    console.log('in defineProperty');
+
+    return Object.defineProperty(target, name, propertyDescriptor);
+  }
+});
+
+Object.defineProperty(proxy, 'bar', { value: 2, 
+                                      writable: true,
+                                      enumerable: false,
+                                      configurable: true } );
+</example>
+
+----
+instance.deleteProperty(target : Object, name : String) : Boolean
+
+Called when **delete proxy[name]** is called. Return **true**
+if the delete was successful.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  deleteProperty: function(target, name) {
+    console.log('in deleteProperty');
+ 
+    return delete target[name];
+  }
+});
+
+delete proxy.foo;
+
+console.log(proxy.foo);
+console.log(x.foo);
+</example>
+
+----
+instance.enumerate(target : Object) : Array<String>
+
+
+----
+prototype.get(target : Object, name : String, proxy : Proxy) : Object
+
+Called when reading the **name** property of the **target** of the proxy.
+The return value is used as the value of the property. 
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  get: function(target, name, proxy) {
+    console.log('in get');
+
+    var value = target[name];
+    if (typeof value === 'string') {
+      value = value.toUpperCase();
+    }
+    return value;
+  }
+});
+
+console.log(proxy.foo);
+console.log(x.foo); // value stored on x is unmodified
+</example>
+
+----
+instance.getOwnPropertyDescriptor(target : Object, name : String) : PropertyDescriptor
+
+Called when %%/Object#getOwnPropertyDescriptor|**Object.getOwnPropertyDescriptor()**%%
+is called on the %%/Proxy|Proxy%%.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  getOwnPropertyDescriptor: function(target, name) {
+    console.log('in getOwnPropertyDescriptor');
+
+    return Object.getOwnPropertyDescriptor(target, name);
+  }
+});
+
+console.dir(Object.getOwnPropertyDescriptor(proxy, 'foo'));
+</example>
+
+----
+instance.has(target : Object, name : String) : Boolean
+
+Called when **name in proxy** is called.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  has: function(target, name) {
+    console.log('in has');
+
+    return name in target;
+  }
+});
+
+console.log('foo' in proxy);
+</example>
+
+
+----
+prototype.isExtensible(target : Object) : Boolean
+
+Called when checking to see if an Object is %%/Object#isExtensible|extensible%%.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  isExtensible: function(target) {
+    console.log('in isExtensible');
+
+    return Object.isExtensible(target);
+  }
+});
+
+console.log(Object.isExtensible(proxy));
+Object.preventExtensions(proxy);
+console.log(Object.isExtensible(proxy));
+</example>
+
+----
+instance.ownKeys(target : Object) : Array<String>
+
+Called when
+%%/Object#keys|**Object.keys()**%%,
+%%/Object#getOwnPropertyNames|**Object.getOwnPropertyNames()**%%,
+or
+%%/Object#getOwnPropertySymbols|**Object.getOwnPropertySymbols()**%%
+are called on the proxy.
+
+<example>
+var x = { foo: 1 };
+Object.defineProperty(x, 'bar', { value: 2, 
+                                  writable: true,
+                                  enumerable: false,
+                                  configurable: true } );
+
+var proxy = new Proxy(x, {
+  ownKeys: function(target, a, b) {
+    console.log('in ownKeys');
+
+    var names = Object.getOwnPropertyNames(target);
+    var symbols = Object.getOwnPropertySymbols(target);
+    return names.concat(symbols);
+  }
+});
+
+console.log(Object.keys(proxy));
+console.log(Object.getOwnPropertyNames(proxy));
+console.log(Object.getOwnPropertySymbols(proxy));
+</example>
+
+
+----
+prototype.preventExtensions(target : Object) : Boolean
+
+Called when %%Object#preventExtensions|**Object.preventExtensions()**%% 
+is called on the %%/Proxy|Proxy%%. Return **true** if 
+preventExtensions succeeded.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  preventExtensions: function(target) {
+    console.log('in preventExtensions');
+
+    Object.preventExtensions(target);
+    return !Object.isExtensible(target);
+  }
+});
+
+console.log(Object.isExtensible(proxy));
+console.log(Object.preventExtensions(proxy));
+console.log(Object.isExtensible(proxy));
+</example>
+
+
+----
+instance.set(target : Object, name : String, value : Object, proxy : Proxy) : Object
+
+Called when setting the **name** property of the **target** of the proxy.
+
+<example>
+var x = { foo: 1 };
+
+var proxy = new Proxy(x, {
+  set: function(target, name, value, proxy) {
+    console.log('in set');
+
+    target[name] = value.toUpperCase();
+  }
+});
+
+proxy.foo = 'bar';
+
+console.log(proxy.foo);
+console.log(x.foo); // value stored on x is uppercase
+</example>

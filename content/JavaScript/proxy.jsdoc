@@ -1,0 +1,55 @@
+Proxy : Object
+
+The Proxy allows you to wrap an Object (called the **target**) and 
+modify the behavior of that Object. 
+
+Version:
+ECMAScript 6
+
+----
+new Proxy(target : Object, handler : ProxyHandler) : Proxy
+
+Creates a new Proxy for the **target** where **handler**
+allows you to modify the behavior of **target**.
+
+<example>
+// Create a Proxy for Map that only allows even number keys 
+var evenMap = new Proxy(new Map(), {
+  // The 'get' function allows you to modify the value returned
+  // when accessing properties on the proxy
+  get: function(target, name) {
+    // Return a custom function for Map.set that checks
+    // that the keys are even numbers
+    if (name === 'set') {
+      return function(key, value) {
+        if (Number.isInteger(key) && (key % 2 === 0)) {
+          return target.set(key, value);
+        }
+        else {
+          throw Error('key "' + key + '" is not even');
+        }
+      };
+    }
+    else {
+      // Return the normal property value for everything else
+      return target[name];
+    }
+  }
+});
+
+evenMap.set(0, 'foo');
+console.log(evenMap.get(0));
+
+evenMap.set(2, 'bar');
+console.log(evenMap.get(2));
+
+try
+{
+  evenMap.set(3, 'baz');
+  console.log(evenMap.get(3));
+}
+catch (e)
+{
+  console.log(e);
+}
+</example>
