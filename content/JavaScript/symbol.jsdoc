@@ -2,8 +2,8 @@ Symbol : Object
 
 Symbols are an alternate to using %%/String|Strings%% as the
 keys for properties. Symbols allow hiding properties on Objects
-since you can only access the values if you have the symbol to set
-the value.
+since you can only access the values if you have the same instance of the
+Symbol.
 You access a property with a Symbol key using 
 %%/Object#indexer_Symbol|object[symbol]%%.
 
