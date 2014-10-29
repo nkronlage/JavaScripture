@@ -1,0 +1,139 @@
+WeakSet : Object
+
+WeakSets are a collection of %%/Object|Objects%% where each
+object can only appear once in the set similar to %%/Set|Set%%.
+Unlike Set, WeakSet does not allow iterating over its values.
+If WeakSet would be the only object holding on to the value, 
+the value will be released from memory.
+
+The values stored in WeakSet cannot be primitive values
+(%%/Boolean|Boolean%%,
+%%/Number|Number%%,
+%%/String|String%%, 
+or
+%%/undefined|undefined%%).
+
+Version:
+ECMAScript 6
+
+----
+new WeakSet() : WeakSet
+
+Creates an empty WeakSet.
+
+<example>
+var value1 = { foo: 1 };
+var value2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakSet();
+x.add(value1);
+
+console.log(x.has(value1));
+console.log(x.has(value2));
+
+</example>
+
+----
+new WeakSet(iterable : Object) : WeakSet
+
+Creates a WeakSet by iterating over **iterable** and adding
+each value to the WeakSet.
+
+<example>
+var value1 = { foo: 1 };
+var value2 = { bar: ['a', 'b', 'c'] };
+
+var fromArray = new WeakSet([value1, value2]);
+
+console.log(fromArray.has(value1));
+console.log(fromArray.has(value2));
+
+var generator = function*() {
+  yield value1;
+  yield value2;
+};
+
+var fromGenerator = new WeakSet(generator());
+
+console.log(fromGenerator.has(value1));
+console.log(fromGenerator.has(value2));
+</example>
+
+----
+prototype.add(value : Object) : Set
+
+Stores **value** in **this**. If **value** is already stored,
+there is no change to the WeakSet.
+Returns **this**.
+
+<example>
+var value1 = { foo: 1 };
+var value2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakSet([value1]);
+
+console.log(x.has(value1));
+console.log(x.has(value2));
+
+x.add(value2);
+console.log(x.has(value2));
+</example>
+
+----
+prototype.clear() : undefined
+
+Clears all values from **this**.
+
+<example>
+var value1 = { foo: 1 };
+var value2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakSet([value1, value2]);
+
+console.log(x.has(value1));
+console.log(x.has(value2));
+
+x.clear();
+
+console.log(x.has(value1));
+console.log(x.has(value2));
+</example>
+
+----
+prototype.delete(value : Object) : Boolean
+
+Removes **value* from **this**.
+Returns **true** if **value** was in **this** before deleting it.
+
+<example>
+var value1 = { foo: 1 };
+var value2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakSet([value1, value2]);
+
+console.log('has value1 = ' + x.has(value1));
+console.log('has value2 = ' + x.has(value2));
+
+console.log('deleted value2 = ' + x.delete(value2));
+
+console.log('has value1 = ' + x.has(value1));
+console.log('has value2 = ' + x.has(value2));
+
+console.log('deleted value2 = ' + x.delete(value2)); // Already deleted
+</example>
+
+----
+prototype.has(value : Object) : Boolean
+
+Returns **true** if the set contains **value**.
+
+<example>
+var value1 = { foo: 1 };
+var value2 = { bar: ['a', 'b', 'c'] };
+
+var x = new WeakSet([value1]);
+
+console.log(x.has(value1));
+console.log(x.has(value2));
+</example>
+
