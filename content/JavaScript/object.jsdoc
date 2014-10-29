@@ -135,6 +135,8 @@ getOwnPropertyNames(obj : Object) : Array<String>
 Returns an **Array** of the names of all properties set on **obj** including 
 those that are not enumerable.
 
+See also %%#keys|**keys()**%%.
+
 <example>
 var x = { foo: 1 };
 Object.defineProperty(x, 'bar', { value: 2, 
@@ -148,6 +150,26 @@ console.log(Object.getOwnPropertyNames(x));
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.4
 
+----
+getOwnPropertySymbols(obj : Object) : Array<Symbol>
+
+Returns an **Array** of the symbols of properties set on **obj** including 
+those that are not enumerable.
+
+<example>
+var myObject = { foo: 'bar' };
+
+var mySymbol = Symbol('MySymbol');
+
+myObject[mySymbol] = 'baz';
+
+for (var symbol of Object.getOwnPropertySymbols(myObject)) {
+  console.log('myObject[' + symbol.toString() + '] = ' + myObject[symbol]);
+}
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 create(prototype : Object, [propertyDescriptors : Object]) : Object
@@ -342,6 +364,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.13
 keys(obj : Object) : Array<String>
 
 Returns an **Array** containing the enumerable properties on **obj**.
+See also %%#getOwnPropertyNames|**getOwnPropertyNames()**%%.
 
 <example>
 var x = { foo: 1, bar: 2 };
