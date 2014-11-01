@@ -15,8 +15,8 @@ Called when
 **proxy(...)**,
 %%/Function#apply|**proxy.apply(thisArg, parameters)**%%,
 or
-%%/Function#call|**Function.call(thisArg, ...parameters)**%%
-are called on the proxy.
+%%/Function#call|**proxy.call(thisArg, ...parameters)**%%
+are called.
 
 <example>
 var x = function(arg1, arg2) {
