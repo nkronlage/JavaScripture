@@ -110,7 +110,7 @@ ReadOnly:
 true
 
 ----
-prototype.slice([start = 0: Number, [end : Number, [contentType : String]]]) : Blob
+prototype.slice([start = 0: Number, [end : Number, [contentType = '' : String]]]) : Blob
 
 Returns a new blob that contains the bytes **start** to **end - 1** from **this**.
 If **start** or **end** is negative, the value is added to %%#size|**this.size**%% before 
