@@ -685,7 +685,7 @@ ECMAScript 6
 from(iterator : Iterator, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
 
 Returns a new **Array** with the elements of **iterator** containing the
-items returned by the iterator until the iterator is **done**.
+items returned by the iterator.
 
 <example>
 var generator = function*() {
