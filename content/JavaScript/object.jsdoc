@@ -3,7 +3,7 @@ Object : undefined
 Object is the base in the prototype chain. 
 
 JavaScript **Object**s can have any number values stored as properties
-(specified by %%/String|**String**%% names or %%/Symbol|**Symbol%%s).
+(specified by %%/String|**String**%% names or %%/Symbol|**Symbol**%%s).
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2
