@@ -379,12 +379,13 @@ Spec:
 http://www.w3.org/TR/selectors-api/#queryselectorall
 
 ----
-prototype.registerElement(type : String, [ options : {\
+prototype.registerElement(tagName : String, [ options : {\
   prototype : CustomElementPrototype, \
   extends : String /* The HTML %%/Element#tagName|**tagName**%% of the element to is extending */ \
 } ]) : Function
 
-Registers a new custom element type for the specified typeName.
+Registers a new custom element type for the specified **tagName**.
+**tagName** must have a **'-'** in it.
 **options.prototype** allows you to provide a 
 %%/Function#prototype|**prototype**%% for the custom elements.
 
