@@ -1,0 +1,176 @@
+Promise : Object
+
+A Promise is an object that represents an asynchronous operation.
+Use the %%#then|**then()**%% method to hook up a callback that will
+be called when the result of the asynchronous operation is ready.
+
+Version:
+ECMAScript 6
+
+----
+new Promise(executor(resolve(value : Object) : undefined, reject(error : Error) : undefined) : undefined) : Promise
+
+Creates a new Promise. The Promise constructor calls **executer** 
+immediately with the two functions **resolve** and **reject**.
+**executor** should begin the asynchronous operation.  
+When the operation is complete, call the **resolve**
+function with the results. If there is an error during the 
+operation, call **reject** with the error information.
+
+<example>
+var promise = new Promise(function(resolve, reject) {
+  console.log('in Promise constructor function');
+  setTimeout(function() {
+    resolve('foo');
+  }, 100);
+});
+console.log('created promise');
+
+promise.then(function(result) {
+  console.log('promise returned: ' + result);
+});
+console.log('hooked promise.then()');
+</example>
+
+----
+prototype.catch(onReject(error : Error) : undefined) : Promise
+
+Schedules **onReject** to be called if the promise had an error (ie, 
+the %%/#new_Promise|**executer function**%% called **reject()**
+or a method in the promise chain threw an error).
+**error** is the value passed to **reject**.  This is a shorthand
+for calling %%#then|**then(undefined, onReject)**%%. 
+
+<example>
+var throwPromise = new Promise(function(resolve, reject) {
+  throw 'value thrown';
+});
+
+throwPromise.catch(function(result) {
+  console.log('caught: ' + result);
+});
+
+var rejectPromise = new Promise(function(resolve, reject) {
+  setTimeout(function() {
+    reject('value passed to reject()');
+  }, 100);
+});
+
+rejectPromise.catch(function(result) {
+  console.log('caught: ' + result);
+});
+</example>
+
+----
+prototype.then(onResolve(value : Object) : undefined, [onReject(error : Error) : undefined]) : Promise
+
+Schedules **onResolve** (if provided) to be called when the promise has been resolved.
+**value** is the object passed to the %%/#new_Promise|**resolve()**%% function.
+
+Also schedules **onResolve** (if provided) to be called when 
+the promise has been rejected or an exception was thrown in the **executor** method.
+**error** is the object passed to the %%/#new_Promise|**reject()**%% function.
+
+See also %%#catch|**catch()**%%.
+
+
+<example>
+// This promise randomly passes or fails.
+var promise = new Promise(function(resolve, reject) {
+  var random = Math.random();
+  if (random < 0.5) {
+    resolve('resolving with ' + random);
+  }
+  else {
+    reject('rejecting with ' + random);
+  }
+});
+
+promise.then(function(result) {
+  console.log('onResolve: ' + result);
+},
+function(error) {
+  console.log('onReject: ' + error);
+});
+</example>
+
+----
+all(promises : Iterable<Promise>) : Promise
+
+Creates a new Promise that will be resolved when all of **promises**
+are resolved. If any of the promises are rejected, the returned Promise
+will be rejected immediately and will provide the value of the 
+Promise that was rejected.
+
+<example>
+var promises = [];
+
+for (var i = 0; i < 10; i++) {
+  promises.push(new Promise(function(resolve, reject) {
+    var timeout = i * 10;
+    setTimeout(function() {
+      resolve('resolving after ' + timeout + ' milliseconds');
+    }, timeout);
+  }));
+}
+
+Promise.all(promises).then(function(results) {
+  console.log('all results:')
+  for (var result of results) {
+    console.log('  ' + result);
+  }
+});
+</example>
+
+----
+race(promises : Iterable<Promise>) : Promise
+
+Creates a new Promise that will be resolved when the first of **promises**
+is resolved. If a promises is rejected before any resolve, the returned 
+Promise will be rejected immediately and will provide the value of the
+Promise that was rejected.
+
+<example>
+var promises = [];
+
+for (var i = 0; i < 10; i++) {
+  promises.push(new Promise(function(resolve, reject) {
+    var random = Math.random() * 1000;
+    setTimeout(function() {
+      resolve('resolving after ' + random + ' milliseconds');
+    }, random);
+  }));
+}
+
+Promise.race(promises).then(function(result) {
+  console.log('first result: ' + result)
+});
+</example>
+
+----
+reject(error : Error) : Promise
+
+Returns a new Promise that is in the rejected state with **error** as 
+the rejected error. Useful for passing values to APIs that expect promises.
+
+<example>
+// The following are equivalent
+var x = Promise.reject('foo');
+var y = new Promise(function(resolve, reject) {
+                      reject('foo');
+                    });
+</example>
+
+----
+resolve(value : Object) : Promise
+
+Returns a new Promise that is in the resolved state with **value** as 
+the resolved value. Useful for passing values to APIs that expect promises.
+
+<example>
+// The following are equivalent
+var x = Promise.resolve('foo');
+var y = new Promise(function(resolve) {
+                      resolve('foo');
+                    });
+</example>
