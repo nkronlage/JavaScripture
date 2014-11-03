@@ -29,6 +29,8 @@ $darkestred: #410800;
 
 
 $leftnavwidth: 12em;
+$contentTopPadding: 0.5em;
+$contentLeftPadding: 2em;
 
 $arrowheight: 0.35em;
 $arrowhalfbase: 0.7 * $arrowheight; /* 0.577 */
@@ -438,9 +440,8 @@ h1.declaration {
 .member {
   margin-bottom: 2em;
   border-top: 1px solid $darkestblue;
-  padding-top: 0.5em;
-
-  padding-left: 2em;
+  padding-top: $contentTopPadding;
+  padding-left: $contentLeftPadding;
 
   .declaration {
     margin-left: 2em;
@@ -523,6 +524,12 @@ input[type=submit] {
   border-top: $arrowheight solid currentcolor;
   border-left: $arrowhalfbase solid transparent;
   border-right: $arrowhalfbase solid transparent;
+}
+
+.details {
+  border-top: 1px solid $darkestblue;
+  padding-top: 1em;
+  padding-left: $contentLeftPadding;
 }
 
 th, td {

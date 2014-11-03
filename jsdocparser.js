@@ -237,8 +237,7 @@ var processFragment = function(obj, desc) {
     member = processOverload(obj, first);
   }
   else if (/^Details:\s*$/.test(first)) {
-    // TODO: add details/commentary support
-    //obj.details = processMarkup(obj, lines.join(' '));
+    obj.details = processMarkup(obj, lines.join('\n').trim());
     return;
   }
   else {
