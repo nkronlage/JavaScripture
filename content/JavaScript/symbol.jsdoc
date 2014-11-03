@@ -43,7 +43,8 @@ isRegExp : Symbol
 ----
 iterator : Symbol
 
-The Symbol that retrieves the iterator on the Object.
+The Symbol that retrieves a function that returns an
+%%/Iterator|iterator%% for the Object.
 
 <example>
 // Array's iterator function is also exposed as 'values'

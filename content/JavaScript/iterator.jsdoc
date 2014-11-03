@@ -16,17 +16,21 @@ Version:
 ECMAScript 6
 
 ----
-instance.next() : { value : Object, done : Boolean }
+instance.next([yieldValue : Object]) : { value : Object, done : Boolean }
 
 Returns an object containing the next value in the iterator. 
 If all items have been returned, **done** will be **true**.
+For generator functions, **yieldValue** is returned to the generator
+from the **yeild** statement.
 
 <example>
 // Generator functions create iterators when called
-function* generator(){
+var generator = function*() {
   yield 'foo';
-  yield 'bar';
-}
+  var yieldValue = yield 'bar';
+  console.log('generator yieldValue = ' + yieldValue);
+  console.log();
+};
 
 // Usually you will iterate over it using for (... of ...)
 // which will call next() for you automatically
@@ -39,7 +43,7 @@ var iterator = generator();
 
 console.dir(iterator.next());
 console.dir(iterator.next());
-console.dir(iterator.next());
+console.dir(iterator.next('passed to next'));
 
 // You can create iterable objects manually
 var myIterable = { };

@@ -1,0 +1,10 @@
+Iterable : Object
+
+An iterable object is any object that returns a function that produces
+an %%/Iterator|Iterator%% for its %%/Symbol#iterator|**Symbol.iterator**%%
+property.
+
+You can loop over all values in an iterable object by using a 
+**for (var value of iterable) { }** loop.
+
+See %%/Iterator|Iterator%% for more details.
