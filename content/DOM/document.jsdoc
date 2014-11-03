@@ -113,32 +113,6 @@ See also
 </script>
 </htmlexample>
 
-----
-prototype.hasFocus() : Boolean
-
-Returns **true** if the document has keyboard focus.
-See also 
-%%/activeElement|**activeElement**%%,
-%%/Window#onblur|**window.onblur**%%, and 
-%%/Window#onfocus|**window.onfocus**%%.
-
-<htmlexample>
-<!-- Click between this box and example to change focus -->
-<input id='input'>
-<div>
-  Has focus: <span id='hasFocus'></span>
-</div>
-<script>
-  var hasFocusElement = document.getElementById('hasFocus');
-
-  var onFocusChange = function() {
-    hasFocusElement.textContent = document.hasFocus();
-  };
-
-  window.addEventListener('focus', onFocusChange);
-  window.addEventListener('blur', onFocusChange);
-</script>
-</htmlexample>
 
 ----
 instance.readyState : String
@@ -224,36 +198,36 @@ true
 
 
 ----
-prototype.getElementsByTagName(tagname : String) : NodeList
+prototype.append(node0 : Node, [node1 : Node, [...]]) : undefined
+
+----
+prototype.adoptNode(source : Node) : Node
 
 Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-A6C9094
-
-----
-prototype.getElementsByTagNameNS(namespaceURI : String, localName : String) : NodeList
-
-Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBTNNS
-
-----
-prototype.getElementsByClassName(classNames : String) : NodeList
-
-----
-prototype.getElementById(elementId : String) : Element
-
-
-Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBId
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-adoptNode
 
 
 ----
-prototype.createElement(tagName : String) : Element
+prototype.createEvent(eventInterfaceName : String) : Event
+
+
+----
+prototype.createRange() : Range
+
+----
+prototype.createNodeIterator(root : Node, [whatToShow : Number, [filter : NodeFilter]]) : NodeIterator
+
+----
+prototype.createTreeWalker(root : Node, [whatToShow : Number, [filter : NodeFilter]]) : TreeWalker
+
+----
+prototype.createElement(tagName : String, [typeExtension : String]) : Element
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-2141741547
 
 ----
-prototype.createElementNS(namespaceURI : String, qualifiedName : String) : Element
+prototype.createElementNS(namespaceURI : String, qualifiedName : String, [typeExtension : String]) : Element
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-DocCrElNS
@@ -290,38 +264,69 @@ prototype.createProcessingInstruction(target : String, data : String) : Processi
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-135944439
 
+
+
+----
+prototype.getElementsByTagName(tagname : String) : NodeList
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-A6C9094
+
+----
+prototype.getElementsByTagNameNS(namespaceURI : String, localName : String) : NodeList
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBTNNS
+
+----
+prototype.getElementsByClassName(classNames : String) : NodeList
+
+----
+prototype.getElementById(elementId : String) : Element
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBId
+
+
+
+
+----
+prototype.hasFocus() : Boolean
+
+Returns **true** if the document has keyboard focus.
+See also 
+%%/activeElement|**activeElement**%%,
+%%/Window#onblur|**window.onblur**%%, and 
+%%/Window#onfocus|**window.onfocus**%%.
+
+<htmlexample>
+<!-- Click between this box and example to change focus -->
+<input id='input'>
+<div>
+  Has focus: <span id='hasFocus'></span>
+</div>
+<script>
+  var hasFocusElement = document.getElementById('hasFocus');
+
+  var onFocusChange = function() {
+    hasFocusElement.textContent = document.hasFocus();
+  };
+
+  window.addEventListener('focus', onFocusChange);
+  window.addEventListener('blur', onFocusChange);
+</script>
+</htmlexample>
+
 ----
 prototype.importNode(importedNode : Node, deep : Boolean) : Node
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Core-Document-importNode
 
-----
-prototype.adoptNode(source : Node) : Node
-
-Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-adoptNode
-
-
-----
-prototype.createEvent(eventInterfaceName : String) : Event
-
-
-----
-prototype.createRange() : Range
-
-----
-prototype.createNodeIterator(root : Node, [whatToShow : Number, [filter : NodeFilter]]) : NodeIterator
-
-----
-prototype.createTreeWalker(root : Node, [whatToShow : Number, [filter : NodeFilter]]) : TreeWalker
 
 ----
 prototype.prepend(node0 : Node, [node1 : Node, [...]]) : undefined
-
-----
-prototype.append(node0 : Node, [node1 : Node, [...]]) : undefined
-
 
 ----
 prototype.querySelector(selectors : String) : Element
@@ -372,6 +377,78 @@ match the CSS selector.
 
 Spec:
 http://www.w3.org/TR/selectors-api/#queryselectorall
+
+----
+prototype.registerElement(type : String, [ options : {\
+  prototype : CustomElementPrototype, \
+  extends : String /* The HTML %%/Element#tagName|**tagName**%% of the element to is extending */ \
+} ]) : Function
+
+Registers a new custom element type for the specified typeName.
+**options.prototype** allows you to provide a 
+%%/Function#prototype|**prototype**%% for the custom elements.
+
+<htmlexample>
+<!-- Use name as tag name for HTMLElement derived custom elements -->
+<x-my-element>MyElement from HTML</x-my-element>
+
+<!-- Use is=... for other custom elements where tag name is the extends type -->
+<button is='x-my-button'>MyButton from HTML</button>
+
+<style>
+  /* style HTMLElement derived elements by tag name */
+  x-my-element { 
+    border: 1px solid green;
+  }
+
+  /* style other elements by using the is selector */
+  [is='x-my-button'] {
+    border: 1px solid blue;
+  }
+</style>
+
+<script>
+  // Register an element derived from HTMLElement
+  var myElementPrototype = Object.create(HTMLElement.prototype);
+
+  myElementPrototype.createdCallback = function() {
+    // Hook up click listener to set the color to red
+    this.addEventListener('click', function(event) {
+      event.target.style.color = 'red';
+    });
+  };
+
+  var MyElement = document.registerElement('x-my-element', {
+    prototype: myElementPrototype
+  });
+  
+  // Create an instance via JavaScript
+  var myElement = document.createElement('x-my-element');
+  myElement.textContent = "MyElement from Code"
+  document.body.appendChild(myElement);
+
+
+  // Register an element derived from HTMLButtonElement
+  var myButtonPrototype = Object.create(HTMLButtonElement.prototype);
+
+  myButtonPrototype.createdCallback = function() {
+    // Hook up click listener to set the color to red
+    this.addEventListener('click', function(event) {
+      event.target.style.color = 'red';
+    });
+  };
+
+  var MyButton = document.registerElement('x-my-button', {
+    prototype: myButtonPrototype,
+    extends: 'button'
+  });
+
+  // Create an instance via JavaScript
+  var myButton = document.createElement('button', 'x-my-button');
+  myButton.textContent = "MyButton from Code"
+  document.body.appendChild(myButton);
+</script>
+</htmlexample>
 
 ----
 event.abort : listener(event : Event) : undefined

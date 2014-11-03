@@ -1,0 +1,225 @@
+CustomElementPrototype : HTMLElement
+
+The prototype used for a custom element created with
+%%/Document#registerElement|**document.registerElement()**%%.
+
+Use %%/Object#create|**Object.create(baseType)**%% to create the
+custom element prototype.  The **baseType** must be
+an %%/HTMLElement|HTMLElement%% derived type and must match
+the prototype of the element set as the **extends**
+option passed to **registerElement()**.
+
+
+----
+prototype.attachedCallback() : undefined
+
+Called when the custom element is inserted into the document or
+when the prototype is applied to elements already in the tree at the 
+time %%/Document#registerElement|**document.registerElement()**%%
+is called.
+
+<htmlexample>
+<!-- Use name as tag name for HTMLElement derived custom elements -->
+<x-my-element>MyElement from HTML</x-my-element>
+
+<style>
+  x-my-element { 
+    border: 1px solid green;
+  }
+</style>
+
+<script>
+  // Register an element derived from HTMLElement
+  var myElementPrototype = Object.create(HTMLElement.prototype);
+
+  myElementPrototype.attachedCallback = function() {
+    console.log('element parented to ' + this.parentElement.tagName);
+  };
+
+  var MyElement = document.registerElement('x-my-element', {
+    prototype: myElementPrototype
+  });
+
+  // Create an instance via JavaScript
+  var myElement = document.createElement('x-my-element');
+  myElement.textContent = "MyElement from Code"
+  document.body.appendChild(myElement);
+</script>
+</htmlexample>
+
+----
+prototype.attributeChangedCallback(name : String, oldValue : Object, newValue : Object) : undefined
+
+Called when an attribute was changed on the element.
+
+<htmlexample>
+<!-- Use name as tag name for HTMLElement derived custom elements -->
+<x-my-element id='my-element'>MyElement from HTML</x-my-element>
+
+<style>
+  x-my-element { 
+    border: 1px solid green;
+  }
+</style>
+
+<script>
+  // Register an element derived from HTMLElement
+  var myElementPrototype = Object.create(HTMLElement.prototype);
+
+  myElementPrototype.attributeChangedCallback = function(name, oldValue, newValue) {
+    console.log('attribute "' + name + '" changed from ' + oldValue + ' to ' + newValue);
+  };
+
+  var MyElement = document.registerElement('x-my-element', {
+    prototype: myElementPrototype
+  });
+
+  var myElement = document.getElementById('my-element');
+
+  myElement.className = 'foo';
+</script>
+</htmlexample>
+
+----
+prototype.createdCallback() : undefined
+
+Called when the element is created.
+
+<htmlexample>
+<!-- Use name as tag name for HTMLElement derived custom elements -->
+<x-my-element>MyElement from HTML</x-my-element>
+
+<style>
+  x-my-element { 
+    border: 1px solid green;
+  }
+</style>
+
+<script>
+  // Register an element derived from HTMLElement
+  var myElementPrototype = Object.create(HTMLElement.prototype);
+
+  myElementPrototype.createdCallback = function() {
+    // Hook up click listener to set the color to red
+    this.addEventListener('click', function(event) {
+      event.target.style.color = 'red';
+    });
+  };
+
+  var MyElement = document.registerElement('x-my-element', {
+    prototype: myElementPrototype
+  });
+  
+  // Create an instance via JavaScript
+  var myElement = document.createElement('x-my-element');
+  myElement.textContent = "MyElement from Code"
+  document.body.appendChild(myElement);
+</script>
+</htmlexample>
+
+----
+prototype.detachedCallback() : undefined
+
+Called when the element is removed from the document.
+
+<htmlexample>
+<!-- Use name as tag name for HTMLElement derived custom elements -->
+<x-my-element id='my-element'>MyElement from HTML</x-my-element>
+
+<script>
+  // Register an element derived from HTMLElement
+  var myElementPrototype = Object.create(HTMLElement.prototype);
+
+  myElementPrototype.detachedCallback = function(name, oldValue, newValue) {
+    console.log('element removed from document');
+  };
+
+  var MyElement = document.registerElement('x-my-element', {
+    prototype: myElementPrototype
+  });
+
+  var myElement = document.getElementById('my-element');
+
+  myElement.parentElement.removeChild(myElement);
+</script>
+</htmlexample>
+
+----
+Details:
+
+<p>
+The following example demonstrates how to create a custom element based on
+%%/HTMLElement|HTMLElement%%.
+</p>
+
+<htmlexample>
+<!-- Use name as tag name for HTMLElement derived custom elements -->
+<x-my-element>MyElement from HTML</x-my-element>
+
+<style>
+  x-my-element { 
+    border: 1px solid green;
+  }
+</style>
+
+<script>
+  // Register an element derived from HTMLElement
+  var myElementPrototype = Object.create(HTMLElement.prototype);
+
+  myElementPrototype.createdCallback = function() {
+    // Hook up click listener to set the color to red
+    this.addEventListener('click', function(event) {
+      event.target.style.color = 'red';
+    });
+  };
+
+  var MyElement = document.registerElement('x-my-element', {
+    prototype: myElementPrototype
+  });
+  
+  // Create an instance via JavaScript
+  var myElement = document.createElement('x-my-element');
+  myElement.textContent = "MyElement from Code"
+  document.body.appendChild(myElement);
+</script>
+</htmlexample>
+
+<p>
+The following example demonstrates how to create a custom element based on
+a derivation of %%/HTMLElement|HTMLElement%% such as
+%%/HTMLButtonElement|HTMLButtonElement%%.
+</p>
+
+<htmlexample>
+<!-- Use is=... for other custom elements where tag name is the extends type -->
+<button is='x-my-button'>MyButton from HTML</button>
+
+<style>
+  /* style using the is selector */
+  [is='x-my-button'] {
+    border: 1px solid blue;
+  }
+</style>
+
+<script>
+  // Register an element derived from HTMLButtonElement
+  var myButtonPrototype = Object.create(HTMLButtonElement.prototype);
+
+  myButtonPrototype.createdCallback = function() {
+    // Hook up click listener to set the color to red
+    this.addEventListener('click', function(event) {
+      event.target.style.color = 'red';
+    });
+  };
+
+  var MyButton = document.registerElement('x-my-button', {
+    prototype: myButtonPrototype,
+    extends: 'button'
+  });
+
+  // Create an instance via JavaScript
+  var myButton = document.createElement('button', 'x-my-button');
+  myButton.textContent = "MyButton from Code"
+  document.body.appendChild(myButton);
+</script>
+</htmlexample>
