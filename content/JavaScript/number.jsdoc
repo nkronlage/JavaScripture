@@ -148,8 +148,8 @@ console.log(Number.MAX_SAFE_INTEGER + 1);
 console.log(Number.MAX_SAFE_INTEGER + 2);
 </example>
 
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2
+Version:
+ECMAScript 6
 
 ----
 MAX_VALUE : Number
@@ -179,6 +179,9 @@ console.log(Number.MIN_SAFE_INTEGER);
 console.log(Number.MIN_SAFE_INTEGER - 1);
 console.log(Number.MIN_SAFE_INTEGER - 2);
 </example>
+
+Version:
+ECMAScript 6
 
 ----
 MIN_VALUE : Number
