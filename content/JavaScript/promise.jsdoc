@@ -62,14 +62,22 @@ rejectPromise.catch(function(result) {
 </example>
 
 ----
-prototype.then(onResolve(value : Object) : undefined, [onReject(error : Error) : undefined]) : Promise
+prototype.then(onResolve(value : Object) : Object, [onReject(error : Error) : Object]) : Promise
 
 Schedules **onResolve** (if provided) to be called when the promise has been resolved.
 **value** is the object passed to the %%/#new_Promise|**resolve()**%% function.
 
-Also schedules **onResolve** (if provided) to be called when 
+Also schedules **onReject** (if provided) to be called when 
 the promise has been rejected or an exception was thrown in the **executor** method.
 **error** is the object passed to the %%/#new_Promise|**reject()**%% function.
+
+The return value from **onResolve** (or **onReject**) can either
+be a normal Object or a Promise.  If the return value from **onResolve** is 
+a normal Object, 
+the returned Promise will be resolved with that Object.
+If the return value from **onResolve** is a Promise, **then** will wait 
+for that Promise to be resolved. **then** will resolve the Promise it 
+returned with the same value.
 
 See also %%#catch|**catch()**%%.
 
@@ -91,6 +99,39 @@ promise.then(function(result) {
 },
 function(error) {
   console.log('onReject: ' + error);
+});
+
+
+// The following shows a simple 'Promise-ified' version of XMLHttpRequest
+var loadUrl = function(url) {
+  return new Promise(function(resolve, reject) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+      resolve(request.response);
+    };
+    request.send(); 
+  });
+};
+
+// The following demonstrates chaining Promises and how you can return
+// either a Promise or a normal object to the next part of the chain 
+loadUrl('/JSON').then(
+  function(promiseText) {
+    // Find the first link in the page and return a Promise that will load
+    // that page.  The next block will run when this Promise completes.
+    var firstLink = promiseText.match(/href="(\/.*?)"/)[1];
+    return loadUrl(firstLink);
+  }
+).then(
+  function(firstLinkText) {
+    // Return the beginning of the first page's text. Since this is 
+    // not returning a Promise.  The next block will run immediately.
+    return firstLinkText.substring(0, 50);
+  }
+).then(
+  function(firstLinkBeginning) {
+    console.log('firstLinkBeginning: ' + firstLinkBeginning);
 });
 </example>
 
