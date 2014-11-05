@@ -38,7 +38,7 @@ request.onreadystatechange = function() {
   console.log('readyStatechange:  ' + request.readyState);
 };
 console.log('Before open: ' + request.readyState);
-request.open('GET', '/Home');
+request.open('GET', '/');
 request.send(); 
 console.log('After send: ' + request.readyState);
 </example>
@@ -97,7 +97,7 @@ Must be set before %%#readyState|**readyState**%% reaches %%#LOADING|**LOADING**
 <example>
 var request = new XMLHttpRequest();
 request.responseType = 'arraybuffer';
-request.open('GET', '/Home');
+request.open('GET', '/');
 request.onload = function() {
   console.log(request.response);
   console.log(request.response.byteLength);
@@ -114,7 +114,7 @@ Only valid after the %%#onload|**load**%% event fires.
 <example>
 var request = new XMLHttpRequest();
 request.responseType = 'arraybuffer';
-request.open('GET', '/Home');
+request.open('GET', '/');
 request.onload = function() {
   console.log(request.response);
   console.log(request.response.byteLength);
@@ -134,7 +134,7 @@ set to **''** (the default) or **'text'**.
 
 <example>
 var request = new XMLHttpRequest();
-request.open('GET', '/Home', /* async = */ false);
+request.open('GET', '/', /* async = */ false);
 request.send(); 
 console.log(request.responseText.substring(0, 150));
 console.log('...');
@@ -155,15 +155,16 @@ prototype.open(method : String, url : String, [async = true : Boolean, [user : S
 
 Specifies the **url** to read from and the http method 
 (**'GET'**, **'POST'**, **'PUT'**, **'DELETE'**, etc)
-to use when reading the url.  If **async** is **true**, the read will be asynchronous and you should provide an
+to use when reading the url.  If **async** is **true**, the request will 
+be asynchronous and you should provide an
 %%#onload|**onload**%% callback to be called when the read completes.  
-In general, it is best to use the asynchronous read so the browser 
-remains responsive while the read is in progress.
-Call %%#send|**send()**%% to begin the network request.
+In general, it is best to use the asynchronous request so the browser 
+remains responsive while the request is in progress.
+Call %%#send|**send()**%% to begin the request.
 
 <example>
 var syncRequest = new XMLHttpRequest();
-syncRequest.open('GET', '/Home', /* async = */ false);
+syncRequest.open('GET', '/', /* async = */ false);
 syncRequest.send(); 
 
 console.log('sync status code: ' + syncRequest.status);
@@ -172,7 +173,7 @@ console.log('sync response head: ' + syncRequest.responseText.substring(0, 15) +
 console.log('');
 
 var asyncRequest = new XMLHttpRequest();
-asyncRequest.open('GET', '/Home', true);
+asyncRequest.open('GET', '/', true);
 asyncRequest.onload = function() {
   console.log('async status code: ' + asyncRequest.status);
   console.log('async response length: ' + asyncRequest.responseText.length);
@@ -239,7 +240,7 @@ a description of the code.
 
 <example>
 var request = new XMLHttpRequest();
-request.open('GET', '/Home', /* async = */ false);
+request.open('GET', '/', /* async = */ false);
 request.send(); 
 console.log('status code: ' + request.status);
 
@@ -260,7 +261,7 @@ A description of the %%#status|status return code%%.
 
 <example>
 var request = new XMLHttpRequest();
-request.open('GET', '/Home', /* async = */ false);
+request.open('GET', '/', /* async = */ false);
 request.send(); 
 console.log('status: ' + request.statusText);
 
@@ -281,7 +282,7 @@ Returns the value for the specified **header**.  Returns
 
 <example>
 var request = new XMLHttpRequest();
-request.open('GET', '/Home', /* async = */ false);
+request.open('GET', '/', /* async = */ false);
 request.send(); 
 console.log(request.getResponseHeader('content-type'));
 </example>
@@ -294,7 +295,7 @@ the response.
 
 <example>
 var request = new XMLHttpRequest();
-request.open('GET', '/Home', /* async = */ false);
+request.open('GET', '/', /* async = */ false);
 request.send(); 
 console.log(request.getAllResponseHeaders());
 </example>
