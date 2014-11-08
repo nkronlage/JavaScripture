@@ -1,0 +1,96 @@
+SubtleCrypto : Object
+
+Provides methods to perform cryptographic operations such as
+encrypting, decrypting and hashing.
+
+Returned by %%/Crypto#subtle|**crypto.subtle**%%.
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto
+
+----
+prototype.decrypt(algorithm : String, key : Key, data : ArrayBufferView) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-decrypt
+
+----
+prototype.deriveBits(algorithm : { name : String }, baseKey : Key, length : Number) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-deriveBits
+
+----
+prototype.deriveKey(algorithm : { name : String}, baseKey : Key, derivedKeyType : { name : String }, extractable : Boolean, keyUsages : Array<KeyUsage>) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-deriveKey
+
+----
+prototype.digest(algorithm : { name : String }, data : ArrayBufferView) : Promise
+
+<example>
+var data = new Int32Array([1, 2, 3]);
+
+crypto.subtle.digest({ name: 'SHA-256' }, data).then(function(buffer) {
+  var bytes = new Uint8Array(buffer);
+  var res = '';
+  for (var i = 0; i < bytes.length; i++) {
+    var byte = bytes[i].toString(16);
+    byte = (byte.length < 2) ? ('0' + byte) : byte;
+    res += byte;
+  }
+  console.log(res);
+});
+</example>
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-digest
+
+----
+prototype.encrypt(algorithm : String, key : Key, data : ArrayBufferView) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-encrypt
+
+----
+prototype.exportKey(format : KeyFormat, key : Key) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-exportKey
+
+----
+prototype.generateKey(algorithm : { name : String }, extractable : Boolean, keyUsages : Array<KeyUsage>) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-generateKey
+  
+----
+prototype.importKey(format : KeyFormat, keyData : ArrayBufferView, algorithm : { name : string }, extractable : Boolean, keyUsages : Array<KeyUsage>) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-importKey
+
+----
+prototype.sign(algorithm : String, key : Key, data : ArrayBufferView) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-sign
+
+----
+prototype.verify(algorithm : String, key : Key, signature : ArrayBufferView, data : ArrayBufferView) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-verify
+
+----
+prototype.wrapKey(format : KeyFormat, key : Key, wrappingKey : Key, wrapAlgorithm : { name : string }) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-wrapKey
+
+----
+prototype.unwrapKey(format : KeyFormat, wrappedKey : ArrayBufferView, unwrappingKey : Key, unwrapAlgorithm : { name : String } , unwrappedKeyAlgorithm : { name : String } , extractable : Boolean, keyUsages : Array<KeyUsage> ) : Promise
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-unwrapKey

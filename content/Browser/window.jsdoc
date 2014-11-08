@@ -57,6 +57,12 @@ Spec:
 http://dev.w3.org/html5/spec/Overview.html#dom-self
 
 ----
+instance.crypto : Crypto
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-Crypto
+
+----
 instance.document : Document
 
 Returns the document for this window. 

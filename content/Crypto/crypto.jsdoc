@@ -1,0 +1,42 @@
+Crypto : Object
+
+Crypto provides cryptography functions. The majority of the
+functions are provided by %%/SubtleCrypto|**crypto.subtle**%%.
+
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-Crypto
+
+----
+instance.subtle : SubtleCrypto
+
+**subtle** provides methods to perform cryptographic operations 
+such as encrypting, decrypting and hashing.
+
+----
+prototype.getRandomValues(values : ArrayBufferView) : ArrayBufferView
+
+Fills **values** with randomly generated integers.
+
+**values** must be one of the integer based ArrayBufferView derivations:
+%%Int8Array|**Int8Array**%%,
+%%Int16Array|**Int16Array**%%,
+%%Int32Array|**Int32Array**%%,
+%%Uint8Array|**Uint8Array**%%,
+%%Uint8ClampedArray|**Uint8ClampedArray**%%,
+%%Uint16Array|**Uint16Array**%%,
+%%Uint32Array|**Uint32Array**%%.
+
+Returns **values**.
+
+
+<example>
+var values = crypto.getRandomValues(new Uint32Array(10));
+
+for (var i = 0; i < values.length; i++) {
+  console.log(values[i].toString(16));
+}
+</example>
+
+Spec:
+http://www.w3.org/TR/WebCryptoAPI/#dfn-RandomSource
