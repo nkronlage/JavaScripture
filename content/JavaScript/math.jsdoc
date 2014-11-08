@@ -28,6 +28,7 @@ It is the reciprocal of %%#LOG10E|**LOG10E**%%.
 
 Useful for computing the %%#log|log%% base 10 of a number.
 
+See also %%#log10|**log10()**%%.
 
 <example>
 console.log(Math.LN10);
@@ -55,6 +56,8 @@ It is the reciprocal of %%#LOG2E|**LOG2E**%%.
 
 Useful for computing the %%#log|log%% base 2 of a number.
 
+See also %%#log2|**log2()**%%.
+
 <example>
 console.log(Math.LN2);
 console.log(Math.log(2));
@@ -81,6 +84,8 @@ It is the reciprocal of %%#LN2|**LN2**%%.
 
 Useful for computing the %%#log|log%% base 2 of a number.
 
+See also %%#log2|**log2()**%%.
+
 <example>
 console.log(Math.LOG2E);
 console.log(Math.log(Math.E) / Math.log(2));
@@ -106,6 +111,8 @@ The value of the log base 10 of e.
 It is the reciprocal of %%#LN10|**LN10**%%.
 
 Useful for computing the %%#log|log%% base 10 of a number.
+
+See also %%#log10|**log10()**%%.
 
 <example>
 console.log(Math.LOG10E);
@@ -207,6 +214,21 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.2
 
 ----
+acosh(x : Number) : Number
+
+Returns the hyperbolic angle whose hyperbolic cosine is **x**.
+
+See also %%#cosh|**cosh()**%%.
+
+<example>
+console.log(Math.acosh(1));
+console.log(Math.acosh(Math.cosh(3)));
+</example>
+
+Version:
+ECMAScript 6
+
+----
 asin(x : Number) : Number
 
 Returns the angle (in radians between -pi/2 and pi/2) whose sine is **x**.
@@ -228,6 +250,21 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.3
 
 ----
+asinh(x : Number) : Number
+
+Returns the hyperbolic angle whose hyperbolic sine is **x**.
+
+See also %%#sinh|**sinh()**%%.
+
+<example>
+console.log(Math.sinh(0));
+console.log(Math.asinh(Math.sinh(3)));
+</example>
+
+Version:
+ECMAScript 6
+
+----
 atan(x: Number) : Number
 
 Returns the angle (in radians between -pi/2 and pi/2) whose tangent is **x**.
@@ -247,6 +284,21 @@ console.log(atanDegrees(1));
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.4
+
+----
+atanh(x : Number) : Number
+
+Returns the hyperbolic angle whose hyperbolic tangent is **x**.
+
+See also %%#tanh|**tanh()**%%.
+
+<example>
+console.log(Math.atanh(0));
+console.log(Math.atanh(Math.tanh(0.5)));
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 atan2(y : Number, x : Number) : Number
@@ -272,11 +324,27 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.5
 
 ----
+cbrt(x : Number) : Number
+
+Returns cube root of **x**.
+
+<example>
+console.log(Math.cbrt(8));
+console.log(Math.cbrt(27));
+
+console.log(Math.cbrt(1234));
+console.log(Math.pow(1234, 1 / 3));
+</example>
+
+Version:
+ECMAScript 6
+
+----
 ceil(x: Number) : Number
 
 Returns the next integer greater than or equal to **x**.
 
-See also %%#round|**round()**%% and %%#floor|**floor()**%%.
+See also %%#round|**round()**%%, %%#floor|**floor()**%%, and %%#trunc|**trunc()**%%.
 
 <example>
 console.log(Math.ceil(1.9));
@@ -286,6 +354,21 @@ console.log(Math.ceil(-1.9));
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.6
+
+----
+clz(x : Number) : Number
+
+Returns the number of leading **0** bits in the 32 bit unsigned integer 
+representation of **x**.
+
+<example>
+console.log(Math.clz32(0x00000000));
+console.log(Math.clz32(0x08000000));
+console.log(Math.clz32(0xFFFFFFFF));
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 cos(x: Number) : Number
@@ -308,13 +391,28 @@ console.log(cosDegrees(45));
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.7
 
+----
+cosh(x : Number) : Number
+
+Returns the hyperbolic cosine of **x**.
+
+See also %%#acosh|**acosh()**%%.
+
+<example>
+console.log(Math.cosh(0));
+console.log(Math.cosh(3));
+console.log((Math.exp(3) + Math.exp(-3)) / 2);
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 exp(x: Number) : Number
 
 Returns %%#E|e%% raised to the **x** power.
 
-See also %%#log|**log()**%%.
+See also %%#log|**log()**%% and %%#expm1|**expm1()**%%.
 
 <example>
 console.log(Math.exp(2));
@@ -325,11 +423,33 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.8
 
 ----
+expm1(x : Number) : Number
+
+Returns %%#E|e%% raised to the **x** power minus 1.
+
+This is more accurate than using **%%#exp|exp%%(x) - 1**
+when **x** is close to **0**.
+
+<example>
+console.log(Math.expm1(0));
+console.log(Math.exp(0) - 1);
+
+console.log(Math.expm1(1));
+console.log(Math.exp(1) - 1);
+
+console.log(Math.expm1(1e-9));
+console.log(Math.exp(1e-9) - 1);
+</example>
+
+Version:
+ECMAScript 6
+
+----
 floor(x: Number) : Number
 
 Returns the previous integer less than or equal to **x**.
 
-See also %%#round|**round()**%% and %%#ceil|**ceil()**%%.
+See also %%#round|**round()**%%, %%#ceil|**ceil()**%%, and %%#trunc|**trunc()**%%.
 
 <example>
 console.log(Math.floor(1.9));
@@ -340,6 +460,62 @@ console.log(Math.floor(-1.9));
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.9
 
+----
+fround(x : Number) : Number
+
+Returns the closest single precision (32 bit) floating point number
+to **x**.
+
+<example>
+console.log(Math.fround(1.1));
+
+// Values are automatically rounded when put in a Float32Array
+var float32Array = new Float32Array(1);
+float32Array[0] = 1.1;
+console.log(float32Array[0]);
+</example>
+
+Version:
+ECMAScript 6
+
+----
+hypot(x : Number, y : Number, [z : Number, [...]]) : Number
+
+Returns length of a vector with components [**x**, **y**, ...].  
+This is the square root of the sum of the squares of the 
+components.
+
+<example>
+console.log(Math.hypot(3, 4));
+console.log(Math.sqrt(3 * 3 +  4 * 4));
+
+console.log(Math.hypot(5, 12)); 
+console.log(Math.sqrt(5 * 5 +  12 * 12));
+
+var myVector = [3, 2, 8];
+console.log(Math.hypot.apply(null, myVector));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+imul(x : Number, y : Number) : Number
+
+Returns the product of **x** and **y** treating both
+values as 32 bit integer values and truncating the result
+to a 32 bit integer value.
+
+<example>
+console.log(Math.imul(3, 4));
+console.log(Math.imul(-2, 9));
+
+// The following overflows 
+console.log(Math.imul(0x40000000, 2).toString(16));
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 log(x : Number) : Number
@@ -349,11 +525,13 @@ logarithm with respect to a different base **b**, use the
 formula **Math.log(x) / Math.log(b)**.
 For base 10, you can use
 **Math.log(x) * %%#LOG10E|Math.LOG10E%%**
-and for base 2, you can use
-**Math.log(x) * %%#LOG2E|Math.LOG2E%%**.
+(or %%#log10|**log10()**%% with ECMAScript 6).
 
-See also %%#exp|**exp()**%%.
+For base 2, you can use
+**Math.log(x) * %%#LOG2E|Math.LOG2E%%** 
+(or %%#log2|**log2()**%% with ECMAScript 6).
 
+See also %%#exp|**exp()**%% and %%#log1p|**log1p()**%%.
 
 <example>
 var x = Math.exp(2);
@@ -373,6 +551,58 @@ console.log(log10(10000));
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.10
 
+----
+log1p(x : Number) : Number
+
+Returns the natural logarithm (base %%#E|e%%) of **x + 1**. 
+
+This is more accurate than using **%%#log|log%%(x + 1)**
+when **x** is close to **0**.
+
+<example>
+console.log(Math.log(1 + 1));
+console.log(Math.log1p(1));
+
+console.log(Math.log(1e-9 + 1));
+console.log(Math.log1p(1e-9));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+log2(x : Number) : Number
+
+Returns the base 2 logarithm of **x**. 
+
+See also %%#log|**log()**%%, %%#LOG2E|**LOG2E**%%, and
+%%#LN2|**LN2**%%.
+
+<example>
+console.log(Math.log2(16));
+console.log(Math.log(16) * Math.LOG2E);
+console.log(Math.log(16) / Math.LN2);
+</example>
+
+Version:
+ECMAScript 6
+
+----
+log10(x : Number) : Number
+
+Returns the base 10 logarithm of **x**. 
+
+See also %%#log|**log()**%%, %%#LOG10E|**LOG10E**%%, and
+%%#LN10|**LN10**%%.
+
+<example>
+console.log(Math.log10(1000));
+console.log(Math.log(1000) * Math.LOG10E);
+console.log(Math.log(1000) / Math.LN10);
+</example>
+
+Version:
+ECMAScript 6
 
 ----
 max(x1 : Number, x2: Number, [...]) : Number
@@ -462,7 +692,7 @@ round(x : Number) : Number
 
 Returns the closest integer to **x**.
 
-See also %%#floor|**floor()**%% and %%#ceil|**ceil()**%%.
+See also %%#floor|**floor()**%%, %%#ceil|**ceil()**%%, and %%#trunc|**trunc()**%%.
 
 <example>
 console.log(Math.round(2.2));
@@ -472,6 +702,23 @@ console.log(Math.round(-2.5));
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.15
+
+----
+sign(x: Number) : Number
+
+Returns **-1** if **x** is less than **0**, **0** if **x** is **0**,
+and **1** if **x** is greater than **0**.
+
+<example>
+console.log(Math.sign(-9));
+console.log(Math.sign(-0.3));
+console.log(Math.sign(0));
+console.log(Math.sign(0.8));
+console.log(Math.sign(12));
+</example>
+
+Version:
+ECMAScript 6
 
 
 ----
@@ -494,6 +741,22 @@ console.log(sinDegrees(45));
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.16
+
+----
+sinh(x : Number) : Number
+
+Returns the hyperbolic sine of **x**.
+
+See also %%#asinh|**asinh()**%%.
+
+<example>
+console.log(Math.sinh(0));
+console.log(Math.sinh(3));
+console.log((Math.exp(3) - Math.exp(-3)) / 2);
+</example>
+
+Version:
+ECMAScript 6
 
 
 ----
@@ -530,4 +793,43 @@ console.log(tanDegrees(45));
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.18
+
+----
+tanh(x : Number) : Number
+
+Returns the hyperbolic tan of **x**.
+
+See also %%#atanh|**atanh()**%%.
+
+<example>
+console.log(Math.tanh(0));
+console.log(Math.tanh(3));
+console.log((Math.exp(3) - Math.exp(-3)) / (Math.exp(3) + Math.exp(-3)));
+</example>
+
+Version:
+ECMAScript 6
+
+----
+trunc(x : Number) : Number
+
+Returns the integer portion of **x**. This is the same as 
+%%#floor|**floor(x)**%% for positive numbers and
+%%#ceil|**ceil(x)**%% for negative numbers.
+
+See also %%#round|**round()**%%.
+
+<example>
+[2.2, -2.4, -2.6].forEach(function(x) {
+  console.log(x);
+  console.log('  trunc ' + Math.trunc(x));
+  console.log('  floor ' + Math.floor(x));
+  console.log('  ceil  ' + Math.ceil(x));
+  console.log('  round ' + Math.round(x));
+  console.log();
+});
+</example>
+
+Version:
+ECMAScript 6
 
