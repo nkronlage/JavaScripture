@@ -133,6 +133,26 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.3
 
 ----
+EPSILON : Number
+
+**EPSILON** is the difference between **1** and the next Number 
+greater than 1 that is representable in JavaScript.
+
+<example>
+console.log(Number.EPSILON);
+console.log(1 + Number.EPSILON);
+
+// 1 plus a number smaller than EPSILON will either round
+// to 1 or (1 + EPSILON)
+var x = 1 + (Number.EPSILON * 0.8);
+console.log(x);
+console.log(x - 1);
+</example>
+
+Version:
+ECMAScript 6
+
+----
 MAX_SAFE_INTEGER : Number
 
 The largest possible integer such that **MAX_SAFE_INTEGER** 
