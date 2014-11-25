@@ -310,16 +310,16 @@ The shape of the mouse cursor while over the styled element.
 <htmlexample>
 <body></body>
 <script>
-var cursorTypes = ['auto', 'none', 'alias', 'crosshair',
-                   'default', 'hand', 'help', 'context-menu',
-                   'pointer', 'progress', 'wait', 'cell',
-                   'copy', 'no-drop', 'not-allowed', 'text',
-                   'vertical-text', 'all-scroll', 'move',
-                   'col-resize', 'row-resize', 'n-resize',
-                   'ne-resize', 'e-resize', 'se-resize',
-                   's-resize', 'sw-resize', 'w-resize',
-                   'nw-resize', 'ew-resize', 'ns-resize',
-                   'nwse-resize', 'nesw-resize'];
+var cursorTypes = [
+  'auto', 'none', 'alias', 'crosshair', 'default', 'hand', 'help',
+  'context-menu', 'pointer', 'progress', 'wait', 'cell', 'copy',
+  'no-drop', 'not-allowed', 'text', 'vertical-text', 'all-scroll',
+  'move', 'col-resize', 'row-resize', 'n-resize', 'ne-resize', 
+  'e-resize', 'se-resize', 's-resize', 'sw-resize', 'w-resize',
+  'nw-resize', 'ew-resize', 'ns-resize', 'nwse-resize', 
+  'nesw-resize', 'zoom-in', 'zoom-out', 
+  'url(/favicon.ico), auto'];
+
 cursorTypes.forEach(function(type) {
   var div = document.createElement('div');
 
