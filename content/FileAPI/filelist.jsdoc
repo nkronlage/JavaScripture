@@ -1,14 +1,49 @@
 FileList : Object
 
+A object representing a list of %%/File|Files%%.  
+Available on the 
+%%/HTMLInputElement#files|HTMLInputElement.files%% property.
+
 Spec:
 http://www.w3.org/TR/FileAPI/#dfn-filelist
 
 ----
 instance[index : Number] : File
 
+Returns the File at the specified **index**. 
+You can also use the %%#item|**item()**%% method
+to retrieve the item.
+
+<htmlexample>
+<input id='file-input' type='file' multiple>
+<script>
+  var fileInput = document.getElementById('file-input');
+  fileInput.addEventListener('change', function(event) {
+    var input = event.target;
+
+    for (var i = 0; i < input.files.length; i++) {
+      console.log(input.files[i].name);
+    }
+  });
+</script>
+</htmlexample>
+
 ----
 instance.length : Number
 
+The number of Files in the list.
+
+<htmlexample>
+<input id='file-input' type='file' multiple>
+<script>
+  var fileInput = document.getElementById('file-input');
+  fileInput.addEventListener('change', function(event) {
+    var input = event.target;
+
+    console.log(input.files.length);
+  });
+</script>
+</htmlexample>
 
 ReadOnly:
 true

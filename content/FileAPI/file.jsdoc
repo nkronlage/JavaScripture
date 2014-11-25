@@ -1,16 +1,49 @@
 File : Blob
 
+File is a %%/Blob|Blob%% that represents a file from the filesystem.
+You can get Files from the 
+%%/HTMLInputElement#files|HTMLInputElement.files%% property.
+Use %%/FileReader|FileReader%% to read the contents of a File.
+
 Spec:
 http://www.w3.org/TR/FileAPI/#file
 
 ----
 instance.name : String
 
+The name of the file.
+
+<htmlexample>
+<input type='file' onchange='onFilePicked(event)'>
+<script>
+  var onFilePicked = function(event) {
+    var input = event.target;
+
+    var file = input.files[0];
+    console.log(file.name);
+  };
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
 ----
 instance.lastModifiedDate : Date
+
+The last time the file was modified.
+
+<htmlexample>
+<input type='file' onchange='openFile(event)'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var file = input.files[0];
+    console.log(file.lastModifiedDate);
+  };
+</script>
+</htmlexample>
 
 ReadOnly:
 true
