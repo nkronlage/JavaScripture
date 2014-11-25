@@ -1,0 +1,119 @@
+FormData : Object
+
+Use with %%XMLHttpRequest#send_FormData|**XMLHttpRequest.send()**%% to 
+send form results to a server without navigating.
+
+Spec:
+http://www.w3.org/TR/XMLHttpRequest2/#interface-formdata
+
+----
+new FormData() : FormData
+
+Constructs an empty FormData.
+
+<htmlexample>
+<script>
+  var request = new XMLHttpRequest();
+  // POST to httpbin which returns the POST data as JSON
+  request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+
+  var formData = new FormData();
+  formData.append('key1', 'value1');
+  formData.append('key2', 'value2');
+
+  request.send(formData);
+  console.log(request.response);
+</script>
+</htmlexample>
+
+----
+new FormData(form : HTMLFormElement) : FormData
+
+Constructs a FormData using the values from the specified **form**.
+
+<htmlexample>
+<form id='test-form'>
+  Input1: <input name='input1'><br>
+  Input2: <input name='input2'><br>
+  <input type='submit'>
+</form>
+<script>
+  var testForm = document.getElementById('test-form');
+  testForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    var request = new XMLHttpRequest();
+    // POST to httpbin which returns the POST data as JSON
+    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+
+    var formData = new FormData(document.getElementById('test-form'));
+    request.send(formData);
+
+    console.log(request.response);
+  }
+</script>
+</htmlexample>
+
+----
+prototype.append(name : String, value : String) : undefined
+
+Appends the **name/value** pair to the FormData.
+
+<htmlexample>
+<form id='test-form'>
+  Input1: <input name='input1'><br>
+  Input2: <input name='input2'><br>
+  <input type='submit'>
+</form>
+<script>
+  var testForm = document.getElementById('test-form');
+  testForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    var request = new XMLHttpRequest();
+    // POST to httpbin which returns the POST data as JSON
+    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+
+    var formData = new FormData(document.getElementById('test-form'));
+
+    formData.append('appended1', 'appended value');
+
+    request.send(formData);
+
+    console.log(request.response);
+  }
+</script>
+</htmlexample>
+
+----
+prototype.append(name : String, value : Blob, [filename : String]) : undefined
+
+Appends the **name/value** as a file with the specified **filename**.
+
+<htmlexample>
+<form id='test-form'>
+  Input1: <input name='input1'><br>
+  Input2: <input name='input2'><br>
+  <input type='submit'>
+</form>
+<script>
+  var testForm = document.getElementById('test-form');
+  testForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    var request = new XMLHttpRequest();
+    // POST to httpbin which returns the POST data as JSON
+    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+
+    var formData = new FormData(document.getElementById('test-form'));
+
+    formData.append('appendedFile1', new Blob(['foo']));
+    formData.append('appendedFile2', new Blob(['bar']), 'bar.txt');
+
+    request.send(formData);
+
+    console.log(request.response);
+  }
+</script>
+</htmlexample>
+
