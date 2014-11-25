@@ -13,27 +13,72 @@ AlternateSpec:
 http://dev.w3.org/csswg/cssom-view/#extensions-to-the-element-interface
 
 ----
-instance.namespaceURI : String
-
-----
-instance.prefix : String
-
-----
-instance.localName : String
+instance.attributes : Array<Attr>
 
 
 ----
-instance.tagName : String
-
+instance.clientTop : Number
 
 ReadOnly:
 true
 
 Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-104682815
+http://dev.w3.org/csswg/cssom-view/#dom-element-clienttop
 
 ----
-instance.id : String
+instance.clientLeft : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clientleft
+
+----
+instance.clientWidth : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clientwidth
+
+----
+instance.clientHeight : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-clientheight
+
+
+----
+instance.dataset : DOMStringMap
+
+Map of custom **'data-'** prefixed attributes on **this**. Attribute names
+are converted to camel case.
+
+<htmlexample>
+<div id='foo' data-bar-baz='value'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.dataset.barBaz);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+----
+instance.childElementCount : Number
+
+Returns the number of direct children of **this**.
+
+----
+instance.children : HTMLCollection
 
 ----
 instance.className : String
@@ -63,38 +108,92 @@ See also %%#classList|**classList**%%.
 instance.classList : DOMTokenList
 
 ----
-instance.attributes : Array<Attr>
+instance.firstElementChild : Element
+
+----
+instance.id : String
+
+----
+instance.lastElementChild : Element
+
+----
+instance.localName : String
+
+----
+instance.namespaceURI : String
+
+----
+instance.nextElementSibling : Element
+
+----
+instance.prefix : String
+
+----
+instance.previousElementSibling : Element
+
+----
+instance.shadowRoot : ShadowRoot
+
+ReadOnly:
+true
+
+----
+instance.scrollTop : Number
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrolltop
+
+----
+instance.scrollLeft : Number
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollleft
+
+----
+instance.scrollWidth : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollwidth
+
+----
+instance.scrollHeight : Number
+
+ReadOnly:
+true
+
+Spec:
+http://dev.w3.org/csswg/cssom-view/#dom-element-scrollheight
+
+----
+instance.tagName : String
+
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-104682815
+
+----
+prototype.createShadowRoot() : ShadowRoot
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#widl-Element-createShadowRoot-ShadowRoot
 
 ----
 prototype.getAttribute(name : String) : String
 
-
 ----
 prototype.getAttributeNS(namespaceURI : String, localName : String) : String
 
-
 ----
-prototype.setAttribute(name : String, value : String) : undefined
+prototype.getDestinationInsertionPoints() : NodeList
 
-----
-prototype.setAttributeNS(namespaceURI : String, qualifiedName : String, value : String) : undefined
-
-----
-prototype.removeAttribute(name : String) : undefined
-
-----
-prototype.removeAttributeNS(namespaceURI : String, localName : String) : undefined
-
-
-----
-prototype.hasAttribute(name : String) : Boolean
-
-----
-prototype.hasAttributeNS(namespaceURI : String, localName : String) : Boolean
-
-----
-prototype.hasAttributes() : Boolean
-
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#widl-Element-getDestinationInsertionPoints-NodeList
 
 ----
 prototype.getElementsByTagName(name : String) : NodeList
@@ -129,7 +228,6 @@ and
   }
 </script>
 </htmlexample>
-
 
 ----
 prototype.getElementsByTagNameNS(namespaceURI : String, localName : String) : NodeList
@@ -166,6 +264,29 @@ and
   }
 </script>
 </htmlexample>
+
+
+----
+prototype.hasAttribute(name : String) : Boolean
+
+----
+prototype.hasAttributeNS(namespaceURI : String, localName : String) : Boolean
+
+----
+prototype.hasAttributes() : Boolean
+
+
+----
+prototype.removeAttribute(name : String) : undefined
+
+----
+prototype.removeAttributeNS(namespaceURI : String, localName : String) : undefined
+
+----
+prototype.setAttribute(name : String, value : String) : undefined
+
+----
+prototype.setAttributeNS(namespaceURI : String, qualifiedName : String, value : String) : undefined
 
 ----
 prototype.querySelector(selector : String) : Element
@@ -231,27 +352,6 @@ and
 
 Spec:
 http://www.w3.org/TR/selectors-api/#queryselectorall
-
-----
-instance.children : HTMLCollection
-
-----
-instance.firstElementChild : Element
-
-----
-instance.lastElementChild : Element
-
-----
-instance.previousElementSibling : Element
-
-----
-instance.nextElementSibling : Element
-
-
-----
-instance.childElementCount : Number
-
-Returns the number of direct children of **this**.
 
 
 ----
@@ -335,89 +435,3 @@ Scolls the element into view.
 
 Spec:
 http://dev.w3.org/csswg/cssom-view/#dom-element-scrollintoview
-
-----
-instance.scrollTop : Number
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-scrolltop
-
-----
-instance.scrollLeft : Number
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-scrollleft
-
-----
-instance.scrollWidth : Number
-
-ReadOnly:
-true
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-scrollwidth
-
-----
-instance.scrollHeight : Number
-
-ReadOnly:
-true
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-scrollheight
-
-----
-instance.clientTop : Number
-
-ReadOnly:
-true
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-clienttop
-
-----
-instance.clientLeft : Number
-
-ReadOnly:
-true
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-clientleft
-
-----
-instance.clientWidth : Number
-
-ReadOnly:
-true
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-clientwidth
-
-----
-instance.clientHeight : Number
-
-ReadOnly:
-true
-
-Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-element-clientheight
-
-
-----
-instance.dataset : DOMStringMap
-
-Map of custom **'data-'** prefixed attributes on **this**. Attribute names
-are converted to camel case.
-
-<htmlexample>
-<div id='foo' data-bar-baz='value'></div>
-<script>
-  var foo = document.getElementById('foo');
-
-  console.log(foo.dataset.barBaz);
-</script>
-</htmlexample>
-
-ReadOnly:
-true
-
