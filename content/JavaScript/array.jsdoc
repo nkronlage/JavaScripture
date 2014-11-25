@@ -10,6 +10,31 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4
 
 ----
+Array() : Array
+
+Same as %%#new_Array|**new Array()**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1
+
+
+----
+Array(length:Number) : Array
+
+Same as %%#new_Array_Number|**new Array(length)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
+
+----
+Array(item0:Object, [item1:Object, [...]]) : Array
+
+Same as %%#new_Array_Object_Object_dotdotdot|**new Array(item0, item1, ...)**%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
+
+----
 new Array() : Array
 
 Creates an empty **Array** (**length** = 0).
@@ -24,14 +49,6 @@ var z = new Array();
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2
-
-----
-Array() : Array
-
-Same as %%#new_Array|**new Array()**%%.
-
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1
 
 ----
 new Array(length:Number) : Array
@@ -50,19 +67,12 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2.1
 
 ----
-Array(length:Number) : Array
-
-Same as %%#new_Array_Number|**new Array(length)**%%.
-
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
-
-----
 new Array(item0:Object, [item1:Object, [...]]) : Array
 
 Creates an **Array** with the specified parameters as the 0th, 1st, ... items 
 of the **Array**.
 Can also be constructed as **[item0, item1, ...]**.
+See also %%#of|%%Array.of()**%%.
 
 <example>
 // The following are equivalent
@@ -74,13 +84,6 @@ var z = new Array('a', 'b', 'c');
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.2.1
 
-----
-Array(item0:Object, [item1:Object, [...]]) : Array
-
-Same as %%#new_Array_Object_Object_dotdotdot|**new Array(item0, item1, ...)**%%.
-
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.1.1
 
 ----
 instance[index : Number] : Object
@@ -452,8 +455,9 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.7
 ----
 prototype.reduce(callback(previous:Object, current:Object,index:Number,array:Array):Object, [initialValue:Object]):Object
 
-Calls **callback** for each item in **this** and passes the return
-value of **callback** as the previous parameter to the next **callback** invocation.
+Calls **callback** for each item in **this** in ascending order (**0** to **length-1**).
+It passes the return value of **callback** for the **i-1**th item as the 
+**previous** parameter for the **i**th item.
 Returns the result from the last call to **callback**.
 If **initialValue** is not specified, **callback** will first
 be called on **this[1]** with **previous** set to **this[0]**.
@@ -472,8 +476,9 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.21
 ----
 prototype.reduceRight(callback(previous:Object, current:Object,index:Number,array:Array):Object, [initialValue:Object]):Object
 
-Calls **callback** for each item in **this** in reverse order and passes the return
-value of **callback** as the **previous** parameter to the next **callback** invocation.
+Calls **callback** for each item in **this** in descending order (**length-1** to **0**).
+It passes the return value of **callback** for the **i+1**th item as the 
+**previous** parameter for the **i**th item.
 Returns the result from the last call to **callback**.
 If **initialValue** is not specified, **callback** will first
 be called on **this[this.length - 2]** with **previous** set to **this[this.length - 1]**.
