@@ -9,7 +9,7 @@ Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto
 
 ----
-prototype.decrypt(algorithm : String, key : Key, data : ArrayBufferView) : Promise
+prototype.decrypt(algorithm : String, key : Key, data : ArrayBufferView) : Promise<ArrayBuffer>
 
 Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-decrypt
@@ -27,7 +27,7 @@ Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-deriveKey
 
 ----
-prototype.digest(algorithm : { name : String }, data : ArrayBufferView) : Promise
+prototype.digest(algorithm : { name : String }, data : ArrayBufferView) : Promise<ArrayBuffer>
 
 <example>
 var data = new Int32Array([1, 2, 3]);
@@ -48,13 +48,13 @@ Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-digest
 
 ----
-prototype.encrypt(algorithm : String, key : Key, data : ArrayBufferView) : Promise
+prototype.encrypt(algorithm : String, key : Key, data : ArrayBufferView) : Promise<ArrayBuffer>
 
 Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-encrypt
 
 ----
-prototype.exportKey(format : KeyFormat, key : Key) : Promise
+prototype.exportKey(format : KeyFormat, key : Key) : Promise<ArrayBuffer>
 
 Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-exportKey
