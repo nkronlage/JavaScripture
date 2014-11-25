@@ -1556,6 +1556,22 @@ matches the spot where the circle touches the secondary imaginary line).
   context.stroke();
 
   context.fillRect(70, 70, 2, 2);
+
+  // Use arcTo to easily create a rounded rectangle
+  var roundedRect = function(x, y, w, h, r) {
+    context.beginPath();
+
+    context.moveTo(x + r, y);
+    context.arcTo(x + w, y, x + w, y + r, r);
+    context.arcTo(x + w, y + h, x + w - r, y + h, r);
+    context.arcTo(x, y + h, x, y + h - r, r);
+    context.arcTo(x, y, x + r, y, r);
+    context.closePath();
+
+    context.stroke();
+  }
+
+  roundedRect(30, 105, 60, 40, 15);
 </script>
 </htmlexample>
 
