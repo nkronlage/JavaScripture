@@ -281,6 +281,7 @@ a:hover {
   .toc {
     position: absolute;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     left: 0;
     right: 0;
     top: 3em;
