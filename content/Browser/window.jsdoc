@@ -5,7 +5,7 @@ browser window for the page.  The window object itself
 is available through the %%#window|**window**%% property and all 
 properties on the Window are available directly in scripts.
 The Window object is also available as **this** in the root scope of 
-a script (ie, outside of any %%/Function|Function%%.
+a script (ie, outside of any %%/Function|Function%%).
 
 Spec:
 http://dev.w3.org/html5/spec/Overview.html#the-window-object
