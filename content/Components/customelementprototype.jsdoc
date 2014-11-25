@@ -130,7 +130,7 @@ Called when the element is removed from the document.
   // Register an element derived from HTMLElement
   var myElementPrototype = Object.create(HTMLElement.prototype);
 
-  myElementPrototype.detachedCallback = function(name, oldValue, newValue) {
+  myElementPrototype.detachedCallback = function() {
     console.log('element removed from document');
   };
 

@@ -1,0 +1,16 @@
+HTMLContentElement : HTMLElement
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#the-content-element
+
+----
+instance.select : String
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#widl-HTMLContentElement-select
+
+----
+prototype.getDistributedNodes() : NodeList
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#widl-HTMLContentElement-getDistributedNodes-NodeList

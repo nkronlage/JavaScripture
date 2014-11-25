@@ -1,0 +1,10 @@
+HTMLShadowElement : HTMLElement
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#the-shadow-element
+
+----
+prototype.getDistributedNodes() : NodeList
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#widl-HTMLShadowElement-getDistributedNodes-NodeList

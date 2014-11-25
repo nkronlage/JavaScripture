@@ -1,0 +1,47 @@
+ShadowRoot : DocumentFragment
+
+Spec:
+http://w3c.github.io/webcomponents/spec/shadow/#idl-def-ShadowRoot
+
+----
+instance.activeElement : Element
+
+ReadOnly:
+true
+
+----
+instance.host : Element
+
+ReadOnly:
+true
+
+----
+instance.olderShadowRoot : ShadowRoot
+
+ReadOnly:
+true
+
+----
+instance.innerHTML : String
+
+----
+instance.styleSheets : StyleSheetList
+
+ReadOnly:
+true
+
+----
+prototype.getElementsByClassName(className : String) : NodeList   
+
+----
+prototype.getElementsByTagName(tagName : String) : NodeList
+
+----
+prototype.getElementsByTagNameNS(namespaceURI : String, localName : String) : NodeList
+
+----
+prototype.getSelection() : Selection
+
+----
+prototype.elementFromPoint(x : Number, y : Number) : Element
+
