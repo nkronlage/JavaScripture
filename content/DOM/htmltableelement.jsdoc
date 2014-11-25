@@ -1,0 +1,59 @@
+HTMLTableElement : HTMLElement
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmltableelement
+
+----
+instance.border : String
+
+----
+instance.caption : HTMLTableCaptionElement
+
+----
+instance.rows : HTMLCollection
+
+
+ReadOnly:
+true
+
+----
+instance.sortable : Boolean
+
+----
+instance.tBodies : HTMLCollection
+
+----
+instance.tFoot : HTMLTableSectionElement
+
+----
+instance.tHead : HTMLTableSectionElement
+
+----
+prototype.createTBody : HTMLElement
+
+----
+prototype.createCaption() : HTMLElement
+
+----
+prototype.createTFoot() : HTMLElement
+
+----
+prototype.createTHead() : HTMLElement
+
+----
+prototype.deleteCaption() : undefined
+
+----
+prototype.deleteRow(index : Number) : undefined
+
+----
+prototype.deleteTFoot() : undefined
+
+----
+prototype.deleteTHead() : undefined
+
+----
+prototype.insertRow([index = -1 : Number]) : HTMLElement
+
+----
+prototype.stopSorting() : undefined

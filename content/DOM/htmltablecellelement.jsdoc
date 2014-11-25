@@ -1,0 +1,24 @@
+HTMLTableCellElement : HTMLElement
+
+Spec:
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmltablecellelement
+
+
+----
+instance.colSpan : Number
+
+----
+instance.rowSpan : Number
+
+----
+instance.headers : DOMSettableTokenList
+
+ReadOnly:
+true
+
+----
+instance.cellIndex : Number
+
+ReadOnly:
+true
+
