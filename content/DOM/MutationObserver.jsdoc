@@ -1,12 +1,27 @@
 MutationObserver : Object
 
+MutationObserver allows you to provide a function that is called
+asynchronously when certain parts of the DOM change, such as adding 
+a child to a node, changing an attribute on a node, or changing 
+the text on a node. As the changes happen, the MutationObserver
+records them as %%/MutationRecord|MutationRecords%% and then
+calls a user provided callback at a later time with all the
+MutationRecords that are pending.
+
 Spec:
 http://www.w3.org/TR/domcore/#interface-mutationobserver
 
 ----
-new MutationObserver(callback(mutations : Array, observer : MutationObserver) : undefined) : MutationObserver
+new MutationObserver(callback(mutations : Array<MutationRecord>, observer : MutationObserver) : undefined) : MutationObserver
 
-**mutations** is an Array of %%/MutationRecord|**MutationRecord**%%s.
+Creates a new MutationObserver that will call **callback** when the behaviors
+configured by %%#observer|**observe()**%% change.
+
+Note that **callback** will be called at some time 
+after the current script that is doing the mutation completes.
+
+The **observer** passed to **callback**
+is the newly created MutationObserver.
 
 <htmlexample>
 <div id='foo'></div>
@@ -15,12 +30,13 @@ new MutationObserver(callback(mutations : Array, observer : MutationObserver) : 
 
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
+      console.log('mutation.type = ' + mutation.type);
       for (var i = 0; i < mutation.addedNodes.length; i++) {
-        console.log(mutation.addedNodes[i].textContent + ' added');      
+        console.log('  "' + mutation.addedNodes[i].textContent + '" added');
       }
       
       for (var i = 0; i < mutation.removedNodes.length; i++) {
-        console.log(mutation.removedNodes[i].textContent + ' removed');      
+        console.log('  "' +mutation.removedNodes[i].textContent + '" removed');
       }
     });
   });
@@ -28,29 +44,100 @@ new MutationObserver(callback(mutations : Array, observer : MutationObserver) : 
 
   var bar = document.createElement('div');
   bar.textContent = 'bar';
+  console.log('before append');
   foo.appendChild(bar);
   foo.removeChild(bar);
+  console.log('after remove');
 </script>
 </htmlexample>
-
 
 ----
 prototype.observe( \
   target : Node, \
   options : { \
-    childList : Boolean             /*  */, \
-    attributes : Boolean            /*  */, \
-    characterData : Boolean         /*  */, \
-    subtree : Boolean, \
-    attributeOldValue : Boolean, \
-    characterDataOldValue : Boolean, \
-    attributeFilter : Array<String> \
+    childList : Boolean              /* Observes changes to the %%/Node#childNodes|children%% of **target**. */, \
+    attributes : Boolean             /* Observes changes to the %%/Element#attributes|attributes%% of **target**. */, \
+    characterData : Boolean          /* Observes changes to the %%/CharacterData#data|data%% of **target**. */, \
+    subtree : Boolean                /* Tells the observer to also record changes in the subtree of **target** */, \
+    attributeOldValue : Boolean      /* Tells the observer to provide the old value of the attribute (available in the %%/MutationRecord#oldValue|**MutationRecord.oldValue**%% property). */, \
+    characterDataOldValue : Boolean  /* Tells the observer to provide the old value of the character data (available in the %%/MutationRecord#oldValue|**MutationRecord.oldValue**%% property). */, \
+    attributeFilter : Array<String>  /* Tells the observer to only observe the specified %%/Element#attributes|attributes%%. */, \
   }) : undefined
+
+Registers the observer to be called any time the specified **options** on
+**target** change. If **observe()** is called more than once, it will 
+listen to changes on each **target**.
+See %%/MutationRecord|MutationRecord%% for the data provided to callback for
+each mutation type.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log('mutation.type = ' + mutation.type);
+      for (var i = 0; i < mutation.addedNodes.length; i++) {
+        console.log('  "' + mutation.addedNodes[i].textContent + '" added');
+      }
+      
+      for (var i = 0; i < mutation.removedNodes.length; i++) {
+        console.log('  "' + mutation.removedNodes[i].textContent + '" removed');
+      }
+    });
+  });
+  observer.observe(foo, { childList: true });
+
+  var bar = document.createElement('div');
+  bar.textContent = 'bar';
+  console.log('before append');
+  foo.appendChild(bar);
+  foo.removeChild(bar);
+  console.log('after remove');
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/domcore/#dom-mutationobserver-observe
 
 
 ----
 prototype.disconnect() : undefined
 
-----
-prototype.takeRecords() : Array
+Unhooks this observer from all targets specified in previous
+%%#observe|**observe()**%% calls.
 
+----
+prototype.takeRecords() : Array<MutationRecord>
+
+Returns the queued list of MutationRecords for **this** and clears out that list.
+The **callback** will not be called unless additional mutations occur 
+after the call to **takeRecords()**.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    // Notice this will not be called because takeRecords clears outstanding records
+    console.log('In MutationObserver callback');      
+  });
+  observer.observe(foo, { childList: true });
+
+  var bar = document.createElement('div');
+  bar.textContent = 'bar';
+
+  foo.appendChild(bar);
+
+  // Synchronously grab any outstanding mutations and process them now
+  var mutations = observer.takeRecords();
+
+  mutations.forEach(function(mutation) {
+    for (var i = 0; i < mutation.addedNodes.length; i++) {
+      console.log('"' + mutation.addedNodes[i].textContent + '" added');      
+    }
+  });
+</script>
+</htmlexample>

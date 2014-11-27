@@ -16,7 +16,9 @@ prototype.attachedCallback() : undefined
 Called when the custom element is inserted into the document or
 when the prototype is applied to elements already in the tree at the 
 time %%/Document#registerElement|**document.registerElement()**%%
-is called.
+is called. 
+
+See also %%/MutationObserver|MutationObserver%%.
 
 <htmlexample>
 <!-- Use name as tag name for HTMLElement derived custom elements -->
@@ -51,6 +53,8 @@ is called.
 prototype.attributeChangedCallback(name : String, oldValue : Object, newValue : Object) : undefined
 
 Called when an attribute was changed on the element.
+
+See also %%/MutationObserver|MutationObserver%%.
 
 <htmlexample>
 <!-- Use name as tag name for HTMLElement derived custom elements -->
@@ -121,6 +125,8 @@ Called when the element is created.
 prototype.detachedCallback() : undefined
 
 Called when the element is removed from the document.
+
+See also %%/MutationObserver|MutationObserver%%.
 
 <htmlexample>
 <!-- Use name as tag name for HTMLElement derived custom elements -->

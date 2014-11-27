@@ -1,10 +1,86 @@
 MutationRecord : Object
 
+MutationRecord contains information about a mutation that was observed by
+%%/MutationObserver|MutationObserver%%.
+
 Spec:
 http://www.w3.org/TR/domcore/#mutationrecord
 
 ----
 instance.type : String
+
+<p>
+The type of mutation.  Will be one of **'attributes'**,
+**'childList'**, or
+**'characterData'**.
+</p>
+
+<p>
+It will be **'attributes'** if an 
+%%/Element#attributes|Element.attribute%% changed.
+
+To receive attribute changes, the options passed to 
+%%/MutationObserver#observe|**observe()**%% must have
+**attributes** set to **true**, 
+**attributesOldValue** set to **true**, 
+or
+**attributeFilter** set to an array of attribute names. 
+</p>
+
+<p>
+It will be **'childList'** if the 
+%%/Node#childNodes|Node.childNodes%% changed.
+
+To receive childList changes, the options passed to 
+%%/MutationObserver#observe|**observe()**%% must have
+**childList** set to **true**.
+</p>
+
+<p>
+It will be **'characterData'** if the 
+%%/CharacterData#data|CharacterData.data%% changed.
+
+To receive characterData changes, the options passed to 
+%%/MutationObserver#observe|**observe()**%% must have
+**characterData** set to **true**. 
+</p>
+
+<p>
+Set the **subtree** option to **true** in the call to 
+%%/MutationObserver#observe|**observe()**%% 
+to receive any of these changes on nodes in the subtree.
+</p>
+
+<htmlexample>
+<div id='foo'>Foo</div>
+<script>
+  // Grab the Text node inside foo
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.type);
+    });
+  });
+  observer.observe(foo, { 
+    childList: true, 
+    attributes: true,
+    characterData: true,
+    subtree: true
+  });
+
+  // Change an attribute
+  foo.tabIndex = 1;
+
+  // Modify the tree
+  var bar = document.createElement('span');
+  bar.textContent = 'bar';
+  foo.appendChild(bar);
+
+  // Update the characterData of an element in the subtree
+  bar.firstChild.data = 'baz';
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -12,12 +88,81 @@ true
 ----
 instance.target : Node
 
+The Node that the mutation happened on.  
+
+If the **subtree** option was specified when calling
+%%/MutationObserver#observe|**MutationObserver.observe()**%%
+this may be a descendant of the **target** passed to **observe()**.
+
+<htmlexample>
+<div id='foo'>Foo</div>
+<script>
+  // Grab the Text node inside foo
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.target.tagName);
+    });
+  });
+  observer.observe(foo, { 
+    childList: true,
+    subtree: true
+  });
+
+  // Modify the tree
+  var bar = document.createElement('span');
+  bar.textContent = 'bar';
+  foo.appendChild(bar);
+
+  // Add another child lower in the tree
+  bar.appendChild(document.createElement('span'));
+</script>
+</htmlexample>
 
 ReadOnly:
 true
 
 ----
 instance.addedNodes : NodeList
+
+Contains the nodes added to %%#target|**target**%%.  Only applies
+when %%#type|**type**%% is **'childList'**.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.addedNodes.length + ' nodes added');
+      for (var i = 0; i < mutation.addedNodes.length; i++) {
+        console.log('  "' + mutation.addedNodes[i].textContent + '" added');
+      }
+    });
+  });
+  observer.observe(foo, { childList: true });
+
+  // Add a single child
+  var bar = document.createElement('div');
+  bar.textContent = 'bar';
+  foo.appendChild(bar);
+
+  // Add multiple children at once using DocumentFragment
+  var documentFragment = document.createDocumentFragment();
+
+  var fragmentChild1 = document.createElement('div');
+  fragmentChild1.textContent = 'fragmentChild1';
+  documentFragment.appendChild(fragmentChild1);
+
+  var fragmentChild2 = document.createElement('div');
+  fragmentChild2.textContent = 'fragmentChild2';
+  documentFragment.appendChild(fragmentChild2);
+
+  foo.appendChild(documentFragment);
+</script>
+</htmlexample>
 
 
 ReadOnly:
@@ -26,6 +171,31 @@ true
 ----
 instance.removedNodes : NodeList
 
+Contains the nodes added to %%#target|**target**%%.  Only applies
+when %%#type|**type**%% is **'childList'**.
+
+<htmlexample>
+<div id='foo'><span id='bar'>bar</span><span>a span</span> 
+loose text
+</div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.removedNodes.length + ' nodes removed');
+      for (var i = 0; i < mutation.removedNodes.length; i++) {
+        console.log('  "' + mutation.removedNodes[i].textContent.trim() + '" removed');
+      }
+    });
+  });
+  observer.observe(foo, { childList: true });
+
+  foo.removeChild(document.getElementById('bar'));
+
+  foo.innerHTML = '';
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -33,12 +203,55 @@ true
 ----
 instance.previousSibling : Node
 
+The Node before the %%#removedNode|removed node%%. See also %%#nextSibling|**nextSibling**%%.
+
+<htmlexample>
+<div id='foo'><span>first</span><span id='second'>second</span><span>third</span></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log('"' + mutation.removedNodes[0].textContent + '" removed');
+      console.log('  previous = ' + (mutation.previousSibling ? '"' + mutation.previousSibling.textContent + '"' : 'null'));
+      console.log('  next     = ' + (mutation.nextSibling ? '"' + mutation.nextSibling.textContent + '"' : 'null'));
+    });
+  });
+  observer.observe(foo, { childList: true });
+
+  foo.removeChild(document.getElementById('second'));
+  foo.removeChild(foo.lastChild);
+  foo.removeChild(foo.firstChild);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
 
 ----
 instance.nextSibling : Node
+
+The Node after the %%#removedNode|removed node%%. See also %%#previousSibling|**previousSibling**%%.
+
+<htmlexample>
+<div id='foo'><span>first</span><span id='second'>second</span><span>third</span></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log('"' + mutation.removedNodes[0].textContent + '" removed');
+      console.log('  previous = ' + (mutation.previousSibling ? '"' + mutation.previousSibling.textContent + '"' : 'null'));
+      console.log('  next     = ' + (mutation.nextSibling ? '"' + mutation.nextSibling.textContent + '"' : 'null'));
+    });
+  });
+  observer.observe(foo, { childList: true });
+
+  foo.removeChild(document.getElementById('second'));
+  foo.removeChild(foo.lastChild);
+  foo.removeChild(foo.firstChild);
+</script>
+</htmlexample>
 
 
 ReadOnly:
@@ -48,22 +261,73 @@ true
 ----
 instance.attributeName : String
 
+The name of the attribute that changed.  Only applies
+when %%#type|**type**%% is **'attributes'**.
+
+See also %%#attributeNamespace|**attributeNamespace**%%.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.attributeName + ' changed');
+    });
+  });
+  observer.observe(foo, { attributes: true });
+
+  foo.tabIndex = 1;
+  foo.tabIndex = 2;
+</script>
+</htmlexample>
 
 ReadOnly:
 true
-
 
 ----
 instance.attributeNamespace : String
 
+The namespace of the attribute that changed.  Only applies
+when %%#type|**type**%% is **'attributes'**.
+
+See also %%#attributeName|**attributeName**%%.
 
 ReadOnly:
 true
 
-
 ----
 instance.oldValue : String
 
+The previous value of the attribute or data.  Only applies
+when %%#type|**type**%% is **'attributes'** or 
+**'characterData'**. You must specify the
+**attributeOldValue** or 
+**characterDataOldValue** option to %%/MutationObserver#observe|MutationObserver.observe()%%
+for the oldValue to be recorded.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.attributeName + ' changed from ' +
+                  '"' + mutation.oldValue + '" to "' + 
+                  mutation.target.getAttribute(mutation.attributeName) + '"');
+    });
+  });
+  observer.observe(foo, { 
+    attributes: true, 
+    attributeOldValue: true
+   });
+
+  foo.tabIndex = 1;
+  foo.tabIndex = 2;
+</script>
+</htmlexample>
 
 ReadOnly:
 true
