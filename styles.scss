@@ -9,7 +9,7 @@ C21700  663730  410800  FF8E80  FFE8E6
 
 $lightestblue: #E7F4FF;
 $lightblue: #86C6FF;
-$blue: #0861ab;
+$blue: #1A86E3;
 $darkblue: #213342;
 $darkestblue: #00172A;
 
@@ -37,7 +37,7 @@ $arrowhalfbase: 0.7 * $arrowheight; /* 0.577 */
 $arrowbase: 2 * $arrowhalfbase;
 
 $bodyfont: "museo-sans-1", "museo-sans-2", Verdana, Arial, sans-serif;
-$monofont: Menlo, monospace;
+$monofont: Menlo, consolas, monospace;
 
 .hide {
   display: none;
@@ -406,9 +406,16 @@ h1.declaration {
   margin: 0 -0.5em;
 }
 
-.code {
+code, .code {
   font-family: $monofont;
-  font-size: 0.8em;
+}
+
+.code {
+  font-size: 80%;
+}
+
+code {
+  font-size: 95%;
 }
 
 .output {
