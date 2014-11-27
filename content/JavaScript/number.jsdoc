@@ -1,7 +1,7 @@
 Number : Object
 
-A numerical value.  JavaScript stores numbers as 64 bit (8 byte) double 
-precision floats. 
+A numerical value. JavaScript stores numbers as 64 bit (8 byte) double 
+precision floats. See %%/Math|Math%% for helpful math related functions. 
 
 Primitive:
 true
@@ -22,7 +22,7 @@ to a **Number**.
 
 <example>
 var one = '1';
-console.log(one + 2); // 2 is converted to '2' and concatinated with '1'
+console.log(one + 2); // 2 is converted to '2' and concatenated with '1'
 console.log(Number(one) + 2); // convert '1' to a number first
 console.log(+one + 2); // another way to convert to a number 
 </example>
