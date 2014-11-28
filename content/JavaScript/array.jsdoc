@@ -72,7 +72,7 @@ new Array(item0:Object, [item1:Object, [...]]) : Array
 Creates an **Array** with the specified parameters as the 0th, 1st, ... items 
 of the **Array**.
 Can also be constructed as **[item0, item1, ...]**.
-See also %%#of|%%Array.of()**%%.
+See also %%#of|**Array.of()**%%.
 
 <example>
 // The following are equivalent
