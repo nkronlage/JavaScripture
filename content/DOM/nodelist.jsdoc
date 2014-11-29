@@ -1,18 +1,85 @@
 NodeList : Object
 
+A list of %%/Node|Nodes%% similar to an %%/Array|Array%%.  NodeLists are
+returned from various methods such as 
+
+%%/Document#getElementsByClassName|**document.getElementsByClassName()**%%,
+%%/Document#getElementsByTagName|**document.getElementsByTagName()**%%,
+and
+%%/Document#querySelectorAll|**document.querySelectorAll()**%%.  
+
+Note, the items in a NodeList may update as the underlying document updates, 
+see the documentation for the API that created the NodeList for more details.
+
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-536297177
 
 ----
 instance[index : Number] : Node
 
-Returns the ClientRect at the specified **index**. You can also use the
+Returns the Node at the specified **index**. You can also use the
 %%#item|**item()**%% method to retrieve the item. 
+
+<htmlexample>
+<div>foo</div>
+<div>bar</div>
+<script>
+  // getElementsByTagName returns a live NodeList
+  var divsLive = document.getElementsByTagName('div');
+
+  // querySelectorAll returns a static NodeList
+  var divsStatic = document.querySelectorAll('div');
+
+  console.log('divsLive.length = ' + divsLive.length);
+  console.log('divsStatic.length = ' + divsStatic.length);
+  for (var i = 0; i < divsLive.length; i++) {
+    console.log(divsLive[i].textContent, divsStatic[i].textContent);
+  }
+  console.log();
+
+  // The divsLive NodeList will update automatically when you add 
+  // another div
+  var baz = document.createElement('div');
+  baz.textContent = 'baz';
+  document.body.appendChild(baz);
+
+  console.log('after add divsLive.length = ' + divsLive.length);
+  console.log('after add divsStatic.length = ' + divsStatic.length);
+</script>
+</htmlexample>
 
 ----
 instance.length : Number
 
 The number of Nodes in the list.
+
+<htmlexample>
+<div>foo</div>
+<div>bar</div>
+<script>
+  // getElementsByTagName returns a live NodeList
+  var divsLive = document.getElementsByTagName('div');
+
+  // querySelectorAll returns a static NodeList
+  var divsStatic = document.querySelectorAll('div');
+
+  console.log('divsLive.length = ' + divsLive.length);
+  console.log('divsStatic.length = ' + divsStatic.length);
+  for (var i = 0; i < divsLive.length; i++) {
+    console.log(divsLive[i].textContent, divsStatic[i].textContent);
+  }
+  console.log();
+
+  // The divsLive NodeList will update automatically when you add 
+  // another div
+  var baz = document.createElement('div');
+  baz.textContent = 'baz';
+  document.body.appendChild(baz);
+
+  console.log('after add divsLive.length = ' + divsLive.length);
+  console.log('after add divsStatic.length = ' + divsStatic.length);
+</script>
+</htmlexample>
 
 ReadOnly:
 true

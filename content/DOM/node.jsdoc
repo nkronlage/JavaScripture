@@ -161,6 +161,8 @@ instance.childNodes : NodeList
 
 A NodeList containing the children Nodes of **this**.
 
+See also %%/Element#children|Element.children%%.
+
 <htmlexample>
 <div id='parent'>
   Some text
