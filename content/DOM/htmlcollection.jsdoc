@@ -1,26 +1,88 @@
 HTMLCollection : Object
 
-
+A list of %%/Element|Elements%% similar to an %%/NodeList|NodeList%%.  
+The %%/Element#children|Element.children%% property returns an 
+HTMLCollection.
 
 Spec:
-http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-htmlcollection
+https://w3c.github.io/dom/#htmlcollection
 
 ----
 instance[index : Number] : Element
 
 Returns the item at **index** in the collection.  
 
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <button>A button</button>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+
+  console.log('children:');
+  for (var i = 0; i < parent.children.length; i++) {
+    console.log('  ' + parent.children[i].nodeName);
+  }
+</script>
+</htmlexample>
+
 ----
 instance.length : Number
 
+The number of Elements in the list.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+  <button>A button</button>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+
+  console.log('children:');
+  for (var i = 0; i < parent.children.length; i++) {
+    console.log('  ' + parent.children[i].nodeName);
+  }
+</script>
+</htmlexample>
+
 ReadOnly:
 true
+
+Spec:
+https://w3c.github.io/dom/#dom-htmlcollection-length
 
 ----
 prototype.item(index : Number) : Element
 
 Same as %%#indexer_Number|**this[index]**%%.
 
-----
-prototype.namedItem(name : String) : Element
+Spec:
+https://w3c.github.io/dom/#dom-htmlcollection-item
 
+----
+prototype.namedItem(idOrName : String) : Element
+
+Returns the Element in the **this** that has 
+%%/Element#id|id%% or %%/HTMLInputElement#name|name%%
+equal to **idOrName**.
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span id='foo'>A span</span>
+  <input name='bar'>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+
+  console.log(parent.children.namedItem('foo').tagName);
+  console.log(parent.children.namedItem('bar').tagName);
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/dom/#dom-htmlcollection-nameditem
