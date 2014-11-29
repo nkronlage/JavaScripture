@@ -1,5 +1,10 @@
 HTMLFormElement : HTMLElement
 
+Forms contain %%HTMLInputElement|HTMLInputElements%% and send
+the user input to the server.
+
+See also %%/FormData|FormData%%.
+
 Spec:
 http://dev.w3.org/html5/spec/single-page.html#htmlformelement
 
