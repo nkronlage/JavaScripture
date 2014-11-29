@@ -58,7 +58,7 @@ console.log('type=' + blob.type);
 
 var testEndings = function(string, endings) {
   var blob = new Blob([string], { type: 'plain/text',
-                                        endings: endings });
+                                  endings: endings });
   var reader = new FileReader();
   reader.onload = function(event){
     console.log(endings + ' of ' + JSON.stringify(string) + 

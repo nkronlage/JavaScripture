@@ -2,11 +2,55 @@ File : Blob
 
 File is a %%/Blob|Blob%% that represents a file from the filesystem.
 You can get Files from the 
-%%/HTMLInputElement#files|HTMLInputElement.files%% property.
+%%/HTMLInputElement#files|HTMLInputElement.files%% property or
+the %%/DataTransferItem#getAsFile|DataTransferItem.getAsFile()%% method.
 Use %%/FileReader|FileReader%% to read the contents of a File.
 
 Spec:
-http://www.w3.org/TR/FileAPI/#file
+http://dev.w3.org/2006/webapi/FileAPI/#dfn-file
+
+----
+new File( \
+    fileParts : Array, \
+    name : String, \
+    [filePropertyBag : { \
+        type : String /* A valid mime type such as **'text/plain'** */, \ 
+        endings = 'transparent' : String /* Must be either **'transparent'** or **'native'** */ \ 
+    }]) : File
+
+Creates a new **File**. The elements of **fileParts** must be of the types
+%%/ArrayBuffer|**ArrayBuffer**%%, 
+%%/ArrayBufferView|**ArrayBufferView**%%, 
+%%/Blob|**Blob**%%, or
+%%/String|**String**%%.  
+
+If **ending** is set to **'native'**, the line endings in the file will be 
+converted to the system line endings, such as **'\r\n'** for Windows or **'\n'** for 
+Mac.
+
+<example>
+var file = new File(['foo', 'bar'], 'foobar.txt');
+
+console.log('size=' + file.size);
+console.log('type=' + file.type);
+console.log('name=' + file.name);
+
+var testEndings = function(string, endings) {
+  var file = new File([string], { type: 'plain/text',
+                                  endings: endings });
+  var reader = new FileReader();
+  reader.onload = function(event){
+    console.log(endings + ' of ' + JSON.stringify(string) + 
+                ' => ' + JSON.stringify(reader.result));
+  };
+  reader.readAsText(file);
+};
+
+testEndings('foo\nbar',   'native');
+testEndings('foo\r\nbar', 'native');
+testEndings('foo\nbar',   'transparent');
+testEndings('foo\r\nbar', 'transparent');
+</example>
 
 ----
 instance.name : String
