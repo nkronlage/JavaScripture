@@ -264,10 +264,36 @@ prototype.createProcessingInstruction(target : String, data : String) : Processi
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-135944439
 
-
-
 ----
-prototype.getElementsByTagName(tagname : String) : NodeList
+prototype.getElementsByTagName(tagName : String) : NodeList
+
+Returns a NodeList containing the %%/Element|Elements%% in the document 
+that have the %%/Element#tagName|**Element.tagName**%% equal to **tagName**
+(case insensitive).
+
+The returned NodeList will update as the document changes.
+
+<htmlexample>
+<div>foo</div>
+<div>bar</div>
+<script>
+  var divs = document.getElementsByTagName('div');
+
+  console.log(divs.length);
+  for (var i = 0; i < divs.length; i++) {
+    console.log(divs[i].textContent);
+  }
+  console.log();
+
+  // The divs NodeList will update automatically when you add 
+  // another div
+  var baz = document.createElement('div');
+  baz.textContent = 'baz';
+  document.body.appendChild(baz);
+
+  console.log(divs.length);
+</script>
+</htmlexample>
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-A6C9094
@@ -281,15 +307,50 @@ http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBTNNS
 ----
 prototype.getElementsByClassName(classNames : String) : NodeList
 
+Returns a NodeList containing the %%/Element|Elements%% in the document 
+where the %%/Element#className|**Element.className**%%
+matches the specified **classNames**.
+
+**classNames** can contain multiple classes, separated by spaces, 
+and the returned Elements must contain all the classes.
+
+The returned NodeList will update as the document changes.
+
+<htmlexample>
+<div class='foo bar'>div1</div>
+<div class='foo'>div2</div>
+<script>
+  var foos = document.getElementsByClassName('foo');
+
+  console.log('foos.length = ' + foos.length);
+
+  var fooBars = document.getElementsByClassName('bar foo');
+  console.log('fooBars.length = ' + fooBars.length);
+
+  // Adding the 'bar' class to div2 will update fooBars automatically
+  foos[1].classList.add('bar');
+  console.log('fooBars.length = ' + fooBars.length);
+</script>
+</htmlexample>
+
 ----
 prototype.getElementById(elementId : String) : Element
+
+Returns the Element in the document that has %%/Element#id|Element.id%% 
+equal to **elementId**.
+
+<htmlexample>
+<div id='foo'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  foo.textContent = 'My Div';
+</script>
+</htmlexample>
 
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBId
-
-
-
 
 ----
 prototype.hasFocus() : Boolean
@@ -359,6 +420,10 @@ prototype.querySelectorAll(cssSelector : String) : NodeList
 
 Returns a **NodeList** containing the **Element**s in the document that
 match the CSS selector. 
+
+Note that unlike %%#getElementsByClassName|**getElementsByClassName()**%% 
+or %%#getElementsByTagName|**getElementsByTagName()**%%,
+the returned NodeList does not update as the document changes.
 
 <htmlexample>
 <span id='foo'>foo1</span>
