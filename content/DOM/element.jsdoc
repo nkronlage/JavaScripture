@@ -6,6 +6,7 @@ type for
 and 
 %%/SVGElement|SVGElement%%.
 
+
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-745549614
 
@@ -80,11 +81,40 @@ Returns the number of direct children of **this**.
 ----
 instance.children : HTMLCollection
 
+The %%/Element|Element%% children in **this**.
+
+Unlike %%/Node#childNodes|Node.childNodes%%, **children**
+only returns nodes inside **this** that derive from 
+%%/Element|Element%% (ie, other node types like %%/Text|Text%% and 
+%%/Comment|Comment%% will be excluded from **children**
+but present in **childNodes**).
+
+<htmlexample>
+<div id='parent'>
+  Some text
+  <span>A span</span>
+</div>
+<script>
+  var parent = document.getElementById('parent');
+  console.log('children:');
+  for (var i = 0; i < parent.children.length; i++) {
+    console.log('  ' + parent.children[i].nodeName);
+  }
+
+  console.log('childNodes:');
+  for (var i = 0; i < parent.childNodes.length; i++) {
+    console.log('  ' + parent.childNodes[i].nodeName);
+  }
+</script>
+</htmlexample>
+
+
 ----
 instance.className : String
 
-Gets or sets the class name of the Element.  **className** 
-corresponds to the HTML **class** attribute.
+Gets or sets the classes of the Element (used for styling via 
+CSS).  **className** should be a space separated list of classes.
+**className** corresponds to the HTML **class** attribute.
 
 See also %%#classList|**classList**%%.
 
@@ -94,7 +124,7 @@ See also %%#classList|**classList**%%.
   .baz { color: blue; }
 </style>
 <div id='foo' class='bar'>
-  Example of the classList property.
+  Example of the className property.
 </div>
 <script>
   var foo = document.getElementById('foo');
@@ -107,11 +137,40 @@ See also %%#classList|**classList**%%.
 ----
 instance.classList : DOMTokenList
 
+**classList** is an object that allows easy manipulation
+of the classes in the %%#className|**className**%% property.
+See also %%#className|**className**%%.
+
+<htmlexample>
+<style>
+  .bar { color: red; }
+  .baz { font-weight: bold; }
+</style>
+<div id='foo' class='bar'>
+  Example of the classList property.
+</div>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.classList.length);
+  console.log(foo.className);
+
+  foo.classList.add('baz');
+
+  console.log(foo.classList.length);
+  console.log(foo.className); // Notice className updates
+</script>
+</htmlexample>
+
 ----
 instance.firstElementChild : Element
 
 ----
 instance.id : String
+
+A unique name for this element in the document.
+You can retrieve an element by **id** using 
+%%/Document#getElementById|**document.getElementById()**%%.
 
 ----
 instance.lastElementChild : Element
