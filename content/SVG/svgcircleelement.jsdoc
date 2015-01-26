@@ -1,0 +1,71 @@
+SVGCircleElement : SVGElement
+
+Defines a circle.
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#InterfaceSVGCircleElement
+
+----
+instance.cx : SVGAnimatedLength
+
+The x position of the center of the circle.
+
+<htmlexample>
+<svg xmlns='http://www.w3.org/2000/svg' version='1.1' >
+  <circle id='foo' cx='30' cy='35' r='20' fill='black'/>
+</svg>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.cx.baseVal.value);
+
+  foo.cx.baseVal.value = 50;
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.cy : SVGAnimatedLength
+
+The y position of the center of the circle.
+
+<htmlexample>
+<svg xmlns='http://www.w3.org/2000/svg' version='1.1' >
+  <circle id='foo' cx='30' cy='35' r='20' fill='black'/>
+</svg>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.cy.baseVal.value);
+
+  foo.cy.baseVal.value = 50;
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+----
+instance.r : SVGAnimatedLength
+
+The radius of the circle.
+
+<htmlexample>
+<svg xmlns='http://www.w3.org/2000/svg' version='1.1' >
+  <circle id='foo' cx='30' cy='35' r='20' fill='black'/>
+</svg>
+<script>
+  var foo = document.getElementById('foo');
+
+  console.log(foo.r.baseVal.value);
+
+  foo.r.baseVal.value = 50;
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+

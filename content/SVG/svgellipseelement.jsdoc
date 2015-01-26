@@ -1,0 +1,62 @@
+SVGEllipseElement : SVGElement
+
+Defines a ellipse.
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#InterfaceSVGCircleElement
+
+----
+instance.cx : SVGAnimatedLength
+
+The x position of the center of the ellipse.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGEllipseElement__cx
+
+----
+instance.cy : SVGAnimatedLength
+
+The y position of the center of the ellipse.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGEllipseElement__cy
+
+----
+instance.rx : SVGAnimatedLength
+
+The radius of the ellipse along the x direction.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGEllipseElement__rx
+
+----
+instance.ry : SVGAnimatedLength
+
+The radius of the ellipse along the y direction.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGEllipseElement__ry

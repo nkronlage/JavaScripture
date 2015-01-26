@@ -1,6 +1,7 @@
 SVGAnimatedNumber : Object
 
 Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedNumber
 
 ----
 instance.baseVal : Number

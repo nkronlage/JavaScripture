@@ -1,0 +1,42 @@
+SVGMaskElement : SVGElement
+
+
+Spec:
+http://www.w3.org/TR/SVG/masking.html#InterfaceSVGMaskElement
+
+----
+maskUnits : SVGAnimatedEnumeration<SVGUnitTypes>
+
+ReadOnly:
+true
+
+----
+maskContentUnits : SVGAnimatedEnumeration<SVGUnitTypes>
+
+ReadOnly:
+true
+
+----
+x : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+y : SVGAnimatedLength 
+
+ReadOnly:
+true
+
+----
+width : SVGAnimatedLength
+
+ReadOnly:
+true
+
+----
+height : SVGAnimatedLength
+
+ReadOnly:
+true
+

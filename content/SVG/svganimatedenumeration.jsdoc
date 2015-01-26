@@ -1,0 +1,14 @@
+SVGAnimatedEnumeration : Object
+
+Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedEnumeration
+
+----
+instance.baseVal : Number
+
+----
+instance.animVal : Number
+
+ReadOnly:
+true
+

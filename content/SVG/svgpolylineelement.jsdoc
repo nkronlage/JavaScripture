@@ -1,0 +1,5 @@
+SVGPolylineElement : SVGElement
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#InterfaceSVGPolylineElement
+

@@ -1,0 +1,76 @@
+SVGPathElement : SVGElement
+
+Spec:
+http://www.w3.org/TR/SVG/paths.html#InterfaceSVGPathElement
+
+----
+instance.pathLength : SVGAnimatedNumber 
+
+ReadOnly:
+true
+
+----
+prototype.getTotalLength() : Number
+
+----
+prototype.getPointAtLength(distance : Number) : SVGPoint 
+
+----
+prototype.getPathSegAtLength(distance : Number) : Number
+
+----
+prototype.createSVGPathSegClosePath() : SVGPathSegClosePath
+
+----
+prototype.createSVGPathSegMovetoAbs(x : Number, y : Number) : SVGPathSegMovetoAbs 
+
+----
+prototype.createSVGPathSegMovetoRel(x : Number, y : Number) : SVGPathSegMovetoRel
+
+----
+prototype.createSVGPathSegLinetoAbs(x : Number, y : Number) : SVGPathSegLinetoAbs
+
+----
+prototype.createSVGPathSegLinetoRel(x : Number, y : Number) : SVGPathSegLinetoRel
+
+----
+prototype.createSVGPathSegCurvetoCubicAbs(x : Number, y : Number, x1 : Number, y1 : Number, x2 : Number, y2 : Number) : SVGPathSegCurvetoCubicAbs
+
+----
+prototype.createSVGPathSegCurvetoCubicRel(x : Number, y : Number, x1 : Number, y1 : Number, x2 : Number, y2 : Number) : SVGPathSegCurvetoCubicRel
+
+----
+prototype.createSVGPathSegCurvetoQuadraticAbs(x : Number, y : Number, x1 : Number, y1 : Number) : SVGPathSegCurvetoQuadraticAbs
+
+----
+prototype.createSVGPathSegCurvetoQuadraticRel(x : Number, y : Number, x1 : Number, y1 : Number) : SVGPathSegCurvetoQuadraticRel
+
+----
+prototype.createSVGPathSegArcAbs(x : Number, y : Number, r1 : Number, r2 : Number, angle : Number, largeArcFlag : Boolean, sweepFlag : Boolean) : SVGPathSegArcAbs
+
+----
+prototype.createSVGPathSegArcRel(x : Number, y : Number, r1 : Number, r2 : Number, angle : Number, largeArcFlag : Boolean, sweepFlag : Boolean) : SVGPathSegArcRel
+
+----
+prototype.createSVGPathSegLinetoHorizontalAbs(x : Number) : SVGPathSegLinetoHorizontalAbs
+
+----
+prototype.createSVGPathSegLinetoHorizontalRel(x : Number) : SVGPathSegLinetoHorizontalRel
+
+----
+prototype.createSVGPathSegLinetoVerticalAbs(y : Number) : SVGPathSegLinetoVerticalAbs
+
+----
+prototype.createSVGPathSegLinetoVerticalRel(y : Number) : SVGPathSegLinetoVerticalRel
+
+----
+prototype.createSVGPathSegCurvetoCubicSmoothAbs(x : Number, y : Number, x2 : Number, y2 : Number) : SVGPathSegCurvetoCubicSmoothAbs
+
+----
+prototype.createSVGPathSegCurvetoCubicSmoothRel(x : Number, y : Number, x2 : Number, y2 : Number) : SVGPathSegCurvetoCubicSmoothRel
+
+----
+prototype.createSVGPathSegCurvetoQuadraticSmoothAbs(x : Number, y : Number) : SVGPathSegCurvetoQuadraticSmoothAbs
+
+----
+prototype.createSVGPathSegCurvetoQuadraticSmoothRel(x : Number, y : Number) : SVGPathSegCurvetoQuadraticSmoothRel

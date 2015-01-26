@@ -7,6 +7,27 @@ http://www.w3.org/TR/SVG/types.html#InterfaceSVGLength
 ----
 instance.unitType : Number
   
+Must be one of 
+
+%%#SVG_LENGTHTYPE_UNKNOWN|SVG_LENGTHTYPE_UNKNOWN%%,
+%%#SVG_LENGTHTYPE_NUMBER|SVG_LENGTHTYPE_NUMBER%%,
+%%#SVG_LENGTHTYPE_PERCENTAGE|SVG_LENGTHTYPE_PERCENTAGE%%,
+%%#SVG_LENGTHTYPE_EMS|SVG_LENGTHTYPE_EMS%%,
+%%#SVG_LENGTHTYPE_EXS|SVG_LENGTHTYPE_EXS%%,
+%%#SVG_LENGTHTYPE_PX|SVG_LENGTHTYPE_PX%%,
+%%#SVG_LENGTHTYPE_CM|SVG_LENGTHTYPE_CM%%,
+%%#SVG_LENGTHTYPE_MM|SVG_LENGTHTYPE_MM%%,
+%%#SVG_LENGTHTYPE_IN|SVG_LENGTHTYPE_IN%%,
+%%#SVG_LENGTHTYPE_PT|SVG_LENGTHTYPE_PT%%,
+or
+%%#SVG_LENGTHTYPE_PC|SVG_LENGTHTYPE_PC%%.
+
+ReadOnly:
+true
+
+
+----
+instance.value : Number
 
 <htmlexample>
 <svg id='svgelement' xmlns='http://www.w3.org/2000/svg' version='1.1'>
@@ -17,13 +38,6 @@ instance.unitType : Number
   console.log(svgelement.x.baseVal.value);
 </script>
 </htmlexample>
-
-ReadOnly:
-true
-
-
-----
-instance.value : Number
 
 
 ----
@@ -49,24 +63,35 @@ SVG_LENGTHTYPE_UNKNOWN : Number
 ReadOnly:
 true
 
+Value:
+0
+
 ----
 SVG_LENGTHTYPE_NUMBER : Number
 
 ReadOnly:
 true
 
+Value: 
+1
+
 ----
 SVG_LENGTHTYPE_PERCENTAGE : Number
 
 ReadOnly:
 true
+
+Value:
+2
+
 ----
-
-
 SVG_LENGTHTYPE_EMS : Number
 
 ReadOnly:
 true
+
+Value:
+3
 
 ----
 SVG_LENGTHTYPE_EXS : Number
@@ -74,16 +99,26 @@ SVG_LENGTHTYPE_EXS : Number
 ReadOnly:
 true
 
+Value:
+4
+
 ----
 SVG_LENGTHTYPE_PX : Number
 
 ReadOnly:
 true
+
+Value:
+5
+
 ----
 SVG_LENGTHTYPE_CM : Number
 
 ReadOnly:
 true
+
+Value:
+6
 
 ----
 SVG_LENGTHTYPE_MM : Number
@@ -91,18 +126,32 @@ SVG_LENGTHTYPE_MM : Number
 ReadOnly:
 true
 
+Value:
+7
+
 ----
 SVG_LENGTHTYPE_IN : Number
 
 ReadOnly:
 true
+
+Value:
+8
+
 ----
 SVG_LENGTHTYPE_PT : Number
 
 ReadOnly:
 true
+
+Value:
+9
+
 ----
 SVG_LENGTHTYPE_PC : Number
 
 ReadOnly:
 true
+
+Value:
+10

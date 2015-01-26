@@ -1,6 +1,7 @@
 SVGUnitTypes : Object
 
 Spec:
+http://www.w3.org/TR/SVG/types.html#InterfaceSVGUnitTypes
 
 ----
 SVG_UNIT_TYPE_UNKNOWN : Number

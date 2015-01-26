@@ -1,0 +1,62 @@
+SVGLineElement : SVGElement
+
+Defines a line.
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#InterfaceSVGLineElement
+
+----
+instance.x1 : SVGAnimatedLength
+
+The x position of the first point of the line.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGLineElement__x1
+
+----
+instance.y1 : SVGAnimatedLength
+
+The y position of the first point of the line.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGLineElement__y1
+
+----
+instance.x2 : SVGAnimatedLength
+
+The x position of the second point of the line.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGLineElement__x2
+
+----
+instance.y2 : SVGAnimatedLength
+
+The y position of the second point of the line.
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/SVG/shapes.html#__svg__SVGLineElement__y2
