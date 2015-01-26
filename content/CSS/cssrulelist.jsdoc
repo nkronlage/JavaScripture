@@ -48,6 +48,9 @@ Returns the CSSRule at the specified **index**.  You can also use the
 </script>
 </htmlexample>
 
+ReadOnly:
+true
+
 ----
 prototype.item(index : Number) : CSSRule
 

@@ -12,6 +12,9 @@ true
 ----
 instance[index : Number] : CSSValue
 
+ReadOnly:
+true
+
 ----
 prototype.item(index : Number) : CSSValue
 

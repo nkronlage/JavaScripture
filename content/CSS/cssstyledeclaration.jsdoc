@@ -284,6 +284,9 @@ instance.clear : String
 instance.clip : String
 ----
 instance.clipPath : String
+
+See %%/SVGClipPathElement|SVGClipPathElement%%.
+
 ----
 instance.clipRule : String
 ----

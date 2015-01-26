@@ -9,6 +9,8 @@ instance[index : Number] : ClientRect
 Returns the ClientRect at the specified **index**. You can also use the
 %%#item|**item()**%% method to retrieve the item. 
 
+ReadOnly:
+true
 
 ----
 instance.length : Number

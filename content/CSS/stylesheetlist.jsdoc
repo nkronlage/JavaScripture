@@ -41,8 +41,10 @@ StyleSheet will generally be a %%/CSSStyleSheet|CSSStyleSheet%%.
 
   console.log(styleSheet0 === styleSheet0Item);
 </script>
-
 </htmlexample>
+
+ReadOnly:
+true
 
 ----
 prototype.item(index : Number) : StyleSheet
