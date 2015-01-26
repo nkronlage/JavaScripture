@@ -420,6 +420,7 @@ code {
 
 .output {
   box-sizing: border-box;
+  resize: both;
 }
 
 .results {
@@ -431,6 +432,7 @@ code {
   overflow: auto;
   margin: 0;
   box-sizing: border-box;
+  resize: both;
 }
 
 .example .results {
