@@ -1,0 +1,162 @@
+Request : Object
+
+Request is used to describe an request to a server.
+Use with %%/Window#fetch|fetch()%% to perform the request and 
+get a %%/Response|Response%%.
+
+Request, fetch(), and Response are a new, low level replacement for
+%%/XMLHttpRequest|XMLHttpRequest%%.
+
+Spec:
+https://fetch.spec.whatwg.org/#request-class
+
+----
+new Request(url : String, init : { \
+  method : String, \
+  headers : Object, \
+  body : Object, \
+  mode : String, \
+  credentials : String, \
+  cache : String, \
+}) : Request
+
+
+**body** must be a
+%%/Blob|Blob%%,
+BufferSource,
+%%/FormData|FormData%%,
+%%/String|String%%,
+or
+%%/URLSearchParams|URLSearchParams%%.
+
+----
+new Request(request : Request, init : Object) : Request
+
+----
+instance.cache : String
+
+Will be one of:
+
+**'default'**, 
+**'force-cache'**, 
+**'no-cache'**, 
+**'no-store'**, 
+**'only-if-cached'**,
+**'reload'**.
+
+ReadOnly:
+true
+
+----
+instance.context : String
+
+Will be one of:
+
+**'audio'**, 
+**'beacon'**, 
+**'cspreport'**, 
+**'download'**, 
+**'embed'**, 
+**'eventsource'**, 
+**'favicon'**, 
+**'fetch'**,
+**'font'**, 
+**'form'**, 
+**'frame'**, 
+**'hyperlink'**, 
+**'iframe'**, 
+**'image'**, 
+**'imageset'**, 
+**'import'**,
+**'internal'**, 
+**'location'**, 
+**'manifest'**, 
+**'object'**, 
+**'ping'**, 
+**'plugin'**, 
+**'prefetch'**, 
+**'script'**,
+**'serviceworker'**, 
+**'sharedworker'**, 
+**'subresource'**, 
+**'style'**, 
+**'track'**, 
+**'video'**, 
+**'worker'**,
+**'xmlhttprequest'**, 
+**'xslt'**.
+
+ReadOnly:
+true
+
+----
+instance.credentials : String
+
+Will be one of:
+
+**'include'**,
+**'omit'**, 
+**'same-origin'**.
+
+ReadOnly:
+true
+
+----
+instance.headers : Headers
+
+ReadOnly:
+true
+
+----
+instance.method : String
+
+ReadOnly:
+true
+
+----
+instance.mode : String
+
+Will be one of:
+
+**'same-origin'**, 
+**'no-cors'**, 
+**'cors'**. 
+
+ReadOnly:
+true
+
+----
+instance.referrer : String
+
+ReadOnly:
+true
+
+----
+instance.url : String
+
+ReadOnly:
+true
+
+
+
+----
+prototype.clone() : Request
+
+----
+instance.bodyUsed : Boolean
+
+----
+prototype.arrayBuffer() : Promise<ArrayBuffer>
+
+----
+prototype.blob() : Promise<Blob>
+
+----
+prototype.formData() : Promise<formData>
+
+----
+prototype.json() : Promise<Object>
+
+----
+prototype.text() : Promise<String>
+

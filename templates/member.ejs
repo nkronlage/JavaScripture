@@ -38,16 +38,7 @@ var getSubFunctionsWorker = function(member, subfunctions, isTop) {
 
     for (var i = 0; i < member.parameters.length; i++) {
       var param = member.parameters[i];
-
-      if (Array.isArray(param)) {
-        for (var j = 0; j < param.length; j++) {
-          var optionalParam = param[j];
-          getSubFunctionsWorker(optionalParam, subfunctions);
-        }
-      }
-      else {
-        getSubFunctionsWorker(param, subfunctions);
-      }
+      getSubFunctionsWorker(param, subfunctions);
     }
 
     getSubFunctionsWorker(member.returnType, subfunctions);
@@ -58,6 +49,12 @@ var getSubFunctionsWorker = function(member, subfunctions, isTop) {
   else if (member.type === 'Object' &&
            member.properties) {
     subfunctions.push(member);
+  }
+  else if (Array.isArray(member)) {
+    for (var j = 0; j < member.length; j++) {
+      var optionalParam = member[j];
+      getSubFunctionsWorker(optionalParam, subfunctions);
+    }
   }
 };
 

@@ -1,0 +1,32 @@
+URLSearchParams : Object
+
+Iterable:
+true
+
+Spec:
+https://url.spec.whatwg.org/#urlsearchparams
+
+----
+new URLSearchParams(init = '' : String) : URLSearchParams
+
+----
+new URLSearchParams(init : URLSearchParams) : URLSearchParams
+
+----
+prototype.append(name : String, value : String) : undefined
+
+----
+prototype.delete(name : String) : undefined
+
+----
+prototype.get(name : String) : String
+
+----
+prototype.getAll(name : String) : Array<String>
+
+----
+prototype.has(name : String) : Boolean
+
+----
+prototype.set(name : String, value : String) : undefined
+

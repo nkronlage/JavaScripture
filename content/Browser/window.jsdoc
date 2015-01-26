@@ -11,6 +11,43 @@ Spec:
 http://dev.w3.org/html5/spec/Overview.html#the-window-object
 
 ----
+instance.frameElement : Element
+
+ReadOnly:
+true
+
+
+----
+instance.frames : Window
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+ReadOnly:
+true
+
+----
+instance.opener : Window
+
+
+----
+instance.parent : Window
+
+
+ReadOnly:
+true
+
+----
+instance.top : Window
+
+ReadOnly:
+true
+
+
+----
 instance.window : Window
 
 Returns the global object for the browser. Also available 
@@ -440,58 +477,46 @@ Stops an %%#setInterval|**setInterval()**%% callback from running.
 </htmlexample>
 
 
+----
+prototype.blur() : undefined
+
 
 ----
 prototype.close() : undefined
 
 
 ----
-prototype.stop() : undefined
+prototype.fetch(url : String, [requestInit : Object]) : Promise<Response>
 
+Fetches the specified url. See alse %%/Request|Request%% and %%/Response|Response%%.
+
+<htmlexample>
+<script>
+  fetch('/').then(function(response) {
+    return response.text();
+  }).then(function(text) {
+    console.log(text.substring(0, 30));
+  });
+</script>
+</htmlexample>
+
+Spec:
+https://fetch.spec.whatwg.org/#dom-global-fetch
+
+----
+prototype.fetch(request : Request, [requestInit : Object]) : Promise<Response>
+
+Spec:
+https://fetch.spec.whatwg.org/#dom-global-fetch
 
 ----
 prototype.focus() : undefined
 
 
-
 ----
-prototype.blur() : undefined
+prototype.stop() : undefined
 
 
-----
-instance.frames : Window
-
-ReadOnly:
-true
-
-----
-instance.length : Number
-
-ReadOnly:
-true
-
-----
-instance.top : Window
-
-ReadOnly:
-true
-
-----
-instance.opener : Window
-
-
-----
-instance.parent : Window
-
-
-ReadOnly:
-true
-
-----
-instance.frameElement : Element
-
-ReadOnly:
-true
 
 ----
 prototype.open([url : String, [target = '_blank' : String, [features : String, [replace : Boolean]]]]) : Window

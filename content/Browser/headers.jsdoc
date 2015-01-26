@@ -1,0 +1,38 @@
+Headers : Object
+
+Iterable:
+true
+
+Spec:
+https://fetch.spec.whatwg.org/#headers-class
+
+----
+new Headers() : Headers
+
+----
+new Headers(headers : Array<Array<String>>) : Headers
+
+----
+new Headers(headers : Headers) : Headers
+
+----
+new Headers(headers : Object) : Headers
+
+----
+prototype.append(name : String, value : String) : undefined
+
+----
+prototype.delete(name : String) : undefined
+
+----
+prototype.get(name : String) : String
+
+----
+prototype.getAll(name : String) : Array<String>
+
+----
+prototype.has(name : String) : Boolean
+
+----
+prototype.set(name : String, value : String) : undefined
+

@@ -1,0 +1,73 @@
+Response : Object
+
+Spec:
+https://fetch.spec.whatwg.org/#response-class
+
+----
+new Response([body : Object, [init : { \
+  status = 200 : Number, \ 
+  statusText = 'OK' : String, \
+  headers : Object \
+  }]]) : Response
+
+
+----
+instance.headers : Headers
+
+ReadOnly:
+true
+
+----
+instance.status : Number
+
+ReadOnly:
+true
+
+----
+instance.statusText : String
+
+ReadOnly:
+true
+
+----
+instance.type : String
+
+Will be one of:
+**'basic'**, 
+**'cors'**, 
+**'default'**, 
+**'error'**, 
+**'opaque'**.
+
+ReadOnly:
+true
+
+----
+instance.url : String
+
+ReadOnly:
+true
+
+----
+prototype.arrayBuffer() : Promise<ArrayBuffer>
+
+----
+prototype.blob() : Promise<Blob>
+
+----
+prototype.clone() : Response
+
+----
+prototype.formData() : Promise<formData>
+
+----
+prototype.json() : Promise<Object>
+
+----
+prototype.text() : Promise<String>
+
+----
+error() : Response
+
+----
+redirect(url : String, [status = 302 : Number]) : Response
