@@ -28,6 +28,9 @@ Returns the item at **index** in the collection.
 </script>
 </htmlexample>
 
+ReadOnly:
+true
+
 ----
 instance.length : Number
 

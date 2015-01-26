@@ -48,6 +48,9 @@ Returns the Node at the specified **index**. You can also use the
 </script>
 </htmlexample>
 
+ReadOnly:
+true
+
 ----
 instance.length : Number
 

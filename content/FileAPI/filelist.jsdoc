@@ -28,6 +28,9 @@ to retrieve the item.
 </script>
 </htmlexample>
 
+ReadOnly:
+true
+
 ----
 instance.length : Number
 

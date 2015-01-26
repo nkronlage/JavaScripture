@@ -149,6 +149,9 @@ console.log(x);
 console.log(x - 1);
 </example>
 
+ReadOnly:
+true
+
 Version:
 ECMAScript 6
 
@@ -168,6 +171,9 @@ console.log(Number.MAX_SAFE_INTEGER + 1);
 console.log(Number.MAX_SAFE_INTEGER + 2);
 </example>
 
+ReadOnly:
+true
+
 Version:
 ECMAScript 6
 
@@ -180,6 +186,9 @@ JavaScript.
 <example>
 console.log(Number.MAX_VALUE);
 </example>
+
+ReadOnly:
+true
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2
@@ -200,6 +209,9 @@ console.log(Number.MIN_SAFE_INTEGER - 1);
 console.log(Number.MIN_SAFE_INTEGER - 2);
 </example>
 
+ReadOnly:
+true
+
 Version:
 ECMAScript 6
 
@@ -212,6 +224,9 @@ JavaScript.
 <example>
 console.log(Number.MIN_VALUE);
 </example>
+
+ReadOnly:
+true
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.3
@@ -233,10 +248,11 @@ console.log(0/0);
 console.log(Math.sqrt(-1));
 </example>
 
+ReadOnly:
+true
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.4
-
 
 ----
 NEGATIVE_INFINITIY : Number
@@ -248,6 +264,9 @@ console.log(Number.NEGATIVE_INFINITY);
 console.log(-Infinity);
 console.log(-1/0);
 </example>
+
+ReadOnly:
+true
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.5
@@ -264,6 +283,9 @@ console.log(Number.POSITIVE_INFINITY);
 console.log(Infinity);
 console.log(1/0);
 </example>
+
+ReadOnly:
+true
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.6

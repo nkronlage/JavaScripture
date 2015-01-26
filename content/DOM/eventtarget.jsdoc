@@ -1,5 +1,12 @@
 EventTarget : Object
 
+EventTargets are Objects that fire events.  EventTargets usually 
+expose an <code>on<em>event</em></code> property for each event where you can
+assign a %%/Function|Function%% to be called when the event fires.
+
+You can also use %%#addEventListener|**addEventListener()**%% to
+hook up multiple listeners to the same event.
+
 ----
 prototype.addEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
 
@@ -8,7 +15,7 @@ event is fired. If **useCapture** is true, **listener** will be called
 in the capture phase of the event routing (ie, during the walk down the tree
 to the target instead of on the way up after firing on the target). 
 
-Unlike using the **on<type>** style of listening to 
+Unlike using the <code>on<em>event</em></code> style of listening to 
 events, **addEventListener** allows more than one listener
 to be associated with the event. 
 

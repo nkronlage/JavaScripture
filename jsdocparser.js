@@ -46,7 +46,7 @@ var processFile = function(filename) {
         console.log('ERROR: no name for ', m1);
         throw Error('ERROR: no name for ' + m1);
       }
-      var comparison = m1.name.localeCompare(m2.name);
+      var comparison = m1.name.toLowerCase().localeCompare(m2.name.toLowerCase());
       return comparison;
     };
 
@@ -303,6 +303,8 @@ var tags = {
   'html': createHtml,
   'h3': createTag,
   'p': createTag,
+  'em': createTag,
+  'code': createTag,
   'htmlexample': createHtmlExample,
   'example': createExample,
 };
