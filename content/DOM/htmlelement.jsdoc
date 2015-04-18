@@ -486,6 +486,9 @@ false
 Cancelable:
 false 
 
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseenter
+
 ----
 event.mouseleave : listener(event : MouseEvent) : undefined
 
@@ -496,6 +499,9 @@ false
 
 Cancelable:
 false 
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseleave
 
 ----
 event.mousemove : listener(event : MouseEvent) : undefined

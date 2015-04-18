@@ -1,0 +1,22 @@
+DragEvent : MouseEvent
+
+----
+new DragEvent( \
+  type : String,  \
+  [eventInit : { \
+     dataTransfer : DataTransfer \
+  }]) : MouseEvent
+
+Creates a new DragEvent of the specified **type** and initial properties.
+
+See %%/MouseEvent#new_MouseEvent_String_Object|new MouseEvent()%% for 
+other valid properties for **eventInit**.
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#dragevent
+
+----
+instance.dataTransfer : DataTransfer
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#dom-dragevent-datatransfer

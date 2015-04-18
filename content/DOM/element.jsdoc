@@ -474,6 +474,15 @@ Spec:
 http://dev.w3.org/csswg/cssom-view/#dom-element-getboundingclientrect
 
 ----
+prototype.requestFullscreen() : undefined
+
+<htmlexample>
+</htmlexample>
+
+Spec:
+https://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen
+
+----
 prototype.scrollIntoView([top = false : Boolean]) : undefined
 
 Scolls the element into view. 
@@ -494,3 +503,57 @@ Scolls the element into view.
 
 Spec:
 http://dev.w3.org/csswg/cssom-view/#dom-element-scrollintoview
+
+----
+event.touchstart : listener(event : TouchEvent) : undefined
+
+Called when the user begins touching the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchstart
+
+----
+event.touchend : listener(event : TouchEvent) : undefined
+
+Called when the user stops touching the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchend
+
+----
+event.touchmove : listener(event : TouchEvent) : undefined
+
+Called when the user moves while touching the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchmove
+
+----
+event.touchcancel : listener(event : TouchEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+false
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchcancel

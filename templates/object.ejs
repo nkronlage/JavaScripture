@@ -6,6 +6,9 @@
 <% } %>
 </h1>
 <div class='metadata'>
+<% if (obj.element) { %>
+<span><%= obj.element %></span>
+<% } %>
 <% if (obj.constructors && obj.constructors.length) { %>
 <span>constructor</span>
 <% } %>

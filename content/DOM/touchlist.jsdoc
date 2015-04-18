@@ -1,0 +1,26 @@
+TouchList : Object
+
+Spec:
+http://www.w3.org/TR/touch-events/#idl-def-TouchList
+
+----
+instance[index : Number] : Touch
+
+Returns the Touch at the specified **index**. You can also use the
+%%#item|**item()**%% method to retrieve the item. 
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+The number of Touches in the list.
+
+ReadOnly:
+true
+
+----
+prototype.item(index : Number) : Touch
+
+Same as %%#indexer_Number|**this[index]**%%.

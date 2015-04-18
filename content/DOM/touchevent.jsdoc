@@ -1,0 +1,47 @@
+TouchEvent : UIEvent
+
+Spec:
+http://www.w3.org/TR/touch-events/#idl-def-TouchEvent
+
+----
+instance.touches : TouchList
+
+ReadOnly:
+true
+
+----
+instance.targetTouches : TouchList
+
+ReadOnly:
+true
+
+----
+instance.changedTouches : TouchList
+
+ReadOnly:
+true
+
+----
+instance.altKey : Boolean
+
+ReadOnly:
+true
+
+----
+instance.metaKey : Boolean
+
+ReadOnly:
+true
+
+----
+instance.ctrlKey : Boolean
+
+ReadOnly:
+true
+
+----
+instance.shiftKey : Boolean
+
+ReadOnly:
+true
+

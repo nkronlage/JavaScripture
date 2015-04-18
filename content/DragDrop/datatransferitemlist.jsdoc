@@ -1,0 +1,30 @@
+DataTransferItemList : Object
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#the-datatransferitemlist-interface
+
+----
+instance[index : Number] : DataTransferItem
+
+Returns the DataTransferItem at the specified **index**. 
+
+----
+instance.length : Number
+
+The number of DataTransferItems in the list.
+
+ReadOnly:
+true
+
+----
+prototype.add(data : String, type : String) : DataTransferItem
+
+----
+prototype.add(data : File) : DataTransferItem
+
+----
+prototype.clear() : undefined
+
+----
+prototype.remove(index : Number) : undefined
+

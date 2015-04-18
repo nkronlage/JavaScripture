@@ -7,7 +7,51 @@ AlternateSpec:
 http://dev.w3.org/html5/spec/single-page.html#document
 
 ----
+instance.activeElement : Element
+
+Returns the currently focused element. If there is no focused element,
+returns %%#body|**this.body**%%.
+
+See also 
+%%/hasFocus|**hasFocus()**%%,
+%%/Window#onblur|**window.onblur**%%, and 
+%%/Window#onfocus|**window.onfocus**%%.
+
+<htmlexample>
+<!-- Try tabbing around the elements in the example -->
+<input value='input 1'><br>
+<button>button</button><br>
+<input value='input 3'>
+<div>
+  activeElement: <span id='activeElement'></span>
+</div>
+<script>
+  var activeElementOutput = document.getElementById('activeElement');
+
+  var onFocusChange = function() {
+    activeElementOutput.textContent = document.activeElement.tagName;
+  };
+
+  window.addEventListener('focus', onFocusChange, true);
+  window.addEventListener('blur', onFocusChange, true);
+</script>
+</htmlexample>
+
+
+----
 instance.body : HTMLBodyElement
+
+----
+instance.characterSet : String
+
+
+----
+instance.compatMode : String
+
+
+----
+instance.contentType : String
+
 
 ----
 instance.cookie : String
@@ -66,6 +110,67 @@ Spec:
 http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-8747038
 
 ----
+instance.doctype : DocumentType
+
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-B63ED1A31
+
+ReadOnly:
+true
+
+----
+instance.documentElement : Element
+
+Usually a %%/HTMLHtmlElement|**HTMLHtmlElement**%%.
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-87CD092
+
+ReadOnly:
+true
+
+
+----
+instance.documentURI : String
+
+<htmlexample>
+<script>
+  console.log(document.URL);
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-documentURI
+
+----
+instance.fullscreenEnabled : Boolean
+
+ReadOnly:
+true
+
+Spec:
+https://fullscreen.spec.whatwg.org/#dom-document-fullscreenenabled
+
+----
+instance.fullscreenElement : Element
+
+ReadOnly:
+true
+
+Spec:
+https://fullscreen.spec.whatwg.org/#dom-document-fullscreenelement
+
+----
+instance.implementation : DOMImplementation
+
+Spec:
+http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#dom-document-implementation
+
+ReadOnly:
+true
+
+----
 instance.title : String
 
 Sets the title of the window.
@@ -79,37 +184,6 @@ Sets the title of the window.
     var javascriptureWindow = window.parent;
     javascriptureWindow.document.title = 'foo';
   }
-</script>
-</htmlexample>
-
-----
-instance.activeElement : Element
-
-Returns the currently focused element. If there is no focused element,
-returns %%#body|**this.body**%%.
-
-See also 
-%%/hasFocus|**hasFocus()**%%,
-%%/Window#onblur|**window.onblur**%%, and 
-%%/Window#onfocus|**window.onfocus**%%.
-
-<htmlexample>
-<!-- Try tabbing around the elements in the example -->
-<input value='input 1'><br>
-<button>button</button><br>
-<input value='input 3'>
-<div>
-  activeElement: <span id='activeElement'></span>
-</div>
-<script>
-  var activeElementOutput = document.getElementById('activeElement');
-
-  var onFocusChange = function() {
-    activeElementOutput.textContent = document.activeElement.tagName;
-  };
-
-  window.addEventListener('focus', onFocusChange, true);
-  window.addEventListener('blur', onFocusChange, true);
 </script>
 </htmlexample>
 
@@ -138,64 +212,11 @@ and
 </htmlexample>
 
 ----
-instance.implementation : DOMImplementation
-
-Spec:
-http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#dom-document-implementation
-
-ReadOnly:
-true
-
-----
-instance.URL : String
-
-----
-instance.documentURI : String
-
-<htmlexample>
-<script>
-  console.log(document.URL);
-</script>
-</htmlexample>
-
-Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-documentURI
-
-----
 instance.styleSheets : StyleSheetList
 
 
 ----
-instance.compatMode : String
-
-----
-instance.characterSet : String
-
-
-----
-instance.contentType : String
-
-----
-instance.doctype : DocumentType
-
-
-Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-B63ED1A31
-
-ReadOnly:
-true
-
-----
-instance.documentElement : Element
-
-Usually a %%/HTMLHtmlElement|**HTMLHtmlElement**%%.
-
-Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-87CD092
-
-ReadOnly:
-true
-
+instance.URL : String
 
 ----
 prototype.append(node0 : Node, [node1 : Node, [...]]) : undefined
@@ -263,6 +284,12 @@ prototype.createProcessingInstruction(target : String, data : String) : Processi
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-135944439
+
+----
+prototype.exitFullscreen() : undefined
+
+Spec:
+https://fullscreen.spec.whatwg.org/#dom-document-exitfullscreen
 
 ----
 prototype.getElementsByTagName(tagName : String) : NodeList
@@ -520,9 +547,73 @@ Registers a new custom element type for the specified **tagName**.
 event.abort : listener(event : Event) : undefined
 
 ----
+event.fullscreenchange : listener(event : Event) : undefined
+
+Spec:
+https://fullscreen.spec.whatwg.org/#handler-document-onfullscreenchange
+
+----
+event.fullscreenerror : listener(event : Event) : undefined
+
+Spec:
+https://fullscreen.spec.whatwg.org/#handler-document-onfullscreenerror
+
+----
 event.load : listener(event : Event) : undefined
 
 ----
 event.readystatechange : listener(event : Event) : undefined
 
+----
+event.touchstart : listener(event : TouchEvent) : undefined
 
+Called when the user begins touching the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchstart
+
+----
+event.touchend : listener(event : TouchEvent) : undefined
+
+Called when the user stops touching the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchend
+
+----
+event.touchmove : listener(event : TouchEvent) : undefined
+
+Called when the user moves while touching the element.
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchmove
+
+----
+event.touchcancel : listener(event : TouchEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+false
+
+Spec:
+http://www.w3.org/TR/touch-events/#dfn-touchcancel

@@ -1,0 +1,48 @@
+Touch : Object
+
+Spec:
+http://www.w3.org/TR/touch-events/#idl-def-Touch
+
+----
+instance.identifier : Number
+
+ReadOnly:
+true
+
+----
+instance.target : EventTarget
+
+ReadOnly:
+true
+
+----
+instance.screenX : Number
+
+ReadOnly:
+true
+
+----
+instance.screenY : Number
+
+ReadOnly:
+true
+----
+instance.clientX : Number
+
+ReadOnly:
+true
+----
+instance.clientY : Number
+
+ReadOnly:
+true
+----
+instance.pageX : Number
+
+ReadOnly:
+true
+----
+instance.pageY : Number
+
+ReadOnly:
+true

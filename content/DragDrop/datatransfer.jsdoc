@@ -1,0 +1,54 @@
+DataTransfer : Object
+
+Available through the %%/DragEvent#dataTransfer|**DragEvent.dataTransfer**%%
+property.
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#the-datatransfer-interface
+
+----
+instance.dropEffect : String
+
+Must be one of
+**'none'**, 
+**'copy'**, 
+**'link'**, 
+or 
+**'move'**.
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#dom-datatransfer-dropeffect
+
+----
+instance.effectAllowed : String
+
+Must be one of
+**'none'**, 
+**'copy'**, 
+**'link'**, 
+**'move'**,
+**'copyLink'**,
+**'copyMove'**,
+**'linkMove'**,
+**'all'**,
+or
+**'uninitialized'**.
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#dom-datatransfer-effectallowed
+
+----
+instance.items : DataTransferItemList
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#dom-datatransfer-items
+
+----
+prototype.setDragImage(image : Element, x : Number, y : Number) : undefined
+
+Spec:
+https://html.spec.whatwg.org/multipage/interaction.html#dom-datatransfer-setdragimage
+
