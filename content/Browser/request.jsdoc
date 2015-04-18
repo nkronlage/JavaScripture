@@ -11,26 +11,37 @@ Spec:
 https://fetch.spec.whatwg.org/#request-class
 
 ----
-new Request(url : String, init : { \
-  method : String, \
-  headers : Object, \
-  body : Object, \
-  mode : String, \
-  credentials : String, \
-  cache : String, \
-}) : Request
+new Request(url : String, [init : { \
+  body : Object /* The data to send with the request.  Must be a %%/Blob|Blob%%, \
+                   BufferSource, %%/FormData|FormData%%, %%/String|String%%, or \
+                   %%/URLSearchParams|URLSearchParams%%. */, \
+  cache : String /* See the %%#cache|cache%% property for the valid values. */, \
+  credentials : String /* See the %%#credentials|credentials%% property for the valid values. */, \
+  headers : Object /* The http headers to send with the request. This will be passed \
+                      to the %%/Headers|Headers%% constructor. */, \
+  method : String /* The http method such as **'GET'**, **'POST'**, **'DELETE'**. */, \
+  mode : String /* See the %%#mode|mode%% property for the valid values. */ \
+}]) : Request
 
-
-**body** must be a
-%%/Blob|Blob%%,
-BufferSource,
-%%/FormData|FormData%%,
-%%/String|String%%,
-or
-%%/URLSearchParams|URLSearchParams%%.
+<htmlexample>
+<script>
+  var request = new Request('/');
+  fetch(request).then(function(response) {
+    return response.text();
+  }).then(function(text) {
+    console.log(text.substring(0, 30));
+  });
+</script>
+</htmlexample>
 
 ----
-new Request(request : Request, init : Object) : Request
+new Request(request : Request, [init : Object]) : Request
+
+----
+instance.bodyUsed : Boolean
+
+ReadOnly:
+true
 
 ----
 instance.cache : String
@@ -142,8 +153,6 @@ true
 ----
 prototype.clone() : Request
 
-----
-instance.bodyUsed : Boolean
 
 ----
 prototype.arrayBuffer() : Promise<ArrayBuffer>

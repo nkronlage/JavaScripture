@@ -1,5 +1,9 @@
 Response : Object
 
+Represents a response from a web request initiated by %%/Window#fetch|fetch()%%.
+fetch(), %%/Request|Request%% and Response are a new, low level replacement for 
+%%/XMLHttpRequest|XMLHttpRequest%%.
+
 Spec:
 https://fetch.spec.whatwg.org/#response-class
 
@@ -9,7 +13,6 @@ new Response([body : Object, [init : { \
   statusText = 'OK' : String, \
   headers : Object \
   }]]) : Response
-
 
 ----
 instance.headers : Headers
