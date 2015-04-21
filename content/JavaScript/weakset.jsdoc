@@ -102,7 +102,7 @@ console.log(x.has(value2));
 ----
 prototype.delete(value : Object) : Boolean
 
-Removes **value* from **this**.
+Removes **value** from **this**.
 Returns **true** if **value** was in **this** before deleting it.
 
 <example>
