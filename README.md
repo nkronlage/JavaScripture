@@ -29,8 +29,8 @@ you will issue a pull request to get the get your changes into the main
 repository that the website is built out of.
 
 Here are some helpful links to the GitHub documentation on using GitHub.
-* [https://help.github.com/articles/fork-a-repo](Fork a Repo)
-* [https://help.github.com/articles/using-pull-requests](Pull Requests)
+* [Fork a Repo](https://help.github.com/articles/fork-a-repo)
+* [Pull Requests](https://help.github.com/articles/using-pull-requests)
 
 ### Building the documentation
 
