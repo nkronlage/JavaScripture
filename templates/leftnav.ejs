@@ -43,9 +43,9 @@ var renderGroup = function(name, group, obj, headerOnly) {
     <div id='obscure'> </div>
     <div id='apisets'>
       <ul>
-        <% for (var setName in apiSets) { %>
+        <% Object.keys(apiSets).sort().forEach(function(setName) { %>
           <li><label><input id='inc<%= setName %>' type='checkbox'><%= setName %></label></li>
-        <% } %>
+        <% }); %>
       </ul>
     </div>
   </div>

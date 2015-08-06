@@ -8,7 +8,11 @@ var currentObj;
 
 var processFile = function(filename) {
   var contents = fs.readFileSync(filename, 'utf8');
+  return processFileContents(contents);
+};
 
+
+var processFileContents = function(contents) {
   var fragments = contents.split(/^----+$/m);
   var obj = processObject(fragments.shift());
   currentObj = obj;
@@ -586,6 +590,7 @@ var parseParamList = function(params) {
 
 
 exports.processFile = processFile;
+exports.processFileContents = processFileContents;
 
 
 

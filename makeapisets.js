@@ -1,24 +1,47 @@
 'use strict';
 
 var path = require('path');
-var fs = require('fs');
+var stream = require('stream');
+var util = require('util');
+var StringDecoder = require('string_decoder').StringDecoder;
+var File = require('vinyl');
+var jsdoc = require('./jsdocparser.js');
 
-var sets = {};
+var MakeApiSets = function() {
+  if (!(this instanceof MakeApiSets)) return new MakeApiSets();
+  stream.Transform.call(this, {
+    objectMode: true // needed for Vinyl
+  });
 
-for (var i = 2; i < process.argv.length; i++) {
-  var filename = process.argv[i];
+  this._sets = {};
+};
+util.inherits(MakeApiSets, stream.Transform);
 
-  var obj = JSON.parse(fs.readFileSync(filename, 'utf8'));
+MakeApiSets.prototype._transform = function(file, encoding, callback) {
+  var filename = file.path;
 
-  var set = sets[obj.setName];
+  var decoder = new StringDecoder('utf8');
+  var obj = JSON.parse(decoder.write(file.contents));
+
+  var set = this._sets[obj.setName];
   
   if (!set) {
-    set = sets[obj.setName] = [];
+    set = this._sets[obj.setName] = [];
   }
   delete obj.setName;
 
   set.push(obj);
-}
 
-var pretty = false;
-fs.writeFileSync('tmp/new_apisets.json', JSON.stringify(sets, null, pretty ? ' ' : undefined));
+  callback();
+};
+
+MakeApiSets.prototype._flush  = function(callback) {
+  var file = new File({
+    path: 'apisets.json',
+    contents: new Buffer(JSON.stringify(this._sets))
+  });
+  this.push(file);
+  callback();
+};
+
+module.exports = MakeApiSets;

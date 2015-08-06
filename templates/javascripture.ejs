@@ -6,7 +6,7 @@ var getAPI = function(sets) {
   var res = '[';
 
   var index = 0;
-  for (var setName in apiSets) {
+  Object.keys(apiSets).sort().forEach(function(setName) {
     if (index > 0) {
       res += ',\n';
     }
@@ -35,7 +35,7 @@ var getAPI = function(sets) {
 
     res += ']';
     index++;
-  }
+  });
   res += ']';
 
   return res;

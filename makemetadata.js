@@ -2,34 +2,51 @@
 
 var fs = require('fs');
 var path = require('path');
+var stream = require('stream');
+var util = require('util');
+var StringDecoder = require('string_decoder').StringDecoder;
 var jsdoc = require('./jsdocparser.js');
 
-var filename = process.argv[2];
-
-var obj = jsdoc.processFile(filename);
-obj.jsdocSourceFile = filename;
-
-var setName = path.basename(path.dirname(filename));
-
-
-var metadata = {
-  name: obj.name,
-  setName: setName
-};
-
-var addMembers = function(name) {
-  metadata[name] = obj[name].map(function(member) {
-    return { name: member.name, onname: member.onname };
+var MakeMetadata = function() {
+  if (!(this instanceof MakeMetadata)) return new MakeMetadata();
+  stream.Transform.call(this, {
+    objectMode: true // needed for Vinyl
   });
 };
+util.inherits(MakeMetadata, stream.Transform);
 
-addMembers('instanceProperties');
-addMembers('instanceMethods');
-addMembers('instanceEvents');
-addMembers('properties');
-addMembers('methods');
+MakeMetadata.prototype._transform = function(file, encoding, callback) {
+  var filename = file.path;
+  var decoder = new StringDecoder('utf8');
 
-var pretty = false;
-var json = JSON.stringify(metadata, null, pretty ? ' ' : undefined);
+  var obj = jsdoc.processFileContents(decoder.write(file.contents));
+  obj.jsdocSourceFile = filename;
 
-fs.writeFileSync('tmp/new_' + obj.name + '.json', json);
+  var setName = path.basename(path.dirname(filename));
+
+  var metadata = {
+    name: obj.name,
+    setName: setName
+  };
+
+  var addMembers = function(name) {
+    metadata[name] = obj[name].map(function(member) {
+      return { name: member.name, onname: member.onname };
+    });
+  };
+
+  addMembers('instanceProperties');
+  addMembers('instanceMethods');
+  addMembers('instanceEvents');
+  addMembers('properties');
+  addMembers('methods');
+
+  var pretty = false;
+  var json = JSON.stringify(metadata, null, pretty ? ' ' : undefined);
+
+  file.path = file.path.replace(path.extname(file.path), '.json');
+  file.contents = new Buffer(json);
+  callback(null, file);
+};
+
+module.exports = MakeMetadata;

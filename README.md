@@ -40,10 +40,12 @@ build the site's html files.
 Prerequisites for building
 * [Node](http://nodejs.org/download/)
 * [Sass](http://sass-lang.com/install)
+* [Gulp](http://gulpjs.com/)
+* Run: npm install
 
 To build the documentation, run:
 
-* make
+* gulp
 
 From the root folder. The generated files are in the site/ folder.
 
@@ -186,7 +188,5 @@ Here are some ideas for improvements:
 * Spelling, grammar, and other editorial issues
 * Add missing descriptions and examples
 * Add any missing types
-* Add support for different api versions (such as ECMAScript 5 vs 6)
 * Switch documentation format to Markdown
-* Switch to a better build system than make
 * Translate in other languages than English
