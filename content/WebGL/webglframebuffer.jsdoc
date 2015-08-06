@@ -9,10 +9,15 @@ The actual content of the surface is stored in a either a
 %%WebGLRenderingContext#createFramebuffer|**createFramebuffer()**%%.
 
 
-Use **WebGLTexture** if you need to use the intermediate surface in a
-subsequent drawing operation.  
+Use %%#framebufferTexture2D|**framebufferTexture2D()**%% to associate
+the framebuffer with a 
+**WebGLTexture** that can be used in
+subsequent drawing operations.
 
-Use **WebGLRenderingBuffer** if you do not
+Use 
+%%#framebufferRenderbuffer|**framebufferRenderbuffer()**%% to associate
+the framebuffer with a 
+**WebGLRenderingBuffer** if you do not
 need to draw the offscreen surface since the graphics 
 hardware can optimize the render buffer for that case.
 
