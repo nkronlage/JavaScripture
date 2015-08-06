@@ -2,16 +2,14 @@
 
 var fs = require('fs');
 var path = require('path');
-var jsdoc = require('./jsdocparser.js');
 var stream = require('stream');
 var util = require('util');
 var StringDecoder = require('string_decoder').StringDecoder;
-var fs = require('fs');
-var path = require('path');
-var jsdoc = require('./jsdocparser.js');
 var ejs = require('ejs');
-var template = require('./template.js');
 var File = require('vinyl');
+
+var template = require('./template.js');
+var jsdoc = require('./jsdocparser.js');
 
 var MakePage = function() {
   if (!(this instanceof MakePage)) return new MakePage();
