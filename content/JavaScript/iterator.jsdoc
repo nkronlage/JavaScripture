@@ -8,8 +8,8 @@ over the values in an iterator.
 Calling an ECMAScript 6 generator function (**function*() {}**) return
 an Iterator.  
 
-You may create your own iterable object by assigning the
-%%Symbol#iterator|**Symbol.iterator**%% property to an 
+You may create your own %%/Iterable|Iterable%% object by assigning the
+%%/Symbol#iterator|**Symbol.iterator**%% property to an 
 object with a **next()** method.
 
 Version:

@@ -8,3 +8,21 @@ You can loop over all values in an iterable object by using a
 **for (var value of iterable) { }** loop.
 
 See %%/Iterator|Iterator%% for more details.
+
+<example>
+// Arrays are a built in Iterable object
+var arr = ['a', 'b', 'c'];
+
+// Use for (... of ...) loop to get the values of an iterable
+for (var x of arr) {
+  console.log(x);
+} 
+
+// Under the covers, for (... of ...) does the following: 
+var iterator = arr[Symbol.iterator]();
+var current = iterator.next();
+while (!current.done) {
+  console.log(current.value);
+  current = iterator.next();
+}
+</example>
