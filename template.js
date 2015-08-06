@@ -91,9 +91,11 @@ var render = function(filename, locals) {
   locals.getPageDescription = getPageDescription;
   locals.getAnchorName = getAnchorName;
   locals.getVersionClass = getVersionClass;
+  locals.filename = __dirname + '/templates/' + filename;
 
-  var result = ejs.render(template, { locals: locals, 
-                                      filename: __dirname + '/templates/' + filename});
+  locals.locals = locals; // compat for old version of ejs
+
+  var result = ejs.render(template, locals);
 
   if (filename === 'object') {
     currentObj = undefined;
