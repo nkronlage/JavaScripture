@@ -23,16 +23,14 @@ new Request(url : String, [init : { \
   mode : String /* See the %%#mode|mode%% property for the valid values. */ \
 }]) : Request
 
-<htmlexample>
-<script>
-  var request = new Request('/');
-  fetch(request).then(function(response) {
-    return response.text();
-  }).then(function(text) {
-    console.log(text.substring(0, 30));
-  });
-</script>
-</htmlexample>
+<example>
+var request = new Request('/');
+fetch(request).then(function(response) {
+  return response.text();
+}).then(function(text) {
+  console.log(text.substring(0, 30));
+});
+</example>
 
 ----
 new Request(request : Request, [init : Object]) : Request
@@ -148,24 +146,84 @@ instance.url : String
 ReadOnly:
 true
 
-
-
 ----
 prototype.clone() : Request
-
 
 ----
 prototype.arrayBuffer() : Promise<ArrayBuffer>
 
+Returns a Promise to the body of the request as an ArrayBuffer.
+
+<example>
+var request = new Request('/', {
+  method: 'POST',
+  body: 'text to send to server' 
+});
+
+request.arrayBuffer().then(function(arrayBuffer) {
+  var uint8Array = new Uint8Array(arrayBuffer);
+  for (var i = 0; i < uint8Array.length; i++) {
+    console.log(String.fromCharCode(uint8Array[i]));
+  }
+});
+</example>
+
 ----
 prototype.blob() : Promise<Blob>
 
+Returns a Promise to the body of the request as a Blob.
+
+<example>
+var request = new Request('/', {
+  method: 'POST',
+  body: 'text to send to server' 
+});
+
+request.blob().then(function(blob) {
+  var reader = new FileReader();
+
+  reader.onload = function() {
+    console.log(reader.result);
+  };
+
+  reader.readAsText(blob);
+});
+</example>
+
 ----
-prototype.formData() : Promise<formData>
+prototype.formData() : Promise<FormData>
+
+Returns a Promise to the body of the request as a FormData.
 
 ----
 prototype.json() : Promise<Object>
 
+Parses the body of the request and returns a Promise with the result.
+
+<example>
+var request = new Request('/', {
+  method: 'POST',
+  body: '{ "foo": "1", "bar": 2 }' 
+});
+
+request.json().then(function(json) { 
+  console.log(json.foo);
+  console.log(json.bar);
+});
+</example>
+
 ----
 prototype.text() : Promise<String>
 
+Returns a Promise to the body of the request.
+
+<example>
+var request = new Request('/', {
+  method: 'POST',
+  body: 'text to send to server' 
+});
+
+request.text().then(function(text) { 
+  console.log(text);
+});
+</example>
