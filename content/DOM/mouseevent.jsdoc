@@ -296,6 +296,8 @@ The bitwise combinations of mouse buttons pressed.
 **1** is the primary (left) button.
 **2** is the secondary (right) button.
 **4** is the middle button.
+**8** is the back mouse button.
+**16** is the forward mouse button.
 
 Will be **0** when no buttons are pressed.  
 
