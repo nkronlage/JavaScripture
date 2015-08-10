@@ -211,10 +211,10 @@ See also %%#detachShader|**detachShader()**%%.
 <htmlexample>
 <canvas id='canvas' width='100' height='100'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
   }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
@@ -249,14 +249,14 @@ See also %%#detachShader|**detachShader()**%%.
   var triangleBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
   var vertices = [
-    -0.5,  -0.5,  0.0,
-     0.5,  -0.5,  0.0,
-     0.0,   0.5,  0.0 ];
+    -0.5,  -0.5,
+     0.5,  -0.5,
+     0.0,   0.5];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
   var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
-  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPositionLocation);
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
 </script>
@@ -296,10 +296,10 @@ and
      fixed location (in this case 7) -->
 <canvas id='canvas' width='100' height='100'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
   }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
@@ -344,13 +344,13 @@ and
   var triangleBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
   var vertices = [
-    -0.5,  -0.5,  0.0,
-     0.5,  -0.5,  0.0,
-     0.0,   0.5,  0.0 ];
+    -0.5,  -0.5,
+     0.5,  -0.5,
+     0.0,   0.5];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
-  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPositionLocation);
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
 </script>
@@ -412,7 +412,7 @@ Sets the specified **target** and **texture** (created with
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
+and %%#bindTexture|**bindTexture()**%%). 
 
 **target** must be one of
 %%#TEXTURE_2D|**TEXTURE_2D**%% or 
@@ -630,6 +630,7 @@ void bufferSubData(GLenum target, GLintptr offset, ArrayBuffer data);
 ----
 prototype.checkFramebufferStatus(target : Number) : Number
 
+
 Returns one of the following to indicate the current status of the framebuffer:
 
 %%#FRAMEBUFFER_COMPLETE|**FRAMEBUFFER_COMPLETE**%%,
@@ -638,6 +639,8 @@ Returns one of the following to indicate the current status of the framebuffer:
 %%#FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT|**FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT**%%,
 or
 %%#FRAMEBUFFER_UNSUPPORTED|**FRAMEBUFFER_UNSUPPORTED**%%.
+
+**target** must be set to %%#FRAMEBUFFER|**gl.FRAMEBUFFER**%%.
 
 
 Spec:
@@ -781,8 +784,7 @@ Copies pixels from the framebuffer to
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
-
+and %%#bindTexture|**bindTexture()**%%). 
 
 <html>
 <dl>
@@ -838,7 +840,7 @@ Copies pixels from the framebuffer to a subregion of
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
+and %%#bindTexture|**bindTexture()**%%). 
 
 <html>
 <dl>
@@ -903,10 +905,10 @@ and
 <htmlexample>
 <canvas id='canvas' width='100' height='100'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
   }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
@@ -941,14 +943,14 @@ and
   var triangleBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
   var vertices = [
-    -0.5,  -0.5,  0.0,
-     0.5,  -0.5,  0.0,
-     0.0,   0.5,  0.0 ];
+    -0.5,  -0.5,
+     0.5,  -0.5,
+     0.0,   0.5];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
   var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
-  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPositionLocation);
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
 </script>
@@ -961,7 +963,10 @@ WebGLBuffer createBuffer();
 ----
 prototype.createFramebuffer() : WebGLFramebuffer
 
-Creates a framebuffer that can be used for offscreen rendering.
+Creates a framebuffer that can be used for offscreen rendering. 
+The actual content of the surface is stored in a either a
+%%WebGLRenderbuffer|**WebGLRenderbuffer**%% or
+%%WebGLTexture|**WebGLTexture**%%.  
 
 See also
 %%#bindFramebuffer|**bindFramebuffer()**%%,
@@ -980,12 +985,12 @@ and
      framebuffer texture to the canvas. -->
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -1043,8 +1048,8 @@ and
     var renderingToFramebufferLocation = gl.getUniformLocation(program, 'renderingToFramebuffer');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -1066,7 +1071,6 @@ and
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       return texture;
     };
-
 
     // Make a texture to store img and track it in gl's TEXTURE0 unit
     var imgTexture = createAndInitTexture(gl, gl.TEXTURE0);
@@ -1161,12 +1165,12 @@ See also
      and copies it to a 2D canvas. -->
 <canvas id='output' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -1216,8 +1220,8 @@ See also
     var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -1233,11 +1237,11 @@ See also
     var imgTexture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
     gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
 
@@ -1314,12 +1318,12 @@ and
 <!-- This example draws an image to the canvas -->
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -1368,8 +1372,8 @@ and
     var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -1647,10 +1651,10 @@ See also %%#drawElements|**drawElements()**%%.
 <htmlexample>
 <canvas id='canvas' width='100' height='100'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
   }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
@@ -1685,14 +1689,14 @@ See also %%#drawElements|**drawElements()**%%.
   var triangleBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
   var vertices = [
-    -0.5,  -0.5,  0.0,
-     0.5,  -0.5,  0.0,
-     0.0,   0.5,  0.0 ];
+    -0.5,  -0.5,
+     0.5,  -0.5,
+     0.0,   0.5];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
   var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
-  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPositionLocation);
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
 </script>
@@ -1763,10 +1767,10 @@ See also %%#drawArrays|**drawArrays()**%%.
 <htmlexample>
 <canvas id='canvas' width='100' height='100'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
   }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
@@ -1798,13 +1802,13 @@ See also %%#drawArrays|**drawArrays()**%%.
   gl.useProgram(program);
 
   // Create a buffer with 4 points to form a square
-  var triangleBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var squareBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
   var vertices = [
-    -0.5,  -0.5,  0.0,
-     0.5,  -0.5,  0.0,
-    -0.5,   0.5,  0.0, 
-     0.5,   0.5,  0.0];
+    -0.5,  -0.5,
+     0.5,  -0.5,
+    -0.5,   0.5, 
+     0.5,   0.5];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   var indicesBuffer = gl.createBuffer();
@@ -1817,7 +1821,7 @@ See also %%#drawArrays|**drawArrays()**%%.
 
   // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
   var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
-  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPositionLocation);
   gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
 </script>
@@ -1996,12 +2000,12 @@ the buffer to store the rendered output.
      and copies it to a 2D canvas. -->
 <canvas id='output' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -2051,8 +2055,8 @@ the buffer to store the rendered output.
     var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -2068,11 +2072,11 @@ the buffer to store the rendered output.
     var imgTexture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, imgTexture);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
     gl.uniform1i(samplerLocation, 0);  // bind fragment shader's 'sampler' to TEXTURE0
 
@@ -2191,7 +2195,7 @@ Generate the mipmap for
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
+and %%#bindTexture|**bindTexture()**%%). 
 
 A mipmap is a set of textures that are 1/2, 1/4, 1/8,
 etc of the original image.  The mipmap allows higher
@@ -2220,6 +2224,88 @@ be %%#linkProgram|linked%% before calling **getActiveAttrib()**.
 **index** must be between **0** and 
 **%%#getProgramParameter|gl.getProgramParameter%%(program, %%#ACTIVE_ATTRIBUTES|ACTIVE_ATTRIBUTES%%) - 1**.
 
+<htmlexample>
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec2 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+  uniform bool renderingToFramebuffer;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    if (renderingToFramebuffer) {
+      float bw = (textureColor.r + textureColor.g + textureColor.b) / 3.0;
+      gl_FragColor = vec4(bw, bw, bw, 1);
+    }
+    else {
+      gl_FragColor = texture2D(sampler, textureCoord);
+    }
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    var attributesCount = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
+
+    console.log('Attributes: ' + attributesCount);
+    for (var i = 0; i < attributesCount; i++) {
+
+      var attributeInfo = gl.getActiveAttrib(program, i);
+      console.dir(attributeInfo);
+    }
+
+    var uniformsCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+
+    console.log('Uniforms: ' + uniformsCount);
+    for (var i = 0; i < uniformsCount; i++) {
+
+      var uniformInfo = gl.getActiveUniform(program, i);
+      console.dir(uniformInfo);
+    }
+  };
+</script>
+</htmlexample>
+
+
 Spec:
 http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveAttrib.xml
 
@@ -2233,6 +2319,87 @@ Returns information about a uniform in **program**. **program** must
 be %%#linkProgram|linked%% before calling **getActiveUniform()**.
 **index** must be between **0** and 
 **%%#getProgramParameter|gl.getProgramParameter%%(program, %%#ACTIVE_UNIFORMS|ACTIVE_UNIFORMS%%) - 1**.
+
+<htmlexample>
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec2 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+  uniform bool renderingToFramebuffer;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    if (renderingToFramebuffer) {
+      float bw = (textureColor.r + textureColor.g + textureColor.b) / 3.0;
+      gl_FragColor = vec4(bw, bw, bw, 1);
+    }
+    else {
+      gl_FragColor = texture2D(sampler, textureCoord);
+    }
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    var attributesCount = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
+
+    console.log('Attributes: ' + attributesCount);
+    for (var i = 0; i < attributesCount; i++) {
+
+      var attributeInfo = gl.getActiveAttrib(program, i);
+      console.dir(attributeInfo);
+    }
+
+    var uniformsCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+
+    console.log('Uniforms: ' + uniformsCount);
+    for (var i = 0; i < uniformsCount; i++) {
+
+      var uniformInfo = gl.getActiveUniform(program, i);
+      console.dir(uniformInfo);
+    }
+  };
+</script>
+</htmlexample>
 
 Spec:
 http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetActiveUniform.xml
@@ -2623,8 +2790,7 @@ Returns the value of the specified **parameter** for the
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
-
+and %%#bindTexture|**bindTexture()**%%). 
 
 Use 
 
@@ -2669,12 +2835,12 @@ Retrieves the value stored in **location** by a **uniform*()** call.
 <!-- This example draws an image to the canvas -->
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -2723,8 +2889,8 @@ Retrieves the value stored in **location** by a **uniform*()** call.
     var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -3340,8 +3506,7 @@ Specifies the size and data of
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
-
+and %%#bindTexture|**bindTexture()**%%). 
 
 <html>
 <dl>
@@ -3406,15 +3571,15 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
 
 <htmlexample>
 <!-- This example creates a texture from randomly generated 
-     RGBA data stored in a Uint8Array -->
+     RGBA data stored in a typed array (Uint8Array) -->
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -3460,8 +3625,8 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
     var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -3512,7 +3677,7 @@ Specifies the data for
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
+and %%#bindTexture|**bindTexture()**%%). 
 
 
 <html>
@@ -3571,16 +3736,15 @@ You can also use %%#copyTexSubImage2D|**copyTexSubImage2D**%%
 or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
 
 <htmlexample>
-<!-- This example creates a texture from randomly generated 
-     RGBA data stored in an ImageData -->
+<!-- This example creates a texture from circle drawn to a 2d canvas -->
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -3626,8 +3790,8 @@ or %%#texSubImage2D|**texSubImage2D**%% to initialize the texture.
   var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
   // Create a buffer with 4 points to form a square
-  var triangleBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  var squareBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
   var vertices = new Float32Array([
      -1, -1,   // bottom left
       1, -1,   // bottom right
@@ -3684,12 +3848,12 @@ prototype.texImage2D(target : Number, level : Number, internalformat : Number, f
 <!-- This example draws an image to the canvas -->
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   varying vec2 textureCoord; 
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 0.0);
 
     // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
     textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
@@ -3738,8 +3902,8 @@ prototype.texImage2D(target : Number, level : Number, internalformat : Number, f
     var samplerLocation = gl.getUniformLocation(program, 'sampler');
 
     // Create a buffer with 4 points to form a square
-    var triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    var squareBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
     var vertices = new Float32Array([
        -1, -1,   // bottom left
         1, -1,   // bottom right
@@ -3814,8 +3978,7 @@ Sets the value of the specified **parameter** for
 
 the bound texture in the active texture unit
 (set through %%#activeTexture|**activeTexture()**%%
-and %%#bindTexture|**bindTexture**%%). 
-
+and %%#bindTexture|**bindTexture()**%%). 
 
 Use 
 %%#getTexParameter|**getTexParameter()**%% to get texture parameters.
@@ -4980,10 +5143,10 @@ DITHER : Number
 <htmlexample>
 <canvas id='canvas' width='200' height='200'></canvas>
 <script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec3 vertexPosition;
+  attribute vec2 vertexPosition;
 
   void main() {
-    gl_Position = vec4(vertexPosition, 1.0);
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
   }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
@@ -5018,19 +5181,19 @@ DITHER : Number
   gl.linkProgram(program);
   gl.useProgram(program);
 
-  // Create a buffer with 3 points to form a triangle
-  var triangleBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  // Create a buffer with 4 points to form a square
+  var squareBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
   var vertices = [
-    -1, -1, 0,
-     1, -1, 0,
-    -1,  1, 0,
-     1,  1, 0 ];
+    -1, -1,
+     1, -1,
+    -1,  1,
+     1,  1 ];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   // Bind the triangles to the vertex shader's 'vertexPosition' attribute and draw it
   var vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
-  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(vertexPositionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPositionLocation);
 
   gl.disable(gl.DITHER);
@@ -6085,6 +6248,9 @@ The maximum number of varying vectors a program may define.
 IDL:
 const GLenum MAX_VARYING_VECTORS              = 0x8DFC;
 
+Value:
+0x8DFC
+
 
 ReadOnly:
 true
@@ -6114,6 +6280,8 @@ See
 IDL:
 const GLenum MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
 
+Value:
+0x8B4D
 
 
 ReadOnly:
@@ -6136,6 +6304,9 @@ MAX_VERTEX_TEXTURE_IMAGE_UNITS : Number
 
 IDL:
 const GLenum MAX_VERTEX_TEXTURE_IMAGE_UNITS   = 0x8B4C;
+
+Value:
+0x8B4C
 
 ReadOnly:
 true
@@ -6165,6 +6336,8 @@ const GLenum MAX_TEXTURE_IMAGE_UNITS          = 0x8872;
 ReadOnly:
 true
 
+Value:
+0x8872
 
 ----
 MAX_FRAGMENT_UNIFORM_VECTORS : Number
@@ -6184,6 +6357,9 @@ MAX_FRAGMENT_UNIFORM_VECTORS : Number
 IDL:
 const GLenum MAX_FRAGMENT_UNIFORM_VECTORS     = 0x8DFD;
 
+Value:
+0x8DFD
+
 ReadOnly:
 true
 
@@ -6192,6 +6368,9 @@ SHADER_TYPE : Number
 
 IDL:
 const GLenum SHADER_TYPE                      = 0x8B4F;
+
+Value:
+0x8B4F
 
 ReadOnly:
 true
@@ -6202,6 +6381,9 @@ DELETE_STATUS : Number
 IDL:
 const GLenum DELETE_STATUS                    = 0x8B80;
 
+Value:
+0x8B80
+
 ReadOnly:
 true
 
@@ -6210,6 +6392,9 @@ LINK_STATUS : Number
 
 IDL:
 const GLenum LINK_STATUS                      = 0x8B82;
+
+Value:
+0x8B82
 
 ReadOnly:
 true
@@ -6220,6 +6405,9 @@ VALIDATE_STATUS : Number
 IDL:
 const GLenum VALIDATE_STATUS                  = 0x8B83;
 
+Value:
+0x8B83
+
 ReadOnly:
 true
 
@@ -6229,11 +6417,98 @@ ATTACHED_SHADERS : Number
 IDL:
 const GLenum ATTACHED_SHADERS                 = 0x8B85;
 
+Value:
+0x8B85
+
 ReadOnly:
 true
 
 ----
 ACTIVE_UNIFORMS : Number
+
+Use %%#getProgramParameter|**gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)**%%
+to get the number of uniforms in the specified program.
+
+<htmlexample>
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec2 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+  uniform bool renderingToFramebuffer;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    if (renderingToFramebuffer) {
+      float bw = (textureColor.r + textureColor.g + textureColor.b) / 3.0;
+      gl_FragColor = vec4(bw, bw, bw, 1);
+    }
+    else {
+      gl_FragColor = texture2D(sampler, textureCoord);
+    }
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    var attributesCount = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
+
+    console.log('Attributes: ' + attributesCount);
+    for (var i = 0; i < attributesCount; i++) {
+
+      var attributeInfo = gl.getActiveAttrib(program, i);
+      console.dir(attributeInfo);
+    }
+
+    var uniformsCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+
+    console.log('Uniforms: ' + uniformsCount);
+    for (var i = 0; i < uniformsCount; i++) {
+
+      var uniformInfo = gl.getActiveUniform(program, i);
+      console.dir(uniformInfo);
+    }
+  };
+</script>
+</htmlexample>
 
 IDL:
 const GLenum ACTIVE_UNIFORMS                  = 0x8B86;
@@ -6252,6 +6527,90 @@ true
 
 ----
 ACTIVE_ATTRIBUTES : Number
+
+Use %%#getProgramParameter|**gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES)**%%
+to get the number of attributes in the specified program.
+
+<htmlexample>
+<canvas id='canvas' width='200' height='200'></canvas>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec2 vertexPosition;
+
+  varying vec2 textureCoord; 
+
+  void main() {
+    gl_Position = vec4(vertexPosition, 0.0, 1.0);
+
+    // gl_Position is [-1,-1] to [1,1], translate to [0,0] to [1,1] for texture
+    textureCoord = vec2(vertexPosition.x / 2.0 + 0.5, vertexPosition.y / 2.0 + 0.5);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  uniform sampler2D sampler;
+  uniform bool renderingToFramebuffer;
+
+  varying vec2 textureCoord;
+ 
+  void main() {
+    vec4 textureColor = texture2D(sampler, textureCoord);
+    if (renderingToFramebuffer) {
+      float bw = (textureColor.r + textureColor.g + textureColor.b) / 3.0;
+      gl_FragColor = vec4(bw, bw, bw, 1);
+    }
+    else {
+      gl_FragColor = texture2D(sampler, textureCoord);
+    }
+  }
+</script>
+<script src='/webgl-debug.js'></script>
+<script>
+  var img = new Image();
+  img.src = 'pic.jpg';
+  img.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var gl = canvas.getContext('webgl');
+    gl = WebGLDebugUtils.makeDebugContext(gl); // Remove this in production code
+
+    // Create the shader program
+    var program = gl.createProgram();
+  
+    // Create the vertex shader
+    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, document.getElementById('vertexShader').textContent);
+    gl.compileShader(vertexShader);
+    gl.attachShader(program, vertexShader);
+
+    // Create fragment shader
+    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, document.getElementById('fragmentShader').textContent);
+    gl.compileShader(fragmentShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    var attributesCount = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
+
+    console.log('Attributes: ' + attributesCount);
+    for (var i = 0; i < attributesCount; i++) {
+
+      var attributeInfo = gl.getActiveAttrib(program, i);
+      console.dir(attributeInfo);
+    }
+
+    var uniformsCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+
+    console.log('Uniforms: ' + uniformsCount);
+    for (var i = 0; i < uniformsCount; i++) {
+
+      var uniformInfo = gl.getActiveUniform(program, i);
+      console.dir(uniformInfo);
+    }
+  };
+</script>
+</htmlexample>
 
 IDL:
 const GLenum ACTIVE_ATTRIBUTES                = 0x8B89;
