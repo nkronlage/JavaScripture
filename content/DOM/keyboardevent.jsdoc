@@ -1,45 +1,19 @@
 KeyboardEvent : UIEvent
 
-
 ----
-instance.keyCode : Number
+instance.altKey : Boolean
+
+Returns **true** if the keyboard's alt (Option on Mac) key is pressed.
 
 <htmlexample>
 <input id='input'>
-<div>keyCode: <span id='keyCodeOutput'></span></div>
-<div>which: <span id='whichOutput'></span></div>
+<div>altKey: <span id='output'>false</span></div>
 <script>
   var input = document.getElementById('input');
-  var keyCodeOutput = document.getElementById('keyCodeOutput');
-  var whichOutput = document.getElementById('whichOutput');
+  var output = document.getElementById('output');
 
-  input.onkeydown = function(event) {
-    keyCodeOutput.textContent = event.keyCode;
-    whichOutput.textContent = event.which;
-    event.preventDefault();
-  };
-</script>
-</htmlexample>
-
-ReadOnly:
-true
-
-----
-instance.which : Number
-
-<htmlexample>
-<input id='input'>
-<div>keyCode: <span id='keyCodeOutput'></span></div>
-<div>which: <span id='whichOutput'></span></div>
-<script>
-  var input = document.getElementById('input');
-  var keyCodeOutput = document.getElementById('keyCodeOutput');
-  var whichOutput = document.getElementById('whichOutput');
-
-  input.onkeydown = function(event) {
-    keyCodeOutput.textContent = event.keyCode;
-    whichOutput.textContent = event.which;
-    event.preventDefault();
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.altKey;
   };
 </script>
 </htmlexample>
@@ -94,20 +68,23 @@ Returns **true** if the keyboard's control key is pressed.
 ReadOnly:
 true
 
-----
-instance.shiftKey : Boolean
 
-Returns **true** if the keyboard's shift key is pressed.
+----
+instance.keyCode : Number
 
 <htmlexample>
 <input id='input'>
-<div>shiftKey: <span id='output'>false</span></div>
+<div>keyCode: <span id='keyCodeOutput'></span></div>
+<div>which: <span id='whichOutput'></span></div>
 <script>
   var input = document.getElementById('input');
-  var output = document.getElementById('output');
+  var keyCodeOutput = document.getElementById('keyCodeOutput');
+  var whichOutput = document.getElementById('whichOutput');
 
-  input.onkeydown = input.onkeyup = function(event) {
-    output.textContent = event.shiftKey;
+  input.onkeydown = function(event) {
+    keyCodeOutput.textContent = event.keyCode;
+    whichOutput.textContent = event.which;
+    event.preventDefault();
   };
 </script>
 </htmlexample>
@@ -115,20 +92,31 @@ Returns **true** if the keyboard's shift key is pressed.
 ReadOnly:
 true
 
-----
-instance.altKey : Boolean
 
-Returns **true** if the keyboard's alt (Option on Mac) key is pressed.
+----
+instance.location : Number
+
+One of %%#DOM_KEY_LOCATION_STANDARD|**DOM_KEY_LOCATION_STANDARD**%%,
+%%#DOM_KEY_LOCATION_LEFT|**DOM_KEY_LOCATION_LEFT**%%,
+%%#DOM_KEY_LOCATION_RIGHT|**DOM_KEY_LOCATION_RIGHT**%%,
+%%#DOM_KEY_LOCATION_NUMPAD|**DOM_KEY_LOCATION_NUMPAD**%%.
 
 <htmlexample>
 <input id='input'>
-<div>altKey: <span id='output'>false</span></div>
+<div>location: <span id='output'></span></div>
 <script>
   var input = document.getElementById('input');
   var output = document.getElementById('output');
 
+  var locationNames = {};
+  Object.keys(KeyboardEvent).filter(function(name) { 
+    return name.indexOf('DOM_KEY_LOCATION_') === 0;
+  }).forEach(function(name) {
+    locationNames[KeyboardEvent[name]] = name;
+  });
+
   input.onkeydown = input.onkeyup = function(event) {
-    output.textContent = event.altKey;
+    output.textContent = locationNames[event.location];
   };
 </script>
 </htmlexample>
@@ -154,6 +142,110 @@ key is pressed.
   };
 </script>
 </htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.repeat : Boolean
+
+Returns **true** if the key event was generate by the user holding the key down.
+
+<htmlexample>
+<input id='input'>
+<div>repeat: <span id='output'>false</span></div>
+<script>
+  var input = document.getElementById('input');
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.repeat;
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.shiftKey : Boolean
+
+Returns **true** if the keyboard's shift key is pressed.
+
+<htmlexample>
+<input id='input'>
+<div>shiftKey: <span id='output'>false</span></div>
+<script>
+  var input = document.getElementById('input');
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+    output.textContent = event.shiftKey;
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+----
+instance.which : Number
+
+<htmlexample>
+<input id='input'>
+<div>keyCode: <span id='keyCodeOutput'></span></div>
+<div>which: <span id='whichOutput'></span></div>
+<script>
+  var input = document.getElementById('input');
+  var keyCodeOutput = document.getElementById('keyCodeOutput');
+  var whichOutput = document.getElementById('whichOutput');
+
+  input.onkeydown = function(event) {
+    keyCodeOutput.textContent = event.keyCode;
+    whichOutput.textContent = event.which;
+    event.preventDefault();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+
+
+----
+DOM_KEY_LOCATION_STANDARD : Number
+
+Value:
+0
+
+ReadOnly:
+true
+
+----
+DOM_KEY_LOCATION_LEFT : Number
+
+Value:
+1
+
+ReadOnly:
+true
+
+----
+DOM_KEY_LOCATION_RIGHT : Number
+
+Value:
+2
+
+ReadOnly:
+true
+
+----
+DOM_KEY_LOCATION_NUMPAD : Number
+
+Value:
+3
 
 ReadOnly:
 true
