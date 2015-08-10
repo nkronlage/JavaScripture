@@ -43,30 +43,11 @@ var renderGroup = function(name, group, obj, headerOnly) {
     <div id='obscure'> </div>
     <div id='apisets'>
       <ul>
-        <% Object.keys(apiSets).sort().forEach(function(setName) { %>
-          <li><label><input id='inc<%= setName %>' type='checkbox'><%= setName %></label></li>
-        <% }); %>
       </ul>
     </div>
   </div>
 
   <div class='toc'>
-  <% var types = [];
-     var thisSet;
-     var thisSetName;
-     for (var setName in apiSets) {
-       var set = apiSets[setName];
-       for (var i = 0; i < set.length; i++) {
-         if (obj && set[i].name === obj.name) {
-           thisSet = set;
-           thisSetName = setName;
-         }
-         types.push({ set: setName, name: set[i].name });
-       }
-     }
-     types.sort(function(x, y) { return x.name.localeCompare(y.name); });
-  %>
-
   <% if (obj) { %>
     <h2><%= obj.name %></h2>
     <div class='navgroup'>
@@ -83,18 +64,12 @@ var renderGroup = function(name, group, obj, headerOnly) {
     </div>
 
     <h2><%= obj.apiSet.name %> API</h2>
-    <div class='navgroup'>
-      <% thisSet.forEach(function(type) { %> 
-          <a href='/<%= type.name %>' class='<%= thisSetName %>'<%- (type.name.length > 15) ? ' title="' + type.name + '"' : '' %>><%= type.name %></a>
-      <% }); %>
+    <div id='related-apis' class='navgroup'>
     </div>
   <% } %>
 
   <h2>All API</h2>
   <div id='rootObjs' class='navgroup'>
-    <% types.forEach(function(type) { %>
-      <a href='/<%= type.name %>' class='<%= type.set %>'<%- (type.name.length > 15) ? ' title="' + type.name + '"' : '' %>><%= type.name %></a>
-    <% }); %>
     <span class='empty'>No API set selected.</span>
   </div>
   </div>

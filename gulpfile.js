@@ -1,10 +1,12 @@
 'use strict';
 
 var gulp = require('gulp');
+var changed = require('gulp-changed');
 var filter = require('gulp-filter');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var del = require('del');
+var path = require('path');
 
 var jsdocmetadata = require('./makemetadata.js');
 var apisets = require('./makeapisets.js');
@@ -23,6 +25,7 @@ gulp.task('default', ['scss',
  
 gulp.task('scss', function() {
   return gulp.src('styles.scss')
+    .pipe(changed(site, { extension: '.css' }))
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(site));
 });
@@ -31,19 +34,21 @@ gulp.task('metadata', function() {
   var dest = tmp + '/metadata';
   return gulp.src('./content/**/*.jsdoc')
     .pipe(jsdocmetadata())
-    .pipe(rename({ dirname: ''} ))
+    .pipe(changed(dest, { extension: '.json', hasChanged: changed.compareSha1Digest }))
     .pipe(gulp.dest(dest));
 });
 
 gulp.task('apisets', ['metadata'], function() {
-  return gulp.src(tmp + '/metadata/*.json')
+  return gulp.src(tmp + '/metadata/**/*.json')
     .pipe(apisets())
     .pipe(gulp.dest(tmp));
 });
 
 gulp.task('content-html', ['apisets'], function() {
-  return gulp.src(['./content/**/*.jsdoc', tmp + '/apisets.json', './templates/*.ejs'])
+  return gulp.src(['./content/**/*.jsdoc', './templates/*.ejs'])
     .pipe(filter('**/*.jsdoc'))
+    .pipe(rename({ dirname: '' }))
+    .pipe(changed(site, { extension: '.html' }))
     .pipe(makepage())
     .pipe(gulp.dest(site));
 });

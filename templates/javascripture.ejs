@@ -45,12 +45,45 @@ var getAPI = function(sets) {
 
 var apiSets = <%- getAPI(apiSets) %>;
 
+var apichooserList = document.querySelector('#apisets > ul');
+var related = document.getElementById('related-apis'); 
+
 var styleSheet = document.styleSheets[0];
+var rootObjs = [];
 for (var i = 0; i < apiSets.length; i++) {
-  var set = apiSets[i][0];
-  styleSheet.insertRule('#rootObjs > .' + set + ' { display: none; }', styleSheet.cssRules.length);
-  styleSheet.insertRule('#rootObjs.' + set + ' > .' + set + ' { display: block; }', styleSheet.cssRules.length);
+  var set = apiSets[i];
+  var setName = set[0];
+  styleSheet.insertRule('#rootObjs > .' + setName + ' { display: none; }', styleSheet.cssRules.length);
+  styleSheet.insertRule('#rootObjs.' + setName + ' > .' + setName + ' { display: block; }', styleSheet.cssRules.length);
+
+  apichooserList.insertAdjacentHTML('beforeend',
+   "<li><label><input id='inc" + setName + "' type='checkbox'>" + setName + "</label></li>");
+
+  var inSet = false;
+  for (var j = 1; j < set.length; j++) {
+    rootObjs.push( { name: set[j][0], set: setName } );
+    if ('/' + set[j][0] === location.pathname.replace('.html', '')) {
+      inSet = true;
+    }
+  }
+
+  if (related && inSet) {
+    for (var j = 1; j < set.length; j++) {
+      var typeName = set[j][0];
+      related.insertAdjacentHTML('beforeend',
+        "<a href='/" + typeName + "' class='" + setName + "'" + (typeName.length > 15 ? ' title="' + typeName + '"' : '') + ">" + typeName + "</a>");
+    }
+  }
 }
+rootObjs.sort(function(a, b) {
+  return a.name.localeCompare(b.name);
+});
+
+var allList = document.getElementById('rootObjs');
+rootObjs.forEach(function(type) {
+  allList.insertAdjacentHTML('beforeend',
+    "<a href='/" + type.name + "' class='" + type.set + "'" + (type.name.length > 15 ? ' title="' + type.name + '"' : '') + ">" + type.name + "</a>");
+});
 
 var possibilities;
 

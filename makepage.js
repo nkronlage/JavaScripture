@@ -21,14 +21,6 @@ util.inherits(MakePage, stream.Transform);
 
 MakePage.prototype._transform = function(file, encoding, callback) {
   var apiSets = JSON.parse(fs.readFileSync('tmp/apisets.json', 'utf8'));
-  var rootEnv = {};
-
-  for (var setName in apiSets) {
-    var set = apiSets[setName];
-    set.forEach(function(type) {
-      rootEnv[type.name] = true;
-    });
-  }
 
   var filename = file.path;
   var decoder = new StringDecoder('utf8');
@@ -36,8 +28,14 @@ MakePage.prototype._transform = function(file, encoding, callback) {
   var obj = jsdoc.processFileContents(decoder.write(file.contents));
   obj.jsdocSourceFile = filename;
 
-  var setName = path.basename(path.dirname(filename));
-  obj.apiSet = { name: setName };
+  for (var setName in apiSets) {
+    var set = apiSets[setName];
+    set.forEach(function(type) {
+      if (type.name === obj.name) {
+        obj.apiSet = { name: setName };
+      }
+    });
+  }
 
 
   // Validation
@@ -50,10 +48,6 @@ MakePage.prototype._transform = function(file, encoding, callback) {
       return;
     }
 
-    if (!rootEnv[member.type]) {
-      errors.push('No documentation for ' + member.type + ' referenced by ' + obj.name + '.' + member.name);
-    }
-
     if (!member.spec) {
       errors.push('No spec for ' + obj.name + '.' + member.name);
     }
@@ -64,10 +58,6 @@ MakePage.prototype._transform = function(file, encoding, callback) {
 
     if (member.type ===  'Function') {
       // TODO: check member.parameters
-
-      if (!rootEnv[member.returnType]) {
-        errors.push('No documentation for ' + member.returnType + ' referenced by ' + obj.name + '.' + member.name);
-      }
     }
   });
 
@@ -84,7 +74,6 @@ MakePage.prototype._transform = function(file, encoding, callback) {
   var html = template.render('page', {
     title: title, 
     body: body, 
-    apiSets: apiSets, 
     obj: obj
   });
 

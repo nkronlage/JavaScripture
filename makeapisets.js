@@ -18,8 +18,6 @@ var MakeApiSets = function() {
 util.inherits(MakeApiSets, stream.Transform);
 
 MakeApiSets.prototype._transform = function(file, encoding, callback) {
-  var filename = file.path;
-
   var decoder = new StringDecoder('utf8');
   var obj = JSON.parse(decoder.write(file.contents));
 

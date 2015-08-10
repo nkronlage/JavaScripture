@@ -15,7 +15,6 @@ var processFile = function(filename) {
 var processFileContents = function(contents) {
   var fragments = contents.split(/^----+$/m);
   var obj = processObject(fragments.shift());
-  currentObj = obj;
 
   if (fragments.length) {
     fragments.forEach(function(member) {
@@ -149,6 +148,7 @@ var processFileContents = function(contents) {
 var processObject = function(fragment) {
   var lines = fragment.split('\n');
   var obj = parseMember(lines.shift());
+  currentObj = obj;
 
   processMetadata(obj, lines);
 
