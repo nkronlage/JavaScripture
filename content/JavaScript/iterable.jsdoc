@@ -26,3 +26,6 @@ while (!current.done) {
   current = iterator.next();
 }
 </example>
+
+Version:
+ECMAScript 6
