@@ -7,6 +7,7 @@
     "gulp-filter": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
+    "node-sass": "^3.2.0",
     "vinyl": "^0.5.1"
   }
 }
