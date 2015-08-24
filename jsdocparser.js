@@ -559,7 +559,12 @@ var parseParamList = function(params) {
     m.param = m.param.replace(/\[/g, '');
     m.param = m.param.replace(/\]/g, '');
     var member = parseMember(m.param);
-    member.optionalDepth = m.optionalDepth;
+
+    if (typeof member !== 'string') {
+      // When parsing templates (like Array<String>), the param may not have a
+      // name and be of type string, which can't have properties set on it.
+      member.optionalDepth = m.optionalDepth;
+    }
     return member; 
   });
 
