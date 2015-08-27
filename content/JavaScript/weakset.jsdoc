@@ -14,7 +14,10 @@ or
 %%/undefined|undefined%%).
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakset-objects
 
 ----
 new WeakSet() : WeakSet
@@ -32,6 +35,9 @@ console.log(x.has(value1));
 console.log(x.has(value2));
 
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakset-iterable
 
 ----
 new WeakSet(iterable : Object) : WeakSet
@@ -59,6 +65,9 @@ console.log(fromGenerator.has(value1));
 console.log(fromGenerator.has(value2));
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakset-iterable
+
 ----
 prototype.add(value : Object) : Set
 
@@ -79,25 +88,8 @@ x.add(value2);
 console.log(x.has(value2));
 </example>
 
-----
-prototype.clear() : undefined
-
-Clears all values from **this**.
-
-<example>
-var value1 = { foo: 1 };
-var value2 = { bar: ['a', 'b', 'c'] };
-
-var x = new WeakSet([value1, value2]);
-
-console.log(x.has(value1));
-console.log(x.has(value2));
-
-x.clear();
-
-console.log(x.has(value1));
-console.log(x.has(value2));
-</example>
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakset.prototype.add
 
 ----
 prototype.delete(value : Object) : Boolean
@@ -122,6 +114,9 @@ console.log('has value2 = ' + x.has(value2));
 console.log('deleted value2 = ' + x.delete(value2)); // Already deleted
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakset.prototype.delete
+
 ----
 prototype.has(value : Object) : Boolean
 
@@ -136,4 +131,7 @@ var x = new WeakSet([value1]);
 console.log(x.has(value1));
 console.log(x.has(value2));
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakset.prototype.has
 

@@ -6,7 +6,10 @@ Use the %%#then|**then()**%% method to hook up a callback that will
 be called when the result of the asynchronous operation is ready.
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects
 
 ----
 new Promise(executor(resolve(value : Object) : undefined, reject(error : Error) : undefined) : undefined) : Promise
@@ -33,6 +36,9 @@ promise.then(function(result) {
 });
 console.log('hooked promise.then()');
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise-executor
 
 ----
 prototype.catch(onReject(error : Error) : undefined) : Promise
@@ -62,6 +68,9 @@ rejectPromise.catch(function(result) {
   console.log('caught: ' + result);
 });
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise.prototype.catch
 
 ----
 prototype.then(onResolve(value : Object) : Object, [onReject(error : Error) : Object]) : Promise
@@ -145,6 +154,9 @@ loadUrl('/JSON').then(
 });
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise.prototype.then
+
 ----
 all(promises : Iterable<Promise>) : Promise
 
@@ -173,6 +185,9 @@ Promise.all(promises).then(function(results) {
 });
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise.all
+
 ----
 race(promises : Iterable<Promise>) : Promise
 
@@ -198,6 +213,9 @@ Promise.race(promises).then(function(result) {
 });
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise.race
+
 ----
 reject(error : Error) : Promise
 
@@ -212,6 +230,9 @@ var y = new Promise(function(resolve, reject) {
                     });
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise.reject
+
 ----
 resolve(value : Object) : Promise
 
@@ -225,3 +246,7 @@ var y = new Promise(function(resolve) {
                       resolve('foo');
                     });
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-promise.resolve
+

@@ -6,7 +6,7 @@ as a ProxyHandler. If any of the following methods are not provided,
 the Proxy will use the default behavior for that method.
 
 Version:
-ECMAScript 6
+ECMAScript 2015
 
 ----
 instance.apply(target : Function, thisArg : Object, parameters : Array) : Object

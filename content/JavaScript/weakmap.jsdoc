@@ -12,7 +12,10 @@ or
 %%/undefined|undefined%%).
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap-objects
 
 ----
 new WeakMap() : WeakMap
@@ -28,6 +31,9 @@ var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
 console.log(x.get(key1));
 console.log(x.get(key2));
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap-iterable
 
 ----
 new WeakMap(iterable : Object) : WeakMap
@@ -56,25 +62,8 @@ console.log(fromGenerator.get(key1));
 console.log(fromGenerator.get(key2));
 </example>
 
-----
-prototype.clear() : undefined
-
-Clears the key/value pairs from **this**.
-
-<example>
-var key1 = { foo: 1 };
-var key2 = { bar: ['a', 'b', 'c'] };
-
-var x = new WeakMap([[key1, 'value 1'], [key2, 'value 2']]);
-
-console.log(x.get(key1));
-console.log(x.get(key2));
-
-x.clear();
-
-console.log(x.get(key1));
-console.log(x.get(key2));
-</example>
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap-iterable
 
 ----
 prototype.delete(key : Object) : Boolean
@@ -97,6 +86,9 @@ console.log(x.get(key1));
 console.log(x.get(key2));
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap.prototype.delete
+
 ----
 prototype.get(key : Object) : Object
 
@@ -118,6 +110,9 @@ var key3 = { language: 'JavaScript' };
 console.log(x.get(key3));
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap.prototype.get
+
 ----
 prototype.has(key : Object) : Boolean
 
@@ -136,6 +131,9 @@ x.set(key1, undefined);
 console.log(x.has(key1) + ' ' + x.get(key1));
 console.log(x.has(key2) + ' ' + x.get(key2));
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap.prototype.has
 
 ----
 prototype.set(key : Object, value : Object) : WeakMap
@@ -165,3 +163,5 @@ x.set(key1, 'a different value');
 console.log(x.get(key1));
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap.prototype.set

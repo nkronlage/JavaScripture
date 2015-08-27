@@ -177,7 +177,10 @@ console.log(x.copyWithin(2, 0, 3));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.copywithin
 
 ----
 prototype.entries() : Iterator<Array>
@@ -204,7 +207,10 @@ console.dir(entries.next());
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.entries
 
 ----
 prototype.every(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Boolean
@@ -260,7 +266,10 @@ console.log(x.find(function(item) {
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.find
 
 ----
 prototype.findIndex(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Object
@@ -279,7 +288,10 @@ console.log(x.findIndex(function(item) {
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.findIndex
 
 ----
 prototype.fill(value : Object, [start = 0 : Number, [end : Number]]) : Array
@@ -298,7 +310,10 @@ console.log(x.fill('c', 0, 2));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.fill
 
 ----
 prototype.forEach(callback(item:Object, index:Number, array:Array):undefined, [thisArg:Object]):undefined
@@ -375,7 +390,10 @@ console.dir(keys.next());
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.keys
 
 
 ----
@@ -660,7 +678,10 @@ console.dir(values.next());
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.values
 
 ----
 from(arrayLike : Object, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
@@ -684,7 +705,10 @@ console.log(Array.from('foo', mapFunction));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.from
 
 ----
 from(iterator : Iterator, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
@@ -708,10 +732,14 @@ console.log(Array.from(generator(), mapFunction));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.from
+
 
 ----
-isArray(value:Object) : Boolean
+isArray(value : Object) : Boolean
 
 Returns **true** if **value** is an **Array**.
 
@@ -725,7 +753,7 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.3.2
 
 ----
-of(item0:Object, [item1:Object, [...]]) : Array
+of(item0 : Object, [item1 : Object, [...]]) : Array
 
 Creates an **Array** with the specified parameters as the 
 0th, 1st, ... items of the **Array**.
@@ -744,4 +772,7 @@ var z = Array.of('a', 'b', 'c');
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.of

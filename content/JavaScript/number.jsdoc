@@ -153,7 +153,10 @@ ReadOnly:
 true
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.epsilon
 
 ----
 MAX_SAFE_INTEGER : Number
@@ -175,7 +178,10 @@ ReadOnly:
 true
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.MAX_SAFE_INTEGER
 
 ----
 MAX_VALUE : Number
@@ -213,7 +219,10 @@ ReadOnly:
 true
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.MIN_SAFE_INTEGER
 
 ----
 MIN_VALUE : Number
@@ -309,7 +318,10 @@ console.log(isFinite('0')); // The string '0' is converted to a Number
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.isFinite
 
 ----
 isInteger(x : Number) : Boolean
@@ -323,7 +335,10 @@ console.log(Number.isInteger(1.2));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.isInteger
 
 ----
 isSafeInteger(x : Number) : Boolean
@@ -342,7 +357,10 @@ console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.isSafeInteger
 
 ----
 isNaN(x : Number) : Boolean
@@ -361,5 +379,8 @@ console.log(Number.isNaN(x));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-number.isNaN
 

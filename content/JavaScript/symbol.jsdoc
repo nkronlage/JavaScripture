@@ -8,10 +8,13 @@ You access a property with a Symbol key using
 %%/Object#indexer_Symbol|object[symbol]%%.
 
 Version:
-ECMAScript 6
+ECMAScript 2015
 
 Primitive:
 true
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol-objects
 
 ----
 Symbol([description : String]) : Symbol
@@ -31,14 +34,26 @@ console.log(myObject[mySymbol]);
 console.log(myObject['MySymbol']);
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol-description
+
 ----
 hasInstance : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.hasinstance
 
 ----
 isConcatSpreadable : Symbol
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.isconcatspreadable
+
 ----
 isRegExp : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.isregexp
 
 ----
 iterator : Symbol
@@ -69,11 +84,23 @@ for (var item of x.values()) {
 }
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.iterator
+
 ----
 toPrimitive : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.toprimitive
 
 ----
 toStringTag : Symbol
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.tostringtag
+
 ----
 unscopables : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.unscopables

@@ -5,7 +5,7 @@ An Iterator is an Object that returns a sequence of values.
 You can use the **for(var value of iterator) {}** to easily loop
 over the values in an iterator. 
 
-Calling an ECMAScript 6 generator function (**function*() {}**) return
+Calling an ECMAScript 2015 generator function (**function*() {}**) return
 an Iterator.  
 
 You may create your own %%/Iterable|Iterable%% object by assigning the
@@ -13,7 +13,10 @@ You may create your own %%/Iterable|Iterable%% object by assigning the
 object with a **next()** method.
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-iterator-interface
 
 ----
 instance.next([yieldValue : Object]) : { value : Object, done : Boolean }
@@ -21,7 +24,7 @@ instance.next([yieldValue : Object]) : { value : Object, done : Boolean }
 Returns an object containing the next value in the iterator. 
 If all items have been returned, **done** will be **true**.
 For generator functions, **yieldValue** is returned to the generator
-from the **yeild** statement.
+from the **yield** statement.
 
 <example>
 // Generator functions create iterators when called
@@ -70,4 +73,3 @@ console.dir(iterator.next());
 console.dir(iterator.next());
 console.dir(iterator.next());
 </example>
-

@@ -66,8 +66,8 @@ var getPageDescription = function(obj) {
 };
 
 var getVersionClass = function(version) {
-  if (version === 'ECMAScript 6') {
-    return 'ecmascript6';
+  if (version === 'ECMAScript 2015') {
+    return 'ecmascript2015';
   }
   else {
     throw Error('unknown version: ' + version);

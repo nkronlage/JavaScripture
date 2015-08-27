@@ -92,8 +92,7 @@ var x = { foo: 'bar'};
 </example>
 
 Version:
-ECMAScript 6
-
+ECMAScript 2015
 
 ----
 getPrototypeOf(obj : Object) : Object
@@ -169,7 +168,10 @@ for (var symbol of Object.getOwnPropertySymbols(myObject)) {
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-object.getownpropertysymbols
 
 ----
 create(prototype : Object, [propertyDescriptors : Object]) : Object

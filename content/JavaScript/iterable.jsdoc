@@ -28,4 +28,7 @@ while (!current.done) {
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface

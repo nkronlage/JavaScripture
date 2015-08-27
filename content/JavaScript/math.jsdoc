@@ -226,7 +226,10 @@ console.log(Math.acosh(Math.cosh(3)));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.acosh
 
 ----
 asin(x : Number) : Number
@@ -262,7 +265,10 @@ console.log(Math.asinh(Math.sinh(3)));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.asinh
 
 ----
 atan(x: Number) : Number
@@ -298,7 +304,10 @@ console.log(Math.atanh(Math.tanh(0.5)));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.atanh
 
 ----
 atan2(y : Number, x : Number) : Number
@@ -337,7 +346,10 @@ console.log(Math.pow(1234, 1 / 3));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.cbrt
 
 ----
 ceil(x: Number) : Number
@@ -368,7 +380,10 @@ console.log(Math.clz32(0xFFFFFFFF));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.clz
 
 ----
 cos(x: Number) : Number
@@ -405,7 +420,10 @@ console.log((Math.exp(3) + Math.exp(-3)) / 2);
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.cosh
 
 ----
 exp(x: Number) : Number
@@ -442,7 +460,10 @@ console.log(Math.exp(1e-9) - 1);
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.expm1
 
 ----
 floor(x: Number) : Number
@@ -476,7 +497,10 @@ console.log(float32Array[0]);
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.fround
 
 ----
 hypot(x : Number, y : Number, [z : Number, [...]]) : Number
@@ -493,11 +517,14 @@ console.log(Math.hypot(5, 12));
 console.log(Math.sqrt(5 * 5 +  12 * 12));
 
 var myVector = [3, 2, 8];
-console.log(Math.hypot.apply(null, myVector));
+console.log(Math.hypot(...myVector));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.hypot
 
 ----
 imul(x : Number, y : Number) : Number
@@ -515,7 +542,10 @@ console.log(Math.imul(0x40000000, 2).toString(16));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.imul
 
 ----
 log(x : Number) : Number
@@ -525,11 +555,11 @@ logarithm with respect to a different base **b**, use the
 formula **Math.log(x) / Math.log(b)**.
 For base 10, you can use
 **Math.log(x) * %%#LOG10E|Math.LOG10E%%**
-(or %%#log10|**log10()**%% with ECMAScript 6).
+(or %%#log10|**log10()**%% with ECMAScript 2015).
 
 For base 2, you can use
 **Math.log(x) * %%#LOG2E|Math.LOG2E%%** 
-(or %%#log2|**log2()**%% with ECMAScript 6).
+(or %%#log2|**log2()**%% with ECMAScript 2015).
 
 See also %%#exp|**exp()**%% and %%#log1p|**log1p()**%%.
 
@@ -568,7 +598,10 @@ console.log(Math.log1p(1e-9));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.log1p
 
 ----
 log2(x : Number) : Number
@@ -585,7 +618,10 @@ console.log(Math.log(16) / Math.LN2);
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.log2
 
 ----
 log10(x : Number) : Number
@@ -602,7 +638,10 @@ console.log(Math.log(1000) / Math.LN10);
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.log10
 
 ----
 max(x1 : Number, x2: Number, [...]) : Number
@@ -718,7 +757,10 @@ console.log(Math.sign(12));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.sign
 
 
 ----
@@ -756,8 +798,10 @@ console.log((Math.exp(3) - Math.exp(-3)) / 2);
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.sinh
 
 ----
 sqrt(x : Number) : Number
@@ -808,7 +852,10 @@ console.log((Math.exp(3) - Math.exp(-3)) / (Math.exp(3) + Math.exp(-3)));
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.tanh
 
 ----
 trunc(x : Number) : Number
@@ -831,5 +878,7 @@ See also %%#round|**round()**%%.
 </example>
 
 Version:
-ECMAScript 6
+ECMAScript 2015
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-math.trunc

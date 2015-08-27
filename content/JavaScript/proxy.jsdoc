@@ -4,7 +4,10 @@ The Proxy allows you to wrap an Object (called the **target**) and
 modify the behavior of that Object. 
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-proxy-objects
 
 ----
 new Proxy(target : Object, handler : ProxyHandler) : Proxy
@@ -53,3 +56,12 @@ catch (e)
   console.log(e);
 }
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-proxy-target-handler
+
+----
+revocable(target : Object, handler : Proxyhandler) : Proxy
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-proxy.revocable

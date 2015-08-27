@@ -7,7 +7,10 @@ Iterable:
 true
 
 Version:
-ECMAScript 6
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set-objects
 
 ----
 new Set() : Set
@@ -24,6 +27,9 @@ for (var item of x) {
   console.dir(item);
 }
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set-iterable
 
 ----
 new Set(iterable : Object) : Set
@@ -50,6 +56,9 @@ for (var item of fromGenerator) {
 }
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set-iterable
+
 ----
 instance.size : Number
 
@@ -69,6 +78,9 @@ x.clear();
 console.log(x.size);
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-get-set.prototype.size
+
 ----
 prototype.add(value : Object) : Set
 
@@ -86,6 +98,9 @@ x.add('d');
 console.log(x.has('d'));
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.add
+
 ----
 prototype.clear() : undefined
 
@@ -100,6 +115,9 @@ x.clear();
 
 console.log(x.size);
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.clear
 
 ----
 prototype.delete(value : Object) : Boolean
@@ -116,6 +134,9 @@ console.log('deleted "a" = ' + x.delete('a'));
 console.log('size after delete: ' + x.size);
 console.log('deleted "foo" = ' + x.delete('foo'));
 </example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.delete
 
 ----
 prototype.entries() : Iterator
@@ -144,6 +165,9 @@ console.dir(entries.next());
 console.dir(entries.next());
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.entries
+
 ----
 prototype.forEach(callback(value : Object, key : Object, set : Set) : undefined, [thisArg : Object]) : undefined
 
@@ -159,6 +183,9 @@ x.forEach(function(value) {
 });
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.forEach
+
 ----
 prototype.has(value : Object) : Boolean
 
@@ -171,10 +198,16 @@ console.log(x.has('a'));
 console.log(x.has('foo'));
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has
+
 ----
 prototype.keys() : Iterator
 
 Same as %%#values|values()%%.
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.keys
 
 ----
 prototype.values() : Iterator
@@ -210,3 +243,5 @@ console.dir(values.next());
 console.dir(values.next());
 </example>
 
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.values
