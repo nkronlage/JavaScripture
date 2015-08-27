@@ -55,7 +55,7 @@ gulp.task('content-html', ['apisets'], function() {
 
 gulp.task('other-html', ['apisets'], function() {
   return gulp.src(['./templates/feedback.ejs', 
-                   './templates/home.ejs',
+                   './templates/index.ejs',
                    './templates/license.ejs',
                    './templates/thankyou.ejs'])
     .pipe(makecustompage())
