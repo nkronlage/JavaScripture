@@ -88,7 +88,7 @@ Here's a simplified example (see content/JavaScript/Array.jsdoc for the complete
     
 
 The file is broken into separate sections for each member of the type. 
-The sections are separated by a line containing for dashes: "----"
+The sections are separated by a line containing four dashes: "----"
 
 #### Member Description
 
