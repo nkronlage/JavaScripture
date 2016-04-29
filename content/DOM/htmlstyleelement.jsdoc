@@ -34,3 +34,7 @@ instance.type : String
 ----
 instance.scoped : Boolean
 
+
+----
+instance.sheet : StyleSheet
+
