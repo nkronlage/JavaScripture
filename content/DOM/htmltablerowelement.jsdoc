@@ -1,0 +1,33 @@
+HTMLTableRowElement : HTMLElement
+
+Spec:
+http://w3c.github.io/html/single-page.html#htmltablerowelement-htmltablerowelement
+
+----
+instance.rowIndex : Number
+
+ReadOnly:
+true
+
+----
+instance.sectionRowIndex : Number
+
+ReadOnly:
+true
+
+----
+instance.cells : HTMLCollection
+
+ReadOnly:
+true
+
+----
+prototype.insertCell([index = -1 : Number]) : HTMLElement
+
+Returns a new &lt;td&gt; element inserted into the row
+at the specified position.
+
+----
+prototype.deleteCell(index : Number) : undefined
+
+

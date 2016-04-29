@@ -53,7 +53,7 @@ prototype.deleteTFoot() : undefined
 prototype.deleteTHead() : undefined
 
 ----
-prototype.insertRow([index = -1 : Number]) : HTMLElement
+prototype.insertRow([index = -1 : Number]) : HTMLTableRowElement
 
 ----
 prototype.stopSorting() : undefined
