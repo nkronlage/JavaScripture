@@ -474,6 +474,12 @@ Spec:
 http://dev.w3.org/csswg/cssom-view/#dom-element-getboundingclientrect
 
 ----
+prototype.releasePointerCapture(id : Number) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-Element-releasePointerCapture-void-long-pointerId
+
+----
 prototype.requestFullscreen() : undefined
 
 <htmlexample>
@@ -503,6 +509,12 @@ Scolls the element into view.
 
 Spec:
 http://dev.w3.org/csswg/cssom-view/#dom-element-scrollintoview
+
+----
+prototype.setPointerCapture(id : Number) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-Element-setPointerCapture-void-long-pointerId
 
 ----
 event.touchstart : listener(event : TouchEvent) : undefined
@@ -557,3 +569,64 @@ false
 
 Spec:
 http://www.w3.org/TR/touch-events/#dfn-touchcancel
+
+----
+event.gotpointercapture : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-Element-ongotpointercapture
+
+----
+event.lostpointercapture : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-Element-onlostpointercapture
+
+----
+event.pointerdown : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerdown
+
+----
+event.pointermove : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointermove
+
+----
+event.pointerup : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerup
+
+----
+event.pointercancel : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointercancel
+
+----
+event.pointerover : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerover
+
+----
+event.pointerout : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerout
+
+----
+event.pointerenter : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerenter
+
+----
+event.pointerleave : listener(event : PointerEvent) : undefined
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerleave
+
