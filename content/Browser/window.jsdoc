@@ -270,6 +270,131 @@ true
 ----
 instance.navigator : Navigator
 
+
+----
+instance.external : External
+
+
+ReadOnly:
+true
+
+----
+instance.applicationCache : ApplicationCache
+
+ReadOnly:
+true
+
+----
+instance.innerWidth : Number
+
+Width of the browser window in CSS pixels exluding any browser chrome.
+
+<example>
+console.log(window.innerWidth);
+console.log(window.outerWidth);
+console.log(screen.availWidth);
+console.log(screen.width);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-innerwidth
+
+----
+instance.innerHeight : Number
+
+Height of the browser window in CSS pixels excluding any browser chrome.
+
+<example>
+console.log(window.innerHeight);
+console.log(window.outerHeight);
+console.log(screen.availHeight);
+console.log(screen.height);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-outerheight
+
+
+----
+instance.outerWidth : Number
+
+Width of the browser window in CSS pixels including any browser chrome.
+
+<example>
+console.log(window.outerWidth);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-outerwidth
+
+----
+instance.outerHeight : Number
+
+Height of the browser window in CSS pixels including any browser chrome.
+
+<example>
+console.log(window.outerHeight);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-outerheight
+
+----
+instance.screen : Screen
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-screen
+
+----
+instance.screenX : Number
+
+X position of the top left corner of the browser in pixels. 
+See %%/Screen|screen%% for details about the size of the 
+screen.
+
+<example>
+console.log(window.screenX);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-screenx
+
+----
+instance.screenY : Number
+
+Y position of the top left corner of the browser in pixels. 
+See %%/Screen|screen%% for details about the size of the 
+screen.
+
+<example>
+console.log(window.screenY);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-screeny
+
+
 ----
 prototype.btoa(encoded : String) : String
 
@@ -555,19 +680,6 @@ pass **true** to replace the contents instead of opening a new window.
 </html>
 
 
-----
-instance.external : External
-
-
-ReadOnly:
-true
-
-----
-instance.applicationCache : ApplicationCache
-
-
-ReadOnly:
-true
 
 ----
 prototype.alert(message : String) : undefined
@@ -611,6 +723,12 @@ and
   };
 </script>
 </htmlexample>
+
+----
+prototype.matchMedia(query : String) : MediaQueryList
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-window-matchmedia
 
 ----
 prototype.prompt(message : String, [default : String]) : String
