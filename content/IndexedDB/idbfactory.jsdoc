@@ -1,0 +1,15 @@
+IDBFactory : Object
+
+
+Spec:
+https://www.w3.org/TR/IndexedDB/#idl-def-IDBFactory
+
+----
+prototype.open(name : String, [version : Number]) : IDBOpenDBRequest
+
+
+----
+prototype.deleteDatabase(name : String) : IDBOpenDBRequest
+
+----
+cmp(first : Object, second : Object) : Number

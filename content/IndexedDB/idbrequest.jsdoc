@@ -1,0 +1,43 @@
+IDBRequest : EventTarget
+
+https://www.w3.org/TR/IndexedDB/#idl-def-IDBRequest
+
+----
+instance.result : Object
+
+ReadOnly:
+true
+
+----
+instance.error : DOMError
+
+ReadOnly:
+true
+
+----
+instance.source : Object
+
+IDBObjectStore or IDBIndex or IDBCursor
+
+ReadOnly:
+true
+
+----
+instance.transaction : IDBTransaction
+
+ReadOnly:
+true
+
+----
+instance.readyState : String
+
+"pending" or "done"
+
+ReadOnly:
+true
+
+----
+event.success : listener(event : Event) : undefined
+
+----
+event.error : listener(event : Event) : undefined

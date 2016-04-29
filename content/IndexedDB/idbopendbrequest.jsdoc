@@ -1,0 +1,10 @@
+IDBOpenDBRequest : IDBRequest
+
+Spec:
+https://www.w3.org/TR/IndexedDB/#idl-def-IDBOpenDBRequest
+
+----
+event.blocked : listener(event : Event) : undefined
+
+----
+event.upgradeneeded : listener(event : Event) : undefined
