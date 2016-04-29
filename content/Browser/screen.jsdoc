@@ -1,0 +1,70 @@
+Screen : Object
+
+Provides details about the screen/monitor that the browser appears on.  
+
+Spec:
+https://drafts.csswg.org/cssom-view/#screen
+
+----
+instance.availHeight : Number
+
+Height in pixels available for applications on this screen. Excludes any
+areas reserved by the operating system such as the Windows task
+bar or Mac menu bar.
+
+<example>
+console.log(screen.availHeight);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-screen-availheight
+
+----
+instance.availWidth : Number
+
+Width in pixels available for applications on this screen. Excludes any
+areas reserved by the operating system such as the Windows task
+bar or Mac menu bar.
+
+<example>
+console.log(screen.availWidth);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-screen-availwidth
+
+----
+instance.height : Number
+
+Height of the screen in pixels.
+
+<example>
+console.log(screen.height);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-screen-height
+
+----
+instance.width : Number
+
+Width of the screen in pixels.
+
+<example>
+console.log(screen.width);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-screen-width
