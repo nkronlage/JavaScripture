@@ -1,0 +1,136 @@
+PointerEvent : MouseEvent
+
+PointerEvents are a superset of %%/MouseEvent|MouseEvents%% and 
+%%/TouchEvent|TouchEvents%% and also support pen/stylus input.
+
+http://www.w3.org/TR/pointerevents/
+
+----
+new PointerEvent( \
+  type : String,  \
+  [eventInit : { \
+     height : Number, \
+     isPrimary : Boolean, \
+     pointerId : Number, \
+     pointerType : String, \
+     pressure : Number, \
+     tiltX : Number, \
+     tiltY : Number, \
+     width : Number \
+  }]) : PointerEvent
+
+Creates a new PointerEvent of the specified **type** and initial properties.
+
+**type** must be one of
+**'pointerover'**,
+**'pointerenter'**,
+**'pointerdown'**,
+**'pointermove'**,
+**'pointerup'**,
+**'pointercancel'**,
+**'pointerout'**,
+**'pointerleave'**,
+**'gotpointercapture'**,
+**'lostpointercapture'**.
+
+----
+instance.pointerId : Number
+
+A unique (among active pointers) identifier for the current pointer. 
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-pointerId
+
+----
+instance.width : Number
+
+The width in CSS pixels of the pointer.  May be **0**.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-width
+
+----
+instance.height : Number
+
+The height in CSS pixels of the pointer.  May be **0**.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-height
+
+----
+instance.pressure : Number
+
+A value **0** to **1** indicating how much pressure the user applied. 
+If the pointer device does not report pressure (such as a mouse), the
+value will be **0.5**.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-pressure
+
+----
+instance.tiltX : Number
+
+Angle in degrees (**-90** to **90**) of the pointer (stylus) away from the 
+perpendicular to the surface in the X direction. This is the tilt
+around the Y axis. **-90** means the pointer is laying flat on the 
+surface and pointing to the right. **90** means the pointer is laying flat
+on the surface and pointing to the left. **0** means the pointer is
+perpendicular to the surface.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-tiltX
+
+----
+instance.tiltY : Number
+
+Angle in degrees (**-90** to **90**) of the pointer (stylus) away from the 
+perpendicular to the surface in the Y direction. This is the tilt
+around the X axis. **-90** means the pointer is laying flat on the 
+surface and pointing to the top. **90** means the pointer is laying flat
+on the surface and pointing to the bottom. **0** means the pointer is
+perpendicular to the surface.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-tiltY
+
+----
+instance.pointerType : String
+
+The type of pointer.  Will be one of **'mouse'**, **'pen'**, or **'touch'**.
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-pointerType
+
+----
+instance.isPrimary : Boolean
+
+True if this pointer was the first pointer to begin contact for the current
+set of active pointers. 
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-PointerEvent-isPrimary
+
