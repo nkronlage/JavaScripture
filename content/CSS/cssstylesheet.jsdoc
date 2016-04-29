@@ -6,9 +6,8 @@ Use the
 to get a list of all CSSStyleSheets for a document.
 
 Can be created by creating an 
-%%/HTMLStyleElement|HTMLStyleElement%%, adding it to the document,
-and then finding the CSSStyleSheet in document.styleSheets
-that has ownerNode equal to HTMLStyleElement.
+%%/HTMLStyleElement|HTMLStyleElement%% and accesing its
+%%/HTMLStyleElement#sheet|sheet%% property.
 
 Spec:
 http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSStyleSheet
