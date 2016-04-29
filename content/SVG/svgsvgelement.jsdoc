@@ -5,6 +5,24 @@ and
 %%/Element#setAttribute|**this.setAttribute('version', '1.1')**%% to set 
 the version.
 
+<htmlexample>
+<svg>
+  <rect width="30" height="40" fill="blue"/>
+</svg>
+<script>
+  var mySvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  mySvg.setAttribute('version', '1.1');
+
+  var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('width', '30');
+  rect.setAttribute('height', '40');
+  rect.setAttribute('fill', 'red');
+  mySvg.appendChild(rect);
+
+  document.body.appendChild(mySvg);
+</script>
+</htmlexample>
+
 Spec:
 http://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElement
 
@@ -37,21 +55,6 @@ true
 ----
 instance.contentScriptType : String
 
-<htmlexample>
-<body></body>
-<script>
-  var mySvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  mySvg.setAttribute('version', '1.1');
-
-  var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  rect.setAttribute('width', '30');
-  rect.setAttribute('height', '40');
-  rect.setAttribute('fill', 'black');
-  mySvg.appendChild(rect);
-
-  document.body.appendChild(mySvg);
-</script>
-</htmlexample>
 
 
 ----
@@ -252,6 +255,7 @@ true
 ----
 prototype.getPresentationAttribute(name : String) : CSSValue
 
+----
 instance.nearestViewportElement : SVGElement
 
 ReadOnly:
