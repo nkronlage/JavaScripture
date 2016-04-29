@@ -1,0 +1,44 @@
+MediaQueryList : EventTarget
+
+
+Returned by %%/Window#matchMedia|window.matchMedia%%.
+
+Spec:
+https://drafts.csswg.org/cssom-view/#mediaquerylist
+
+----
+instance.media : String
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mediaquerylist-media
+
+----
+instance.matches : Boolean
+
+<htmlexample>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mediaquerylist-matches
+
+----
+prototype.addListener(listener : EventListener) : undefined
+
+Attaches **listener** to the **'change'** event.
+Same as **addEventListener('change', listener, false)**.
+
+----
+prototype.removeListener(listener : EventListener) : undefined
+
+Removes **listener** from the **'change'** event.
+Same as **removeEventListener('change', listener, false)**.
+
+----
+event.change : listener(event : MediaQueryListEvent) : undefined
+
