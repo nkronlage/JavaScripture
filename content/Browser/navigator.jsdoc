@@ -14,3 +14,12 @@ prototype.getUserMedia( \
 
 Spec:
 http://dev.w3.org/2011/webrtc/editor/getusermedia.html#dom-navigator-getusermedia
+
+----
+instance.maxTouchPoints : Number
+
+ReadOnly:
+true
+
+Spec:
+http://www.w3.org/TR/pointerevents/#widl-Navigator-maxTouchPoints
