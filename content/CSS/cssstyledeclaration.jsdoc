@@ -436,6 +436,112 @@ instance.minHeight : String
 ----
 instance.minWidth : String
 ----
+instance.objectFit : String
+
+Applies to %%/HTMLImageElement|**<img>**%%
+and %%/HTMLVideoElement|**<video>**%%
+elements. 
+
+Determines how the content of the element fits 
+inside its CSS layout box.  Similar to how
+%%#backgroundSize|**backgroundSize**%%
+affects how the
+%%#backgroundImage|**backgroundImage**%%.
+
+Must be one of 
+**'fill'**,
+**'contain'**,
+**'cover'**,
+**'none'**,
+or
+**'scale-down'**.
+
+See also
+%%#objectPosition|**objectPosition**%%.
+
+<htmlexample>
+<style>
+  img {
+    width: 60px;
+    height: 130px;
+    background: #eee;
+    border: 1px solid gray;
+    padding: 3px;
+    vertical-align: middle;    
+  }
+  span {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
+  }
+</style>
+<div id='container'></div>
+<script>
+  var fits = ['fill', 'contain', 'cover', 'none', 'scale-down'];
+
+  fits.forEach(function(fit, i) {
+    document.getElementById('container').insertAdjacentHTML('beforeend', 
+      '<span>' + fit + ' </span>' +
+      '<img src="/pic.jpg" style="object-fit: ' + fit + ';"><br>');
+  });
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/css3-images/#object-fit
+
+----
+instance.objectPosition : String
+
+Applies to %%/HTMLImageElement|**<img>**%%
+and %%/HTMLVideoElement|**<video>**%%
+elements. 
+
+Specifies the X and Y positions of where the content of 
+the element fits inside its CSS layout box.  Similar to how
+%%#backgroundPosition|**backgroundPosition**%%
+affects how the
+%%#backgroundImage|**backgroundImage**%%.
+
+See also
+%%#objectFit|**objectFit**%%.
+
+<htmlexample>
+<style>
+  img {
+    width: 60px;
+    height: 130px;
+    background: #eee;
+    border: 1px solid gray;
+    padding: 3px;
+  }
+</style>
+<table id='table'>
+  <tr>
+    <th>position</th>
+    <th>fit=contain</th>
+    <th>fit=cover</th>
+  </tr>
+</table>
+<script>
+  var positions = ['0% 0%', '50% 50%', '100% 100%'];
+
+  positions.forEach(function(position, i) {
+    document.getElementById('table').insertAdjacentHTML('beforeend', 
+      '<tr>' +
+        '<td>' + position + ' </td>' +
+        '<td><img src="/pic.jpg" style="object-position:' + position + '; object-fit: contain;"></td>'+
+        '<td><img src="/pic.jpg" style="object-position:' + position + '; object-fit: cover;"></td>' +
+      '</tr>');
+  });
+</script>
+</htmlexample>
+
+Spec:
+http://www.w3.org/TR/css3-images/#object-position
+
+----
 instance.opacity : String
 ----
 instance.orphans : String
@@ -591,3 +697,261 @@ instance.writingMode : String
 instance.zIndex : String
 ----
 instance.zoom : String
+
+
+----
+instance.alignContent : String
+----
+instance.alignItems : String
+----
+instance.alignSelf : String
+----
+instance.all : String
+----
+instance.animation : String
+----
+instance.animationDelay : String
+----
+instance.animationDirection : String
+----
+instance.animationDuration : String
+----
+instance.animationFillMode : String
+----
+instance.animationIterationCount : String
+----
+instance.animationName : String
+----
+instance.animationPlayState : String
+----
+instance.animationTimingFunction : String
+----
+instance.backfaceVisibility : String
+----
+instance.backgroundBlendMode : String
+----
+instance.bufferedRendering : String
+----
+instance.cx : String
+----
+instance.cy : String
+----
+instance.flex : String
+----
+instance.flexBasis : String
+----
+instance.flexDirection : String
+----
+instance.flexFlow : String
+----
+instance.flexGrow : String
+----
+instance.flexShrink : String
+----
+instance.flexWrap : String
+----
+instance.fontKerning : String
+----
+instance.fontVariantLigatures : String
+----
+instance.isolation : String
+----
+instance.justifyContent : String
+----
+instance.maskType : String
+----
+instance.maxZoom : String
+----
+instance.minZoom : String
+----
+instance.mixBlendMode : String
+----
+instance.motion : String
+----
+instance.motionOffset : String
+----
+instance.motionPath : String
+----
+instance.motionRotation : String
+----
+instance.objectFit : String
+----
+instance.objectPosition : String
+----
+instance.order : String
+----
+instance.orientation : String
+----
+instance.overflowWrap : String
+----
+instance.paintOrder : String
+----
+instance.perspective : String
+----
+instance.perspectiveOrigin : String
+----
+instance.r : String
+----
+instance.rx : String
+----
+instance.ry : String
+----
+instance.shapeImageThreshold : String
+----
+instance.shapeMargin : String
+----
+instance.shapeOutside : String
+----
+instance.touchAction : String
+----
+instance.transform : String
+----
+instance.transformOrigin : String
+----
+instance.transformStyle : String
+----
+instance.transition : String
+----
+instance.transitionDelay : String
+----
+instance.transitionDuration : String
+----
+instance.transitionProperty : String
+----
+instance.transitionTimingFunction : String
+----
+instance.userZoom : String
+----
+instance.willChange : String
+----
+instance.x : String
+----
+instance.y : String
+----
+instance.blockSize : String
+----
+instance.borderBlockEnd : String
+----
+instance.borderBlockStart : String
+----
+instance.borderBlockEndColor : String
+----
+instance.borderBlockEndStyle : String
+----
+instance.borderBlockEndWidth : String
+----
+instance.borderBlockStartColor : String
+----
+instance.borderBlockStartStyle : String
+----
+instance.borderBlockStartWidth : String
+----
+instance.borderInlineEnd : String
+----
+instance.borderInlineEndColor : String
+----
+instance.borderInlineEndStyle : String
+----
+instance.borderInlineEndWidth : String
+----
+instance.borderInlineStart : String
+----
+instance.borderInlineStartColor : String
+----
+instance.borderInlineStartStyle : String
+----
+instance.borderInlineStartWidth : String
+----
+instance.boxDecorationBreak : String
+----
+instance.cssFloat : String
+----
+instance.fontFeatureSettings : String
+----
+instance.fontLanguageOverride : String
+----
+instance.fontSizeAdjust : String
+----
+instance.fontSynthesis : String
+----
+instance.fontVariantAlternates : String
+----
+instance.fontVariantCaps : String
+----
+instance.fontVariantEastAsian : String
+----
+instance.fontVariantNumeric : String
+----
+instance.fontVariantPosition : String
+----
+instance.imageOrientation : String
+----
+instance.imeMode : String
+----
+instance.inlineSize : String
+----
+instance.marginBlockEnd : String
+----
+instance.marginBlockStart : String
+----
+instance.marginInlineEnd : String
+----
+instance.marginInlineStart : String
+----
+instance.markerOffset : String
+----
+instance.maxBlockSize : String
+----
+instance.maxInlineSize : String
+----
+instance.minBlockSize : String
+----
+instance.minInlineSize : String
+----
+instance.offsetBlockEnd : String
+----
+instance.offsetBlockStart : String
+----
+instance.offsetInlineEnd : String
+----
+instance.offsetInlineStart : String
+----
+instance.paddingBlockEnd : String
+----
+instance.paddingBlockStart : String
+----
+instance.paddingInlineEnd : String
+----
+instance.paddingInlineStart : String
+----
+instance.rubyAlign : String
+----
+instance.rubyPosition : String
+----
+instance.scrollBehavior : String
+----
+instance.scrollSnapCoordinate : String
+----
+instance.scrollSnapDestination : String
+----
+instance.scrollSnapPointsX : String
+----
+instance.scrollSnapPointsY : String
+----
+instance.scrollSnapType : String
+----
+instance.scrollSnapTypeX : String
+----
+instance.scrollSnapTypeY : String
+----
+instance.textDecorationColor : String
+----
+instance.textDecorationLine : String
+----
+instance.textDecorationStyle : String
+----
+instance.textOrientation : String
+----
+instance.transformBox : String
+----
+instance.hyphens : String
