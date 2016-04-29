@@ -1,0 +1,15 @@
+Intl : Object
+
+Provides methods to help with internationalization of applications.
+
+Spec:
+http://www.ecma-international.org/ecma-402/1.0/#sec-8
+
+----
+Collator : Collator
+
+----
+DateTimeFormat : DateTimeFormat
+
+----
+NumberFormat : NumberFormat

@@ -1,0 +1,63 @@
+NumberFormat : Object
+
+Spec:
+http://www.ecma-international.org/ecma-402/1.0/#sec-11
+
+
+----
+NumberFormat([locales : Array<String>, [options : Object]]) : NumberFormat
+
+Same as %%#new_NumberFormat|**new Intl.NumberFormat(locales, options)**%%.
+
+----
+new NumberFormat([locales : Array<String>, [options : { \
+  currency : String /* */, \
+  currencyDisplay : String /* */, \
+  localeMatcher : String /* One of **'basic'** or **'best fit'**. */, \
+  maximumFractionDigits : Number /* */, \
+  maximumSignificantDigits : Number /* */, \
+  minimumFractionDigits : Number /* */, \
+  minimumIntegerDigits : Number /* */, \
+  minimumSignificantDigits : Number /* */, \
+  style : String /* */, \
+  useGrouping : Boolean /* */, \
+}]]) : NumberFormat
+
+<example>
+</example>
+
+----
+instance.format(number : Number) : String
+
+<example>
+</example>
+
+----
+prototype.resolvedOptions() : { \
+  currency : String /* */, \
+  currencyDisplay : String /* */, \
+  locale : String /* */, \
+  maximumFractionDigits : Number /* */, \
+  maximumSignificantDigits : Number /* */, \
+  minimumFractionDigits : Number /* */, \
+  minimumIntegerDigits : Number /* */, \
+  minimumSignificantDigits : Number /* */, \
+  numberingSystem : String /* */, \
+  style : String /* */, \
+  useGrouping : Boolean /* */, \
+} 
+
+<example>
+var options = Intl.NumberFormat().resolvedOptions();
+for (var property in options) {
+  console.log(property + ': ' + options[property]);
+}
+</example>
+
+----
+supportedLocalesOf(locales : Array<String>, [options : { \
+  localeMatcher : String /* One of **'basic'** or **'best fit'**. */ \
+}]) : Array<String>
+
+<example>
+</example>

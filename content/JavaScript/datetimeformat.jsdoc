@@ -1,0 +1,56 @@
+DateTimeFormat : Object
+
+----
+DateTimeFormat([locales : Array<String>, [options : Object]]) : DateTimeFormat
+
+Same as %%#new_DateTimeFormat|**new Intl.DateTimeFormat(locales, options)**%%.
+
+----
+new DateTimeFormat([locales : Array<String>, [options : { \
+  formatMatcher : String /* One of **'basic'** or **'best fit'**. */, \
+  hour12 : Boolean /* */, \
+  localeMatcher : String /* */, \
+  timeZone : String /* */, \
+}]]) : DateTimeFormat
+
+<example>
+</example>
+
+----
+instance.format(date : Date) : String
+
+<example>
+</example>
+
+----
+prototype.resolvedOptions() : { \
+  calendar : String /* */, \
+  day : String /* */, \
+  era : String /* */, \
+  hour : String /* */, \
+  hour12 : Boolean /* */, \
+  locale : String /* */, \
+  minute : String /* */, \
+  month : String /* */, \
+  numberingSystem : String /* */, \
+  second : String /* */, \
+  timeZone : String /* */, \
+  timeZoneName : String /* */, \
+  weekday : String /* */, \
+  year : String /* */, \
+} 
+
+<example>
+var options = Intl.DateTimeFormat().resolvedOptions();
+for (var property in options) {
+  console.log(property + ': ' + options[property]);
+}
+</example>
+
+----
+supportedLocalesOf(locales : Array<String>, [options : { \
+  localeMatcher : String /* One of **'basic'** or **'best fit'**. */ \
+}]) : Array<String>
+
+<example>
+</example>

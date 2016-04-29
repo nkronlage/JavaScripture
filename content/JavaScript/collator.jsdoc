@@ -1,0 +1,73 @@
+Collator : Object
+
+Collator provides language aware comparison of %%/String|Strings%% for
+sorting and searching.
+Available through %%/Intl#Collator%%.
+
+Spec:
+http://www.ecma-international.org/ecma-402/1.0/#sec-10
+
+----
+Collator([locales : Array<String>, [options : Object]]) : Collator
+
+Same as %%#new_Collator|**new Intl.Collator(locales, options)**%%.
+
+----
+new Collator([locales : Array<String>, [options : { \
+  caseFirst : Boolean /* */, \
+  ignorePunctuation : Boolean /* */, \
+  localeMatcher : String /* One of **'basic'** or **'best fit'**. */, \
+  numeric : Boolean /* */, \
+  sensitivity : String /* One of **'base'**, **'accent'**, **'case'**, or **'variant'**. */, \
+  usage : String /* One of **'sort'** or **'search'** */ \
+}]]) : Collator
+
+<example>
+</example>
+
+----
+instance.compare(value1 : String, value2 : String) : Number
+
+Compares two string values to determine which should come first
+if they were sorted alphabetically according to the locales 
+of the Collator. Returns **0** if **value1** is the same as **value2**,
+a negative value if **value1** should come before **value2**, and
+a positive value if **value1** should come after **value2**.
+Can be passed to %%/Array#sort|Array.sort()%% to sort a list of strings.
+
+<example>
+var collator = Intl.Collator();
+
+console.log(collator.compare('a', 'a'));
+console.log(collator.compare('a', 'b'));
+console.log(collator.compare('b', 'a'));
+
+var letters = ['c', 'a', 'd', 'b'];
+console.log(letters.sort(collator.compare));
+</example>
+
+----
+prototype.resolvedOptions() : { \
+  caseFirst : Boolean /* */, \
+  collation : String /* */, \
+  ignorePunctuation : Boolean /* */, \
+  locale : String /* */, \
+  numeric : Boolean /* */, \
+  sensitivity : String /* */, \
+  usage : String /* */ \
+} 
+
+<example>
+var options = Intl.Collator().resolvedOptions();
+for (var property in options) {
+  console.log(property + ': ' + options[property]);
+}
+</example>
+
+----
+supportedLocalesOf(locales : Array<String>, [options : { \
+  localeMatcher : String /* One of **'basic'** or **'best fit'**. */ \
+}]) : Array<String>
+
+<example>
+</example>

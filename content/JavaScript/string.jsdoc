@@ -141,7 +141,14 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.8
 
 ----
-prototype.localeCompare(that : String) : Number
+prototype.localeCompare(that : String, [locales : Array<String>, [options : { \
+  caseFirst : Boolean, /* */ \
+  ignorePunctuation : Boolean, /* */ \
+  localeMatcher : String, /* */ \
+  numeric : Boolean, /* */ \
+  sensitivity : String, /* */ \
+  usage : String /* */ \
+}]]) : Number
 
 Compares **this** to **that**.  Returns a negative number if **this** would sort 
 before **that**, **0** if **this** and **that** are equal, and a positive number if 
@@ -159,7 +166,7 @@ console.log(x.sort(function(a, b) {
 </example>
 
 Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.9
+http://www.ecma-international.org/ecma-402/1.0/#sec-13.1.1
 
 ----
 prototype.match(regexp : RegExp) : Array<String>

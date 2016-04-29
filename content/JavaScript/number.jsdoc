@@ -118,7 +118,18 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.2
 
 
 ----
-prototype.toLocaleString() : String
+prototype.toLocaleString([locales : Array<String>, [options : { \
+  currency : String /* */, \
+  currencyDisplay : String /* */, \
+  localeMatcher : String /* */, \
+  maximumFractionDigits : Number /* */, \
+  maximumSignificantDigits : Number /* */, \
+  minimumFractionDigits : Number /* */, \
+  minimumIntegerDigits : Number /* */, \
+  minimumSignificantDigits : Number /* */, \
+  style : String /* */, \
+  useGrouping : Boolean /* */, \
+}]]) : String
 
 Returns a string representation of **this** that conforms to the number format
 specification of the current locale.
@@ -130,7 +141,7 @@ console.log(x.toLocaleString());
 </example>
 
 Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.3
+http://www.ecma-international.org/ecma-402/1.0/#sec-13.2.1
 
 ----
 EPSILON : Number
