@@ -468,6 +468,14 @@ var parseMember = function(member) {
     type = type.substring(0, commentStartIndex).trim();
   }
 
+  // Process Indexer [Symbol]
+  if (res = name.match(/^\s*\[\s*(\w*\.\w*)\s*\]/)) {
+    return { parameters: [{ name: res[1] }],
+             type: 'Indexer',
+             returnType: parseMember(type),
+             description: description };
+  }
+
   // Process Indexer
   if (res = name.match(/^\s*\[(.*)\]/)) {
     return { parameters: parseParamList(res[1]),

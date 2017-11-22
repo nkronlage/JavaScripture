@@ -170,6 +170,16 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
     res += '</table>'
     res += '<span class="subfunctionclose">}</span>';
   }
+  else if (!member.type) {
+    if (!/^\w+\.\w+$/.test(member.name)) {
+      throw 'Unexpected member type: ' + member.name; 
+    }
+
+    const nameParts = member.name.split('.');
+    const href = '/' + nameParts[0] + '#' + nameParts[1];
+
+    res = `<a href="${href}">${ res }</a>`;
+  }
   else {
     res += '&nbsp;:&nbsp;' + renderType(member.type);
   }

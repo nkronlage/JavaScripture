@@ -270,7 +270,8 @@ testParse('[b : c] : d', // indexer
     returnType: 'd'
   });
 
-testParse('a : b, c', // multiple inheritance
-  { name: 'a',
-    type: ['b', 'c']
+testParse('[a.b] : c', // symbol indexer
+  { type: 'Indexer',
+    parameters: [ { name: 'a.b' } ],
+    returnType: 'c'
   });

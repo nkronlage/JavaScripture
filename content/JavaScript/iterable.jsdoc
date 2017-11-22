@@ -9,6 +9,17 @@ You can loop over all values in an iterable object by using a
 
 See %%/Iterator|Iterator%% for more details.
 
+Version:
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface
+
+----
+instance[Symbol.iterator] : Iterator
+
+Returns an iterator for this object.
+
 <example>
 // Arrays are a built in Iterable object
 var arr = ['a', 'b', 'c'];
@@ -26,9 +37,3 @@ while (!current.done) {
   current = iterator.next();
 }
 </example>
-
-Version:
-ECMAScript 2015
-
-Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface
