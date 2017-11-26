@@ -1,0 +1,363 @@
+Reflect : Object
+
+Provides methods to inspect and interact with objects programmatically.  Similar
+to pre-ECMAScript 2015 methods on %%/Object|Object%% and %%/Function|Function%%.
+
+Version:
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect-object
+
+----
+apply(target : Object, thisArg : Object, parameters : Array) : Object
+
+See %%/Function#apply|Function.apply()%%.
+
+<example>
+var whatsThis = function() { console.log(this); }
+Reflect.apply(whatsThis, 'hello', []);
+
+// Call a function that takes a variable number of args
+var numbers = [3, 20, 1, 45];
+console.log(Reflect.apply(Math.max, undefined, numbers));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.apply
+
+----
+construct(constructor : Function, parameters : Array, [newTarget : Function]) : Object
+
+Essentially the same as **new constructor(...parameters)**.  **newTarget** allows
+you to change what the **new.target** value is inside the constructor.
+
+<example>
+class MyClass {
+  constructor(...args) {
+    console.log('constructing MyClass', ...args);
+  }
+}
+
+// The following are equivalent:
+var a = new MyClass(1, 2, 3);
+var b = Reflect.construct(MyClass, [1, 2, 3]);
+console.log();
+
+class WithTarget {
+  constructor() {
+    console.log('constructing WithTarget. new.target=' + new.target.name);
+  }
+}
+
+var c = new WithTarget();
+var d = Reflect.construct(WithTarget, []);
+var e = Reflect.construct(WithTarget, [], MyClass);
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.construct
+
+----
+defineProperty(obj : Object, propertyName : String, propertyDescriptor : PropertyDescriptor) : Boolean
+
+The same as %%/Object#defineProperty|Object.defineProperty()%% except returns
+**false** on failure instead of throwing an exception.
+
+<example>
+var x = { };
+
+var fooDescriptor = { value: 1, 
+                      writable: true,
+                      enumerable: false,
+                      configurable: true } ;
+
+var barDescriptor = { value: 2, 
+                      writable: true,
+                      enumerable: false,
+                      configurable: true } ;
+
+console.log(Reflect.defineProperty(x, 'foo', fooDescriptor));
+Object.defineProperty(x, 'bar', barDescriptor);
+
+console.log(x.foo);
+console.log(x.bar);
+console.log();
+
+var y = { foo: 1 };
+Object.seal(y);
+
+console.log(Reflect.defineProperty(y, 'foo', fooDescriptor));
+
+try {
+  Object.defineProperty(y, 'bar', barDescriptor);
+}
+catch(e) {
+  console.log(e);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.defineProperty
+
+----
+deleteProperty(obj : Object, propertyName : String) : Boolean
+
+The same as **delete object[propertyName]**. Returns **true** if the value
+was deleted (ie, the property was configurable).
+
+<example>
+var x = { foo: 1, bar: 2 };
+
+// The following are equivalent:
+console.log(delete x.foo);
+console.log(delete x['foo']);
+console.log(Reflect.deleteProperty(x, 'foo'));
+console.log('x.foo=' + x.foo);
+console.log();
+
+Object.seal(x);
+console.log(delete x.bar);
+console.log(delete x['bar']);
+console.log(Reflect.deleteProperty(x, 'bar'));
+console.log('x.bar=' + x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.defineProperty
+
+----
+get(target : Object, propertyName : String, [getterThis : Object]) : Object
+
+The same as **target[propertyName]**. If **propertyName** is a get function,
+**target** is used as it's **this** if **getterThis** is not specified.
+
+<example>
+var x = { foo: 1 };
+
+// The following are equivalent:
+console.log(x.foo);
+console.log(x['foo']);
+console.log(Reflect.get(x, 'foo'));
+console.log();
+
+// Example of getter functions:
+x = { bar: 2, get baz() { return this.bar; } };
+console.log(x.baz);
+console.log(x['baz']);
+console.log(Reflect.get(x, 'baz'));
+console.log(Reflect.get(x, 'baz', { bar: 3 }));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.get
+
+----
+getOwnPropertyDescriptor(obj : Object, propertyName : String) : PropertyDescriptor
+
+The same as %%/Object#getOwnPropertyDescriptor|Object.getOwnPropertyDescriptor()%%
+except throws an exception if **obj** is not an Object.
+
+<example>
+var x = { foo: 1 };
+
+// The following are equivalent:
+console.dir(Reflect.getOwnPropertyDescriptor(x, 'foo'));
+console.dir(Object.getOwnPropertyDescriptor(x, 'foo'));
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.getPrototypeOf(1, 'foo'));
+}
+catch(e) {
+  console.log(e);
+}
+console.log(Object.getOwnPropertyDescriptor(1, 'foo'));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.getownpropertydescriptor
+
+----
+getPrototypeOf(obj : Object) : Object
+
+The same as %%/Object#getPrototypeOf|Object.getPrototypeOf()%% except throws
+an exception if **obj** is not an Object.
+
+<example>
+console.log(Reflect.getPrototypeOf([]) === Array.prototype);
+console.log(Object.getPrototypeOf([]) === Array.prototype);
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.getPrototypeOf(1));
+}
+catch(e) {
+  console.log(e);
+}
+console.log(Object.getPrototypeOf(1));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.getprototypeof
+
+----
+has(obj : Object, propertyName : String) : Boolean
+
+Returns **true** if **obj** has a property named **propertyName**. The **in**
+operator provides the same result;
+
+<example>
+var x = { foo: 1 };
+
+console.log(Reflect.has(x, 'foo'));
+console.log('foo' in x);
+console.log(Reflect.has(x, 'bar'));
+console.log('bar' in x);
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.has
+
+----
+isExtensible(obj : Object) : Boolean
+
+The same as %%/Object#isExtensible|Object.isExtensible()%% except throws
+an exception if **obj** is not an Object.
+
+<example>
+var x = { foo: 1 };
+console.log(Reflect.isExtensible(x));
+Reflect.preventExtensions(x);
+console.log(Reflect.isExtensible(x));
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.isExtensible(1));
+}
+catch (e) {
+  console.log(e);
+}
+console.log(Object.isExtensible(1));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.isextensible
+
+----
+ownKeys(obj : Object) : Array<String>
+
+The same as %%/Object#getOwnPropertyNames|Object.getOwnPropertyNames()%% except 
+throws an exception if **obj** is not an Object.
+
+<example>
+var x = { foo: 1, bar: 2 };
+console.log(Reflect.ownKeys(x));
+console.log(Object.getOwnPropertyNames(x));
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.ownKeys(1));
+}
+catch (e) {
+  console.log(e);
+}
+console.log(Object.getOwnPropertyNames(1));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.ownkeys
+
+----
+preventExtensions(obj : Object) : Boolean
+
+The same as %%/Object#preventExtensions|Object.preventExtensions()%% except 
+returns false on failure and throws an exception if **obj** is not an Object.
+
+<example>
+var x = { foo: 1 };
+
+// The following are equivalent
+console.log(Reflect.preventExtensions(x));
+console.log(Object.preventExtensions(x));
+
+x.bar = 2;
+
+console.log(x);
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.preventExtensions(1));
+}
+catch (e) {
+  console.log(e);
+}
+console.log(Object.preventExtensions(1));
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.preventextensions
+
+----
+set(target : Object, propertyName : String, value : Object, [setterThis : Object]) : Boolean
+
+The same as **target[propertyName] = value**. Returns **true** if the set was
+successful and **false** otherwise (if the object was %%Object#freeze|frozen%% for
+example). If **propertyName** is a set 
+function, **target** is used as it's **this** if **setterThis** is not specified.
+
+<example>
+var x = { foo: 1 };
+
+// The following are equivalent:
+x.bar = 2;
+x['bar'] = 2;
+console.log(Reflect.set(x, 'bar', 2));
+
+// set returns false if the object is frozen
+Object.freeze(x);
+console.log(Reflect.set(x, 'bar', 2));
+
+// Example of setter functions and setterThis arg:
+x = { bar: 2, 
+      set baz(value) { 
+        console.log(`baz=${value} where this.bar = ${this.bar}; `);
+      }
+    };
+x.baz = 42;
+x['baz'] = 42;
+Reflect.set(x, 'baz', 42);
+Reflect.set(x, 'baz', 42, { bar: 3 });
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.set
+
+----
+setPrototypeOf(obj : Object, proto : Object) : Boolean
+
+Changes the %%/Function#prototype|prototype%% of **obj** to **proto**.
+
+<example>
+var Button = function(content) { 
+  this.content = content;
+};
+Button.prototype.click = function() {
+  console.log(this.content + ' clicked');
+}
+
+// Instead of 'new Button()', the following changes
+// the prototype of a regular object to be Button's
+// prototype after the object has been created.
+
+var myButton = { content: 'promoted' };
+console.log(Reflect.getPrototypeOf(myButton) === Object.prototype);
+
+Reflect.setPrototypeOf(myButton, Button.prototype);
+console.log(Reflect.getPrototypeOf(myButton) === Button.prototype);
+
+myButton.click();
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.setprototypeof
