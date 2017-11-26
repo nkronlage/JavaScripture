@@ -34,8 +34,18 @@ var evenMap = new Proxy(new Map(), {
       };
     }
     else {
+      var value = target[name];
+
+      // If the value is a function, return a function that
+      // is bound to the original target. Otherwise the function
+      // would be called with the Proxy as 'this' and Map
+      // functions do not work unless the 'this' is the Map.
+      if (value instanceof Function) {
+        return value.bind(target);
+      }
+
       // Return the normal property value for everything else
-      return target[name];
+      return value;
     }
   }
 });
