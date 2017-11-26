@@ -1,8 +1,11 @@
 DOMTokenList : Object
 
+An object containing a list of strings.  Used in
+%%/Element#classList|**Element.classList**%% and
+%%/HTMLIFrameElement#sandbox|**HTMLIFrameElement.sandbox%%.
+
 Spec:
 http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#domtokenlist
-
 
 ----
 instance[index : Number] : String
@@ -19,9 +22,10 @@ Retrieves the token at **index**.  You can also use the %%#item|**item()**%% met
 </script>
 </htmlexample>
 
-
 ----
 instance.length : Number
+
+The number of tokens in **this**.
 
 <htmlexample>
 <span id='foo' class='bar baz'>foo</span>
@@ -34,25 +38,42 @@ instance.length : Number
 ReadOnly:
 true
 
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-length
+
+----
+instance.value : String
+
+A string value of the token list.
+See also %%/Element#className|className%%.
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+  .baz { color: red; }
+</style>
+<span id='foo'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  foo.classList.value = 'bar baz';
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-value
+
 ----
 prototype.item(index : Number) : String
 
 Same as %%#indexer_Number|**this[index]**%%.
 
-----
-prototype.contains(token : String) : Boolean
-
-<htmlexample>
-<span id='foo' class='bar'>foo</span>
-<script>
-  var foo = document.getElementById('foo');
-  console.log(foo.classList.contains('bar'));
-  console.log(foo.classList.contains('baz'));
-</script>
-</htmlexample>
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-item
 
 ----
 prototype.add(token : String) : undefined
+
+Adds **token** to **this**.
 
 <htmlexample>
 <style>
@@ -69,8 +90,31 @@ prototype.add(token : String) : undefined
 </script>
 </htmlexample>
 
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-add
+
+----
+prototype.contains(token : String) : Boolean
+
+Returns **true** if **token** is in **this** and
+**false** otherwise.
+
+<htmlexample>
+<span id='foo' class='bar'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  console.log(foo.classList.contains('bar'));
+  console.log(foo.classList.contains('baz'));
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-contains
+
 ----
 prototype.remove(token : String) : undefined
+
+Removes **token** from **this**.
 
 <htmlexample>
 <style>
@@ -87,8 +131,37 @@ prototype.remove(token : String) : undefined
 </script>
 </htmlexample>
 
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-remove
+
 ----
-prototype.toggle(token : String) : Boolean
+prototype.replace(oldToken : String, newToken : String) : undefined
+
+Removes **oldToken** from **this** and adds **newToken**.
+
+<htmlexample>
+<style>
+  .bar { font-weight: bold;  }
+  .baz { color: red; }
+</style>
+<span id='foo' class='baz'>foo</span>
+<script>
+  var foo = document.getElementById('foo');
+  foo.classList.replace('bar', 'baz');
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-replace
+
+----
+prototype.toggle(token : String, [value : Boolean]) : Boolean
+
+If **value** is not specified, removes **token** from the list
+if was in **this** or adds **token** to the list if it was not
+in **this**. If **value** is **true**, **token** is added to
+**this** if not already there.  If **value** is **false**,
+**token** is removed from **this**.
 
 <htmlexample>
 <style>
@@ -105,3 +178,5 @@ prototype.toggle(token : String) : Boolean
 </script>
 </htmlexample>
 
+Spec:
+https://dom.spec.whatwg.org/#dom-domtokenlist-toggle
