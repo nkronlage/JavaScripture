@@ -130,12 +130,19 @@ instance.multiline : Boolean
 **true** if the **RegExp** was created with the **'m'** flag. Multiline 
 **RegExp**s will match **'^'** to the beginning of lines as well as the 
 beginning of the string and match **'$'** to the end of lines as well as 
-the end of the string.
+the end of the string. Note that **multiline** does not affect the **'.'**
+character class.  In JavaScript, **'.'** does not match new lines
+(**'\r'** or **'\n'**). To match all characters including new lines, you can
+use the empty inverted character class match **'[^]'**.
 
 <example>
 var str = 'hello\nworld';
 console.log(/^world/.test(str));
 console.log(/^world/m.test(str));
+
+str = '"a quote\nover multiple lines"';
+console.log(/".*"/.test(str));
+console.log(/"[^]*"/.test(str));
 </example>
 
 ReadOnly:
