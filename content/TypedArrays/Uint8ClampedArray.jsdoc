@@ -81,13 +81,24 @@ instance[index : Number] : Number
 
 Gets and sets the element in **this** at **index**. 
 **index** should be between **0** and
-**%%#length|this.length%% - 1**.
+**%%#length|this.length%% - 1**. Setting an element
+to a value less than **0** will store **0** and
+greater than **255** will store **255** in the array.
 
 <example>
-var x = new Uint8ClampedArray(2);
+var x = new Uint8ClampedArray(3);
 x[0] = 17;
+x[1] = -1;
+x[2] = 256;
 console.log(x[0]);
 console.log(x[1]);
+console.log(x[2]);
+
+var y = new Uint8Array(2);
+y[0] = -1;
+y[1] = 256;
+console.log(y[0]);
+console.log(y[1]);
 </example>
 
 ----
