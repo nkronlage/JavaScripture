@@ -1,5 +1,7 @@
 KeyboardEvent : UIEvent
 
+%%https://w3c.github.io/uievents/tools/key-event-viewer.html|Keyboard Event Demo%%
+
 ----
 instance.altKey : Boolean
 
