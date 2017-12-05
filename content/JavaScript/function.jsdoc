@@ -40,7 +40,7 @@ prototype.apply([thisArg : Object, [parameters : Array]]) : Object
 
 Call **this** with the **this** value inside the function bound to **thisArg**
 and the parameters to the function from **parameters**. Returns the result
-of the function call.
+of the function call. See %%/Reflect.apply|Reflect.apply()%%.
 
 <example>
 var whatsThis = function() { console.log(this); }

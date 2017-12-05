@@ -205,7 +205,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.5
 defineProperty(obj : Object, propertyName : String, propertyDescriptor : PropertyDescriptor) : Object
 
 Defines a new property with name equal to **propertyName** on **obj** with the 
-supplied descriptor. Returns **obj**. 
+supplied descriptor. Returns **obj**. See %%/Reflect#defineProperty|Reflect.defineProperty()%%.
 
 <example>
 var x = { foo: 1 };
@@ -293,8 +293,8 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.9
 ----
 preventExtensions(obj : Object) : Object
 
-Prevents new properties from being added to **obj**.  Unlike %%#freeze|**freeze**%%, existing
-properties can be modified.  Returns **obj**.
+Prevents new properties from being added to **obj**.  Unlike %%#freeze|**freeze**%%,
+existing properties can be modified.  Returns **obj**.
 
 <example>
 var x = { foo: 1 };
