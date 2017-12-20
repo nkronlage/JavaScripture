@@ -8,7 +8,7 @@ The Window object is also available as **this** in the root scope of
 a script (ie, outside of any %%/Function|Function%%).
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#the-window-object
+http://w3c.github.io/html/browsers.html#the-window-object
 
 ----
 instance.frameElement : Element
@@ -506,20 +506,30 @@ Returns a unique handle that can be passed to %%#cancelAnimationFrame|**cancelAn
 to stop **callback** from being called.
 
 <htmlexample>
+<button onclick='play()'>play</button>
+<button onclick='stop()'>stop</button><br>
 <canvas id='canvas'></canvas>
 <script>
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
-
+  var id = -1;
   var callback = function(time) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillRect(10, 10, 30 * (Math.sin(time / 1000) + 1), 30);
     context.fillText(time, 10, 75);
 
-    requestAnimationFrame(callback);
+    id = requestAnimationFrame(callback);
   };
 
-  requestAnimationFrame(callback);
+  var play = function() {
+    if (id === -1) {
+      id = requestAnimationFrame(callback);
+    }
+  };
+  var stop = function() {
+    cancelAnimationFrame(id);
+    id = -1;
+  };
 </script>
 </htmlexample>
 
@@ -564,7 +574,7 @@ See also %%#setTimeout|**setTimeout()**%% and %%#requestAnimationFrame|**request
     console.log('  parameter2=' + parameter2);
     
     callCount++;
-    if (callCount === 5) {
+    if (callCount === 3) {
       clearInterval(handle);
     }
   }, 500, 'foo', 'bar');
@@ -646,25 +656,26 @@ prototype.stop() : undefined
 ----
 prototype.open([url : String, [target = '_blank' : String, [features : String, [replace : Boolean]]]]) : Window
 
-Opens the specified **url**.
+Opens a new tab or window for the specified **url**.
 
 <html>
 <dl>
 <dt>
 **url**
 <dd>
-the url to open.
-
+the url to open or **''** to open an empty window.
 
 <dt>
 **target**
 <dd>
 must be one of:
-  **'_blank'** (open in new window, the default),
-  **'_parent'** (open in parent page/frame),
-  **'_self'** (open in current page/frame),
-  **'_top'** (open in top page),
-  **'&lt;name&gt;'** (open in the window with the specified name).
+<dl>
+<dt>**'_blank'** <dd>open in new window, the default
+<dt>**'_parent'**<dd>open in parent page/frame
+<dtj**'_self'**<dd>open in current page/frame
+<dt>**'_top'**<dd>open in top page
+<dt>**'&lt;name&gt;'**<dd>open in the window with the specified name
+</dl>
 
 <dt>
 **features**
@@ -679,7 +690,23 @@ pass **true** to replace the contents instead of opening a new window.
 </dl>
 </html>
 
-
+<htmlexample>
+<button onclick="openWindow()">Open Window</button>
+<script>
+  var openWindow = function() {
+    var width = screen.availWidth * .5;
+    var height = screen.availHeight * .75;
+    var left = (screen.availWidth - width) / 2;
+    var top = (screen.availHeight - height) / 2;
+    var newWindow = window.open('', '_blank', `left=${left},top=${top},width=${width},height=${height}`);
+    newWindow.document.title = 'My Window';
+    newWindow.document.body.innerHTML = 'new window content';
+    newWindow.onunload = function() {
+      console.log('window closed');
+    };
+  };
+</script>
+</htmlexample>
 
 ----
 prototype.alert(message : String) : undefined
@@ -797,6 +824,46 @@ apply to **element**. See also %%/HTMLElement#style|**element.style**%%.
 Spec:
 http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSview-getComputedStyle
 
+----
+prototype.postMessage(message : Object, expectedOrigin : String, [objectsToTransfer : Array<Transferable>]) : undefined
+
+Sends **message** to **this** (usually something other than the global %%/Global#window|**window**%%,
+like the %%#parent|**parent**%%, iframe %%/HTMLIFrameElement#contentWindow|**contentwindow**%%, or
+return value of %%#open|**open()**%%).
+The **message** will be available in the %%/MessageEvent#data|**MessageEvent.data**%%
+property on the event passed to the %%#message|onmessage%% event listener.
+To ensure the window's content has not changed while the message is in flight,
+**expectedOrigin** must match %%/Location#origin|**this.origin**%% (or be **'*'**
+to ignore check and possibly send the message to another site).
+The elements of **objectsToTransfer** will be transferred to the JavaScript
+context that owns **this** and no longer available in the context that called
+**postMessage()**.
+
+<htmlexample>
+<iframe id='iframe'></iframe>
+
+<script id='iframeCode' type ='text/plain'>
+  var intArray = new Int32Array([17, 58]);
+  var message = { foo: 'bar', ints: intArray };
+  parent.postMessage(message, '*', [intArray.buffer]);
+  // intArray is no longer valid
+</script>
+
+<script>
+  window.onmessage = function(event) {
+    console.log('Received:');
+    console.dir(event.data);
+  };
+
+  var iframe = document.querySelector('#iframe');
+
+  var code = document.getElementById('iframeCode').textContent;
+  var html = '<script>' + code + '</' + 'script>';
+  var blob = new Blob([html], { type: 'text/html' });
+
+  iframe.src = URL.createObjectURL(blob);
+</script>
+</htmlexample>
 
 ----
 event.abort : listener(event : Event) : undefined
@@ -903,6 +970,9 @@ event.loadedmetadata : listener(event : Event) : undefined
 event.loadstart : listener(event : Event) : undefined
 ----
 event.message : listener(event : Event) : undefined
+
+Fired when %%#postMessage|**postMessage()**%% is called on **this**.
+
 ----
 event.mousedown : listener(event : Event) : undefined
 ----

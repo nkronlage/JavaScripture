@@ -1,0 +1,11 @@
+Transferable : Object
+
+Transferables are objects that can transferred to a different JavaScript contexts 
+like another %%/Window|Window%% or %%/Worker|Worker%%.  After transferring, the object is no longer
+available to the original context.  Transferring objects may be less expesive
+than recreating them in the other context.  The following are Transferables:
+%%/ArrayBuffer|ArrayBuffer%%, %%/ImageBitmap|ImageBitmap%%, and
+%%/MessagePort|MessagePort%%.
+
+Spec:
+https://html.spec.whatwg.org/multipage/structured-data.html#transferable-objects
