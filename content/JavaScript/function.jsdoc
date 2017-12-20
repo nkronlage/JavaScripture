@@ -17,19 +17,37 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.1.1
 ----
 new Function([param1 : String, [param2 : String, [...]]], body : String) : Function
 
-Creates a new **Function** that has the supplied parameter names and body.
+<p>Creates a new normal **Function** that has the supplied parameter names and body.
 If any parameter name contains a **','**, it will be split on the **','** and
 each component will be added as a parameter. Unless the **body** needs to
 be modified at run time, **Function**s are typically created with the
-**function** keyword.
+**function** keyword.</p>
+
+<p>See example below on how to construct generator (**function*()**) and async
+functions (**async function()**).</p>
 
 <example>
 // The following result in equivalent behavior, but the first
 // should be used unless the body changes at run time.
-var x = function(x, y) { return x + y; };
-var y = Function('x', 'y','return x + y;');
-var z = Function('x, y', 'return x + y;');
-var w = new Function('x', 'y', 'return x + y;');
+var f1 = function(x, y) { return x + y; };
+var f2 = Function('x', 'y','return x + y;');
+var f3 = Function('x, y', 'return x + y;');
+var f4 = new Function('x', 'y', 'return x + y;');
+
+// The following demonstrate creating generator and async functions
+var GeneratorFunction = Object.getPrototypeOf(function*(){}).constructor;
+
+// The following are equivalent:
+var g1 = function*(x, y) { yield x; yield y; }
+var g2 = GeneratorFunction('x', 'y', 'yield x; yield y;');
+var g3 = new GeneratorFunction('x, y', 'yield x; yield y;');
+
+var AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+
+// The following are equivalent:
+var a1 = async function(url) { return (await fetch(url)).status; }
+var a2 = AsyncFunction('url', 'return (await fetch(url)).status;');
+var a3 = new AsyncFunction('url', 'return (await fetch(url)).status;');
 </example>
 
 Spec:
