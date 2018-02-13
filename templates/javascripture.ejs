@@ -502,10 +502,18 @@ var executeExample = function(example, prop) {
       errormessage.style.display = 'block';
     };
 
-    doc.writeln('<script>window.onerror=function(err) { javascriptureReportError(err); }; <'+'/script>');
     doc.writeln('<script>');
-    doc.writeln(code.value);
-    doc.writeln('<'+'/script>');
+    doc.writeln('window.onerror=function(err) { javascriptureReportError(err); };');
+    doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
+    doc.writeln('</script>');
+
+    var scriptBody = '(async () => {' + code.value + '})().catch(e => javascriptureReportError(e))';
+
+    var blob = new Blob([scriptBody], { type: 'application/javascript' });
+    var url = URL.createObjectURL(blob);
+    doc.writeln('<script src="' + url + '">');
+    URL.revokeObjectURL(blob);
+    doc.writeln('</script>');
     doc.close();
   }
 };
@@ -560,7 +568,10 @@ var executeHTMLExample = function(example, prop) {
       errormessage.style.display = 'block';
     };
 
-    doc.writeln('<!DOCTYPE html><script>window.onerror=function(err) { javascriptureReportError(err); }; <'+'/script>');
+    doc.writeln('<script>');
+    doc.writeln('window.onerror=function(err) { javascriptureReportError(err); };');
+    doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
+    doc.writeln('</script>');
     doc.writeln(code.value);
     doc.close();
   }
