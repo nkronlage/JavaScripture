@@ -420,7 +420,17 @@ Cancelable:
 false
 
 ----
-event.input : listener(event : Event) : undefined
+event.input : listener(event : InputEvent) : undefined
+
+<htmlexample>
+<textarea id="ta"></textarea>
+<script>
+  var textarea = document.querySelector('#ta');
+  textarea.addEventListener('input', function(event) {
+    console.log('changed');
+  });
+</script>
+</htmlexample>
 
 
 ----

@@ -1,0 +1,17 @@
+InputEvent : UIEvent
+
+Spec:
+https://w3c.github.io/uievents/#inputevent
+
+
+----
+instance.data : String
+
+ReadOnly:
+true
+
+----
+instance.isComposing : Boolean
+
+ReadOnly:
+true
