@@ -333,11 +333,11 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.18
 
 ----
-prototype.indexOf(item:Object, [start = 0 : Number]):Number
+prototype.indexOf(item:Object, [startingIndex = 0 : Number]):Number
 
 Returns the first location of **item** in **this** starting the search from
 **start**.
-If **start**
+If **startingIndex**
 is negative, **this.length** is added to it before starting the search. 
 Returns **-1** if **item** is not found.
 
@@ -397,7 +397,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.keys
 
 
 ----
-prototype.lastIndexOf(item:Object, [start:Number]):Number
+prototype.lastIndexOf(item:Object, [startingIndex:Number]):Number
 
 Returns the location of **item** in **this** starting the search from 
 **start** by searching backwards through the array.  
@@ -684,7 +684,28 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.values
 
 ----
-from(arrayLike : Object, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
+prototype.includes(item : Object, [startingIndex = 0 : Number]) : Boolean
+
+Returns **true** if **item** is an element of **this** starting the search from
+**startingIndex**. If **startingIndex** is negative, **this.length** is added to it before
+starting the search.
+
+<example>
+var x = ['a', 'b', 'c', 'd'];
+console.log(x.includes('b'));
+console.log(x.includes('b', 2));
+console.log(x.includes('a', -2));
+console.log(x.includes('e'));
+</example>
+
+Version:
+ECMAScript 2016
+
+Spec:
+http://www.ecma-international.org/ecma-262/7.0/#sec-array.prototype.includes
+
+----
+from(arrayLike : Object, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Array
 
 Returns a new **Array** with the elements of **arrayLike**.  
 
@@ -711,14 +732,14 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-array.from
 
 ----
-from(iterator : Iterator, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Boolean
+from(iterator : Iterator, [mapFunction(item : Object, index : Number) : Object, [thisArg : Object]]) : Array
 
-Returns a new **Array** with the elements of **iterator** containing the
-items returned by the iterator.
+Returns a new **Array** containing the items returned by **iterator**.
 
 <example>
 var generator = function*() {
-  yield* ['a', 'b', 'c'];
+  yield 1;
+  yield* [2, 3];
 };
 
 console.log(Array.from(generator()));
@@ -776,3 +797,4 @@ ECMAScript 2015
 
 Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-array.of
+
