@@ -881,10 +881,13 @@ context that owns **this** and no longer available in the context that called
 
 ----
 event.abort : listener(event : Event) : undefined
+
 ----
 event.afterprint : listener(event : Event) : undefined
+
 ----
 event.beforeprint : listener(event : Event) : undefined
+
 ----
 event.beforeunload : listener(event : BeforeUnloadEvent) : String
 
@@ -906,44 +909,64 @@ the option to remain on the current page.
 
 ----
 event.blur : listener(event : Event) : undefined
+
 ----
 event.canplay : listener(event : Event) : undefined
+
 ----
 event.canplaythrough : listener(event : Event) : undefined
+
 ----
 event.change : listener(event : Event) : undefined
+
 ----
 event.click : listener(event : Event) : undefined
+
 ----
 event.contextmenu : listener(event : Event) : undefined
+
 ----
 event.cuechange : listener(event : Event) : undefined
+
 ----
 event.dblclick : listener(event : Event) : undefined
+
 ----
 event.drag : listener(event : Event) : undefined
+
 ----
 event.dragend : listener(event : Event) : undefined
+
 ----
 event.dragenter : listener(event : Event) : undefined
+
 ----
 event.dragleave : listener(event : Event) : undefined
+
 ----
 event.dragover : listener(event : Event) : undefined
+
 ----
 event.dragstart : listener(event : Event) : undefined
+
 ----
 event.drop : listener(event : Event) : undefined
+
 ----
 event.durationchange : listener(event : Event) : undefined
+
 ----
 event.emptied : listener(event : Event) : undefined
+
 ----
 event.ended : listener(event : Event) : undefined
+
 ----
 event.error : listener(event : Event, source : String, line : Number, column : Number) : undefined
+
 ----
 event.focus : listener(event : Event) : undefined
+
 ----
 event.hashchange : listener(event : HashChangeEvent) : undefined
 
@@ -966,22 +989,31 @@ Fired when the **'#'** portion of the url changes.  See also
 
 ----
 event.input : listener(event : Event) : undefined
+
 ----
 event.invalid : listener(event : Event) : undefined
+
 ----
 event.keydown : listener(event : Event) : undefined
+
 ----
 event.keypress : listener(event : Event) : undefined
+
 ----
 event.keyup : listener(event : Event) : undefined
+
 ----
 event.load : listener(event : Event) : undefined
+
 ----
 event.loadeddata : listener(event : Event) : undefined
+
 ----
 event.loadedmetadata : listener(event : Event) : undefined
+
 ----
 event.loadstart : listener(event : Event) : undefined
+
 ----
 event.message : listener(event : Event) : undefined
 
@@ -1023,36 +1055,75 @@ http://www.whatwg.org/specs/web-apps/current-work/#handler-window-onpopstate
 
 ----
 event.progress : listener(event : Event) : undefined
+
 ----
 event.ratechange : listener(event : Event) : undefined
+
 ----
 event.reset : listener(event : Event) : undefined
+
 ----
 event.resize : listener(event : Event) : undefined
+
 ----
 event.scroll : listener(event : Event) : undefined
+
 ----
 event.seeked : listener(event : Event) : undefined
+
 ----
 event.seeking : listener(event : Event) : undefined
+
 ----
 event.select : listener(event : Event) : undefined
+
 ----
 event.show : listener(event : Event) : undefined
+
 ----
 event.stalled : listener(event : Event) : undefined
-----
-event.storage : listener(event : Event) : undefined
+
 ----
 event.submit : listener(event : Event) : undefined
+
 ----
 event.suspend : listener(event : Event) : undefined
+
 ----
 event.timeupdate : listener(event : Event) : undefined
+
 ----
 event.unload : listener(event : Event) : undefined
+
 ----
 event.volumechange : listener(event : Event) : undefined
+
 ----
 event.storage : listener(event : StorageEvent) : undefined
 
+----
+event.unhandledrejection : listener(event : PromiseRejectionEvent) : undefined
+
+Fired when a %%/Promise|Promise%%'s reject handler is called or an exception is
+thrown in an Promise executor function or in an async function.
+
+<htmlexample>
+<script>
+  window.onunhandledrejection = function(event) {
+    console.log('Unhandled rejection: ' + event.reason);
+    event.preventDefault();
+  };
+
+  new Promise(function(resolve, reject) {
+    reject('Promise reject');
+  });
+
+  new Promise(function(resolve, reject) {
+    throw 'Promise throw';
+  });
+
+  (async function() {
+    throw 'async function throw';
+  })();
+</script>
+</htmlexample>

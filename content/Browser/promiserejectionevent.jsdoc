@@ -1,0 +1,58 @@
+PromiseRejectionEvent : Event
+
+Event data for when a %%/Promise|Promise%%'s reject handler is called or an exception is
+thrown in an Promise executor function or in an async function. See
+%%/Window#onunhandledrejection|window.onunhandledrejection%%.
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#promiserejectionevent
+
+----
+instance.promise : Promise
+
+The promise that had the unhandled rejection.
+
+<htmlexample>
+<script>
+  window.onunhandledrejection = function(event) {
+    console.log(event.promise === myPromise);
+  };
+
+  var myPromise = new Promise(function(resolve, reject) {
+    reject('Promise reject');
+  });
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+---
+instance.reason : Object
+
+The object passed to the reject handler or the object thrown in an Promise executor 
+function or in an async function.
+
+<htmlexample>
+<script>
+  window.onunhandledrejection = function(event) {
+    console.log('Unhandled rejection: ' + event.reason);
+    event.preventDefault();
+  };
+
+  new Promise(function(resolve, reject) {
+    reject('Promise reject');
+  });
+
+  new Promise(function(resolve, reject) {
+    throw 'Promise throw';
+  });
+
+  (async function() {
+    throw 'async function throw';
+  })();
+</script>
+</htmlexample>
+
+ReadOnly:
+true
