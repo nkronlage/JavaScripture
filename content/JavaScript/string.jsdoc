@@ -64,6 +64,9 @@ console.log('abc'.length);
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.5.1
 
+ReadOnly:
+true
+
 ----
 prototype.charAt(pos : Number) : String
 
@@ -106,6 +109,26 @@ console.log(x); // x is unchanged
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.6
 
+----
+prototype.includes(searchString : Strincg, [startingIndex = 0 : Number]) : Boolean
+
+Returns **true** if **searchString** is somewhere in **this** starting the search from
+**startingIndex**. If **startingIndex** is negative, **this.length** is added to it before
+starting the search.
+
+<example>
+var x = ['a', 'b', 'c', 'd'];
+console.log(x.includes('b'));
+console.log(x.includes('b', 2));
+console.log(x.includes('a', -2));
+console.log(x.includes('e'));
+</example>
+
+Version:
+ECMAScript 2016
+
+Spec:
+http://www.ecma-international.org/ecma-262/7.0/#sec-array.prototype.includes
 
 ----
 prototype.indexOf(searchString : String, [startingIndex = 0 : Number]) : Number
