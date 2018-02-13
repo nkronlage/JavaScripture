@@ -641,6 +641,20 @@ https://fetch.spec.whatwg.org/#dom-global-fetch
 ----
 prototype.fetch(request : Request, [requestInit : Object]) : Promise<Response>
 
+Fetches the specified web request. If **requestInit** is specified, its values
+overwrite the values on **request**. See alse %%/Request|Request%% and %%/Response|Response%%.
+
+<htmlexample>
+<script>
+  var request = new Request('/', { method: 'HEAD' });
+  fetch(request).then(function(response) {
+    for (var kvp of response.headers) {
+      console.log(kvp[0] + ': ' + kvp[1]);
+    }
+  });
+</script>
+</htmlexample>
+
 Spec:
 https://fetch.spec.whatwg.org/#dom-global-fetch
 
