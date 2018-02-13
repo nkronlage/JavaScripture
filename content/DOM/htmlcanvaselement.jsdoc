@@ -31,16 +31,55 @@ Spec:
 http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-getcontext
 
 ----
-prototype.toDataURL([type = 'image/png': String, [jpegCompressionRatio : Number]]) : String
+prototype.toBlob(callback(blob : Blob) : undefined, [type = 'image/png' : String, [quality : Number]]) : undefined
 
-Returns a **'data:'** string representation of the canvas. **type** can be 
-**'image/png'** or **'image/jpeg'**. 
-When using **'image/jgeg'**, you may pass an additional value between 
-**0.0** and **1.0** to change the compression rate.
+Calls **callback** with a blob representation of the canvas. **type** can be
+**'image/png'** or **'image/jpeg'**.
+When using **'image/jgeg'**, you may provide the **quality** parameter (**0.0**
+to **1.0**) to change the quality of the saved file and consequently the
+size of the file.
 
-Note, if you are using %%/WebGLRenderingContext|WebGL%%, you must paint to the canvas immediately before 
+Note, if you are using %%/WebGLRenderingContext|WebGL%%, you must paint to the
+canvas immediately before calling **toBlob**, or set
+%%WebGLContextAttributes#preserveDrawingBuffer|**preserveDrawingBuffer**%%
+to **true** to keep the buffer available after the browser has displayed the
+contents.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(10, 10, 20, 40);
+
+  context.fillStyle = 'rgba(0,0,255,0.7)';
+  context.fillRect(20, 20, 40, 20);
+
+  canvas.toBlob(function(blob) {
+    console.log(blob.type);
+    console.log(blob.size);
+  });
+</script>
+</htmlexample>
+
+
+Spec:
+https://html.spec.whatwg.org/multipage/scripting.html#dom-canvas-toblob
+
+----
+prototype.toDataURL([type = 'image/png': String, [quality : Number]]) : String
+
+Returns a **'data:'** string representation of the canvas. **type** can be
+**'image/png'** or **'image/jpeg'**.
+When using **'image/jgeg'**, you may provide the **quality** parameter (**0.0**
+to **1.0**) to change the quality of the saved file and consequently the
+size of the file.
+
+Note, if you are using %%/WebGLRenderingContext|WebGL%%, you must paint to the canvas immediately before
 calling **toDataURL**, or set %%WebGLContextAttributes#preserveDrawingBuffer|**preserveDrawingBuffer**%%
-to **true** to keep the buffer available after the browser has displayed the 
+to **true** to keep the buffer available after the browser has displayed the
 contents.
 
 <htmlexample>
