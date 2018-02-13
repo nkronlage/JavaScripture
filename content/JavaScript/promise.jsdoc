@@ -3,7 +3,8 @@ Promise : Object
 A Promise is an object that represents an asynchronous operation that
 will eventually produce a value.
 Use the %%#then|**then()**%% method to hook up a callback that will
-be called when the result of the asynchronous operation is ready.
+be called when the result of the asynchronous operation is ready. **async function()**s
+return Promises and can make simplify Promise based code.
 
 Version:
 ECMAScript 2015
@@ -44,10 +45,11 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-promise-executor
 prototype.catch(onReject(error : Error) : undefined) : Promise
 
 Schedules **onReject** to be called if the promise had an error (ie, 
-the %%/#new_Promise|**executer function**%% called **reject()**
+the %%#new_Promise_Function|**executer function**%% called **reject()**
 or a method in the promise chain threw an error).
 **error** is the value passed to **reject**.  This is a shorthand
-for calling %%#then|**then(undefined, onReject)**%%. 
+for calling %%#then|**then(undefined, onReject)**%%.  See also the
+%%/Window#unhandledrejection|window unhandledrejecton event%%.
 
 <example>
 var throwPromise = new Promise(function(resolve, reject) {
@@ -228,6 +230,7 @@ var x = Promise.reject('foo');
 var y = new Promise(function(resolve, reject) {
                       reject('foo');
                     });
+var z = (async function() { throw 'foo' })();
 </example>
 
 Spec:
@@ -245,6 +248,7 @@ var x = Promise.resolve('foo');
 var y = new Promise(function(resolve) {
                       resolve('foo');
                     });
+var z = (async function() { return 'foo' })();
 </example>
 
 Spec:
