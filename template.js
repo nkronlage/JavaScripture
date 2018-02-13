@@ -66,12 +66,10 @@ var getPageDescription = function(obj) {
 };
 
 var getVersionClass = function(version) {
-  if (version === 'ECMAScript 2015') {
-    return 'ecmascript2015';
-  }
-  else {
+  if (!/^ECMAScript 20\d\d$/.test(version)) {
     throw Error('unknown version: ' + version);
   }
+  return version.replace(' ', '').toLowerCase();
 };
 
 
