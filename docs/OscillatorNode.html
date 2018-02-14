@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>OscillatorNode JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript OscillatorNode Object. OscillatorNode is an audio source that generates a periodic waveform such as a sine, triangle, sawtooth, or square wave (specified b"><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>OscillatorNode</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#detune">detune</a><a href="#frequency">frequency</a><a href="#type">type</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#setPeriodicWave_PeriodicWave">setPeriodicWave</a><a href="#start_Number">start</a><a href="#stop_Number">stop</a></div></div><div class="group collapsed"><a href="#InstanceEvents" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Events</a><div class="subgroup"><a href="#ended">ended</a></div></div></div><h2>Audio API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">OscillatorNode</span> <span class="type">: <a href="/AudioNode">AudioNode</a></span></h1><div class="metadata"></div><div class="objectdescription">OscillatorNode is an audio source that generates a periodic waveform such as a sine, triangle, sawtooth, or square wave (specified by the <a href="#type"><code>type</code></a> property. Created by <a href="/AudioContext#createOscillator"><code>audioContext.createOscillator()</code></a>.<div class="membermetadata"><a href="http://www.w3.org/TR/2013/WD-webaudio-20131010/#OscillatorNode" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="detune"></a><div class="declaration"><span class="membername primary">detune</span>&nbsp;:&nbsp;<a class="membertype" href="/AudioParam">AudioParam</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">A detuning value to alter the effective frequency (detune is specified in <a href="http://en.wikipedia.org/wiki/Cent_(music)">Cents</a>). The default value is 0. This is combined with <a href="#frequency"><code>frequency</code></a> to produce the effective frequency using the equation: <code>effectiveFrequency = frequency * pow(2, detune / 1200)</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button onclick=&#39;playpause()&#39;&gt;play/pause&lt;/button&gt;&lt;br&gt;
+&lt;input id=&#39;input&#39; value=&#39;100&#39;&gt;cent &lt;button onclick=&#39;setDetune()&#39;&gt;set&lt;/button&gt;
+&lt;script&gt;
+  // Temporary workaround until AudioContext is standardized 
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ 
+  var context = new AudioContext();
+  var oscillator = context.createOscillator();
+  oscillator.start(0);
+  var connected = false;
+  
+  var playpause = function() {
+    if (!connected) {
+      oscillator.connect(context.destination);
+    }
+    else {
+      oscillator.disconnect();
+    }
+    connected = !connected;
+  };
+
+  var setDetune = function() {
+    var input = document.getElementById(&#39;input&#39;);
+    oscillator.detune.value = +input.value;
+  };
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "OscillatorNode.detune"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="frequency"></a><div class="declaration"><span class="membername primary">frequency</span>&nbsp;:&nbsp;<a class="membertype" href="/AudioParam">AudioParam</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The frequency of the wave (in Hertz). The default value is 440. This is combined with <a href="#detune"><code>detune</code></a> to produce the effective frequency using the equation: <code>effectiveFrequency = frequency * pow(2, detune / 1200)</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button onclick=&#39;playpause()&#39;&gt;play/pause&lt;/button&gt;&lt;br&gt;
+&lt;input id=&#39;input&#39; value=&#39;440&#39;&gt;hz &lt;button onclick=&#39;setFrequency()&#39;&gt;set&lt;/button&gt;
+&lt;script&gt;
+  // Temporary workaround until AudioContext is standardized 
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ 
+  var context = new AudioContext();
+  var oscillator = context.createOscillator();
+  oscillator.start(0);
+  var connected = false;
+  
+  var playpause = function() {
+    if (!connected) {
+      oscillator.connect(context.destination);
+    }
+    else {
+      oscillator.disconnect();
+    }
+    connected = !connected;
+  };
+
+  var setFrequency = function() {
+    var input = document.getElementById(&#39;input&#39;);
+    oscillator.frequency.value = +input.value;
+  };
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "OscillatorNode.frequency"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="type"></a><div class="declaration"><span class="membername primary">type</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">The type of wave generated by <code>this</code>. Can be set to one of <code>'sine'</code>, <code>'square'</code>, <code>'sawtooth'</code>, or <code>'triangle'</code>. When using <a href="#setPeriodicWave"><code>setPeriodicWave()</code></a> to define the waveform, <code>type</code> will be set to <code>'custom'</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button onclick=&#39;playpause()&#39;&gt;play/pause&lt;/button&gt;&lt;br&gt;
+&lt;select id=&#39;select&#39; onchange=&#39;setType(this.value)&#39;&gt;&lt;/select&gt;
+&lt;script&gt;
+  var options = [&#39;sine&#39;, &#39;square&#39;, &#39;sawtooth&#39;, &#39;triangle&#39;];
+  var select = document.getElementById(&#39;select&#39;);
+  options.forEach(function(option, i) {
+    select.add(new Option(option, option));
+  });
+
+  // Temporary workaround until AudioContext is standardized 
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ 
+  var context = new AudioContext();
+  var oscillator = context.createOscillator();
+  oscillator.start(0);
+  var connected = false;
+  
+  var playpause = function() {
+    if (!connected) {
+      oscillator.connect(context.destination);
+    }
+    else {
+      oscillator.disconnect();
+    }
+    connected = !connected;
+  };
+
+  var setType = function(type) {
+    oscillator.type = type;
+  };
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "OscillatorNode.type"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="setPeriodicWave"></a> <a name="setPeriodicWave_PeriodicWave"></a><div class="declaration"><span class="membername primary">setPeriodicWave</span>(<span class="membername">periodicWave</span>&nbsp;:&nbsp;<a class="membertype" href="/PeriodicWave">PeriodicWave</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Sets the shape of the waveform.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button onclick=&#39;playpause()&#39;&gt;play/pause&lt;/button&gt;&lt;br&gt;
+&lt;input id=&#39;input&#39; value=&#39;100&#39;&gt;cent &lt;button onclick=&#39;setDetune()&#39;&gt;set&lt;/button&gt;
+&lt;script&gt;
+  // Temporary work around until AudioContext is standardized 
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ 
+  var context = new AudioContext();
+  var oscillator = context.createOscillator();
+  oscillator.frequency.value = 100;
+
+  var real = [0];
+  var imaginary = [0]; 
+
+  for (var i = 0; i &lt; 8; i++) {
+    real.push(Math.cos(i));
+    imaginary.push(Math.random());
+  }
+
+  var periodicWave = context.createPeriodicWave(new Float32Array(real), new Float32Array(imaginary));
+  oscillator.setPeriodicWave(periodicWave);
+
+  oscillator.start(0);
+  var connected = false;
+  
+  var playpause = function() {
+    if (!connected) {
+      oscillator.connect(context.destination);
+    }
+    else {
+      oscillator.disconnect();
+    }
+    connected = !connected;
+  };
+
+  var setDetune = function() {
+    var input = document.getElementById(&#39;input&#39;);
+    oscillator.detune.value = +input.value;
+  };
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "OscillatorNode.setPeriodicWave"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="start"></a> <a name="start_Number"></a><div class="declaration"><span class="membername primary">start</span>(<span class="membername">when</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="stop"></a> <a name="stop_Number"></a><div class="declaration"><span class="membername primary">stop</span>(<span class="membername">when</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description"></p></div></div></div><div><a name="InstanceEvents"></a><h2>Instance Events</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ended"></a> <a name="onended"></a><div class="declaration"><span class="membername primary">onended</span> / <span class="membername primary">'ended'</span>&nbsp;&nbsp;<span class="metadata">event</span><div class="subfunction"><span class="membername">listener</span>(<span class="membername">event</span>&nbsp;:&nbsp;<a class="membertype" href="/Event">Event</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div></div><div class="member-body"><p class="description"></p></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>

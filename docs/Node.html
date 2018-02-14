@@ -1,0 +1,309 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Node JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript Node Object. Node represents a node in a tree (usually the DOM/document tree). Node is the base type for  Element,  Text, Document, Comment, and others."><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>Node</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#baseURI">baseURI</a><a href="#childNodes">childNodes</a><a href="#firstChild">firstChild</a><a href="#lastChild">lastChild</a><a href="#nextSibling">nextSibling</a><a href="#nodeName">nodeName</a><a href="#nodeType">nodeType</a><a href="#nodeValue">nodeValue</a><a href="#ownerDocument">ownerDocument</a><a href="#parentElement">parentElement</a><a href="#parentNode">parentNode</a><a href="#previousSibling">previousSibling</a><a href="#textContent">textContent</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#appendChild_Node">appendChild</a><a href="#cloneNode_Boolean">cloneNode</a><a href="#compareDocumentPosition_Node" title="compareDocumentPosition">compareDocumentPosition</a><a href="#contains_Node">contains</a><a href="#hasChildNodes_">hasChildNodes</a><a href="#insertBefore_Node_Node">insertBefore</a><a href="#isDefaultNamespace_Boolean" title="isDefaultNamespace">isDefaultNamespace</a><a href="#isEqualNode_Node">isEqualNode</a><a href="#lookupNamespaceURI_String" title="lookupNamespaceURI">lookupNamespaceURI</a><a href="#lookupPrefix_String">lookupPrefix</a><a href="#normalize_">normalize</a><a href="#removeChild_Node">removeChild</a><a href="#replaceChild_Node_Node">replaceChild</a></div></div><div class="group collapsed"><a href="#NodeProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Node Properties</a><div class="subgroup"><a href="#ATTRIBUTE_NODE">ATTRIBUTE_NODE</a><a href="#CDATA_SECTION_NODE" title="CDATA_SECTION_NODE">CDATA_SECTION_NODE</a><a href="#COMMENT_NODE">COMMENT_NODE</a><a href="#DOCUMENT_FRAGMENT_NODE" title="DOCUMENT_FRAGMENT_NODE">DOCUMENT_FRAGMENT_NODE</a><a href="#DOCUMENT_NODE">DOCUMENT_NODE</a><a href="#DOCUMENT_POSITION_CONTAINED_BY" title="DOCUMENT_POSITION_CONTAINED_BY">DOCUMENT_POSITION_CONTAINED_BY</a><a href="#DOCUMENT_POSITION_CONTAINS" title="DOCUMENT_POSITION_CONTAINS">DOCUMENT_POSITION_CONTAINS</a><a href="#DOCUMENT_POSITION_DISCONNECTED" title="DOCUMENT_POSITION_DISCONNECTED">DOCUMENT_POSITION_DISCONNECTED</a><a href="#DOCUMENT_POSITION_FOLLOWING" title="DOCUMENT_POSITION_FOLLOWING">DOCUMENT_POSITION_FOLLOWING</a><a href="#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC" title="DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC">DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC</a><a href="#DOCUMENT_POSITION_PRECEDING" title="DOCUMENT_POSITION_PRECEDING">DOCUMENT_POSITION_PRECEDING</a><a href="#DOCUMENT_TYPE_NODE" title="DOCUMENT_TYPE_NODE">DOCUMENT_TYPE_NODE</a><a href="#ELEMENT_NODE">ELEMENT_NODE</a><a href="#ENTITY_NODE">ENTITY_NODE</a><a href="#ENTITY_REFERENCE_NODE" title="ENTITY_REFERENCE_NODE">ENTITY_REFERENCE_NODE</a><a href="#NOTATION_NODE">NOTATION_NODE</a><a href="#PROCESSING_INSTRUCTION_NODE" title="PROCESSING_INSTRUCTION_NODE">PROCESSING_INSTRUCTION_NODE</a><a href="#TEXT_NODE">TEXT_NODE</a></div></div></div><h2>DOM API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">Node</span> <span class="type">: <a href="/EventTarget">EventTarget</a></span></h1><div class="metadata"></div><div class="objectdescription">Node represents a node in a tree (usually the DOM/document tree). Node is the base type for <a href="/Element">Element</a>, <a href="/Text">Text</a>, <a href="/Document">Document</a>, <a href="/Comment">Comment</a>, and others.<div class="membermetadata"><a href="http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="baseURI"></a><div class="declaration"><span class="membername primary">baseURI</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="childNodes"></a><div class="declaration"><span class="membername primary">childNodes</span>&nbsp;:&nbsp;<a class="membertype" href="/NodeList">NodeList</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">A NodeList containing the children Nodes of <code>this</code>. See also <a href="/Element#children">Element.children</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  for (var i = 0; i &lt; parent.childNodes.length; i++) {
+    console.log(parent.childNodes[i].nodeName);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.childNodes"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="firstChild"></a><div class="declaration"><span class="membername primary">firstChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The first child Node in <code>this</code>. If <code>this</code> has no children, <code>firstChild</code> will be <code>null</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;div&gt;A nested div&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var firstChild = parent.lastChild;
+  var firstChildNode = parent.childNodes[0];
+  console.log(firstChild === firstChildNode);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.firstChild"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="lastChild"></a><div class="declaration"><span class="membername primary">lastChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The last child Node in <code>this</code>. If <code>this</code> has no children, <code>lastChild</code> will be <code>null</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;div&gt;A nested div&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var lastChild = parent.lastChild;
+  var lastChildNode = parent.childNodes[parent.childNodes.length - 1];
+  console.log(lastChild === lastChildNode);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.lastChild"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="nextSibling"></a><div class="declaration"><span class="membername primary">nextSibling</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The sibling Node after <code>this</code> in <a href="#parentNode"><code>this.parentNode</code></a>'s children. If <code>this</code> is the last child in <code>parentNode</code> or <code>this</code> has no <code>parentNode</code>, <code>nextSibling</code> will be <code>null</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;div&gt;A nested div&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var child = parent.firstChild;
+  while (child) {
+    console.log(child.nodeName);
+    child = child.nextSibling;
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.nextSibling"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="nodeName"></a><div class="declaration"><span class="membername primary">nodeName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The name of the node. The value of <code>nodeName</code> depends on the type of <code>this</code>. For <a href="/Element"><code>Element</code>s</a>, the <code>nodeName</code> is the same as <a href="/Element#tagName"><code>Element.tagName</code></a>. For <a href="/ProcessingInstruction"><code>ProcessingInstructions</code>s</a>, the <code>nodeName</code> is the same as <a href="/ProcessingInstruction"><code>ProcessingInstruction.target</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script id=&#39;myscript&#39;&gt;
+  console.log(document.createComment(&#39;&#39;).nodeName);
+  console.log(document.createDocumentFragment().nodeName);
+  console.log(document.nodeName);
+  console.log(document.doctype.nodeName);
+
+  // nodeName for Element is same as tagName 
+  console.log(document.createElement(&#39;div&#39;).nodeName);
+
+  // nodeName for a ProcessingInstruction is the same as the target
+  console.log(document.createProcessingInstruction(&#39;myscript&#39;,&#39;&#39;).nodeName);
+
+  console.log(document.createTextNode(&#39;&#39;).nodeName);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.nodeName"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="nodeType"></a><div class="declaration"><span class="membername primary">nodeType</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The type of this Node. Will be one of <a href="#ELEMENT_NODE"><code>ELEMENT_NODE</code></a> <a href="#ATTRIBUTE_NODE"><code>ATTRIBUTE_NODE</code></a> <a href="#TEXT_NODE"><code>TEXT_NODE</code></a> <a href="#CDATA_SECTION_NODE"><code>CDATA_SECTION_NODE</code></a> <a href="#ENTITY_REFERENCE_NODE"><code>ENTITY_REFERENCE_NODE</code></a> <a href="#ENTITY_NODE"><code>ENTITY_NODE</code></a> <a href="#PROCESSING_INSTRUCTION_NODE"><code>PROCESSING_INSTRUCTION_NODE</code></a> <a href="#COMMENT_NODE"><code>COMMENT_NODE</code></a> <a href="#DOCUMENT_NODE"><code>DOCUMENT_NODE</code></a> <a href="#DOCUMENT_TYPE_NODE"><code>DOCUMENT_TYPE_NODE</code></a> <a href="#DOCUMENT_FRAGMENT_NODE"><code>DOCUMENT_FRAGMENT_NODE</code></a> or <a href="#NOTATION_NODE"><code>NOTATION_NODE</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script id=&#39;myscript&#39;&gt;
+  console.log(document.createElement(&#39;div&#39;).nodeType == Node.ELEMENT_NODE);
+  console.log(document.createTextNode(&#39;&#39;).nodeType == Node.TEXT_NODE);
+  console.log(document.createProcessingInstruction(&#39;myscript&#39;,&#39;&#39;).nodeType == Node.PROCESSING_INSTRUCTION_NODE);
+  console.log(document.createComment(&#39;&#39;).nodeType == Node.COMMENT_NODE);
+  console.log(document.nodeType == Node.DOCUMENT_NODE);
+  console.log(document.doctype.nodeType == Node.DOCUMENT_TYPE_NODE);
+  console.log(document.createDocumentFragment().nodeType == Node.DOCUMENT_FRAGMENT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.nodeType"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="nodeValue"></a><div class="declaration"><span class="membername primary">nodeValue</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">The text content of <code>this</code> (not including any descendants). Note, <a href="/Element"><code>Element</code></a>s do not have text content, the text is placed in a <a href="/Text"><code>Text</code></a> Node inside the <code>Element</code>. See also <a href="#textContent"><code>textContent</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;span id=&#39;parent&#39;&gt;
+  This text becomes a Text Node.
+  &lt;span&gt;So does this.&lt;/span&gt;
+&lt;/span&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+
+  // Elements do not have nodeValue
+  console.log(parent.nodeValue); 
+
+  // Text is placed in a Text node
+  var textNode = parent.firstChild;
+  console.log(&#39;&#34;&#39; + textNode.nodeValue + &#39;&#34;&#39;);
+
+  // Use textContent to get all the text in descendants
+  console.log(&#39;&#34;&#39; + parent.textContent + &#39;&#34;&#39;);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.nodeValue"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ownerDocument"></a><div class="declaration"><span class="membername primary">ownerDocument</span>&nbsp;:&nbsp;<a class="membertype" href="/Document">Document</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The Document that owns this Node.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;span id=&#39;foo&#39;&gt;foo&lt;/span&gt;
+&lt;script&gt;
+  var foo = document.getElementById(&#39;foo&#39;);
+  console.log(foo.ownerDocument === document);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.ownerDocument"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="parentElement"></a><div class="declaration"><span class="membername primary">parentElement</span>&nbsp;:&nbsp;<a class="membertype" href="/Element">Element</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The parent of <code>this</code>. <code>parentElement</code> will return the same value as <a href="#parentNode"><code>parentNode</code></a> if the parent is also an <a href="/Element"><code>Element</code></a>. The <a href="Document"><code>document</code></a> is one <code>Node</code> that is not also an <a href="/Element"><code>Element</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;body&gt;&lt;/body&gt;
+&lt;script&gt;
+  var documentElement = document.documentElement;
+  console.log(documentElement.parentNode === document);
+  console.log(documentElement.parentNode);
+  console.log(documentElement.parentElement);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.parentElement"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="parentNode"></a><div class="declaration"><span class="membername primary">parentNode</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The parent of <code>this</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;span id=&#39;foo&#39;&gt;foo&lt;/span&gt;
+&lt;script&gt;
+  var foo = document.getElementById(&#39;foo&#39;);
+  console.log(foo.parentNode === document.body);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.parentNode"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="previousSibling"></a><div class="declaration"><span class="membername primary">previousSibling</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The sibling Node before <code>this</code> in <a href="#parentNode"><code>this.parentNode</code></a>'s children. If <code>this</code> is the first child in <code>parentNode</code> or <code>this</code> has no <code>parentNode</code>, <code>previousSibling</code> will be <code>null</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;div&gt;A nested div&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var child = parent.lastChild;
+  while (child) {
+    console.log(child.nodeName);
+    child = child.previousSibling;
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.previousSibling"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="textContent"></a><div class="declaration"><span class="membername primary">textContent</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">The text content of this node and all descendants. See also <a href="#nodeValue"><code>nodeValue</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;span id=&#39;parent&#39;&gt;
+  This text becomes a Text Node.
+  &lt;span&gt;So does this.&lt;/span&gt;
+&lt;/span&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+
+  // Use textContent to get all the text in descendants
+  console.log(&#39;&#34;&#39; + parent.textContent + &#39;&#34;&#39;);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.textContent"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="appendChild"></a> <a name="appendChild_Node"></a><div class="declaration"><span class="membername primary">appendChild</span>(<span class="membername">newChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>)&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a></div><div class="member-body"><p class="description">Inserts <code>newChild</code> at the end of the children of <code>this</code>. Returns <code>newChild</code>. See also <a href="#insertBefore"><code>insertBefore()</code></a>, <a href="#removeChild"><code>removeChild()</code></a>, and <a href="#replaceChild"><code>replaceChild()</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  &lt;span id=&#39;foo&#39;&gt;foo&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+
+  var bar = document.createElement(&#39;span&#39;);
+  bar.textContent = &#39;bar &#39;;
+  parent.appendChild(bar);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.appendChild"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="cloneNode"></a> <a name="cloneNode_Boolean"></a><div class="declaration"><span class="membername primary">cloneNode</span>(<span class="membername">deep</span>&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a>)&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a></div><div class="member-body"><p class="description">Creates a copy of <code>this</code>. Only the <a href="/Element#attributes"><code>attributes</code></a> of the element are copied (any other properties set will not be copied). If <code>deep</code> is true, all descendants will be copied and added as children of the clone. Otherwise the returned value will not have children.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;span id=&#39;parent&#39;&gt;
+  An element &lt;span id=&#39;child&#39;&gt;with a child.&lt;/span&gt;
+&lt;/span&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var child = document.getElementById(&#39;child&#39;);
+
+  var shallowClone = parent.cloneNode(false);
+  console.log(&#39;&#34;&#39; + shallowClone.textContent + &#39;&#34;&#39;);
+
+  var deepClone = parent.cloneNode(true);
+  console.log(&#39;&#34;&#39; + deepClone.textContent.trim() + &#39;&#34;&#39;);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.cloneNode"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="compareDocumentPosition"></a> <a name="compareDocumentPosition_Node"></a><div class="declaration"><span class="membername primary">compareDocumentPosition</span>(<span class="membername">other</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>)&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns a value that indicates where <code>other</code> is relative to <code>this</code>. The return value will be a number that is the bitwise AND (&amp;) of one or more of the following values: <a href="#DOCUMENT_POSITION_CONTAINED_BY"><code>DOCUMENT_POSITION_CONTAINED_BY</code></a>, <a href="#DOCUMENT_POSITION_CONTAINS"><code>DOCUMENT_POSITION_CONTAINS</code></a>, <a href="#DOCUMENT_POSITION_DISCONNECTED"><code>DOCUMENT_POSITION_DISCONNECTED</code></a>, <a href="#DOCUMENT_POSITION_FOLLOWING"><code>DOCUMENT_POSITION_FOLLOWING</code></a>, <a href="#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC"><code>DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC</code></a>, or <a href="#DOCUMENT_POSITION_PRECEDING"><code>DOCUMENT_POSITION_PRECEDING</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;div&gt;A nested div&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var child = parent.firstChild;
+  var nextChild = child.nextSibling;
+
+  console.log(child.compareDocumentPosition(nextChild) &amp; Node.DOCUMENT_POSITION_FOLLOWING !== 0);
+  console.log(nextChild.compareDocumentPosition(child) &amp; Node.DOCUMENT_POSITION_PRECEDING !== 0);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.compareDocumentPosition"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="contains"></a> <a name="contains_Node"></a><div class="declaration"><span class="membername primary">contains</span>(<span class="membername">other</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">Returns <code>true</code> if <code>other</code> is a descendant of <code>this</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;div&gt;
+    &lt;div id=&#39;nested&#39;&gt;A nested div&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#39;sibling&#39;&gt;Sibling&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var nested = document.getElementById(&#39;nested&#39;);
+  var sibling = document.getElementById(&#39;sibling&#39;);
+
+  console.log(parent.contains(nested));
+  console.log(nested.contains(parent));
+  console.log(parent.contains(sibling));
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.contains"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="hasChildNodes"></a> <a name="hasChildNodes_"></a><div class="declaration"><span class="membername primary">hasChildNodes</span>()&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">Returns <code>true</code> if <code>this</code> has children.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  #parent has children
+&lt;div&gt;
+&lt;span id=&#39;empty&#39;&gt;&lt;/span&gt;
+&lt;script&gt;
+  console.log(document.getElementById(&#39;parent&#39;).hasChildNodes());
+  console.log(document.getElementById(&#39;empty&#39;).hasChildNodes());
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.hasChildNodes"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="insertBefore"></a> <a name="insertBefore_Node_Node"></a><div class="declaration"><span class="membername primary">insertBefore</span>(<span class="membername">newChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>, <span class="optional">[<span class="membername">refChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a></div><div class="member-body"><p class="description">Inserts <code>newChild</code> before <code>refChild</code> in <code>this</code>. If <code>refChild</code> is not provided, <code>newChild</code> is inserted at the end of the children. Returns <code>newChild</code>. See also <a href="#appendChild"><code>appendChild()</code></a>, <a href="#removeChild"><code>removeChild()</code></a>, and <a href="#replaceChild"><code>replaceChild()</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  &lt;span id=&#39;foo&#39;&gt;foo&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var foo = document.getElementById(&#39;foo&#39;);
+
+  var bar = document.createElement(&#39;span&#39;);
+  bar.textContent = &#39;bar &#39;;
+  parent.insertBefore(bar, foo);
+
+  var baz = document.createElement(&#39;span&#39;);
+  baz.textContent = &#39; baz&#39;;
+  parent.insertBefore(baz);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.insertBefore"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="isDefaultNamespace"></a> <a name="isDefaultNamespace_Boolean"></a><div class="declaration"><span class="membername primary">isDefaultNamespace</span>(<span class="membername">namespaceURI</span>&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="isEqualNode"></a> <a name="isEqualNode_Node"></a><div class="declaration"><span class="membername primary">isEqualNode</span>(<span class="membername">arg</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="lookupNamespaceURI"></a> <a name="lookupNamespaceURI_String"></a><div class="declaration"><span class="membername primary">lookupNamespaceURI</span>(<span class="membername">prefix</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="lookupPrefix"></a> <a name="lookupPrefix_String"></a><div class="declaration"><span class="membername primary">lookupPrefix</span>(<span class="membername">namespaceURI</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="normalize"></a> <a name="normalize_"></a><div class="declaration"><span class="membername primary">normalize</span>()&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Removes empty <a href="/Text"><code>Text</code></a> nodes within <code>this</code> and joins adjacent <code>Text</code> nodes into one node.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Text from html.
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var firstText = parent.firstChild;
+
+  parent.appendChild(document.createTextNode(&#39;&#39;));
+
+  var text = document.createTextNode(&#39;Text from JS.&#39;);
+
+  parent.appendChild(text);
+
+  console.log(parent.childNodes.length);
+  console.log(&#39;&#34;&#39; + firstText.nodeValue.trim() + &#39;&#34;&#39;);
+
+  parent.normalize();
+
+  console.log(parent.childNodes.length);
+  console.log(&#39;&#34;&#39; + firstText.nodeValue.trim() + &#39;&#34;&#39;);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.normalize"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="removeChild"></a> <a name="removeChild_Node"></a><div class="declaration"><span class="membername primary">removeChild</span>(<span class="membername">oldChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>)&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a></div><div class="member-body"><p class="description">Removes <code>oldChild</code> from the children of <code>this</code>. Returns <code>oldChild</code>. See also <a href="#appendChild"><code>appendChild()</code></a>, <a href="#insertBefore"><code>insertBefore()</code></a>, and <a href="#replaceChild"><code>replaceChild()</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  &lt;span id=&#39;foo&#39;&gt;foo&lt;/span&gt;&lt;span&gt;bar&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var foo = document.getElementById(&#39;foo&#39;);
+  parent.removeChild(foo);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.removeChild"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="replaceChild"></a> <a name="replaceChild_Node_Node"></a><div class="declaration"><span class="membername primary">replaceChild</span>(<span class="membername">newChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>, <span class="membername">oldChild</span>&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a>)&nbsp;:&nbsp;<a class="membertype" href="/Node">Node</a></div><div class="member-body"><p class="description">Removes <code>oldChild</code> from the children of <code>this</code> and replaces it with <code>newChild</code> (so <code>newChild</code> is in the same position as <code>oldChild</code> was). Returns <code>oldChild</code>. See also <a href="#appendChild"><code>appendChild()</code></a>, <a href="#insertBefore"><code>insertBefore()</code></a>, and <a href="#removeChild"><code>removeChild()</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  &lt;span id=&#39;foo&#39;&gt;foo&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+  var foo = document.getElementById(&#39;foo&#39;);
+
+  var bar = document.createElement(&#39;span&#39;);
+  bar.textContent = &#39;bar &#39;;
+  parent.replaceChild(bar, foo);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.replaceChild"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="NodeProperties"></a><h2>Node Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ATTRIBUTE_NODE"></a><div class="declaration"><span class="membername primary">ATTRIBUTE_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is an <a href="/Attr"><code>Attr</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script id=&#39;myscript&#39;&gt;
+  var element = document.getElementById(&#39;myscript&#39;);
+  console.log(element.attributes[0].nodeType == Node.ATTRIBUTE_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.ATTRIBUTE_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="CDATA_SECTION_NODE"></a><div class="declaration"><span class="membername primary">CDATA_SECTION_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is an CDATA node.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="COMMENT_NODE"></a><div class="declaration"><span class="membername primary">COMMENT_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is a <a href="/Comment"><code>Comment</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  console.log(document.createComment(&#39;&#39;).nodeType == Node.COMMENT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.COMMENT_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_FRAGMENT_NODE"></a><div class="declaration"><span class="membername primary">DOCUMENT_FRAGMENT_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is a <a href="/DocumentFragment"><code>DocumentFragment</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  console.log(document.createDocumentFragment().nodeType == Node.DOCUMENT_FRAGMENT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.DOCUMENT_FRAGMENT_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_NODE"></a><div class="declaration"><span class="membername primary">DOCUMENT_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is a <a href="/Document"><code>Document</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  console.log(document.nodeType == Node.DOCUMENT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.DOCUMENT_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_POSITION_CONTAINED_BY"></a><div class="declaration"><span class="membername primary">DOCUMENT_POSITION_CONTAINED_BY</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Bitmask value returned by <a href="#compareDocumentPosition"><code>compareDocumentPosition()</code></a>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_POSITION_CONTAINS"></a><div class="declaration"><span class="membername primary">DOCUMENT_POSITION_CONTAINS</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Bitmask value returned by <a href="#compareDocumentPosition"><code>compareDocumentPosition()</code></a>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_POSITION_DISCONNECTED"></a><div class="declaration"><span class="membername primary">DOCUMENT_POSITION_DISCONNECTED</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Bitmask value returned by <a href="#compareDocumentPosition"><code>compareDocumentPosition()</code></a>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_POSITION_FOLLOWING"></a><div class="declaration"><span class="membername primary">DOCUMENT_POSITION_FOLLOWING</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Bitmask value returned by <a href="#compareDocumentPosition"><code>compareDocumentPosition()</code></a>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC"></a><div class="declaration"><span class="membername primary">DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Bitmask value returned by <a href="#compareDocumentPosition"><code>compareDocumentPosition()</code></a>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_POSITION_PRECEDING"></a><div class="declaration"><span class="membername primary">DOCUMENT_POSITION_PRECEDING</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Bitmask value returned by <a href="#compareDocumentPosition"><code>compareDocumentPosition()</code></a>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOCUMENT_TYPE_NODE"></a><div class="declaration"><span class="membername primary">DOCUMENT_TYPE_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is a <a href="/DocumentType"><code>DocumentType</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  console.log(document.doctype.nodeType == Node.DOCUMENT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.DOCUMENT_TYPE_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ELEMENT_NODE"></a><div class="declaration"><span class="membername primary">ELEMENT_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is an <a href="/Element"><code>Element</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  console.log(document.createElement(&#39;div&#39;).nodeType == Node.ELEMENT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.ELEMENT_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ENTITY_NODE"></a><div class="declaration"><span class="membername primary">ENTITY_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is an entity node.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ENTITY_REFERENCE_NODE"></a><div class="declaration"><span class="membername primary">ENTITY_REFERENCE_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is an entity reference node.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="NOTATION_NODE"></a><div class="declaration"><span class="membername primary">NOTATION_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is a notation node.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="PROCESSING_INSTRUCTION_NODE"></a><div class="declaration"><span class="membername primary">PROCESSING_INSTRUCTION_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is a <a href="/ProcessingInstruction"><code>ProcessingInstruction</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script id=&#39;myscript&#39;&gt;
+  console.log(document.createProcessingInstruction(&#39;myscript&#39;,&#39;&#39;).nodeType == Node.PROCESSING_INSTRUCTION_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.PROCESSING_INSTRUCTION_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="TEXT_NODE"></a><div class="declaration"><span class="membername primary">TEXT_NODE</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returned by <a href="#nodeType"><code>nodeType</code></a> when <code>this</code> is an <a href="/Text"><code>Text</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  console.log(document.createTextNode(&#39;&#39;).nodeType == Node.TEXT_NODE);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Node.TEXT_NODE"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>

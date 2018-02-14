@@ -1,0 +1,137 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>CustomElementPrototype JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript CustomElementPrototype Object. The prototype used for a custom element created with document.registerElement()."><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>CustomElementPrototype</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#adoptedCallback_Document_Document">adoptedCallback</a><a href="#attributeChangedCallback_String_Object_Object_String" title="attributeChangedCallback">attributeChangedCallback</a><a href="#connectedCallback_" title="connectedCallback">connectedCallback</a><a href="#disconnectedCallback_" title="disconnectedCallback">disconnectedCallback</a></div></div><a href="CustomElementPrototype#Details">Details</a></div><h2>Components API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">CustomElementPrototype</span> <span class="type">: <a href="/HTMLElement">HTMLElement</a></span></h1><div class="metadata"></div><div class="objectdescription">The prototype used for a custom element created with <a href="/Document#registerElement"><code>document.registerElement()</code></a>.</div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="adoptedCallback"></a> <a name="adoptedCallback_Document_Document"></a><div class="declaration"><span class="membername primary">adoptedCallback</span>(<span class="membername">oldDocument</span>&nbsp;:&nbsp;<a class="membertype" href="/Document">Document</a>, <span class="membername">newDocument</span>&nbsp;:&nbsp;<a class="membertype" href="/Document">Document</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Called when <a href="/Document#adoptNode">adopted</a> into a new Document.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element {
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;iframe id=&#34;frame&#34;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  class MyElement extends HTMLElement {
+    static get observedAttributes() { return [&#39;foo&#39;]; }
+
+    adoptedCallback(oldDocument, newDocument) {
+      console.log(`adopted from ${oldDocument.documentURI} to ${newDocument.documentURI}`);
+    }
+  }
+  customElements.define(&#39;my-element&#39;, MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = &#34;MyElement from Code&#34;;
+  document.body.appendChild(myElement);
+
+  var frameDoc = document.querySelector(&#39;#frame&#39;).contentDocument;
+  frameDoc.body.appendChild(myElement);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementPrototype.adoptedCallback"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="attributeChangedCallback"></a> <a name="attributeChangedCallback_String_Object_Object_String"></a><div class="declaration"><span class="membername primary">attributeChangedCallback</span>(<span class="membername">name</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">oldValue</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">newValue</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">namespace</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Called when an attribute was changed on the element. See also <a href="/MutationObserver">MutationObserver</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element { 
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element foo=&#34;htmlattr&#34;&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;script&gt;
+  class MyElement extends HTMLElement {
+    static get observedAttributes() { return [&#39;foo&#39;]; }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      console.log(`${name} changed from &#34;${oldValue}&#34; to &#34;${newValue}&#34;`);
+    }
+  }
+  customElements.define(&#39;my-element&#39;, MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = &#34;MyElement from Code&#34;;
+  document.body.appendChild(myElement);
+
+  myElement.setAttribute(&#39;foo&#39;, &#39;codeattr&#39;);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementPrototype.attributeChangedCallback"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="connectedCallback"></a> <a name="connectedCallback_"></a><div class="declaration"><span class="membername primary">connectedCallback</span>()&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Called when the custom element is inserted into the document or when the prototype is applied to elements already in the tree at the time <a href="/CustomElements#define"><code>customElements.define()</code></a> is called. See also <a href="/MutationObserver">MutationObserver</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element { 
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;script&gt;
+  class MyElement extends HTMLElement {
+    connectedCallback() {
+      console.log(&#39;element parented to &#39; + this.parentElement.tagName);
+    }
+  }
+  customElements.define(&#39;my-element&#39;, MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = &#34;MyElement from Code&#34;;
+  document.body.appendChild(myElement);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementPrototype.connectedCallback"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="disconnectedCallback"></a> <a name="disconnectedCallback_"></a><div class="declaration"><span class="membername primary">disconnectedCallback</span>()&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Called when the element is removed from the document. See also <a href="/MutationObserver">MutationObserver</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element { 
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;script&gt;
+  class MyElement extends HTMLElement {
+    disconnectedCallback() {
+      console.log(&#39;element disconnected&#39;);
+    }
+  }
+  customElements.define(&#39;my-element&#39;, MyElement);
+
+  document.body.removeChild(document.querySelector(&#39;my-element&#39;));
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementPrototype.disconnectedCallback"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><a name="Details"></a><h2>Details</h2><div class="details"><p>The following example demonstrates how to create a custom element based on <a href="/HTMLElement">HTMLElement</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element { 
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;script&gt;
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      // Hook up click listener to set the color to red
+      this.addEventListener(&#39;click&#39;, function(event) {
+        event.target.style.color = &#39;red&#39;;
+      });
+    }
+  }
+  customElements.define(&#39;my-element&#39;, MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = &#34;MyElement from Code&#34;;
+  document.body.appendChild(myElement);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementPrototype.CustomElementPrototype"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>

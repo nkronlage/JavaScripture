@@ -1,0 +1,171 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Storage JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript Storage Object. Storage allows saving data in the web browser that can be retrieved in future views of the web page.  The browser has two types of storage:"><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>Storage</h2><div class="navgroup"><div class="group"><a href="#InstanceIndexers">Instance Indexers</a></div><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#length">length</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#clear_">clear</a><a href="#getItem_String">getItem</a><a href="#key_Number">key</a><a href="#removeItem_String">removeItem</a><a href="#setItem_String_String">setItem</a></div></div></div><h2>Browser API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">Storage</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">Storage allows saving data in the web browser that can be retrieved in future views of the web page. The browser has two types of storage: <a href="/Window#localStorage"><code>localStorage</code></a> which stores data across page views, browser restarts and computer restarts, and <a href="/Window#sessionStorage"><code>sessionStorage</code></a> which only stores data across page views. <code>sessionStorage</code> is deleted when the user closes the browser.</div><div><a name="InstanceIndexers"></a><h2>Instance Indexers</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="indexer_String"></a><div class="declaration"><span class="membername primary">this</span>[<span class="membername">key</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>]&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">Gets or sets the data for <code>key</code> in the Storage. Only Strings may be saved in Storage. You can also use <a href="#getItem"><code>getItem()</code></a> to retrieve the value and <a href="#setItem"><code>setItem()</code></a> to set the value. For <code>keys</code> that are valid JavaScript property names, you can access the value by using the <code>storage.key</code> syntax.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  for (var i = 0; i &lt; sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log(&#39;&#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage[key] + &#39;&#34;&#39;);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.undefined"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="length"></a><div class="declaration"><span class="membername primary">length</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returns the number of items saved in the Storage.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  console.log(sessionStorage.length + &#39; items in storage&#39;);
+  for (var i = 0; i &lt; sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log(&#39;&#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage[key] + &#39;&#34;&#39;);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.length"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="clear"></a> <a name="clear_"></a><div class="declaration"><span class="membername primary">clear</span>()&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Removes all items from the storage. See also <a href="#removeItem"><code>removeItem()</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button onclick=&#39;clearStorage()&#39;&gt;Clear Storage&lt;/button&gt;
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  var printStorage = function() {
+    console.log(sessionStorage.length + &#39; items in storage&#39;);
+    for (var i = 0; i &lt; sessionStorage.length; i++) {
+      var key = sessionStorage.key(i);
+      console.log(&#39;  &#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage[key] + &#39;&#34;&#39;);
+    }
+  };
+
+  var clearStorage = function() {
+    sessionStorage.clear();
+
+    printStorage();
+  };
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.clear"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="getItem"></a> <a name="getItem_String"></a><div class="declaration"><span class="membername primary">getItem</span>(<span class="membername">key</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">Gets the data for <code>key</code> in the Storage. You may also use <a href="#indexer_String"><code>this[key]</code></a> to retrieve the value. For <code>keys</code> that are valid JavaScript property names, you can access the value by using the <code>storage.key</code> syntax.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  for (var i = 0; i &lt; sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log(&#39;&#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage.getItem(key) + &#39;&#34;&#39;);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.getItem"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="key"></a> <a name="key_Number"></a><div class="declaration"><span class="membername primary">key</span>(<span class="membername">index</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">Returns the key for the item at <code>index</code> in <code>this</code>. Use <a href="#indexer_String"><code>this[key]</code></a> or <a href="#getItem"><code>this.getItem(key)</code></a> to retrieve the value for the returned key.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  for (var i = 0; i &lt; sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log(&#39;&#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage[key] + &#39;&#34;&#39;);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.key"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="removeItem"></a> <a name="removeItem_String"></a><div class="declaration"><span class="membername primary">removeItem</span>(<span class="membername">key</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Removes the item with the specified <code>key</code> from the storage. You may also use the <code>delete storage[key]</code> syntax or <code>delete storage.key</code> syntax to remove the item. See also <a href="#clear"><code>clear()</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button onclick=&#39;removeItems()&#39;&gt;Remove Items&lt;/button&gt;
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  var printStorage = function() {
+    console.log(sessionStorage.length + &#39; items in storage&#39;);
+    for (var i = 0; i &lt; sessionStorage.length; i++) {
+      var key = sessionStorage.key(i);
+      console.log(&#39;  &#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage[key] + &#39;&#34;&#39;);
+    }
+  };
+
+  var removeItems = function() {
+    // The following are all equivalent ways of deleting a key
+    delete sessionStorage.simpleKey;
+    sessionStorage.removeItem(&#39;complex key!&#39;);
+    delete sessionStorage[&#39;createdExamples&#39;];
+
+    printStorage();
+  };
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.removeItem"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="setItem"></a> <a name="setItem_String_String"></a><div class="declaration"><span class="membername primary">setItem</span>(<span class="membername">key</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">value</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Sets the data for <code>key</code> in the Storage. Only Strings may be saved in Storage. You can also use <a href="#getItem"><code>getItem()</code></a> to retrieve the value and <a href="#setItem"><code>setItem()</code></a> to set the value. For <code>keys</code> that are valid JavaScript property names, you can access the value by using the <code>storage.key</code> syntax.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;script&gt;
+  if (!sessionStorage.createdExamples) {
+    // Set a few values
+    sessionStorage.simpleKey = &#39;foo&#39;;
+    sessionStorage[&#39;complex key!&#39;] = &#39;bar&#39;;
+    sessionStorage.createdExamples = &#39;true&#39;;
+
+    console.log(&#39;Added examples to sessionStorage&#39;);
+  }
+  else {
+    console.log(&#39;Using existing examples in sessionStorage&#39;);
+  }
+
+  for (var i = 0; i &lt; sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    console.log(&#39;&#34;&#39; + key + &#39;&#34; = &#34;&#39; + sessionStorage[key] + &#39;&#34;&#39;);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Storage.setItem"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>

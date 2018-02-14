@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>HTMLCollection JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript HTMLCollection Object. A list of Elements similar to an NodeList.   The Element.children property returns an  HTMLCollection."><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>HTMLCollection</h2><div class="navgroup"><div class="group"><a href="#InstanceIndexers">Instance Indexers</a></div><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#length">length</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#item_Number">item</a><a href="#namedItem_String">namedItem</a></div></div></div><h2>DOM API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">HTMLCollection</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">A list of <a href="/Element">Elements</a> similar to an <a href="/NodeList">NodeList</a>. The <a href="/Element#children">Element.children</a> property returns an HTMLCollection.<div class="membermetadata"><a href="https://w3c.github.io/dom/#htmlcollection" class="spec">Spec</a></div></div><div><a name="InstanceIndexers"></a><h2>Instance Indexers</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="indexer_Number"></a><div class="declaration"><span class="membername primary">this</span>[<span class="membername">index</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]&nbsp;:&nbsp;<a class="membertype" href="/Element">Element</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Returns the item at <code>index</code> in the collection.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;button&gt;A button&lt;/button&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+
+  console.log(&#39;children:&#39;);
+  for (var i = 0; i &lt; parent.children.length; i++) {
+    console.log(&#39;  &#39; + parent.children[i].nodeName);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLCollection.undefined"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="length"></a><div class="declaration"><span class="membername primary">length</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The number of Elements in the list.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span&gt;A span&lt;/span&gt;
+  &lt;button&gt;A button&lt;/button&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+
+  console.log(&#39;children:&#39;);
+  for (var i = 0; i &lt; parent.children.length; i++) {
+    console.log(&#39;  &#39; + parent.children[i].nodeName);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLCollection.length"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://w3c.github.io/dom/#dom-htmlcollection-length" class="spec">Spec</a></div></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="item"></a> <a name="item_Number"></a><div class="declaration"><span class="membername primary">item</span>(<span class="membername">index</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/Element">Element</a></div><div class="member-body"><p class="description">Same as <a href="#indexer_Number"><code>this[index]</code></a>.</p><div class="membermetadata"><a href="https://w3c.github.io/dom/#dom-htmlcollection-item" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="namedItem"></a> <a name="namedItem_String"></a><div class="declaration"><span class="membername primary">namedItem</span>(<span class="membername">idOrName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/Element">Element</a></div><div class="member-body"><p class="description">Returns the Element in the <code>this</code> that has <a href="/Element#id">id</a> or <a href="/HTMLInputElement#name">name</a> equal to <code>idOrName</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;div id=&#39;parent&#39;&gt;
+  Some text
+  &lt;span id=&#39;foo&#39;&gt;A span&lt;/span&gt;
+  &lt;input name=&#39;bar&#39;&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  var parent = document.getElementById(&#39;parent&#39;);
+
+  console.log(parent.children.namedItem(&#39;foo&#39;).tagName);
+  console.log(parent.children.namedItem(&#39;bar&#39;).tagName);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLCollection.namedItem"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://w3c.github.io/dom/#dom-htmlcollection-nameditem" class="spec">Spec</a></div></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>

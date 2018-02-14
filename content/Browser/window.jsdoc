@@ -686,7 +686,7 @@ must be one of:
 <dl>
 <dt>**'_blank'** <dd>open in new window, the default
 <dt>**'_parent'**<dd>open in parent page/frame
-<dtj**'_self'**<dd>open in current page/frame
+<dt>**'_self'**<dd>open in current page/frame
 <dt>**'_top'**<dd>open in top page
 <dt>**'&lt;name&gt;'**<dd>open in the window with the specified name
 </dl>

@@ -13,7 +13,7 @@ var apisets = require('./makeapisets.js');
 var makepage = require('./makepage.js');
 var makecustompage = require('./makecustompage.js');
 
-var site = './site';
+var site = './docs';
 var tmp = './tmp';
 
 gulp.task('default', ['scss', 

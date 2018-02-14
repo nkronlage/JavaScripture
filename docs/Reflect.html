@@ -1,0 +1,224 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Reflect JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript Reflect Object. Provides methods to inspect and interact with objects programmatically.  Similar to pre-ECMAScript 2015 methods on Object and Function."><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>Reflect</h2><div class="navgroup"><div class="group collapsed"><a href="#ReflectMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Reflect Methods</a><div class="subgroup"><a href="#apply_Object_Object_Array">apply</a><a href="#construct_Function_Array_Function">construct</a><a href="#defineProperty_Object_String_PropertyDescriptor">defineProperty</a><a href="#deleteProperty_Object_String">deleteProperty</a><a href="#get_Object_String_Object">get</a><a href="#getOwnPropertyDescriptor_Object_String" title="getOwnPropertyDescriptor">getOwnPropertyDescriptor</a><a href="#getPrototypeOf_Object">getPrototypeOf</a><a href="#has_Object_String">has</a><a href="#isExtensible_Object">isExtensible</a><a href="#ownKeys_Object">ownKeys</a><a href="#preventExtensions_Object" title="preventExtensions">preventExtensions</a><a href="#set_Object_String_Object_Object">set</a><a href="#setPrototypeOf_Object_Object">setPrototypeOf</a></div></div></div><h2>JavaScript API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">Reflect</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">Provides methods to inspect and interact with objects programmatically. Similar to pre-ECMAScript 2015 methods on <a href="/Object">Object</a> and <a href="/Function">Function</a>.<div class="membermetadata"><span class="ecmascript2015">ECMAScript 2015</span> <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect-object" class="spec">Spec</a></div></div><div><a name="ReflectMethods"></a><h2>Reflect Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="apply"></a> <a name="apply_Object_Object_Array"></a><div class="declaration"><span class="membername primary">apply</span>(<span class="membername">target</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">thisArg</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">parameters</span>&nbsp;:&nbsp;<a class="membertype" href="/Array">Array</a>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a></div><div class="member-body"><p class="description">See <a href="/Function#apply">Function.apply()</a>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var whatsThis = function() { console.log(this); }
+Reflect.apply(whatsThis, &#39;hello&#39;, []);
+
+// Call a function that takes a variable number of args
+var numbers = [3, 20, 1, 45];
+console.log(Reflect.apply(Math.max, undefined, numbers));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.apply"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.apply" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="construct"></a> <a name="construct_Function_Array_Function"></a><div class="declaration"><span class="membername primary">construct</span>(<span class="membername">constructor</span>&nbsp;:&nbsp;<a class="membertype" href="/Function">Function</a>, <span class="membername">parameters</span>&nbsp;:&nbsp;<a class="membertype" href="/Array">Array</a>, <span class="optional">[<span class="membername">newTarget</span>&nbsp;:&nbsp;<a class="membertype" href="/Function">Function</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a></div><div class="member-body"><p class="description">Essentially the same as <code>new constructor(...parameters)</code>. <code>newTarget</code> allows you to change what the <code>new.target</code> value is inside the constructor.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+class MyClass {
+  constructor(...args) {
+    console.log(&#39;constructing MyClass&#39;, ...args);
+  }
+}
+
+// The following are equivalent:
+var a = new MyClass(1, 2, 3);
+var b = Reflect.construct(MyClass, [1, 2, 3]);
+console.log();
+
+class WithTarget {
+  constructor() {
+    console.log(&#39;constructing WithTarget. new.target=&#39; + new.target.name);
+  }
+}
+
+var c = new WithTarget();
+var d = Reflect.construct(WithTarget, []);
+var e = Reflect.construct(WithTarget, [], MyClass);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.construct"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.construct" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="defineProperty"></a> <a name="defineProperty_Object_String_PropertyDescriptor"></a><div class="declaration"><span class="membername primary">defineProperty</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">propertyName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">propertyDescriptor</span>&nbsp;:&nbsp;<a class="membertype" href="/PropertyDescriptor">PropertyDescriptor</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">The same as <a href="/Object#defineProperty">Object.defineProperty()</a> except returns <code>false</code> on failure instead of throwing an exception.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { };
+
+var fooDescriptor = { value: 1, 
+                      writable: true,
+                      enumerable: false,
+                      configurable: true } ;
+
+var barDescriptor = { value: 2, 
+                      writable: true,
+                      enumerable: false,
+                      configurable: true } ;
+
+console.log(Reflect.defineProperty(x, &#39;foo&#39;, fooDescriptor));
+Object.defineProperty(x, &#39;bar&#39;, barDescriptor);
+
+console.log(x.foo);
+console.log(x.bar);
+console.log();
+
+var y = { foo: 1 };
+Object.seal(y);
+
+console.log(Reflect.defineProperty(y, &#39;foo&#39;, fooDescriptor));
+
+try {
+  Object.defineProperty(y, &#39;bar&#39;, barDescriptor);
+}
+catch(e) {
+  console.log(e);
+}
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.defineProperty"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.defineProperty" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="deleteProperty"></a> <a name="deleteProperty_Object_String"></a><div class="declaration"><span class="membername primary">deleteProperty</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">propertyName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">The same as <code>delete object[propertyName]</code>. Returns <code>true</code> if the value was deleted (ie, the property was configurable).</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1, bar: 2 };
+
+// The following are equivalent:
+console.log(delete x.foo);
+console.log(delete x[&#39;foo&#39;]);
+console.log(Reflect.deleteProperty(x, &#39;foo&#39;));
+console.log(&#39;x.foo=&#39; + x.foo);
+console.log();
+
+Object.seal(x);
+console.log(delete x.bar);
+console.log(delete x[&#39;bar&#39;]);
+console.log(Reflect.deleteProperty(x, &#39;bar&#39;));
+console.log(&#39;x.bar=&#39; + x.bar);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.deleteProperty"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.defineProperty" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="get"></a> <a name="get_Object_String_Object"></a><div class="declaration"><span class="membername primary">get</span>(<span class="membername">target</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">propertyName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="optional">[<span class="membername">getterThis</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a></div><div class="member-body"><p class="description">The same as <code>target[propertyName]</code>. If <code>propertyName</code> is a get function, <code>target</code> is used as it's <code>this</code> if <code>getterThis</code> is not specified.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1 };
+
+// The following are equivalent:
+console.log(x.foo);
+console.log(x[&#39;foo&#39;]);
+console.log(Reflect.get(x, &#39;foo&#39;));
+console.log();
+
+// Example of getter functions:
+x = { bar: 2, get baz() { return this.bar; } };
+console.log(x.baz);
+console.log(x[&#39;baz&#39;]);
+console.log(Reflect.get(x, &#39;baz&#39;));
+console.log(Reflect.get(x, &#39;baz&#39;, { bar: 3 }));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.get"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.get" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="getOwnPropertyDescriptor"></a> <a name="getOwnPropertyDescriptor_Object_String"></a><div class="declaration"><span class="membername primary">getOwnPropertyDescriptor</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">propertyName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/PropertyDescriptor">PropertyDescriptor</a></div><div class="member-body"><p class="description">The same as <a href="/Object#getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor()</a> except throws an exception if <code>obj</code> is not an Object.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1 };
+
+// The following are equivalent:
+console.dir(Reflect.getOwnPropertyDescriptor(x, &#39;foo&#39;));
+console.dir(Object.getOwnPropertyDescriptor(x, &#39;foo&#39;));
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.getPrototypeOf(1, &#39;foo&#39;));
+}
+catch(e) {
+  console.log(e);
+}
+console.log(Object.getOwnPropertyDescriptor(1, &#39;foo&#39;));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.getOwnPropertyDescriptor"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.getownpropertydescriptor" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="getPrototypeOf"></a> <a name="getPrototypeOf_Object"></a><div class="declaration"><span class="membername primary">getPrototypeOf</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a></div><div class="member-body"><p class="description">The same as <a href="/Object#getPrototypeOf">Object.getPrototypeOf()</a> except throws an exception if <code>obj</code> is not an Object.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+console.log(Reflect.getPrototypeOf([]) === Array.prototype);
+console.log(Object.getPrototypeOf([]) === Array.prototype);
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.getPrototypeOf(1));
+}
+catch(e) {
+  console.log(e);
+}
+console.log(Object.getPrototypeOf(1));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.getPrototypeOf"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.getprototypeof" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="has"></a> <a name="has_Object_String"></a><div class="declaration"><span class="membername primary">has</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">propertyName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">Returns <code>true</code> if <code>obj</code> has a property named <code>propertyName</code>. The <code>in</code> operator provides the same result;</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1 };
+
+console.log(Reflect.has(x, &#39;foo&#39;));
+console.log(&#39;foo&#39; in x);
+console.log(Reflect.has(x, &#39;bar&#39;));
+console.log(&#39;bar&#39; in x);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.has"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.has" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="isExtensible"></a> <a name="isExtensible_Object"></a><div class="declaration"><span class="membername primary">isExtensible</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">The same as <a href="/Object#isExtensible">Object.isExtensible()</a> except throws an exception if <code>obj</code> is not an Object.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1 };
+console.log(Reflect.isExtensible(x));
+Reflect.preventExtensions(x);
+console.log(Reflect.isExtensible(x));
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.isExtensible(1));
+}
+catch (e) {
+  console.log(e);
+}
+console.log(Object.isExtensible(1));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.isExtensible"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.isextensible" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="ownKeys"></a> <a name="ownKeys_Object"></a><div class="declaration"><span class="membername primary">ownKeys</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/Array">Array</a>&lt;<a class="membertype" href="/String">String</a>&gt;</div><div class="member-body"><p class="description">The same as <a href="/Object#getOwnPropertyNames">Object.getOwnPropertyNames()</a> except throws an exception if <code>obj</code> is not an Object.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1, bar: 2 };
+console.log(Reflect.ownKeys(x));
+console.log(Object.getOwnPropertyNames(x));
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.ownKeys(1));
+}
+catch (e) {
+  console.log(e);
+}
+console.log(Object.getOwnPropertyNames(1));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.ownKeys"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.ownkeys" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="preventExtensions"></a> <a name="preventExtensions_Object"></a><div class="declaration"><span class="membername primary">preventExtensions</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">The same as <a href="/Object#preventExtensions">Object.preventExtensions()</a> except returns false on failure and throws an exception if <code>obj</code> is not an Object.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1 };
+
+// The following are equivalent
+console.log(Reflect.preventExtensions(x));
+console.log(Object.preventExtensions(x));
+
+x.bar = 2;
+
+console.log(x);
+
+// Reflect throws an exception if the parameter is not an Object
+try {
+  console.log(Reflect.preventExtensions(1));
+}
+catch (e) {
+  console.log(e);
+}
+console.log(Object.preventExtensions(1));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.preventExtensions"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.preventextensions" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="set"></a> <a name="set_Object_String_Object_Object"></a><div class="declaration"><span class="membername primary">set</span>(<span class="membername">target</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">propertyName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">value</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="optional">[<span class="membername">setterThis</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">The same as <code>target[propertyName] = value</code>. Returns <code>true</code> if the set was successful and <code>false</code> otherwise (if the object was <a href="Object#freeze">frozen</a> for example). If <code>propertyName</code> is a set function, <code>target</code> is used as it's <code>this</code> if <code>setterThis</code> is not specified.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var x = { foo: 1 };
+
+// The following are equivalent:
+x.bar = 2;
+x[&#39;bar&#39;] = 2;
+console.log(Reflect.set(x, &#39;bar&#39;, 2));
+
+// set returns false if the object is frozen
+Object.freeze(x);
+console.log(Reflect.set(x, &#39;bar&#39;, 2));
+
+// Example of setter functions and setterThis arg:
+x = { bar: 2, 
+      set baz(value) { 
+        console.log(`baz=${value} where this.bar = ${this.bar}; `);
+      }
+    };
+x.baz = 42;
+x[&#39;baz&#39;] = 42;
+Reflect.set(x, &#39;baz&#39;, 42);
+Reflect.set(x, &#39;baz&#39;, 42, { bar: 3 });
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.set"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.set" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="setPrototypeOf"></a> <a name="setPrototypeOf_Object_Object"></a><div class="declaration"><span class="membername primary">setPrototypeOf</span>(<span class="membername">obj</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">proto</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">Changes the <a href="/Function#prototype">prototype</a> of <code>obj</code> to <code>proto</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var Button = function(content) { 
+  this.content = content;
+};
+Button.prototype.click = function() {
+  console.log(this.content + &#39; clicked&#39;);
+}
+
+// Instead of &#39;new Button()&#39;, the following changes
+// the prototype of a regular object to be Button&#39;s
+// prototype after the object has been created.
+
+var myButton = { content: &#39;promoted&#39; };
+console.log(Reflect.getPrototypeOf(myButton) === Object.prototype);
+
+Reflect.setPrototypeOf(myButton, Button.prototype);
+console.log(Reflect.getPrototypeOf(myButton) === Button.prototype);
+
+myButton.click();
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Reflect.setPrototypeOf"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.setprototypeof" class="spec">Spec</a></div></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>

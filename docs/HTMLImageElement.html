@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>HTMLImageElement JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript HTMLImageElement Object. HTMLImageElement is an element that displays an image. It corresponds to the &amp;lt;img&amp;gt; tag."><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>HTMLImageElement</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#alt">alt</a><a href="#complete">complete</a><a href="#height">height</a><a href="#naturalHeight">naturalHeight</a><a href="#naturalWidth">naturalWidth</a><a href="#src">src</a><a href="#width">width</a></div></div><div class="group collapsed"><a href="#InstanceEvents" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Events</a><div class="subgroup"><a href="#load">load</a></div></div></div><h2>DOM API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">HTMLImageElement</span> <span class="type">: <a href="/HTMLElement">HTMLElement</a></span></h1><div class="metadata"></div><div class="objectdescription"><code>HTMLImageElement</code> is an element that displays an image. It corresponds to the <code>&lt;img&gt;</code> tag.<div class="membermetadata"><a href="http://dev.w3.org/html5/spec/single-page.html#htmlimageelement" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="alt"></a><div class="declaration"><span class="membername primary">alt</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">Alternate text describing the image.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39; src=&#39;/pic.jpg&#39; alt=&#39;BVI Sunset&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  console.log(img.alt);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.alt"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="complete"></a><div class="declaration"><span class="membername primary">complete</span>&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">Returns <code>true</code> once the image has loaded.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  img.src = &#39;/pic.jpg&#39;;
+  console.log(&#39;before load, complete=&#39; + img.complete);
+  img.onload = function() {
+    console.log(&#39;after load, complete=&#39; + img.complete);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.complete"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="height"></a><div class="declaration"><span class="membername primary">height</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The display height (in pixels) of the image. If not set, the height will be <a href="#naturalHeight"><code>naturalHeight</code></a> after the image loads.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39; src=&#39;/pic.jpg&#39; width=&#39;120&#39; height=&#39;90&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  console.log(img.height);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.height"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="naturalHeight"></a><div class="declaration"><span class="membername primary">naturalHeight</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The pixel height of the image buffer. May be different than the height displayed on screen if <a href="#height"><code>height</code></a> is set on the image.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39; src=&#39;/pic.jpg&#39; width=&#39;120&#39; height=&#39;90&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  img.onload = function() {
+    console.log(&#39;height: &#39; + img.height);
+    console.log(&#39;naturalHeight: &#39; + img.naturalHeight);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.naturalHeight"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="naturalWidth"></a><div class="declaration"><span class="membername primary">naturalWidth</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The pixel width of the image buffer. May be different than the width displayed on screen if <a href="#width"><code>width</code></a> is set on the image.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39; src=&#39;/pic.jpg&#39; width=&#39;120&#39; height=&#39;90&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  img.onload = function() {
+    console.log(&#39;width: &#39; + img.width);
+    console.log(&#39;naturalWidth: &#39; + img.naturalWidth);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.naturalWidth"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="src"></a><div class="declaration"><span class="membername primary">src</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">The location of the image.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39; src=&#39;/pic.jpg&#39; alt=&#39;BVI Sunset&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  console.log(img.src);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.src"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="width"></a><div class="declaration"><span class="membername primary">width</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The display width (in pixels) of the image. If not set, the width will be <a href="#naturalWidth"><code>naturalWidth</code></a> after the image loads.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39; src=&#39;/pic.jpg&#39; width=&#39;120&#39; height=&#39;90&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  console.log(img.height);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.width"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceEvents"></a><h2>Instance Events</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="load"></a> <a name="onload"></a><div class="declaration"><span class="membername primary">onload</span> / <span class="membername primary">'load'</span>&nbsp;&nbsp;<span class="metadata">event</span><div class="subfunction"><span class="membername">listener</span>(<span class="membername">event</span>&nbsp;:&nbsp;<a class="membertype" href="/Event">Event</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div></div><div class="member-body"><p class="description">Fired when the image has loaded. After this point <a href="#complete"><code>this.complete</code></a> will be true.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;img id=&#39;sunset&#39;&gt;
+&lt;script&gt;
+  var img = document.getElementById(&#39;sunset&#39;);
+  img.src = &#39;/pic.jpg&#39;;
+  console.log(&#39;before load, complete=&#39; + img.complete);
+  img.onload = function() {
+    console.log(&#39;after load, complete=&#39; + img.complete);
+  }
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "HTMLImageElement.load"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script><script>(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></html>
