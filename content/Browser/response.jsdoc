@@ -61,7 +61,7 @@ prototype.blob() : Promise<Blob>
 prototype.clone() : Response
 
 ----
-prototype.formData() : Promise<formData>
+prototype.formData() : Promise<FormData>
 
 ----
 prototype.json() : Promise<Object>
