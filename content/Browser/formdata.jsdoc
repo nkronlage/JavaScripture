@@ -17,7 +17,7 @@ Constructs an empty FormData.
   var send = function() {
     var request = new XMLHttpRequest();
     // POST to httpbin which returns the POST data as JSON
-    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+    request.open('POST', 'https://httpbin.org/post', /* async = */ false);
 
     var formData = new FormData();
     formData.append('key1', 'value1');
@@ -47,7 +47,7 @@ Constructs a FormData using the values from the specified **form**.
 
     var request = new XMLHttpRequest();
     // POST to httpbin which returns the POST data as JSON
-    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+    request.open('POST', 'https://httpbin.org/post', /* async = */ false);
 
     var formData = new FormData(document.getElementById('test-form'));
     request.send(formData);
@@ -75,7 +75,7 @@ Appends the **name/value** pair to the FormData.
 
     var request = new XMLHttpRequest();
     // POST to httpbin which returns the POST data as JSON
-    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+    request.open('POST', 'https://httpbin.org/post', /* async = */ false);
 
     var formData = new FormData(document.getElementById('test-form'));
 
@@ -106,7 +106,7 @@ Appends the **name/value** as a file with the specified **filename**.
 
     var request = new XMLHttpRequest();
     // POST to httpbin which returns the POST data as JSON
-    request.open('POST', 'http://httpbin.org/post', /* async = */ false);
+    request.open('POST', 'https://httpbin.org/post', /* async = */ false);
 
     var formData = new FormData(document.getElementById('test-form'));
 
