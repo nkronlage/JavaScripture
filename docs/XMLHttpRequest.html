@@ -106,7 +106,7 @@ asyncRequest.send();
 
     var request = new XMLHttpRequest();
     // POST to httpbin which returns the POST data as JSON
-    request.open(&#39;POST&#39;, &#39;http://httpbin.org/post&#39;, /* async = */ false);
+    request.open(&#39;POST&#39;, &#39;https://httpbin.org/post&#39;, /* async = */ false);
 
     var formData = new FormData(document.getElementById(&#39;test-form&#39;));
     request.send(formData);
