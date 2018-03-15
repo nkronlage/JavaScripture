@@ -43,6 +43,14 @@ var getAPI = function(sets) {
 %>
 "use strict";
 
+var asyncFunctionsSupported = false;
+
+try {
+  asyncFunctionsSupported = eval('!!(async()=>1)()');
+}
+catch(e) {
+}
+
 var apiSets = <%- getAPI(apiSets) %>;
 
 var apichooserList = document.querySelector('#apisets > ul');
@@ -507,7 +515,14 @@ var executeExample = function(example, prop) {
     doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
     doc.writeln('</script>');
 
-    var scriptBody = '(async () => {' + code.value + '})().catch(e => javascriptureReportError(e))';
+    var scriptBody;
+
+    if (asyncFunctionsSupported) {
+      scriptBody = '(async()=>{' + code.value + '})().catch(e=>javascriptureReportError(e))';
+    }
+    else {
+      scriptBody = code.value;
+    }
 
     var blob = new Blob([scriptBody], { type: 'application/javascript' });
     var url = URL.createObjectURL(blob);
