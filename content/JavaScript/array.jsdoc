@@ -738,8 +738,8 @@ Returns a new **Array** containing the items returned by **iterator**.
 
 <example>
 var generator = function*() {
-  yield 1;
-  yield* [2, 3];
+  yield "foo";
+  yield* ["bar", "baz"];
 };
 
 console.log(Array.from(generator()));
