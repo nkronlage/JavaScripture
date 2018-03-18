@@ -186,7 +186,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.copywithin
 prototype.entries() : Iterator<Array>
 
 Returns an iterator of the index and items in **this** where the 
-%%Iterator#next|**values**s%% of the iterator are of the form
+%%Iterator#next|**value**s%% of the iterator are of the form
 **[index : %%/Number|Number%%, item : %%/Object|Object%%]**.
 See also %%#values|**values()**%% and %%#keys|**keys()**%%.
 
