@@ -4,7 +4,7 @@ The base class for %%/Text|Text%%, %%/Comment|Comment%%, and
 %%/ProcessingInstruction|ProcessingInstruction%% Node types.
 
 Spec:
-https://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#characterdata
+https://dom.spec.whatwg.org/#characterdata
 
 ----
 instance.data : String
@@ -114,7 +114,7 @@ with **data**.
 ----
 prototype.substringData(offset : Number, count : Number) : String
 
-Returns a substring of %%#data|this.data%% starting at **offset** and of 
+Returns a substring of %%#data|this.data%% starting at **offset** and of
 the specified **count** of characters.
 
 <htmlexample>

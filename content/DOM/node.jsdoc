@@ -1,15 +1,15 @@
 Node : EventTarget
 
 Node represents a node in a tree (usually the DOM/document tree). Node is the base
-type for 
-%%/Element|Element%%, 
+type for
+%%/Element|Element%%,
 %%/Text|Text%%,
 %%/Document|Document%%,
 %%/Comment|Comment%%,
 and others.
 
 Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+https://dom.spec.whatwg.org/#interface-node
 
 ----
 instance.nodeType : Number
@@ -51,13 +51,13 @@ true
 instance.nodeName : String
 
 The name of the node. The value of **nodeName** depends on the
-type of **this**.  
+type of **this**.
 
-For %%/Element|**Element**s%%, 
+For %%/Element|**Element**s%%,
 the **nodeName**
-is the same as %%/Element#tagName|**Element.tagName**%%. 
+is the same as %%/Element#tagName|**Element.tagName**%%.
 
-For %%/ProcessingInstruction|**ProcessingInstructions**s%%, 
+For %%/ProcessingInstruction|**ProcessingInstructions**s%%,
 the **nodeName** is the same as
 %%/ProcessingInstruction|**ProcessingInstruction.target**%%.
 
@@ -68,7 +68,7 @@ the **nodeName** is the same as
   console.log(document.nodeName);
   console.log(document.doctype.nodeName);
 
-  // nodeName for Element is same as tagName 
+  // nodeName for Element is same as tagName
   console.log(document.createElement('div').nodeName);
 
   // nodeName for a ProcessingInstruction is the same as the target
@@ -107,7 +107,7 @@ true
 ----
 instance.parentNode : Node
 
-The parent of **this**. 
+The parent of **this**.
 
 <htmlexample>
 <span id='foo'>foo</span>
@@ -182,7 +182,7 @@ true
 ----
 instance.firstChild : Node
 
-The first child Node in **this**.  If **this** has no children, 
+The first child Node in **this**.  If **this** has no children,
 **firstChild** will be **null**.
 
 <htmlexample>
@@ -205,7 +205,7 @@ true
 ----
 instance.lastChild : Node
 
-The last child Node in **this**.  If **this** has no children, 
+The last child Node in **this**.  If **this** has no children,
 **lastChild** will be **null**.
 
 <htmlexample>
@@ -228,7 +228,7 @@ true
 ----
 instance.previousSibling : Node
 
-The sibling Node before **this** in %%#parentNode|**this.parentNode**%%'s children. 
+The sibling Node before **this** in %%#parentNode|**this.parentNode**%%'s children.
 If **this** is the first child in **parentNode** or **this** has
 no **parentNode**,
 **previousSibling** will be **null**.
@@ -256,7 +256,7 @@ true
 ----
 instance.nextSibling : Node
 
-The sibling Node after **this** in %%#parentNode|**this.parentNode**%%'s children. 
+The sibling Node after **this** in %%#parentNode|**this.parentNode**%%'s children.
 If **this** is the last child in **parentNode** or **this** has
 no **parentNode**,
 **nextSibling** will be **null**.
@@ -342,7 +342,7 @@ Returns **true** if **other** is a descendant of **this**.
 instance.nodeValue : String
 
 The text content of **this** (not including any descendants).
-Note, %%/Element|**Element**%%s do not have text content, 
+Note, %%/Element|**Element**%%s do not have text content,
 the text is placed in a %%/Text|**Text**%% Node inside the **Element**.
 See also %%#textContent|**textContent**%%.
 
@@ -355,7 +355,7 @@ See also %%#textContent|**textContent**%%.
   var parent = document.getElementById('parent');
 
   // Elements do not have nodeValue
-  console.log(parent.nodeValue); 
+  console.log(parent.nodeValue);
 
   // Text is placed in a Text node
   var textNode = parent.firstChild;
@@ -420,7 +420,7 @@ and
 ----
 prototype.appendChild(newChild : Node) : Node
 
-Inserts **newChild** at the end of the children of **this**. 
+Inserts **newChild** at the end of the children of **this**.
 Returns **newChild**.
 
 See also %%#insertBefore|**insertBefore()**%%,
@@ -446,7 +446,7 @@ prototype.replaceChild(newChild : Node, oldChild : Node) : Node
 
 Removes **oldChild** from the children of **this** and replaces
 it with **newChild** (so **newChild** is in the same position as
-**oldChild** was). 
+**oldChild** was).
 Returns **oldChild**.
 
 See also %%#appendChild|**appendChild()**%%,
@@ -528,7 +528,7 @@ prototype.cloneNode(deep : Boolean) : Node
 
 Creates a copy of **this**.  Only the %%/Element#attributes|**attributes**%%
 of the element are copied (any other properties set will not be copied).
-If **deep** is true, all descendants will be copied and added as children of the 
+If **deep** is true, all descendants will be copied and added as children of the
 clone. Otherwise the returned value will not have children.
 
 <htmlexample>
@@ -728,7 +728,7 @@ true
 ----
 DOCUMENT_POSITION_DISCONNECTED : Number
 
-Bitmask value returned by 
+Bitmask value returned by
 %%#compareDocumentPosition|**compareDocumentPosition()**%%.
 
 ReadOnly:
@@ -737,7 +737,7 @@ true
 ----
 DOCUMENT_POSITION_PRECEDING : Number
 
-Bitmask value returned by 
+Bitmask value returned by
 %%#compareDocumentPosition|**compareDocumentPosition()**%%.
 
 ReadOnly:
@@ -746,7 +746,7 @@ true
 ----
 DOCUMENT_POSITION_FOLLOWING : Number
 
-Bitmask value returned by 
+Bitmask value returned by
 %%#compareDocumentPosition|**compareDocumentPosition()**%%.
 
 ReadOnly:
@@ -755,7 +755,7 @@ true
 ----
 DOCUMENT_POSITION_CONTAINS : Number
 
-Bitmask value returned by 
+Bitmask value returned by
 %%#compareDocumentPosition|**compareDocumentPosition()**%%.
 
 ReadOnly:
@@ -764,7 +764,7 @@ true
 ----
 DOCUMENT_POSITION_CONTAINED_BY : Number
 
-Bitmask value returned by 
+Bitmask value returned by
 %%#compareDocumentPosition|**compareDocumentPosition()**%%.
 
 ReadOnly:
@@ -773,7 +773,7 @@ true
 ----
 DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC : Number
 
-Bitmask value returned by 
+Bitmask value returned by
 %%#compareDocumentPosition|**compareDocumentPosition()**%%.
 
 ReadOnly:

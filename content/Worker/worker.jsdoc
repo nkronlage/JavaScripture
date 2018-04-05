@@ -1,24 +1,24 @@
 Worker : EventTarget
 
-Worker allows a page to run Javascript on a background thread so 
+Worker allows a page to run Javascript on a background thread so
 the main UI thread can remain responsive. Workers do not have access
 to the DOM or any global variables in the main UI thread and must use
-the 
+the
 %%WorkerGlobalScope#postMessage|**postMessage()**%% method to communicate
 with the main thread.
 
-See 
+See
 %%/WorkerGlobalScope|WorkerGlobalScope%% for the global properties and methods
 available inside the worker.
 
 
 Spec:
-http://dev.w3.org/html5/workers/#worker
+https://html.spec.whatwg.org/#worker
 
 ----
 new Worker(scriptURL : String) : Worker
 
-Creates and starts a background thread that runs the 
+Creates and starts a background thread that runs the
 code pointed at by **scriptURL**.
 
 <htmlexample>

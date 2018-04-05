@@ -2,12 +2,12 @@ HTMLStyleElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlstyleelement
+https://html.spec.whatwg.org/#htmlstyleelement
 
 ----
 instance.disabled : Boolean
 
-Set to true to turn off all the rules in the StyleSheet. This property 
+Set to true to turn off all the rules in the StyleSheet. This property
 mirrors the %%/StyleSheet#disabled|**StyleSheet.disabled**%%
 property.
 
@@ -15,7 +15,7 @@ property.
 <style id='style'>
   #foo {
     color: red;
-  } 
+  }
 </style>
 <span id='foo'>foo</span>
 <script>

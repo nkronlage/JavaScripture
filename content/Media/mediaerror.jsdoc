@@ -1,7 +1,7 @@
 MediaError : Object
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#mediaerror
+https://html.spec.whatwg.org/#mediaerror
 
 ----
 instance.code : Number

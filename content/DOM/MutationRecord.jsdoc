@@ -4,7 +4,7 @@ MutationRecord contains information about a mutation that was observed by
 %%/MutationObserver|MutationObserver%%.
 
 Spec:
-http://www.w3.org/TR/domcore/#mutationrecord
+https://dom.spec.whatwg.org/#mutationrecord
 
 ----
 instance.type : String
@@ -16,38 +16,38 @@ The type of mutation.  Will be one of **'attributes'**,
 </p>
 
 <p>
-It will be **'attributes'** if an 
+It will be **'attributes'** if an
 %%/Element#attributes|Element.attribute%% changed.
 
-To receive attribute changes, the options passed to 
+To receive attribute changes, the options passed to
 %%/MutationObserver#observe|**observe()**%% must have
-**attributes** set to **true**, 
-**attributesOldValue** set to **true**, 
+**attributes** set to **true**,
+**attributesOldValue** set to **true**,
 or
-**attributeFilter** set to an array of attribute names. 
+**attributeFilter** set to an array of attribute names.
 </p>
 
 <p>
-It will be **'childList'** if the 
+It will be **'childList'** if the
 %%/Node#childNodes|Node.childNodes%% changed.
 
-To receive childList changes, the options passed to 
+To receive childList changes, the options passed to
 %%/MutationObserver#observe|**observe()**%% must have
 **childList** set to **true**.
 </p>
 
 <p>
-It will be **'characterData'** if the 
+It will be **'characterData'** if the
 %%/CharacterData#data|CharacterData.data%% changed.
 
-To receive characterData changes, the options passed to 
+To receive characterData changes, the options passed to
 %%/MutationObserver#observe|**observe()**%% must have
-**characterData** set to **true**. 
+**characterData** set to **true**.
 </p>
 
 <p>
-Set the **subtree** option to **true** in the call to 
-%%/MutationObserver#observe|**observe()**%% 
+Set the **subtree** option to **true** in the call to
+%%/MutationObserver#observe|**observe()**%%
 to receive any of these changes on nodes in the subtree.
 </p>
 
@@ -62,8 +62,8 @@ to receive any of these changes on nodes in the subtree.
       console.log(mutation.type);
     });
   });
-  observer.observe(foo, { 
-    childList: true, 
+  observer.observe(foo, {
+    childList: true,
     attributes: true,
     characterData: true,
     subtree: true
@@ -88,7 +88,7 @@ true
 ----
 instance.target : Node
 
-The Node that the mutation happened on.  
+The Node that the mutation happened on.
 
 If the **subtree** option was specified when calling
 %%/MutationObserver#observe|**MutationObserver.observe()**%%
@@ -105,7 +105,7 @@ this may be a descendant of the **target** passed to **observe()**.
       console.log(mutation.target.tagName);
     });
   });
-  observer.observe(foo, { 
+  observer.observe(foo, {
     childList: true,
     subtree: true
   });
@@ -175,7 +175,7 @@ Contains the nodes added to %%#target|**target**%%.  Only applies
 when %%#type|**type**%% is **'childList'**.
 
 <htmlexample>
-<div id='foo'><span id='bar'>bar</span><span>a span</span> 
+<div id='foo'><span id='bar'>bar</span><span>a span</span>
 loose text
 </div>
 <script>
@@ -301,9 +301,9 @@ true
 instance.oldValue : String
 
 The previous value of the attribute or data.  Only applies
-when %%#type|**type**%% is **'attributes'** or 
+when %%#type|**type**%% is **'attributes'** or
 **'characterData'**. You must specify the
-**attributeOldValue** or 
+**attributeOldValue** or
 **characterDataOldValue** option to %%/MutationObserver#observe|MutationObserver.observe()%%
 for the oldValue to be recorded.
 
@@ -315,12 +315,12 @@ for the oldValue to be recorded.
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       console.log(mutation.attributeName + ' changed from ' +
-                  '"' + mutation.oldValue + '" to "' + 
+                  '"' + mutation.oldValue + '" to "' +
                   mutation.target.getAttribute(mutation.attributeName) + '"');
     });
   });
-  observer.observe(foo, { 
-    attributes: true, 
+  observer.observe(foo, {
+    attributes: true,
     attributeOldValue: true
    });
 

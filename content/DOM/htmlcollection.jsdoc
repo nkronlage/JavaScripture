@@ -1,16 +1,16 @@
 HTMLCollection : Object
 
-A list of %%/Element|Elements%% similar to an %%/NodeList|NodeList%%.  
-The %%/Element#children|Element.children%% property returns an 
+A list of %%/Element|Elements%% similar to an %%/NodeList|NodeList%%.
+The %%/Element#children|Element.children%% property returns an
 HTMLCollection.
 
 Spec:
-https://w3c.github.io/dom/#htmlcollection
+https://dom.spec.whatwg.org/#htmlcollection
 
 ----
 instance[index : Number] : Element
 
-Returns the item at **index** in the collection.  
+Returns the item at **index** in the collection.
 
 <htmlexample>
 <div id='parent'>
@@ -56,7 +56,7 @@ ReadOnly:
 true
 
 Spec:
-https://w3c.github.io/dom/#dom-htmlcollection-length
+https://dom.spec.whatwg.org/#dom-htmlcollection-length
 
 ----
 prototype.item(index : Number) : Element
@@ -64,12 +64,12 @@ prototype.item(index : Number) : Element
 Same as %%#indexer_Number|**this[index]**%%.
 
 Spec:
-https://w3c.github.io/dom/#dom-htmlcollection-item
+https://dom.spec.whatwg.org/#dom-htmlcollection-item
 
 ----
 prototype.namedItem(idOrName : String) : Element
 
-Returns the Element in the **this** that has 
+Returns the Element in the **this** that has
 %%/Element#id|id%% or %%/HTMLInputElement#name|name%%
 equal to **idOrName**.
 
@@ -88,4 +88,4 @@ equal to **idOrName**.
 </htmlexample>
 
 Spec:
-https://w3c.github.io/dom/#dom-htmlcollection-nameditem
+https://dom.spec.whatwg.org/#dom-htmlcollection-nameditem

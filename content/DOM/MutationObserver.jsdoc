@@ -1,15 +1,15 @@
 MutationObserver : Object
 
 MutationObserver allows you to provide a function that is called
-asynchronously when certain parts of the DOM change, such as adding 
-a child to a node, changing an attribute on a node, or changing 
+asynchronously when certain parts of the DOM change, such as adding
+a child to a node, changing an attribute on a node, or changing
 the text on a node. As the changes happen, the MutationObserver
 records them as %%/MutationRecord|MutationRecords%% and then
 calls a user provided callback at a later time with all the
 MutationRecords that are pending.
 
 Spec:
-http://www.w3.org/TR/domcore/#interface-mutationobserver
+https://dom.spec.whatwg.org/#interface-mutationobserver
 
 ----
 new MutationObserver(callback(mutations : Array<MutationRecord>, observer : MutationObserver) : undefined) : MutationObserver
@@ -17,7 +17,7 @@ new MutationObserver(callback(mutations : Array<MutationRecord>, observer : Muta
 Creates a new MutationObserver that will call **callback** when the behaviors
 configured by %%#observer|**observe()**%% change.
 
-Note that **callback** will be called at some time 
+Note that **callback** will be called at some time
 after the current script that is doing the mutation completes.
 
 The **observer** passed to **callback**
@@ -34,7 +34,7 @@ is the newly created MutationObserver.
       for (var i = 0; i < mutation.addedNodes.length; i++) {
         console.log('  "' + mutation.addedNodes[i].textContent + '" added');
       }
-      
+
       for (var i = 0; i < mutation.removedNodes.length; i++) {
         console.log('  "' +mutation.removedNodes[i].textContent + '" removed');
       }
@@ -65,7 +65,7 @@ prototype.observe( \
   }) : undefined
 
 Registers the observer to be called any time the specified **options** on
-**target** change. If **observe()** is called more than once, it will 
+**target** change. If **observe()** is called more than once, it will
 listen to changes on each **target**.
 See %%/MutationRecord|MutationRecord%% for the data provided to callback for
 each mutation type.
@@ -81,7 +81,7 @@ each mutation type.
       for (var i = 0; i < mutation.addedNodes.length; i++) {
         console.log('  "' + mutation.addedNodes[i].textContent + '" added');
       }
-      
+
       for (var i = 0; i < mutation.removedNodes.length; i++) {
         console.log('  "' + mutation.removedNodes[i].textContent + '" removed');
       }
@@ -99,7 +99,7 @@ each mutation type.
 </htmlexample>
 
 Spec:
-http://www.w3.org/TR/domcore/#dom-mutationobserver-observe
+https://dom.spec.whatwg.org/#dom-mutationobserver-observe
 
 
 ----
@@ -112,7 +112,7 @@ Unhooks this observer from all targets specified in previous
 prototype.takeRecords() : Array<MutationRecord>
 
 Returns the queued list of MutationRecords for **this** and clears out that list.
-The **callback** will not be called unless additional mutations occur 
+The **callback** will not be called unless additional mutations occur
 after the call to **takeRecords()**.
 
 <htmlexample>
@@ -122,7 +122,7 @@ after the call to **takeRecords()**.
 
   var observer = new MutationObserver(function(mutations) {
     // Notice this will not be called because takeRecords clears outstanding records
-    console.log('In MutationObserver callback');      
+    console.log('In MutationObserver callback');
   });
   observer.observe(foo, { childList: true });
 
@@ -136,7 +136,7 @@ after the call to **takeRecords()**.
 
   mutations.forEach(function(mutation) {
     for (var i = 0; i < mutation.addedNodes.length; i++) {
-      console.log('"' + mutation.addedNodes[i].textContent + '" added');      
+      console.log('"' + mutation.addedNodes[i].textContent + '" added');
     }
   });
 </script>

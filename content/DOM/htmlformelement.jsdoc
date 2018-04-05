@@ -6,7 +6,7 @@ the user input to the server.
 See also %%/FormData|FormData%%.
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlformelement
+https://html.spec.whatwg.org/#htmlformelement
 
 ----
 instance[index : Number] : Element
@@ -117,7 +117,7 @@ prototype.reset() : undefined
 
 
 ----
-prototype.checkValidity() : Boolean 
+prototype.checkValidity() : Boolean
 
 ----
 event.submit : listener() : Boolean

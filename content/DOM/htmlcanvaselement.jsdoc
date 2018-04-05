@@ -1,7 +1,7 @@
 HTMLCanvasElement : HTMLElement
 
 **HTMLCanvasElement** is an element that allows programmatically creating
-images in the browser.  
+images in the browser.
 It corresponds to the **<canvas>** tag.
 
 ----
@@ -28,7 +28,7 @@ a %%/WebGLContextAttributes|**WebGLContextAttributes**%% as the second parameter
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-getcontext
+https://html.spec.whatwg.org/multipage/the-canvas-element.html#dom-canvas-getcontext
 
 ----
 prototype.toBlob(callback(blob : Blob) : undefined, [type = 'image/png' : String, [quality : Number]]) : undefined
@@ -103,7 +103,7 @@ contents.
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-todataurl
+https://html.spec.whatwg.org/multipage/the-canvas-element.html#dom-canvas-todataurl
 
 ----
 instance.width : Number
@@ -121,7 +121,7 @@ The width of **this** in pixels.  Setting **width** clears the buffer.
 
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-width
+https://html.spec.whatwg.org/multipage/the-canvas-element.html#dom-canvas-width
 
 ----
 instance.height : Number
@@ -138,5 +138,5 @@ The height of **this** in pixels.  Setting **height** clears the buffer.
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-canvas-height
+https://html.spec.whatwg.org/multipage/the-canvas-element.html#dom-canvas-height
 

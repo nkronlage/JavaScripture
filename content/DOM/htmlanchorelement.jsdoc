@@ -2,7 +2,7 @@ HTMLAnchorElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlanchorelement
+https://html.spec.whatwg.org/#htmlanchorelement
 
 ----
 instance.href : String

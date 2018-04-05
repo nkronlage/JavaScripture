@@ -1,7 +1,7 @@
 ProgressEvent : Event
 
 Spec:
-http://www.w3.org/TR/progress-events/#interface-progressevent
+https://xhr.spec.whatwg.org/#interface-progressevent
 
 ----
 new ProgressEvent(type : String, [args : Object]) : ProgressEvent

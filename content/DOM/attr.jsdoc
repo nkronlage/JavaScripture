@@ -1,10 +1,10 @@
 Attr : Object
 
-Represents the name-value pair of an attribute 
+Represents the name-value pair of an attribute
 specified on an %%/Element|**Element**%%.
 
 Spec:
-http://www.w3.org/TR/dom/#interface-attr
+https://dom.spec.whatwg.org/#interface-attr
 
 ----
 instance.localName : String

@@ -1,7 +1,7 @@
 ValidityState : Object
 
 Spec:
-http://dev.w3.org/html5/spec/constraints.html#validitystate
+https://html.spec.whatwg.org/#validitystate
 
 ----
 instance.valueMissing : Boolean
@@ -55,7 +55,7 @@ ReadOnly:
 true
 
 ----
-instance.valid : Boolean 
+instance.valid : Boolean
 
 ReadOnly:
 true

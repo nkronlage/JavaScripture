@@ -1,7 +1,7 @@
 AudioTrack : Object
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#audiotrack
+https://html.spec.whatwg.org/#audiotrack
 
 ----
 instance.id : String

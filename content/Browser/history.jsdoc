@@ -11,12 +11,12 @@ back/forward buttons.
 See also %%/Location|Location%%.
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#the-history-interface
+https://html.spec.whatwg.org/multipage/browsers.html#the-history-interface
 
 ----
 instance.length : Number
 
-The number of items in the browser session's history. 
+The number of items in the browser session's history.
 
 <htmlexample>
 <button onclick='pushState()'>Push State</button><br>
@@ -67,12 +67,12 @@ ReadOnly:
 true
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-length
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-length
 
 ----
 instance.state : Object
 
-The data passed to %%#pushState|**pushState()**%% or 
+The data passed to %%#pushState|**pushState()**%% or
 %%#replaceState|**replaceState()**%% for the current page.
 
 <htmlexample>
@@ -124,13 +124,13 @@ ReadOnly:
 true
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-state
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-state
 
 ----
 prototype.go([delta : Number]) : undefined
 
 Navigates through the session history by the specified amount.  If
-**delta** is not provided, **go()** acts the same as 
+**delta** is not provided, **go()** acts the same as
 %%Location#reload|**location.reload()**%% and reloads the current page.
 See also %%#back|**back()**%% and %%#forward|**forward()**%%.
 
@@ -180,7 +180,7 @@ See also %%#back|**back()**%% and %%#forward|**forward()**%%.
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-go
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-go
 
 ----
 prototype.back() : undefined
@@ -234,7 +234,7 @@ Navigates back one page in the session history. Equivalent to
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-back
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-back
 
 ----
 prototype.forward() : undefined
@@ -288,15 +288,15 @@ Navigates forward one page in the session history. Equivalent to
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-forward
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-forward
 
 ----
 prototype.pushState(state : Object, title : String, [url : String]) : undefined
 
-Adds a new entry to the session history. 
-**state** is available on the %%#state|**history.state**%% property.  
-**title** is applied to %%Document#title|**document.title**%%. 
-If **url** is specified, the %%Location#href|**location.href**%% is 
+Adds a new entry to the session history.
+**state** is available on the %%#state|**history.state**%% property.
+**title** is applied to %%Document#title|**document.title**%%.
+If **url** is specified, the %%Location#href|**location.href**%% is
 changed to the provided value.
 
 <htmlexample>
@@ -346,15 +346,15 @@ changed to the provided value.
 
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-pushstate
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-pushstate
 
 ----
 prototype.replaceState(state : Object, title : String, [url : String]) : undefined
 
-Replaces the current entry in the session history with the provided values. 
-**state** is available on the %%#state|**history.state**%% property.  
-**title** is applied to %%Document#title|**document.title**%%. 
-If **url** is specified, the %%Location#href|**location.href**%% is 
+Replaces the current entry in the session history with the provided values.
+**state** is available on the %%#state|**history.state**%% property.
+**title** is applied to %%Document#title|**document.title**%%.
+If **url** is specified, the %%Location#href|**location.href**%% is
 changed to the provided value.
 
 <htmlexample>
@@ -404,4 +404,4 @@ changed to the provided value.
 
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-history-replacestate
+https://html.spec.whatwg.org/multipage/browsers.html#dom-history-replacestate

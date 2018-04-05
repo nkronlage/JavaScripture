@@ -2,7 +2,7 @@ HTMLBodyElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlbodyelement
+https://html.spec.whatwg.org/#htmlbodyelement
 
 ----
 event.afterprint : listener(event : Event) : undefined

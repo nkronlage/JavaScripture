@@ -2,7 +2,7 @@ HTMLQuoteElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlquoteelement
+https://html.spec.whatwg.org/#htmlquoteelement
 
 ----
 instance.cite : String

@@ -3,7 +3,7 @@ HashChangeEvent : Event
 See %%/Window#onhashchange|**window.onhashchange**%%.
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#hashchangeevent
+https://html.spec.whatwg.org/multipage/history.html#hashchangeevent
 
 ----
 new HashChangeEvent( \
@@ -23,7 +23,7 @@ ReadOnly:
 true
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#dom-hashchangeevent-oldurl
+https://html.spec.whatwg.org/multipage/history.html#dom-hashchangeevent-oldurl
 
 ----
 instance.newURL : Object
@@ -34,4 +34,4 @@ ReadOnly:
 true
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#dom-hashchangeevent-newurl
+https://html.spec.whatwg.org/multipage/history.html#dom-hashchangeevent-newurl

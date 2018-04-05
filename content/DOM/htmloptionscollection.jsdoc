@@ -3,7 +3,7 @@ HTMLOptionsCollection : HTMLCollection
 
 
 Spec:
-http://dev.w3.org/html5/spec/common-dom-interfaces.html#htmloptionscollection
+https://html.spec.whatwg.org/#htmloptionscollection
 
 
 ----

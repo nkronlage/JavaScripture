@@ -8,4 +8,4 @@ Created through
 %%/CanvasRenderingContext2D#createPattern|**createPattern()**%%.
 
 Spec:
-http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#canvaspattern
+https://html.spec.whatwg.org/#canvaspattern

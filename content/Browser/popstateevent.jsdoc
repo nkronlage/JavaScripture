@@ -3,7 +3,7 @@ PopStateEvent : Event
 See %%/Window#onpopstate|**window.onpopstate**%%.
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#the-popstateevent-interface
+https://html.spec.whatwg.org/multipage/history.html#the-popstateevent-interface
 
 ----
 new PopStateEvent( \
@@ -22,4 +22,4 @@ ReadOnly:
 true
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#dom-popstateevent-state
+https://html.spec.whatwg.org/multipage/history.html#dom-popstateevent-state

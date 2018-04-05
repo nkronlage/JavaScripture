@@ -1,16 +1,13 @@
 CanvasRenderingContext2D : CanvasRenderingContext
 
 The **CanvasRenderingContext2D** is an object that is used to issue 2D drawing
-commands to a %%/HTMLCanvasElement|canvas%%.  It is obtained by passing 
-**'2d'** to the 
-%%HTMLCanvasElement#getContext|**HTMLCanvasElement.getContext()**%% 
+commands to a %%/HTMLCanvasElement|canvas%%.  It is obtained by passing
+**'2d'** to the
+%%HTMLCanvasElement#getContext|**HTMLCanvasElement.getContext()**%%
 method.
 
 Spec:
-http://www.w3.org/TR/2012/CR-2dcontext-20121217/
-
-Spec2:
-http://dev.w3.org/html5/2dcontext/
+https://html.spec.whatwg.org/#canvasrenderingcontext2d
 
 ----
 instance.canvas : HTMLCanvasElement
@@ -22,13 +19,13 @@ The canvas that owns this context.
 <script>
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
-  
+
   console.log(context.canvas === canvas);
 </script>
 </htmlexample>
 
 Spec:
-http://dev.w3.org/html5/2dcontext/#dom-context-2d-canvas
+https://html.spec.whatwg.org/#dom-context-2d-canvas
 
 ReadOnly:
 true
@@ -39,21 +36,21 @@ prototype.save() : undefined
 Saves the current state of the **this** onto the stack.
 Call %%#restore|**restore()**%% to restore the saved state.
 
-The saved state consists of: %%#setTransform|transformation matrix%%, 
+The saved state consists of: %%#setTransform|transformation matrix%%,
 %%#clip|clip region%%,
-%%#fillStyle|**fillStyle**%%, 
-%%#font|**font**%%, 
-%%#globalAlpha|**globalAlpha**%%, 
-%%#globalCompositeOperation|**globalCompositeOperation**%%, 
-%%#lineCap|**lineCap**%%, 
-%%#lineJoin|**lineJoin**%%, 
-%%#lineWidth|**lineWidth**%%, 
-%%#miterLimit|**miterLimit**%%, 
-%%#shadowBlur|**shadowBlur**%%, 
-%%#shadowColor|**shadowColor**%%, 
-%%#shadowOffsetX|**shadowOffsetX**%%, 
-%%#shadowOffsetY|**shadowOffsetY**%%, 
-%%#strokeStyle|**strokeStyle**%%, 
+%%#fillStyle|**fillStyle**%%,
+%%#font|**font**%%,
+%%#globalAlpha|**globalAlpha**%%,
+%%#globalCompositeOperation|**globalCompositeOperation**%%,
+%%#lineCap|**lineCap**%%,
+%%#lineJoin|**lineJoin**%%,
+%%#lineWidth|**lineWidth**%%,
+%%#miterLimit|**miterLimit**%%,
+%%#shadowBlur|**shadowBlur**%%,
+%%#shadowColor|**shadowColor**%%,
+%%#shadowOffsetX|**shadowOffsetX**%%,
+%%#shadowOffsetY|**shadowOffsetY**%%,
+%%#strokeStyle|**strokeStyle**%%,
 %%#textAlign|**textAlign**%%, and
 %%#textBaseline|**textBaseline**%%.
 
@@ -78,7 +75,7 @@ The saved state consists of: %%#setTransform|transformation matrix%%,
 ----
 prototype.restore() : undefined
 
-Restores the state from the the previous %%#save|**save()**%% call. 
+Restores the state from the the previous %%#save|**save()**%% call.
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -122,7 +119,7 @@ The alpha to use for subsequent paint operations. Must be between
 instance.globalCompositeOperation : String
 
 Determines how subsequent paint operations combine with the back buffer. Must be one of the following
-(**source** refers to the current drawing operation and **destination** refers 
+(**source** refers to the current drawing operation and **destination** refers
 to the existing contents of the canvas):
 
 <html>
@@ -168,7 +165,7 @@ opaque in the destination.</td>
 
 <tr>
 <td>**'destination-atop'**</td>
-<td>Draw the destination on the source but only keep pixels that were 
+<td>Draw the destination on the source but only keep pixels that were
 opaque in the source.</td>
 </tr>
 
@@ -198,14 +195,14 @@ Defaults to **'source-over'**.
 <canvas id='canvas'></canvas>
 <script>
   var options = ['source-over', 'source-in', 'source-out', 'source-atop',
-                 'destination-over', 'destination-in', 'destination-out', 'destination-atop', 
+                 'destination-over', 'destination-in', 'destination-out', 'destination-atop',
                  'lighter', 'darker', 'copy', 'xor'];
   var select = document.getElementById('select');
   options.forEach(function(option, i) {
     select.add(new Option(option, option));
   });
 
-  var draw = function() { 
+  var draw = function() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -224,13 +221,13 @@ Defaults to **'source-over'**.
 
 
 Spec:
-http://dev.w3.org/html5/2dcontext/#dom-context-2d-globalcompositeoperation
+https://html.spec.whatwg.org/#dom-context-2d-globalcompositeoperation
 
 ----
 instance.strokeStyle : Object
 
-The brush used to fill the stroke of shapes.  Must be a css color %%/String|**String**%% 
-(such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%, 
+The brush used to fill the stroke of shapes.  Must be a css color %%/String|**String**%%
+(such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%,
 or a %%/CanvasPattern|**CanvasPattern**%%.
 
 
@@ -253,13 +250,13 @@ IDL:
            attribute any strokeStyle; // (default black)
 
 Spec:
-http://dev.w3.org/html5/2dcontext/#dom-context-2d-strokestyle
+https://html.spec.whatwg.org/#dom-context-2d-strokestyle
 
 ----
 instance.fillStyle : Object
 
-The brush used to fill the area of shapes.  Must be a css color %%/String|**String**%% 
-(such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%, 
+The brush used to fill the area of shapes.  Must be a css color %%/String|**String**%%
+(such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%,
 or a %%/CanvasPattern|**CanvasPattern**%%.
 
 
@@ -308,7 +305,7 @@ IDL:
 ----
 instance.createRadialGradient(x0 : Number, y0 : Number, r0 : Number, x1 : Number, y1 : Number, r1 : Number) : CanvasGradient
 
-Creates a radial gradient from the circle at **x0**, **y0** with radius **r0** to 
+Creates a radial gradient from the circle at **x0**, **y0** with radius **r0** to
 the circle at **x1**, **y1** with radius **r1**.
 
 <htmlexample>
@@ -333,13 +330,13 @@ IDL:
 ----
 instance.createPattern(image : HTMLImageElement, repetition : String) : CanvasPattern
 
-Creates a pattern for the specified **image**.  
+Creates a pattern for the specified **image**.
 
 **image** can be either a
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
 %%/HTMLVideoElement|**HTMLVideoElement**%%.
-  
+
 **repetition** must be one of
 **'repeat'**, **'repeat-x'**, **'repeat-y'**, or **'no-repeat'**.
 
@@ -353,7 +350,7 @@ Creates a pattern for the specified **image**.
     select.add(new Option(option, option));
   });
 
-  var draw = function() { 
+  var draw = function() {
     var patternCanvas = document.createElement('canvas');
     patternCanvas.width = patternCanvas.height = 50;
     var patternContext = patternCanvas.getContext('2d');
@@ -390,7 +387,7 @@ Determines the x offset of the shadow from the drawn shape.
   context.shadowColor = 'rgba(0, 0, 0, 0.5)';
   context.shadowOffsetX = 3;
   context.shadowOffsetY = 6;
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.stroke();
@@ -420,7 +417,7 @@ Determines the y offset of the shadow from the drawn shape.
   context.shadowColor = 'rgba(0, 0, 0, 0.5)';
   context.shadowOffsetX = 3;
   context.shadowOffsetY = 6;
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.stroke();
@@ -436,7 +433,7 @@ IDL:
 ----
 instance.shadowBlur : Number
 
-Describes how big the shadow blur is. Larger numbers are 
+Describes how big the shadow blur is. Larger numbers are
 blurrier. Defaults to **0**.
 
 <htmlexample>
@@ -449,7 +446,7 @@ blurrier. Defaults to **0**.
   context.shadowColor = 'rgba(0, 0, 0, 0.5)';
   context.shadowOffsetX = 3;
   context.shadowOffsetY = 6;
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.stroke();
@@ -460,7 +457,7 @@ blurrier. Defaults to **0**.
 </htmlexample>
 
 ----
-instance.shadowColor : String 
+instance.shadowColor : String
 
 The css color string of the shadow. Defaults to **transparent**.
 
@@ -474,7 +471,7 @@ The css color string of the shadow. Defaults to **transparent**.
   context.shadowColor = 'rgba(0, 0, 0, 0.5)';
   context.shadowOffsetX = 3;
   context.shadowOffsetY = 6;
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.stroke();
@@ -530,7 +527,7 @@ IDL:
 ----
 prototype.strokeRect(x : Number, y : Number, w : Number, h : Number) : undefined
 
-Draws a rectangular path with the 
+Draws a rectangular path with the
 current %%#strokeStyle|**strokeStyle**%% and
 %%#lineWidth|**lineWidth**%%.
 
@@ -551,16 +548,16 @@ IDL:
 prototype.beginPath() : undefined
 
 Begins a path. Use with
-%%#moveTo|**moveTo()**%%, 
+%%#moveTo|**moveTo()**%%,
 %%#lineTo|**lineTo()**%%,
-%%#quadraticCurveTo|**quadraticCurveTo()**%%, 
+%%#quadraticCurveTo|**quadraticCurveTo()**%%,
 %%#bezierCurveTo|**bezierCurveTo()**%%,
 %%#arc|**arc()**%%,
 %%#arcTo|**arcTo()**%%, and
 %%#closePath|**closePath()**%%
 to define the shape of the path.
 
-Draw the path with %%#fill|**fill()**%% or 
+Draw the path with %%#fill|**fill()**%% or
 %%#stroke|**stroke()**%%.
 
 <htmlexample>
@@ -571,9 +568,9 @@ Draw the path with %%#fill|**fill()**%% or
 
   context.lineWidth = 20;
 
-  context.beginPath(); 
-  context.moveTo(20,20); 
-  context.lineTo(60,60); 
+  context.beginPath();
+  context.moveTo(20,20);
+  context.lineTo(60,60);
   context.lineTo(100,20);
   context.stroke();
 </script>
@@ -593,7 +590,7 @@ Fills the current path with the current %%#fillStyle|**fillStyle**%%.
 <script>
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.fill();
@@ -607,7 +604,7 @@ IDL:
 ----
 prototype.stroke() : undefined
 
-Draws a line around the current path with the 
+Draws a line around the current path with the
 current %%#strokeStyle|**strokeStyle**%% and
 %%#lineWidth|**lineWidth**%%.
 
@@ -616,7 +613,7 @@ current %%#strokeStyle|**strokeStyle**%% and
 <script>
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.stroke();
@@ -626,7 +623,7 @@ current %%#strokeStyle|**strokeStyle**%% and
 ----
 prototype.clip() : undefined
 
-Replaces the current clip region with the intersection 
+Replaces the current clip region with the intersection
 of the current path and the current clip region.
 Use %%#save|**save()**%% and %%#restore|**restore()**%%
 to save and restore clip regions.
@@ -636,7 +633,7 @@ to save and restore clip regions.
 <script>
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
-  
+
   context.beginPath();
   context.arc(50, 50, 30, 0, 2 * Math.PI);
   context.stroke();
@@ -655,7 +652,7 @@ IDL:
 ----
 prototype.isPointInPath(x : Number, y : Number) : Boolean
 
-Returns **true** if the specified location is in the current path (from the most 
+Returns **true** if the specified location is in the current path (from the most
 recent call to %%#beginPath|**beginPath()**%%).
 
 <htmlexample>
@@ -665,9 +662,9 @@ recent call to %%#beginPath|**beginPath()**%%).
   var context = canvas.getContext('2d');
 
   context.fillStyle = 'black';
-  context.beginPath(); 
-  context.moveTo(20, 20); 
-  context.lineTo(60, 60); 
+  context.beginPath();
+  context.moveTo(20, 20);
+  context.lineTo(60, 60);
   context.lineTo(100, 20);
   context.fill();
 
@@ -688,8 +685,8 @@ IDL:
 ----
 prototype.fillText(text : String, x : Number, y : Number, [maxWidth : Number]) : undefined
 
-Draws the specified string at **x** and **y** using 
-%%#fillStyle|**fillStyle**%%, 
+Draws the specified string at **x** and **y** using
+%%#fillStyle|**fillStyle**%%,
 %%#font|**font**%%,
 %%#textAlign|**textAlign**%%, and
 %%#textBaseline|**textBaseline**%%.
@@ -710,10 +707,10 @@ Draws the specified string at **x** and **y** using
 prototype.strokeText(text : String, x : Number, y : Number, [maxWidth : Number]) : undefined
 
 
-Draws an outline of the specified string at **x** and **y** using 
+Draws an outline of the specified string at **x** and **y** using
 
-%%#strokeStyle|**strokeStyle**%%, 
-%%#lineWidth|**lineWidth**%%, 
+%%#strokeStyle|**strokeStyle**%%,
+%%#lineWidth|**lineWidth**%%,
 %%#font|**font**%%,
 %%#textAlign|**textAlign**%%, and
 %%#textBaseline|**textBaseline**%%.
@@ -747,7 +744,7 @@ Retrieves information about the rendered size of **text**.
   context.fillText('hello world', 0, 30);
 
   var textMetrics = context.measureText('hello world');
-  
+
   context.fillRect(0, 35, textMetrics.width, 1);
 </script>
 </htmlexample>
@@ -759,7 +756,7 @@ Draws **image** to the canvas at **dx**, **dy** using the natural size of the im
 
 **image** can be either an
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
 %%/HTMLVideoElement|**HTMLVideoElement**%%.
 
 <htmlexample>
@@ -787,7 +784,7 @@ Draws **image** to the canvas at **dx**, **dy** of size **dw** by **dh**.
 
 **image** can be either an
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
 %%/HTMLVideoElement|**HTMLVideoElement**%%.
 
 <htmlexample>
@@ -809,13 +806,13 @@ IDL:
 ----
 prototype.drawImage(image : HTMLImageElement, sx : Number, sy : Number, sw : Number, sh : Number, dx : Number, dy : Number, dw : Number, dh : Number) : undefined
 
-Draws the subregion of **image** starting at **sx**, **sy** of size **sw** by **sh** 
+Draws the subregion of **image** starting at **sx**, **sy** of size **sw** by **sh**
 into the subregion of the canvas at **dx**, **dy** of size **dw** by **dh**.
 The image will be stretched and scaled if **sw**, **sh** does not match **dw** by **dh**.
 
 **image** can be either an
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or 
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
 %%/HTMLVideoElement|**HTMLVideoElement**%%.
 
 
@@ -839,7 +836,7 @@ IDL:
 ----
 prototype.createImageData(sw : Number, sh : Number) : ImageData
 
-Creates a buffer of size **sw** by **sh** that can be filled with pixel 
+Creates a buffer of size **sw** by **sh** that can be filled with pixel
 data and later copied into the canvas using %%#putImageData|**putImageData()**%%.
 The buffer is initialized to transparent.
 
@@ -870,7 +867,7 @@ IDL:
 ----
 prototype.createImageData(imageData : ImageData) : ImageData
 
-Creates a buffer of the same size as **imageData** that can be filled with pixel 
+Creates a buffer of the same size as **imageData** that can be filled with pixel
 data and later copied into the canvas using %%#putImageData|**putImageData()**%%.
 The buffer is initialized to transparent.
 
@@ -897,8 +894,8 @@ IDL:
 ----
 prototype.getImageData(sx : Number, sy : Number, sw : Number, sh : Number) : ImageData
 
-Retrieves the contents of the canvas starting at **sx**, **sy** of 
-size **sw** by **sh**. 
+Retrieves the contents of the canvas starting at **sx**, **sy** of
+size **sw** by **sh**.
 
 See also %%#createImageData|**createImageData()**%% and
 %%#putImageData|**putImageData()**%%.
@@ -931,8 +928,8 @@ IDL:
 ----
 prototype.putImageData(imageData : ImageData, dx : Number, dy : Number, [dirtyX : Number, dirtyY : Number, dirtyWidth : Number, dirtyHeight : Number]) : undefined
 
-Copies the contents of **imageData** into the canvas at **dx**, **dy**.  
-If the **dirty** parameters are specified, only that region of the 
+Copies the contents of **imageData** into the canvas at **dx**, **dy**.
+If the **dirty** parameters are specified, only that region of the
 **imageData** is copied.
 
 See also %%#createImageData|**createImageData()**%% and
@@ -1015,7 +1012,7 @@ IDL:
 ----
 prototype.translate(x : Number, y : Number) : undefined
 
-Applies a translate transform to the current transform so 
+Applies a translate transform to the current transform so
 subsequent drawing operations are
 shifted by **x**, **y**.
 
@@ -1041,7 +1038,7 @@ IDL:
 ----
 prototype.transform(a : Number, b : Number, c : Number, d : Number, e : Number, f : Number) : undefined
 
-Applies the following transform to the current transform. 
+Applies the following transform to the current transform.
 
 <html>
 <table>
@@ -1064,8 +1061,8 @@ Applies the following transform to the current transform.
   var translateX = 50;
   var translateY = 20;
 
-  context.transform(     scale,          0, 
-                             0,      scale, 
+  context.transform(     scale,          0,
+                             0,      scale,
                     translateX, translateY);
 
   context.fillStyle = 'blue';
@@ -1104,8 +1101,8 @@ Replaces the current transform with following matrix:
   var translateX = 50;
   var translateY = 20;
 
-  context.setTransform(     scale,          0, 
-                                0,      scale, 
+  context.setTransform(     scale,          0,
+                                0,      scale,
                        translateX, translateY);
 
   context.fillStyle = 'blue';
@@ -1116,7 +1113,7 @@ Replaces the current transform with following matrix:
 
 
 Spec:
-http://www.w3.org/TR/2012/CR-2dcontext-20121217/#dom-context-2d-settransform
+https://html.spec.whatwg.org/#dom-context-2d-settransform
 
 IDL:
   void setTransform(double a, double b, double c, double d, double e, double f);
@@ -1134,7 +1131,7 @@ The width of the stroke. Defaults to **1**.
 
   context.lineWidth = 20;
 
-  context.beginPath(); 
+  context.beginPath();
   context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
   context.stroke();
 </script>
@@ -1149,7 +1146,7 @@ interface CanvasLineStyles {
 ----
 instance.lineCap : String
 
-Determines the shape of line endings.  Must be one of 
+Determines the shape of line endings.  Must be one of
 
 **'butt'**,
 **'round'**,
@@ -1167,7 +1164,7 @@ Defaults to **'butt'**.
     select.add(new Option(option, option));
   });
 
-  var draw = function() { 
+  var draw = function() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1181,7 +1178,7 @@ Defaults to **'butt'**.
     context.lineTo(100,100);
     context.lineTo(180,20);
     context.stroke();
-  
+
     context.strokeStyle = 'white';
     context.lineWidth = 1;
     context.stroke();
@@ -1196,7 +1193,7 @@ IDL:
 ----
 instance.lineJoin : String
 
-Determines how lines meet.  Must be one of 
+Determines how lines meet.  Must be one of
 
 **'miter'**,
 **'round'**, or
@@ -1216,7 +1213,7 @@ Defaults to **'miter'**.
     select.add(new Option(option, option));
   });
 
-  var draw = function() { 
+  var draw = function() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1230,7 +1227,7 @@ Defaults to **'miter'**.
     context.lineTo(100,100);
     context.lineTo(180,20);
     context.stroke();
-  
+
     context.strokeStyle = 'white';
     context.lineWidth = 1;
     context.stroke();
@@ -1245,7 +1242,7 @@ IDL:
 ----
 instance.miterLimit : Number
 
-Adjusts the maximum distance the miter point can extend from 
+Adjusts the maximum distance the miter point can extend from
 the joint.
 
 <htmlexample>
@@ -1258,12 +1255,12 @@ the joint.
   context.lineWidth = 20;
 
   context.miterLimit = 1;
-    
+
   // Top left
-  context.beginPath(); 
+  context.beginPath();
   context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
   context.stroke();
-  
+
   // Top right
   context.beginPath();
   context.moveTo(140,20); context.lineTo(155,60); context.lineTo(170,20);
@@ -1272,10 +1269,10 @@ the joint.
   context.miterLimit = 10;
 
   // Bottom left
-  context.beginPath(); 
+  context.beginPath();
   context.moveTo(20,80); context.lineTo(60,120); context.lineTo(100,80);
   context.stroke();
-  
+
   // Bottom right
   context.beginPath();
   context.moveTo(140,80); context.lineTo(155,120); context.lineTo(170,80);
@@ -1284,7 +1281,7 @@ the joint.
 </htmlexample>
 
 Spec:
-http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#dom-context-2d-linecap
+https://html.spec.whatwg.org/#dom-context-2d-linecap
 
 IDL:
            attribute double miterLimit; // (default 10)
@@ -1332,7 +1329,7 @@ Defaults to **'start'**.
     select.add(new Option(option, option));
   });
 
-  var draw = function() { 
+  var draw = function() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1351,7 +1348,7 @@ Defaults to **'start'**.
 
 
 Spec:
-http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#dom-context-2d-textalign
+https://html.spec.whatwg.org/#dom-context-2d-textalign
 
 
 IDL:
@@ -1363,7 +1360,7 @@ instance.textBaseline : String
 
 Determines which edge of the text to place at the **y** coordinate
 passed to %%#fillText|**fillText**%% or %%#strokeText|**strokeText**%%.
-Must be one of **'top'**, **'hanging'**, **'middle'**, **'alphabetic'**, 
+Must be one of **'top'**, **'hanging'**, **'middle'**, **'alphabetic'**,
 **'ideographic'**, **'bottom'**.
 
 Defaults to **'alphabetic'**.
@@ -1372,14 +1369,14 @@ Defaults to **'alphabetic'**.
 <select id='select' onchange='draw()'></select>
 <canvas id='canvas'></canvas>
 <script>
-  var options = ['top', 'hanging', 'middle', 'alphabetic', 
+  var options = ['top', 'hanging', 'middle', 'alphabetic',
                  'ideographic', 'bottom'];
   var select = document.getElementById('select');
   options.forEach(function(option, i) {
     select.add(new Option(option, option));
   });
 
-  var draw = function() { 
+  var draw = function() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1397,7 +1394,7 @@ Defaults to **'alphabetic'**.
 </htmlexample>
 
 Spec:
-http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#dom-context-2d-textbaseline
+https://html.spec.whatwg.org/#dom-context-2d-textbaseline
 
 IDL:
            attribute DOMString textBaseline; // "top", "hanging", "middle", "alphabetic", "ideographic", "bottom" (default: "alphabetic")
@@ -1416,9 +1413,9 @@ Joins the last line segment to the beginning of the path.
 
   context.lineWidth = 20;
 
-  context.beginPath(); 
+  context.beginPath();
   context.moveTo(20,20);
-  context.lineTo(60,60); 
+  context.lineTo(60,60);
   context.lineTo(100,20);
   context.closePath();
   context.stroke();
@@ -1435,7 +1432,7 @@ interface CanvasPathMethods {
 ----
 prototype.moveTo(x : Number, y : Number) : undefined
 
-Move current point of the current path to **x**, **y** 
+Move current point of the current path to **x**, **y**
 without connecting the stroke.
 
 <htmlexample>
@@ -1444,11 +1441,11 @@ without connecting the stroke.
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
 
-  context.beginPath(); 
-  context.moveTo(20,20); 
-  context.lineTo(60,60); 
+  context.beginPath();
+  context.moveTo(20,20);
+  context.lineTo(60,60);
 
-  context.moveTo(80,20); 
+  context.moveTo(80,20);
   context.lineTo(120,60);
   context.stroke();
 </script>
@@ -1460,7 +1457,7 @@ IDL:
 ----
 prototype.lineTo(x : Number, y : Number) : undefined
 
-Draw a line from current point of the current path to 
+Draw a line from current point of the current path to
 **x**, **y**.
 
 <htmlexample>
@@ -1469,11 +1466,11 @@ Draw a line from current point of the current path to
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
 
-  context.beginPath(); 
-  context.moveTo(20,20); 
-  context.lineTo(60,60); 
-  context.lineTo(100,20); 
-  context.stroke(); 
+  context.beginPath();
+  context.moveTo(20,20);
+  context.lineTo(60,60);
+  context.lineTo(100,20);
+  context.stroke();
 </script>
 </htmlexample>
 
@@ -1490,8 +1487,8 @@ the control point.
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
 
-  context.beginPath(); 
-  context.moveTo(20, 20); 
+  context.beginPath();
+  context.moveTo(20, 20);
   context.quadraticCurveTo(60, 60, 100, 20);
   context.stroke();
 
@@ -1515,8 +1512,8 @@ does not pass through the control points.
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
 
-  context.beginPath(); 
-  context.moveTo(20, 20); 
+  context.beginPath();
+  context.moveTo(20, 20);
   context.bezierCurveTo(40, 60, 80, 5, 100, 20);
   context.stroke();
 
@@ -1534,13 +1531,13 @@ prototype.arcTo(controlX : Number, controlY : Number, endX : Number, endY : Numb
 
 
 Draws 2 imaginary lines between the previous point and the control point
-and between the control point and the end point. **arcTo** fits a circle of 
+and between the control point and the end point. **arcTo** fits a circle of
 
 the specified
 radius between these lines.  The drawn figure is a line from the previous
 point to the place where the circle touches the first imaginary line and an
 arc along the circle to the point where it touches the second imaginary line.
-This method will not draw all the way to the end point (unless the end point 
+This method will not draw all the way to the end point (unless the end point
 matches the spot where the circle touches the secondary imaginary line).
 
 <htmlexample>
@@ -1577,7 +1574,7 @@ matches the spot where the circle touches the secondary imaginary line).
 
 
 IDL:
-  void arcTo(double x1, double y1, double x2, double y2, double radius); 
+  void arcTo(double x1, double y1, double x2, double y2, double radius);
 
 
 
@@ -1592,9 +1589,9 @@ Add a closed rectangle to the current path.
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
 
-  context.beginPath(); 
-  context.rect(20, 20, 60, 40); 
-  context.rect(100, 20, 60, 40); 
+  context.beginPath();
+  context.rect(20, 20, 60, 40);
+  context.rect(100, 20, 60, 40);
   context.stroke();
 </script>
 </htmlexample>
@@ -1610,7 +1607,7 @@ Continues the current path by creating an arc of circle centered at
 **x**, **y** of radius **radius** from **startAngle** to **endAngle**.
 The angles are specified in radians where **0** points to the right,
 **Math.PI / 2** points down, **Math.PI** points to the left, etc.
-The **counterclockwise** parameter determines which part of the circle 
+The **counterclockwise** parameter determines which part of the circle
 is used for the path.
 
 <htmlexample>
@@ -1626,6 +1623,6 @@ is used for the path.
 </htmlexample>
 
 IDL:
-  void arc(double x, double y, double radius, double startAngle, double endAngle, optional boolean anticlockwise); 
+  void arc(double x, double y, double radius, double startAngle, double endAngle, optional boolean anticlockwise);
 };
 

@@ -2,13 +2,13 @@ Window : Global
 
 Window is the global object in the browser that represents the
 browser window for the page.  The window object itself
-is available through the %%#window|**window**%% property and all 
+is available through the %%#window|**window**%% property and all
 properties on the Window are available directly in scripts.
-The Window object is also available as **this** in the root scope of 
+The Window object is also available as **this** in the root scope of
 a script (ie, outside of any %%/Function|Function%%).
 
 Spec:
-http://w3c.github.io/html/browsers.html#the-window-object
+https://html.spec.whatwg.org/#the-window-object
 
 ----
 instance.frameElement : Element
@@ -50,7 +50,7 @@ true
 ----
 instance.window : Window
 
-Returns the global object for the browser. Also available 
+Returns the global object for the browser. Also available
 through the %%#self|**self**%% property and through **this**
 in the root scope.
 
@@ -68,12 +68,12 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#dom-window
+https://html.spec.whatwg.org/#dom-window
 
 ----
 instance.self : Window
 
-Returns the global object for the browser. Also available 
+Returns the global object for the browser. Also available
 through the %%#window|**window**%% property and through **this**
 in the root scope.
 
@@ -91,7 +91,7 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#dom-self
+https://html.spec.whatwg.org/#dom-self
 
 ----
 instance.crypto : Crypto
@@ -102,7 +102,7 @@ http://www.w3.org/TR/WebCryptoAPI/#dfn-Crypto
 ----
 instance.document : Document
 
-Returns the document for this window. 
+Returns the document for this window.
 
 <htmlexample>
 <div>Hello World</div>
@@ -116,19 +116,19 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#dom-document-0
+https://html.spec.whatwg.org/#dom-document-2
 
 ----
 instance.name : String
 
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#dom-name
+https://html.spec.whatwg.org/#dom-name
 
 ----
 instance.location : Location
 
-Describes the url of the current page. See %%/Location|Location%% for 
+Describes the url of the current page. See %%/Location|Location%% for
 more details.
 
 <htmlexample>
@@ -146,7 +146,7 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#dom-location
+https://html.spec.whatwg.org/#dom-location
 
 ----
 instance.history : History
@@ -204,7 +204,7 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/spec/Overview.html#dom-history
+https://html.spec.whatwg.org/#dom-history
 
 ----
 instance.status : String
@@ -243,7 +243,7 @@ instance.sessionStorage : Storage
 
 **sessionStorage** allows saving data in the web browser
 that can be retrieved in future views of the web page.
-The data is only saved for the current session, that is until 
+The data is only saved for the current session, that is until
 the user closes the web browser.
 See also %%#localStorage|**localStorage**%% and
 %%/Storage|Storage%% for more details.
@@ -363,8 +363,8 @@ https://drafts.csswg.org/cssom-view/#dom-window-screen
 ----
 instance.screenX : Number
 
-X position of the top left corner of the browser in pixels. 
-See %%/Screen|screen%% for details about the size of the 
+X position of the top left corner of the browser in pixels.
+See %%/Screen|screen%% for details about the size of the
 screen.
 
 <example>
@@ -380,8 +380,8 @@ https://drafts.csswg.org/cssom-view/#dom-window-screenx
 ----
 instance.screenY : Number
 
-Y position of the top left corner of the browser in pixels. 
-See %%/Screen|screen%% for details about the size of the 
+Y position of the top left corner of the browser in pixels.
+See %%/Screen|screen%% for details about the size of the
 screen.
 
 <example>
@@ -398,8 +398,8 @@ https://drafts.csswg.org/cssom-view/#dom-window-screeny
 ----
 prototype.btoa(encoded : String) : String
 
-Converts a unicode/binary string into an ascii encoded string 
-(%%http://en.wikipedia.org/wiki/Base64|base64%%). 
+Converts a unicode/binary string into an ascii encoded string
+(%%http://en.wikipedia.org/wiki/Base64|base64%%).
 See also %%#atob|**atob()**%%.
 
 <htmlexample>
@@ -414,12 +414,12 @@ See also %%#atob|**atob()**%%.
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/#dom-windowbase64-btoa
+https://html.spec.whatwg.org/#dom-windowbase64-btoa
 
 ----
 prototype.atob(unencoded : String) : String
 
-Converts an ascii encoded string 
+Converts an ascii encoded string
 (%%http://en.wikipedia.org/wiki/Base64|base64%%)
 into a unicode/binary string.
 See also %%#btob|**btob()**%%.
@@ -437,7 +437,7 @@ See also %%#btob|**btob()**%%.
 
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/#dom-windowbase64-atob
+https://html.spec.whatwg.org/#dom-windowbase64-atob
 
 ----
 prototype.setTimeout(callback : Function, [timeout = 0: Number, [...]]) : Number
@@ -445,7 +445,7 @@ prototype.setTimeout(callback : Function, [timeout = 0: Number, [...]]) : Number
 Schedules **callback** to be called once after **timeout** milliseconds. Any extra
 parameters after **timeout** are passed to **callback**.
 
-Returns a unique handle that can be passed to %%#clearTimeout|**clearTimeout()**%% 
+Returns a unique handle that can be passed to %%#clearTimeout|**clearTimeout()**%%
 to stop **callback** from being called.
 
 See also %%#setInterval|**setInterval()**%% and %%#requestAnimationFrame|**requestAnimationFrame()**%%.
@@ -462,16 +462,16 @@ See also %%#setInterval|**setInterval()**%% and %%#requestAnimationFrame|**reque
 </htmlexample>
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/#dom-windowtimers-settimeout
+https://html.spec.whatwg.org/#dom-windowtimers-settimeout
 
 ----
 prototype.setTimeout(callback : String, [timeout = 0: Number, [...]]) : Number
 
-Same as %%#setTimeout_Function_Number_dotdotdot|setTimeout()%% where the 
+Same as %%#setTimeout_Function_Number_dotdotdot|setTimeout()%% where the
 **callback** string is passed to %%/Global#eval|eval%% when the time has elapsed.
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/#dom-windowtimers-settimeout
+https://html.spec.whatwg.org/#dom-windowtimers-settimeout
 
 ----
 prototype.clearTimeout(handle : Number) : undefined
@@ -495,14 +495,14 @@ Stops a timeout from running.  **handle** is the value returned by %%#setTimeout
 ----
 prototype.requestAnimationFrame(callback(time : Number) : undefined) : Number
 
-Schedules **callback** to be called before the next time the browser renders a 
-frame to the screen. Must be called each time you'd like to schedule another 
+Schedules **callback** to be called before the next time the browser renders a
+frame to the screen. Must be called each time you'd like to schedule another
 frame.
 
-The **time** parameter to callback is the number of milliseconds since the 
+The **time** parameter to callback is the number of milliseconds since the
 page loaded.
 
-Returns a unique handle that can be passed to %%#cancelAnimationFrame|**cancelAnimationFrame()**%% 
+Returns a unique handle that can be passed to %%#cancelAnimationFrame|**cancelAnimationFrame()**%%
 to stop **callback** from being called.
 
 <htmlexample>
@@ -536,7 +536,7 @@ to stop **callback** from being called.
 ----
 prototype.cancelAnimationFrame(handle : Number) : undefined
 
-Stops an animation frame callback from running.  **handle** is the 
+Stops an animation frame callback from running.  **handle** is the
 value returned by %%#requestAnimationFrame|**requestAnimationFrame()**%%.
 
 <htmlexample>
@@ -556,10 +556,10 @@ value returned by %%#requestAnimationFrame|**requestAnimationFrame()**%%.
 ----
 prototype.setInterval(callback : Function, [timeout : Number, [...]]) : Number
 
-Schedules **callback** to be called repeatedly, every **timeout** milliseconds. 
+Schedules **callback** to be called repeatedly, every **timeout** milliseconds.
 Any extra parameters after **timeout** are passed to **callback**.
 
-Returns a unique handle that can be passed to %%#clearInterval|**clearInterval()**%% 
+Returns a unique handle that can be passed to %%#clearInterval|**clearInterval()**%%
 to stop **callback** from being called.
 
 See also %%#setTimeout|**setTimeout()**%% and %%#requestAnimationFrame|**requestAnimationFrame()**%%.
@@ -572,7 +572,7 @@ See also %%#setTimeout|**setTimeout()**%% and %%#requestAnimationFrame|**request
     console.log('in callback count=' + callCount);
     console.log('  parameter1=' + parameter1);
     console.log('  parameter2=' + parameter2);
-    
+
     callCount++;
     if (callCount === 3) {
       clearInterval(handle);
@@ -585,13 +585,13 @@ See also %%#setTimeout|**setTimeout()**%% and %%#requestAnimationFrame|**request
 ----
 prototype.setInterval(callback : String, [timeout : Number, [...]]) : Number
 
-Same as %%#setInterval_Function_Number_dotdotdot|setInterval()%% where the 
+Same as %%#setInterval_Function_Number_dotdotdot|setInterval()%% where the
 **callback** string is passed to %%/Global#eval|eval%% when the time has elapsed.
 
 ----
 prototype.clearInterval(handle : Number) : undefined
 
-Stops an %%#setInterval|**setInterval()**%% callback from running.  
+Stops an %%#setInterval|**setInterval()**%% callback from running.
 **handle** is the value returned by **setInterval()**.
 
 <htmlexample>
@@ -602,7 +602,7 @@ Stops an %%#setInterval|**setInterval()**%% callback from running.
     console.log('in callback count=' + callCount);
     console.log('  parameter1=' + parameter1);
     console.log('  parameter2=' + parameter2);
-    
+
     callCount++;
     if (callCount === 5) {
       clearInterval(handle);
@@ -729,9 +729,9 @@ Displays a message box to the user with the specified message.
 
 Script execution is paused while the message box is displayed.
 
-See also 
-%%#confirm|**confirm()**%% 
-and 
+See also
+%%#confirm|**confirm()**%%
+and
 %%#prompt|**prompt()**%%.
 
 <htmlexample>
@@ -742,13 +742,13 @@ and
 prototype.confirm(message : String) : Boolean
 
 Displays an Ok/Cancel message box to the user with the specified message.
-Returns **true** if the user clicked Ok. 
+Returns **true** if the user clicked Ok.
 
 Script execution is paused while the message box is displayed.
 
-See also 
-%%#alert|**alert()**%% 
-and 
+See also
+%%#alert|**alert()**%%
+and
 %%#prompt|**prompt()**%%.
 
 <htmlexample>
@@ -774,7 +774,7 @@ https://drafts.csswg.org/cssom-view/#dom-window-matchmedia
 ----
 prototype.prompt(message : String, [default : String]) : String
 
-Displays a message box containing an input box to the user with 
+Displays a message box containing an input box to the user with
 the specified message. The input box will be prepopulated with
 **default** if it is specified.
 
@@ -783,9 +783,9 @@ ok and **null** if they click cancel.
 
 Script execution is paused while the message box is displayed.
 
-See also 
-%%#alert|**alert()**%% 
-and 
+See also
+%%#alert|**alert()**%%
+and
 %%#confirm|**confirm()**%%.
 
 <htmlexample>
@@ -891,8 +891,8 @@ event.beforeprint : listener(event : Event) : undefined
 ----
 event.beforeunload : listener(event : BeforeUnloadEvent) : String
 
-Called before the page is navigated away from.  Return a non-empty 
-String from **listener** to display a dialog box that gives the user 
+Called before the page is navigated away from.  Return a non-empty
+String from **listener** to display a dialog box that gives the user
 the option to remain on the current page.
 
 <htmlexample>
@@ -1051,7 +1051,7 @@ event.popstate : listener(event : PopStateEvent) : undefined
 Called when the page navigation changes.  See also %%/History|History%%.
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/#handler-window-onpopstate
+https://html.spec.whatwg.org/#handler-window-onpopstate
 
 ----
 event.progress : listener(event : Event) : undefined

@@ -3,9 +3,9 @@ HTMLAudioElement : HTMLMediaElement
 **HTMLAudioElement** is an element that plays audio.
 It corresponds to the **<audio>** tag.
 
-See %%/HTMLMediaElement|HTMLMediaElement%% for the properties, methods and 
+See %%/HTMLMediaElement|HTMLMediaElement%% for the properties, methods and
 events available on the audio element.
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmlaudiojeoelement
+https://html.spec.whatwg.org/#htmlaudiojeoelement
 

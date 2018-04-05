@@ -1,10 +1,10 @@
 Range : Object
 
-A Range is a selection of the content of a document. 
+A Range is a selection of the content of a document.
 Create a Range with %%/Document#createRange|**document.createRange()**%%.
 
 Spec:
-http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Interface
+https://dom.spec.whatwg.org/#interface-range
 
 ----
 instance.startContainer : Node

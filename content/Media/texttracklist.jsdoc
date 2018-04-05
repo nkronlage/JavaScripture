@@ -1,12 +1,12 @@
 TextTrackList : EventTarget
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#audiotracklist
+https://html.spec.whatwg.org/#audiotracklist
 
 ----
 instance[index : Number] : TextTrack
 
-Returns the TextTrack at the specified **index**. 
+Returns the TextTrack at the specified **index**.
 
 ----
 instance.length : Number

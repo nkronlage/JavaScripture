@@ -5,11 +5,11 @@ or %%/CanvasRenderingContext2D#strokeStyle|**strokeStyle**%% of a
 %%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
 
 Created through
-%%/CanvasRenderingContext2D#createLinearGradient|**createLinearGradient()**%% or 
+%%/CanvasRenderingContext2D#createLinearGradient|**createLinearGradient()**%% or
 %%/CanvasRenderingContext2D#createRadialGradient|**createRadialGradient()**%%.
 
 Spec:
-http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#canvasgradient
+https://html.spec.whatwg.org/#canvasgradient
 
 ----
 prototype.addColorStop(offset : Number, color : String) : undefined

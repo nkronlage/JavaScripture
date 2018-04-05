@@ -2,7 +2,7 @@ HTMLTimeElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmltimeelement
+https://html.spec.whatwg.org/#htmltimeelement
 
 ----
 instance.datetime : String

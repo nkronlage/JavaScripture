@@ -1,7 +1,7 @@
 HTMLOptGroupElement : HTMLElement
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmloptgroupelement
+https://html.spec.whatwg.org/#htmloptgroupelement
 
 ----
 instance.disabled : Boolean

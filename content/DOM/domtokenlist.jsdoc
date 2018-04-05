@@ -5,7 +5,7 @@ An object containing a list of strings.  Used in
 %%/HTMLIFrameElement#sandbox|**HTMLIFrameElement.sandbox%%.
 
 Spec:
-http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#domtokenlist
+https://dom.spec.whatwg.org/#domtokenlist
 
 ----
 instance[index : Number] : String

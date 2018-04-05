@@ -1,8 +1,8 @@
-HTMLSelectElement : HTMLElement 
+HTMLSelectElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlselectelement
+https://html.spec.whatwg.org/#htmlselectelement
 
 
 ----

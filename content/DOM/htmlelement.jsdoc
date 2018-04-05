@@ -8,12 +8,12 @@ HTMLElement is the base type for
 and many others.
 
 Spec:
-http://www.w3.org/TR/html5/dom.html#htmlelement
+https://html.spec.whatwg.org/#htmlelement
 
 ----
 instance.innerHTML : String
 
-Gets or sets the html content inside this element. The element itself 
+Gets or sets the html content inside this element. The element itself
 is not modified.  Compare to %%#outerHTML|**outerHTML**%%.
 
 <htmlexample>
@@ -27,7 +27,7 @@ is not modified.  Compare to %%#outerHTML|**outerHTML**%%.
 ----
 instance.outerHTML : String
 
-Gets or sets the html content inside this element. The element itself 
+Gets or sets the html content inside this element. The element itself
 is replaced by the provided HTML.  Compare to %%#innerHTML|**innerHTML**%%.
 
 <htmlexample>
@@ -112,19 +112,19 @@ instance.title : String
 
 
 Spec:
-http://www.w3.org/TR/html5/dom.html#dom-title
+https://html.spec.whatwg.org/#dom-title
 
 ----
 instance.lang : String
 
 Spec:
-http://www.w3.org/TR/html5/dom.html#dom-lang
+https://html.spec.whatwg.org/#dom-lang
 
 ----
 instance.dir : String
 
 Spec:
-http://www.w3.org/TR/html5/dom.html#dom-dir
+https://html.spec.whatwg.org/#dom-dir
 
 ----
 instance.className : String
@@ -250,7 +250,7 @@ true
 
 
 ----
-instance.commandChecked : Boolean 
+instance.commandChecked : Boolean
 
 ReadOnly:
 true
@@ -259,7 +259,7 @@ true
 instance.style : CSSStyleDeclaration
 
 Contains CSS styles directly set on **this**.  Use
-%%/Window#getComputedStyle|**window.getComputedStyle(element)**%% 
+%%/Window#getComputedStyle|**window.getComputedStyle(element)**%%
 to get the effective style including styles from CSS rules.
 
 <htmlexample>
@@ -494,7 +494,7 @@ Bubbles:
 false
 
 Cancelable:
-false 
+false
 
 Spec:
 http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseenter
@@ -508,7 +508,7 @@ Bubbles:
 false
 
 Cancelable:
-false 
+false
 
 Spec:
 http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseleave
@@ -533,7 +533,7 @@ Bubbles:
 true
 
 Cancelable:
-true 
+true
 
 ----
 event.mouseover : listener(event : MouseEvent) : undefined
@@ -544,7 +544,7 @@ Bubbles:
 true
 
 Cancelable:
-true 
+true
 
 ----
 event.mouseup : listener(event : MouseEvent) : undefined
@@ -553,7 +553,7 @@ Bubbles:
 true
 
 Cancelable:
-true 
+true
 
 
 ----
@@ -567,7 +567,7 @@ Bubbles:
 false
 
 Cancelable:
-false 
+false
 
 ----
 event.scroll : listener(event : UIEvent) : undefined
@@ -576,7 +576,7 @@ Async:
 true
 
 Cancelable:
-false 
+false
 
 ----
 event.select : listener(event : Event) : undefined
@@ -585,7 +585,7 @@ Bubbles:
 true
 
 Cancelable:
-false 
+false
 
 ----
 event.unload : listener(event : Event) : undefined

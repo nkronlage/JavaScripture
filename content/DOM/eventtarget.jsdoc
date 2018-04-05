@@ -1,23 +1,26 @@
 EventTarget : Object
 
-EventTargets are Objects that fire events.  EventTargets usually 
+EventTargets are Objects that fire events.  EventTargets usually
 expose an <code>on<em>event</em></code> property for each event where you can
 assign a %%/Function|Function%% to be called when the event fires.
 
 You can also use %%#addEventListener|**addEventListener()**%% to
 hook up multiple listeners to the same event.
 
+Spec:
+https://dom.spec.whatwg.org/#interface-eventtarget
+
 ----
 prototype.addEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
 
 Adds **listener** to the list of callbacks called when the specified
-event is fired. If **useCapture** is true, **listener** will be called 
+event is fired. If **useCapture** is true, **listener** will be called
 in the capture phase of the event routing (ie, during the walk down the tree
-to the target instead of on the way up after firing on the target). 
+to the target instead of on the way up after firing on the target).
 
-Unlike using the <code>on<em>event</em></code> style of listening to 
+Unlike using the <code>on<em>event</em></code> style of listening to
 events, **addEventListener** allows more than one listener
-to be associated with the event. 
+to be associated with the event.
 
 Use %%#removeEventListener|**removeEventListener()**%%
 to stop listening to the event.
@@ -57,32 +60,17 @@ body.addEventListener('click', function(event) {
 </script>
 </htmlexample>
 
-
-Spec:
-http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
-
 ----
 prototype.addEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
 
 
-Spec:
-http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
-
 ----
 prototype.removeEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
 
-Spec:
-http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
 
 ----
 prototype.removeEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
 
-Spec:
-http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
 
 ----
 prototype.dispatchEvent(event : Event) : Boolean
-
-Spec:
-http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
-

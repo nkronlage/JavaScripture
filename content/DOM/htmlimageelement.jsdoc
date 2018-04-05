@@ -4,7 +4,7 @@ HTMLImageElement : HTMLElement
 It corresponds to the **<img>** tag.
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlimageelement
+https://html.spec.whatwg.org/#htmlimageelement
 
 ----
 instance.alt : String
