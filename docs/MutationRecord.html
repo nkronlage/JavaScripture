@@ -7,7 +7,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
   document.body.classList.add('members-collapsed');
-}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>MutationRecord</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#addedNodes">addedNodes</a><a href="#attributeName">attributeName</a><a href="#attributeNamespace" title="attributeNamespace">attributeNamespace</a><a href="#nextSibling">nextSibling</a><a href="#oldValue">oldValue</a><a href="#previousSibling">previousSibling</a><a href="#removedNodes">removedNodes</a><a href="#target">target</a><a href="#type">type</a></div></div></div><h2>DOM API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">MutationRecord</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">MutationRecord contains information about a mutation that was observed by <a href="/MutationObserver">MutationObserver</a>.<div class="membermetadata"><a href="http://www.w3.org/TR/domcore/#mutationrecord" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="addedNodes"></a><div class="declaration"><span class="membername primary">addedNodes</span>&nbsp;:&nbsp;<a class="membertype" href="/NodeList">NodeList</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Contains the nodes added to <a href="#target"><code>target</code></a>. Only applies when <a href="#type"><code>type</code></a> is <code>'childList'</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a><div class="social"><div class="g-plusone" data-size="medium"></div><a href="https://twitter.com/JavaScriptureCM" class="twitter-follow-button" data-show-count="false" data-dnt="true" data-show-screen-name="false">Follow</a></div></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>MutationRecord</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#addedNodes">addedNodes</a><a href="#attributeName">attributeName</a><a href="#attributeNamespace" title="attributeNamespace">attributeNamespace</a><a href="#nextSibling">nextSibling</a><a href="#oldValue">oldValue</a><a href="#previousSibling">previousSibling</a><a href="#removedNodes">removedNodes</a><a href="#target">target</a><a href="#type">type</a></div></div></div><h2>DOM API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">MutationRecord</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">MutationRecord contains information about a mutation that was observed by <a href="/MutationObserver">MutationObserver</a>.<div class="membermetadata"><a href="https://dom.spec.whatwg.org/#mutationrecord" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="addedNodes"></a><div class="declaration"><span class="membername primary">addedNodes</span>&nbsp;:&nbsp;<a class="membertype" href="/NodeList">NodeList</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Contains the nodes added to <a href="#target"><code>target</code></a>. Only applies when <a href="#type"><code>type</code></a> is <code>'childList'</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
 &lt;div id=&#39;foo&#39;&gt;&lt;/div&gt;
 &lt;script&gt;
   var foo = document.getElementById(&#39;foo&#39;);
@@ -81,12 +81,12 @@
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       console.log(mutation.attributeName + &#39; changed from &#39; +
-                  &#39;&#34;&#39; + mutation.oldValue + &#39;&#34; to &#34;&#39; + 
+                  &#39;&#34;&#39; + mutation.oldValue + &#39;&#34; to &#34;&#39; +
                   mutation.target.getAttribute(mutation.attributeName) + &#39;&#34;&#39;);
     });
   });
-  observer.observe(foo, { 
-    attributes: true, 
+  observer.observe(foo, {
+    attributes: true,
     attributeOldValue: true
    });
 
@@ -112,7 +112,7 @@
   foo.removeChild(foo.firstChild);
 &lt;/script&gt;
 </textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "MutationRecord.previousSibling"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="removedNodes"></a><div class="declaration"><span class="membername primary">removedNodes</span>&nbsp;:&nbsp;<a class="membertype" href="/NodeList">NodeList</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Contains the nodes added to <a href="#target"><code>target</code></a>. Only applies when <a href="#type"><code>type</code></a> is <code>'childList'</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
-&lt;div id=&#39;foo&#39;&gt;&lt;span id=&#39;bar&#39;&gt;bar&lt;/span&gt;&lt;span&gt;a span&lt;/span&gt; 
+&lt;div id=&#39;foo&#39;&gt;&lt;span id=&#39;bar&#39;&gt;bar&lt;/span&gt;&lt;span&gt;a span&lt;/span&gt;
 loose text
 &lt;/div&gt;
 &lt;script&gt;
@@ -143,7 +143,7 @@ loose text
       console.log(mutation.target.tagName);
     });
   });
-  observer.observe(foo, { 
+  observer.observe(foo, {
     childList: true,
     subtree: true
   });
@@ -167,8 +167,8 @@ loose text
       console.log(mutation.type);
     });
   });
-  observer.observe(foo, { 
-    childList: true, 
+  observer.observe(foo, {
+    childList: true,
     attributes: true,
     characterData: true,
     subtree: true

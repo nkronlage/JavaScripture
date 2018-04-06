@@ -237,8 +237,8 @@ var mapFunction = function(value) {
 console.log(Array.from(&#39;foo&#39;, mapFunction));
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Array.from"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><span class="ecmascript2015">ECMAScript 2015</span> <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.from" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="from_Iterator_Function_Object"></a><div class="declaration"><span class="membername primary">from</span>(<span class="membername">iterator</span>&nbsp;:&nbsp;<a class="membertype" href="/Iterator">Iterator</a>, <span class="optional">[<span class="membername">mapFunction</span>&nbsp;:&nbsp;<a class="membertype" href="/Function">Function</a>, <span class="optional">[<span class="membername">thisArg</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Array">Array</a><div class="subfunction"><span class="membername">mapFunction</span>(<span class="membername">item</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">index</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a></div></div><div class="member-body"><p class="description">Returns a new <code>Array</code> containing the items returned by <code>iterator</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 var generator = function*() {
-  yield "foo";
-  yield* ["bar", "baz"];
+  yield &#34;foo&#34;;
+  yield* [&#34;bar&#34;, &#34;baz&#34;];
 };
 
 console.log(Array.from(generator()));
