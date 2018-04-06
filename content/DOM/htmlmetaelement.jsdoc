@@ -2,7 +2,7 @@ HTMLMetaElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlmetaelement
+https://html.spec.whatwg.org/#htmlmetaelement
 
 ----
 instance.name : String

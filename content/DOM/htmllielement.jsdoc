@@ -2,7 +2,7 @@ HTMLLIElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmllielement
+https://html.spec.whatwg.org/#htmllielement
 
 ----
 instance.value : Number

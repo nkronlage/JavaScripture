@@ -1,19 +1,19 @@
 HTMLInputElement : HTMLElement
 
-HTMLInputElement allows the web page to recieve many types of input 
+HTMLInputElement allows the web page to recieve many types of input
 from the user.  Use the %%#type|**type**%% property to configure
 what type of input you want to get.
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlinputelement
+https://html.spec.whatwg.org/#htmlinputelement
 
 ----
 instance.accept : String
 
-A comma separated string containing the 
-types of files to accept.  
+A comma separated string containing the
+types of files to accept.
 
-Applies when **%%#type|type%% = 'file'**. 
+Applies when **%%#type|type%% = 'file'**.
 
 Each item in the list must be one of
 **'audio/*'**,
@@ -28,26 +28,26 @@ or a file extension like **'.png'** or **'.txt'**.
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#attr-input-accept
+https://html.spec.whatwg.org/#attr-input-accept
 
 ----
 instance.alt : String
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-input-alt
+https://html.spec.whatwg.org/#dom-input-alt
 
 ----
 instance.autocomplete : String
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-input-autocomplete
+https://html.spec.whatwg.org/#dom-input-autocomplete
 
 ----
 instance.autofocus : Boolean
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-fe-autofocus
+https://html.spec.whatwg.org/#dom-fe-autofocus
 
 ----
 instance.defaultChecked : Boolean
@@ -56,13 +56,13 @@ Applies when **%%#type|type%% = 'checkbox'**.
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-input-defaultchecked
+https://html.spec.whatwg.org/#dom-input-defaultchecked
 
 ----
 instance.checked : Boolean
 
 
-Applies when **%%#type|type%% = 'checkbox'**. 
+Applies when **%%#type|type%% = 'checkbox'**.
 
 ----
 instance.dirName : String
@@ -80,8 +80,8 @@ true
 ----
 instance.files : FileList
 
-The %%/File|Files%% the user selected.  
-Applies when **%%#type|type%% = 'file'**. 
+The %%/File|Files%% the user selected.
+Applies when **%%#type|type%% = 'file'**.
 If %%#multiple|**multiple**%% is
 set to **true**, **files** may contain more than one item.
 
@@ -150,7 +150,7 @@ instance.min : String
 ----
 instance.multiple : Boolean
 
-Set to **true** to allow the user to select multiple files. 
+Set to **true** to allow the user to select multiple files.
 Applies when **%%#type|type%% = 'file'**.
 
 <htmlexample>
@@ -193,19 +193,19 @@ instance.required : Boolean
 instance.selectionDirection : String
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-selectiondirection
+https://html.spec.whatwg.org/#dom-textarea-input-selectiondirection
 
 ----
 instance.selectionEnd : Number
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-selectionend
+https://html.spec.whatwg.org/#dom-textarea-input-selectionend
 
 ----
 instance.selectionStart : Number
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-selectionstart
+https://html.spec.whatwg.org/#dom-textarea-input-selectionstart
 
 ----
 instance.size : Number
@@ -219,7 +219,7 @@ instance.step : String
 ----
 instance.type : String
 
-Determines the type of input to receive. Must be one of 
+Determines the type of input to receive. Must be one of
 **'button'**,
 **'checkbox'**,
 **'color'**,
@@ -326,12 +326,12 @@ prototype.setCustomValidity(error : String) : undefined
 prototype.select() : undefined
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-select
+https://html.spec.whatwg.org/#dom-textarea-input-select
 
 ----
 prototype.setSelectionRange(start : Number, end : Number, [direction : String]) : undefined
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#dom-textarea-input-setselectionrange
+https://html.spec.whatwg.org/#dom-textarea-input-setselectionrange
 

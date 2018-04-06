@@ -2,13 +2,13 @@ Element : Node
 
 Element represents an element in the DOM/document tree.  Element is the base
 type for
-%%/HTMLElement|HTMLElement%% 
-and 
+%%/HTMLElement|HTMLElement%%
+and
 %%/SVGElement|SVGElement%%.
 
 
 Spec:
-http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-745549614
+https://dom.spec.whatwg.org/#interface-element
 
 AlternateSpec:
 http://dev.w3.org/csswg/cssom-view/#extensions-to-the-element-interface
@@ -84,8 +84,8 @@ instance.children : HTMLCollection
 The %%/Element|Element%% children in **this**.
 
 Unlike %%/Node#childNodes|Node.childNodes%%, **children**
-only returns nodes inside **this** that derive from 
-%%/Element|Element%% (ie, other node types like %%/Text|Text%% and 
+only returns nodes inside **this** that derive from
+%%/Element|Element%% (ie, other node types like %%/Text|Text%% and
 %%/Comment|Comment%% will be excluded from **children**
 but present in **childNodes**).
 
@@ -112,7 +112,7 @@ but present in **childNodes**).
 ----
 instance.className : String
 
-Gets or sets the classes of the Element (used for styling via 
+Gets or sets the classes of the Element (used for styling via
 CSS).  **className** should be a space separated list of classes.
 **className** corresponds to the HTML **class** attribute.
 
@@ -169,7 +169,7 @@ instance.firstElementChild : Element
 instance.id : String
 
 A unique name for this element in the document.
-You can retrieve an element by **id** using 
+You can retrieve an element by **id** using
 %%/Document#getElementById|**document.getElementById()**%%.
 
 ----
@@ -260,7 +260,7 @@ prototype.getElementsByTagName(name : String) : NodeList
 Returns a list of descendants of **this** that match the specified
 tag name.
 
-See also 
+See also
 %%#getElementsByTagNameNS|**getElementsByTagNameNS()**%%,
 %%#getElementsByClassName|**getElementsByClassName()**%%,
 %%#querySelector|**querySelector()**%%,
@@ -280,7 +280,7 @@ and
 <script>
   var foo = document.getElementById('foo');
   var anchors = foo.getElementsByTagName('a');
-  
+
   console.log(anchors.length);
   for (var i = 0; i < anchors.length; i++) {
     console.log(anchors[i].innerText);
@@ -297,7 +297,7 @@ prototype.getElementsByClassName(classNames : String) : NodeList
 Returns a list of descendants of **this** that match the specified
 class name.
 
-See also 
+See also
 %%#getElementsByTagName|**getElementsByTagName()**%%,
 %%#querySelector|**querySelector()**%%,
 and
@@ -316,7 +316,7 @@ and
 <script>
   var foo = document.getElementById('foo');
   var bars = foo.getElementsByClassName('bar');
-  
+
   console.log(bars.length);
   for (var i = 0; i < bars.length; i++) {
     console.log(bars[i].tagName);
@@ -350,9 +350,9 @@ prototype.setAttributeNS(namespaceURI : String, qualifiedName : String, value : 
 ----
 prototype.querySelector(selector : String) : Element
 
-Returns the first **Element** that matches the CSS **selector**. 
+Returns the first **Element** that matches the CSS **selector**.
 
-See also 
+See also
 %%#querySelectorAll|**querySelectorAll()**%%,
 %%#getElementsByTagName|**getElementsByTagName()**%%,
 and
@@ -384,9 +384,9 @@ http://www.w3.org/TR/selectors-api/#queryselector
 prototype.querySelectorAll(cssSelector : String) : NodeList
 
 Returns a **NodeList** containing the **Element**s in the document that
-match the CSS selector. 
+match the CSS selector.
 
-See also 
+See also
 %%#querySelector|**querySelector()**%%,
 %%#getElementsByTagName|**getElementsByTagName()**%%,
 and
@@ -416,13 +416,13 @@ http://www.w3.org/TR/selectors-api/#queryselectorall
 ----
 prototype.getClientRects() : ClientRectList
 
-Returns a list of rectangles where **this** is in the document. 
+Returns a list of rectangles where **this** is in the document.
 
-This method is similar to 
+This method is similar to
 %%#getBoundingClientRect|**getBoundingClientRect()**%%
 except it will return a %%/ClientRect|ClientRect%% for each
-part of the element 
-(eg, 
+part of the element
+(eg,
 text elements split on multiple lines will return a list with
 **length** > 1).
 
@@ -451,7 +451,7 @@ http://dev.w3.org/csswg/cssom-view/#dom-element-getclientrects
 ----
 prototype.getBoundingClientRect() : ClientRect
 
-Returns the rectangular bounds of **this** relative to the 
+Returns the rectangular bounds of **this** relative to the
 viewport. If this is a text element that is split on multiple lines,
 the rectangle will be enlarged to contain all portions.
 Use %%#getClientRects|**getClientRects()**%% to get the rectangles
@@ -491,7 +491,7 @@ https://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen
 ----
 prototype.scrollIntoView([top = false : Boolean]) : undefined
 
-Scolls the element into view. 
+Scolls the element into view.
 
 <htmlexample>
 <div style='height: 100px; overflow: scroll'>

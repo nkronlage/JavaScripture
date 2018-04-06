@@ -1,7 +1,7 @@
 TextTrack : EventTarget
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#texttrack
+https://html.spec.whatwg.org/#texttrack
 
 ----
 instance.id : String
@@ -27,11 +27,11 @@ instance.enabled : Boolean
 ----
 instance.kind : String
 
-Returns one of 
+Returns one of
 **'subtitles'**,
 **'captions'**,
 **'descriptions'**,
-**'chapters'**, 
+**'chapters'**,
 or
 **'metadata'**.
 
@@ -41,7 +41,7 @@ true
 ----
 instance.mode : String
 
-Must be set to one of 
+Must be set to one of
 **'disabled'**,
 **'hidden'**,
 or

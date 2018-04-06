@@ -1,11 +1,11 @@
 HTMLMediaElement : HTMLElement
 
-HTMLMediaElement is the base class for the 
+HTMLMediaElement is the base class for the
 %%/HTMLAudioElement|HTMLAudioElement%% and the
 %%/HTMLVideoElement|HTMLVideoElement%%.
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmlmediaelement
+https://html.spec.whatwg.org/#htmlmediaelement
 
 ----
 instance.error : MediaError
@@ -44,18 +44,18 @@ true
 ----
 instance.readyState : Number
 
-Returns one of 
+Returns one of
 %%#HAVE_NOTHING|**HAVE_NOTHING**%%,
 %%#HAVE_METADATA|**HAVE_METADATA**%%,
 %%#HAVE_CURRENT_DATA|**HAVE_CURRENT_DATA**%%,
 %%#HAVE_FUTURE_DATA|**HAVE_FUTURE_DATA**%%,
 or
-%%#HAVE_ENOUGH_DATA|**HAVE_ENOUGH_DATA**%% 
+%%#HAVE_ENOUGH_DATA|**HAVE_ENOUGH_DATA**%%
 based on the amount of data downloaded for the
 media.
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#dom-media-readystate
+https://html.spec.whatwg.org/#dom-media-readystate
 
 ReadOnly:
 true
@@ -98,7 +98,7 @@ prototype.getStartDate() : Date
 ----
 instance.paused : Boolean
 
-Returns **true** if the media is paused. Use %%#pause|**pause()**%% and 
+Returns **true** if the media is paused. Use %%#pause|**pause()**%% and
 %%#play|**play()**%% methods to pause and play the media.
 
 ReadOnly:
@@ -218,11 +218,11 @@ true
 ----
 prototype.addTextTrack(kind : String, [label : String, [language : String]]) : TextTrack
 
-**kind** must be one of 
+**kind** must be one of
 **'subtitles'**,
 **'captions'**,
 **'descriptions'**,
-**'chapters'**, 
+**'chapters'**,
 or
 **'metadata'**.
 
@@ -332,7 +332,7 @@ Value:
 HAVE_NOTHING : Number
 
 Returned by %%#readyState|**readyState**%% when no data
-for the media has loaded yet.  
+for the media has loaded yet.
 
 ReadOnly:
 true
@@ -344,10 +344,10 @@ Value:
 HAVE_METADATA : Number
 
 Returned by %%#readyState|**readyState**%% when the metadata for
-the media has loaded but no data for the media has loaded yet.  
+the media has loaded but no data for the media has loaded yet.
 
-Listen to the 
-%%#loadedmetadata|**loadedmetadata**%% event to know when the 
+Listen to the
+%%#loadedmetadata|**loadedmetadata**%% event to know when the
 metadata has loaded.
 
 ReadOnly:
@@ -359,11 +359,11 @@ Value:
 ----
 HAVE_CURRENT_DATA : Number
 
-Returned by %%#readyState|**readyState**%% when the 
+Returned by %%#readyState|**readyState**%% when the
 the metadatad for the media has loaded and some of the data for the current
-position has loaded.  
+position has loaded.
 
-Listen to the 
+Listen to the
 %%#loadeddata|**loadeddata**%% event to know when the current data
 has loaded.
 
@@ -376,12 +376,12 @@ Value:
 ----
 HAVE_FUTURE_DATA : Number
 
-Returned by %%#readyState|**readyState**%% when the 
-the metadatad for the media has loaded and enough of the 
-data for the current position has loaded to start playing (but not 
-necessarily enough to play to the end).  
+Returned by %%#readyState|**readyState**%% when the
+the metadatad for the media has loaded and enough of the
+data for the current position has loaded to start playing (but not
+necessarily enough to play to the end).
 
-Listen to the 
+Listen to the
 %%#canplay|**canplay**%% event to know when the future data
 has loaded.
 
@@ -394,13 +394,13 @@ Value:
 ----
 HAVE_ENOUGH_DATA : Number
 
-Returned by %%#readyState|**readyState**%% when the 
-the metadatad for the media has loaded and enough of the 
+Returned by %%#readyState|**readyState**%% when the
+the metadatad for the media has loaded and enough of the
 data for the current position has loaded so the media
 will play to the end without needing to pause for buffering.
 
-Listen to the 
-%%#canplaythrough|**canplaythrough**%% event to know when 
+Listen to the
+%%#canplaythrough|**canplaythrough**%% event to know when
 enough data has loaded.
 
 ReadOnly:

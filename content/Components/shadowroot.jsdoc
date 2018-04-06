@@ -1,7 +1,7 @@
 ShadowRoot : DocumentFragment
 
 Spec:
-http://w3c.github.io/webcomponents/spec/shadow/#idl-def-ShadowRoot
+https://dom.spec.whatwg.org/#shadowroot
 
 ----
 instance.activeElement : Element
@@ -31,7 +31,7 @@ ReadOnly:
 true
 
 ----
-prototype.getElementsByClassName(className : String) : NodeList   
+prototype.getElementsByClassName(className : String) : NodeList
 
 ----
 prototype.getElementsByTagName(tagName : String) : NodeList

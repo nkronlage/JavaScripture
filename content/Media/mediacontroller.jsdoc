@@ -1,10 +1,10 @@
 MediaController : Object
 
-The MediaController is used to synchronize multiple 
+The MediaController is used to synchronize multiple
 %%/HTMLMediaElement|HTMLMediaElements%%.
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#mediacontroller
+https://html.spec.whatwg.org/#mediacontroller
 
 ----
 new MediaController() : MediaController

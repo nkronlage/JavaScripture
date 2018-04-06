@@ -2,7 +2,7 @@ HTMLScriptElement : HTMLElement
 
 
 Spec:
-http://dev.w3.org/html5/spec/single-page.html#htmlscriptelement
+https://html.spec.whatwg.org/#htmlscriptelement
 
 ----
 instance.src : String

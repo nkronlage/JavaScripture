@@ -1,18 +1,18 @@
 DocumentFragment : Node
 
 A **DocumentFragment** is a container for %%Node|**Node**%%s.  When adding a **DocumentFragment**
-to a **Node**, all the children of the **DocumentFragment** become direct children 
+to a **Node**, all the children of the **DocumentFragment** become direct children
 of the **Node**. Use %%Document#createDocumentFragment|**document.createDocumentFragment()**%%
 to create a **DocumentFragment**.
 
 
 Spec:
-http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-B63ED1A3
+https://dom.spec.whatwg.org/#interface-documentfragment
 
 ----
 prototype.querySelector(cssSelector : String) : Element
 
-Returns the first %%/Element|**Element**%% that matches the CSS selector. 
+Returns the first %%/Element|**Element**%% that matches the CSS selector.
 
 <htmlexample>
 <span id='foo'>foo1</span>
@@ -45,8 +45,8 @@ http://www.w3.org/TR/selectors-api/#queryselector
 ----
 prototype.querySelectorAll(cssSelector : String) : NodeList
 
-Returns a **NodeList** containing the %%/Element|**Element**%%s in the 
-document that match the CSS selector. 
+Returns a **NodeList** containing the %%/Element|**Element**%%s in the
+document that match the CSS selector.
 
 
 <htmlexample>

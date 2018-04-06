@@ -1,7 +1,7 @@
 VideoTrackList : EventTarget
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#videotracklist
+https://html.spec.whatwg.org/#videotracklist
 
 ----
 instance[index : Number] : VideoTrack

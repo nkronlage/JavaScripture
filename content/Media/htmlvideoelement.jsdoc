@@ -3,16 +3,16 @@ HTMLVideoElement : HTMLMediaElement
 **HTMLVideoElement** is an element that displays a video.
 It corresponds to the **<video>** tag.
 
-See %%/HTMLMediaElement|HTMLMediaElement%% for the properties, methods and 
+See %%/HTMLMediaElement|HTMLMediaElement%% for the properties, methods and
 events available on the video element.
 
 Spec:
-http://www.w3.org/html/wg/drafts/html/master/single-page.html#htmlvideoelement
+https://html.spec.whatwg.org/#htmlvideoelement
 
 ----
 instance.width : Number
 
-The display width of the video. 
+The display width of the video.
 If no display size is specified, the %%#videoWidth|**videoWidth**%% will be used.
 
 <htmlexample>
@@ -27,7 +27,7 @@ If no display size is specified, the %%#videoWidth|**videoWidth**%% will be used
 ----
 instance.height : Number
 
-The display height of the video. 
+The display height of the video.
 If no display size is specified, the %%#videoHeight|**videoHeight**%% will be used.
 
 <htmlexample>

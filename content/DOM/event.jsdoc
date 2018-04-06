@@ -9,7 +9,7 @@ and
 %%/ProgressEvent|ProgressEvent%% for some derivations of Event.
 
 Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#events-Event
+https://dom.spec.whatwg.org/#interface-event
 
 ----
 new Event( \
@@ -19,7 +19,7 @@ new Event( \
      cancelable: Boolean \
   }]) : Event
 
-Creates a new Event. Use %%/EventTarget#dispatchEvent|**dispatchEvent()**%% to 
+Creates a new Event. Use %%/EventTarget#dispatchEvent|**dispatchEvent()**%% to
 fire the event.
 
 <htmlexample>
@@ -36,7 +36,7 @@ fire the event.
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var listener = function(event) {
-    console.log(' phase=' + phaseNames[event.eventPhase] + 
+    console.log(' phase=' + phaseNames[event.eventPhase] +
                 ' type=' + event.type);
   };
   var parent = document.getElementById('parent');
@@ -100,7 +100,7 @@ The **Object** that originated this event. See also %%#currentTarget|**currentTa
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var clickListener = function(event) {
-    console.log('phase=' + phaseNames[event.eventPhase] + 
+    console.log('phase=' + phaseNames[event.eventPhase] +
                 ' target=' + event.target.id +
                 ' currentTarget=' + event.currentTarget.id);
   };
@@ -119,8 +119,8 @@ true
 ----
 instance.currentTarget : Object
 
-The **Object** that the current callback is running for.  
-This will be the element that registered the listener and 
+The **Object** that the current callback is running for.
+This will be the element that registered the listener and
 will different than %%#target|**target**%% if this
 event is in the bubble or capture phase.
 
@@ -138,7 +138,7 @@ event is in the bubble or capture phase.
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var clickListener = function(event) {
-    console.log('phase=' + phaseNames[event.eventPhase] + 
+    console.log('phase=' + phaseNames[event.eventPhase] +
                 ' target=' + event.target.id +
                 ' currentTarget=' + event.currentTarget.id);
   };
@@ -157,7 +157,7 @@ true
 ----
 instance.eventPhase : Number
 
-The current phase of the event.  Will be one of 
+The current phase of the event.  Will be one of
 %%#NONE|**NONE**%%,
 %%#CAPTURING_PHASE|**CAPTURING_PHASE**%%,
 %%#AT_TARGET|**AT_TARGET**%%, or
@@ -177,7 +177,7 @@ The current phase of the event.  Will be one of
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var clickListener = function(event) {
-    console.log('phase=' + phaseNames[event.eventPhase] + 
+    console.log('phase=' + phaseNames[event.eventPhase] +
                 ' target=' + event.target.id +
                 ' currentTarget=' + event.currentTarget.id);
   };
@@ -196,7 +196,7 @@ true
 ----
 instance.bubbles : Boolean
 
-Returns **true** if the event will bubble up through the ancestor 
+Returns **true** if the event will bubble up through the ancestor
 hierarchy.
 
 ReadOnly:
@@ -252,7 +252,7 @@ Returns **true** if %%#preventDefault|**preventDefault()**%% has been called on
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var clickListener = function(event) {
-    console.log('phase=' + phaseNames[event.eventPhase] + 
+    console.log('phase=' + phaseNames[event.eventPhase] +
                 ' defaultPrevented=' + event.defaultPrevented);
 
     event.preventDefault();
@@ -278,7 +278,7 @@ true
 ----
 prototype.stopPropagation() : undefined
 
-Stops event listeners on other nodes in the event route from running. Other 
+Stops event listeners on other nodes in the event route from running. Other
 listeners attached to %%#currentTarget|**currentTarget**%% will still run.
 See also
 %%#stopImmediatePropagation|**stopImmediatePropagation()**%%
@@ -298,7 +298,7 @@ and %%#preventDefault|**preventDefault()**%%.
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var clickListener = function(event) {
-    console.log('phase=' + phaseNames[event.eventPhase] + 
+    console.log('phase=' + phaseNames[event.eventPhase] +
                 ' target=' + event.target.id +
                 ' currentTarget=' + event.currentTarget.id);
 
@@ -318,7 +318,7 @@ and %%#preventDefault|**preventDefault()**%%.
 ----
 prototype.stopImmediatePropagation() : undefined
 
-Stops other event listeners on this node and on other nodes in the event route 
+Stops other event listeners on this node and on other nodes in the event route
 from running. See also
 %%#stopPropagation|**stopPropagation()**%% and
 and %%#preventDefault|**preventDefault()**%%.
@@ -337,7 +337,7 @@ and %%#preventDefault|**preventDefault()**%%.
   phaseNames[Event.BUBBLING_PHASE] = 'bubble';
 
   var clickListener = function(event) {
-    console.log('phase=' + phaseNames[event.eventPhase] + 
+    console.log('phase=' + phaseNames[event.eventPhase] +
                 ' target=' + event.target.id +
                 ' currentTarget=' + event.currentTarget.id);
 
@@ -356,7 +356,7 @@ and %%#preventDefault|**preventDefault()**%%.
 
 
 Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#events-event-type-stopImmediatePropagation
+https://dom.spec.whatwg.org/#dom-event-stopimmediatepropagation
 
 ----
 prototype.preventDefault() : undefined
@@ -380,7 +380,7 @@ and %%#stopImmediatePropagation|**stopImmediatePropagation()**%%.
 </htmlexample>
 
 ----
-NONE : Number 
+NONE : Number
 
 Returned by %%#eventPhase|**eventPhase**%% before the event is routed.
 
@@ -388,9 +388,9 @@ ReadOnly:
 true
 
 ----
-CAPTURING_PHASE : Number 
+CAPTURING_PHASE : Number
 
-Returned by %%#eventPhase|**eventPhase**%% during the capture phase of the 
+Returned by %%#eventPhase|**eventPhase**%% during the capture phase of the
 event route.
 
 ReadOnly:
@@ -407,7 +407,7 @@ true
 ----
 BUBBLING_PHASE : Number
 
-Returned by %%#eventPhase|**eventPhase**%% during the bubbling phase of the 
+Returned by %%#eventPhase|**eventPhase**%% during the bubbling phase of the
 event route.
 
 ReadOnly:

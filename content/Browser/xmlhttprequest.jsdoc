@@ -6,26 +6,26 @@ to download data by making a GET request (pass **'GET'** as the method when call
 request (send **'POST'** as the method when calling %%#open|**open()**%%).
 
 Spec:
-http://www.w3.org/TR/XMLHttpRequest/#interface-xmlhttprequest
+https://xhr.spec.whatwg.org/#interface-xmlhttprequest
 
 ----
 new XMLHttpRequest() : XMLHttpRequest
 
-Creates a new **XMLHttpRequest** object.  Use %%#open|**open()**%% to 
+Creates a new **XMLHttpRequest** object.  Use %%#open|**open()**%% to
 specify the url of the resource to request and %%#send|**send()**%%
 to begin the request.
 
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
-request.send(); 
+request.send();
 console.log('response head: ' + request.responseText.substring(0, 15) + '...');
 </example>
 
 ----
 instance.readyState : Number
 
-The current state of **this**.  Will be one of 
+The current state of **this**.  Will be one of
 %%#UNSENT|**UNSENT**%%,
 %%#OPENED|**OPENED**%%,
 %%#HEADERS_RECEIVED|**HEADERS_RECEIVED**%%,
@@ -39,7 +39,7 @@ request.onreadystatechange = function() {
 };
 console.log('Before open: ' + request.readyState);
 request.open('GET', '/');
-request.send(); 
+request.send();
 console.log('After send: ' + request.readyState);
 </example>
 
@@ -51,7 +51,7 @@ instance.responseType : String
 
 Determines the type returned by %%#response|**response**%%.
 
-Must be set to one of the following: 
+Must be set to one of the following:
 <html>
 <table>
 <tr>
@@ -102,7 +102,7 @@ request.onload = function() {
   console.log(request.response);
   console.log(request.response.byteLength);
 };
-request.send(); 
+request.send();
 </example>
 
 ----
@@ -119,7 +119,7 @@ request.onload = function() {
   console.log(request.response);
   console.log(request.response.byteLength);
 };
-request.send(); 
+request.send();
 </example>
 
 ReadOnly:
@@ -128,14 +128,14 @@ true
 ----
 instance.responseText : String
 
-Returns the response from the server as a string. 
+Returns the response from the server as a string.
 Only valid after the %%#onload|**load**%% event fires and if %%#responseType|**responseType**%% is
 set to **''** (the default) or **'text'**.
 
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
-request.send(); 
+request.send();
 console.log(request.responseText.substring(0, 150));
 console.log('...');
 </example>
@@ -153,19 +153,19 @@ true
 ----
 prototype.open(method : String, url : String, [async = true : Boolean, [user : String, [password : String]]]) : undefined
 
-Specifies the **url** to read from and the http method 
+Specifies the **url** to read from and the http method
 (**'GET'**, **'POST'**, **'PUT'**, **'DELETE'**, etc)
-to use when reading the url.  If **async** is **true**, the request will 
+to use when reading the url.  If **async** is **true**, the request will
 be asynchronous and you should provide an
-%%#onload|**onload**%% callback to be called when the read completes.  
-In general, it is best to use the asynchronous request so the browser 
+%%#onload|**onload**%% callback to be called when the read completes.
+In general, it is best to use the asynchronous request so the browser
 remains responsive while the request is in progress.
 Call %%#send|**send()**%% to begin the request.
 
 <example>
 var syncRequest = new XMLHttpRequest();
 syncRequest.open('GET', '/', /* async = */ false);
-syncRequest.send(); 
+syncRequest.send();
 
 console.log('sync status code: ' + syncRequest.status);
 console.log('sync response length: ' + syncRequest.responseText.length);
@@ -196,7 +196,7 @@ instance.withCredentials : Boolean
 ----
 instance.upload : XMLHttpRequestUpload
 
-Returns an %%/XMLHttpRequestUpload|**XMLHttpRequestUpload**%% object 
+Returns an %%/XMLHttpRequestUpload|**XMLHttpRequestUpload**%% object
 associated with this XMLHttpRequest that can be used
 to track the upload status of the %%#send|**send()**%% call.
 
@@ -210,27 +210,27 @@ prototype.send() : undefined
 ----
 prototype.send(data : ArrayBuffer) : undefined
 
-Sends the specified data to the server.   
+Sends the specified data to the server.
 
 ----
 prototype.send(data : Blob) : undefined
 
-Sends the specified Blob to the server.   
+Sends the specified Blob to the server.
 
 ----
 prototype.send(data : Document) : undefined
 
-Sends the specified document to the server.   
+Sends the specified document to the server.
 
 ----
 prototype.send(data : String) : undefined
 
-Sends the specified string to the server.   
+Sends the specified string to the server.
 
 ----
 prototype.send(data : FormData) : undefined
 
-Sends the specified FormData to the server.   
+Sends the specified FormData to the server.
 
 <htmlexample>
 <form id='test-form'>
@@ -263,18 +263,18 @@ prototype.abort() : undefined
 ----
 instance.status : Number
 
-The http status code for the request. See %%#statusText|**statusText**%% for 
+The http status code for the request. See %%#statusText|**statusText**%% for
 a description of the code.
 
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
-request.send(); 
+request.send();
 console.log('status code: ' + request.status);
 
 request = new XMLHttpRequest();
 request.open('GET', 'www.example.com/', /* async = */ false);
-request.send(); 
+request.send();
 console.log('status code: ' + request.status);
 </example>
 
@@ -290,12 +290,12 @@ A description of the %%#status|status return code%%.
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
-request.send(); 
+request.send();
 console.log('status: ' + request.statusText);
 
 request = new XMLHttpRequest();
 request.open('GET', 'www.example.com/', /* async = */ false);
-request.send(); 
+request.send();
 console.log('status: ' + request.statusText);
 </example>
 
@@ -311,7 +311,7 @@ Returns the value for the specified **header**.  Returns
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
-request.send(); 
+request.send();
 console.log(request.getResponseHeader('content-type'));
 </example>
 
@@ -324,7 +324,7 @@ the response.
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
-request.send(); 
+request.send();
 console.log(request.getAllResponseHeaders());
 </example>
 

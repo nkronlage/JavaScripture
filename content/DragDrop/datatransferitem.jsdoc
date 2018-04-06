@@ -2,12 +2,12 @@ DataTransferItem : Object
 
 DataTransferItem represents an item that can is being dragged.
 There can be more than one DataTransferItem for a drag and drop operation.
-For example, dragging a document may have a 
+For example, dragging a document may have a
 DataTransferItem containing the rich text and a DataTransferItem containing
 the plain text.
 
 Spec:
-http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#datatransferitem
+https://html.spec.whatwg.org/multipage/dnd.html#datatransferitem
 
 ----
 instance.kind : String
@@ -64,13 +64,13 @@ The kind of the item.  Will be one of **'string'** or **'file'**.
             textOutput.textContent = event.target.result;
           };
           reader.readAsText(item.getAsFile());
-        } 
+        }
         else if (item.type.indexOf('image/') === 0) {
           imgOutput.src = URL.createObjectURL(item.getAsFile());
         }
       }
     }
-    
+
     event.preventDefault();
   };
 </script>

@@ -1,11 +1,11 @@
 Text : CharacterData
 
-Text is a %%/Node|Node%% that represents the text content of the document. 
-The text content of elements like %%/HTMLSpanElement|Spans%% is stored 
-in Text nodes. 
+Text is a %%/Node|Node%% that represents the text content of the document.
+The text content of elements like %%/HTMLSpanElement|Spans%% is stored
+in Text nodes.
 
 Spec:
-http://www.w3.org/TR/dom/#interface-text
+https://dom.spec.whatwg.org/#interface-text
 
 ----
 new Text([data = '' : String]) : Text
@@ -24,7 +24,7 @@ Can also be created with %%/Document#createTextNode|**document.createTextNode()*
 </htmlexample>
 
 Spec:
-http://www.w3.org/TR/dom/#dom-text
+https://dom.spec.whatwg.org/#dom-text
 
 ----
 instance.wholeText : String
@@ -53,15 +53,15 @@ ReadOnly:
 true
 
 Spec:
-http://www.w3.org/TR/dom/#dom-text-wholetext
+https://dom.spec.whatwg.org/#dom-text-wholetext
 
 ----
 prototype.splitText(offset : Number) : Text
 
 Splits **this** into 2 %%/Text|**Text**%% nodes at the specified **offset** into
 %%/CharacterData#data|**data**%%. The first portion of **data** stays in **this**
-and the remainder is placed in a new **Text** that is returned by the call to 
-**splitText()**. The remainder **Text** is inserted after **this** in 
+and the remainder is placed in a new **Text** that is returned by the call to
+**splitText()**. The remainder **Text** is inserted after **this** in
 %%/Node#parentNode|**this.parentNode**%%.
 
 <htmlexample>
@@ -76,7 +76,7 @@ and the remainder is placed in a new **Text** that is returned by the call to
     console.log('  ' + i +': "' + foo.childNodes[i].data + '"');
   }
   console.log();
-  
+
   var remainder = initialText.splitText(3);
   console.log('initialText after split: "' + initialText.data + '"');
   console.log('remainder after split: "' + remainder.data + '"');
@@ -91,4 +91,4 @@ and the remainder is placed in a new **Text** that is returned by the call to
 </htmlexample>
 
 Spec:
-http://www.w3.org/TR/dom/#dom-text-splittext
+https://dom.spec.whatwg.org/#dom-text-splittext

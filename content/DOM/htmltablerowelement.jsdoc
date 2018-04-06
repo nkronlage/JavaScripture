@@ -1,7 +1,7 @@
 HTMLTableRowElement : HTMLElement
 
 Spec:
-http://w3c.github.io/html/single-page.html#htmltablerowelement-htmltablerowelement
+https://html.spec.whatwg.org/#htmltablerowelement
 
 ----
 instance.rowIndex : Number

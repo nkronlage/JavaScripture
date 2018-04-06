@@ -1,7 +1,7 @@
 NodeFilter : Object
 
 Spec:
-http://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#Traversal-NodeFilter
+https://dom.spec.whatwg.org/#callbackdef-nodefilter
 
 ----
 prototype.acceptNode(n : Node) : Number

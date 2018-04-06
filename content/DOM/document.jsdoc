@@ -1,10 +1,10 @@
 Document : Node
 
 Spec:
-http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-document
+https://dom.spec.whatwg.org/#interface-document
 
 AlternateSpec:
-http://dev.w3.org/html5/spec/single-page.html#document
+https://html.spec.whatwg.org/#document
 
 ----
 instance.activeElement : Element
@@ -12,9 +12,9 @@ instance.activeElement : Element
 Returns the currently focused element. If there is no focused element,
 returns %%#body|**this.body**%%.
 
-See also 
+See also
 %%/hasFocus|**hasFocus()**%%,
-%%/Window#onblur|**window.onblur**%%, and 
+%%/Window#onblur|**window.onblur**%%, and
 %%/Window#onfocus|**window.onfocus**%%.
 
 <htmlexample>
@@ -58,11 +58,11 @@ instance.cookie : String
 
 Returns the cookies sent to the server when requesting resources.
 You can add additional cookies by setting **'key=value'** strings
-to **cookie**.  This will replace any existing value for the specified 
+to **cookie**.  This will replace any existing value for the specified
 cookie but will not affect other cookies. You may append additional metadata
 for the cookie by adding **';metadata-key1=metadata-value1;metadata-key2=metadata-value2;...'**
 to the end of the string when setting the cookie.  See
-%%http://www.ietf.org/rfc/rfc2965.txt|Set Cookie Syntax (on page 5)%% for more 
+%%http://www.ietf.org/rfc/rfc2965.txt|Set Cookie Syntax (on page 5)%% for more
 details on the supported metadata keys and values.
 
 <htmlexample>
@@ -165,7 +165,7 @@ https://fullscreen.spec.whatwg.org/#dom-document-fullscreenelement
 instance.implementation : DOMImplementation
 
 Spec:
-http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#dom-document-implementation
+https://dom.spec.whatwg.org/#dom-document-implementation
 
 ReadOnly:
 true
@@ -179,7 +179,7 @@ Sets the title of the window.
 <button onclick="setTitle()">Set Title</button>
 <script>
   var setTitle = function() {
-    // Grab the parent of the example (ie, the 
+    // Grab the parent of the example (ie, the
     // www.javascripture.com window) and set its title.
     var javascriptureWindow = window.parent;
     javascriptureWindow.document.title = 'foo';
@@ -191,10 +191,10 @@ Sets the title of the window.
 ----
 instance.readyState : String
 
-Returns 
-**'loading'** while **this** is loading, 
-**'interactive'** when **this** has loaded but not all subresources are loaded, 
-and 
+Returns
+**'loading'** while **this** is loading,
+**'interactive'** when **this** has loaded but not all subresources are loaded,
+and
 **'complete'** once **this** and all subresources are loaded.
 
 <htmlexample>
@@ -294,7 +294,7 @@ https://fullscreen.spec.whatwg.org/#dom-document-exitfullscreen
 ----
 prototype.getElementsByTagName(tagName : String) : NodeList
 
-Returns a NodeList containing the %%/Element|Elements%% in the document 
+Returns a NodeList containing the %%/Element|Elements%% in the document
 that have the %%/Element#tagName|**Element.tagName**%% equal to **tagName**
 (case insensitive).
 
@@ -312,7 +312,7 @@ The returned NodeList will update as the document changes.
   }
   console.log();
 
-  // The divs NodeList will update automatically when you add 
+  // The divs NodeList will update automatically when you add
   // another div
   var baz = document.createElement('div');
   baz.textContent = 'baz';
@@ -334,11 +334,11 @@ http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBTNNS
 ----
 prototype.getElementsByClassName(classNames : String) : NodeList
 
-Returns a NodeList containing the %%/Element|Elements%% in the document 
+Returns a NodeList containing the %%/Element|Elements%% in the document
 where the %%/Element#className|**Element.className**%%
 matches the specified **classNames**.
 
-**classNames** can contain multiple classes, separated by spaces, 
+**classNames** can contain multiple classes, separated by spaces,
 and the returned Elements must contain all the classes.
 
 The returned NodeList will update as the document changes.
@@ -363,7 +363,7 @@ The returned NodeList will update as the document changes.
 ----
 prototype.getElementById(elementId : String) : Element
 
-Returns the Element in the document that has %%/Element#id|Element.id%% 
+Returns the Element in the document that has %%/Element#id|Element.id%%
 equal to **elementId**.
 
 <htmlexample>
@@ -383,9 +383,9 @@ http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-getElBId
 prototype.hasFocus() : Boolean
 
 Returns **true** if the document has keyboard focus.
-See also 
+See also
 %%/activeElement|**activeElement**%%,
-%%/Window#onblur|**window.onblur**%%, and 
+%%/Window#onblur|**window.onblur**%%, and
 %%/Window#onfocus|**window.onfocus**%%.
 
 <htmlexample>
@@ -419,7 +419,7 @@ prototype.prepend(node0 : Node, [node1 : Node, [...]]) : undefined
 ----
 prototype.querySelector(selectors : String) : Element
 
-Returns the first **Element** that matches the CSS selector. 
+Returns the first **Element** that matches the CSS selector.
 
 <htmlexample>
 <span id='foo'>foo1</span>
@@ -446,9 +446,9 @@ http://www.w3.org/TR/selectors-api/#queryselector
 prototype.querySelectorAll(cssSelector : String) : NodeList
 
 Returns a **NodeList** containing the **Element**s in the document that
-match the CSS selector. 
+match the CSS selector.
 
-Note that unlike %%#getElementsByClassName|**getElementsByClassName()**%% 
+Note that unlike %%#getElementsByClassName|**getElementsByClassName()**%%
 or %%#getElementsByTagName|**getElementsByTagName()**%%,
 the returned NodeList does not update as the document changes.
 
@@ -478,7 +478,7 @@ prototype.registerElement(tagName : String, [ options : {\
 
 Registers a new custom element type for the specified **tagName**.
 **tagName** must have a **'-'** in it.
-**options.prototype** allows you to provide a 
+**options.prototype** allows you to provide a
 %%/Function#prototype|**prototype**%% for the custom elements.
 
 <htmlexample>
@@ -490,7 +490,7 @@ Registers a new custom element type for the specified **tagName**.
 
 <style>
   /* style HTMLElement derived elements by tag name */
-  x-my-element { 
+  x-my-element {
     border: 1px solid green;
   }
 
@@ -514,7 +514,7 @@ Registers a new custom element type for the specified **tagName**.
   var MyElement = document.registerElement('x-my-element', {
     prototype: myElementPrototype
   });
-  
+
   // Create an instance via JavaScript
   var myElement = document.createElement('x-my-element');
   myElement.textContent = "MyElement from Code"

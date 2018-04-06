@@ -5,7 +5,7 @@ a %%/Worker|Worker%% background process.  They can be accessed from
 anywhere without additional qualifiers.
 
 Spec:
-http://dev.w3.org/html5/workers/#the-workerglobalscope-common-interface
+https://html.spec.whatwg.org/#the-workerglobalscope-common-interface
 
 ----
 instance.self : WorkerGlobalScope
@@ -31,7 +31,7 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/workers/#dom-workerglobalscope-self
+https://html.spec.whatwg.org/#dom-workerglobalscope-self
 
 ----
 instance.location : Location
@@ -57,7 +57,7 @@ ReadOnly:
 true
 
 Spec:
-http://dev.w3.org/html5/workers/#dom-workerglobalscope-location
+https://html.spec.whatwg.org/#dom-workerglobalscope-location
 
 ----
 prototype.close() : undefined
@@ -89,7 +89,7 @@ Stops the worker.
 </htmlexample>
 
 Spec:
-http://dev.w3.org/html5/workers/#dom-workerglobalscope-close
+https://html.spec.whatwg.org/#dom-workerglobalscope-close
 
 ----
 prototype.addEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
@@ -126,8 +126,8 @@ http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget
 prototype.postMessage(message : Object, [transfer : Array]) : undefined
 
 
-Sends a message to the main thread.  The main thread receives the 
-message through the %%/Worker#onmessage|**onmessage**%% event. 
+Sends a message to the main thread.  The main thread receives the
+message through the %%/Worker#onmessage|**onmessage**%% event.
 **message** will be in the **event.data** property.
 
 <htmlexample>
@@ -149,7 +149,7 @@ message through the %%/Worker#onmessage|**onmessage**%% event.
 event.message : listener(event : Event) : undefined
 
 Called when %%/Worker#postMessage|**Worker.postMessage()**%% is called.
-**event.data** contains the message passed to **postMessage()**. 
+**event.data** contains the message passed to **postMessage()**.
 
 <htmlexample>
 <!-- In this example, the background thread squares
@@ -183,7 +183,7 @@ Fired when there is an error in the worker.
   onerror = function(e) {
     postMessage(e);
   };
-  
+
   setTimeout(function() {
     throw 'foo';
   }, 10);
@@ -200,7 +200,7 @@ Fired when there is an error in the worker.
 </htmlexample>
 
 Spec:
-http://dev.w3.org/html5/workers/#handler-workerglobalscope-onerror
+https://html.spec.whatwg.org/#handler-workerglobalscope-onerror
 
 ----
 event.offline : listener(event : Event) : undefined
@@ -208,7 +208,7 @@ event.offline : listener(event : Event) : undefined
 Fired when the browser loses network connection.
 
 Spec:
-http://dev.w3.org/html5/workers/#handler-workerglobalscope-onoffline
+https://html.spec.whatwg.org/#handler-workerglobalscope-onoffline
 
 ----
 event.online : listener(event : Event) : undefined
@@ -216,5 +216,5 @@ event.online : listener(event : Event) : undefined
 Fired when the browser gains network connection.
 
 Spec:
-http://dev.w3.org/html5/workers/#handler-workerglobalscope-ononline
+https://html.spec.whatwg.org/#handler-workerglobalscope-ononline
 

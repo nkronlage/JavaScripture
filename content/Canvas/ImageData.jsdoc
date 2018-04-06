@@ -2,14 +2,14 @@ ImageData : Object
 
 Contains the pixel data of for a %%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
 
-Created through 
+Created through
 %%/CanvasRenderingContext2D#createImageData|**CanvasRenderingContext2D.createImageData()**%%
 or
 %%/CanvasRenderingContext2D#createImageData|**CanvasRenderingContext2D.getImageData()**%%.
 
 
 Spec:
-http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#imagedata
+https://html.spec.whatwg.org/#imagedata
 
 ----
 instance.width : Number
