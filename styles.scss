@@ -98,31 +98,13 @@ a:hover {
 .bookmarks {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 1em;
   .bookmark {
     position: relative;
     background: $red;
     padding: 0.8em;
     margin-left: 0.3em;
     box-shadow: 2px 2px 5px -1px  rgba($darkestblue,0.6);
-  }
-  .social {
-    display: inline-block;
-    margin-top: 0.2em;
-    margin-left: 1em;
-    width: 170px;
-    height: 20px;
-
-    a { 
-      font-size: 0;
-      color: black !important;
-    }
-
-    .g-plusone {
-      display: inline-block;
-      width: 90px;
-      height:20px;
-    }
   }
 }
 
