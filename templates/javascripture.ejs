@@ -2,7 +2,9 @@
 locals.extension = '.js';
 locals.wrapInPageTemplate = false;
 
+var noDescriptions;
 var getAPI = function(sets) {
+  noDescriptions = [];
   var res = '[';
 
   var index = 0;
@@ -15,6 +17,10 @@ var getAPI = function(sets) {
     var types = apiSets[setName];
 
     res += types.map(function(type) {
+      if (!type.hasDescriptions) {
+        noDescriptions.push(type.name);
+      }
+
       var r = ["'" + type.name + "'"];
 
       var addMember = function(m) {
@@ -40,6 +46,11 @@ var getAPI = function(sets) {
 
   return res;
 };
+
+var getNoDescriptions = function() {
+  if (!noDescriptions) throw Error('getAPI must be called first');
+  return '{' + noDescriptions.join(':true,') + ':true}';
+};
 %>
 "use strict";
 
@@ -52,6 +63,7 @@ catch(e) {
 }
 
 var apiSets = <%- getAPI(apiSets) %>;
+var noDescriptions = <%- getNoDescriptions() %>;
 
 var apichooserList = document.querySelector('#apisets > ul');
 var related = document.getElementById('related-apis'); 
@@ -78,8 +90,12 @@ for (var i = 0; i < apiSets.length; i++) {
   if (related && inSet) {
     for (var j = 1; j < set.length; j++) {
       var typeName = set[j][0];
+      var className = setName;
+      if (noDescriptions[typeName]) {
+        className += ' noDescription';
+      }
       related.insertAdjacentHTML('beforeend',
-        "<a href='/" + typeName + "' class='" + setName + "'" + (typeName.length > 15 ? ' title="' + typeName + '"' : '') + ">" + typeName + "</a>");
+        "<a href='/" + typeName + "' class='" + className + "'" + (typeName.length > 15 ? ' title="' + typeName + '"' : '') + ">" + typeName + "</a>");
     }
   }
 }
@@ -89,8 +105,13 @@ rootObjs.sort(function(a, b) {
 
 var allList = document.getElementById('rootObjs');
 rootObjs.forEach(function(type) {
+  var className = type.set;
+  if (noDescriptions[type.name]) {
+    className += ' noDescription';
+  }
+
   allList.insertAdjacentHTML('beforeend',
-    "<a href='/" + type.name + "' class='" + type.set + "'" + (type.name.length > 15 ? ' title="' + type.name + '"' : '') + ">" + type.name + "</a>");
+    "<a href='/" + type.name + "' class='" + className + "'" + (type.name.length > 15 ? ' title="' + type.name + '"' : '') + ">" + type.name + "</a>");
 });
 
 var possibilities;

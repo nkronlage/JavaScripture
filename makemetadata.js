@@ -24,9 +24,22 @@ MakeMetadata.prototype._transform = function(file, encoding, callback) {
 
   var setName = path.basename(path.dirname(filename));
 
+  var hasDescriptions = !!obj.description;
+
+  obj.constructors.map(function(constructor) {
+    hasDescriptions = hasDescriptions || !!constructor.description;
+  });
+  obj.instanceMembers.map(function(member) {
+    hasDescriptions = hasDescriptions || !!member.description;
+  });
+  obj.prototypeMembers.map(function(member) {
+    hasDescriptions = hasDescriptions || !!member.description;
+  });
+
   var metadata = {
     name: obj.name,
-    setName: setName
+    setName: setName,
+    hasDescriptions: hasDescriptions
   };
 
   var addMembers = function(name) {
