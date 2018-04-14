@@ -1,0 +1,58 @@
+DOMRectReadOnly : Object
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#domrectreadonly
+
+----
+new DOMRectReadOnly([x = 0 : Number, [y = 0 : Number, [width = 0 : Number, [height = 0 : Number]]]]) : DOMRectReadOnly
+
+----
+instance.x : Number
+
+ReadOnly:
+true
+
+----
+instance.y : Number
+
+ReadOnly:
+true
+
+----
+instance.width : Number
+
+ReadOnly:
+true
+
+----
+instance.height : Number
+
+ReadOnly:
+true
+
+----
+instance.top : Number
+
+ReadOnly:
+true
+
+----
+instance.right : Number
+
+ReadOnly:
+true
+
+----
+instance.bottom : Number
+
+ReadOnly:
+true
+
+----
+instance.left : Number
+
+ReadOnly:
+true
+
+----
+fromRect(rect : { x = 0 : Number, y = 0: Number, width = 0 : Number, height = 0 : Number }) : DOMRectReadOnly

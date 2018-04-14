@@ -1,0 +1,121 @@
+ResizeObserver : Object
+
+ReszieObserver allows you to provide a function that is called
+asynchronously when the size of observed elements change.
+
+Spec:
+https://wicg.github.io/ResizeObserver/
+
+----
+new ResizeObserver(callback(entries : Array<ResizeObserverEntry>, observer : ResizeObserver) : undefined) : ResizeObserver
+
+Creates a new ResizeObserver that will call **callback** when the size
+of elements passed to %%#observe|**observe()**%% change.
+
+Note that **callback** will be called at some time
+after the current script that causes the resize completes.
+
+The **observer** passed to **callback**
+is the newly created ResizeObserver.
+
+<htmlexample>
+<div id='foo' style='background: red;'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      console.log(entry.target.id + ': ' + JSON.stringify(entry.contentRect));
+    });
+  });
+  observer.observe(foo);
+
+  console.log('before style change');
+  foo.style.height = '10px';
+  console.log('after style change');
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/ResizeObserver/#dom-resizeobserver-resizeobserver
+
+----
+prototype.observe(target : Element) : undefined
+
+Registers the observer to be called any time the specified **element**'s 
+size changes. If **observe()** is called more than once, it will
+listen to changes on each **target**.
+
+<htmlexample>
+<div id='foo' style='background: red;'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      console.log(entry.target.id + ': ' + JSON.stringify(entry.contentRect));
+    });
+  });
+  observer.observe(foo);
+
+  foo.style.height = '10px';
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/ResizeObserver/#dom-resizeobserver-observe
+
+----
+prototype.unobserve(target : Element) : undefined
+
+Removes **target** from the list of observer elements.
+
+<htmlexample>
+<div id='foo' style='background: red;'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      console.log(entry.target.id + ' changed');
+    });
+
+    // Unhook and change size again. Notice no log is traced.
+    observer.unobserve(foo);
+    foo.style.height = '20px';
+  });
+  observer.observe(foo);
+  foo.style.height = '10px';
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/ResizeObserver/#dom-resizeobserver-unobserve
+
+----
+prototype.disconnect() : undefined
+
+Unhooks this observer from all targets specified in previous
+%%#observe|**observe()**%% calls.
+
+<htmlexample>
+<div id='foo' style='background: red;'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      console.log(entry.target.id + ' changed');
+    });
+
+    // Unhook all targets and change size again. Notice no log is traced.
+    observer.disconnect();
+    foo.style.height = '20px';
+  });
+  observer.observe(foo);
+  foo.style.height = '10px';
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/ResizeObserver/#dom-resizeobserver-disconnect

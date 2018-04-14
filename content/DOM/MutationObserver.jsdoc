@@ -15,7 +15,7 @@ https://dom.spec.whatwg.org/#interface-mutationobserver
 new MutationObserver(callback(mutations : Array<MutationRecord>, observer : MutationObserver) : undefined) : MutationObserver
 
 Creates a new MutationObserver that will call **callback** when the behaviors
-configured by %%#observer|**observe()**%% change.
+configured by %%#observe|**observe()**%% change.
 
 Note that **callback** will be called at some time
 after the current script that is doing the mutation completes.

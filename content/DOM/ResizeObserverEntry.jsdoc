@@ -1,0 +1,62 @@
+ResizeObserverEntry : Object
+
+ResizeObserverEntry contains information about an element resize event that 
+was observed by %%/ResizeObserver|ResizeObserver%%.
+
+Spec:
+https://wicg.github.io/ResizeObserver/#resizeobserverentry
+
+----
+instance.target : Element
+
+The element passed to %%/ResizeObserver#observe|**ResizeObserver.observe()**%%
+that changed size
+
+<htmlexample>
+<div id='foo' style='background: red;'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      console.log(entry.target.id + ': ' + JSON.stringify(entry.contentRect));
+    });
+  });
+  observer.observe(foo);
+
+  foo.style.height = '10px';
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://wicg.github.io/ResizeObserver/#dom-resizeobserverentry-target
+
+----
+instance.contentRect : DOMRectReadOnly
+
+The size of %%#target|**target**%%.
+
+<htmlexample>
+<div id='foo' style='background: red;'></div>
+<script>
+  var foo = document.getElementById('foo');
+
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      console.log(entry.target.id + ': ' + JSON.stringify(entry.contentRect));
+    });
+  });
+  observer.observe(foo);
+
+  foo.style.height = '10px';
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://wicg.github.io/ResizeObserver/#dom-resizeobserverentry-contentrect
