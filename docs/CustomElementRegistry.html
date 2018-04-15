@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>CustomElementRegistry JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript CustomElementRegistry Object. Provides a way to extend HTML/DOM with your own elements that have custom logic similar to built in elements. Exposed as cust"><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>CustomElementRegistry</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#define_String_CustomElementPrototype">define</a><a href="#get_String">get</a><a href="#whenDefined_String">whenDefined</a></div></div></div><h2>Components API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">CustomElementRegistry</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">Provides a way to extend HTML/DOM with your own elements that have custom logic similar to built in elements. Exposed as <a href="/Window#customElements">customElements</a>. See also <a href="/CustomElementPrototype">CustomElementPrototype</a>.<div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/custom-elements.html#customelementregistry" class="spec">Spec</a></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="define"></a> <a name="define_String_CustomElementPrototype"></a><div class="declaration"><span class="membername primary">define</span>(<span class="membername">tagName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">type</span>&nbsp;:&nbsp;<a class="membertype" href="/CustomElementPrototype">CustomElementPrototype</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description">Registers a new custom element type for the specified <code>tagName</code>. <code>tagName</code> must have a <code>'-'</code> in it.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element { 
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;script&gt;
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      // Hook up click listener to set the color to red
+      this.addEventListener(&#39;click&#39;, function(event) {
+        event.target.style.color = &#39;red&#39;;
+      });
+    }
+  }
+  customElements.define(&#39;my-element&#39;, MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = &#34;MyElement from Code&#34;;
+  document.body.appendChild(myElement);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementRegistry.define"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-define" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="get"></a> <a name="get_String"></a><div class="declaration"><span class="membername primary">get</span>(<span class="membername">tagName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/CustomElementPrototype">CustomElementPrototype</a></div><div class="member-body"><p class="description">Returns the prototype for the specified <code>tagName</code> that was previously registered with <a href="#define"><code>define</code></a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element {
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement&lt;/my-element&gt;
+
+&lt;script&gt;
+  class MyElement1 extends HTMLElement { }
+  customElements.define(&#39;my-element&#39;, MyElement1);
+
+  console.log(customElements.get(&#39;my-element&#39;) === MyElement1);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementRegistry.get"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-get" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="whenDefined"></a> <a name="whenDefined_String"></a><div class="declaration"><span class="membername primary">whenDefined</span>(<span class="membername">tagName</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a></div><div class="member-body"><p class="description">Returns a Promise that resolves after a custom element is <a href="#define"><code>define</code>d</a> for the specified <code>tagName</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;style&gt;
+  my-element {
+    border: 1px solid green;
+  }
+&lt;/style&gt;
+
+&lt;my-element&gt;MyElement from HTML&lt;/my-element&gt;
+
+&lt;script&gt;
+  customElements.whenDefined(&#39;my-element&#39;).then(function() {
+     console.log(&#39;my-element defined&#39;);
+   });
+
+  console.log(&#39;before customElement.define&#39;);
+  customElements.define(&#39;my-element&#39;, class extends HTMLElement { });
+  console.log(&#39;after customElement.define&#39;);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CustomElementRegistry.whenDefined"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-whendefined" class="spec">Spec</a></div></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script></html>

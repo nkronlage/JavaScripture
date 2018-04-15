@@ -1,7 +1,7 @@
 CustomElementPrototype : HTMLElement
 
 The prototype used for a custom element created with
-%%/Document#registerElement|**document.registerElement()**%%.
+%%/CustomElementRegistry#define|**customElements.define()**%%.
 
 ----
 prototype.adoptedCallback(oldDocument : Document, newDocument : Document) : undefined

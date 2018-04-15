@@ -1,0 +1,102 @@
+CustomElementRegistry : Object
+
+Provides a way to extend HTML/DOM with your own elements that
+have custom logic similar to built in elements. Exposed as
+%%/Window#customElements|customElements%%. See also
+%%/CustomElementPrototype|CustomElementPrototype%%.
+
+Spec:
+https://html.spec.whatwg.org/multipage/custom-elements.html#customelementregistry
+
+----
+prototype.define(tagName : String, type : CustomElementPrototype) : undefined
+
+Registers a new custom element type for the specified **tagName**. **tagName**
+must have a **'-'** in it.
+
+<htmlexample>
+<style>
+  my-element { 
+    border: 1px solid green;
+  }
+</style>
+
+<my-element>MyElement from HTML</my-element>
+
+<script>
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      // Hook up click listener to set the color to red
+      this.addEventListener('click', function(event) {
+        event.target.style.color = 'red';
+      });
+    }
+  }
+  customElements.define('my-element', MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = "MyElement from Code";
+  document.body.appendChild(myElement);
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-define
+
+----
+prototype.get(tagName : String) : CustomElementPrototype
+
+Returns the prototype for the specified **tagName** that was previously registered
+with %%#define|**define**%%.
+
+<htmlexample>
+<style>
+  my-element {
+    border: 1px solid green;
+  }
+</style>
+
+<my-element>MyElement</my-element>
+
+<script>
+  class MyElement1 extends HTMLElement { }
+  customElements.define('my-element', MyElement1);
+
+  console.log(customElements.get('my-element') === MyElement1);
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-get
+
+----
+prototype.whenDefined(tagName : String) : Promise
+
+Returns a Promise that resolves after a custom element is %%#define|**define**d%%
+for the specified **tagName**.
+
+<htmlexample>
+<style>
+  my-element {
+    border: 1px solid green;
+  }
+</style>
+
+<my-element>MyElement from HTML</my-element>
+
+<script>
+  customElements.whenDefined('my-element').then(function() {
+     console.log('my-element defined');
+   });
+
+  console.log('before customElement.define');
+  customElements.define('my-element', class extends HTMLElement { });
+  console.log('after customElement.define');
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-whendefined

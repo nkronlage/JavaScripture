@@ -100,6 +100,48 @@ Spec:
 http://www.w3.org/TR/WebCryptoAPI/#dfn-Crypto
 
 ----
+instance.customElements : CustomElementRegistry
+
+Provides a way to extend HTML/DOM with your own elements that
+have custom logic similar to built in elements. See also
+%%/CustomElementPrototype|CustomElementPrototype%%.
+
+<htmlexample>
+<style>
+  my-element { 
+    border: 1px solid green;
+  }
+</style>
+
+<my-element>MyElement from HTML</my-element>
+
+<script>
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      // Hook up click listener to set the color to red
+      this.addEventListener('click', function(event) {
+        event.target.style.color = 'red';
+      });
+    }
+  }
+  customElements.define('my-element', MyElement);
+
+  // Create an instance via JavaScript
+  var myElement = new MyElement();
+  myElement.textContent = "MyElement from Code";
+  document.body.appendChild(myElement);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/custom-elements.html
+
+----
 instance.document : Document
 
 Returns the document for this window.
