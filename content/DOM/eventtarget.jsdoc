@@ -61,16 +61,50 @@ body.addEventListener('click', function(event) {
 </htmlexample>
 
 ----
+prototype.addEventListener( \
+  type : String, \
+  listener(event : Event) : undefined, \
+  options : { \
+    capture = false: Boolean /* call listener in the capture phase */, \
+    once = false: Boolean /* remove **listener** after firing */, \
+    passive = false: Boolean /* set to **true** if you'll never call %%/Event#preventDefault|**event.preventDefault()**%%. Allows browser to provide perf optimizations like smoother scrolling. */ \
+  }) : undefined
+
+----
 prototype.addEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
+
+----
+prototype.addEventListener( \
+  type : String, \
+  listener : EventListener, \
+  options : { \
+    capture = false: Boolean /* call listener in the capture phase */, \
+    once = false: Boolean /* remove **listener** after firing */, \
+    passive = false: Boolean /* set to **true** if you'll never call %%/Event#preventDefault|**event.preventDefault()**%%. Allows browser to provide perf optimizations like smoother scrolling. */ \
+  }) : undefined
 
 
 ----
 prototype.removeEventListener(type : String, listener(event : Event) : undefined, [useCapture : Boolean]) : undefined
 
+----
+prototype.removeEventListener( \
+  type : String, \
+  listener(event : Event) : undefined, \
+  options : { \
+    capture = false: Boolean /* removes the listener hooked to the capture phase */ \
+  }) : undefined
 
 ----
 prototype.removeEventListener(type : String, listener : EventListener, [useCapture : Boolean]) : undefined
 
+----
+prototype.removeEventListener( \
+  type : String, \
+  listener : EventListener, \
+  options : { \
+    capture = false: Boolean /* removes the listener hooked to the capture phase */ \
+  }) : undefined
 
 ----
 prototype.dispatchEvent(event : Event) : Boolean
