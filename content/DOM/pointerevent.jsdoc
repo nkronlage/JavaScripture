@@ -3,6 +3,7 @@ PointerEvent : MouseEvent
 PointerEvents are a superset of %%/MouseEvent|MouseEvents%% and 
 %%/TouchEvent|TouchEvents%% and also support pen/stylus input.
 
+Spec:
 http://www.w3.org/TR/pointerevents/
 
 ----
