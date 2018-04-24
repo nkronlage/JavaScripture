@@ -1,6 +1,6 @@
 ResizeObserver : Object
 
-ReszieObserver allows you to provide a function that is called
+ResizeObserver allows you to provide a function that is called
 asynchronously when the size of observed elements change.
 
 Spec:
