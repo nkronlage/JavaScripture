@@ -327,6 +327,11 @@ ReadOnly:
 true
 
 ----
+instance.indexedDB : IDBFactory
+
+
+
+----
 instance.innerWidth : Number
 
 Width of the browser window in CSS pixels exluding any browser chrome.
