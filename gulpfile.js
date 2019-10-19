@@ -4,7 +4,6 @@ var gulp = require('gulp');
 var changed = require('gulp-changed');
 var filter = require('gulp-filter');
 var rename = require('gulp-rename');
-var sass = require('gulp-sass');
 var del = require('del');
 var path = require('path');
 
@@ -15,14 +14,6 @@ var makecustompage = require('./makecustompage.js');
 
 var site = './docs';
 var tmp = './tmp';
-
- 
-gulp.task('scss', function() {
-  return gulp.src('styles.scss')
-    .pipe(changed(site, { extension: '.css' }))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(site));
-});
 
 gulp.task('metadata', function() {
   var dest = tmp + '/metadata';
@@ -71,9 +62,8 @@ gulp.task('clean', function(callback) {
   del([tmp, site], callback);
 });
 
-gulp.task('default', gulp.series(['scss', 
-                      'content-html', 
-                      'other-html', 
-                      'static-files', 
-                      'javascripture.js']), function() {
+gulp.task('default', gulp.series(['content-html', 
+                                  'other-html', 
+                                  'static-files', 
+                                  'javascripture.js']), function() {
 });
