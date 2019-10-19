@@ -16,12 +16,6 @@ var makecustompage = require('./makecustompage.js');
 var site = './docs';
 var tmp = './tmp';
 
-gulp.task('default', ['scss', 
-                      'content-html', 
-                      'other-html', 
-                      'static-files', 
-                      'javascripture.js'], function() {
-});
  
 gulp.task('scss', function() {
   return gulp.src('styles.scss')
@@ -38,13 +32,13 @@ gulp.task('metadata', function() {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('apisets', ['metadata'], function() {
+gulp.task('apisets', gulp.series(['metadata']), function() {
   return gulp.src(tmp + '/metadata/**/*.json')
     .pipe(apisets())
     .pipe(gulp.dest(tmp));
 });
 
-gulp.task('content-html', ['apisets'], function() {
+gulp.task('content-html', gulp.series(['apisets']), function() {
   return gulp.src(['./content/**/*.jsdoc', './templates/*.ejs'])
     .pipe(filter('**/*.jsdoc'))
     .pipe(rename({ dirname: '' }))
@@ -53,7 +47,7 @@ gulp.task('content-html', ['apisets'], function() {
     .pipe(gulp.dest(site));
 });
 
-gulp.task('other-html', ['apisets'], function() {
+gulp.task('other-html', gulp.series(['apisets']), function() {
   return gulp.src(['./templates/feedback.ejs', 
                    './templates/index.ejs',
                    './templates/license.ejs',
@@ -62,7 +56,7 @@ gulp.task('other-html', ['apisets'], function() {
     .pipe(gulp.dest(site));
 });
 
-gulp.task('javascripture.js', ['apisets'], function() {
+gulp.task('javascripture.js', gulp.series(['apisets']), function() {
   return gulp.src('./templates/javascripture.ejs')
     .pipe(makecustompage('.js'))
     .pipe(gulp.dest(site));
@@ -75,4 +69,11 @@ gulp.task('static-files', function() {
 
 gulp.task('clean', function(callback) {
   del([tmp, site], callback);
+});
+
+gulp.task('default', gulp.series(['scss', 
+                      'content-html', 
+                      'other-html', 
+                      'static-files', 
+                      'javascripture.js']), function() {
 });
