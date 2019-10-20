@@ -39,15 +39,13 @@ build the site's html files.
 
 Prerequisites for building
 * [Node](http://nodejs.org/download/)
-* [Sass](http://sass-lang.com/install)
-* [Gulp](http://gulpjs.com/)
 * Run: npm install
 
 To build the documentation, run:
 
-* gulp
+* node build.js
 
-From the root folder. The generated files are in the site/ folder.
+From the root folder. The generated files are in the docs/ folder.
 
 ### Documentation File Format
 The information for each type is stored in a .jsdoc file.  This is a

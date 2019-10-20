@@ -1,13 +1,13 @@
 'use strict';
 
-var fs = require('fs');
-var ejs = require('ejs');
+const fs = require('fs');
+const ejs = require('ejs');
 
 
 // Used by template renderer to generate an id for a member
-var getAnchorName = function(member) {
+const getAnchorName = member => {
   if (member.type === 'Function'|| member.type === 'Indexer') {
-    var res = '';
+    let res = '';
 
     if (member.isConstructor) {
       res += 'new_';
@@ -33,8 +33,8 @@ var getAnchorName = function(member) {
       return res;
     }
 
-    var joinNames = function(params) {
-      for (var i = 0; i < params.length; i++) {
+    const joinNames = function(params) {
+      for (let i = 0; i < params.length; i++) {
         if (Array.isArray(params[i])){
           joinNames(params[i]);
         }
@@ -59,13 +59,13 @@ var getAnchorName = function(member) {
   }
 };
 
-var getPageDescription = function(obj) {
-  var pageDesc = 'Interactive API reference for the JavaScript ' + obj.name + ' Object. ' + obj.description;
+const getPageDescription = function(obj) {
+  let pageDesc = 'Interactive API reference for the JavaScript ' + obj.name + ' Object. ' + obj.description;
   pageDesc = pageDesc.replace(/\<.*?\>/g, '');
   return pageDesc.substring(0, 200);
 };
 
-var getVersionClass = function(version) {
+const getVersionClass = (version) => {
   if (!/^ECMAScript 20\d\d$/.test(version)) {
     throw Error('unknown version: ' + version);
   }
@@ -73,11 +73,11 @@ var getVersionClass = function(version) {
 };
 
 
-var currentObj;
-var templates = {};
+let currentObj;
+const templates = {};
 
-var render = function(filename, locals) {
-  var template = templates[filename] || fs.readFileSync('templates/' + filename + '.ejs', 'utf8');
+const render = (filename, locals) => {
+  const template = templates[filename] || fs.readFileSync('templates/' + filename + '.ejs', 'utf8');
   templates[filename] = template;
 
   if (filename === 'object') {
@@ -93,7 +93,7 @@ var render = function(filename, locals) {
 
   locals.locals = locals; // compat for old version of ejs
 
-  var result = ejs.render(template, locals);
+  const result = ejs.render(template, locals);
 
   if (filename === 'object') {
     currentObj = undefined;

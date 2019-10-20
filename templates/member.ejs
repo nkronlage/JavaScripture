@@ -172,7 +172,7 @@ var renderMember = function(member, isPrimary, nestedRenderMember) {
   }
   else if (!member.type) {
     if (!/^\w+\.\w+$/.test(member.name)) {
-      throw 'Unexpected member type: ' + member.name; 
+      throw 'Unexpected member type (' + (isPrimary ? 'primary' : 'not primary') + '): ' + member.name + '\n' + JSON.stringify(member); 
     }
 
     const nameParts = member.name.split('.');
