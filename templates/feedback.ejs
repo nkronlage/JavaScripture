@@ -16,13 +16,12 @@ If you've found a bug with the site, please report it using GitHub:
 If you have any other comments (or don't feel like entering the issue in GitHub), 
 please use the following form to contact us directly.
 
-<form action='https://jumprock.co/mail/javascripture' method='post'>
-  <input type="text" name="trapit" value="" style="display:none">
-  <input name='after' type='hidden' value='https://www.javascripture.com/thankyou'/>
+<form action='https://script.google.com/macros/s/AKfycbx5uDsYEhAmNC5ZS7PIR-0WnK9wH0mEeM27o_Yd2zXN2gdVOMk/exec' method='post'>
+  <input type="text" name="subject" value="">
   <script>
     var referrer = document.referrer || '';
     referrer = referrer.replace(location.origin, '');
-    document.write("<input name='subject' type='hidden' value='" + referrer + "'/>");
+    document.write("<input name='referrer' type='hidden' value='" + referrer + "'/>");
   </script>
 
   <h3>Comment</h3> 
@@ -32,5 +31,10 @@ please use the following form to contact us directly.
   <input name='email' type='text' />
   
   <input type='submit' value='Submit'/>
-
 </form>
+<style>
+  input[name=subject] {
+    display: none;
+  }
+</style>
+
