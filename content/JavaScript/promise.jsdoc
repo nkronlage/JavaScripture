@@ -3,8 +3,10 @@ Promise : Object
 A Promise is an object that represents an asynchronous operation that
 will eventually produce a value.
 Use the %%#then|**then()**%% method to hook up a callback that will
-be called when the result of the asynchronous operation is ready. **async function()**s
-return Promises and can make simplify Promise based code.
+be called when the result of the asynchronous operation is ready.
+ECMAScript 2017 introduced **async function()**s which
+return Promises and the **await** keyword which can simplify
+Promise based code.
 
 Version:
 ECMAScript 2015
@@ -164,7 +166,7 @@ all(promises : Iterable<Promise>) : Promise
 
 Creates a new Promise that will be resolved when all of **promises**
 are resolved. If any of the promises are rejected, the returned Promise
-will be rejected immediately and will provide the value of the 
+will be rejected immediately and will provide the value of the
 Promise that was rejected.
 
 <example>
@@ -194,7 +196,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-promise.all
 race(promises : Iterable<Promise>) : Promise
 
 Creates a new Promise that will be resolved when the first of **promises**
-is resolved. If a promises is rejected before any resolve, the returned 
+is resolved. If a promise is rejected before any resolve, the returned
 Promise will be rejected immediately and will provide the value of the
 Promise that was rejected.
 
@@ -226,11 +228,12 @@ the rejected error. Useful for passing values to APIs that expect promises.
 
 <example>
 // The following are equivalent
-var x = Promise.reject('foo');
-var y = new Promise(function(resolve, reject) {
+var w = Promise.reject('foo');
+var x = new Promise(function(resolve, reject) {
                       reject('foo');
                     });
-var z = (async function() { throw 'foo' })();
+var y = (async function() { throw 'foo' })();
+var z = (async () => { throw 'foo' })();
 </example>
 
 Spec:
@@ -244,11 +247,12 @@ the resolved value. Useful for passing values to APIs that expect promises.
 
 <example>
 // The following are equivalent
-var x = Promise.resolve('foo');
-var y = new Promise(function(resolve) {
+var w = Promise.resolve('foo');
+var x = new Promise(function(resolve) {
                       resolve('foo');
                     });
-var z = (async function() { return 'foo' })();
+var y = (async function() { return 'foo' })();
+var z = (async () => 'foo')();
 </example>
 
 Spec:
