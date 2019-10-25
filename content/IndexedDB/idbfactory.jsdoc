@@ -1,12 +1,12 @@
 IDBFactory : Object
 
+Exposed as %%Window#indexedDB|window.indexedDB%%.
 
 Spec:
 https://www.w3.org/TR/IndexedDB/#idl-def-IDBFactory
 
 ----
-prototype.open(name : String, [version : Number]) : IDBOpenDBRequest
-
+prototype.open(name : String, [version = 1 : Number]) : IDBOpenDBRequest
 
 ----
 prototype.deleteDatabase(name : String) : IDBOpenDBRequest
