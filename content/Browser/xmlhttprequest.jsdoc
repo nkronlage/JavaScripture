@@ -273,7 +273,7 @@ request.send();
 console.log('status code: ' + request.status);
 
 request = new XMLHttpRequest();
-request.open('GET', 'www.example.com/', /* async = */ false);
+request.open('GET', 'NonExistentPage/', /* async = */ false);
 request.send();
 console.log('status code: ' + request.status);
 </example>
@@ -286,7 +286,6 @@ instance.statusText : String
 
 A description of the %%#status|status return code%%.
 
-
 <example>
 var request = new XMLHttpRequest();
 request.open('GET', '/', /* async = */ false);
@@ -294,7 +293,7 @@ request.send();
 console.log('status: ' + request.statusText);
 
 request = new XMLHttpRequest();
-request.open('GET', 'www.example.com/', /* async = */ false);
+request.open('GET', 'NonExistentPage/', /* async = */ false);
 request.send();
 console.log('status: ' + request.statusText);
 </example>
