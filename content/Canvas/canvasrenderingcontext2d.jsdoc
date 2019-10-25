@@ -228,7 +228,8 @@ instance.strokeStyle : Object
 
 The brush used to fill the stroke of shapes.  Must be a css color %%/String|**String**%%
 (such as **'black'** or **'#000'**), a %%/CanvasGradient|**CanvasGradient**%%,
-or a %%/CanvasPattern|**CanvasPattern**%%.
+or a %%/CanvasPattern|**CanvasPattern**%%. See also %%#lineDashOffset|lineDashOffset%%,
+%%#setLineDash|setLineDash()%%.
 
 
 <htmlexample>
@@ -581,9 +582,10 @@ IDL:
   void beginPath();
 
 ----
-prototype.fill() : undefined
+prototype.fill([fillRule = 'nonzero' : String]) : undefined
 
 Fills the current path with the current %%#fillStyle|**fillStyle**%%.
+**fillRule** must be one of **'nonzero'** or **'evenodd'**. 
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -597,9 +599,8 @@ Fills the current path with the current %%#fillStyle|**fillStyle**%%.
 </script>
 </htmlexample>
 
-IDL:
-  void fill();
-
+Spec:
+https://html.spec.whatwg.org/#dom-context-2d-fill
 
 ----
 prototype.stroke() : undefined
@@ -1074,6 +1075,25 @@ Applies the following transform to the current transform.
 IDL:
   void transform(double a, double b, double c, double d, double e, double f);
 
+----
+prototype.setLineDash(pattern : Array<Number>) : undefined
+
+Defines how long the dash, gaps of stroke are. Set to an empty array to have
+a solid line. See also %%#lineDashOffset|lineDashOffset%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.setLineDash([5, 10]);
+
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+</script>
+</htmlexample>
 
 ----
 prototype.setTransform(a : Number, b : Number, c : Number, d : Number, e : Number, f : Number) : undefined
@@ -1142,6 +1162,32 @@ IDL:
 interface CanvasLineStyles {
   // line caps/joins
            attribute double lineWidth; // (default 1)
+
+----
+instance.lineDashOffset : Number
+
+Offsets the starting position of the line dash. See also %%#setLineDash|setLineDash()%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.setLineDash([5, 15]);
+
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+
+  context.lineDashOffset = 10;
+
+  context.strokeStyle = 'red';
+  context.beginPath();
+  context.arc(50, 50, 30, 0, 2 * Math.PI);
+  context.stroke();
+</script>
+</htmlexample>
 
 ----
 instance.lineCap : String
