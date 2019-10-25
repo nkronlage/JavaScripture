@@ -39,9 +39,9 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.4.1
 prototype.exec(str : String) : Array<String>
 
 If **this** matches **str**, returns a new **Array** with item **0** equal to the
-portion of **str** that matched the regular expression, item **1** equal to the first
-capturing group in **this**, item **2** equal to the second capturing group in **this**,
-and so on.  If **this** doesn't match **str**, returns **null**.
+portion of **str** that matched the regular expression, item **1** equal to the
+first capturing group in **this**, item **2** equal to the second capturing group in
+**this**, and so on. If **this** doesn't match **str**, returns **null**.
 
 <example>
 var regexp = /(\d\d\d)-(\d\d\d\d)/;
@@ -52,10 +52,22 @@ if (result) {
   console.log(result[2]);
 }
 </example>
+<p>
+If **this** is a %%#global|**global**%% RegExp, **exec** can be called repeatedly
+to get all matches. Each time it is called, it updates
+%%#lastIndex|**this.lastIndex**%% and begins the search from there. When there are
+no more matches, returns **null**.
+</p>
+<example>
+var regexp = /(\w+): (\d+)/g;
+var res;
+while (res = regexp.exec('a: 12, b: 5, d: 6')) {
+  console.log(res[1], res[2]);
+}
+</example>
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.6.2
-
 
 ----
 prototype.test(str : String) : Boolean
@@ -92,9 +104,9 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.1
 ----
 instance.global : Boolean
 
-**true** if the **RegExp** was created with the **'g'** flag.  Global 
-**RegExp**s will match each place %%#source|**this.source**%% occurs in the string, not 
-just the first match.
+**true** if the **RegExp** was created with the **'g'** flag.  Global **RegExp**s
+will match each place %%#source|**this.source**%% occurs in the string, not just the
+first match.
 
 <example>
 console.log('abcba'.replace(/b/, 'X'));
@@ -155,7 +167,8 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.4
 instance.lastIndex : Number
 
 The starting index into the string for the next search.  Is automatically set to the
-index after a successful match. This property only applies if the **RegExp** is %%#global|**global**%%.
+index after a successful match. This property only applies if the **RegExp** is
+%%#global|**global**%%.
 
 <example>
 var regexp = /foo|bar|baz/g;
