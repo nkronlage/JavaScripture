@@ -1,0 +1,17 @@
+AsyncIterable : Object
+
+An async iterable object is any object that returns a function that produces
+an %%/AsyncIterator|AsyncIterator%% for its 
+%%/Symbol#asyncIterator|**Symbol.asyncIterator**%% property.
+
+You can loop over all values in an iterable object by using a 
+**for await (const value of asyncIterable) { }** loop.
+
+See %%/AsyncIterator|AsyncIterator%% for more details.
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-asynciterable-interface
+
+----
+instance[Symbol.asyncIterator] : AsyncIterator
+

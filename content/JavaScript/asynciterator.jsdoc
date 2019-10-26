@@ -1,0 +1,42 @@
+AsyncIterator : Object
+
+<example>
+const sleep = async (t) => new Promise(r => setTimeout(r, t));
+
+async function* stream() {
+  for (let i = 0; i < 3; i++) {
+    await sleep(300 * i);
+    yield i;
+  }
+}
+
+(async () => {
+  const iterable = stream();
+  const iterator = iterable[Symbol.asyncIterator]();
+  console.dir(await iterator.next());
+  console.dir(await iterator.next());
+  console.dir(await iterator.next());
+  console.dir(await iterator.next());
+
+  // for await of loops make it easy to loop over async iterables 
+  for await (const i of stream()) {
+    console.log(i);
+  }
+})();
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-asynciterator-interface
+
+
+----
+instance.next([yieldValue : Object]) : Promise
+
+Promise return type:
+{ value : Object, done : Boolean }
+
+----
+instance.return([yieldValue : Object]) : Promise
+
+----
+instance.throw([rejectReason : Object]) : Promise
