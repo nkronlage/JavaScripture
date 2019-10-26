@@ -8,14 +8,30 @@ Spec:
 https://fetch.spec.whatwg.org/#response-class
 
 ----
-new Response([body : Object, [init : { \
+new Response([body = null : Object, [init : { \
   status = 200 : Number, \ 
-  statusText = 'OK' : String, \
+  statusText = '' : String, \
   headers : Object \
   }]]) : Response
 
+**body** must be one of %%/ArrayBuffer|ArrayBuffer%%,
+%%/ArrayBufferView|ArrayBufferView%%, %%/Blob|Blob%%, %%/FormData|FormData%%,
+ReadableStream, %%/String|String%%, or %%/URLSearchParams|URLSearchParams%%.
+
 ----
 instance.headers : Headers
+
+ReadOnly:
+true
+
+----
+instance.ok : Boolean
+
+ReadOnly:
+true
+
+----
+instance.redirected : Boolean
 
 ReadOnly:
 true
@@ -33,6 +49,12 @@ ReadOnly:
 true
 
 ----
+instance.trailer : Promise<Headers>
+
+ReadOnly:
+true
+
+----
 instance.type : String
 
 Will be one of:
@@ -40,7 +62,8 @@ Will be one of:
 **'cors'**, 
 **'default'**, 
 **'error'**, 
-**'opaque'**.
+**'opaque'**,
+**'opaqueredirect'**.
 
 ReadOnly:
 true
