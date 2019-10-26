@@ -44,6 +44,12 @@ if (result) {
   console.log(result[1]);
   console.log(result[2]);
 }
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "RegExp.exec"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p>If <code>this</code> is a <a href="#global"><code>global</code></a> RegExp, <code>exec</code> can be called repeatedly to get all matches. Each time it is called, it updates <a href="#lastIndex"><code>this.lastIndex</code></a> and begins the search from there. When there are no more matches, returns <code>null</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+var regexp = /(\w+): (\d+)/g;
+var res;
+while (res = regexp.exec(&#39;a: 12, b: 5, d: 6&#39;)) {
+  console.log(res[1], res[2]);
+}
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "RegExp.exec"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.6.2" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="test"></a> <a name="test_String"></a><div class="declaration"><span class="membername primary">test</span>(<span class="membername">str</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/Boolean">Boolean</a></div><div class="member-body"><p class="description">Returns <code>true</code> if <code>this</code> matches <code>str</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 var regexp = /(\d\d\d)-(\d\d\d\d)/;
 console.log(regexp.test(&#39;555-4385&#39;));
