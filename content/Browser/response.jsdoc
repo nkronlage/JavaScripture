@@ -16,7 +16,14 @@ new Response([body = null : Object, [init : { \
 
 **body** must be one of %%/ArrayBuffer|ArrayBuffer%%,
 %%/ArrayBufferView|ArrayBufferView%%, %%/Blob|Blob%%, %%/FormData|FormData%%,
-ReadableStream, %%/String|String%%, or %%/URLSearchParams|URLSearchParams%%.
+%%/ReadableStream|ReadableStream%%, %%/String|String%%, or 
+%%%/URLSearchParams|URLSearchParams%%.
+
+----
+instance.body : ReadableStream
+
+ReadOnly:
+true
 
 ----
 instance.headers : Headers
