@@ -14,7 +14,7 @@ Primitive:
 true
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol-objects
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol-objects
 
 ----
 Symbol([description : String]) : Symbol
@@ -35,25 +35,29 @@ console.log(myObject['MySymbol']);
 </example>
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol-description
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol-description
+
+----
+asyncIterator : Symbol
+
 
 ----
 hasInstance : Symbol
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.hasinstance
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.hasinstance
 
 ----
 isConcatSpreadable : Symbol
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.isconcatspreadable
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.isconcatspreadable
 
 ----
 isRegExp : Symbol
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.isregexp
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.isregexp
 
 ----
 iterator : Symbol
@@ -85,22 +89,64 @@ for (var item of x.values()) {
 </example>
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.iterator
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.iterator
+
+----
+match : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.match
+
+----
+replace : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.replace
+
+----
+search : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.search
+
+----
+species : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.species
+
+----
+split : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.split
 
 ----
 toPrimitive : Symbol
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.toprimitive
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.toprimitive
 
 ----
 toStringTag : Symbol
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.tostringtag
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.tostringtag
 
 ----
 unscopables : Symbol
 
 Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-symbol.unscopables
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.unscopables
+
+----
+for(key : String) : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.for
+
+----
+keyFor(key : String) : Symbol
+
+Spec:
+http://www.ecma-international.org/ecma-262/10.0/#sec-symbol.for
