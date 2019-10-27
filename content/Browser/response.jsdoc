@@ -34,11 +34,31 @@ true
 ----
 instance.ok : Boolean
 
+**true** if the server returned a successful %%#status|**status**%% code (200-299).
+
+<example>
+const res1 = await fetch('https://httpbin.org/status/200');
+console.log(res1.ok);
+
+const res2 = await fetch('https://httpbin.org/status/404');
+console.log(res2.ok);
+</example>
+
 ReadOnly:
 true
 
 ----
 instance.redirected : Boolean
+
+**true** if the server returned a redirect %%#status|**status**%% code (301, 302, etc).
+
+<example>
+const res1 = await fetch('https://httpbin.org/status/200');
+console.log(res1.redirected);
+
+const res2 = await fetch('https://httpbin.org/status/301');
+console.log(res2.redirected);
+</example>
 
 ReadOnly:
 true
@@ -46,11 +66,32 @@ true
 ----
 instance.status : Number
 
+The http status code for the request. See %%#statusText|**statusText**%% for
+a description of the code.
+
+<example>
+const res1 = await fetch('https://httpbin.org/status/200');
+console.log(res1.status);
+
+const res2 = await fetch('https://httpbin.org/status/404');
+console.log(res2.status);
+</example>
+
 ReadOnly:
 true
 
 ----
 instance.statusText : String
+
+A description of the %%#status|status return code%%.
+
+<example>
+const res1 = await fetch('https://httpbin.org/status/200');
+console.log(res1.statusText);
+
+const res2 = await fetch('https://httpbin.org/status/404');
+console.log(res2.statusText);
+</example>
 
 ReadOnly:
 true

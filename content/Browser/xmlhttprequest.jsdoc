@@ -3,7 +3,8 @@ XMLHttpRequest : EventTarget
 XMLHttpRequest is used to make an http request to a server. It can be used
 to download data by making a GET request (pass **'GET'** as the method when calling
 %%#open|**open()**%%) or to send data to the server by making a POST
-request (send **'POST'** as the method when calling %%#open|**open()**%%).
+request (send **'POST'** as the method when calling %%#open|**open()**%%). See also
+%%/Window#fetch|fetch%%.
 
 Spec:
 https://xhr.spec.whatwg.org/#interface-xmlhttprequest
