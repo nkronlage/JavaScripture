@@ -1,0 +1,47 @@
+IntersectionObserverEntry : Object
+
+Spec:
+https://www.w3.org/TR/intersection-observer/#intersectionobserverentry
+
+----
+instance.boundingClientRect : DOMRectReadOnly
+
+ReadOnly:
+true
+
+----
+instance.intersectionRect : DOMRectReadOnly
+
+ReadOnly:
+true
+
+----
+instance.intersectionRatio : Number
+
+ReadOnly:
+true
+
+----
+instance.isIntersecting : Boolean
+
+ReadOnly:
+true
+
+----
+instance.rootBounds : DOMRectReadOnly
+
+ReadOnly:
+true
+
+----
+instance.target : Element
+
+ReadOnly:
+true
+
+----
+instance.time : Number
+
+ReadOnly:
+true
+

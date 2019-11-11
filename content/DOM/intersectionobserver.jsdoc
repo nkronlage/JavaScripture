@@ -1,0 +1,65 @@
+IntersectionObserver : Object
+
+Spec:
+https://www.w3.org/TR/intersection-observer/#intersectionobserver
+
+----
+new IntersectionObserver( \
+    callback(entries : Array<IntersectionObserverEntry>, observer : IntersectionObserver) : undefined, \
+    [options : { \
+      root : Element, \
+      rootMargins : String, \
+      threshold : Number \
+    }]) : IntersectionObserver
+
+<htmlexample>
+<ul></ul>
+<script>
+// Create an observer to see when item 15 intersects the viewport
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => console.log(e.isIntersecting));
+  });
+
+const list = document.querySelector('ul');
+for (let i = 0; i < 30; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = 'item ' + i;
+  list.appendChild(listItem);
+
+  if (i === 15) {
+    observer.observe(listItem);
+  }
+}
+</script>
+</htmlexample>
+
+----
+instance.root : Element
+
+ReadOnly:
+true
+
+----
+instance.rootMargin : String
+
+ReadOnly:
+true
+
+----
+instance.thresholds : Array<Number>
+
+ReadOnly:
+true
+
+----
+prototype.disconnect() : undefined
+
+----
+prototype.observe(target : Element) : undefined
+
+----
+prototype.takeRecords() : Array<IntersectionObserverEntry>
+
+----
+prototype.unobserve(target : Element) : undefined
+
