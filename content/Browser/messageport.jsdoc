@@ -1,17 +1,65 @@
 MessagePort : EventTarget
 
+Represents one side of a %%/MessageChannel|MessageChannel%% that can send
+messages to and receive messages from the other MessagePort of the MessageChannel.
+MessagePorts can be transferred to other contexts by passing it in the
+**transfer** parameter of %%#postMessage|**MessagePort.postMessage()**%% or
+%%/Window#postMessage|**Window.postMessage()**%%.
+
 Spec:
 https://html.spec.whatwg.org/multipage/web-messaging.html#messageport
 
 ----
-prototype.postMessage(message : Object, [transfer : Array]) : undefined
+prototype.postMessage(message : Object, [transfer : Array<Transferable>]) : undefined
+
+Serializes **message** and sends it to the other MessagePort.
+
+<htmlexample>
+<iframe id='iframe'></iframe>
+<script id='iframeCode' type ='text/plain'>
+  window.onmessage = e => {
+    const port2 = e.data;
+    port2.onmessage = e => {
+      document.body.innerHTML += e.data;
+    };
+    port2.postMessage('posted to parent via channel');
+  };
+</script>
+
+<script>
+  var iframe = document.querySelector('#iframe');
+
+  var code = document.getElementById('iframeCode').textContent;
+  var html = '<script>' + code + '</' + 'script>';
+  var blob = new Blob([html], { type: 'text/html' });
+
+  const channel = new MessageChannel();
+
+  iframe.onload = () => {
+    // Transfer channel's port2 to the iframe and then send it a message
+    iframe.contentWindow.postMessage(channel.port2, '*', [channel.port2]);
+    channel.port1.postMessage('posted to iframe via channel');
+    channel.port1.onmessage = e => console.log(e.data);
+  };
+  iframe.src = URL.createObjectURL(blob);
+</script>
+
+</htmlexample>
 
 ----
 instance.start() : undefined
+
+Starts listening to messages. This is automatically called if you set the
+%%#message|onmessage%% event listener.
 
 ----
 instance.close() : undefined
 
 ----
-event.message : listener(event : ProgressEvent) : undefined
+event.message : listener(event : MessageEvent) : undefined
 
+Fired when %%#postMessage|**postMessage**%% is called on the other port of the
+%%/MessageChannel|MessageChannel%%. Setting **onmessage** will automatically
+call %%#start|**start()**%%. When using
+%%/EventTarget#addEventListener|**addEventListener('message')**%%, you must
+call **start()** to begin receiving **message** events.

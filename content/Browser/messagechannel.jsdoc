@@ -1,0 +1,64 @@
+MessageChannel : Object
+
+A message channel allows sending messages between contexts such as two
+%%/Worker|Workers%%.
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#messageport
+
+----
+new MessageChannel() : MessageChannel
+
+<htmlexample>
+<script id='worker1' type='text/plain'>
+  onmessage = e => {
+    const port2 = e.data;
+    port2.onmessage = e => {
+      postMessage(`worker1 got: ${e.data}`);
+    };
+    port2.postMessage('message from 1 to 2');
+  };
+</script>
+<script id='worker2' type='text/plain'>
+  onmessage = e => {
+    const port1 = e.data;
+    port1.onmessage = e => {
+      postMessage(`worker2 got: ${e.data}`);
+    };
+    port1.postMessage('message from 2 to 1');
+  };
+</script>
+<script>
+  const channel = new MessageChannel();
+  const makeWorker = (id, port) => {
+    const code = document.getElementById(id).textContent;
+    const blob = new Blob([code], { type: 'application/javascript' });
+    const worker = new Worker(URL.createObjectURL(blob));
+
+    worker.onmessage = e => console.log(e.data);
+
+    // Transfer the port to the worker
+    worker.postMessage(port, [port]);
+  };
+  makeWorker('worker1', channel.port1);
+  makeWorker('worker2', channel.port2);
+</script>
+
+</htmlexample>
+
+----
+instance.port1 : MessagePort
+
+The first port the channel.
+
+ReadOnly:
+true
+
+----
+instance.port2 : MessagePort
+
+The second port the channel.
+
+ReadOnly:
+true
+
