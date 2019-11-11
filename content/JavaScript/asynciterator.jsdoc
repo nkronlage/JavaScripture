@@ -1,7 +1,7 @@
 AsyncIterator : Object
 
 <example>
-const sleep = async (t) => new Promise(r => setTimeout(r, t));
+const sleep = t => new Promise(r => setTimeout(r, t));
 
 async function* stream() {
   for (let i = 0; i < 3; i++) {
