@@ -5,7 +5,7 @@ An Iterator is an Object that returns a sequence of values.
 You can use the **for(var value of iterator) {}** to easily loop
 over the values in an iterator. 
 
-Calling an ECMAScript 2015 generator function (**function*() {}**) return
+Calling an ECMAScript 2015 generator function (**function*() {}**) returns
 an Iterator.  
 
 You may create your own %%/Iterable|Iterable%% object by assigning the
