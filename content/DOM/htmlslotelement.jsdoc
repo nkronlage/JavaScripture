@@ -1,0 +1,78 @@
+HTMLSlotElement : HTMLElement
+
+Spec:
+https://html.spec.whatwg.org/multipage/scripting.html#htmlslotelement
+
+----
+instance.name : String
+
+
+----
+prototype.assignedNodes([options : { flatten : Boolean } ]) : Array<Node>
+
+<htmlexample>
+<template>
+  <slot></slot>
+</template>
+<script>
+  const template = document.querySelector('template');
+
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(template.content.cloneNode(true));
+
+      const slot = this.shadowRoot.querySelector('slot');
+      slot.addEventListener('slotchange', e => {
+        for (const e of slot.assignedNodes()) {
+          console.log(e.nodeName);
+        }
+      });
+    }
+  }
+  customElements.define('my-element', MyElement)
+</script>
+<my-element>
+  <span>1</span>
+  <span>2</span>
+  <span>3</span>
+  <span>4</span>
+</my-element>
+</htmlexample>
+
+
+----
+prototype.assignedElements([options : { flatten : Boolean } ]) : Array<Elements>
+
+
+<htmlexample>
+<template>
+  <slot></slot>
+</template>
+<script>
+  const template = document.querySelector('template');
+
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(template.content.cloneNode(true));
+
+      const slot = this.shadowRoot.querySelector('slot');
+      slot.addEventListener('slotchange', e => {
+        for (const e of slot.assignedElements()) {
+          console.log(e.nodeName);
+        }
+      });
+    }
+  }
+  customElements.define('my-element', MyElement)
+</script>
+<my-element>
+  <span>1</span>
+  <span>2</span>
+  <span>3</span>
+  <span>4</span>
+</my-element>
+</htmlexample>
