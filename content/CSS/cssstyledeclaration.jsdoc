@@ -955,3 +955,41 @@ instance.textOrientation : String
 instance.transformBox : String
 ----
 instance.hyphens : String
+
+----
+prototype.getPropertyValue(name : String) : String
+
+Gets the value of the specified CSS variable.
+
+<htmlexample>
+<style>
+  div {
+    --my-property: red;
+    color: var(--my-property);
+  }
+</style>
+<div>div with property</div>
+<script>
+  const div = document.querySelector('div');
+  console.log(getComputedStyle(div).getPropertyValue('--my-property'));
+</script>
+</htmlexample>
+
+----
+prototype.setPropertyValue(name : String, value : String, [priority : String]) : String
+
+Sets the value of the specified CSS variable. If specified, **priority** must be one of **'important'** or **''**.
+
+<htmlexample>
+<style>
+  div {
+    --my-property: red;
+    color: var(--my-property);
+  }
+</style>
+<div>div with property</div>
+<script>
+  const div = document.querySelector('div');
+  div.style.setProperty('--my-property', 'blue');
+</script>
+</htmlexample>
