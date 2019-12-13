@@ -888,19 +888,23 @@ http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSview-getComputedStyle
 ----
 prototype.postMessage(message : Object, expectedOrigin : String, [transfer : Array<Transferable>]) : undefined
 
+<p>
 Sends **message** to **this** (usually something other than the global
 %%/Global#window|**window**%%, like the %%#parent|**parent**%%, iframe
-%%%/HTMLIFrameElement#contentWindow|**contentwindow**%%, or return value of
-%%%#open|**open()**%%). The **message** will be available in the
-%%%/MessageEvent#data|**MessageEvent.data**%% property on the event passed to
-%the %%#message|onmessage%% event listener. To ensure the window's content has
-%not changed while the message is in flight, **expectedOrigin** must match
-%%%/Location#origin|**this.origin**%% (or be **'*'** to ignore check and
-%possibly send the message to another site). The elements of
-%**objectsToTransfer** will be transferred to the JavaScript context that
-%owns **this** and no longer available in the context that called
+%%/HTMLIFrameElement#contentWindow|**contentwindow**%%, or return value of
+%%#open|**open()**%%). The **message** will be available in the
+%%/MessageEvent#data|**MessageEvent.data**%% property on the event passed to
+the %%#message|onmessage%% event listener. To ensure the window's content has
+not changed while the message is in flight, **expectedOrigin** must match
+%%/Location#origin|**this.origin**%% (or be **'*'** to ignore check and
+possibly send the message to another site). The elements of
+**objectsToTransfer** will be transferred to the JavaScript context that
+owns **this** and no longer available in the context that called
 **postMessage()**.
-
+</p>
+<p>
+See also %%/MessageChannel|MessageChannel%%.
+</p>
 <htmlexample>
 <iframe id='iframe'></iframe>
 

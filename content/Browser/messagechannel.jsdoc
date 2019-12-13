@@ -1,7 +1,8 @@
 MessageChannel : Object
 
 A message channel allows sending messages between contexts such as two
-%%/Worker|Workers%%.
+%%/Worker|Workers%% by %%/Window#postMessage|transferring%% the ports
+to the workers.
 
 Spec:
 https://html.spec.whatwg.org/multipage/web-messaging.html#messageport
@@ -43,7 +44,6 @@ new MessageChannel() : MessageChannel
   makeWorker('worker1', channel.port1);
   makeWorker('worker2', channel.port2);
 </script>
-
 </htmlexample>
 
 ----
