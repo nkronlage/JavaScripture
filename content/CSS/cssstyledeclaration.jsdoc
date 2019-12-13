@@ -959,7 +959,7 @@ instance.hyphens : String
 ----
 prototype.getPropertyValue(name : String) : String
 
-Gets the value of the specified CSS variable.
+Gets the value of the specified CSS property/variable.
 
 <htmlexample>
 <style>
@@ -971,14 +971,16 @@ Gets the value of the specified CSS variable.
 <div>div with property</div>
 <script>
   const div = document.querySelector('div');
-  console.log(getComputedStyle(div).getPropertyValue('--my-property'));
+  const computedStyle = getComputedStyle(div);
+  console.log(computedStyle.getPropertyValue('--my-property'));
+  console.log(computedStyle.getPropertyValue('color'));
 </script>
 </htmlexample>
 
 ----
 prototype.setPropertyValue(name : String, value : String, [priority : String]) : String
 
-Sets the value of the specified CSS variable. If specified, **priority** must be one of **'important'** or **''**.
+Sets the value of the specified CSS property/variable. If specified, **priority** must be one of **'important'** or **''**.
 
 <htmlexample>
 <style>
@@ -991,5 +993,9 @@ Sets the value of the specified CSS variable. If specified, **priority** must be
 <script>
   const div = document.querySelector('div');
   div.style.setProperty('--my-property', 'blue');
+
+  // The following are equivalent:
+  div.style.setProperty('font-size', '2em');
+  div.style.fontSize = '2em';
 </script>
 </htmlexample>
