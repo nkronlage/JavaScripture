@@ -44,6 +44,10 @@ instance.name : String
 ----
 instance.type : String
 
+Must be one of **'button'**, **'reset'**, or **'submit'**. Defaults to **'submit'**.
+
+Spec:
+https://html.spec.whatwg.org/#attr-button-type
 
 ----
 instance.value : String
