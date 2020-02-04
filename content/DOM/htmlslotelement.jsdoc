@@ -76,3 +76,11 @@ prototype.assignedElements([options : { flatten : Boolean } ]) : Array<Elements>
   <span>4</span>
 </my-element>
 </htmlexample>
+
+----
+event.slotchange : listener(event : Event) : undefined
+
+Fired when a child of the slot is added or removed.
+
+Spec:
+https://html.spec.whatwg.org/multipage/indices.html#event-slotchange
