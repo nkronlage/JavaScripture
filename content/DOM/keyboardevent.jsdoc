@@ -129,8 +129,8 @@ true
 ----
 instance.metaKey : Boolean
 
-Returns **true** if the keyboard's meta (Command on Mac, not available on Windows) 
-key is pressed.
+Returns **true** if the keyboard's meta (Command on Mac, the Windows logo key in
+some PC browsers) key is pressed.
 
 <htmlexample>
 <input id='input'>
