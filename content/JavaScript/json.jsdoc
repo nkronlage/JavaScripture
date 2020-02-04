@@ -73,8 +73,21 @@ be on a new line with the **indent** string before the key.
 var x = { foo: 1, bar: 2 };
 
 var replacer = function(key, value) {
-  console.log('replacer called with key="' + key + '", value=' + value);
+  console.log('replacer called with key="' + key + '", value=' + value, ', this=' + this);
   if (key === 'foo') return value * 10;
+  return value;
+}
+console.log(JSON.stringify(x, replacer, ' '));
+
+// If the object has a toJSON method, that will be called
+// before calling the replacer. The original object is
+// available as 'this[key]' inside replacer.
+// Note, the replacer must be a 'function() {}' instead of
+// '=>' function to get the correct 'this'.
+x = { foo: 1, bar: 2, toJSON() { return 'my toJSON'; } };
+
+replacer = function(key, value) {
+  console.log('replacer called with key="' + key + '", value=' + value, ', (this[key]===x)=' + (this[key]=== x));
   return value;
 }
 console.log(JSON.stringify(x, replacer, ' '));
