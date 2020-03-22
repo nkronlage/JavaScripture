@@ -68,17 +68,20 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.1
 ----
 parseInt(str : String, [base : Number]) : Number
 
-Converts **str** into an integral number. If **base** is not specified, **parseInt** 
-will attempt to determine the base to use depending on the input. **parseInt** is 
+Converts **str** into an integral number. If **base** is not specified, **parseInt**
+will attempt to determine the base to use depending on the input. **parseInt** is
 more forgiving than **Number(str)** (or equivalently **+str**) in that it will ignore
 extra characters after the numeric portion of the string.  If the first character
 is not a valid number in the specified **base**, **parseInt** will return %%#NaN|**NaN**%%.
+
+See also %%Number#parseInt|Number.parseInt%%.
 
 <example>
 console.log(parseInt('12'));
 console.log(parseInt('0x12'));    // Detected hex
 console.log(parseInt('012'));     // Detected octal
 console.log(parseInt('012', 10)); // Force decimal
+console.log(parseInt == Number.parseInt); // Also available on the Number object
 </example>
 
 
@@ -91,8 +94,11 @@ parseFloat(str : String) : Number
 
 Converts **str** into a floating point number.
 
+See also %%Number#parseFloat|Number.parseFloat%%.
+
 <example>
 console.log(parseFloat('3.14') * 2);
+console.log(parseFloat === Number.parseFloat); // Also available on the Number object
 </example>
 
 Spec:
