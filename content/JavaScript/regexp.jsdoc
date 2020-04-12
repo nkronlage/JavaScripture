@@ -41,7 +41,8 @@ prototype.exec(str : String) : Array<String>
 If **this** matches **str**, returns a new **Array** with item **0** equal to the
 portion of **str** that matched the regular expression, item **1** equal to the
 first capturing group in **this**, item **2** equal to the second capturing group in
-**this**, and so on. If **this** doesn't match **str**, returns **null**.
+**this**, and so on. If **this** doesn't match **str**, returns **null**. See also
+%%/String#match|String.match()%%.
 
 <example>
 var regexp = /(\d\d\d)-(\d\d\d\d)/;
@@ -53,10 +54,25 @@ if (result) {
 }
 </example>
 <p>
+You can name capture groups by placing **?<<em>name</em>>** at the start of the group.
+The captured values are available on a **groups** property on the returned array. Note,
+this is new with ECMAScript 2018.
+</p>
+<example>
+var regexp = /(?<areacode>\d\d\d)-(?<number>\d\d\d-\d\d\d\d)/;
+var result = regexp.exec('call me: 333-555-4385');
+if (result) {
+  console.dir(result.groups.areacode);
+  console.dir(result[1]);
+  console.dir(result.groups.number);
+  console.dir(result[2]);
+}
+</example>
+<p>
 If **this** is a %%#global|**global**%% RegExp, **exec** can be called repeatedly
 to get all matches. Each time it is called, it updates
 %%#lastIndex|**this.lastIndex**%% and begins the search from there. When there are
-no more matches, returns **null**.
+no more matches, returns **null**. See also %%/String#matchAll|String.matchAll()%%.
 </p>
 <example>
 var regexp = /(\w+): (\d+)/g;
@@ -106,7 +122,7 @@ instance.global : Boolean
 
 **true** if the **RegExp** was created with the **'g'** flag.  Global **RegExp**s
 will match each place %%#source|**this.source**%% occurs in the string, not just the
-first match.
+first match. See also %%/String#matchAll|String.matchAll()%%.
 
 <example>
 console.log('abcba'.replace(/b/, 'X'));

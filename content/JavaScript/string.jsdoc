@@ -199,7 +199,8 @@ portion of **this** that matched the regular expression, item **1** equal to the
 capturing group in **regexp**, item **2** equal to the second capturing group in **regexp**,
 and so on.  The returned **Array** will also have an **index** property set to the
 starting index of the match and an **input** property set to **this**. 
-If **regexp** doesn't match **this**, returns **null**.
+If **regexp** doesn't match **this**, returns **null**. See also 
+%%#matchAll|String.matchAll()%% and %%/RegExp#exec|RegExp.exec()%%.
 
 <example>
 var regexp = /(\d\d\d)-(\d\d\d\d)/;
@@ -213,9 +214,58 @@ if (result) {
   console.log('input: ' + result.input);
 }
 </example>
+<p>
+You can name capture groups by placing **?<<em>name</em>>** at the start of the group.
+The captured values are available on a **groups** property on the returned array. Note,
+this is new with ECMAScript 2018.
+</p>
+<example>
+var regexp = /(?<areacode>\d\d\d)-(?<number>\d\d\d-\d\d\d\d)/;
+var result = 'call me: 333-555-4385'.match(regexp);
+if (result) {
+  console.dir(result.groups.areacode);
+  console.dir(result[1]);
+  console.dir(result.groups.number);
+  console.dir(result[2]);
+}
+</example>
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.10
+
+----
+prototype.matchAll(regexp : RegExp) : Iterator<Array<String>>
+
+Returns an iterator of all places regexp matches **this**. **regexp** must be a 
+%%/RegExp#global|global%% RegExp.
+
+
+<example>
+const string = 'a: 12, b: 5, d: 6';
+
+// Find all numbers in the string
+let regexp = /\d+/g;
+for (const match of string.matchAll(regexp)) {
+  console.log(match[0]);
+}
+console.log();
+
+// Capture groups are available in the 1, 2, ... elements of the array
+regexp = /(\w+): (\d+)/g;
+for (const match of string.matchAll(regexp)) {
+  console.log(match[1], match[2]);
+}
+console.log();
+
+// Capture groups can also be named
+regexp = /(?<key>\w+): (?<value>\d+)/g;
+for (const match of string.matchAll(regexp)) {
+  console.log(match.groups.key, match.groups.value);
+}
+</example>
+
+Version:
+ECMAScript 2020
 
 ----
 prototype.replace(searchValue : String, replaceValue : String) : String

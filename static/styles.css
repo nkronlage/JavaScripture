@@ -482,6 +482,6 @@ div.popup {
 .members-collapsed .member-body {
   display: none; }
 
-.ecmascript2016, .ecmascript2017 {
+.ecmascript2017, .ecmascript2018, .ecmascript2019, .ecmascript2020 {
   background: #FFE780;
   color: #413500; }
