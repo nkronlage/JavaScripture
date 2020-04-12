@@ -37,8 +37,21 @@ console.log(JSON.stringify(x, [&#39;foo&#39;]));
 var x = { foo: 1, bar: 2 };
 
 var replacer = function(key, value) {
-  console.log(&#39;replacer called with key=&#34;&#39; + key + &#39;&#34;, value=&#39; + value);
+  console.log(&#39;replacer called with key=&#34;&#39; + key + &#39;&#34;, value=&#39; + value, &#39;, this=&#39; + this);
   if (key === &#39;foo&#39;) return value * 10;
+  return value;
+}
+console.log(JSON.stringify(x, replacer, &#39; &#39;));
+
+// If the object has a toJSON method, that will be called
+// before calling the replacer. The original object is
+// available as &#39;this[key]&#39; inside replacer.
+// Note, the replacer must be a &#39;function() {}&#39; instead of
+// &#39;=&gt;&#39; function to get the correct &#39;this&#39;.
+x = { foo: 1, bar: 2, toJSON() { return &#39;my toJSON&#39;; } };
+
+replacer = function(key, value) {
+  console.log(&#39;replacer called with key=&#34;&#39; + key + &#39;&#34;, value=&#39; + value, &#39;, (this[key]===x)=&#39; + (this[key]=== x));
   return value;
 }
 console.log(JSON.stringify(x, replacer, &#39; &#39;));
