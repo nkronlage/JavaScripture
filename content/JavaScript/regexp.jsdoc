@@ -54,7 +54,7 @@ if (result) {
 }
 </example>
 <p>
-You can name capture groups by placing **?<<em>name</em>>** at the start of the group.
+You can name capture groups by placing **?&lt;<em>name</em>&gt;** at the start of the group.
 The captured values are available on a **groups** property on the returned array. Note,
 this is new with ECMAScript 2018.
 </p>
