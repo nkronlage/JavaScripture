@@ -1,7 +1,8 @@
 Number : Object
 
 A numerical value. JavaScript stores numbers as 64 bit (8 byte) double 
-precision floats. See %%/Math|Math%% for helpful math related functions. 
+precision floats. See %%/Math|Math%% for helpful math related functions.
+See also %%/BigInt|BigInt%%.
 
 Primitive:
 true

@@ -1,0 +1,86 @@
+BigInt : Object
+
+An arbitrarily large integer value. Allows storing integers larger than what 
+%%/Number|Number%% allows.
+
+Spec:
+https://tc39.es/ecma262/#sec-bigint-objects
+
+Version:
+ECMAScript 2020
+
+----
+BigInt(int : Number) : BigInt
+
+Creates a BigInt for the specified number. **int** should be between
+%%/Number#MIN_SAFE_INTEGER|Number.MIN_SAFE_INTEGER%% and
+%%/Number#MIN_SAFE_INTEGER|Number.MAX_SAFE_INTEGER%%.
+
+<example>
+// The following are equivalent
+const w = BigInt(15);
+const x = 15n; // Decimal
+const y = 0xFn; // Hex
+const z = 0b1111n; // Binary
+
+console.log(w + x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-bigint-constructor-number-value
+
+----
+BigInt(int : String) : BigInt
+
+Converts the specified string to a BigInt. Allows constructing BigInts
+larger than %%/Number|Number%%s.
+
+<example>
+// The following are equivalent
+const x = BigInt('15');
+const y = BigInt('0xF'); // Hex
+const z = BigInt('0b1111'); // Binary
+
+// The String constructor allows creating BigInts larger than Number allows
+const a = BigInt('9999999999999999');
+const b = BigInt(9999999999999999); // Exceeds Number.MAX_SAFE_INTEGER
+const c = 9999999999999999n;
+console.log(a);
+console.log(b);
+console.log(c);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-bigint-constructor-number-value
+
+----
+prototype.asIntN(n : Number, bigInt : BigInt) : Number
+
+Truncates **bigInt** to an **n**-bit signed integer.
+
+<example>
+console.log(BigInt.asIntN(16, 0x0001n));
+console.log(BigInt.asIntN(16, 0x7FFFn));
+console.log(BigInt.asIntN(16, 0x8000n));
+console.log(BigInt.asIntN(16, 0xFFFFn));
+console.log(BigInt.asIntN(16, 0x10000n));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-bigint.asintn
+
+----
+prototype.asUintN(n : Number, bigInt : BigInt) : Number
+
+Truncates **bigInt** to an **n**-bit unsigned integer.
+
+<example>
+console.log(BigInt.asUintN(16, 0x0001n));
+console.log(BigInt.asUintN(16, 0x7FFFn));
+console.log(BigInt.asUintN(16, 0x8000n));
+console.log(BigInt.asUintN(16, 0xFFFFn));
+console.log(BigInt.asUintN(16, 0x10000n));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-bigint.asuintn
