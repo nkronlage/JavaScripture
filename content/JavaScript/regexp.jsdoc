@@ -116,6 +116,38 @@ true
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.1
 
+----
+instance.dotAll : Boolean
+
+**true** if the **RegExp** was created with the **'s'** flag.
+
+DotAll **RegExp**s will match any character for **'.'** including new lines (**'\r'** or **'\n'**)
+which do not match **'.'** by default.
+
+Another option is to replace **'.'** with an empty inverted character class
+match **'[^]'** for systems that do not support ECMAScript 2018.
+
+See also %%#multiline|**multiline**%%.
+
+<example>
+var str = '"a quote\nover multiple lines"';
+
+// The following fails because . does not match \n without the s suffix
+console.log(/".*"/.test(str));
+
+// The s suffix allows . to match \n
+console.log(/".*"/s.test(str));
+
+// Alternatively, use the empty inverted character class
+console.log(/"[^]*"/.test(str));
+</example>
+
+ReadOnly:
+true
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.2
+
 
 ----
 instance.global : Boolean
@@ -159,18 +191,12 @@ instance.multiline : Boolean
 **RegExp**s will match **'^'** to the beginning of lines as well as the 
 beginning of the string and match **'$'** to the end of lines as well as 
 the end of the string. Note that **multiline** does not affect the **'.'**
-character class.  In JavaScript, **'.'** does not match new lines
-(**'\r'** or **'\n'**). To match all characters including new lines, you can
-use the empty inverted character class match **'[^]'**.
+character class. See %%#dotAll|**dotAll**%% for more details.
 
 <example>
 var str = 'hello\nworld';
 console.log(/^world/.test(str));
 console.log(/^world/m.test(str));
-
-str = '"a quote\nover multiple lines"';
-console.log(/".*"/.test(str));
-console.log(/"[^]*"/.test(str));
 </example>
 
 ReadOnly:

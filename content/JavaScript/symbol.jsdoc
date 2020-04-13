@@ -38,6 +38,22 @@ Spec:
 http://www.ecma-international.org/ecma-262/10.0/#sec-symbol-description
 
 ----
+instance.description : String
+
+Returns the description passed to the Symbol during construction.
+
+<example>
+var mySymbol = Symbol('MySymbol');
+console.log(mySymbol.description);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-symbol.prototype.description
+
+Version:
+ECMAScript 2019
+
+----
 asyncIterator : Symbol
 
 

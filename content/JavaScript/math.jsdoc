@@ -678,6 +678,7 @@ Returns **x** raised to the **y** power.
 
 <example>
 console.log(Math.pow(2, 3));
+console.log(2 ** 3); // Equivalent to above (ECMAScript 2016)
 </example>
 
 Spec:
@@ -701,6 +702,7 @@ var randomInt = function(min, max) {
 console.log(randomInt(0, 100));
 console.log(randomInt(0, 100));
 console.log(randomInt(0, 100));
+console.log();
 
 // Produce a normally distributed random number using the Box-Muller transform
 var randn = function() {
@@ -717,9 +719,18 @@ var randn = function() {
   return randn.distance * Math.cos(randn.angle);
 }
 
-console.log(randn());
-console.log(randn());
-console.log(randn());
+var minIndex = -4, maxIndex = 5;
+var buckets = [];
+for (let i = 0; i < 100; i++) {
+  var index = Math.round(2 * randn());
+  minIndex = Math.min(minIndex, index);
+  maxIndex = Math.max(maxIndex, index);
+  buckets[index] = (buckets[index] ?? 0) + 1;
+}
+
+for (let i = minIndex; i <= maxIndex; i++) {
+  console.log(`${i / 2}`.padStart(4), ''.padStart(buckets[i], '*'));
+}
 </example>
 
 Spec:

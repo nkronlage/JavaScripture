@@ -316,6 +316,50 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.fill
 
 ----
+prototype.flat([depth = 1 : Number]):Array
+
+Returns a new Array by flattening sub arrays into the array up to the specified
+**depth**.
+
+<example>
+var x = [1, [2, 3], 4, [5, 6, [7, 8], 9]];
+console.dir(x);
+console.dir(x.flat());
+console.dir(x.flat(2));
+</example>
+
+Version:
+ECMAScript 2019
+
+Spec:
+https://tc39.es/ecma262/#sec-array.prototype.flat
+
+----
+prototype.flatMap(callback(item:Object, index:Number, array:Array):Object, [thisArg:Object]):Array
+
+Returns a new **Array** with where each item is the result of calling
+**callback** on each item in **this**. If the return of **callback** is an Array,
+that Array will be flattened into the Array returned by **flatMap**.
+See also %%#map|**map()**%%.
+
+<example>
+var x = [1, 2, 3];
+var callback = (i, index) => [i, i * index];
+var y = x.flatMap(callback);
+console.dir(y);
+
+// flatMap is essentially equivalent to:
+var z = x.map(callback).flat();
+console.dir(z);
+</example>
+
+Version:
+ECMAScript 2019
+
+Spec:
+https://tc39.es/ecma262/#sec-array.prototype.flatmap
+
+----
 prototype.forEach(callback(item:Object, index:Number, array:Array):undefined, [thisArg:Object]):undefined
 
 Calls **callback** for each item in **this**.
@@ -425,6 +469,8 @@ Returns a new **Array** with where each item is the result of calling
 **callback** on each item in **this**.
 
 The **Array** passed to **callback** is the **this** of the call to **map**.
+
+See also %%#flatMap|**flatMap()**%%.
 
 <example>
 var numbers = [1, 2, 3, 4];

@@ -8,9 +8,37 @@ Spec:
 https://html.spec.whatwg.org/#the-workerglobalscope-common-interface
 
 ----
+instance.globalThis : WorkerGlobalScope
+
+Returns the global object itself. This is the same as %%#self|self%%
+(in a %%/Worker|Worker%% context).
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  postMessage(`globalThis === self: ${globalThis === self}`);
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log(e.data);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Version:
+ECMAScript 2020
+
+----
 instance.self : WorkerGlobalScope
 
-Returns the global object itself.
+Returns the global object itself. This is the same as %%#globalThis|globalThis%%
+(in a %%/Worker|Worker%% context).
 
 <htmlexample>
 <script id='code' type='text/plain'>

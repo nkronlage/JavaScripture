@@ -268,6 +268,74 @@ Version:
 ECMAScript 2020
 
 ----
+prototype.padEnd(minLength : Number, [fill = ' ' : String]) : String
+
+Returns a new string with **fill** added to the end of **this**
+until %%#length|**length**%% is equal to **minLength**. If **length**
+is already greater than or equal to **minLength**, returns **this**
+unchanged.
+
+<example>
+console.log('x'.padEnd(6) + '.');
+console.log('long'.padEnd(6) + '.');
+console.log('really long'.padEnd(6) + '.');
+console.log();
+
+console.log('x'.padEnd(10, '.'));
+console.log('y'.padEnd(10, '-_'));
+console.log();
+
+for (let i = -4; i <= 4; i++) {
+  var cols = [i, i * i, i / 4];
+  var colLengths = [5, 5, 7];
+  var colStrings = cols.map(function(x, index) {
+    return x.toString().padEnd(colLengths[index]);
+  })
+  console.log(colStrings.join(' | '));
+}
+</example>
+
+Version:
+ECMAScript 2017
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.padend
+
+----
+prototype.padStart(minLength : Number, [fill = ' ' : String]) : String
+
+Returns a new string with **fill** added to the start of **this**
+until %%#length|**length**%% is equal to **minLength**. If **length**
+is already greater than or equal to **minLength**, returns **this**
+unchanged.
+
+<example>
+console.log('x'.padStart(6));
+console.log('long'.padStart(6));
+console.log('really long'.padStart(6));
+console.log();
+
+console.log('x'.padStart(10, '.'));
+console.log('y'.padStart(10, '-_'));
+console.log();
+
+for (let i = -4; i <= 4; i++) {
+  var cols = [i, i * i, i / 4];
+  var colLengths = [5, 5, 7];
+  var colStrings = cols.map(function(x, index) {
+    return x.toString().padStart(colLengths[index]);
+  })
+  console.log(colStrings.join(' | '));
+}
+</example>
+
+Version:
+ECMAScript 2017
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.padstart
+
+----
 prototype.replace(searchValue : String, replaceValue : String) : String
 
 Returns a new **String** where the first occurrence of **searchValue** in **this** is 
@@ -525,6 +593,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.19
 prototype.trim() : String
 
 Returns a copy of **this** with leading and trailing whitespace removed.
+See also %%#trimStart|**trimStart()**%% and %%#trimEnd|**trimEnd()**%%.
 
 <example>
 var x = ' \t ab c ';
@@ -534,6 +603,40 @@ console.log("'" + x + "'"); // x is unchanged
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.20
+
+----
+prototype.trimEnd() : String
+
+Returns a copy of **this** with trailing whitespace removed.
+See also %%#trim|**trim()**%% and %%#trimStart|**trimStart()**%%.
+
+<example>
+var x = ' \t ab c ';
+console.log("'" + x.trimEnd() + "'");
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.trimend
+
+Version:
+ECMAScript 2019
+
+----
+prototype.trimStart() : String
+
+Returns a copy of **this** with leading whitespace removed.
+See also %%#trim|**trim()**%% and %%#trimEnd|**trimEnd()**%%.
+
+<example>
+var x = ' \t ab c ';
+console.log("'" + x.trimStart() + "'");
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.trimstart
+
+Version:
+ECMAScript 2019
 
 ----
 fromCharCode(char0 : Number,  [char1 : Number, [...]]) : String

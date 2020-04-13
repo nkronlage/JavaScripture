@@ -106,6 +106,8 @@ be on a new line with the **indent** string before the key.
 <example>
 var x = { foo: 1, bar: 2 };
 console.log(JSON.stringify(x, ['foo']));
+
+console.log(JSON.stringify(x, null, '  '));
 </example>
 
 Spec:

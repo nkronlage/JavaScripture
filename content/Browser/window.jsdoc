@@ -46,13 +46,45 @@ instance.top : Window
 ReadOnly:
 true
 
+----
+instance.globalThis : Window
+
+Returns the global object for the browser. Also available through 
+the %%#window|**window**%% property, %%#self|**self**%% property,
+and **this** in the root scope.
+
+<htmlexample>
+<script>
+  console.log(globalThis === this);
+  console.log(globalThis === window);
+  console.log(globalThis === self);
+  console.log(globalThis === globalThis.globalThis);
+
+  const myLink = {
+    location: 'my-link-location',
+    click() {
+      console.log(`this.location: ${this.location}`);
+      console.log(`globalThis.location: ${globalThis.location}`);
+    }
+  };
+
+  myLink.click();
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Version:
+ECMAScript 2020
 
 ----
 instance.window : Window
 
 Returns the global object for the browser. Also available
-through the %%#self|**self**%% property and through **this**
-in the root scope.
+through the %%#self|**self**%% property, through **this**
+in the root scope, and through the %%#globalThis|**globalThis**%%
+property (in ECMAScript 2020).
 
 <htmlexample>
 <script>

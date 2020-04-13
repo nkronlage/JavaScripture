@@ -77,6 +77,36 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-promise.prototype.catch
 
 ----
+prototype.finally(onFinally() : undefined) : Promise
+
+Also schedules **onFinally** to be called when the promise has been either resolved
+or rejected.
+
+<example>
+var promise = new Promise((reject, resolve) => {
+  let x = Math.random();
+  if (x < 0.5) {
+    resolve(x);
+  }
+  else {
+    reject(x);
+  }
+}).then(x => {
+  console.log('resolved:', x);
+}).catch(e => {
+  console.log('rejected:', e);
+}).finally(() => {
+  console.log('in finally');
+});
+</example>
+
+Version:
+ECMAScript 2018
+
+Spec:
+https://tc39.es/ecma262/#sec-promise.prototype.finally
+
+----
 prototype.then(onResolve(value : Object) : Object, [onReject(error : Error) : Object]) : Promise
 
 <p>
@@ -162,12 +192,12 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-promise.prototype.then
 
 ----
-all(promises : Iterable<Promise>) : Promise
+all(promises : Iterable<Promise>) : Promise<Array>
 
 Creates a new Promise that will be resolved when all of **promises**
 are resolved. If any of the promises are rejected, the returned Promise
 will be rejected immediately and will provide the value of the
-Promise that was rejected.
+Promise that was rejected. See also %%#allSettled|allSettled()%%.
 
 <example>
 var promises = [];
@@ -182,7 +212,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 Promise.all(promises).then(function(results) {
-  console.log('all results:')
+  console.log('all results:');
   for (var result of results) {
     console.log('  ' + result);
   }
@@ -191,6 +221,46 @@ Promise.all(promises).then(function(results) {
 
 Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-promise.all
+
+----
+allSettled(promises : Iterable<Promise>) : Promise<Array>
+
+Creates a new Promise that will be resolved when all of **promises**
+are resolved or rejected. The result of the promise is an Array
+containing objects with a **status** property (containing either **'fulfilled'**
+or **'rejected'**) and either a **value** property (for fulfilled promises) or
+**reason** property (for rejected promises). See also %%#all|all()%%.
+
+<example>
+var promises = [];
+
+for (let i = 0; i < 10; i++) {
+  promises.push(new Promise(function(resolve, reject) {
+    var timeout = i * 10;
+    setTimeout(function() {
+      if (i % 3 === 0) {
+        reject('rejecting after ' + timeout + ' milliseconds');
+      }
+      else {
+        resolve('resolving after ' + timeout + ' milliseconds');
+      }
+    }, timeout);
+  }));
+}
+
+Promise.allSettled(promises).then(function(results) {
+  console.log('all results:');
+  for (var result of results) {
+    console.dir(result);
+  }
+});
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-promise.allsettled
+
+Version:
+ECMAScript 2020
 
 ----
 race(promises : Iterable<Promise>) : Promise
@@ -213,7 +283,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 Promise.race(promises).then(function(result) {
-  console.log('first result: ' + result)
+  console.log('first result: ' + result);
 });
 </example>
 
