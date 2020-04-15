@@ -145,6 +145,9 @@ console.log(/"[^]*"/.test(str));
 ReadOnly:
 true
 
+Version:
+ECMAScript 2018
+
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.2
 
