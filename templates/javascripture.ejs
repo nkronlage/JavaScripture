@@ -539,7 +539,7 @@ var executeExample = function(example, prop) {
     var scriptBody;
 
     if (asyncFunctionsSupported) {
-      scriptBody = '(async()=>{' + code.value + '})().catch(e=>javascriptureReportError(e))';
+      scriptBody = '(async()=>{' + code.value + '\n})().catch(e=>javascriptureReportError(e))';
     }
     else {
       scriptBody = code.value;
