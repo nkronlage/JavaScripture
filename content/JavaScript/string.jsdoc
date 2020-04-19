@@ -96,6 +96,24 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.5
 
 ----
+prototype.codePointAt(pos : Number) : Number
+
+Returns the UTF-32 code point of starting at **pos**. If the UTF-16 value at 
+**pos** does not start a surrogate pair, the returned value will be the UTF-16
+value at **pos**.
+Use 
+%%#fromCodePoint|**String.fromCodePoint()**%% to generate a string from 
+code points.
+
+<example>
+console.log('abc'.codePointAt(2));
+console.log('😀🐱⚽️'.codePointAt(2).toString(16));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.codepointat
+
+----
 prototype.concat(string0 : String, [string1 : String, [...]]) : String
 
 Returns a new **String** formed by joining each of the string parameters.
@@ -108,6 +126,23 @@ console.log(x); // x is unchanged
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.6
+
+----
+prototype.endsWith(searchString : String, [endIndex : Number]) : Boolean
+
+Returns **true** if **searchString** is at the end of **this**.
+
+If **endIndex** is specified, the last character of **searchString** must 
+be at **endIndex - 1** in **this**.
+
+<example>
+var a = 'abcxyz';
+console.log(a.endsWith('xyz'));
+console.log(a.endsWith('xy', 5));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.endswith
 
 ----
 prototype.includes(searchString : String, [startingIndex = 0 : Number]) : Boolean
@@ -268,6 +303,32 @@ Version:
 ECMAScript 2020
 
 ----
+prototype.normalize(form : String) : String
+
+Returns a normalized form of **this** according to **form**. **form** must be one
+of **'NFC'**, **'NFD'**, **'NFKC'**, or **'NFKD'**. See 
+%%https://unicode.org/reports/tr15/|https://unicode.org/reports/tr15/%%.
+
+<example>
+// See Figure 3 in https://unicode.org/reports/tr15/
+var a = String.fromCharCode(0x212B);
+
+var printString = function(form, s) {
+  var charCodes = [...s].map(c => `   ${c}  0x${c.charCodeAt(0).toString(16)}  `);
+  console.log(form, ' ', s, ' ', s.length, charCodes.join(' '));
+};
+
+console.log();
+console.log('         len  char/code0  char/code1');  
+printString('   ', a);
+printString('NFD', a.normalize('NFD'));
+printString('NFC', a.normalize('NFC'));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.normalize
+
+----
 prototype.padEnd(minLength : Number, [fill = ' ' : String]) : String
 
 Returns a new string with **fill** added to the end of **this**
@@ -350,6 +411,19 @@ console.log(x); // x is unchanged
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 
+
+----
+prototype.repeat(count : Number) : String
+
+Returns a new **String** formed by repeating **this** **count** times.
+
+<example>
+console.log('.'.repeat(5));
+console.log('-_'.repeat(5));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.repeat
 
 ----
 prototype.replace(searchValue : String, replaceFunction(match : String, offset : Number, string : String) : String) : String
@@ -507,6 +581,23 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.14
 
 ----
+prototype.startsWith(searchString : String, [startingIndex = 0: Number]) : Boolean
+
+Returns **true** if **searchString** is at the beginning of **this**.
+
+If **startingIndex** is specified, **searchString** must be at **startingIndex**
+in **this**.
+
+<example>
+var a = 'abcxyz';
+console.log(a.startsWith('abc'));
+console.log(a.startsWith('bc', 1));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.endswith
+
+----
 prototype.substring(start : Number, [end : Number]) : String
 
 Returns a new string composed of the section of **this** between **start** and
@@ -639,10 +730,13 @@ Version:
 ECMAScript 2019
 
 ----
-fromCharCode(char0 : Number,  [char1 : Number, [...]]) : String
+fromCharCode(char0 : Number, [char1 : Number, [...]]) : String
 
-Returns a new string composed of characters from the specified unicode values.
+Returns a new string composed of characters from the specified UTF-16 values.
+Each code should be between 0 and 0xFFFF inclusive.
 Use %%#charCodeAt|**charCodeAt()**%% to retrieve character codes from strings.
+
+See also %%#fromCodePoint|**fromCodePoint()**%%.
 
 <example>
 console.log(String.fromCharCode(97, 98, 99));
@@ -652,3 +746,21 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.3.2
 
 
+----
+fromCodePoint(codePoint0 : Number, [codePoint1 : Number, [...]]) : String
+
+Returns a new string composed of characters from the specified UTF-32 code points.
+Each code point should be between 0 and 0x10FFFF inclusive.
+
+Use %%#codePointAt|**codePointAt()**%% to retrievecodes from strings.
+
+See also %%#fromCharCode|**fromCharCode()**%%.
+
+<example>
+console.log(String.fromCharCode(0xD83D, 0xDE00));
+console.log(String.fromCodePoint(0xD83D, 0xDE00));
+console.log(String.fromCodePoint(0x1F600));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.fromcodepoint
