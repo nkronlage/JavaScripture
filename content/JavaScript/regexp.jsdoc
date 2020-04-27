@@ -19,9 +19,7 @@ new RegExp(pattern : String, [flags : String]) : RegExp
 
 
 Constructs a new **RegExp** for the specified **pattern**. 
-If **flags** contains **'g'**, %%#global|**this.global**%% will be set to **true**.  
-If **flags** contains **'i'**, %%#ignoreCase|**this.ignoreCase**%% will be set to **true**.  
-If **flags** contains **'m'**, %%#multiline|**this.multiline**%% will be set to **true**. 
+See %%#flags|**flags**%% for acceptable flag values.
 
 **RegExp**s can also be constructed using **/pattern/flags** syntax.
 
@@ -151,6 +149,26 @@ ECMAScript 2018
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.2
 
+----
+instance.flags : String
+
+Returns the flags specified when constructing **this**.
+Each character in **flags** represents a different option of the RegExp.
+**'g'** is for %%#global|**global**%%.
+**'i'** is for %%#ignoreCase|**ignoreCase**%%.
+**'m'** is for %%#multiline|**multiline**%%.
+**'s'** is for %%#dotAll|**dotAll**%%.
+**'y'** is for %%#sticky|**sticky**%%.
+
+<example>
+console.log(/./gim.flags);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.2
 
 ----
 instance.global : Boolean
@@ -211,9 +229,11 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.4
 ----
 instance.lastIndex : Number
 
-The starting index into the string for the next search.  Is automatically set to the
-index after a successful match. This property only applies if the **RegExp** is
-%%#global|**global**%%.
+The starting index into the string for the next search. If **this** is
+%%#sticky|**sticky**%%, the match must be found starting exactly at **lastIndex**.
+**lastIndex** is automatically set to the found index after a successful match.
+This property only applies if the **RegExp** is %%#global|**global**%% or
+%%#sticky|**sticky**.
 
 <example>
 var regexp = /foo|bar|baz/g;
@@ -223,7 +243,30 @@ regexp.lastIndex = 5;
 console.log(regexp.exec('foo bar baz')[0]);
 </example>
 
-
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.5
 
+----
+instance.sticky : Boolean
+
+**true** if the **RegExp** was created with the **'y'** flag. Sticky
+**RegExp**s will only look for matches that start exactly at
+%%#lastIndex|**lastIndex**%%. Non-sticky **RegExp**s will try finding
+a match at all subsequent positions in the string if there's no match
+at **lastIndex**.
+
+<example>
+var nonSticky = /bar/;
+console.log(nonSticky.test('foo bar baz'));
+
+var sticky = /bar/y;
+console.log(sticky.test('foo bar baz'));
+sticky.lastIndex = 4;
+console.log(sticky.test('foo bar baz'));
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://tc39.es/ecma262/#sec-get-regexp.prototype.sticky
