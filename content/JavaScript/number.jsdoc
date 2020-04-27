@@ -11,9 +11,28 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.7
 
 ----
+Number(value : BigInt) : Number
+
+Converts the specified BigInt to a Number. For **value**s outside the range
+%%#MIN_SAFE_INTEGER|MIN_SAFE_INTEGER%% to
+%%#MAX_SAFE_INTEGER|MAX_SAFE_INTEGER%%, the returned Number may be an
+approximation of **value**.
+
+<example>
+var x = Number(100n);
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-bigint.asintn
+
+Version:
+ECMAScript 2020
+
+----
 Number(value : Object) : Number
 
-Coerces **value** to a number.  Usually this method is not necessary since
+Coerces **value** to a number. Usually this method is not necessary since
 JavaScript will automatically coerce a value to a number when it is 
 used in a number context.  **+value** is another way to coerce a value
 to a number. This coercion is very strict and will return %%#NaN|**NaN**%%
