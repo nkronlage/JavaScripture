@@ -57,6 +57,38 @@ console.log(x.byteLength);
 </example>
 
 ----
+prototype.getBigInt64(byteOffset : Number, [littleEndian = false : Boolean]) : BigInt
+
+Returns a signed 64 bit integer out of **this** at the specified offset.
+If **littleEndian** is **true**, the value will be read as little endian
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 7**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setBigInt64(1, 123456790n);
+console.log(x.getBigInt64(1));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-dataview.prototype.getbigint64
+
+----
+prototype.getBigUint64(byteOffset : Number, [littleEndian = false : Boolean]) : BigInt
+
+Returns an unsigned 64 bit integer out of **this** at the specified offset.
+If **littleEndian** is **true**, the value will be read as little endian
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 7**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setBigInt64(1, 123456790n);
+console.log(x.getBigInt64(1));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-dataview.prototype.getbigint64
+
+----
 prototype.getInt8(byteOffset : Number) : Number
 
 Returns a signed byte out of **this** at the specified offset.
@@ -123,8 +155,8 @@ console.log(x.getInt32(1));
 ----
 prototype.getUint32(byteOffset : Number, [littleEndian = false : Boolean]) : Number
 
-Returns an usigned 32 bit integer out of **this** at the specified offset. 
-If **littleEndian** is **true**, the value will be read as little endian 
+Returns an unsigned 32 bit integer out of **this** at the specified offset.
+If **littleEndian** is **true**, the value will be read as little endian
 (least significant byte is at **byteOffset** and most significant at **byteOffset + 3**).
 
 <example>
@@ -164,6 +196,38 @@ console.log(Math.PI);
 </example>
 
 ----
+prototype.setBigInt64(byteOffset : Number, value : BigInt, [littleEndian = false : Boolean]) : undefined
+
+Stores a signed 64 bit integer into **this** at the specified offset.
+If **littleEndian** is **true**, the value will be stored as little endian
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 7**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setBigInt64(1, 123456790n);
+console.log(x.getBigInt64(1));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-dataview.prototype.setbigint64
+
+----
+prototype.setBigUint64(byteOffset : Number, value : BigInt, [littleEndian = false : Boolean]) : undefined
+
+Stores an unsigned 64 bit integer into **this** at the specified offset.
+If **littleEndian** is **true**, the value will be stored as little endian
+(least significant byte is at **byteOffset** and most significant at **byteOffset + 7**).
+
+<example>
+var x = new DataView(new ArrayBuffer(12), 0);
+x.setBigUint64(1, 123456790n);
+console.log(x.getBigUint64(1));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-dataview.prototype.setbiguint64
+
+----
 prototype.setInt8(byteOffset : Number, value : Number) : undefined 
 
 Stores a signed byte into **this** at the specified offset. 
@@ -173,7 +237,6 @@ var x = new DataView(new ArrayBuffer(12), 0);
 x.setInt8(1, 123);
 console.log(x.getInt8(1)); 
 </example>
-
 
 ----
 prototype.setUint8(byteOffset : Number, value : Number) : undefined 
@@ -185,7 +248,6 @@ var x = new DataView(new ArrayBuffer(12), 0);
 x.setUint8(1, 123);
 console.log(x.getUint8(1)); 
 </example>
-
 
 ----
 prototype.setInt16(byteOffset : Number, value : Number, [littleEndian = false : Boolean]) : undefined 

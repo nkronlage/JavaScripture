@@ -189,6 +189,439 @@ y[0] = -1;
 console.log(x[2]);
 </example>
 
+----
+prototype.copyWithin(target : Number, start : Number, [end : Number]) : undefined
+
+Copies **this[start]**, **this[start + 1]**, ... **this[end - 1]**
+to **this[target]**, **this[target + 1]**, ... If **end** is not
+specified, **this.length** is used.
+
+<example>
+var x = new Float64Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+x.copyWithin(0, 5);
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.copywithin
+
+----
+prototype.entries() : Iterator<Array<Number>>
+
+Returns an iterator of the index and items in **this** where the 
+%%Iterator#next|**value**s%% of the iterator are of the form
+**[index : %%/Number|Number%%, item : %%/Number|Number%%]**.
+See also %%#values|**values()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = new Float64Array([8, 9]);
+
+// Use for (... of ...) to loop over the iterator
+for (var entry of x.entries()) {
+  console.dir(entry);
+}
+
+// Or access the iterator manually
+var entries = x.entries();
+
+console.dir(entries.next());
+console.dir(entries.next());
+console.dir(entries.next());
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.entries
+
+----
+prototype.every(callback(item:Number, index:Number, array:Float64Array):Boolean, [thisArg : Object]) : Boolean
+
+Returns **true** if **callback** returns **true** for every item in **this**.
+Otherwise returns **false**. 
+
+The **Float64Array** passed to **callback** is the **this** of the call to **every**.
+
+<example>
+var isEven = function(x) { return (x % 2) === 0; }
+console.log(new Float64Array([2, 22, 36]).every(isEven));
+console.log(new Float64Array([6, 19, 18]).every(isEven));
+console.log(new Float64Array([5, 19, 17]).every(isEven));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.every
+
+----
+prototype.fill(value : Number, [start = 0 : Number, [end : Number]]) : Float64Array
+
+Fills **this[start]**, **this[start + 1]**, ... **this[end - 1]** with
+**value**. 
+If **end** is not specified, **this.length** is used.
+Returns **this**.
+
+<example>
+var x = new Float64Array(5);
+
+console.log(x.fill(7));
+console.log(x.fill(-7, 3));
+console.log(x.fill(9, 0, 2));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.fill
+
+----
+prototype.filter(callback(item:Number, index:Number, array:Float64Array):Boolean, [thisArg:Object]):Float64Array
+
+Returns a new **Float64Array** containing only the items in **this** that **callback** returned
+**true** for.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **filter**.
+
+<example>
+var isEven = function(x) { return (x % 2) === 0; }
+var numbers = new Float64Array([1, 2, 4, 5, 7, 9, 12]);
+console.log(numbers.filter(isEven));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.filter
+
+----
+prototype.find(callback(item:Number, index:Number, array:Float64Array):Boolean, [thisArg : Object]) : Number
+
+Returns the first item in **this** where **callback** returns
+**true** for that item.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **find**.
+
+See also %%#findIndex|**findIndex()**%%.
+
+<example>
+var x = new Float64Array([0, -1, -2, -3, -4]);
+
+console.log(x.find(function(item) {
+  return item < -3;
+}));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.find
+
+----
+prototype.findIndex(callback(item:Number, index:Number, array:Float64Array):Boolean, [thisArg : Object]) : Number
+
+Returns the index of the first item in **this** where **callback** returns
+**true** for that item.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **find**.
+
+See also %%#find|**find()**%%.
+
+<example>
+var x = new Float64Array([0, -1, -2, -3, -4]);
+
+console.log(x.findIndex(function(item) {
+  return item < -3;
+}));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.findindex
+
+----
+prototype.forEach(callback(item:Number, index:Number, array:Float64Array):undefined, [thisArg:Object]):undefined
+
+Calls **callback** for each item in **this**.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **forEach**.
+
+<example>
+var x = new Float64Array([7, 8, 9]);
+x.forEach(function(item, index) {
+  console.log('item at ' + index + ' = ' + item);
+});
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.forEach
+
+----
+prototype.includes(item : Number, [startingIndex = 0 : Number]) : Boolean
+
+Returns **true** if **item** is an element of **this** starting the search from
+**startingIndex**. If **startingIndex** is negative, **this.length** is added to it before
+starting the search.
+
+<example>
+var x = new Float64Array([5, 6, 7, 8, 9]);
+console.log(x.includes(7));
+console.log(x.includes(6, 2));
+console.log(x.includes(8, -2));
+console.log(x.includes(10));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.includes
+
+----
+prototype.indexOf(item:Number, [startingIndex = 0 : Number]):Number
+
+Returns the first location of **item** in **this** starting the search from
+**start**.
+If **startingIndex**
+is negative, **this.length** is added to it before starting the search. 
+Returns **-1** if **item** is not found.
+See also %%#lastIndexOf|**lastIndexOf()**%%.
+
+<example>
+var x = new Float64Array([5, 6, 7, 8, 9, 5, 6]);
+console.log(x.indexOf(6));
+console.log(x.indexOf(6, 2));
+console.log(x.indexOf(5, -2));
+console.log(x.indexOf(10, 2));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.indexOf
+
+----
+prototype.join([separator=',':String]):String
+
+Returns a String created by joining the **toString()** of each item of 
+**this** separated by **separator**.
+
+<example>
+var x = new Float64Array([7, 8, 9]);
+console.log(x.join());
+console.log(x.join(' -- '));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.join
+
+----
+prototype.keys() : Iterator<Number>
+
+Returns an iterator of the indicies in **this**.
+See also %%#entries|**entries()**%% and %%#values|**values()**%%.
+
+<example>
+var x = new Float64Array([8, 9]);
+
+// Use for (... of ...) to loop over the iterator
+for (var key of x.keys()) {
+  console.dir(key);
+}
+
+// Or access the iterator manually
+var keys = x.keys();
+
+console.dir(keys.next());
+console.dir(keys.next());
+console.dir(keys.next());
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.keys
+
+----
+prototype.lastIndexOf(item:Number, [startingIndex:Number]):Number
+
+Returns the location of **item** by searchig backwards through
+**this**, starting the search from **startingIndex**.
+If **startingIndex** is not specified, the search starts from the 
+end of the array. 
+If **startingIndex** is negative, **this.length** is added to it 
+before starting the search. 
+Returns **-1** if **item** is not found.
+See also %%#indexOf|**indexOf()**%%.
+
+<example>
+var x = new Float64Array([5, 6, 7, 8, 9, 5, 6]);
+console.log(x.lastIndexOf(6));
+console.log(x.lastIndexOf(6, 2));
+console.log(x.lastIndexOf(5, -3));
+console.log(x.lastIndexOf(10, 2));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.lastIndexOf
+
+----
+prototype.map(callback(item:Number, index:Number, array:Float64Array):Object, [thisArg:Object]):Array
+
+Returns a new **Float64Array** with where each item is the result of calling
+**callback** on each item in **this**.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **map**.
+
+<example>
+var numbers = new Float64Array([1, 2, 3, 4]);
+var squares = numbers.map(function(x) { return x * x; });
+console.log(squares);
+console.log(numbers);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.map
+
+----
+prototype.reduce(callback(previous:Object, current:Number,index:Number,array:Float64Array):Object, [initialValue:Object]):Object
+
+Calls **callback** for each item in **this** in ascending order (**0** to **length-1**).
+It passes the return value of **callback** for the **i-1**th item as the 
+**previous** parameter for the **i**th item.
+Returns the result from the last call to **callback**.
+If **initialValue** is not specified, **callback** will first
+be called on **this[1]** with **previous** set to **this[0]**.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **reduce**.
+
+<example>
+var x = new Float64Array([0, 1, 2, 3, 4]);
+var sum = function(prev, cur) { return prev + cur; } 
+console.log(x.reduce(sum));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.reduce
+
+----
+prototype.reduceRight(callback(previous:Object, current:Number,index:Number,array:Float64Array):Object, [initialValue:Object]):Object
+
+Calls **callback** for each item in **this** in descending order (**length-1** to **0**).
+It passes the return value of **callback** for the **i+1**th item as the 
+**previous** parameter for the **i**th item.
+Returns the result from the last call to **callback**.
+If **initialValue** is not specified, **callback** will first
+be called on **this[this.length - 2]** with **previous** set to **this[this.length - 1]**.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **reduceRight**.
+
+<example>
+var x = new Float64Array([2, 3]);
+var pow = function(prev, cur) { return prev ** cur; } 
+console.log(x.reduce(pow)); // 2 ** 3
+console.log(x.reduceRight(pow)); // 3 ** 2
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.reduceRight
+
+----
+prototype.reverse() : Float64Array
+
+Reverses the order of the items in **this** and returns **this**.
+
+<example>
+var x = new  Float64Array([1, 2, 3]);
+console.log(x.reverse());
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.reverse
+
+----
+prototype.slice(start:Number, [end:Number]):Float64Array
+
+Returns a new **Float64Array** which is composed of the items **this[start],
+this[start + 1], ..., this[end - 1]**. Note that
+**item[end]** is not included.  If **start** or **end**
+is negative, the value is added to **this.length** before performing
+the slice. If **end** is not specified, **this.length** is used.
+
+<example>
+var x = new Float64Array([0, 1, 2, 3, 4, 5, 6]);
+console.log(x.slice(2));
+console.log(x.slice(2, 3));
+console.log(x.slice(1, -2));
+console.log(x.slice(-4, -1));
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.slice
+
+----
+prototype.some(callback(item : Number, index : Number, array:Float64Array):Boolean, [thisArg:Object]) : Boolean
+
+Returns **true** if **callback** returns **true** for at least one item in 
+**this**. Otherwise returns **false**.
+
+The **Float64Array** passed to **callback** is the **this** of the call to **some**.
+
+<example>
+var isEven = function(x) { return (x % 2) === 0; }
+console.log(new Float64Array([2, 22, 36]).some(isEven));
+console.log(new Float64Array([6, 19, 18]).some(isEven));
+console.log(new Float64Array([5, 19, 17]).some(isEven));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.some
+
+----
+prototype.sort([comparisonFunction(x:Number, y:Number):Number]):Float64Array
+
+Sort the items of **this** using **comparisonFunction** to determine 
+the sort order and returns **this**.
+The Number returned by **comparisonFunction** should be **0** if **x** and 
+**y** are equal, negative if **x** is less than **y**, or positive if **x**
+is greater than **y**. If **comparisonFunction** is not specified, the
+items will be sorted in numeric order.  
+Returns **this**.
+
+<example>
+var x = new Float64Array([52, 7, -14, 22, -9]);
+
+console.log(x.sort());
+
+// Sort by absolute value 
+var absComparison = function(x, y) { 
+  return Math.abs(x) - Math.abs(y);
+};
+console.log(x.sort(absComparison));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.sort
+
+----
+
+prototype.values() : Iterator<Number>
+
+Returns an iterator of the items in **this**. 
+The **values** function is also returned for 
+**this[%%/Symbol#iterator|Symbol.iterator%%]** so you can 
+iterate over **this** directly to get the values.
+See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = new Float64Array([8, 9]);
+
+// values is returned by x[Symbol.iterator] so you can just 
+// use x directly in the for (... of ...) loop
+for (var value of x) {
+  console.dir(value);
+}
+
+// You can iterate over values explicitly
+for (var value of x.values()) {
+  console.dir(value);
+}
+
+// Or access the iterator manually
+var values = x.values();
+
+console.dir(values.next());
+console.dir(values.next());
+console.dir(values.next());
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.values
+
 
 ----
 BYTES_PER_ELEMENT : Number
