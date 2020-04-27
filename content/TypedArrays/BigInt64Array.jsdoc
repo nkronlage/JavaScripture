@@ -1,0 +1,637 @@
+BigInt64Array : ArrayBufferView
+
+BigInt64Array is similar to an %%/Array|**Array**%% where each item is a
+64 bit (8 byte) signed integer. BigInt64Arrays cannot change size after creation.
+
+Spec:
+http://www.khronos.org/registry/typedarray/specs/latest/#7
+
+----
+new BigInt64Array(length : Number) : BigInt64Array
+
+Creates a new **BigInt64Array** of the specified length where
+each item starts out as **0**
+
+<example>
+var x = new BigInt64Array(2);
+x[0] = 17n;
+console.log(x[0]);
+console.log(x[1]);
+console.log(x.length);
+</example>
+
+----
+new BigInt64Array(array : Array<BigInt>) : BigInt64Array
+
+Creates a new **BigInt64Array** and copies the items of **array** into 
+**this**. The copied items are converted to 64 bit integers before
+being stored in **this**.
+
+<example>
+var x = new BigInt64Array([17n, -45n]);
+console.log(x[0]);
+console.log(x[1]);
+console.log(x.length);
+</example>
+
+----
+new BigInt64Array(array : BigInt64Array) : BigInt64Array
+
+Creates a new **BigInt64Array** and copies the items of **array** into 
+**this**. **array** can be any of the typed array types and the copied 
+items will be converted to 64 bit integers before being stored in **this**. 
+
+<example>
+var x = new BigInt64Array([17n, -45n]);
+var y = new BigInt64Array(x);
+console.log(x[0]);
+console.log(x[1]);
+console.log(x.length);
+x[0] = -2n;
+console.log(y[0]); // y is not modified
+</example>
+
+----
+new BigInt64Array(buffer : ArrayBuffer, [byteOffset = 0 : Number, [length : Number]]) : BigInt64Array
+
+Creates a view on top of the specified **buffer** starting at **byteOffset** of
+**length** items. Changes to the items in **this** actual affect the underlying
+**buffer**, and vice versa.  **byteOffset** must be a multiple of 4. (Use 
+%%/DataView|**DataView**%% for unaligned data.) If **length** is not specified,
+**buffer.length - byteOffset** must be a multiple of 4 and
+**this.length** will be **(buffer.length - byteOffset) / 4**.
+
+<example>
+var buffer = new ArrayBuffer(16);
+var x = new BigInt64Array(buffer, 0, 2);
+// Make another view of last 4 bytes of the buffer
+var y = new BigInt64Array(buffer, 8, 1);
+x[1] = 7n;
+console.log(y[0]); // y is a live view on the buffer
+</example>
+
+----
+instance[index : Number] : BigInt
+
+Gets and sets the element in **this** at **index**. 
+**index** should be between **0** and
+**%%#length|this.length%% - 1**.
+
+<example>
+var x = new BigInt64Array(2);
+x[0] = 17n;
+console.log(x[0]);
+console.log(x[1]);
+</example>
+
+----
+instance.buffer : ArrayBuffer
+
+Returns the underlying buffer for this BigInt64Array.
+
+<example>
+var buffer = new ArrayBuffer(24);
+var x = new BigInt64Array(buffer, 0, 2);
+var y = new BigInt64Array(x.buffer, 8, 2);
+console.log(x.buffer === y.buffer); 
+</example>
+
+ReadOnly:
+true
+
+----
+instance.byteOffset : Number
+
+The offset into **this.buffer** where the 0th item is stored.
+
+<example>
+var buffer = new ArrayBuffer(24);
+var x = new BigInt64Array(buffer, 8, 2);
+console.log(x.byteOffset); 
+</example>
+
+ReadOnly:
+true
+
+----
+instance.byteLength : Number
+
+The length of **this** in bytes. 
+
+<example>
+var buffer = new ArrayBuffer(24);
+var x = new BigInt64Array(buffer, 8, 2);
+console.log(x.byteLength); 
+console.log(x.length * BigInt64Array.BYTES_PER_ELEMENT); 
+</example>
+
+ReadOnly:
+true
+
+----
+instance.length : Number
+
+The number of elements in **this**. It is 1 greater than the index
+of the last item.
+
+<example>
+var x = new BigInt64Array(10);
+console.log(x.length);
+</example>
+
+ReadOnly:
+true
+
+----
+prototype.set(array : Array<BigInt>, [offset = 0 : Number]) : undefined
+
+Copies items from **array** into **this** starting at **this[offset]**.
+Copied items are converted to 64 bit integers before storing in **this**.
+
+<example>
+var x = new BigInt64Array(10);
+x.set([18n, 93n, 42n], 3);
+console.log(x[3]);
+console.log(x[4]);
+console.log(x[5]);
+</example>
+
+----
+prototype.set(array : BigInt64Array, [offset = 0 : Number]) : undefined
+
+Copies items from **array** into **this** starting at **this[offset]**.
+**array** can be any of the typed array types and the copied items will be
+converted to 64 bit integers before storing in **this**.
+
+<example>
+var x = new BigInt64Array(10);
+x.set(new BigInt64Array([18n, 93n, 42n]), 3);
+console.log(x[3]);
+console.log(x[4]);
+console.log(x[5]);
+</example>
+
+----
+prototype.subarray(begin : Number, [end : Number]) : BigInt64Array
+
+Returns a new BigInt64Array that is a view on top of **this** containing items
+**this[begin]**, **this[begin + 1]**, ..., **this[end - 1]**.  The
+0th item in the returned array in the same memory location as 
+**this[begin]**. If **end** is not specified, **this.length** is used.
+
+<example>
+var x = new BigInt64Array([0n, 1n, 2n, 3n, 4n, 5n]); // length=6
+var y = x.subarray(2, 5);
+console.log(y.length);
+console.log(y[0]);
+console.log(y[1]);
+y[0] = -1n;
+console.log(x[2]);
+</example>
+
+----
+prototype.copyWithin(target : Number, start : Number, [end : Number]) : undefined
+
+Copies **this[start]**, **this[start + 1]**, ... **this[end - 1]**
+to **this[target]**, **this[target + 1]**, ... If **end** is not
+specified, **this.length** is used.
+
+<example>
+var x = new BigInt64Array([0n, 1n, 2n, 3n, 4n, 5n, 6n, 7n, 8n, 9n]);
+x.copyWithin(0, 5);
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.copywithin
+
+----
+prototype.entries() : Iterator<Array>
+
+Returns an iterator of the index and items in **this** where the 
+%%Iterator#next|**value**s%% of the iterator are of the form
+**[index : %%/Number|Number%%, item : %%/BigInt|BigInt%%]**.
+See also %%#values|**values()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = new BigInt64Array([8n, 9n]);
+
+// Use for (... of ...) to loop over the iterator
+for (var entry of x.entries()) {
+  console.dir(entry);
+}
+
+// Or access the iterator manually
+var entries = x.entries();
+
+console.dir(entries.next());
+console.dir(entries.next());
+console.dir(entries.next());
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.entries
+
+----
+prototype.every(callback(item:BigInt, index:Number, array:BigInt64Array):Boolean, [thisArg : Object]) : Boolean
+
+Returns **true** if **callback** returns **true** for every item in **this**.
+Otherwise returns **false**. 
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **every**.
+
+<example>
+var isEven = function(x) { return (x % 2n) === 0n; }
+console.log(new BigInt64Array([2n, 22n, 36n]).every(isEven));
+console.log(new BigInt64Array([6n, 19n, 18n]).every(isEven));
+console.log(new BigInt64Array([5n, 19n, 17n]).every(isEven));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.every
+
+----
+prototype.fill(value : BigInt, [start = 0 : Number, [end : Number]]) : BigInt64Array
+
+Fills **this[start]**, **this[start + 1]**, ... **this[end - 1]** with
+**value**. 
+If **end** is not specified, **this.length** is used.
+Returns **this**.
+
+<example>
+var x = new BigInt64Array(5);
+
+console.log(x.fill(7n));
+console.log(x.fill(-7n, 3));
+console.log(x.fill(9n, 0, 2));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.fill
+
+----
+prototype.filter(callback(item:BigInt, index:Number, array:BigInt64Array):Boolean, [thisArg:Object]):BigInt64Array
+
+Returns a new **BigInt64Array** containing only the items in **this** that **callback** returned
+**true** for.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **filter**.
+
+<example>
+var isEven = function(x) { return (x % 2n) === 0n; }
+var numbers = new BigInt64Array([1n, 2n, 4n, 5n, 7n, 9n, 12n]);
+console.log(numbers.filter(isEven));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.filter
+
+----
+prototype.find(callback(item:BigInt, index:Number, array:BigInt64Array):Boolean, [thisArg : Object]) : Number
+
+Returns the first item in **this** where **callback** returns
+**true** for that item.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **find**.
+
+See also %%#findIndex|**findIndex()**%%.
+
+<example>
+var x = new BigInt64Array([0n, -1n, -2n, -3n, -4n]);
+
+console.log(x.find(function(item) {
+  return item < -3n;
+}));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.find
+
+----
+prototype.findIndex(callback(item:BigInt, index:Number, array:BigInt64Array):Boolean, [thisArg : Object]) : Number
+
+Returns the index of the first item in **this** where **callback** returns
+**true** for that item.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **find**.
+
+See also %%#find|**find()**%%.
+
+<example>
+var x = new BigInt64Array([0n, -1n, -2n, -3n, -4n]);
+
+console.log(x.findIndex(function(item) {
+  return item < -3n;
+}));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.findindex
+
+----
+prototype.forEach(callback(item:Number, index:Number, array:BigInt64Array):undefined, [thisArg:Object]):undefined
+
+Calls **callback** for each item in **this**.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **forEach**.
+
+<example>
+var x = new BigInt64Array([7n, 8n, 9n]);
+x.forEach(function(item, index) {
+  console.log('item at ' + index + ' = ' + item);
+});
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.forEach
+
+----
+prototype.includes(item : BigInt, [startingIndex = 0 : Number]) : Boolean
+
+Returns **true** if **item** is an element of **this** starting the search from
+**startingIndex**. If **startingIndex** is negative, **this.length** is added to it before
+starting the search.
+
+<example>
+var x = new BigInt64Array([5n, 6n, 7n, 8n, 9n]);
+console.log(x.includes(7n));
+console.log(x.includes(6n, 2));
+console.log(x.includes(8n, -2));
+console.log(x.includes(10n));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.includes
+
+----
+prototype.indexOf(item:Number, [startingIndex = 0 : Number]):Number
+
+Returns the first location of **item** in **this** starting the search from
+**start**.
+If **startingIndex**
+is negative, **this.length** is added to it before starting the search. 
+Returns **-1** if **item** is not found.
+See also %%#lastIndexOf|**lastIndexOf()**%%.
+
+<example>
+var x = new BigInt64Array([5n, 6n, 7n, 8n, 9n, 5n, 6n]);
+console.log(x.indexOf(6n));
+console.log(x.indexOf(6n, 2));
+console.log(x.indexOf(5n, -2));
+console.log(x.indexOf(10n, 2));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.indexOf
+
+----
+prototype.join([separator=',':String]):String
+
+Returns a String created by joining the **toString()** of each item of 
+**this** separated by **separator**.
+
+<example>
+var x = new BigInt64Array([7n, 8n, 9n]);
+console.log(x.join());
+console.log(x.join(' -- '));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.join
+
+----
+prototype.keys() : Iterator<Number>
+
+Returns an iterator of the indicies in **this**.
+See also %%#entries|**entries()**%% and %%#values|**values()**%%.
+
+<example>
+var x = new BigInt64Array([8n, 9n]);
+
+// Use for (... of ...) to loop over the iterator
+for (var key of x.keys()) {
+  console.dir(key);
+}
+
+// Or access the iterator manually
+var keys = x.keys();
+
+console.dir(keys.next());
+console.dir(keys.next());
+console.dir(keys.next());
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.keys
+
+----
+prototype.lastIndexOf(item:BigInt, [startingIndex:Number]):Number
+
+Returns the location of **item** by searchig backwards through
+**this**, starting the search from **startingIndex**.
+If **startingIndex** is not specified, the search starts from the 
+end of the array. 
+If **startingIndex** is negative, **this.length** is added to it 
+before starting the search. 
+Returns **-1** if **item** is not found.
+See also %%#indexOf|**indexOf()**%%.
+
+<example>
+var x = new BigInt64Array([5n, 6n, 7n, 8n, 9n, 5n, 6n]);
+console.log(x.lastIndexOf(6n));
+console.log(x.lastIndexOf(6n, 2));
+console.log(x.lastIndexOf(5n, -3));
+console.log(x.lastIndexOf(10n, 2));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.lastIndexOf
+
+----
+prototype.map(callback(item:BigInt, index:Number, array:BigInt64Array):Object, [thisArg:Object]):Array
+
+Returns a new **BigInt64Array** with where each item is the result of calling
+**callback** on each item in **this**.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **map**.
+
+<example>
+var numbers = new BigInt64Array([1n, 2n, 3n, 4n]);
+var squares = numbers.map(function(x) { return x * x; });
+console.log(squares);
+console.log(numbers);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.map
+
+----
+prototype.reduce(callback(previous:Object, current:BigInt,index:Number,array:BigInt64Array):Object, [initialValue:Object]):Object
+
+Calls **callback** for each item in **this** in ascending order (**0** to **length-1**).
+It passes the return value of **callback** for the **i-1**th item as the 
+**previous** parameter for the **i**th item.
+Returns the result from the last call to **callback**.
+If **initialValue** is not specified, **callback** will first
+be called on **this[1]** with **previous** set to **this[0]**.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **reduce**.
+
+<example>
+var x = new BigInt64Array([0n, 1n, 2n, 3n, 4n]);
+var sum = function(prev, cur) { return prev + cur; } 
+console.log(x.reduce(sum));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.reduce
+
+----
+prototype.reduceRight(callback(previous:Object, current:BigInt,index:Number,array:BigInt64Array):Object, [initialValue:Object]):Object
+
+Calls **callback** for each item in **this** in descending order (**length-1** to **0**).
+It passes the return value of **callback** for the **i+1**th item as the 
+**previous** parameter for the **i**th item.
+Returns the result from the last call to **callback**.
+If **initialValue** is not specified, **callback** will first
+be called on **this[this.length - 2]** with **previous** set to **this[this.length - 1]**.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **reduceRight**.
+
+<example>
+var x = new BigInt64Array([2n, 3n]);
+var pow = function(prev, cur) { return prev ** cur; } 
+console.log(x.reduce(pow)); // 2 ** 3
+console.log(x.reduceRight(pow)); // 3 ** 2
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.reduceRight
+
+----
+prototype.reverse() : BigInt64Array
+
+Reverses the order of the items in **this** and returns **this**.
+
+<example>
+var x = new  BigInt64Array([1n, 2n, 3n]);
+console.log(x.reverse());
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.reverse
+
+----
+prototype.slice(start:Number, [end:Number]):BigInt64Array
+
+Returns a new **BigInt64Array** which is composed of the items **this[start],
+this[start + 1], ..., this[end - 1]**. Note that
+**item[end]** is not included.  If **start** or **end**
+is negative, the value is added to **this.length** before performing
+the slice. If **end** is not specified, **this.length** is used.
+
+<example>
+var x = new BigInt64Array([0n, 1n, 2n, 3n, 4n, 5n, 6n]);
+console.log(x.slice(2));
+console.log(x.slice(2, 3));
+console.log(x.slice(1, -2));
+console.log(x.slice(-4, -1));
+console.log(x);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.slice
+
+----
+prototype.some(callback(item : BigInt, index : Number, array:BigInt64Array):Boolean, [thisArg:Object]) : Boolean
+
+Returns **true** if **callback** returns **true** for at least one item in 
+**this**. Otherwise returns **false**.
+
+The **BigInt64Array** passed to **callback** is the **this** of the call to **some**.
+
+<example>
+var isEven = function(x) { return (x % 2n) === 0n; }
+console.log(new BigInt64Array([2n, 22n, 36n]).some(isEven));
+console.log(new BigInt64Array([6n, 19n, 18n]).some(isEven));
+console.log(new BigInt64Array([5n, 19n, 17n]).some(isEven));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.some
+
+----
+prototype.sort([comparisonFunction(x:BigInt, y:BigInt):Number]):BigInt64Array
+
+Sort the items of **this** using **comparisonFunction** to determine 
+the sort order and returns **this**.
+The Number returned by **comparisonFunction** should be **0** if **x** and 
+**y** are equal, negative if **x** is less than **y**, or positive if **x**
+is greater than **y**. If **comparisonFunction** is not specified, the
+items will be sorted in numeric order.  
+Returns **this**.
+
+<example>
+var x = new BigInt64Array([52n, 7n, -14n, 22n, -9n]);
+
+console.log(x.sort());
+
+// Sort by absolute value 
+var absComparison = function(x, y) { 
+  var absX = x > 0n ? x : -x;
+  var absY = y > 0n ? y : -y;
+  if (absX > absY) return 1;
+  if (absX === absY) return 0;
+  return -1;
+};
+console.log(x.sort(absComparison));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.sort
+
+----
+
+prototype.values() : Iterator<BigInt>
+
+Returns an iterator of the items in **this**. 
+The **values** function is also returned for 
+**this[%%/Symbol#iterator|Symbol.iterator%%]** so you can 
+iterate over **this** directly to get the values.
+See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = new BigInt64Array([8n, 9n]);
+
+// values is returned by x[Symbol.iterator] so you can just 
+// use x directly in the for (... of ...) loop
+for (var value of x) {
+  console.dir(value);
+}
+
+// You can iterate over values explicitly
+for (var value of x.values()) {
+  console.dir(value);
+}
+
+// Or access the iterator manually
+var values = x.values();
+
+console.dir(values.next());
+console.dir(values.next());
+console.dir(values.next());
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-%typedarray%.prototype.values
+
+----
+BYTES_PER_ELEMENT : Number
+
+Returns the size in bytes of an item in a BigInt64Array.
+
+<example>
+console.log(BigInt64Array.BYTES_PER_ELEMENT);
+</example>
+
