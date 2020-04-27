@@ -6,6 +6,19 @@ anywhere without additional qualifiers.
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.1
 
+----
+globalThis : Window
+
+The global **this** value. See also %%Window#globalThis|Window.globalThis%% and
+%%WorkerGlobalScope#globalThis|WorkerGlobalScope.globalThis%%.
+
+<example>
+console.log(globalThis === this);
+console.log(globalThis === globalThis.globalThis);
+</example>
+
+Version:
+ECMAScript 2020
 
 ----
 NaN : Number
@@ -26,7 +39,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.1.1
 ----
 Infinity : Number
 
-Positive infinity.
+Positive infinity. See also %%Number#POSITIVE_INFINITY|Number.POSITIVE_INFINITY%%.
 
 <example>
 console.log(Infinity);
