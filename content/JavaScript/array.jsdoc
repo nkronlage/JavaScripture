@@ -248,10 +248,32 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.20
 
 ----
+prototype.fill(value : Object, [start = 0 : Number, [end : Number]]) : Array
+
+Fills **this[start]**, **this[start + 1]**, ... **this[end - 1]** with
+**value**.
+If **end** is not specified, **this.length** is used.
+Returns **this**.
+
+<example>
+var x = Array(5);
+
+console.log(x.fill('a'));
+console.log(x.fill('b', 3));
+console.log(x.fill('c', 0, 2));
+</example>
+
+Version:
+ECMAScript 2015
+
+Spec:
+http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.fill
+
+----
 prototype.find(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Object
 
 Returns the first item in **this** where **callback** returns
-**true**.
+**true** for that item.
 
 The **Array** passed to **callback** is the **this** of the call to **find**.
 
@@ -275,7 +297,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.find
 prototype.findIndex(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Object
 
 Returns the index of the first item in **this** where **callback** returns
-**true**.
+**true** for that item.
 
 See also %%#find|**find()**%%.
 
@@ -292,28 +314,6 @@ ECMAScript 2015
 
 Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.findIndex
-
-----
-prototype.fill(value : Object, [start = 0 : Number, [end : Number]]) : Array
-
-Fills **this[start]**, **this[start + 1]**, ... **this[end - 1]** with
-**value**. 
-If **end** is not specified, **this.length** is used.
-Returns **this**.
-
-<example>
-var x = Array(5);
-
-console.log(x.fill('a'));
-console.log(x.fill('b', 3));
-console.log(x.fill('c', 0, 2));
-</example>
-
-Version:
-ECMAScript 2015
-
-Spec:
-http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.fill
 
 ----
 prototype.flat([depth = 1 : Number]):Array
@@ -384,6 +384,7 @@ Returns the first location of **item** in **this** starting the search from
 If **startingIndex**
 is negative, **this.length** is added to it before starting the search. 
 Returns **-1** if **item** is not found.
+See also %%#lastIndexOf|**lastIndexOf()**%%.
 
 <example>
 var x = ['a', 'b', 'c', 'd', 'b', 'c', 'a'];
@@ -415,7 +416,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.5
 prototype.keys() : Iterator<Number>
 
 Returns an iterator of the indicies in **this**.
-See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+See also %%#entries|**entries()**%% and %%#values|**values()**%%.
 
 <example>
 var x = ['a', 'b'];
@@ -443,13 +444,14 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.keys
 ----
 prototype.lastIndexOf(item:Object, [startingIndex:Number]):Number
 
-Returns the location of **item** in **this** starting the search from 
-**start** by searching backwards through the array.  
+Returns the location of **item** by searchig backwards through
+**this**, starting the search from **startingIndex**.
 If **startingIndex** is not specified, the search starts from the 
 end of the array. 
-If **start**
-is negative, **this.length** is added to it before starting the search. 
+If **startingIndex** is negative, **this.length** is added to it
+before starting the search.
 Returns **-1** if **item** is not found.
+See also %%#indexOf|**indexOf()**%%.
 
 <example>
 var x = ['a', 'b', 'c', 'd', 'b', 'c', 'a'];
@@ -476,7 +478,6 @@ See also %%#flatMap|**flatMap()**%%.
 var numbers = [1, 2, 3, 4];
 var squares = numbers.map(function(x) { return x * x; });
 console.log(squares);
-console.log(numbers);
 </example>
 
 Spec:
