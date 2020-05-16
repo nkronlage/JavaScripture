@@ -111,6 +111,7 @@ for (const match of string.matchAll(regexp)) {
   console.log(match.groups.key, match.groups.value);
 }
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "String.matchAll"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><span class="ecmascript2020">ECMAScript 2020</span></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="normalize"></a> <a name="normalize_String"></a><div class="declaration"><span class="membername primary">normalize</span>(<span class="membername">form</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/String">String</a></div><div class="member-body"><p class="description">Returns a normalized form of <code>this</code> according to <code>form</code>. <code>form</code> must be one of <code>'NFC'</code>, <code>'NFD'</code>, <code>'NFKC'</code>, or <code>'NFKD'</code>. See <a href="https://unicode.org/reports/tr15/">https://unicode.org/reports/tr15/</a>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+// See Figure 3 in https://unicode.org/reports/tr15/
 var a = String.fromCharCode(0x212B);
 
 var printString = function(form, s) {
