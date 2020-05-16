@@ -1,0 +1,144 @@
+RTCDataChannel : EventTarget
+
+Spec:
+https://w3c.github.io/webrtc-pc/#webidl-x1970659251
+
+----
+Details:
+
+<p>
+Although WebRTC is a peer to peer protocol, the peers need some information about
+each other before they can communicate. Typically this is done with a Signaling
+Server, but any mechanism to transfer data can be used. The following
+demonstrates setting up the peer connection using the clipboard (via copy/paste)
+to transfer the connection data.
+</p>
+<h3>Offerer</h3>
+This example demonstrates the peer that creates the offer.
+<htmlexample>
+<button id="copy" disabled>Copy Offer/Candidates to Clipboard</button><br>
+<input id="paste" placeholder="Paste Answer/Candidates here" disabled>
+<script>
+  const peerConnection = new RTCPeerConnection({ iceServers: [ { urls: 'stun:stun.l.google.com:19302' } ] });
+  const dataChannel = peerConnection.createDataChannel('mydatachannel');
+
+  dataChannel.onopen = () => {
+    console.log('dataChannel opened, sending message');
+    dataChannel.send('message from offerer');
+  };
+
+  dataChannel.onmessage = e => {
+    console.log('received:', e.data);
+  };
+
+  dataChannel.onerror = e => {
+    console.log('error:', e);
+  };
+
+  dataChannel.onclose = () => {
+    console.log('dataChannel closed');
+  };
+
+  // Save a list of ice candidates to send to the peer
+  const iceCandidates = [];
+  peerConnection.onicecandidate = e => {
+    if (e.candidate) {
+      iceCandidates.push(e.candidate);
+    }
+  };
+
+  (async () => {
+    const copyButton = document.getElementById('copy');
+
+    peerConnection.onicegatheringstatechange = () => {
+      if (peerConnection.iceGatheringState === 'complete') {
+        copyButton.disabled = false;
+        console.log('Offer ready, click copy button.');
+      }
+    };
+
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+
+    const pasteInput = document.getElementById('paste');
+
+    copyButton.onclick = () => {
+      navigator.clipboard.writeText(JSON.stringify({ offer, iceCandidates }));
+      console.log('Offer copied/candidates. Paste in Answerer example.');
+
+      pasteInput.disabled = false;
+    };
+
+    pasteInput.onpaste = async (e) => {
+      const { answer, iceCandidates } = JSON.parse(e.clipboardData.getData('text/plain'));
+      await peerConnection.setRemoteDescription(answer);
+      iceCandidates.forEach(c => peerConnection.addIceCandidate(c));
+    };
+  })();
+</script>
+</htmlexample>
+
+<h3>Answerer</h3>
+This example demonstrates the peer that receives the offer and creates the answer.
+<htmlexample>
+<input id="paste" placeholder="Paste Offer/Candidates here"><br>
+<button id="copy" disabled>Copy Answer/Candidates to Clipboard</button><br>
+<script>
+  const peerConnection = new RTCPeerConnection({ iceServers: [ { urls: 'stun:stun.l.google.com:19302' } ] });
+
+  peerConnection.ondatachannel = e => {
+    const dataChannel = e.channel;
+
+    dataChannel.onopen = () => {
+      console.log(`dataChannel '${dataChannel.label}' opened, sending message`);
+      dataChannel.send('message from answerer');
+    };
+
+    dataChannel.onmessage = e => {
+      console.log('received:', e.data);
+    };
+
+    dataChannel.onerror = e => {
+      console.log('error:', e);
+    };
+
+    dataChannel.onclose = () => {
+      console.log('dataChannel closed');
+    };
+  };
+
+ 
+  // Save a list of ice candidates to send to the peer
+  const iceCandidates = [];
+  peerConnection.onicecandidate = e => {
+    if (e.candidate) {
+      iceCandidates.push(e.candidate);
+    }
+  };
+
+  const copyButton = document.getElementById('copy');
+   
+  document.getElementById('paste').onpaste = async (e) => {
+    const { offer, iceCandidates } = JSON.parse(e.clipboardData.getData('text/plain'));
+
+    peerConnection.onicegatheringstatechange = () => {
+      if (peerConnection.iceGatheringState === 'complete') {
+        copyButton.disabled = false;
+        console.log('Answer ready, click copy button.');
+      }
+    };
+
+    await peerConnection.setRemoteDescription(offer);
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+
+    copyButton.onclick = () => {
+      navigator.clipboard.writeText(JSON.stringify({ answer, iceCandidates }));
+      console.log('Copied answer/candidates. Paste in Offerer example.');
+    };
+
+    iceCandidates.forEach(c => peerConnection.addIceCandidate(c));
+  };
+</script>
+</htmlexample>
+
