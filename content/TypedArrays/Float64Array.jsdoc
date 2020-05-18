@@ -4,6 +4,9 @@ Float64Array is similar to an %%/Array|**Array**%% where each item is a
 64 bit (8 byte) floating point number (the same as the standard %%Number|**Number**%% type).
 Float64Arrays cannot change size after creation.
 
+Iterable:
+true
+
 Spec:
 http://www.khronos.org/registry/typedarray/specs/latest/#7
 

@@ -3,6 +3,9 @@ Uint8Array : ArrayBufferView
 Uint8Array is similar to an %%/Array|**Array**%% where each item is an
 8 bit (1 byte) unsigned integer. Uint8Arrays cannot change size after creation.
 
+Iterable:
+true
+
 Spec:
 http://www.khronos.org/registry/typedarray/specs/latest/#7
 

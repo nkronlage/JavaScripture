@@ -3,6 +3,9 @@ Uint16Array : ArrayBufferView
 Uint16Array is similar to an %%/Array|**Array**%% where each item is a
 16 bit (2 byte) unsigned integer. Uint16Arrays cannot change size after creation.
 
+Iterable:
+true
+
 Spec:
 http://www.khronos.org/registry/typedarray/specs/latest/#7
 

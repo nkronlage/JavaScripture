@@ -3,6 +3,9 @@ Int32Array : ArrayBufferView
 Int32Array is similar to an %%/Array|**Array**%% where each item is a
 32 bit (4 byte) signed integer. Int32Arrays cannot change size after creation.
 
+Iterable:
+true
+
 Spec:
 http://www.khronos.org/registry/typedarray/specs/latest/#7
 

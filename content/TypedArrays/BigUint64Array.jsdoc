@@ -3,6 +3,9 @@ BigUint64Array : ArrayBufferView
 BigUint64Array is similar to an %%/Array|**Array**%% where each item is a
 64 bit (8 byte) unsigned integer. BigUint64Arrays cannot change size after creation.
 
+Iterable:
+true
+
 Spec:
 https://tc39.es/ecma262/#sec-%typedarray%-intrinsic-object
 

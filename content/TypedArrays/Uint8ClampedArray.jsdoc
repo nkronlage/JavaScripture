@@ -5,6 +5,9 @@ Uint8ClampedArray is similar to an %%/Array|**Array**%% where each item is a
 the range 0-255.
 Uint8ClampedArrays cannot change size after creation.
 
+Iterable:
+true
+
 Spec:
 http://www.khronos.org/registry/typedarray/specs/latest/#7
 
