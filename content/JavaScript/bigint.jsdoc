@@ -4,6 +4,9 @@ An arbitrarily large integer value. Allows storing integers larger than what
 %%/Number|Number%% allows. Use %%Number#Number_BigInt|Number(bigInt)%% to
 convert a BigInt to a Number.
 
+Primitive:
+true
+
 Spec:
 https://tc39.es/ecma262/#sec-bigint-objects
 
