@@ -4,6 +4,8 @@ ArrayBuffers are fixed length buffer of bytes. The bytes in
 an ArrayBuffer are only accessible through a %%DataView|**DataView**%% 
 (for heterogenous data)
 or one of the typed arrays (for homogeneous data):
+%%BigInt64Array|**BigInt64Array**%%,
+%%BigUint64Array|**BigUint64Array**%%,
 %%Float32Array|**Float32Array**%%,
 %%Float64Array|**Float64Array**%%,
 %%Int8Array|**Int8Array**%%,

@@ -3,6 +3,8 @@ ArrayBufferView : Object
 ArrayBufferView is an abstract type that is the 
 base for the following types: 
 %%DataView|**DataView**%%,
+%%BigInt64Array|**BigInt64Array**%%,
+%%BigUint64Array|**BigUint64Array**%%,
 %%Float32Array|**Float32Array**%%,
 %%Float64Array|**Float64Array**%%,
 %%Int8Array|**Int8Array**%%,
