@@ -397,6 +397,19 @@ Spec:
 https://tc39.es/ecma262/#sec-string.prototype.padstart
 
 ----
+prototype.repeat(count : Number) : String
+
+Returns a new **String** formed by repeating **this** **count** times.
+
+<example>
+console.log('.'.repeat(5));
+console.log('-_'.repeat(5));
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.repeat
+
+----
 prototype.replace(searchValue : String, replaceValue : String) : String
 
 Returns a new **String** where the first occurrence of **searchValue** in **this** is 
@@ -413,24 +426,11 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 
 
 ----
-prototype.repeat(count : Number) : String
-
-Returns a new **String** formed by repeating **this** **count** times.
-
-<example>
-console.log('.'.repeat(5));
-console.log('-_'.repeat(5));
-</example>
-
-Spec:
-https://tc39.es/ecma262/#sec-string.prototype.repeat
-
-----
 prototype.replace(searchValue : String, replaceFunction(match : String, offset : Number, string : String) : String) : String
 
 <p>
-Returns a new **String** where the first occurrence of **searchValue** in **this** is 
-replaced with the value returned from calling **replaceFunction**. 
+Returns a new **String** where the first occurrence of **searchValue** in **this** is
+replaced with the value returned from calling **replaceFunction**.
 </p>
 
 <p>
@@ -459,7 +459,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 ----
 prototype.replace(searchValue : RegExp, replaceValue : String) : String
 
-Returns a new **String** where **searchValue** is replaced with **replaceValue**.  
+Returns a new **String** where **searchValue** is replaced with **replaceValue**.
 
 If **searchValue** is a %%/RegExp#global|global **RegExp**%%,
 each match in **this** will be replaced.  Otherwise, just the first match will
@@ -479,8 +479,8 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
 prototype.replace(searchValue : RegExp, replaceFunction(match : String, capture1 : String, capture2 : String, ..., offset : Number, string : String) : String) : String
 
 <p>
-Returns a new **String** where **searchValue** matches in **this** is 
-replaced with the value returned from calling **replaceFunction**.  If 
+Returns a new **String** where **searchValue** matches in **this** is
+replaced with the value returned from calling **replaceFunction**.  If
 **searchValue** is a %%/RegExp#global|global **RegExp**%%,
 each match in **this** will be replaced.  Otherwise, just the first match will
 be replaced.
@@ -488,9 +488,9 @@ be replaced.
 
 <p>
 The **match** parameter to
-**replaceFunction** is the same as **searchValue**, 
-the **capture** parameters are the values of the capture groups in **searchValue** (if any), 
-**offset** is the index in **this** where **searchValue** was found, 
+**replaceFunction** is the same as **searchValue**,
+the **capture** parameters are the values of the capture groups in **searchValue** (if any),
+**offset** is the index in **this** where **searchValue** was found,
 and **string** is **this**.
 </p>
 
@@ -510,6 +510,91 @@ console.log('x=' + x); // x is unchanged
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11
+
+----
+prototype.replaceAll(searchValue : String, replaceValue : String) : String
+
+Returns a new **String** where all occurrences of **searchValue** in **this** are
+replaced with **replaceValue**.
+
+<example>
+var x = 'abcba'
+console.log(x.replaceAll('b', 'Z'));
+console.log(x); // x is unchanged
+</example>
+
+----
+prototype.replaceAll(searchValue : String, replaceFunction(match : String, offset : Number, string : String) : String) : String
+
+<p>
+Returns a new **String** where all occurrences of **searchValue** in **this** are
+replaced with the value returned from calling **replaceFunction**.
+</p>
+
+<p>
+The **match** parameter to
+**replaceFunction** is the same as **searchValue**, **offset** is the index in **this**
+where **searchValue** was found, and **string** is **this**.
+</p>
+
+<example>
+var x = 'abcba';
+var replaced = 'abcba'.replaceAll('b', function(match, offset, string) {
+  console.log('found match of "' + match + '"');
+  console.log('  at offset ' + offset);
+  console.log('  of string "' + string + '"');
+
+  return match.toUpperCase();
+});
+
+console.log('replaced=' + replaced);
+console.log('x=' + x); // x is unchanged
+</example>
+
+----
+prototype.replaceAll(searchValue : RegExp, replaceValue : String) : String
+
+Returns a new **String** where all matches of **searchValue** are replaced
+with **replaceValue**.
+
+**searchValue** must be a %%/RegExp#global|global **RegExp**%%.
+
+<example>
+var x = 'abcba';
+console.log(x.replaceAll(/b/g, 'Z'));
+console.log(x); // x is unchanged
+</example>
+
+----
+prototype.replaceAll(searchValue : RegExp, replaceFunction(match : String, capture1 : String, capture2 : String, ..., offset : Number, string : String) : String) : String
+
+<p>
+Returns a new **String** where all matches of **searchValue** in **this** are
+replaced with the value returned from calling **replaceFunction**.
+**searchValue** must be a %%/RegExp#global|global **RegExp**%%.
+</p>
+
+<p>
+The **match** parameter to
+**replaceFunction** is the same as **searchValue**, 
+the **capture** parameters are the values of the capture groups in **searchValue** (if any), 
+**offset** is the index in **this** where **searchValue** was found, 
+and **string** is **this**.
+</p>
+
+<example>
+var x = 'abcba';
+var replaced = 'abcba'.replaceAll(/b/g, function(match, offset, string) {
+  console.log('found match of "' + match + '"');
+  console.log('  at offset ' + offset);
+  console.log('  of string "' + string + '"');
+
+  return match.toUpperCase();
+});
+
+console.log('replaced=' + replaced);
+console.log('x=' + x); // x is unchanged
+</example>
 
 ----
 prototype.search(regexp : RegExp) : Number
