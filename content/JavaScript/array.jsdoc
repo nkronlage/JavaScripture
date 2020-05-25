@@ -826,10 +826,11 @@ of(item0 : Object, [item1 : Object, [...]]) : Array
 Creates an **Array** with the specified parameters as the 
 0th, 1st, ... items of the **Array**.
 Can also be constructed as **[item0, item1, ...]**.
-Note that **of(x)** will always create an array of length **1**
+Note that **Array.of(x)** will always create an array of length **1**
 containing **x**,
-while %%#new_Array_Number|**new Array(x)**%% which will create 
-an array of length **x** if **x** is an integer.
+while %%#new_Array_Number|**new Array(x)**%% will create 
+an array of length **x** if **x** is an integer (and throw an exception
+if **x** is a non-integer %%/Number|Number%%).
 
 <example>
 // The following are equivalent
