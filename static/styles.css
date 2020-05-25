@@ -295,7 +295,8 @@ code, .code {
   font-size: 80%; }
 
 code {
-  font-size: 95%; }
+  font-size: 95%;
+  background: #EEE; }
 
 .output {
   box-sizing: border-box;
