@@ -15,29 +15,48 @@ instance.kind : String
 The kind of the item.  Will be one of **'string'** or **'file'**.
 
 <htmlexample>
-<span draggable='true' ondragstart='onDragStart(event)' style='background: #adf'>Drag Me</span>
-<select id='select'></select>
+<div draggable='true' ondragstart='onDragStart(event)' style='background: #adf'>
+  Drag Me<br>
+  allowedEffect: <select id='allowedEffectSelect'></select>
+</div>
 
-<div id='dropTarget' style='background: #eee'>Drop Here ('Drag Me' or a text or image file from your computer)</div>
+<div id='dropTarget' style='background: #eee'>
+  Drop Here ('Drag Me' or a text or image file from your computer)<br>
+  dropEffect: <select id='dropEffectSelect'></select>
+</div>
 <textarea id='textOutput' style='width: 200px; height: 100px'></textarea>
 <img id='imgOutput' style='width: 100px; height: 100px'>
 <script>
-  var options = ['none', 'copy', 'link', 'move', 'copyLink',
-                 'copyMove', 'linkMove', 'all', 'uninitialized'];
-  var select = document.getElementById('select');
-  options.forEach(function(option, i) {
-    select.add(new Option(option, option));
+  var allowedEffects = ['none', 'copy', 'link', 'move', 'copyLink',
+                        'copyMove', 'linkMove', 'all', 'uninitialized'];
+  var allowedEffectSelect = document.getElementById('allowedEffectSelect');
+  allowedEffects.forEach(function(option, i) {
+    allowedEffectSelect.add(new Option(option, option));
   });
-  select.value = 'copy';
+  allowedEffectSelect.value = 'copy';
+
+  var dropEffects = ['none', 'copy', 'link', 'move'];
+  var dropEffectSelect = document.getElementById('dropEffectSelect');
+  dropEffects.forEach(function(option, i) {
+    dropEffectSelect.add(new Option(option, option));
+  });
+  dropEffectSelect.value = 'copy';
 
   var onDragStart = function(event) {
-    event.dataTransfer.effectAllowed = select.value;
+    event.dataTransfer.effectAllowed = allowedEffectSelect.value;
     event.dataTransfer.items.add('Dragged text', 'text/plain');
   };
 
   var dropTarget = document.getElementById('dropTarget');
 
-  dropTarget.ondragenter = dropTarget.ondragover = function(event) {
+  dropTarget.ondragenter = function(event) {
+    // The browser cancels the drop by default. preventDefault to stop that
+    event.preventDefault();
+  };
+
+  dropTarget.ondragover = function(event) {
+    event.dataTransfer.dropEffect = dropEffectSelect.value;
+
     // The browser cancels the drop by default. preventDefault to stop that
     event.preventDefault();
   };
@@ -51,7 +70,7 @@ The kind of the item.  Will be one of **'string'** or **'file'**.
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
 
-      console.log('drop: kind=' + item.kind + ', type=' + item.type);
+      console.log(event.dataTransfer.dropEffect + ': kind=' + item.kind + ', type=' + item.type);
       if (item.kind === 'string') {
         item.getAsString(function(data) {
           textOutput.textContent = data;

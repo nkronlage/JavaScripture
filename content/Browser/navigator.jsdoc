@@ -16,6 +16,15 @@ Spec:
 http://dev.w3.org/2011/webrtc/editor/getusermedia.html#dom-navigator-getusermedia
 
 ----
+instance.clipboard : Clipboard
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#navigator-interface
+
+----
 instance.maxTouchPoints : Number
 
 ReadOnly:

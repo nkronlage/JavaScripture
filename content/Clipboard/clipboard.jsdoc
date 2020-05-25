@@ -1,0 +1,71 @@
+Clipboard : EventTarget
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-interface
+
+----
+prototype.read() : Promise<Array<ClipboardItem>>
+
+Spec:
+https://w3c.github.io/clipboard-apis/#dom-clipboard-read
+
+----
+prototype.readText() : Promise<DOMString>
+
+Spec:
+https://w3c.github.io/clipboard-apis/#dom-clipboard-readtext
+
+----
+prototype.write(items : Iterable<ClipboardItem>) : Promise<undefined>
+
+<h3>Copy Text Example</h3>
+
+<htmlexample>
+<input value='value to copy'>
+<button id='copy'>copy</button>
+<script>
+  document.getElementById('copy').onclick = async () => {
+    const value = document.querySelector('input').value;
+    const type = 'text/plain';
+    const blob = new Blob([value], { type });
+
+    const cbi = new ClipboardItem({
+      [type]: blob
+    });
+    await navigator.clipboard.write([cbi]);
+    console.log(`copied '${value}' to clipboard`); 
+  };
+</script>
+</htmlexample>
+
+<h3>Copy Image and Text Example</h3>
+
+<htmlexample>
+<button id='copy'>copy</button>
+<script>
+  document.getElementById('copy').onclick = async () => {
+    // Create an image of a circle
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.fillStyle = 'red';
+    context.beginPath();
+    context.arc(50, 50, 30, 0, 2 * Math.PI);
+    context.fill();
+
+    const cbi = new ClipboardItem({
+      'image/png': new Promise(r => canvas.toBlob(r))
+    });
+    await navigator.clipboard.write([cbi]);
+    console.log(`copied image to clipboard`);
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/clipboard-apis/#dom-clipboard-write
+
+----
+prototype.writeText(text : String) : Promise<undefined>
+
+Spec:
+https://w3c.github.io/clipboard-apis/#dom-clipboard-writetext

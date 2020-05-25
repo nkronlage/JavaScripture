@@ -1,0 +1,101 @@
+ClipboardItem : Object
+
+An item to place on the clipboard. Note FireFox does not yet support this API. See
+%%https://bugzilla.mozilla.org/show_bug.cgi?id=1619947|Bug 1619947%%.
+
+See %%https://bugs.chromium.org/p/chromium/issues/detail?id=1014310|Bug 1014310%%.
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboarditem
+
+----
+new ClipboardItem(valuesByType : Object, [options : { \
+  presentationStyle : String /*  'attachment', 'inline', or 'unspecified'. Default = 'unspecified'. */ \
+}]) : ClipboardItem
+
+**valuesByType** is an object where the property names are the mime types and the
+property values are the data for that type. The property values must be either
+a %%/String|String%% or %%/Blob|Blob%%, or a %%/Promise|Promise%% that returns
+a %%/String|String%% or %%/Blob|Blob%%. Note Chrome does not yet support promises.
+See %%https://bugs.chromium.org/p/chromium/issues/detail?id=1014310|Bug 1014310%%.
+
+<h3>Copy Text Example</h3>
+
+<htmlexample>
+<input value='value to copy'>
+<button id='copy'>copy</button>
+<script>
+  document.getElementById('copy').onclick = async () => {
+    const value = document.querySelector('input').value;
+    const type = 'text/plain';
+    const blob = new Blob([value], { type });
+
+    const cbi = new ClipboardItem({
+      [type]: blob
+    });
+    await navigator.clipboard.write([cbi]);
+    console.log(`copied '${value}' to clipboard`); 
+  };
+</script>
+</htmlexample>
+
+<h3>Copy Image and Text Example</h3>
+
+<htmlexample>
+<button id='copy'>copy</button>
+<script>
+  document.getElementById('copy').onclick = async () => {
+    // Create an image of a circle
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.fillStyle = 'red';
+    context.beginPath();
+    context.arc(50, 50, 30, 0, 2 * Math.PI);
+    context.fill();
+
+    const cbi = new ClipboardItem({
+      'image/png': new Promise(r => canvas.toBlob(r))
+    });
+    await navigator.clipboard.write([cbi]);
+    console.log(`copied image to clipboard`);
+  };
+</script>
+</htmlexample>
+
+----
+instance.presentationStyle : String
+
+'attachment', 'inline', or 'unspecified'.
+
+ReadOnly:
+true
+
+----
+instance.lastModified : Number
+
+ReadOnly:
+true
+
+----
+instance.delayed : Boolean
+
+ReadOnly:
+true
+
+----
+instance.types : Array<String>
+
+
+ReadOnly:
+true
+
+
+----
+prototype.getType(type : String) : Promise<Blob>
+
+
+----
+createDelayed(valuesByType : Object, [options : { \
+  presentationStyle : String /*  'attachment', 'inline', or 'unspecified'. Default = 'unspecified'. */ \
+}]) : ClipboardItem
+
