@@ -1,0 +1,50 @@
+ClipboardEvent : Event
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-interfaces
+
+----
+new ClipboardEvent(type : String, [eventInit : { \
+  clipboardData : DataTransfer \
+}]) : ClipboardEvent
+
+
+----
+instance.clipboardData : DataTransfer
+
+<htmlexample>
+<textarea id='textOutput' style='width: 200px; height: 100px'></textarea>
+<img id='imgOutput' style='width: 100px; height: 100px'>
+<script>
+  const textOutput = document.getElementById('textOutput');
+  const imgOutput = document.getElementById('imgOutput');
+
+  document.onpaste = function(event) {
+    for (const item of event.clipboardData.items) {
+      console.log('pasting: kind=' + item.kind + ', type=' + item.type);
+      if (item.kind === 'string') {
+        item.getAsString(function(data) {
+          textOutput.textContent = data;
+        });
+      }
+      else { // item.kind === 'file'
+        if (item.type.indexOf('text/') === 0) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            textOutput.textContent = event.target.result;
+          };
+          reader.readAsText(item.getAsFile());
+        }
+        else if (item.type.indexOf('image/') === 0) {
+          imgOutput.src = URL.createObjectURL(item.getAsFile());
+        }
+      }
+    }
+
+    event.preventDefault();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
