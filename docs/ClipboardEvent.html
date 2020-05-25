@@ -11,15 +11,11 @@
 &lt;textarea id=&#39;textOutput&#39; style=&#39;width: 200px; height: 100px&#39;&gt;&lt;/textarea&gt;
 &lt;img id=&#39;imgOutput&#39; style=&#39;width: 100px; height: 100px&#39;&gt;
 &lt;script&gt;
-  var textOutput = document.getElementById(&#39;textOutput&#39;);
-  var imgOutput = document.getElementById(&#39;imgOutput&#39;);
+  const textOutput = document.getElementById(&#39;textOutput&#39;);
+  const imgOutput = document.getElementById(&#39;imgOutput&#39;);
 
   document.onpaste = function(event) {
-    var items = event.clipboardData.items;
-
-    for (var i = 0; i &lt; items.length; i++) {
-      var item = items[i];
-
+    for (const item of event.clipboardData.items) {
       console.log(&#39;pasting: kind=&#39; + item.kind + &#39;, type=&#39; + item.type);
       if (item.kind === &#39;string&#39;) {
         item.getAsString(function(data) {
@@ -28,7 +24,7 @@
       }
       else { // item.kind === &#39;file&#39;
         if (item.type.indexOf(&#39;text/&#39;) === 0) {
-          var reader = new FileReader();
+          const reader = new FileReader();
           reader.onload = function(event) {
             textOutput.textContent = event.target.result;
           };

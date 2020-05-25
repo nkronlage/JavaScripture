@@ -1211,3 +1211,39 @@ thrown in an Promise executor function or in an async function.
   })();
 </script>
 </htmlexample>
+
+----
+event.copy : listener(event : ClipboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-copy
+
+----
+event.cut : listener(event : ClipboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-cut
+
+----
+event.paste : listener(event : ClipboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-paste

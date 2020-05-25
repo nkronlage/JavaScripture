@@ -99,9 +99,9 @@ var processFileContents = function(contents) {
 
     obj.instanceMethods.sort(functionComparison);
     obj.instanceProperties.sort(nameComparison);
+    obj.instanceEvents.sort(nameComparison);
     obj.methods.sort(functionComparison);
     obj.properties.sort(nameComparison);
-
 
     var join = function(members) {
       var joined = [];

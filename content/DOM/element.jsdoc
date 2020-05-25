@@ -499,7 +499,7 @@ Scolls the element into view.
   <div>E</div><div>F</div><div>G</div><div id='h'>H</div>
 </div>
 <button onclick='doScroll(true)'>Scroll 'H' to top</button>
-<button onclick='doScroll()'>Scroll 'H' to bottom</button>
+<button onclick='doScroll(false)'>Scroll 'H' to bottom</button>
 <script>
   var doScroll = function(top) {
     document.getElementById('h').scrollIntoView(top);
@@ -630,3 +630,38 @@ event.pointerleave : listener(event : PointerEvent) : undefined
 Spec:
 http://www.w3.org/TR/pointerevents/#widl-GlobalEventHandlers-onpointerleave
 
+----
+event.copy : listener(event : ClipboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-copy
+
+----
+event.cut : listener(event : ClipboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-cut
+
+----
+event.paste : listener(event : ClipboardEvent) : undefined
+
+Bubbles:
+true
+
+Cancelable:
+true
+
+Spec:
+https://w3c.github.io/clipboard-apis/#clipboard-event-paste
