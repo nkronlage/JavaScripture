@@ -1,5 +1,8 @@
 Image : HTMLImageElement
 
+Alternative way to construct an %%/HTMLImageElement|HTMLImageElement%% instead of
+using %%/Document#createElement|**document.createElement('img')**%%.
+
 ----
 new Image([width : Number, [height : Number]]) : Image
 

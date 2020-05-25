@@ -1,0 +1,22 @@
+Option : HTMLOptionElement
+
+Alternative way to construct an %%/HTMLOptionElement|HTMLOptionElement%% instead of
+using %%/Document#createElement|**document.createElement('option')**%%.
+
+Spec:
+https://www.w3.org/TR/2012/WD-html5-20121025/the-option-element.html
+
+----
+new Option() : Option
+
+----
+new Option(text : String) : Option
+
+----
+new Option(text : String, value : String) : Option
+
+----
+new Option(text : String, value : String, defaultSelected : Boolean) : Option
+
+----
+new Option(text : String, value : String, defaultSelected : Boolean, selected : Boolean) : Option

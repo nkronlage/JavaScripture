@@ -2,6 +2,7 @@ HTMLImageElement : HTMLElement
 
 **HTMLImageElement** is an element that displays an image.
 It corresponds to the **<img>** tag.
+See also %%/Image|Image%%.
 
 Spec:
 https://html.spec.whatwg.org/#htmlimageelement
