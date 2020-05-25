@@ -1,44 +1,49 @@
 Clipboard : EventTarget
 
+Provides access to the system cut/copy/paste clipboard.
+
 Spec:
 https://w3c.github.io/clipboard-apis/#clipboard-interface
 
 ----
 prototype.read() : Promise<Array<ClipboardItem>>
 
+<htmlexample>
+<button id='paste'>paste</button>
+<script>
+  document.getElementById('paste').onclick = async () => {
+    const values = await navigator.clipboard.read();
+    for (const value of values) {
+      for (const type of value.types) {
+        const blob = await value.getType(type);
+        console.log(`${type}: ${ blob.size } bytes`);
+      }
+    }
+  };
+</script>
+</htmlexample>
+
 Spec:
 https://w3c.github.io/clipboard-apis/#dom-clipboard-read
 
 ----
-prototype.readText() : Promise<DOMString>
+prototype.readText() : Promise<String>
+
+<htmlexample>
+<button id='paste'>paste</button>
+<script>
+  document.getElementById('paste').onclick = async () => {
+    const value = await navigator.clipboard.readText();
+    console.log(`read '${value}' from clipboard`);
+  };
+</script>
+</htmlexample>
 
 Spec:
 https://w3c.github.io/clipboard-apis/#dom-clipboard-readtext
 
 ----
 prototype.write(items : Iterable<ClipboardItem>) : Promise<undefined>
-
-<h3>Copy Text Example</h3>
-
-<htmlexample>
-<input value='value to copy'>
-<button id='copy'>copy</button>
-<script>
-  document.getElementById('copy').onclick = async () => {
-    const value = document.querySelector('input').value;
-    const type = 'text/plain';
-    const blob = new Blob([value], { type });
-
-    const cbi = new ClipboardItem({
-      [type]: blob
-    });
-    await navigator.clipboard.write([cbi]);
-    console.log(`copied '${value}' to clipboard`); 
-  };
-</script>
-</htmlexample>
-
-<h3>Copy Image and Text Example</h3>
 
 <htmlexample>
 <button id='copy'>copy</button>
@@ -66,6 +71,18 @@ https://w3c.github.io/clipboard-apis/#dom-clipboard-write
 
 ----
 prototype.writeText(text : String) : Promise<undefined>
+
+<htmlexample>
+<input value='value to copy'>
+<button id='copy'>copy</button>
+<script>
+  document.getElementById('copy').onclick = async () => {
+    const value = document.querySelector('input').value;
+    await navigator.clipboard.writeText(value);
+    console.log(`copied '${value}' to clipboard`); 
+  };
+</script>
+</htmlexample>
 
 Spec:
 https://w3c.github.io/clipboard-apis/#dom-clipboard-writetext

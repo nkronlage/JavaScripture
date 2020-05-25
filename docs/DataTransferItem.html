@@ -8,29 +8,48 @@
   })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
   document.body.classList.add('members-collapsed');
 }</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>DataTransferItem</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#kind">kind</a><a href="#type">type</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#getAsFile_">getAsFile</a><a href="#getAsString_Function">getAsString</a></div></div></div><h2>DragDrop API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">DataTransferItem</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"></div><div class="objectdescription">DataTransferItem represents an item that can is being dragged. There can be more than one DataTransferItem for a drag and drop operation. For example, dragging a document may have a DataTransferItem containing the rich text and a DataTransferItem containing the plain text.<div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/dnd.html#datatransferitem" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="kind"></a><div class="declaration"><span class="membername primary">kind</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The kind of the item. Will be one of <code>'string'</code> or <code>'file'</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
-&lt;span draggable=&#39;true&#39; ondragstart=&#39;onDragStart(event)&#39; style=&#39;background: #adf&#39;&gt;Drag Me&lt;/span&gt;
-&lt;select id=&#39;select&#39;&gt;&lt;/select&gt;
+&lt;div draggable=&#39;true&#39; ondragstart=&#39;onDragStart(event)&#39; style=&#39;background: #adf&#39;&gt;
+  Drag Me&lt;br&gt;
+  allowedEffect: &lt;select id=&#39;allowedEffectSelect&#39;&gt;&lt;/select&gt;
+&lt;/div&gt;
 
-&lt;div id=&#39;dropTarget&#39; style=&#39;background: #eee&#39;&gt;Drop Here (&#39;Drag Me&#39; or a text or image file from your computer)&lt;/div&gt;
+&lt;div id=&#39;dropTarget&#39; style=&#39;background: #eee&#39;&gt;
+  Drop Here (&#39;Drag Me&#39; or a text or image file from your computer)&lt;br&gt;
+  dropEffect: &lt;select id=&#39;dropEffectSelect&#39;&gt;&lt;/select&gt;
+&lt;/div&gt;
 &lt;textarea id=&#39;textOutput&#39; style=&#39;width: 200px; height: 100px&#39;&gt;&lt;/textarea&gt;
 &lt;img id=&#39;imgOutput&#39; style=&#39;width: 100px; height: 100px&#39;&gt;
 &lt;script&gt;
-  var options = [&#39;none&#39;, &#39;copy&#39;, &#39;link&#39;, &#39;move&#39;, &#39;copyLink&#39;,
-                 &#39;copyMove&#39;, &#39;linkMove&#39;, &#39;all&#39;, &#39;uninitialized&#39;];
-  var select = document.getElementById(&#39;select&#39;);
-  options.forEach(function(option, i) {
-    select.add(new Option(option, option));
+  var allowedEffects = [&#39;none&#39;, &#39;copy&#39;, &#39;link&#39;, &#39;move&#39;, &#39;copyLink&#39;,
+                        &#39;copyMove&#39;, &#39;linkMove&#39;, &#39;all&#39;, &#39;uninitialized&#39;];
+  var allowedEffectSelect = document.getElementById(&#39;allowedEffectSelect&#39;);
+  allowedEffects.forEach(function(option, i) {
+    allowedEffectSelect.add(new Option(option, option));
   });
-  select.value = &#39;copy&#39;;
+  allowedEffectSelect.value = &#39;copy&#39;;
+
+  var dropEffects = [&#39;none&#39;, &#39;copy&#39;, &#39;link&#39;, &#39;move&#39;];
+  var dropEffectSelect = document.getElementById(&#39;dropEffectSelect&#39;);
+  dropEffects.forEach(function(option, i) {
+    dropEffectSelect.add(new Option(option, option));
+  });
+  dropEffectSelect.value = &#39;copy&#39;;
 
   var onDragStart = function(event) {
-    event.dataTransfer.effectAllowed = select.value;
+    event.dataTransfer.effectAllowed = allowedEffectSelect.value;
     event.dataTransfer.items.add(&#39;Dragged text&#39;, &#39;text/plain&#39;);
   };
 
   var dropTarget = document.getElementById(&#39;dropTarget&#39;);
 
-  dropTarget.ondragenter = dropTarget.ondragover = function(event) {
+  dropTarget.ondragenter = function(event) {
+    // The browser cancels the drop by default. preventDefault to stop that
+    event.preventDefault();
+  };
+
+  dropTarget.ondragover = function(event) {
+    event.dataTransfer.dropEffect = dropEffectSelect.value;
+
     // The browser cancels the drop by default. preventDefault to stop that
     event.preventDefault();
   };
@@ -44,7 +63,7 @@
     for (var i = 0; i &lt; items.length; i++) {
       var item = items[i];
 
-      console.log(&#39;drop: kind=&#39; + item.kind + &#39;, type=&#39; + item.type);
+      console.log(event.dataTransfer.dropEffect + &#39;: kind=&#39; + item.kind + &#39;, type=&#39; + item.type);
       if (item.kind === &#39;string&#39;) {
         item.getAsString(function(data) {
           textOutput.textContent = data;

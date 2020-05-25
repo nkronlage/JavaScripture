@@ -39,7 +39,7 @@ See %%https://bugs.chromium.org/p/chromium/issues/detail?id=1014310|Bug 1014310%
 </script>
 </htmlexample>
 
-<h3>Copy Image and Text Example</h3>
+<h3>Copy Image Example</h3>
 
 <htmlexample>
 <button id='copy'>copy</button>
