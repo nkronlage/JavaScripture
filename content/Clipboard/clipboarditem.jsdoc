@@ -3,8 +3,6 @@ ClipboardItem : Object
 An item to place on the clipboard. Note FireFox does not yet support this API. See
 %%https://bugzilla.mozilla.org/show_bug.cgi?id=1619947|Bug 1619947%%.
 
-See %%https://bugs.chromium.org/p/chromium/issues/detail?id=1014310|Bug 1014310%%.
-
 Spec:
 https://w3c.github.io/clipboard-apis/#clipboarditem
 
