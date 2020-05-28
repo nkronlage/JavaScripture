@@ -2,7 +2,7 @@ Collator : Object
 
 Collator provides language aware comparison of %%/String|Strings%% for
 sorting and searching.
-Available through %%/Intl#Collator%%.
+Available through %%/Intl#Collator|Intl.Collator%%.
 
 Spec:
 http://www.ecma-international.org/ecma-402/1.0/#sec-10
