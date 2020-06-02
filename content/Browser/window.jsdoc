@@ -572,6 +572,436 @@ Stops a timeout from running.  **handle** is the value returned by %%#setTimeout
 </htmlexample>
 
 ----
+prototype.createImageBitmap(source : HTMLImageElement) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const img = new Image();
+  await new Promise(r => {
+    img.onload = r;
+    img.src = '/pic.jpg';
+  });
+
+  const imageBitmap = await createImageBitmap(img);
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLImageElement, [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const img = new Image();
+  await new Promise(r => {
+    img.onload = r;
+    img.src = 'pic.jpg';
+  });
+
+  const imageBitmap = await createImageBitmap(img, {
+      imageOrientation: 'flipY',
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: 'pixelated'
+    });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLImageElement, sx : Number, sy : Number, sw : Number, sh : Number) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const img = new Image();
+  await new Promise(r => {
+    img.onload = r;
+    img.src = '/pic.jpg';
+  });
+
+  const imageBitmap = await createImageBitmap(img, 10, 100, 140, 80);
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLImageElement, \
+  sx : Number, sy : Number, sw : Number, sh : Number, \
+  [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const img = new Image();
+  await new Promise(r => {
+    img.onload = r;
+    img.src = 'pic.jpg';
+  });
+
+  const imageBitmap = await createImageBitmap(img, 10, 100, 140, 80, {
+      imageOrientation: 'flipY',
+      resizeWidth: 300,
+      resizeHeight: 300,
+      resizeQuality: 'pixelated'
+    });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLVideoElement) : Promise<ImageBitmap>
+
+<htmlexample>
+<button>Play</button><br>
+<canvas></canvas>
+<script>
+document.querySelector('button').onclick = async () => {
+  const video = document.createElement('video');
+  video.muted = true;
+  video.src = 'fireworks.ogv';
+  await new Promise(r => {
+    video.oncanplay = r;
+    video.load();
+  });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const context = canvas.getContext('bitmaprenderer');
+
+  const draw = async () => {
+    const imageBitmap = await createImageBitmap(video);
+    context.transferFromImageBitmap(imageBitmap);
+
+    if (!video.paused) {
+      requestAnimationFrame(draw);
+    }
+  };
+  video.play();
+  draw();
+};
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLVideoElement, [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+<button>Play</button><br>
+<canvas></canvas>
+<script>
+document.querySelector('button').onclick = async () => {
+  const video = document.createElement('video');
+  video.muted = true;
+  video.src = '/fireworks.ogv';
+  await new Promise(r => {
+    video.oncanplay = r;
+    video.load();
+  });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = 200;
+  canvas.height = 200;
+  const context = canvas.getContext('bitmaprenderer');
+
+  const draw = async () => {
+    const imageBitmap = await createImageBitmap(video, {
+      imageOrientation: 'flipY',
+      resizeWidth: canvas.width,
+      resizeHeight: canvas.height,
+      resizeQuality: 'pixelated'
+    });
+    context.transferFromImageBitmap(imageBitmap);
+
+    if (!video.paused) {
+      requestAnimationFrame(draw);
+    }
+  };
+
+  video.play();
+  draw();
+};
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLCanvasElement) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const src = document.createElement('canvas');
+  const srcContext = src.getContext('2d');
+  srcContext.font = '48px sans-serif';
+  srcContext.fillText('canvas test', 10, 35);
+
+  const imageBitmap = await createImageBitmap(src);
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : HTMLCanvasElement, [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const src = document.createElement('canvas');
+  const srcContext = src.getContext('2d');
+  srcContext.font = '48px sans-serif';
+  srcContext.fillText('canvas test', 10, 35);
+
+  const imageBitmap = await createImageBitmap(src, {
+      imageOrientation: 'flipY',
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: 'pixelated'
+    });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : Blob) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const res = await fetch('/pic.jpg');
+  const blob = await res.blob();
+  const imageBitmap = await createImageBitmap(blob);
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : Blob, [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const res = await fetch('/pic.jpg');
+  const blob = await res.blob();
+  const imageBitmap = await createImageBitmap(blob, {
+      imageOrientation: 'flipY',
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: 'pixelated'
+    });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : ImageData) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const src = document.createElement('canvas');
+  const srcContext = src.getContext('2d');
+  srcContext.font = '48px sans-serif';
+  srcContext.fillText('canvas test', 10, 35);
+
+  const imageData = srcContext.getImageData(0, 0, 150, 150);
+
+  const imageBitmap = await createImageBitmap(imageData);
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : ImageData, [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+<canvas></canvas>
+<script>
+(async () => {
+  const src = document.createElement('canvas');
+  const srcContext = src.getContext('2d');
+  srcContext.font = '48px sans-serif';
+  srcContext.fillText('canvas test', 10, 35);
+
+  const imageData = srcContext.getImageData(0, 0, 150, 150);
+
+  const imageBitmap = await createImageBitmap(imageData,
+    {
+      imageOrientation: 'flipY',
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: 'pixelated'
+    });
+
+  const canvas = document.querySelector('canvas');
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext('bitmaprenderer');
+  context.transferFromImageBitmap(imageBitmap);
+})();
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
+prototype.createImageBitmap(source : ImageBitmap, [options : { \
+    imageOrientation : String /* One of **'none'** or **'flipY'**. Default is **'none'**. */, \
+    premultiplyAlpha : String /* One of **'none'**, **'premultiply'**, or **'default'**. Default is **'default'**. */, \
+    colorSpaceConversion : String /* One of **'none'** or **'default'**. Default is **'default'**. */, \
+    resizeWidth : Number, \
+    resizeHeight : Number, \
+    resizeQuality : String /* One of **'pixelated'**, **'low'**, **'medium'**, or **'high'**. Default is **'low'**. */ \
+  }]) : Promise<ImageBitmap>
+
+<htmlexample>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+
+----
 prototype.requestAnimationFrame(callback(time : Number) : undefined) : Number
 
 Schedules **callback** to be called before the next time the browser renders a

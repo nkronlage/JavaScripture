@@ -447,7 +447,7 @@ var parseMember = function(member) {
   }
   else if (split === -1) {
     var res = member.match(/\{(.*)\}/);
-    if (!res) throw Error('parse error');
+    if (!res) throw Error('parse error for member: ' + member);
 
     return { type: 'Object',
              properties: parseParamList(res[1])};

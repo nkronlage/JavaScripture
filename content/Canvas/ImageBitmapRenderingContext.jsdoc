@@ -1,0 +1,21 @@
+ImageBitmapRenderingContext : Object
+
+Constructed by passing **'bitmaprenderer'** to %%/HTMLCanvasElement|**canvas.getContext('bitmaprenderer')**%%.
+
+You can pass an additional options argument:
+
+<code>
+{
+  alpha : Number /* Default = true */
+}
+</code>
+
+
+Spec:
+https://html.spec.whatwg.org/multipage/canvas.html#imagebitmaprenderingcontext
+
+----
+instance.canvas : HTMLCanvasElement
+
+----
+prototype.transferFromImageBitmap(bitmap : ImageBitmap) : undefined

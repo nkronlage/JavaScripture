@@ -7,7 +7,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
   document.body.classList.add('members-collapsed');
-}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>Window</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#applicationCache" title="applicationCache">applicationCache</a><a href="#crypto">crypto</a><a href="#customElements">customElements</a><a href="#document">document</a><a href="#external">external</a><a href="#frameElement">frameElement</a><a href="#frames">frames</a><a href="#globalThis">globalThis</a><a href="#history">history</a><a href="#indexedDB">indexedDB</a><a href="#innerHeight">innerHeight</a><a href="#innerWidth">innerWidth</a><a href="#length">length</a><a href="#localStorage">localStorage</a><a href="#location">location</a><a href="#name">name</a><a href="#navigator">navigator</a><a href="#opener">opener</a><a href="#outerHeight">outerHeight</a><a href="#outerWidth">outerWidth</a><a href="#parent">parent</a><a href="#screen">screen</a><a href="#screenX">screenX</a><a href="#screenY">screenY</a><a href="#self">self</a><a href="#sessionStorage">sessionStorage</a><a href="#status">status</a><a href="#top">top</a><a href="#window">window</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#alert_String">alert</a><a href="#atob_String">atob</a><a href="#blur_">blur</a><a href="#btoa_String">btoa</a><a href="#cancelAnimationFrame_Number" title="cancelAnimationFrame">cancelAnimationFrame</a><a href="#clearInterval_Number">clearInterval</a><a href="#clearTimeout_Number">clearTimeout</a><a href="#close_">close</a><a href="#confirm_String">confirm</a><a href="#fetch">fetch</a><a href="#focus_">focus</a><a href="#getComputedStyle_Element_String" title="getComputedStyle">getComputedStyle</a><a href="#matchMedia_String">matchMedia</a><a href="#open_String_String_String_Boolean">open</a><a href="#postMessage_Object_String_[object Object]">postMessage</a><a href="#print_">print</a><a href="#prompt_String_String">prompt</a><a href="#requestAnimationFrame_Function" title="requestAnimationFrame">requestAnimationFrame</a><a href="#setInterval">setInterval</a><a href="#setTimeout">setTimeout</a><a href="#showModalDialog_String_Object">showModalDialog</a><a href="#stop_">stop</a></div></div><div class="group collapsed"><a href="#InstanceEvents" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Events</a><div class="subgroup"><a href="#abort">abort</a><a href="#afterprint">afterprint</a><a href="#beforeprint">beforeprint</a><a href="#beforeunload">beforeunload</a><a href="#blur">blur</a><a href="#canplay">canplay</a><a href="#canplaythrough">canplaythrough</a><a href="#change">change</a><a href="#click">click</a><a href="#contextmenu">contextmenu</a><a href="#copy">copy</a><a href="#cuechange">cuechange</a><a href="#cut">cut</a><a href="#dblclick">dblclick</a><a href="#drag">drag</a><a href="#dragend">dragend</a><a href="#dragenter">dragenter</a><a href="#dragleave">dragleave</a><a href="#dragover">dragover</a><a href="#dragstart">dragstart</a><a href="#drop">drop</a><a href="#durationchange">durationchange</a><a href="#emptied">emptied</a><a href="#ended">ended</a><a href="#error">error</a><a href="#focus">focus</a><a href="#hashchange">hashchange</a><a href="#input">input</a><a href="#invalid">invalid</a><a href="#keydown">keydown</a><a href="#keypress">keypress</a><a href="#keyup">keyup</a><a href="#load">load</a><a href="#loadeddata">loadeddata</a><a href="#loadedmetadata">loadedmetadata</a><a href="#loadstart">loadstart</a><a href="#message">message</a><a href="#mousedown">mousedown</a><a href="#mousemove">mousemove</a><a href="#mouseout">mouseout</a><a href="#mouseover">mouseover</a><a href="#mouseup">mouseup</a><a href="#mousewheel">mousewheel</a><a href="#offline">offline</a><a href="#online">online</a><a href="#pagehide">pagehide</a><a href="#pageshow">pageshow</a><a href="#paste">paste</a><a href="#pause">pause</a><a href="#play">play</a><a href="#playing">playing</a><a href="#popstate">popstate</a><a href="#progress">progress</a><a href="#ratechange">ratechange</a><a href="#reset">reset</a><a href="#resize">resize</a><a href="#scroll">scroll</a><a href="#seeked">seeked</a><a href="#seeking">seeking</a><a href="#select">select</a><a href="#show">show</a><a href="#stalled">stalled</a><a href="#storage">storage</a><a href="#submit">submit</a><a href="#suspend">suspend</a><a href="#timeupdate">timeupdate</a><a href="#unhandledrejection" title="unhandledrejection">unhandledrejection</a><a href="#unload">unload</a><a href="#volumechange">volumechange</a></div></div></div><h2>Browser API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">Window</span> <span class="type">: <a href="/Global">Global</a></span></h1><div class="metadata"></div><div class="objectdescription">Window is the global object in the browser that represents the browser window for the page. The window object itself is available through the <a href="#window"><code>window</code></a> property and all properties on the Window are available directly in scripts. The Window object is also available as <code>this</code> in the root scope of a script (ie, outside of any <a href="/Function">Function</a>).<div class="membermetadata"><a href="https://html.spec.whatwg.org/#the-window-object" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="applicationCache"></a><div class="declaration"><span class="membername primary">applicationCache</span>&nbsp;:&nbsp;<a class="membertype" href="/ApplicationCache">ApplicationCache</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="crypto"></a><div class="declaration"><span class="membername primary">crypto</span>&nbsp;:&nbsp;<a class="membertype" href="/Crypto">Crypto</a></div><div class="member-body"><p class="description"></p><div class="membermetadata"><a href="http://www.w3.org/TR/WebCryptoAPI/#dfn-Crypto" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="customElements"></a><div class="declaration"><span class="membername primary">customElements</span>&nbsp;:&nbsp;<a class="membertype" href="/CustomElementRegistry">CustomElementRegistry</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Provides a way to extend HTML/DOM with your own elements that have custom logic similar to built in elements. See also <a href="/CustomElementPrototype">CustomElementPrototype</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>Window</h2><div class="navgroup"><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#applicationCache" title="applicationCache">applicationCache</a><a href="#crypto">crypto</a><a href="#customElements">customElements</a><a href="#document">document</a><a href="#external">external</a><a href="#frameElement">frameElement</a><a href="#frames">frames</a><a href="#globalThis">globalThis</a><a href="#history">history</a><a href="#indexedDB">indexedDB</a><a href="#innerHeight">innerHeight</a><a href="#innerWidth">innerWidth</a><a href="#length">length</a><a href="#localStorage">localStorage</a><a href="#location">location</a><a href="#name">name</a><a href="#navigator">navigator</a><a href="#opener">opener</a><a href="#outerHeight">outerHeight</a><a href="#outerWidth">outerWidth</a><a href="#parent">parent</a><a href="#screen">screen</a><a href="#screenX">screenX</a><a href="#screenY">screenY</a><a href="#self">self</a><a href="#sessionStorage">sessionStorage</a><a href="#status">status</a><a href="#top">top</a><a href="#window">window</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#alert_String">alert</a><a href="#atob_String">atob</a><a href="#blur_">blur</a><a href="#btoa_String">btoa</a><a href="#cancelAnimationFrame_Number" title="cancelAnimationFrame">cancelAnimationFrame</a><a href="#clearInterval_Number">clearInterval</a><a href="#clearTimeout_Number">clearTimeout</a><a href="#close_">close</a><a href="#confirm_String">confirm</a><a href="#createImageBitmap" title="createImageBitmap">createImageBitmap</a><a href="#fetch">fetch</a><a href="#focus_">focus</a><a href="#getComputedStyle_Element_String" title="getComputedStyle">getComputedStyle</a><a href="#matchMedia_String">matchMedia</a><a href="#open_String_String_String_Boolean">open</a><a href="#postMessage_Object_String_[object Object]">postMessage</a><a href="#print_">print</a><a href="#prompt_String_String">prompt</a><a href="#requestAnimationFrame_Function" title="requestAnimationFrame">requestAnimationFrame</a><a href="#setInterval">setInterval</a><a href="#setTimeout">setTimeout</a><a href="#showModalDialog_String_Object">showModalDialog</a><a href="#stop_">stop</a></div></div><div class="group collapsed"><a href="#InstanceEvents" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Events</a><div class="subgroup"><a href="#abort">abort</a><a href="#afterprint">afterprint</a><a href="#beforeprint">beforeprint</a><a href="#beforeunload">beforeunload</a><a href="#blur">blur</a><a href="#canplay">canplay</a><a href="#canplaythrough">canplaythrough</a><a href="#change">change</a><a href="#click">click</a><a href="#contextmenu">contextmenu</a><a href="#copy">copy</a><a href="#cuechange">cuechange</a><a href="#cut">cut</a><a href="#dblclick">dblclick</a><a href="#drag">drag</a><a href="#dragend">dragend</a><a href="#dragenter">dragenter</a><a href="#dragleave">dragleave</a><a href="#dragover">dragover</a><a href="#dragstart">dragstart</a><a href="#drop">drop</a><a href="#durationchange">durationchange</a><a href="#emptied">emptied</a><a href="#ended">ended</a><a href="#error">error</a><a href="#focus">focus</a><a href="#hashchange">hashchange</a><a href="#input">input</a><a href="#invalid">invalid</a><a href="#keydown">keydown</a><a href="#keypress">keypress</a><a href="#keyup">keyup</a><a href="#load">load</a><a href="#loadeddata">loadeddata</a><a href="#loadedmetadata">loadedmetadata</a><a href="#loadstart">loadstart</a><a href="#message">message</a><a href="#mousedown">mousedown</a><a href="#mousemove">mousemove</a><a href="#mouseout">mouseout</a><a href="#mouseover">mouseover</a><a href="#mouseup">mouseup</a><a href="#mousewheel">mousewheel</a><a href="#offline">offline</a><a href="#online">online</a><a href="#pagehide">pagehide</a><a href="#pageshow">pageshow</a><a href="#paste">paste</a><a href="#pause">pause</a><a href="#play">play</a><a href="#playing">playing</a><a href="#popstate">popstate</a><a href="#progress">progress</a><a href="#ratechange">ratechange</a><a href="#reset">reset</a><a href="#resize">resize</a><a href="#scroll">scroll</a><a href="#seeked">seeked</a><a href="#seeking">seeking</a><a href="#select">select</a><a href="#show">show</a><a href="#stalled">stalled</a><a href="#storage">storage</a><a href="#submit">submit</a><a href="#suspend">suspend</a><a href="#timeupdate">timeupdate</a><a href="#unhandledrejection" title="unhandledrejection">unhandledrejection</a><a href="#unload">unload</a><a href="#volumechange">volumechange</a></div></div></div><h2>Browser API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">Window</span> <span class="type">: <a href="/Global">Global</a></span></h1><div class="metadata"></div><div class="objectdescription">Window is the global object in the browser that represents the browser window for the page. The window object itself is available through the <a href="#window"><code>window</code></a> property and all properties on the Window are available directly in scripts. The Window object is also available as <code>this</code> in the root scope of a script (ie, outside of any <a href="/Function">Function</a>).<div class="membermetadata"><a href="https://html.spec.whatwg.org/#the-window-object" class="spec">Spec</a></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="applicationCache"></a><div class="declaration"><span class="membername primary">applicationCache</span>&nbsp;:&nbsp;<a class="membertype" href="/ApplicationCache">ApplicationCache</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="crypto"></a><div class="declaration"><span class="membername primary">crypto</span>&nbsp;:&nbsp;<a class="membertype" href="/Crypto">Crypto</a></div><div class="member-body"><p class="description"></p><div class="membermetadata"><a href="http://www.w3.org/TR/WebCryptoAPI/#dfn-Crypto" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="customElements"></a><div class="declaration"><span class="membername primary">customElements</span>&nbsp;:&nbsp;<a class="membertype" href="/CustomElementRegistry">CustomElementRegistry</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">Provides a way to extend HTML/DOM with your own elements that have custom logic similar to built in elements. See also <a href="/CustomElementPrototype">CustomElementPrototype</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
 &lt;style&gt;
   my-element { 
     border: 1px solid green;
@@ -241,7 +241,282 @@ console.log(window.screenY);
     }
   };
 &lt;/script&gt;
-</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.confirm"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="methodgroup"><a name="fetch"></a> <span class="membername primary">fetch</span> 2 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="fetch_Request_Object"></a><div class="declaration"><span class="membername primary">fetch</span>(<span class="membername">request</span>&nbsp;:&nbsp;<a class="membertype" href="/Request">Request</a>, <span class="optional">[<span class="membername">requestInit</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/Response">Response</a>&gt;</div><div class="member-body"><p class="description">Fetches the specified web request. If <code>requestInit</code> is specified, its values overwrite the values on <code>request</code>. See alse <a href="/Request">Request</a> and <a href="/Response">Response</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.confirm"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="methodgroup"><a name="createImageBitmap"></a> <span class="membername primary">createImageBitmap</span> 13 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLImageElement"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLImageElement">HTMLImageElement</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;</div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const img = new Image();
+  await new Promise(r =&gt; {
+    img.onload = r;
+    img.src = &#39;/pic.jpg&#39;;
+  });
+
+  const imageBitmap = await createImageBitmap(img);
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLVideoElement"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLVideoElement">HTMLVideoElement</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;</div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button&gt;Play&lt;/button&gt;&lt;br&gt;
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+document.querySelector(&#39;button&#39;).onclick = async () =&gt; {
+  const video = document.createElement(&#39;video&#39;);
+  video.muted = true;
+  video.src = &#39;fireworks.ogv&#39;;
+  await new Promise(r =&gt; {
+    video.oncanplay = r;
+    video.load();
+  });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+
+  const draw = async () =&gt; {
+    const imageBitmap = await createImageBitmap(video);
+    context.transferFromImageBitmap(imageBitmap);
+
+    if (!video.paused) {
+      requestAnimationFrame(draw);
+    }
+  };
+  video.play();
+  draw();
+};
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLCanvasElement"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLCanvasElement">HTMLCanvasElement</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;</div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const src = document.createElement(&#39;canvas&#39;);
+  const srcContext = src.getContext(&#39;2d&#39;);
+  srcContext.font = &#39;48px sans-serif&#39;;
+  srcContext.fillText(&#39;canvas test&#39;, 10, 35);
+
+  const imageBitmap = await createImageBitmap(src);
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_Blob"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/Blob">Blob</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;</div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const res = await fetch(&#39;/pic.jpg&#39;);
+  const blob = await res.blob();
+  const imageBitmap = await createImageBitmap(blob);
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_ImageData"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/ImageData">ImageData</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;</div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const src = document.createElement(&#39;canvas&#39;);
+  const srcContext = src.getContext(&#39;2d&#39;);
+  srcContext.font = &#39;48px sans-serif&#39;;
+  srcContext.fillText(&#39;canvas test&#39;, 10, 35);
+
+  const imageData = srcContext.getImageData(0, 0, 150, 150);
+
+  const imageBitmap = await createImageBitmap(imageData);
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLImageElement_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLImageElement">HTMLImageElement</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const img = new Image();
+  await new Promise(r =&gt; {
+    img.onload = r;
+    img.src = &#39;pic.jpg&#39;;
+  });
+
+  const imageBitmap = await createImageBitmap(img, {
+      imageOrientation: &#39;flipY&#39;,
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: &#39;pixelated&#39;
+    });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLVideoElement_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLVideoElement">HTMLVideoElement</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;button&gt;Play&lt;/button&gt;&lt;br&gt;
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+document.querySelector(&#39;button&#39;).onclick = async () =&gt; {
+  const video = document.createElement(&#39;video&#39;);
+  video.muted = true;
+  video.src = &#39;/fireworks.ogv&#39;;
+  await new Promise(r =&gt; {
+    video.oncanplay = r;
+    video.load();
+  });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = 200;
+  canvas.height = 200;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+
+  const draw = async () =&gt; {
+    const imageBitmap = await createImageBitmap(video, {
+      imageOrientation: &#39;flipY&#39;,
+      resizeWidth: canvas.width,
+      resizeHeight: canvas.height,
+      resizeQuality: &#39;pixelated&#39;
+    });
+    context.transferFromImageBitmap(imageBitmap);
+
+    if (!video.paused) {
+      requestAnimationFrame(draw);
+    }
+  };
+
+  video.play();
+  draw();
+};
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLCanvasElement_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLCanvasElement">HTMLCanvasElement</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const src = document.createElement(&#39;canvas&#39;);
+  const srcContext = src.getContext(&#39;2d&#39;);
+  srcContext.font = &#39;48px sans-serif&#39;;
+  srcContext.fillText(&#39;canvas test&#39;, 10, 35);
+
+  const imageBitmap = await createImageBitmap(src, {
+      imageOrientation: &#39;flipY&#39;,
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: &#39;pixelated&#39;
+    });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_Blob_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/Blob">Blob</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const res = await fetch(&#39;/pic.jpg&#39;);
+  const blob = await res.blob();
+  const imageBitmap = await createImageBitmap(blob, {
+      imageOrientation: &#39;flipY&#39;,
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: &#39;pixelated&#39;
+    });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_ImageData_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/ImageData">ImageData</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const src = document.createElement(&#39;canvas&#39;);
+  const srcContext = src.getContext(&#39;2d&#39;);
+  srcContext.font = &#39;48px sans-serif&#39;;
+  srcContext.fillText(&#39;canvas test&#39;, 10, 35);
+
+  const imageData = srcContext.getImageData(0, 0, 150, 150);
+
+  const imageBitmap = await createImageBitmap(imageData,
+    {
+      imageOrientation: &#39;flipY&#39;,
+      resizeWidth: 100,
+      resizeHeight: 100,
+      resizeQuality: &#39;pixelated&#39;
+    });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_ImageBitmap_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLImageElement_Number_Number_Number_Number"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLImageElement">HTMLImageElement</a>, <span class="membername">sx</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">sy</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">sw</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">sh</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;</div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const img = new Image();
+  await new Promise(r =&gt; {
+    img.onload = r;
+    img.src = &#39;/pic.jpg&#39;;
+  });
+
+  const imageBitmap = await createImageBitmap(img, 10, 100, 140, 80);
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="createImageBitmap_HTMLImageElement_Number_Number_Number_Number_Object"></a><div class="declaration"><span class="membername primary">createImageBitmap</span>(<span class="membername">source</span>&nbsp;:&nbsp;<a class="membertype" href="/HTMLImageElement">HTMLImageElement</a>, <span class="membername">sx</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">sy</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">sw</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">sh</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">options</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/ImageBitmap">ImageBitmap</a>&gt;<div class="subfunction"><span class="membername">options</span>&nbsp;:&nbsp;{<table><tr><td><span class="membername">imageOrientation</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'flipY'</code>. Default is <code>'none'</code>.</td></tr><tr><td><span class="membername">premultiplyAlpha</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code>, <code>'premultiply'</code>, or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">colorSpaceConversion</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'none'</code> or <code>'default'</code>. Default is <code>'default'</code>.</td></tr><tr><td><span class="membername">resizeWidth</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeHeight</span></td><td><a class="membertype" href="/Number">Number</a></td><td></td></tr><tr><td><span class="membername">resizeQuality</span></td><td><a class="membertype" href="/String">String</a></td><td>One of <code>'pixelated'</code>, <code>'low'</code>, <code>'medium'</code>, or <code>'high'</code>. Default is <code>'low'</code>.</td></tr></table><span class="subfunctionclose">}</span></div></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas&gt;&lt;/canvas&gt;
+&lt;script&gt;
+(async () =&gt; {
+  const img = new Image();
+  await new Promise(r =&gt; {
+    img.onload = r;
+    img.src = &#39;pic.jpg&#39;;
+  });
+
+  const imageBitmap = await createImageBitmap(img, 10, 100, 140, 80, {
+      imageOrientation: &#39;flipY&#39;,
+      resizeWidth: 300,
+      resizeHeight: 300,
+      resizeQuality: &#39;pixelated&#39;
+    });
+
+  const canvas = document.querySelector(&#39;canvas&#39;);
+  canvas.width = imageBitmap.width;
+  canvas.height = imageBitmap.height;
+  const context = canvas.getContext(&#39;bitmaprenderer&#39;);
+  context.transferFromImageBitmap(imageBitmap);
+})();
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "Window.createImageBitmap"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap" class="spec">Spec</a></div></div></div></div></div><div class="methodgroup"><a name="fetch"></a> <span class="membername primary">fetch</span> 2 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="fetch_Request_Object"></a><div class="declaration"><span class="membername primary">fetch</span>(<span class="membername">request</span>&nbsp;:&nbsp;<a class="membertype" href="/Request">Request</a>, <span class="optional">[<span class="membername">requestInit</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a>&lt;<a class="membertype" href="/Response">Response</a>&gt;</div><div class="member-body"><p class="description">Fetches the specified web request. If <code>requestInit</code> is specified, its values overwrite the values on <code>request</code>. See alse <a href="/Request">Request</a> and <a href="/Response">Response</a>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
 &lt;script&gt;
   var request = new Request(&#39;/&#39;, { method: &#39;HEAD&#39; });
   fetch(request).then(function(response) {

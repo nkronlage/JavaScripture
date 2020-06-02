@@ -1,0 +1,28 @@
+ImageBitmap : Object
+
+An image that can be passed to most %%/CanvasRenderingContext|CanvasRenderingContext%%
+methods in place of %%/HTMLImageElement|HTMLImageElements%%. ImageBitmaps are 
+more efficient than creating %%/HTMLImageElement|HTMLImageElements%% DOM element
+if you don't need to render the element directly in the page.
+Created via %%/Window#createImageBitmap|window.createImageBitmap()%%.
+See also %%/ImageBitmapRenderingContext|ImageBitmapRenderingContext%%.
+
+Spec:
+https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap
+
+----
+instance.height : Number
+
+ReadOnly:
+true
+
+----
+instance.width : Number
+
+ReadOnly:
+true
+
+----
+prototype.close() : undefined
+
+Releases the memory holding the bitmap data.

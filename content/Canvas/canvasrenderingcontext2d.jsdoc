@@ -335,8 +335,9 @@ Creates a pattern for the specified **image**.
 
 **image** can be either a
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
-%%/HTMLVideoElement|**HTMLVideoElement**%%.
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%,
+%%/HTMLVideoElement|**HTMLVideoElement**%%, or
+%%/ImageBitmap|**ImageBitmap**%%.
 
 **repetition** must be one of
 **'repeat'**, **'repeat-x'**, **'repeat-y'**, or **'no-repeat'**.
@@ -757,8 +758,9 @@ Draws **image** to the canvas at **dx**, **dy** using the natural size of the im
 
 **image** can be either an
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
-%%/HTMLVideoElement|**HTMLVideoElement**%%.
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%,
+%%/HTMLVideoElement|**HTMLVideoElement**%%, or
+%%/ImageBitmap|**ImageBitmap**%%.
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -785,8 +787,9 @@ Draws **image** to the canvas at **dx**, **dy** of size **dw** by **dh**.
 
 **image** can be either an
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
-%%/HTMLVideoElement|**HTMLVideoElement**%%.
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%,
+%%/HTMLVideoElement|**HTMLVideoElement**%%, or
+%%/ImageBitmap|**ImageBitmap**%%.
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -813,8 +816,9 @@ The image will be stretched and scaled if **sw**, **sh** does not match **dw** b
 
 **image** can be either an
 %%/HTMLImageElement|**HTMLImageElement**%%,
-%%/HTMLCanvasElement|**HTMLCanvasElement**%%, or
-%%/HTMLVideoElement|**HTMLVideoElement**%%.
+%%/HTMLCanvasElement|**HTMLCanvasElement**%%,
+%%/HTMLVideoElement|**HTMLVideoElement**%%, or
+%%/ImageBitmap|**ImageBitmap**%%.
 
 
 <htmlexample>
