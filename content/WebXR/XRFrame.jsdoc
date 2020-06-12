@@ -1,0 +1,16 @@
+XRFrame : Object
+
+Spec:
+https://immersive-web.github.io/webxr/#xrframe-interface
+
+----
+instance.session : XRSession
+
+ReadOnly:
+true
+
+----
+prototype.getViewerPose(referenceSpace : XRReferenceSpace) : XRViewerPose
+
+----
+prototype.getPose(space : XRSpace, baseSpace : XRSpace) : XRPose

@@ -1,0 +1,59 @@
+XRWebGLLayer : XRLayer
+
+Spec:
+https://immersive-web.github.io/webxr/#xrwebgllayer-interface
+
+----
+new XRWebGLLayer(session : XRSession, gl : WebGLRenderingContext, [layerInit : { \
+    antialias : Boolean /* Default = **true** */, \ 
+    depth : Boolean /* Default = **true** */, \
+    stencil : Boolean /* Default = **false** */, \
+    alpha : Boolean /* Default = **true** */, \
+    ignoreDepthValues : Boolean /* Default = **false** */, \
+    framebufferScaleFactor : Number /* Default = **1.0** */ \
+  }]) : XRWebGLLayer
+
+----
+instance.antialias : Boolean
+
+ReadOnly:
+true
+
+----
+instance.ignoreDepthValues : Boolean
+
+ReadOnly:
+true
+
+----
+instance.framebuffer : WebGLFramebuffer
+
+ReadOnly:
+true
+
+----
+instance.framebufferWidth : Number
+
+ReadOnly:
+true
+
+----
+instance.framebufferHeight : Number
+
+ReadOnly:
+true
+
+----
+prototype.getViewport(view : XRView) : XRViewport
+
+----
+getNativeFramebufferScaleFactor(session : XRSession) : Number
+
+<htmlexample>
+<script>
+(async () => {
+  const session = await navigator.xr.requestSession('inline');
+  console.log(XRWebGLLayer.getNativeFramebufferScaleFactor(session));
+})();
+</script>
+</htmlexample>

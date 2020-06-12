@@ -1,0 +1,44 @@
+XRInputSource : Object
+
+Spec:
+https://immersive-web.github.io/webxr/#xrinputsource-interface
+
+----
+instance.handedness : String
+
+One of **'none'**, **'left'**, or **'right'**.
+
+ReadOnly:
+true
+
+----
+instance.targetRayMode : String
+
+One of **'gaze'**, **'tracked-pointer'**, or **'screen'**.
+
+ReadOnly:
+true
+
+----
+instance.targetRaySpace : XRSpace
+
+ReadOnly:
+true
+
+----
+instance.gripSpace : XRSpace
+
+ReadOnly:
+true
+
+----
+instance.profiles : Array<String>
+
+ReadOnly:
+true
+
+----
+instance.gamepad : Gamepad
+
+Spec:
+https://immersive-web.github.io/webxr-gamepads-module/#dom-xrinputsource-gamepad

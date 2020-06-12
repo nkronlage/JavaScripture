@@ -1,0 +1,164 @@
+XRSession : EventTarget
+
+Provides state for a current Augmented Reality (AR) or Virtual Reality (VR) session.
+Created through %%/XRSystem#requestSession|**navigator.xr.requestSession()**%%.
+
+Spec:
+https://immersive-web.github.io/webxr/#xrsession-interface
+
+----
+instance.visibiltyState : String
+
+Will be one of **'visible'**, **'visible-blurred'**, or **'hidden'**.
+
+ReadOnly:
+true
+
+----
+instance.renderState : XRRenderState
+
+ReadOnly:
+true
+
+----
+instance.inputSources : Array<XRInputSource>
+
+ReadOnly:
+true
+
+----
+prototype.updateRenderState([state : { \
+    depthNear : Number, \
+    depthFar : Number, \
+    inlineVerticalFieldOfView : Number /* Only valid for **'inline'** sessions. */, \
+    baseLayer : XRWebGLLayer, \
+    layers : Iterable<XRLayer> \
+  }]) : undefined
+
+----
+prototype.requestReferenceSpace(type : String) : Promise<XRReferenceSpace>
+
+**type** must be one of **'viewer'**, **'local'**, **'local-floor'**,
+**'bounded-floor'**, or **'unbounded'**.
+
+----
+prototype.requestAnimationFrame(callback(time : Number, frame : XRFrame) : undefined) : Number
+
+Schedules **callback** to be called before the next time the browser renders a
+frame to the screen.
+
+The **time** parameter to callback is the number of milliseconds since the
+page loaded.
+
+Returns a unique handle that can be passed to %%#cancelAnimationFrame|**cancelAnimationFrame()**%%
+to stop **callback** from being called.
+
+<htmlexample>
+<canvas></canvas>
+<button onclick="startXR(); event.target.disabled = true">Start</button>
+<script>
+const startXR = async () => {
+  const immersiveVRSupported = await navigator.xr.isSessionSupported('immersive-vr');
+  const session = await navigator.xr.requestSession(immersiveVRSupported ? 'immersive-vr' : 'inline');
+  session.onend = () => console.log('ended');
+
+  const canvas = document.querySelector('canvas');
+  const gl = canvas.getContext('webgl', { xrCompatible: true });
+  const glLayer = new XRWebGLLayer(session, gl);
+  session.updateRenderState({ baseLayer: glLayer });
+  const referenceSpace = await session.requestReferenceSpace(immersiveVRSupported ? 'local' : 'viewer');
+
+  const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vertexShader, `
+    attribute vec3 vertexPosition;
+    uniform mat4 viewMatrix;
+    uniform mat4 projectionMatrix;
+
+    void main() {
+      gl_Position = projectionMatrix * viewMatrix * vec4(vertexPosition, 1.0);
+    }`);
+  gl.compileShader(vertexShader);
+
+  const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fragmentShader, `
+    void main() {
+      gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // green
+    }`);
+  gl.compileShader(fragmentShader);
+
+  var program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  // Create a buffer with 3 points to form a triangle (1m away from camera)
+  const triangleBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+  const vertices = [
+    -0.5,  -0.5, -1,
+     0.5,  -0.5, -1,
+     0.0,   0.5, -1];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  const vertexPositionLocation = gl.getAttribLocation(program, 'vertexPosition');
+  gl.vertexAttribPointer(vertexPositionLocation, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vertexPositionLocation);
+
+  const projectionMatrixLocation = gl.getUniformLocation(program, 'projectionMatrix');
+  const viewMatrixLocation = gl.getUniformLocation(program, 'viewMatrix');
+
+  const drawFrame = (t, frame) => {
+    const pose = frame.getViewerPose(referenceSpace);
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, glLayer.framebuffer);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    for (const view of pose.views) {
+      const viewport = glLayer.getViewport(view);
+      gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
+      gl.uniformMatrix4fv(viewMatrixLocation, false, view.transform.inverse.matrix);
+      gl.uniformMatrix4fv(projectionMatrixLocation, false, view.projectionMatrix);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+    }
+    session.requestAnimationFrame(drawFrame);
+  };
+
+  session.requestAnimationFrame(drawFrame);
+};
+</script>
+</htmlexample>
+
+----
+prototype.cancelAnimationFrame(handle : Number) : undefined
+
+----
+prototype.end() : Promise<undefined>
+
+----
+event.end : listener(event : XRSessionEvent) : undefined
+
+----
+event.inputsourceschange : listener(event : XRInputSourcesChangeEvent) : undefined
+
+----
+event.select : listener(event : XRInputSourceEvent) : undefined
+
+----
+event.selectstart : listener(event : XRInputSourceEvent) : undefined
+
+----
+event.selectend : listener(event : XRInputSourceEvent) : undefined
+
+----
+event.squeeze : listener(event : XRInputSourceEvent) : undefined
+
+----
+event.squeezeStart : listener(event : XRInputSourceEvent) : undefined
+
+----
+event.squeezeEnd : listener(event : XRInputSourceEvent) : undefined
+
+----
+event.visibilitychange : listener(event : XRSessionEvent) : undefined
+

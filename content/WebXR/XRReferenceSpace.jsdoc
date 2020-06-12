@@ -1,0 +1,11 @@
+XRReferenceSpace : XRSpace
+
+Spec:
+https://immersive-web.github.io/webxr/#xrreferencespace-interface
+
+----
+prototype.getOffsetReferenceSpace(originOffset : XRRigidTransform) : XRReferenceSpace
+
+----
+event.reset : listener(event : XRReferenceSpaceEvent) : undefined
+

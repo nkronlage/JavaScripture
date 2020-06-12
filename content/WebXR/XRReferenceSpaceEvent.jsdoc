@@ -1,0 +1,23 @@
+XRReferenceSpaceEvent : Event
+
+Spec:
+https://immersive-web.github.io/webxr/#xrreferencespaceevent-interface
+
+----
+new XRReferenceSpaceEvent(type : String, eventInit : { \
+    referenceSpace : XRReferenceSpace, \
+    transform : XRRigidTransform \
+  }) : XRReferenceSpaceEvent
+
+
+----
+instance.referenceSpace : XRReferenceSpace
+
+ReadOnly:
+true
+
+----
+instance.transform : XRRigidTransform
+
+ReadOnly:
+true

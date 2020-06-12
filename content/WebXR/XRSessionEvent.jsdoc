@@ -1,0 +1,17 @@
+XRSessionEvent : Event
+
+Spec:
+https://immersive-web.github.io/webxr/#xrsessionevent-interface
+
+----
+new XRSessionEvent(type : String, eventInit : { \
+    session : XRSession \
+  }) : XRSessionEvent
+
+
+----
+instance.session : XRSession
+
+ReadOnly:
+true
+

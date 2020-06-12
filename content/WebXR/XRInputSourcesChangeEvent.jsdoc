@@ -1,0 +1,30 @@
+XRInputSourcesChangeEvent : Event
+
+Spec:
+https://immersive-web.github.io/webxr/#xrinputsourceschangeevent-interface
+
+----
+new XRInputSourcesChangeEvent(type : String, eventInit : { \
+    session : XRSession, \
+    added : Array<XRInputSource>, \
+    removed : Array<XRInputSource> \
+  }) : XRReferenceSpaceEvent
+
+
+----
+instance.session : XRSession
+
+ReadOnly:
+true
+
+----
+instance.added : Array<XRInputSource>
+
+ReadOnly:
+true
+
+----
+instance.removed : Array<XRInputSource>
+
+ReadOnly:
+true

@@ -79,3 +79,10 @@ of increased memory use).
 Defaults to **false**.
 
 
+----
+instance.xrCompatible : Boolean
+
+See also %%/WebGLRenderingContext#makeXRCompatible|**gl.makeXRCompatible()**%%.
+
+Spec:
+https://immersive-web.github.io/webxr/#contextcompatibility

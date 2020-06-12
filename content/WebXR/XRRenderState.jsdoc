@@ -1,0 +1,29 @@
+XRRenderState : Object
+
+Spec:
+https://immersive-web.github.io/webxr/#xrrenderstate-interface
+
+----
+instance.depthNear : Number
+
+ReadOnly:
+true
+
+----
+instance.depthFar : Number
+
+ReadOnly:
+true
+
+----
+instance.inlineVerticalFieldOfView : Number
+
+ReadOnly:
+true
+
+----
+instance.baseLayer : XRWebGLLayer
+
+ReadOnly:
+true
+

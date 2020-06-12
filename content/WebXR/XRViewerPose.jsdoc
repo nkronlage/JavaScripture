@@ -1,0 +1,10 @@
+XRViewerPose : XRPose
+
+spec:
+https://immersive-web.github.io/webxr/#xrviewerpose-interface
+
+----
+instance.views : Array<XRView>
+
+ReadOnly:
+true

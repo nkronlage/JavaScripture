@@ -1,0 +1,23 @@
+XRInputSourceEvent : Event
+
+Spec:
+https://immersive-web.github.io/webxr/#xrinputsourceevent-interface
+
+----
+new XRInputSourceEvent(type : String, eventInit : { \
+    frame : XRFrame, \
+    inputSource : XRInputSource \
+  }) : XRInputSourceEvent
+
+
+----
+instance.frame : XRFrame
+
+ReadOnly:
+true
+
+----
+instance.inputSource : XRInputSource
+
+ReadOnly:
+true

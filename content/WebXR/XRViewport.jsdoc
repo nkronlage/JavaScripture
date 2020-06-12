@@ -1,0 +1,25 @@
+XRViewport : Object
+
+----
+instance.x : Number
+
+ReadOnly:
+true
+
+----
+instance.y : Number
+
+ReadOnly:
+true
+
+----
+instance.width : Number
+
+ReadOnly:
+true
+
+----
+instance.height : Number
+
+ReadOnly:
+true

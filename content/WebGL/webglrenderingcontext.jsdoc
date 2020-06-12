@@ -3214,6 +3214,14 @@ Spec:
 http://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml
 
 ----
+prototype.makeXRCompatible() : Promise<undefined>
+
+See also %%/WebGLContextAttributes#xrCompatible|**xrCompatible()**%%.
+
+Spec:
+https://immersive-web.github.io/webxr/#contextcompatibility
+
+----
 prototype.pixelStorei(parameter : Number, value : Number) : undefined
 
 Sets options that affect %%#readPixels|**readPixels**%%,

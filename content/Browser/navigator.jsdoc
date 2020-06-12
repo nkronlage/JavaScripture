@@ -38,3 +38,12 @@ prototype.getGamepads() : Iterable<Gamepad>
 
 Spec:
 https://w3c.github.io/gamepad/#navigator-interface-extension
+
+----
+instance.xr : XRSystem
+
+ReadOnly:
+true
+
+Spec:
+https://immersive-web.github.io/webxr/#navigator-xr-attribute

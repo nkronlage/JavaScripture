@@ -1,0 +1,38 @@
+XRRigidTransform : Object
+
+Spec:
+https://immersive-web.github.io/webxr/#xrrigidtransform-interface
+
+----
+new XRRigidTransform([position : DOMPointReadOnly, [orientationQuaternion : DOMPointReadOnly]]) : XRRigidTransform
+
+----
+new XRRigidTransform([position : Object, [orientationQuaternion : Object]]) : XRRigidTransform
+
+Same as **%%#new_XRRigidTransform_DOMPointReadOnly_DOMPointReadOnly|new XRRigidTransform%%(%%/DOMPointReadOnly#fromPoint|DOMPointReadOnly.fromPoint%%(position),
+%%/DOMPointReadOnly#fromPoint|DOMPointReadOnly.fromPoint%%(orientation))**.
+
+----
+instance.position : DOMPointReadOnly
+
+ReadOnly:
+true
+
+----
+instance.orientation : DOMPointReadOnly
+
+ReadOnly:
+true
+
+----
+instance.matrix : Float32Array
+
+ReadOnly:
+true
+
+----
+instance.inverse : XRRigidTransform
+
+ReadOnly:
+true
+

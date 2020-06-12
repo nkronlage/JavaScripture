@@ -1,0 +1,10 @@
+XRBoundedReferenceSpace : XRReferenceSpace
+
+Spec:
+https://immersive-web.github.io/webxr/#xrboundedreferencespace-interface
+
+----
+instance.boundsGeometry : Array<DOMPointReadOnly>
+
+ReadOnly:
+true

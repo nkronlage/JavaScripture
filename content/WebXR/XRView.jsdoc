@@ -1,0 +1,26 @@
+XRView : Object
+
+Spec:
+https://immersive-web.github.io/webxr/#xrview-interface
+
+----
+instance.eye : String
+
+One of **'left'**, **'right'**, or **'none'**.
+
+ReadOnly:
+true
+
+----
+instance.projectionMatrix : Float32Array
+
+4x4 (16 element) matrix.
+
+ReadOnly:
+true
+
+----
+instance.transform : XRRigidTransform
+
+ReadOnly:
+true
