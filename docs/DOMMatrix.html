@@ -1,0 +1,339 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>DOMMatrix JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript DOMMatrix Object. "><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>DOMMatrix</h2><div class="navgroup"><div class="group"><a href="#Constructors">Constructors</a></div><div class="group collapsed"><a href="#InstanceProperties" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Properties</a><div class="subgroup"><a href="#a">a</a><a href="#b">b</a><a href="#c">c</a><a href="#d">d</a><a href="#e">e</a><a href="#f">f</a><a href="#m11">m11</a><a href="#m12">m12</a><a href="#m13">m13</a><a href="#m14">m14</a><a href="#m21">m21</a><a href="#m22">m22</a><a href="#m23">m23</a><a href="#m24">m24</a><a href="#m31">m31</a><a href="#m32">m32</a><a href="#m33">m33</a><a href="#m34">m34</a><a href="#m41">m41</a><a href="#m42">m42</a><a href="#m43">m43</a><a href="#m44">m44</a></div></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#invertSelf_">invertSelf</a><a href="#multiplySelf">multiplySelf</a><a href="#preMultiplySelf">preMultiplySelf</a><a href="#rotateAxisAngleSelf_Number_Number_Number_Number" title="rotateAxisAngleSelf">rotateAxisAngleSelf</a><a href="#rotateFromVectorSelf_Number_Number" title="rotateFromVectorSelf">rotateFromVectorSelf</a><a href="#rotateSelf">rotateSelf</a><a href="#scale3DSelf_Number_Number_Number_Number">scale3DSelf</a><a href="#scaleSelf_Number_Number_Number_Number_Number_Number">scaleSelf</a><a href="#setValue_String">setValue</a><a href="#skewXSelf_Number">skewXSelf</a><a href="#skewY_Number">skewY</a><a href="#translateSelf_Number_Number_Number">translateSelf</a></div></div><div class="group collapsed"><a href="#DOMMatrixMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>DOMMatrix Methods</a><div class="subgroup"><a href="#fromFloat32Array_Float32Array" title="fromFloat32Array">fromFloat32Array</a><a href="#fromFloat64Array_Float64Array" title="fromFloat64Array">fromFloat64Array</a><a href="#fromMatrix">fromMatrix</a></div></div></div><h2>Geometry API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">DOMMatrix</span> <span class="type">: <a href="/DOMMatrixReadOnly">DOMMatrixReadOnly</a></span></h1><div class="metadata"><span>constructor</span></div><div class="objectdescription"><div class="membermetadata"><a href="https://drafts.fxtf.org/geometry-1/#dommatrix" class="spec">Spec</a></div></div><div><a name="Constructors"></a><h2>Constructors</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOMMatrix"></a> <a name="new_DOMMatrix"></a><div class="declaration">new <span class="membername primary">DOMMatrix</span>()&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Constructs new <a href="DOMMatrixReadOnly#is2D">2D</a> <a href="DOMMatrixReadOnly#isIdentity">identity</a> matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+console.log(new DOMMatrix());
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.DOMMatrix"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-dommatrix" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOMMatrix"></a> <a name="new_DOMMatrix_String"></a><div class="declaration">new <span class="membername primary">DOMMatrix</span>(<span class="membername">cssTransform</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Constructs a new matrix using the specified <code>cssTransform</code>. The syntax for this string is the same as for the <a href="/CSSStyleDeclaration#transform">css transform</a> property.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+console.log(new DOMMatrix(&#39;scale(2)&#39;));
+console.log(new DOMMatrix(&#39;translate(3px, 4px)&#39;));
+console.log(new DOMMatrix(&#39;rotate(30deg)&#39;));
+console.log();
+
+// Can combine multiple. Note order matters.
+console.log(new DOMMatrix(&#39;scale(5) translate(6px, 7px)&#39;));
+console.log(new DOMMatrix(&#39;translate(6px, 7px) scale(5)&#39;));
+console.log();
+
+// &#39;3d&#39; versions
+console.log(new DOMMatrix(&#39;translate3d(8px, 9px, 10px)&#39;));
+console.log(new DOMMatrix(&#39;rotate3d(1, 0, 0, 30deg)&#39;));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.DOMMatrix"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-dommatrix" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="DOMMatrix"></a> <a name="new_DOMMatrix_[object Object]"></a><div class="declaration">new <span class="membername primary">DOMMatrix</span>(<span class="membername">values</span>&nbsp;:&nbsp;<a class="membertype" href="/Iterator">Iterator</a>&lt;<a class="membertype" href="/Number">Number</a>&gt;)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"><code>values</code> must have either <code>6</code> or <code>16</code> elements in it.</p><p>If <code>6</code> elements are specified (<code>a</code>, <code>b</code>, ..., <code>f</code>), the matrix will be a <a href="DOMMatrixReadOnly#is2D">2D</a> matrix constructed like:</p><html><table><tr><td><code>a</code></td><td><code>c</code></td><td><code>e</code></td></tr><tr><td><code>b</code></td><td><code>d</code></td><td><code>f</code></td></tr><tr><td><code>0</code></td><td><code>0</code></td><td><code>1</code></td></tr></table></html><p></p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+// The following are equivalent:
+console.log(new DOMMatrix(&#39;scale(2)&#39;));
+console.log(new DOMMatrix([2, 0, 0, 2, 0, 0]));
+console.log(DOMMatrix.fromMatrix({ a: 2, d: 2 }));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.DOMMatrix"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p>If <code>16</code> elements are specified (<code>m11</code>, <code>m12</code>, <code>m13</code>, <code>m14</code>, <code>m21</code>, <code>m22</code>, ..., <code>m44</code>), the matrix will be a 3D matrix constructed like:<table><tr><td><code>m11</code></td><td><code>m12</code></td><td><code>m13</code></td><td><code>m14</code></td></tr><tr><td><code>m21</code></td><td><code>m22</code></td><td><code>m23</code></td><td><code>m24</code></td></tr><tr><td><code>m31</code></td><td><code>m32</code></td><td><code>m33</code></td><td><code>m34</code></td></tr><tr><td><code>m41</code></td><td><code>m42</code></td><td><code>m43</code></td><td><code>m44</code></td></tr></table></p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+// The following are equivalent:
+console.log(new DOMMatrix(&#39;scale3d(2, 2, 2)&#39;));
+console.log(new DOMMatrix([2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1]));
+console.log(DOMMatrix.fromMatrix({ m11: 2, m22: 2, m33: 2 }));
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.DOMMatrix"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-dommatrix" class="spec">Spec</a></div></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="a"></a><div class="declaration"><span class="membername primary">a</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>a</code> element of the matrix. This is the same as the <a href="#m11"><code>m11</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.a);
+console.log(matrix2D.m11);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.a);
+console.log(matrix3D.m11);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.a"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="b"></a><div class="declaration"><span class="membername primary">b</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>b</code> element of the matrix. This is the same as the <a href="#m12"><code>m12</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.b);
+console.log(matrix2D.m12);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.b);
+console.log(matrix3D.m12);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.b"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="c"></a><div class="declaration"><span class="membername primary">c</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>c</code> element of the matrix. This is the same as the <a href="#m21"><code>m21</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.c);
+console.log(matrix2D.m21);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.c);
+console.log(matrix3D.m21);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.c"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="d"></a><div class="declaration"><span class="membername primary">d</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>d</code> element of the matrix. This is the same as the <a href="#m22"><code>m22</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.d);
+console.log(matrix2D.m22);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.d);
+console.log(matrix3D.m22);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.d"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="e"></a><div class="declaration"><span class="membername primary">e</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>e</code> element of the matrix. This is the same as the <a href="#m41"><code>m41</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.e);
+console.log(matrix2D.m41);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.e);
+console.log(matrix3D.m41);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.e"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="f"></a><div class="declaration"><span class="membername primary">f</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>f</code> element of the matrix. This is the same as the <a href="#m42"><code>m42</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.f);
+console.log(matrix2D.m42);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.f);
+console.log(matrix3D.m42);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.f"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m11"></a><div class="declaration"><span class="membername primary">m11</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m11</code> element of the matrix. This is the same as the <a href="#a"><code>a</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.a);
+console.log(matrix2D.m11);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.a);
+console.log(matrix3D.m11);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m11"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m12"></a><div class="declaration"><span class="membername primary">m12</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m12</code> element of the matrix. This is the same as the <a href="#b"><code>b</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.b);
+console.log(matrix2D.m12);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.b);
+console.log(matrix3D.m12);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m12"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m13"></a><div class="declaration"><span class="membername primary">m13</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m13</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m13);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m13);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m13"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m14"></a><div class="declaration"><span class="membername primary">m14</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m14</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m14);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m14);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m14"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m21"></a><div class="declaration"><span class="membername primary">m21</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m21</code> element of the matrix. This is the same as the <a href="#c"><code>c</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.c);
+console.log(matrix2D.m21);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.c);
+console.log(matrix3D.m21);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m21"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m22"></a><div class="declaration"><span class="membername primary">m22</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m22</code> element of the matrix. This is the same as the <a href="#d"><code>d</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.d);
+console.log(matrix2D.m22);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.d);
+console.log(matrix3D.m22);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m22"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m23"></a><div class="declaration"><span class="membername primary">m23</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m23</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m23);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m23);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m23"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m24"></a><div class="declaration"><span class="membername primary">m24</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m24</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m24);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m24);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m24"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m31"></a><div class="declaration"><span class="membername primary">m31</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m31</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m31);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m31);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m31"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m32"></a><div class="declaration"><span class="membername primary">m32</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m32</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m32);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m32);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m32"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m33"></a><div class="declaration"><span class="membername primary">m33</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m33</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m33);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m33);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m33"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m34"></a><div class="declaration"><span class="membername primary">m34</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m14</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m34);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m34);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m34"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m41"></a><div class="declaration"><span class="membername primary">m41</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m41</code> element of the matrix. This is the same as the <a href="#e"><code>e</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.e);
+console.log(matrix2D.m41);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.e);
+console.log(matrix3D.m41);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m41"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m42"></a><div class="declaration"><span class="membername primary">m42</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m42</code> element of the matrix. This is the same as the <a href="#f"><code>f</code></a> element.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.f);
+console.log(matrix2D.m42);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.f);
+console.log(matrix3D.m42);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m42"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m43"></a><div class="declaration"><span class="membername primary">m43</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m43</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m43);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m43);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m43"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="m44"></a><div class="declaration"><span class="membername primary">m44</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Returns the <code>m44</code> element of the matrix.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix2D = new DOMMatrix([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m44);
+console.log();
+
+
+const matrix3D = new DOMMatrix([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m44);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.m44"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="invertSelf"></a> <a name="invertSelf_"></a><div class="declaration"><span class="membername primary">invertSelf</span>()&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div><div class="methodgroup"><a name="multiplySelf"></a> <span class="membername primary">multiplySelf</span> 2 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="multiplySelf_Object"></a><div class="declaration"><span class="membername primary">multiplySelf</span>(<span class="optional">[<span class="membername">matrix</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Same as <code>multiyply(<a href="DOMMatrixReadOnly#fromMatrix">fromMatrix(matrix)</a>)</code>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="multiplySelf_DOMMatrixReadOnly"></a><div class="declaration"><span class="membername primary">multiplySelf</span>(<span class="optional">[<span class="membername">matrix</span>&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrixReadOnly">DOMMatrixReadOnly</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div></div></div><div class="methodgroup"><a name="preMultiplySelf"></a> <span class="membername primary">preMultiplySelf</span> 2 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="preMultiplySelf_Object"></a><div class="declaration"><span class="membername primary">preMultiplySelf</span>(<span class="optional">[<span class="membername">matrix</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Same as <code>preMultiyply(<a href="DOMMatrixReadOnly#fromMatrix">fromMatrix(matrix)</a>)</code>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="preMultiplySelf_DOMMatrixReadOnly"></a><div class="declaration"><span class="membername primary">preMultiplySelf</span>(<span class="optional">[<span class="membername">matrix</span>&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrixReadOnly">DOMMatrixReadOnly</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="rotateAxisAngleSelf"></a> <a name="rotateAxisAngleSelf_Number_Number_Number_Number"></a><div class="declaration"><span class="membername primary">rotateAxisAngleSelf</span>(<span class="optional">[<span class="membername">x</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">y</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">z</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">degrees</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>]</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="rotateFromVectorSelf"></a> <a name="rotateFromVectorSelf_Number_Number"></a><div class="declaration"><span class="membername primary">rotateFromVectorSelf</span>(<span class="optional">[<span class="membername">x</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">y</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Rotates <code>this</code> by the angle between the x axis and the vector from the origin to the specified point (<code>x</code>, <code>y</code>). Same as <a href="#rotateSelf_Number"><code>this.rotateSelf</code></a>(<a href="Math#atan2">Math.atan2</a>(y, x) * 180 / <a href="Math#PI">Math.PI</a>). Return <code>this</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas id=&#39;canvas&#39;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+  var canvas = document.getElementById(&#39;canvas&#39;);
+  var context = canvas.getContext(&#39;2d&#39;);
+
+  context.fillStyle = &#39;red&#39;;
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix1 = new DOMMatrix().rotateFromVectorSelf(2, -1);
+
+  context.setTransform(matrix1);
+
+  context.fillStyle = &#39;blue&#39;;
+  context.fillRect(20, 20, 20, 40);
+
+  // Alternatively, calculate the angle using atan2 and convert to degrees.
+  var matrix2 = new DOMMatrix().rotateSelf(Math.atan2(-1, 2) * 180 / Math.PI);
+  console.log(matrix1);
+  console.log(matrix2);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "DOMMatrix.rotateFromVectorSelf"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="methodgroup"><a name="rotateSelf"></a> <span class="membername primary">rotateSelf</span> 2 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="rotateSelf_Number_Number_Number"></a><div class="declaration"><span class="membername primary">rotateSelf</span>(<span class="optional">[<span class="membername">degreesX</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">degreesY</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">degreesZ</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Applies the specfied rotation to <code>this</code>. Returns <code>this</code>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="rotateSelf_Number"></a><div class="declaration"><span class="membername primary">rotateSelf</span>(<span class="membername">degreesZ</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Applies the specfied rotation to <code>this</code>. Returns <code>this</code>.</p></div></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="scale3DSelf"></a> <a name="scale3DSelf_Number_Number_Number_Number"></a><div class="declaration"><span class="membername primary">scale3DSelf</span>(<span class="optional">[<span class="membername">scale</span><span class="defaultvalue">&nbsp;=&nbsp;1</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">originX</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">originY</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">originZ</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>]</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Applies the specfied scale to <code>this</code>. Returns <code>this</code>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="scaleSelf"></a> <a name="scaleSelf_Number_Number_Number_Number_Number_Number"></a><div class="declaration"><span class="membername primary">scaleSelf</span>(<span class="optional">[<span class="membername">scaleX</span><span class="defaultvalue">&nbsp;=&nbsp;1</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">scaleY</span><span class="defaultvalue">&nbsp;=&nbsp;scaleX</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">scaleZ</span><span class="defaultvalue">&nbsp;=&nbsp;1</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">originX</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">originY</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">originZ</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>]</span>]</span>]</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Applies the specfied scale to <code>this</code>. Returns <code>this</code>.</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="setValue"></a> <a name="setValue_String"></a><div class="declaration"><span class="membername primary">setValue</span>(<span class="membername">cssTransform</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="skewXSelf"></a> <a name="skewXSelf_Number"></a><div class="declaration"><span class="membername primary">skewXSelf</span>(<span class="optional">[<span class="membername">degrees</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas id=&#39;canvas&#39;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+  var canvas = document.getElementById(&#39;canvas&#39;);
+  var context = canvas.getContext(&#39;2d&#39;);
+
+  context.fillStyle = &#39;red&#39;;
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix = new DOMMatrix().skewXSelf(45);
+
+  context.setTransform(matrix);
+
+  context.fillStyle = &#39;blue&#39;;
+  context.fillRect(20, 20, 20, 40);
+&lt;/script&gt;
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "DOMMatrix.skewXSelf"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="skewY"></a> <a name="skewY_Number"></a><div class="declaration"><span class="membername primary">skewY</span>(<span class="optional">[<span class="membername">degrees</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+&lt;canvas id=&#39;canvas&#39;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+  var canvas = document.getElementById(&#39;canvas&#39;);
+  var context = canvas.getContext(&#39;2d&#39;);
+
+  context.fillStyle = &#39;red&#39;;
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix = new DOMMatrix().skewYSelf(45);
+
+  context.setTransform(matrix);
+
+  context.fillStyle = &#39;blue&#39;;
+  context.fillRect(20, 20, 20, 40);
+&lt;/script&gt;
+
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "DOMMatrix.skewY"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="translateSelf"></a> <a name="translateSelf_Number_Number_Number"></a><div class="declaration"><span class="membername primary">translateSelf</span>(<span class="optional">[<span class="membername">x</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">y</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">z</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description">Applies the specfied translation to <code>this</code>. Returns <code>this</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const matrix = new DOMMatrix();
+
+console.log(matrix.translateSelf(2, 3));
+console.log(matrix);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "DOMMatrix.translateSelf"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="DOMMatrixMethods"></a><h2>DOMMatrix Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="fromFloat32Array"></a> <a name="fromFloat32Array_Float32Array"></a><div class="declaration"><span class="membername primary">fromFloat32Array</span>(<span class="membername">values</span>&nbsp;:&nbsp;<a class="membertype" href="/Float32Array">Float32Array</a>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="fromFloat64Array"></a> <a name="fromFloat64Array_Float64Array"></a><div class="declaration"><span class="membername primary">fromFloat64Array</span>(<span class="membername">values</span>&nbsp;:&nbsp;<a class="membertype" href="/Float64Array">Float64Array</a>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div><div class="methodgroup"><a name="fromMatrix"></a> <span class="membername primary">fromMatrix</span> 2 variants<div class="mode"><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="fromMatrix_DOMMatrixReadOnly"></a><div class="declaration"><span class="membername primary">fromMatrix</span>(<span class="optional">[<span class="membername">matrix</span>&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrixReadOnly">DOMMatrixReadOnly</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrix">DOMMatrix</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="fromMatrix_Object"></a><div class="declaration"><span class="membername primary">fromMatrix</span>(<span class="membername">init</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/DOMMatrixReadOnly">DOMMatrixReadOnly</a></div><div class="member-body"><p class="description"></p></div></div></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script></html>

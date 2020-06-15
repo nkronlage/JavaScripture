@@ -1100,6 +1100,94 @@ a solid line. See also %%#lineDashOffset|lineDashOffset%%.
 </htmlexample>
 
 ----
+prototype.getTransform() : DOMMatrix
+
+Gets the current transform.
+See also %%#setTransform|setTransform()%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix = new DOMMatrix();
+  matrix.translateSelf(50, 20);
+  matrix.scaleSelf(2);
+
+  context.setTransform(matrix);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+
+  console.log(context.getTransform());
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/#dom-context-2d-gettransform
+
+----
+prototype.setTransform(matrix : Object) : undefined
+
+Same as **this.setTransform(%%/DOMMatrix#fromMatrix|DOMMatrix.fromMatrix(matrix)%%)**.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var scale = 2;
+  var translateX = 50;
+  var translateY = 20;
+
+  context.setTransform({a: 2, d: 2, e: translateX, f: translateY });
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+</htmlexample>
+
+----
+prototype.setTransform(matrix : DOMMatrix) : undefined
+
+Replaces the current transform with specified **matrix**.
+**matrix** can also be an Object that can be passed to
+the %%/DOMMatrix|DOMMatrix%% constructor.
+
+See also %%#getTransform|getTransform()%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix = new DOMMatrix();
+  matrix.translateSelf(50, 20);
+  matrix.scaleSelf(2);
+
+  context.setTransform(matrix);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/#dom-context-2d-settransform-matrix
+
+----
 prototype.setTransform(a : Number, b : Number, c : Number, d : Number, e : Number, f : Number) : undefined
 
 Replaces the current transform with following matrix:
@@ -1111,6 +1199,8 @@ Replaces the current transform with following matrix:
 <tr><td>**0**</td><td>**0**</td><td>**1**</td></tr>
 </table>
 </html>
+
+See also %%#getTransform|getTransform()%%.
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -1133,7 +1223,6 @@ Replaces the current transform with following matrix:
   context.fillRect(20, 20, 20, 40);
 </script>
 </htmlexample>
-
 
 
 Spec:

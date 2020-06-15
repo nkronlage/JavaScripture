@@ -1,0 +1,775 @@
+DOMMatrixReadOnly : Object
+
+A 4x4 matrix.
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#dommatrixreadonly
+
+----
+new DOMMatrixReadOnly() : DOMMatrixReadOnly
+
+Constructs new %%#is2D|2D%% %%#isIdentity|identity%% matrix.
+
+<example>
+console.log(new DOMMatrixReadOnly());
+</example>
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-dommatrixreadonly
+
+----
+new DOMMatrixReadOnly(cssTransform : String) : DOMMatrixReadOnly
+
+Constructs a new matrix using the specified **cssTransform**. The syntax for
+this string is the same as for the %%/CSSStyleDeclaration#transform|css transform%%
+property.
+
+<example>
+console.log(new DOMMatrixReadOnly('scale(2)'));
+console.log(new DOMMatrixReadOnly('translate(3px, 4px)'));
+console.log(new DOMMatrixReadOnly('rotate(30deg)'));
+console.log();
+
+// Can combine multiple. Note order matters.
+console.log(new DOMMatrixReadOnly('scale(5) translate(6px, 7px)'));
+console.log(new DOMMatrixReadOnly('translate(6px, 7px) scale(5)'));
+console.log();
+
+// '3d' versions
+console.log(new DOMMatrixReadOnly('translate3d(8px, 9px, 10px)'));
+console.log(new DOMMatrixReadOnly('rotate3d(1, 0, 0, 30deg)'));
+</example>
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-dommatrixreadonly
+
+----
+new DOMMatrixReadOnly(values : Iterator<Number>) : DOMMatrixReadOnly
+
+**values** must have either **6** or **16** elements in it.
+
+<p>
+If **6** elements are specified (**a**, **b**, ..., **f**), the matrix will be a 
+%%#is2D|2D%% matrix constructed like:
+
+<html>
+<table>
+<tr><td>**a**</td><td>**c**</td><td>**e**</td></tr>
+<tr><td>**b**</td><td>**d**</td><td>**f**</td></tr>
+<tr><td>**0**</td><td>**0**</td><td>**1**</td></tr>
+</table>
+</html>
+</p>
+
+
+<example>
+// The following are equivalent:
+console.log(new DOMMatrixReadOnly('scale(2)'));
+console.log(new DOMMatrixReadOnly([2, 0, 0, 2, 0, 0]));
+console.log(DOMMatrixReadOnly.fromMatrix({ a: 2, d: 2 }));
+</example>
+
+<p>
+If **16** elements are specified (**m11**, **m12**, **m13**, **m14**, **m21**, **m22**,
+..., **m44**), the matrix will be a 3D matrix constructed like:
+<table>
+<tr><td>**m11**</td><td>**m12**</td><td>**m13**</td><td>**m14**</td></tr>
+<tr><td>**m21**</td><td>**m22**</td><td>**m23**</td><td>**m24**</td></tr>
+<tr><td>**m31**</td><td>**m32**</td><td>**m33**</td><td>**m34**</td></tr>
+<tr><td>**m41**</td><td>**m42**</td><td>**m43**</td><td>**m44**</td></tr>
+</table>
+</p>
+
+<example>
+// The following are equivalent:
+console.log(new DOMMatrixReadOnly('scale3d(2, 2, 2)'));
+console.log(new DOMMatrixReadOnly([2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1]));
+console.log(DOMMatrixReadOnly.fromMatrix({ m11: 2, m22: 2, m33: 2 }));
+</example>
+
+----
+instance.a : Number
+
+Returns the **a** element of the matrix. This is the same as the %%#m11|**m11**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.a);
+console.log(matrix2D.m11);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.a);
+console.log(matrix3D.m11);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.b : Number
+
+Returns the **b** element of the matrix. This is the same as the %%#m12|**m12**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.b);
+console.log(matrix2D.m12);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.b);
+console.log(matrix3D.m12);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.c : Number
+
+Returns the **c** element of the matrix. This is the same as the %%#m21|**m21**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.c);
+console.log(matrix2D.m21);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.c);
+console.log(matrix3D.m21);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.d : Number
+
+Returns the **d** element of the matrix. This is the same as the %%#m22|**m22**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.d);
+console.log(matrix2D.m22);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.d);
+console.log(matrix3D.m22);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.e : Number
+
+Returns the **e** element of the matrix. This is the same as the %%#m41|**m41**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.e);
+console.log(matrix2D.m41);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.e);
+console.log(matrix3D.m41);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.f : Number
+
+Returns the **f** element of the matrix. This is the same as the %%#m42|**m42**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.f);
+console.log(matrix2D.m42);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.f);
+console.log(matrix3D.m42);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m11 : Number
+
+Returns the **m11** element of the matrix. This is the same as the %%#a|**a**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.a);
+console.log(matrix2D.m11);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.a);
+console.log(matrix3D.m11);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m12 : Number
+
+Returns the **m12** element of the matrix. This is the same as the %%#b|**b**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.b);
+console.log(matrix2D.m12);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.b);
+console.log(matrix3D.m12);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m13 : Number
+
+Returns the **m13** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m13);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m13);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m14 : Number
+
+Returns the **m14** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m14);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m14);
+</example>
+
+ReadOnly:
+true
+
+
+----
+instance.m21 : Number
+
+Returns the **m21** element of the matrix. This is the same as the %%#c|**c**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.c);
+console.log(matrix2D.m21);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.c);
+console.log(matrix3D.m21);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m22 : Number
+
+Returns the **m22** element of the matrix. This is the same as the %%#d|**d**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.d);
+console.log(matrix2D.m22);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.d);
+console.log(matrix3D.m22);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m23 : Number
+
+Returns the **m23** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m23);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m23);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m24 : Number
+
+Returns the **m24** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m24);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m24);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m31 : Number
+
+Returns the **m31** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m31);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m31);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m32 : Number
+
+Returns the **m32** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m32);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m32);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m33 : Number
+
+Returns the **m33** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m33);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m33);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m34 : Number
+
+Returns the **m14** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m34);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m34);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m41 : Number
+
+Returns the **m41** element of the matrix. This is the same as the %%#e|**e**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.e);
+console.log(matrix2D.m41);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.e);
+console.log(matrix3D.m41);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m42 : Number
+
+Returns the **m42** element of the matrix. This is the same as the %%#f|**f**%% 
+element.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.f);
+console.log(matrix2D.m42);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.f);
+console.log(matrix3D.m42);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m43 : Number
+
+Returns the **m43** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m43);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m43);
+</example>
+
+ReadOnly:
+true
+
+----
+instance.m44 : Number
+
+Returns the **m44** element of the matrix.
+
+<example>
+const matrix2D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5]);
+
+console.log(matrix2D.m44);
+console.log();
+
+
+const matrix3D = new DOMMatrixReadOnly([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+
+console.log(matrix3D.m44);
+</example>
+
+ReadOnly:
+true
+
+
+----
+instance.is2D : Boolean
+
+Indicates **this** was created with one of the 2D constructors.
+
+<example>
+console.log(new DOMMatrixReadOnly().is2D);
+console.log(new DOMMatrixReadOnly([1, 0, 0, 1, 0, 0]).is2D);
+console.log(new DOMMatrixReadOnly('scale3d(2, 2, 2)').is2D);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-is2d
+
+----
+instance.isIdentity : Boolean
+
+**true** if **this** is an identity matrix (diagonal elements are **1**, rest are **0**).
+
+<example>
+console.log(new DOMMatrixReadOnly().isIdentity);
+console.log(new DOMMatrixReadOnly([1, 0, 0, 1, 0, 0]).isIdentity);
+console.log(new DOMMatrixReadOnly('scale(2)').isIdentity);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-isidentity
+
+----
+prototype.translate([x : Number, [y : Number, [z : Number]]]) : DOMMatrix
+
+Returns a new DOMMatrix of **this** followed by the specified translation.
+If **this** is %%#is2D|2D%% and **z** is specified, the return value will
+be a 3D matrix. Otherwise it will be a 2D matrix.
+
+See also %%DOMMatrix#translateSelf()|DOMMatrix.translateSelf()%%.
+
+<example>
+const matrix = new DOMMatrixReadOnly();
+
+console.log(matrix.translate(2, 3));
+console.log(matrix.translate(2, 3, 4));
+</example>
+
+----
+prototype.scale([scaleX = 1 : Number, [scaleY = scaleX : Number, [scaleZ = 1 : Number, \
+  [originX = 0 : Number, [originY = 0 : Number, [originZ = 0 : Number]]]]]]) : DOMMatrix
+
+See also %%DOMMatrix#scaleSelf()|DOMMatrix.scaleSelf()%%.
+
+----
+prototype.scaleNonUniform([scaleX = 1 : Number, [scaleY = 1 : Number]]) : DOMMatrix
+
+----
+prototype.scale3D([scale = 1 : Number, [originX = 0 : Number, [originY = 0 : Number, \
+  [originZ = 0 : Number]]]]) : DOMMatrix
+
+See also %%DOMMatrix#scale3DSelf()|DOMMatrix.scale3DSelf()%%.
+
+----
+prototype.rotate(degreesZ = 0 : Number) : DOMMatrix
+
+See also %%DOMMatrix#rotateSelf()|DOMMatrix.rotateSelf()%%.
+
+----
+prototype.rotate([degreesX = 0 : Number, [degreesY = 0 : Number, [degreesZ = 0 : Number]]]) : DOMMatrix
+
+See also %%DOMMatrix#rotateSelf()|DOMMatrix.rotateSelf()%%.
+
+----
+prototype.rotateFromVector([x = 0 : Number, [y = 0 : Number]]) : DOMMatrix
+
+Rotates **this** by the angle between the x axis and the vector from the origin
+to the specified point (**x**, **y**). Same as 
+%%#rotate_Number|**this.rotate%%(%%Math#atan2|Math.atan2%%(y, x) * 180 / %%Math#PI|Math.PI%%)**.
+See also %%DOMMatrix#rotateFromVectorSelf()|DOMMatrix.rotateFromVectorSelf()%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var identity = new DOMMatrixReadOnly();
+  var matrix1 = identity.rotateFromVector(2, -1);
+
+  context.setTransform(matrix1);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+
+  // Alternatively, calculate the angle using atan2 and convert to degrees.
+  var matrix2 = identity.rotate(Math.atan2(-1, 2) * 180 / Math.PI);
+  console.log(matrix1);
+  console.log(matrix2);
+</script>
+</htmlexample>
+
+----
+prototype.rotateAxisAngle([x = 0 : Number, [y = 0 : Number, [z = 0 : Number, [degrees = 0 : Number]]]]) : DOMMatrix
+
+See also %%DOMMatrix#rotateAxisAngleSelf()|DOMMatrix.rotateAxisAngleSelf()%%.
+
+----
+prototype.skewX([degrees = 0 : Number]) : DOMMatrix
+
+See also %%DOMMatrix#skewXSelf()|DOMMatrix.skewXSelf()%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix = new DOMMatrixReadOnly();
+  matrix = matrix.skewX(45);
+
+  context.setTransform(matrix);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+</htmlexample>
+
+----
+prototype.skewY([degrees = 0 : Number]) : DOMMatrix
+
+See also %%DOMMatrix#skewYSelf()|DOMMatrix.skewYSelf()%%.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  context.fillStyle = 'red';
+  context.fillRect(20, 20, 20, 40);
+
+  var matrix = new DOMMatrixReadOnly();
+  matrix = matrix.skewY(45);
+
+  context.setTransform(matrix);
+
+  context.fillStyle = 'blue';
+  context.fillRect(20, 20, 20, 40);
+</script>
+
+</htmlexample>
+
+----
+prototype.multiply([matrix : Object]) : DOMMatrix
+
+Same as **multiyply(%%#fromMatrix|fromMatrix(matrix)%%)**.
+
+----
+prototype.multiply([matrix : DOMMatrixReadOnly]) : DOMMatrix
+
+See also %%DOMMatrix#multiplySelf()|DOMMatrix.multiplySelf()%%.
+
+----
+prototype.flipX() : DOMMatrix
+
+----
+prototype.flipY() : DOMMatrix
+
+----
+prototype.inverse() : DOMMatrix
+
+See also %%DOMMatrix#invertSelf()|DOMMatrix.invertSelf()%%.
+
+----
+prototype.transformPoint(point : Object) : DOMPoint
+
+Same as **transformPoint(%%DOMPointReadOnly#fromPoint|fromPoint(Point)%%)**.
+
+----
+prototype.transformPoint([point : DOMPointReadOnly]) : DOMPoint
+
+----
+prototype.toFloat32Array() : Float32Array
+
+----
+prototype.toFloat64Array() : Float64Array
+
+----
+fromMatrix(init : Object) : DOMMatrixReadOnly
+
+----
+fromMatrix([matrix : DOMMatrixReadOnly]) : DOMMatrixReadOnly
+
+----
+fromFloat32Array(values : Float32Array) : DOMMatrixReadOnly
+
+----
+fromFloat64Array(values : Float64Array) : DOMMatrixReadOnly
+

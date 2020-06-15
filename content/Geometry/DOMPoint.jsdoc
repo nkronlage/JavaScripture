@@ -1,0 +1,137 @@
+DOMPoint : DOMPointReadOnly
+
+Represents a 3D point using %%https://en.wikipedia.org/wiki/Homogeneous_coordinates#Use_in_computer_graphics_and_computer_vision|homogeneous coordinates%%.
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#DOMPoint
+
+----
+new DOMPoint([x = 0 : Number, [y = 0 : Number, [z = 0 : Number, [w = 1 : Number]]]]) : DOMPoint
+
+<htmlexample>
+<script>
+  const point = new DOMPoint();
+  console.log(point.x, point.y, point.z, point.w);
+
+  const point2 = new DOMPoint(4, 5, 6);
+  console.log(point2.x, point2.y, point2.z, point2.w);
+
+  const point3 = new DOMPoint(7, 8, 9, 10);
+  console.log(point3.x, point3.y, point3.z, point3.w);
+</script>
+</htmlexample>
+
+----
+instance.x : Number
+
+The x coordinate of the point.
+
+<htmlexample>
+<script>
+  const point = new DOMPointReadOnly();
+  console.log(point.x);
+
+  const point2 = new DOMPointReadOnly(4, 5, 6);
+  console.log(point2.x);
+
+  const point3 = new DOMPointReadOnly(7, 8, 9, 10);
+  console.log(point3.x);
+</script>
+</htmlexample>
+
+----
+instance.y : Number
+
+The y coordinate of the point.
+
+<htmlexample>
+<script>
+  const point = new DOMPointReadOnly();
+  console.log(point.y);
+
+  const point2 = new DOMPointReadOnly(4, 5, 6);
+  console.log(point2.y);
+
+  const point3 = new DOMPointReadOnly(7, 8, 9, 10);
+  console.log(point3.y);
+</script>
+</htmlexample>
+
+----
+instance.z : Number
+
+The z coordinate of the point.
+
+<htmlexample>
+<script>
+  const point = new DOMPointReadOnly();
+  console.log(point.z);
+
+  const point2 = new DOMPointReadOnly(4, 5, 6);
+  console.log(point2.z);
+
+  const point3 = new DOMPointReadOnly(7, 8, 9, 10);
+  console.log(point3.z);
+</script>
+</htmlexample>
+
+----
+instance.w : Number
+
+The w coordinate of the point. Typically set to **1**.
+See %%https://en.wikipedia.org/wiki/Homogeneous_coordinates#Use_in_computer_graphics_and_computer_vision|homogeneous coordinates%% for more details.
+
+<htmlexample>
+<script>
+  const point = new DOMPointReadOnly();
+  console.log(point.w);
+
+  const point2 = new DOMPointReadOnly(4, 5, 6);
+  console.log(point2.w);
+
+  const point3 = new DOMPointReadOnly(7, 8, 9, 10);
+  console.log(point3.w);
+</script>
+</htmlexample>
+
+----
+fromPoint(point : { \
+    x : Number, \
+    y : Number, \
+    z : Number, \
+    w : Number \
+  }) : DOMPoint
+
+Returns a new DOMPoint that copies the coordinates from **point**.
+
+<htmlexample>
+<script>
+  // The following are equivalent
+  const point = new DOMPointReadOnly(4, 5, 6);
+  console.log(point.x, point.y, point.z, point.w);
+
+  const point2 = DOMPointReadOnly.fromPoint({ x: 4, y: 5, z: 6});
+  console.log(point2.x, point2.y, point2.z, point2.w);
+</script>
+</htmlexample>
+
+----
+fromPoint(point : DOMPointReadOnly) : DOMPoint
+
+Returns a new DOMPoint that copies the coordinates from **point**.
+
+<htmlexample>
+<script>
+  const point = new DOMPointReadOnly(4, 5, 6);
+  console.log(point.x, point.y, point.z, point.w);
+
+  const point2 = DOMPoint.fromPoint(point);
+  console.log(point2.x, point2.y, point2.z, point2.w);
+
+  const point3 = new DOMPoint(7, 8, 9, 10);
+  console.log(point3.x, point3.y, point3.z, point3.w);
+
+  const point4 = DOMPoint.fromPoint(point3);
+  console.log(point4.x, point4.y, point4.z, point4.w);
+</script>
+</htmlexample>

@@ -4362,6 +4362,8 @@ http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml
 ----
 prototype.uniformMatrix4fv(uniformLocation : WebGLUniformLocation, transpose : Boolean, value : Float32Array) : undefined
 
+See %%DOMMatrixReadOnly#toFloat32Array|DOMMatrixReadOnly.toFloat32Array()%%.
+
 IDL:
 void uniformMatrix4fv(WebGLUniformLocation location, GLboolean transpose, sequence<float> value);
 

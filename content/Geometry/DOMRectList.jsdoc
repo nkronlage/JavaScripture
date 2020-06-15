@@ -1,4 +1,4 @@
-ClientRectList : Object
+DOMRectList : Object
 
 Spec:
 http://dev.w3.org/csswg/cssom-view/#clientrectlist
@@ -6,7 +6,7 @@ http://dev.w3.org/csswg/cssom-view/#clientrectlist
 ----
 instance[index : Number] : ClientRect
 
-Returns the ClientRect at the specified **index**. You can also use the
+Returns the DOMRect at the specified **index**. You can also use the
 %%#item|**item()**%% method to retrieve the item. 
 
 ReadOnly:
@@ -15,7 +15,7 @@ true
 ----
 instance.length : Number
 
-The number of ClientRects in the list.
+The number of DOMRects in the list.
 
 Spec:
 http://dev.w3.org/csswg/cssom-view/#dom-clientrectlist-length

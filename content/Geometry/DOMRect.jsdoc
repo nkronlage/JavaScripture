@@ -1,0 +1,41 @@
+DOMRect : DOMRectReadOnly
+
+**DOMRect** describes a rectangular region an element occupies in the
+viewport.  The 
+%%/Element#getBoundingClientRect|**Element.getBoundingClientRect()**%%
+method returns a **DOMRect** containing the position of the 
+Element.
+
+%%/Element#getClientRects|**Element.getClientRects()**%% returns a
+%%/DOMRectList|**DOMRectList**%% containing a list of **DOMRect**s
+for each portion of the Element (ie, a text Element may have multiple 
+rects if it was split across 2 lines).
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#domrect
+
+----
+new DOMRect([x = 0 : Number, [y = 0 : Number, [width = 0 : Number, [height = 0 : Number]]]]) : DOMRect
+
+----
+instance.x : Number
+
+The distance of the element to the left of the viewport.
+
+----
+instance.y : Number
+
+The distance of the element to the top of the viewport.
+
+----
+instance.width : Number
+
+The width of the element.
+
+----
+instance.height : Number
+
+The height of the element.
+
+----
+fromRect(rect : { x = 0 : Number, y = 0: Number, width = 0 : Number, height = 0 : Number }) : DOMRect

@@ -10,7 +10,13 @@ const template = require('./template.js');
 const sets = {};
 
 const generateMetadata = filename => {
+  console.log(`Generating metadata for ${filename}`);
   const obj = jsdoc.processFile(filename);
+
+  if (!new RegExp('/' + obj.name + '\\.jsdoc', 'i').test(filename)) {
+    throw `Object ${obj.name} defined in unexpected file ${filename}`;
+  }
+
   obj.jsdocSourceFile = filename;
 
   const setName = path.basename(path.dirname(filename));

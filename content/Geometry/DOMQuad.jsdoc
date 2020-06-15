@@ -1,0 +1,52 @@
+DOMQuad : Object
+
+See %%https://drafts.csswg.org/cssom-view/#the-geometryutils-interface|https://drafts.csswg.org/cssom-view/#the-geometryutils-interface%%
+for upcoming methods that use DOMQuad.
+
+Spec:
+https://drafts.fxtf.org/geometry-1/#domquad
+
+----
+new DOMQuad([p1 : DOMPointReadOnly, [p2 : DOMPointReadOnly, [p3 : DOMPointReadOnly, [p4 : DOMPointReadOnly]]]]) : DOMQuad
+
+----
+new DOMQuad([p1 : Object, [p2 : Object, [p3 : Object, [p4 : Object]]]]) : DOMQuad
+
+----
+instance.p1 : DOMPoint
+
+ReadOnly:
+true
+
+----
+instance.p2 : DOMPoint
+
+ReadOnly:
+true
+
+----
+instance.p3 : DOMPoint
+
+ReadOnly:
+true
+
+----
+instance.p4 : DOMPoint
+
+ReadOnly:
+true
+
+----
+prototype.getBounds() : DOMRect
+
+----
+fromRect([rect : DOMRectReadOnly]) : DOMQuad
+
+----
+fromRect([rect : Object]) : DOMQuad
+
+----
+fromQuad([quad : DOMQuad]) : DOMQuad
+
+----
+fromQuad([quad : Object]) : DOMQuad

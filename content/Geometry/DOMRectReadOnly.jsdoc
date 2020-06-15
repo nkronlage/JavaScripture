@@ -1,5 +1,7 @@
 DOMRectReadOnly : Object
 
+See also %%DOMRect|DOMRect%%.
+
 Spec:
 https://drafts.fxtf.org/geometry-1/#domrectreadonly
 
