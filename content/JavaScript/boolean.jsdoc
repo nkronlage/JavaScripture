@@ -12,7 +12,8 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.6
 Boolean(value : Object) : Boolean
 
 Coerces **value** into a boolean value.  You can also use **!!value** to
-do the coercion.
+do the coercion. Note **'false'** coerces to **true** since it is a non-empty
+string. Use **value === 'true'** to convert a string to a Boolean.
 
 <example>
 console.log(Boolean(''));
@@ -22,6 +23,13 @@ console.log(Boolean(1));
 console.log(Boolean([]));
 console.log(Boolean(undefined));
 console.log(!!undefined);
+console.log();
+
+var stringToBoolean = function(value) {
+  return value === 'true';
+};
+console.log(Boolean('false'));
+console.log(stringToBoolean('false'));
 </example>
 
 Spec:
