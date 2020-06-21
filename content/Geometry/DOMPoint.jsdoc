@@ -96,10 +96,10 @@ See %%https://en.wikipedia.org/wiki/Homogeneous_coordinates#Use_in_computer_grap
 
 ----
 fromPoint(point : { \
-    x : Number, \
-    y : Number, \
-    z : Number, \
-    w : Number \
+    x : Number /* Default = **0** */, \
+    y : Number /* Default = **0** */, \
+    z : Number /* Default = **0** */, \
+    w : Number /* Default = **1** */ \
   }) : DOMPoint
 
 Returns a new DOMPoint that copies the coordinates from **point**.

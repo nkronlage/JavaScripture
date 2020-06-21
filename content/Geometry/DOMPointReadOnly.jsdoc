@@ -122,10 +122,10 @@ matrixTransform([matrix : DOMMatrix]) : DOMPoint
 
 ----
 fromPoint([point : { \
-    x : Number, \
-    y : Number, \
-    z : Number, \
-    w : Number \
+    x : Number /* Default = **0** */, \
+    y : Number /* Default = **0** */, \
+    z : Number /* Default = **0** */, \
+    w : Number /* Default = **1** */ \
   }]) : DOMPointReadOnly
 
 Returns a new DOMPointReadOnly that copies the coordinates from **point**.
