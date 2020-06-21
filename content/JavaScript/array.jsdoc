@@ -294,7 +294,7 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.find
 
 ----
-prototype.findIndex(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Object
+prototype.findIndex(callback(item:Object, index:Number, array:Array):Boolean, [thisArg : Object]) : Number
 
 Returns the index of the first item in **this** where **callback** returns
 **true** for that item.
