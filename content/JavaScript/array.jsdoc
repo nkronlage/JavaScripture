@@ -299,7 +299,7 @@ prototype.findIndex(callback(item:Object, index:Number, array:Array):Boolean, [t
 Returns the index of the first item in **this** where **callback** returns
 **true** for that item.
 
-See also %%#find|**find()**%%.
+See also %%#find|**find()**%% and %%#indexOf|**indexOf()**%%.
 
 <example>
 var x = ['a', 'b', 'foo', 'd', 'e'];
@@ -384,7 +384,7 @@ Returns the first location of **item** in **this** starting the search from
 If **startingIndex**
 is negative, **this.length** is added to it before starting the search. 
 Returns **-1** if **item** is not found.
-See also %%#lastIndexOf|**lastIndexOf()**%%.
+See also %%#findIndex|**findIndex()**%% and %%#lastIndexOf|**lastIndexOf()**%%.
 
 <example>
 var x = ['a', 'b', 'c', 'd', 'b', 'c', 'a'];
