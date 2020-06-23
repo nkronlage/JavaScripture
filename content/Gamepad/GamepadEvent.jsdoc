@@ -1,0 +1,12 @@
+GamepadEvent : Event
+
+----
+new GamepadEvent(type : String, eventInit : { \
+    gamepad: Gamepad \
+  }) : GamepadEvent
+
+----
+instance.gamepad : Gamepad
+
+ReadOnly:
+true

@@ -1,0 +1,162 @@
+Gamepad : Object
+
+Represents a gamepad/controller. Connected gamepads are available through the
+%%/Navigator#getGamepads|**navigator.getGamepads()**%% method.
+
+Spec:
+https://w3c.github.io/gamepad/#dom-gamepad
+
+----
+instance.id : String
+
+<htmlexample>
+Press button on controller to connect.
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  console.log('id:', event.gamepad.id);
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.index : Number
+
+<htmlexample>
+Press button on controller to connect.
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  console.log('index:', event.gamepad.index);
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.connected : Boolean
+
+<htmlexample>
+Press button on controller to connect.
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  console.log('connected:', event.gamepad.connected);
+});
+window.addEventListener('gamepaddisconnected', (event) => {
+  console.log('connected:', event.gamepad.connected);
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.timestamp : Number
+
+The last time there was an update from the gamepad. In milliseconds.
+
+<htmlexample>
+Press button on controller to connect.
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  const update = () => {
+    const output = document.getElementById('buttons');
+    output.innerHTML = ''; // clear the output
+
+    for (const gamepad of navigator.getGamepads()) {
+      if (!gamepad) continue;
+      output.insertAdjacentHTML('beforeend',
+          `<label>${gamepad.index}: ${gamepad.timestamp}</label>`);
+    }
+    requestAnimationFrame(update);
+  };
+  update();
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.mapping : String
+
+<htmlexample>
+Press button on controller to connect.
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  console.log('mapping:', event.gamepad.mapping);
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.axes : Array<Number>
+
+<htmlexample>
+Press button on controller to connect.
+<div id="axes" style="display: flex; flex-direction: column;"></div>
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  const update = () => {
+    const output = document.getElementById('axes');
+    output.innerHTML = ''; // clear the output
+
+    for (const gamepad of navigator.getGamepads()) {
+      if (!gamepad) continue;
+      for (const [index, axis] of gamepad.axes.entries()) {
+        output.insertAdjacentHTML('beforeend',
+          `<label>${gamepad.index}, ${index}
+             <progress value=${axis * 0.5 + 0.5}></progress>
+           </label>`);
+      }
+    }
+    requestAnimationFrame(update);
+  };
+  update();
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.buttons : Array<GamepadButton>
+
+<htmlexample>
+Press button on controller to connect.
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  const update = () => {
+    const output = document.getElementById('buttons');
+    output.innerHTML = ''; // clear the output
+
+    for (const gamepad of navigator.getGamepads()) {
+      if (!gamepad) continue;
+      for (const [index, button] of gamepad.buttons.entries()) {
+        output.insertAdjacentHTML('beforeend',
+          `<label>${gamepad.index}, ${index}
+             <progress value=${button.value}></progress>
+           </label>`);
+      }
+    }
+    requestAnimationFrame(update);
+  };
+  update();
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+

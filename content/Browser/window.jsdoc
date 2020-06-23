@@ -1497,7 +1497,6 @@ Fired when the **'#'** portion of the url changes.  See also
     console.log('oldURL: ' + event.oldURL);
     console.log('newURL: ' + event.newURL);
   };
-
 </script>
 </htmlexample>
 
@@ -1677,3 +1676,39 @@ true
 
 Spec:
 https://w3c.github.io/clipboard-apis/#clipboard-event-paste
+
+----
+event.gamepadconnected : listener(event : GamepadEvent) : undefined
+
+<htmlexample>
+Press button on controller to connect.
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  console.log('gamepad connected', event.gamepad.id);
+});
+window.addEventListener('gamepaddisconnected', (event) => {
+  console.log('gamepad disconnected', event.gamepad.id);
+});
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/gamepad/#event-gamepadconnected
+
+----
+event.gamepaddisconnected : listener(event : GamepadEvent) : undefined
+
+<htmlexample>
+Press button on controller to connect.
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  console.log('gamepad connected', event.gamepad.id);
+});
+window.addEventListener('gamepaddisconnected', (event) => {
+  console.log('gamepad disconnected', event.gamepad.id);
+});
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/gamepad/#event-gamepaddisconnected

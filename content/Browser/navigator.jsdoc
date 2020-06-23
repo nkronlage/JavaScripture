@@ -32,3 +32,9 @@ true
 
 Spec:
 http://www.w3.org/TR/pointerevents/#widl-Navigator-maxTouchPoints
+
+----
+prototype.getGamepads() : Iterable<Gamepad>
+
+Spec:
+https://w3c.github.io/gamepad/#navigator-interface-extension
