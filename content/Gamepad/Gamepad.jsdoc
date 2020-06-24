@@ -9,6 +9,8 @@ https://w3c.github.io/gamepad/#dom-gamepad
 ----
 instance.id : String
 
+An id for the controller.
+
 <htmlexample>
 Press button on controller to connect.
 <script>
@@ -38,6 +40,8 @@ true
 
 ----
 instance.connected : Boolean
+
+**true** when the gamepad is connected.
 
 <htmlexample>
 Press button on controller to connect.
@@ -86,6 +90,9 @@ true
 ----
 instance.mapping : String
 
+Either **''** or **'standard'**. If **'standard'**, the buttons/axes will follow the
+layout as seen at %%https://w3c.github.io/gamepad/#fig-visual-representation-of-a-standard-gamepad-layout|https://w3c.github.io/gamepad/#fig-visual-representation-of-a-standard-gamepad-layout%%.
+
 <htmlexample>
 Press button on controller to connect.
 <script>
@@ -100,6 +107,8 @@ true
 
 ----
 instance.axes : Array<Number>
+
+The joystick positions. May also contain the direction pad (+) pressed direction.
 
 <htmlexample>
 Press button on controller to connect.
@@ -132,6 +141,8 @@ true
 ----
 instance.buttons : Array<GamepadButton>
 
+The state of the buttons on the controller.
+
 <htmlexample>
 Press button on controller to connect.
 <div id="buttons" style="display: flex; flex-direction: column;"></div>
@@ -147,6 +158,8 @@ window.addEventListener('gamepadconnected', (event) => {
         output.insertAdjacentHTML('beforeend',
           `<label>${gamepad.index}, ${index}
              <progress value=${button.value}></progress>
+             ${button.touched ? 'touched' : ''}
+             ${button.pressed ? 'pressed' : ''}
            </label>`);
       }
     }

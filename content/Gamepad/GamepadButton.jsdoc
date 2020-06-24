@@ -1,0 +1,125 @@
+GamepadButton : Object
+
+Represents a button on the %%/Gamepad|Gamepad%%.
+
+Spec:
+https://w3c.github.io/gamepad/#gamepadbutton-interface
+
+----
+instance.pressed : Boolean
+
+**true** if the button was pressed. For buttons that support %%#value|**value**%%,
+**pressed** will be **true** when **value** passes a platform/browser specified
+threshold.
+
+<htmlexample>
+Press button on controller to connect.
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  const update = () => {
+    const output = document.getElementById('buttons');
+    output.innerHTML = ''; // clear the output
+
+    for (const gamepad of navigator.getGamepads()) {
+      if (!gamepad) continue;
+      for (const [index, button] of gamepad.buttons.entries()) {
+        output.insertAdjacentHTML('beforeend',
+          `<label>${gamepad.index}, ${index}
+             <progress value=${button.value}></progress>
+             ${button.touched ? 'touched' : ''}
+             ${button.pressed ? 'pressed' : ''}
+           </label>`);
+      }
+    }
+    requestAnimationFrame(update);
+  };
+  update();
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/gamepad/#dom-gamepadbutton-pressed
+
+----
+instance.touched : Boolean
+
+**true** if the user is touching the button but not necessarily pressing the button.
+For hardware that cannot detech touches, will be **true** when the user is pressing
+the button.
+
+<htmlexample>
+Press button on controller to connect.
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  const update = () => {
+    const output = document.getElementById('buttons');
+    output.innerHTML = ''; // clear the output
+
+    for (const gamepad of navigator.getGamepads()) {
+      if (!gamepad) continue;
+      for (const [index, button] of gamepad.buttons.entries()) {
+        output.insertAdjacentHTML('beforeend',
+          `<label>${gamepad.index}, ${index}
+             <progress value=${button.value}></progress>
+             ${button.touched ? 'touched' : ''}
+             ${button.pressed ? 'pressed' : ''}
+           </label>`);
+      }
+    }
+    requestAnimationFrame(update);
+  };
+  update();
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/gamepad/#dom-gamepadbutton-touched
+
+----
+instance.value : Number
+
+The strength that the button was pressed between **0** and **1**. If the button 
+doesn't measure pressure, will be **0** when unpressed and **1** when pressed.
+
+<htmlexample>
+Press button on controller to connect.
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+window.addEventListener('gamepadconnected', (event) => {
+  const update = () => {
+    const output = document.getElementById('buttons');
+    output.innerHTML = ''; // clear the output
+
+    for (const gamepad of navigator.getGamepads()) {
+      if (!gamepad) continue;
+      for (const [index, button] of gamepad.buttons.entries()) {
+        output.insertAdjacentHTML('beforeend',
+          `<label>${gamepad.index}, ${index}
+             <progress value=${button.value}></progress>
+             ${button.touched ? 'touched' : ''}
+             ${button.pressed ? 'pressed' : ''}
+           </label>`);
+      }
+    }
+    requestAnimationFrame(update);
+  };
+  update();
+});
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/gamepad/#dom-gamepadbutton-value
