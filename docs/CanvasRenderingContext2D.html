@@ -318,7 +318,7 @@
                  &#39;ideographic&#39;, &#39;bottom&#39;];
   var select = document.getElementById(&#39;select&#39;);
   options.forEach(function(option, i) {
-    select.add(new Option(option, option));
+    select.add(new Option(option, option, undefined, option == &#39;alphabetic&#39;));
   });
 
   var draw = function() {
@@ -326,13 +326,32 @@
     var context = canvas.getContext(&#39;2d&#39;);
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    context.font = &#39;20px sans-serif&#39;;
-    context.textBaseline = select.value;
-    context.fillStyle = &#39;black&#39;;
-    context.fillText(&#39;test&#39;, canvas.width / 2, canvas.height / 2);
-
+    var x = canvas.width / 2
+    var y = canvas.height / 2
+   
     context.fillStyle = &#39;red&#39;;
-    context.fillRect(canvas.width / 2 - 2, canvas.height / 2 - 2, 4, 4);
+    context.fillRect(20, y, canvas.width-40, 0.5);
+    context.font = &#39;10px sans-serif&#39;;
+    context.textBaseline = &#39;ideographic&#39;;
+    context.fillText(&#39;y-coordinate&#39;, 20, y - 2)
+
+    for (var i = 0; i &lt; options.length; i++) {
+      context.font = &#39;20px sans-serif&#39;;
+      context.textBaseline = options[i];
+      context.fillStyle = options[i] == select.value ? &#39;blue&#39; : &#39;black&#39;;
+
+      context.save()
+      context.translate(40 + 40*i, y);
+      context.fillText(&#39;Ag&#39;, 0, 0);
+
+      context.textBaseline = &#39;alphabetic&#39;;
+      context.rotate(Math.PI/4);
+      context.font = &#39;12px sans-serif&#39;;
+      context.fillStyle = options[i] == select.value ? &#39;blue&#39; : &#39;#aaa&#39;;
+      context.fillText(options[i], 30, 20);
+      context.restore()
+    }   
+
   }
   draw();
 &lt;/script&gt;
