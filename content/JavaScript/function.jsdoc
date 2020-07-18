@@ -48,6 +48,13 @@ var AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 var a1 = async function(url) { return (await fetch(url)).status; }
 var a2 = AsyncFunction('url', 'return (await fetch(url)).status;');
 var a3 = new AsyncFunction('url', 'return (await fetch(url)).status;');
+
+var AsyncGeneratorFunction = Object.getPrototypeOf(async function*(){}).constructor;
+
+// The following are equivalent:
+var ag1 = async function*(x, y) { yield await x; yield await y; }
+var ag2 = AsyncGeneratorFunction('x', 'y', 'yield await x; yield await y;');
+var ag3 = new AsyncGeneratorFunction('x, y', 'yield await x; yield await y;');
 </example>
 
 Spec:

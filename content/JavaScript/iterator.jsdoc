@@ -1,9 +1,9 @@
-Iterator : Object
+Iterator : Iterable
 
 An Iterator is an Object that returns a sequence of values.  
 
-You can use the **for(var value of iterator) {}** to easily loop
-over the values in an iterator. 
+Since Iterators are Iterables, you can use **for (var value of iterator) {}** to
+easily loop over the values in an iterator.
 
 Calling an ECMAScript 2015 generator function (**function*() {}**) returns
 an Iterator.  
@@ -72,4 +72,30 @@ iterator = myIterable[Symbol.iterator]();
 console.dir(iterator.next());
 console.dir(iterator.next());
 console.dir(iterator.next());
+</example>
+
+----
+instance[Symbol.iterator] : Function<Iterator>
+
+Returns a method that returns **this**.
+
+<example>
+// Arrays are a built in Iterable object
+var iterable = ['a', 'b', 'c'];
+
+var iterator = iterable[Symbol.iterator]();
+var iteratorIterator = iterator[Symbol.iterator]();
+
+console.log(iterator === iteratorIterator);
+console.log();
+
+for (var x of iterable) {
+  console.log(x);
+}
+console.log();
+
+// Since Iterators are also Iterables, you can use for-of loops with them.
+for (var x of iterator) {
+  console.log(x);
+}
 </example>

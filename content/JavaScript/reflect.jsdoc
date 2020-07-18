@@ -130,7 +130,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.defineProperty
 get(target : Object, propertyName : String, [getterThis : Object]) : Object
 
 The same as **target[propertyName]**. If **propertyName** is a get function,
-**target** is used as it's **this** if **getterThis** is not specified.
+**target** is used as its **this** if **getterThis** is not specified.
 
 <example>
 var x = { foo: 1 };
@@ -205,7 +205,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.getprototypeof
 has(obj : Object, propertyName : String) : Boolean
 
 Returns **true** if **obj** has a property named **propertyName**. The **in**
-operator provides the same result;
+operator provides the same result.
 
 <example>
 var x = { foo: 1 };
@@ -272,7 +272,7 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-reflect.ownkeys
 preventExtensions(obj : Object) : Boolean
 
 The same as %%/Object#preventExtensions|Object.preventExtensions()%% except 
-returns false on failure and throws an exception if **obj** is not an Object.
+returns **false** on failure and throws an exception if **obj** is not an Object.
 
 <example>
 var x = { foo: 1 };
@@ -304,7 +304,7 @@ set(target : Object, propertyName : String, value : Object, [setterThis : Object
 The same as **target[propertyName] = value**. Returns **true** if the set was
 successful and **false** otherwise (if the object was %%Object#freeze|frozen%% for
 example). If **propertyName** is a set 
-function, **target** is used as it's **this** if **setterThis** is not specified.
+function, **target** is used as its **this** if **setterThis** is not specified.
 
 <example>
 var x = { foo: 1 };

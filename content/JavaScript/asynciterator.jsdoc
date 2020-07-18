@@ -1,18 +1,29 @@
-AsyncIterator : Object
+AsyncIterator : AsyncIterable
+
+An AsyncIterator is an Object that returns a sequence of Promises.
+
+Since AsyncIterators are AsyncIterables, you can use **for await (const value of
+iterable) {}** to easily loop over the values in an AsyncIterator.
+
+Calling an async generator function (**async function* () {}**) returns
+an %%AsyncIterable|AsyncIterable%%.
+
+You may create your own %%/AsyncIterable|AsyncIterable%% object by assigning the
+%%/Symbol#asyncIterator|**Symbol.asyncIterator**%% property to an
+object with a **next()** method.
 
 <example>
 const sleep = t => new Promise(r => setTimeout(r, t));
 
-async function* stream() {
+const stream = async function*() {
   for (let i = 0; i < 3; i++) {
     await sleep(300 * i);
     yield i;
   }
-}
+};
 
 (async () => {
-  const iterable = stream();
-  const iterator = iterable[Symbol.asyncIterator]();
+  const iterator = stream();
   console.dir(await iterator.next());
   console.dir(await iterator.next());
   console.dir(await iterator.next());
@@ -40,3 +51,38 @@ instance.return([yieldValue : Object]) : Promise
 
 ----
 instance.throw([rejectReason : Object]) : Promise
+
+----
+instance[Symbol.asyncIterator] : Function<AsyncIterator>
+
+Returns a method that returns **this**.
+
+<example>
+const sleep = t => new Promise(r => setTimeout(r, t));
+
+const stream = async function*() {
+  for (let i = 0; i < 3; i++) {
+    await sleep(300 * i);
+    yield i;
+  }
+};
+
+(async () => {
+  const iterator = stream();
+
+  var iteratorIterator = iterator[Symbol.asyncIterator]();
+
+  console.log(iterator === iteratorIterator);
+  console.log();
+
+  for await (const x of stream()) {
+    console.log(x);
+  }
+  console.log();
+
+  // Since AsyncIterators are also AsyncIterables, you can use for-await-of loops with them.
+  for await (const x of iterator) {
+    console.log(x);
+  }
+})();
+</example>

@@ -16,9 +16,9 @@ Spec:
 http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface
 
 ----
-instance[Symbol.iterator] : Iterator
+instance[Symbol.iterator] : Function<Iterator>
 
-Returns an iterator for this object.
+Returns a function that produces an Iterator for this object.
 
 <example>
 // Arrays are a built in Iterable object
