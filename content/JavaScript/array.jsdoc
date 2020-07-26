@@ -131,6 +131,8 @@ Returns a new Array composed of the items of **this** followed by
 If any of the parameters are Arrays themselves, the values of that Array
 will be concatenated into the new Array.
 
+See also %%#push|push%%.
+
 <example>
 var x = [1, 2, 3];
 var concatenated = x.concat(4, 5, [6, 7]);
@@ -508,8 +510,13 @@ value of **this.length**. Use with %%#pop|**pop**%% to treat an **Array** as a
 stack.
 
 <example>
-var x = ['a', 'b', 'c']; 
+var x = ['a', 'b', 'c'];
 console.log(x.push('d', 'e'));
+console.log(x);
+
+// Use with the spread operator (...) to push all elements of an array
+var y = ['x', 'y', 'z'];
+x.push(...y);
 console.log(x);
 </example>
 
