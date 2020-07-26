@@ -29,6 +29,13 @@ var AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 var a1 = async function(url) { return (await fetch(url)).status; }
 var a2 = AsyncFunction(&#39;url&#39;, &#39;return (await fetch(url)).status;&#39;);
 var a3 = new AsyncFunction(&#39;url&#39;, &#39;return (await fetch(url)).status;&#39;);
+
+var AsyncGeneratorFunction = Object.getPrototypeOf(async function*(){}).constructor;
+
+// The following are equivalent:
+var ag1 = async function*(x, y) { yield await x; yield await y; }
+var ag2 = AsyncGeneratorFunction(&#39;x&#39;, &#39;y&#39;, &#39;yield await x; yield await y;&#39;);
+var ag3 = new AsyncGeneratorFunction(&#39;x, y&#39;, &#39;yield await x; yield await y;&#39;);
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Function.Function"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.2.1" class="spec">Spec</a></div></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="length"></a><div class="declaration"><span class="membername primary">length</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The number of parameters specified when the function was defined.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 var add = function(x, y) { return x + y; };
 console.log(add.length);
