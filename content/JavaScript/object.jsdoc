@@ -372,6 +372,25 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.10
 
 ----
+is(obj1 : Object, obj2 : Object) : Boolean
+
+Returns **true** if obj1 is identical to obj2. This is mostly the same as
+**obj1 === obj2** except for some %%/Number|Number%% comparisons involving
+%%/Global#NaN|NaN%%, **0**, and **-0**.
+
+<example>
+console.log(0 === -0);
+console.log(Object.is(0, -0));
+console.log();
+
+console.log(NaN === NaN);
+console.log(Object.is(NaN, NaN));
+</example>
+
+Spec:
+https://www.ecma-international.org/ecma-262/#sec-object.is
+
+----
 isSealed(obj : Object) : Boolean
 
 Returns **true** if %%#seal|**seal**%% was called on **obj**.  A sealed object cannot have
@@ -387,7 +406,6 @@ console.log(Object.isFrozen(x));
 
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.11
-
 
 ----
 isFrozen(obj : Object) : Boolean

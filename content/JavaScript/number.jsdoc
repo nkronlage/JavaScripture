@@ -279,6 +279,7 @@ Floating point Not a Number. Signifies an error in a calculation.
 To check if something is **NaN**, use 
 %%Global#isNaN|isNan()%% or
 %%#isNaN|Number.isNan()%%.
+
 Also exists as %%Global#NaN|**NaN**%% in the global namespace.
 
 <example>
@@ -400,7 +401,8 @@ Returns **true** if **x** is %%/Number#NaN|**NaN**%%.
 **NaN** is never equal to another **Number**, even if it is **NaN**,
 so you must use **isNaN** to check for **NaN**.
 
-See also the global %%/Global#isNaN|**isNaN(x)**%% method.
+See also the global %%/Global#isNaN|**isNaN(x)**%% method and
+%%/Object#is|Object.is()%%.
 
 <example>
 var x = 0/0;

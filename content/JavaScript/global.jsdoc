@@ -128,6 +128,8 @@ If **x** is not a %%/Number|Number%%, it is first converted to a Number
 before checking if it is NaN. Use %%/Number#isNaN|**Number.isNaN(x)**%%
 to prevent any conversion from happening.
 
+See also %%/Object#is|Object.is()%%.
+
 <example>
 var x = 0/0;
 console.log(x === NaN); 
