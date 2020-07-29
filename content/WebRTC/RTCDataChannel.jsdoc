@@ -1,11 +1,5 @@
 RTCDataChannel : EventTarget
 
-Spec:
-https://w3c.github.io/webrtc-pc/#webidl-x1970659251
-
-----
-Details:
-
 <p>
 Although WebRTC is a peer to peer protocol, the peers need some information about
 each other before they can communicate. Typically this is done with a Signaling
@@ -141,4 +135,102 @@ This example demonstrates the peer that receives the offer and creates the answe
   };
 </script>
 </htmlexample>
+
+Spec:
+https://w3c.github.io/webrtc-pc/#webidl-1970659251
+
+----
+instance.label : String
+
+ReadOnly:
+true
+
+----
+instance.ordered : Boolean
+
+ReadOnly:
+true
+
+----
+instance.maxPacketLifeTime : Number
+
+ReadOnly:
+true
+
+----
+instance.maxRetransmits : Number
+
+ReadOnly:
+true
+
+----
+instance.protocol : String
+
+ReadOnly:
+true
+
+----
+instance.negotiated : Boolean
+
+ReadOnly:
+true
+
+----
+instance.id : Number
+
+ReadOnly:
+true
+
+----
+instance.readyState : String
+
+One of **'connecting'**, **'open'**, **'closing'**, or **'closed'**.
+
+ReadOnly:
+true
+
+----
+instance.bufferedAmount : Number
+
+ReadOnly:
+true
+
+----
+instance.bufferedAmountLowThreshold : Number
+
+----
+instance.binaryType : String
+
+----
+prototype.close() : undefined
+
+----
+prototype.send(data : String) : undefined
+
+----
+prototype.send(data : Blob) : undefined
+
+----
+prototype.send(data : ArrayBuffer) : undefined
+
+----
+prototype.send(data : ArrayBufferView) : undefined
+
+----
+event.open : listener(event : Event) : undefined
+
+----
+event.bufferedamountlow : listener(event : Event) : undefined
+
+----
+event.error : listener(event : RTCErrorEvent) : undefined
+
+----
+event.closing : listener(event : Event) : undefined
+
+----
+event.close : listener(event : Event) : undefined
+
+----
+event.message : listener(event : MessageEvent) : undefined
 

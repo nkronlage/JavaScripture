@@ -1,11 +1,5 @@
 RTCPeerConnection : EventTarget
 
-Spec:
-https://w3c.github.io/webrtc-pc/#interface-definition
-
-----
-Details:
-
 <p>
 Although WebRTC is a peer to peer protocol, the peers need some information about
 each other before they can communicate. Typically this is done with a Signaling
@@ -181,3 +175,160 @@ This example demonstrates the peer that receives the offer and creates the answe
   }
 </style>
 </htmlexample>
+
+Spec:
+https://w3c.github.io/webrtc-pc/#interface-definition
+
+----
+new RTCPeerConnection([configuration : { \
+    iceServers : Iterable, \
+    iceTransportPolicy : String /*  Either **'relay'** or **'all'**. */, \
+    bundlePolicy : String /* One of **'balanced'**, **'max-compat'**, or **'max-bundle'**. */, \
+    rtcpMuxPolicy : String /* Must be **'require'** */, \
+    certificates : Iterable<RTCCertificate>, \
+    iceCandidatePoolSize : Number  \
+  }]) : RTCPeerConnection
+
+
+The elements of the iceServers configuration object should be of type:
+
+{
+  url : (String or Iterable<String>),
+  username : String,
+  credential : String,
+  credentialType : String
+}
+
+----
+instance.localDescription : RTCSessionDescription
+
+ReadOnly:
+true
+
+----
+instance.currentLocalDescription : RTCSessionDescription
+
+ReadOnly:
+true
+
+----
+instance.pendingLocalDescription : RTCSessionDescription
+
+ReadOnly:
+true
+
+----
+instance.remoteDescription : RTCSessionDescription
+
+ReadOnly:
+true
+
+----
+instance.currentRemoteDescription : RTCSessionDescription
+
+ReadOnly:
+true
+
+----
+instance.pendingRemoteDescription : RTCSessionDescription
+
+ReadOnly:
+true
+
+----
+instance.signalingState : String
+
+One of **'stable'**, **'have-local-offer'**, **'have-remote-offer'**, 
+**'have-local-pranswer'**, **'have-remote-pranswer'**, or **'closed'**
+
+ReadOnly:
+true
+
+----
+instance.iceGatheringState : String
+
+One of **'new'**, **'gathering'**, or **'complete'**.
+
+ReadOnly:
+true
+
+----
+instance.iceConnectionState : String
+
+One of **'closed'**, **'failed'**, **'disconnected'**, **'new'**, **'checking'**, 
+**'completed'**, or **'connected'**.
+
+ReadOnly:
+true
+
+----
+instance.connectionState : String
+
+One of **'closed'**, **'failed'**, **'disconnected'**, **'new'**, **'connecting'**, 
+or **'connected'**.
+
+ReadOnly:
+true
+
+----
+instance.canTrickleIceCandidates : Boolean
+
+ReadOnly:
+true
+
+----
+prototype.addIceCandidate([candidate = { \
+    candidate : String, \
+    sdpMid : String, \
+    sdpMLineIndex : Number, \
+    usernameFragment : String \
+  }]) : Promise<undefined>
+
+----
+prototype.createOffer([options : { \
+    iceRestart : Boolean \
+  }]) : Promise<RTCSessionDescriptionInit>
+
+----
+prototype.createAnswer([options : { \
+  }]) : Promise<RTCSessionDescriptionInit>
+
+----
+prototype.setLocalDescription([description : RTCSessionDescriptionInit]) : Promise<undefined>
+
+----
+prototype.setRemoteDescription(description : RTCSessionDescriptionInit) : Promise<undefined>
+
+----
+prototype.restartIce() : undefined
+
+----
+prototype.getConfiguration() : RTCConfiguration
+
+----
+prototype.setConfiguration([configuration : RTCConfiguration]) : undefined
+
+----
+prototype.close() : undefined
+
+----
+event.negotiationneeded : listener(event : Event) : undefined
+
+----
+event.icecandidate : listener(event : RTCPeerConnectionIceEvent) : undefined
+
+----
+event.icecandidateerror : listener(event : RTCPeerConnectionIceErrorEvent) : undefined
+
+----
+event.signalingstatechange : listener(event : Event) : undefined
+
+----
+event.iceconnectionstatechange : listener(event : Event) : undefined
+
+----
+event.icegatheringstatechange : listener(event : Event) : undefined
+
+----
+event.connectionstatechange : listener(event : Event) : undefined
+
