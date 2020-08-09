@@ -107,16 +107,22 @@ console.log(x.length);
 ----
 instance.length : Number
 
-The number of items in **this**.  It is 1 greater 
-than the index of the last item.
+The number of items in **this**. It is 1 greater than the index of the last item.
+Setting **length** to a smaller number than the current **length** will remove
+elements from the end of the list.
 
 <example>
 console.log([].length);
 console.log(['a', 'b', 'c'].length);
 console.log(Array(100).length);
+
 var x = [];
+// Assigning to an index automatically adjusts length
 x[50] = 'foo';
 console.log(x.length);
+
+// Set length to 0 to clear the list.
+x.length = 0;
 </example>
 
 Spec:
