@@ -6,7 +6,7 @@ You can pass an additional options argument:
 
 <code>
 {
-  alpha : Number /* Default = true */
+  alpha : Boolean /* Default = true */
 }
 </code>
 

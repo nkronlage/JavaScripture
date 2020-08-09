@@ -1,0 +1,184 @@
+RTCStatsReport : Iterable
+
+Contains statistics about various aspects of the WebRTC connection. Obtained through
+the %%RTCPeerConnection#getStats|RTCPeerConnection.getStats()%% method.
+
+<h3>Offerer</h3>
+This example demonstrates the peer that creates the offer.
+<htmlexample>
+<button id="copy" disabled>Copy Offer/Candidates to Clipboard</button><br>
+<input id="paste" placeholder="Paste Answer/Candidates here" disabled><br>
+<button id="getStats" disabled>Get Stats</button>
+<table>
+<tr><td>local</td><td>remote</td></tr>
+<tr>
+  <td><video id="local" autoplay></video></td>
+  <td><video id="remote" autoplay></video></td>
+</tr>
+</table>
+
+<script>
+  // Use an offscreen canvas as the video source.
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  let color = 0;
+  const draw = () => {
+    color = (color + 2) % 255;
+    context.fillStyle = `rgb(${color}, 0, 0)`;
+    context.fillRect(0, 0, 300, 150);
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  const localVideo = document.getElementById('local');
+  const stream = canvas.captureStream();
+  localVideo.srcObject = stream;
+
+  const peerConnection = new RTCPeerConnection({ iceServers: [ { urls: 'stun:stun.l.google.com:19302' } ] });
+
+  stream.getTracks().forEach(t => peerConnection.addTrack(t, stream));
+
+  // Save a list of ice candidates to send to the peer
+  const iceCandidates = [];
+  peerConnection.onicecandidate = e => {
+    if (e.candidate) {
+      iceCandidates.push(e.candidate);
+    }
+  };
+
+  peerConnection.ontrack = e => { 
+    document.getElementById('remote').srcObject = e.streams[0];
+  };
+
+  (async () => {
+    const copyButton = document.getElementById('copy');
+    const getStatsButton = document.getElementById('getStats');
+
+    peerConnection.onicegatheringstatechange = () => {
+      if (peerConnection.iceGatheringState === 'complete') {
+        copyButton.disabled = false;
+        console.log('Offer ready, click copy button.');
+      }
+    };
+
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+
+    const pasteInput = document.getElementById('paste');
+
+    copyButton.onclick = () => {
+      navigator.clipboard.writeText(JSON.stringify({ offer, iceCandidates }));
+      console.log('Offer copied/candidates. Paste in Answerer example.');
+
+      pasteInput.disabled = false;
+    };
+
+    pasteInput.onpaste = async (e) => {
+      const { answer, iceCandidates } = JSON.parse(e.clipboardData.getData('text/plain'));
+      await peerConnection.setRemoteDescription(answer);
+      iceCandidates.forEach(c => peerConnection.addIceCandidate(c));
+      
+      getStatsButton.disabled = false;
+    };
+
+    getStatsButton.onclick = async (e) => {
+      console.log();
+      for (const [k, v] of await peerConnection.getStats()) {
+        console.log(k + ':', JSON.stringify(v));
+      }
+    };
+  })();
+</script>
+
+<style>
+  video {
+    width: 150px;
+    height: 100px;
+  }
+  input {
+    width: 250px;
+  }
+</style>
+</htmlexample>
+
+<h3>Answerer</h3>
+This example demonstrates the peer that receives the offer and creates the answer.
+<htmlexample>
+<input id="paste" placeholder="Paste Offer/Candidates here"><br>
+<button id="copy" disabled>Copy Answer/Candidates to Clipboard</button><br>
+<table>
+<tr><td>local</td><td>remote</td></tr>
+<tr>
+  <td><video id="local" autoplay></video></td>
+  <td><video id="remote" autoplay></video></td>
+</tr>
+</table>
+
+<script>
+  // Use an offscreen canvas as the video source.
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  let color = 0;
+  const draw = () => {
+    color = (color - 2 + 255) % 255;
+    context.fillStyle = `rgb(0, 0, ${color})`;
+    context.fillRect(0, 0, 300, 150);
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  const localVideo = document.getElementById('local');
+  const stream = canvas.captureStream();
+  localVideo.srcObject = stream;
+
+  const peerConnection = new RTCPeerConnection({ iceServers: [ { urls: 'stun:stun.l.google.com:19302' } ] });
+
+  stream.getTracks().forEach(t => peerConnection.addTrack(t, stream));
+
+  // Save a list of ice candidates to send to the peer
+  const iceCandidates = [];
+  peerConnection.onicecandidate = e => {
+    if (e.candidate) {
+      iceCandidates.push(e.candidate);
+    }
+  };
+
+  peerConnection.ontrack = e => { 
+    document.getElementById('remote').srcObject = e.streams[0];
+  };
+
+  const copyButton = document.getElementById('copy');
+   
+  document.getElementById('paste').onpaste = async (e) => {
+    const { offer, iceCandidates } = JSON.parse(e.clipboardData.getData('text/plain'));
+
+    peerConnection.onicegatheringstatechange = () => {
+      if (peerConnection.iceGatheringState === 'complete') {
+        copyButton.disabled = false;
+        console.log('Answer ready, click copy button.');
+      }
+    };
+
+    await peerConnection.setRemoteDescription(offer);
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+
+    copyButton.onclick = () => {
+      navigator.clipboard.writeText(JSON.stringify({ answer, iceCandidates }));
+      console.log('Copied answer/candidates. Paste in Offerer example.');
+    };
+
+    iceCandidates.forEach(c => peerConnection.addIceCandidate(c));
+  };
+</script>
+
+<style>
+  video {
+    width: 150px;
+    height: 100px;
+  }
+  input {
+    width: 250px;
+  }
+</style>
+</htmlexample>

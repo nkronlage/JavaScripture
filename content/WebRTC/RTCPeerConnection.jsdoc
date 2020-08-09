@@ -1,6 +1,11 @@
 RTCPeerConnection : EventTarget
 
 <p>
+Enables Real Time Communication of audio, video, and data to another browser/computer
+using the WebRTC peer to peer protocol.
+</p>
+
+<p>
 Although WebRTC is a peer to peer protocol, the peers need some information about
 each other before they can communicate. Typically this is done with a Signaling
 Server, but any mechanism to transfer data can be used. The following
@@ -190,7 +195,7 @@ new RTCPeerConnection([configuration : { \
   }]) : RTCPeerConnection
 
 
-The elements of the iceServers configuration object should be of type:
+The elements of the **iceServers** property in the **configuration** argument should be of type:
 
 {
   url : (String or Iterable<String>),
@@ -273,6 +278,15 @@ true
 ----
 instance.canTrickleIceCandidates : Boolean
 
+Returns **true** if the remote peer accepts trickled ice candidates. Only valid after
+calling %%#setRemoteDescription|**setRemoteDescription()**%%.
+
+ReadOnly:
+true
+
+----
+instance.sctp : RTCSctpTransport
+
 ReadOnly:
 true
 
@@ -312,6 +326,50 @@ prototype.setConfiguration([configuration : RTCConfiguration]) : undefined
 prototype.close() : undefined
 
 ----
+prototype.createDataChannel(label : String, [options : { \
+    ordered : Boolean /* Defaults to **true** */, \
+    maxPacketLifeTime : Number, \
+    maxRetransmits : Number, \
+    protocl : String, \
+    negotiated : String, \
+    id: Number \
+  }]) : RTCDataChannel
+
+----
+prototype.getStats([selector : MediaStreamTrack]) : Promise<RTCStatsReport>
+
+----
+prototype.getSenders() : Array<RTCRtpSender>
+
+----
+prototype.getReceivers() : Array<RTCRtpReceiver>
+
+----
+prototype.getTransceivers() : Array<RTCRtpTransceiver>
+
+----
+prototype.addTrack(track : MediaStreamTrack, [stream1 : MediaStream, [stream2 : MediaStream, [...]]]) : RTCRtpSender 
+
+----
+prototype.removeTrack(sender : RTCRtpSender) : undefined
+
+----
+prototype.addTransceiver(kind : String, configuration : { \
+    direction : String /* One of **'sendrecv'**, **'sendonly'**, **'recvonly'**, **'inactive'**, or **'stopped'**. Defaults to **'sendrecv'**. */, \
+    streams : Iterable<MediaStream>, \
+    sendEncodings : Iterable \
+  }) : RTCRtpTransceiver
+
+The elements of the **sendEncodings** property in the **configuration** argument should be of type:
+
+{
+  rid : String,
+  active : Boolean /* Default = **true** */, 
+  maxBitrate : Number,
+  scalingResolutionDownBy : Number
+}
+
+----
 event.negotiationneeded : listener(event : Event) : undefined
 
 ----
@@ -332,3 +390,8 @@ event.icegatheringstatechange : listener(event : Event) : undefined
 ----
 event.connectionstatechange : listener(event : Event) : undefined
 
+----
+event.datachannel : listener(event : RTCDataChannelEvent) : undefined
+
+----
+event.track : listener(event : RTCTrackEvent) : undefined

@@ -1,0 +1,15 @@
+RTCDataChannelEvent : Event
+
+Spec:
+https://w3c.github.io/webrtc-pc/#dom-rtcdatachannelevent
+
+----
+new RTCDataChannelEvent(type : String, eventInit : { \
+    channel : RTCDataChannel \
+  }) : RTCDataChannelEvent
+
+----
+instance.channel : RTCDataChannel
+
+ReadOnly:
+true

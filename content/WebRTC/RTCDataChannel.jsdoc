@@ -1,5 +1,8 @@
 RTCDataChannel : EventTarget
 
+Allows sending arbitrary data over a WebRTC connection. Created using
+%%/RTCPeerConnection#createDataChannel|RTCPeerConnection.createDataChannel()%%.
+
 <p>
 Although WebRTC is a peer to peer protocol, the peers need some information about
 each other before they can communicate. Typically this is done with a Signaling
