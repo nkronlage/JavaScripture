@@ -1,0 +1,66 @@
+CanvasCaptureMediaStreamTrack : MediaStreamTrack
+
+Available through
+**%%/HTMLCanvasElement#captureStream|canvas.captureStream()%%.%%/MediaStream#getTracks|getTracks()%%[0]**.
+
+Spec:
+https://w3c.github.io/mediacapture-fromelement/#dom-canvascapturemediastreamtrack
+
+----
+instance.canvas : HTMLCanvasElement
+
+The canvas the stream is captured from.
+
+<htmlexample>
+<canvas></canvas>
+<script>
+  const canvas = document.querySelector('canvas');
+  const stream = canvas.captureStream(0);
+  const track = stream.getTracks()[0];
+
+  console.log(track.canvas === canvas);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/mediacapture-fromelement/#dom-canvascapturemediastreamtrack-canvas
+
+----
+prototype.requestFrame() : void
+
+Forces the video to update with the latest contents of the canvas. Use when providing
+a **requestedFrameRate** to %%/HTMLCanvasElement|canvas.captureStream()%% to update the
+contents of the video manually.
+
+<htmlexample>
+<canvas></canvas>
+<button>requestFrame()</button>
+<video autoplay></video>
+<script>
+  const canvas = document.querySelector('canvas');
+  const context = canvas.getContext('2d');
+  let color = 0;
+  const draw = () => {
+    color = (color + 2) % 255;
+    context.fillStyle = `rgb(${color}, 0, 0)`;
+    context.fillRect(0, 0, 300, 150);
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  const video = document.querySelector('video');
+  const stream = canvas.captureStream(0);
+  video.srcObject = stream;
+
+  document.querySelector('button').onclick = e => {
+    stream.getTracks()[0].requestFrame();
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/mediacapture-fromelement/#dom-canvascapturemediastreamtrack-requestframe
+

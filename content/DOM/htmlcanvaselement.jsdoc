@@ -5,6 +5,37 @@ images in the browser.
 It corresponds to the **<canvas>** tag.
 
 ----
+prototype.captureStream([requestedFrameRate : Number]) : MediaStream
+
+Creates a video stream for the canvas. **requestedFrameRate** can be used to update
+the video at a slower frequency than the canvas. If set to **0**, use
+%%/CanvasCaptureMediaStreamTrack#requestFrame|CanvasCaptureMediaStreamTrack.requestFrame%%
+to update the video.
+
+<htmlexample>
+<canvas></canvas>
+<video autoplay></video>
+<script>
+  const canvas = document.querySelector('canvas');
+  const context = canvas.getContext('2d');
+  let color = 0;
+  const draw = () => {
+    color = (color + 2) % 255;
+    context.fillStyle = `rgb(${color}, 0, 0)`;
+    context.fillRect(0, 0, 300, 150);
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  const video = document.querySelector('video');
+  video.srcObject = canvas.captureStream();
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/mediacapture-fromelement/#dom-htmlcanvaselement-capturestream
+
+----
 prototype.getContext(contextType : String, [contextAttributes : Object]) : CanvasRenderingContext
 
 Returns a context that can be used to draw into the canvas. **contextType** can be
