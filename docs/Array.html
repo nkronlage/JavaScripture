@@ -33,13 +33,18 @@ console.log(x.length);
 x[7] = &#39;h&#39;;
 console.log(x[7]);
 console.log(x.length);
-</textarea><a onclick='executeExample(this.parentNode.parentNode, "Array.undefined"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="length"></a><div class="declaration"><span class="membername primary">length</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The number of items in <code>this</code>. It is 1 greater than the index of the last item.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "Array.undefined"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="length"></a><div class="declaration"><span class="membername primary">length</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The number of items in <code>this</code>. It is 1 greater than the index of the last item. Setting <code>length</code> to a smaller number than the current <code>length</code> will remove elements from the end of the list.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 console.log([].length);
 console.log([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;].length);
 console.log(Array(100).length);
+
 var x = [];
+// Assigning to an index automatically adjusts length
 x[50] = &#39;foo&#39;;
 console.log(x.length);
+
+// Set length to 0 to clear the list.
+x.length = 0;
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Array.length"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.5.2" class="spec">Spec</a></div></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="concat"></a> <a name="concat_Object_Object_dotdotdot"></a><div class="declaration"><span class="membername primary">concat</span>(<span class="membername">item0</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="optional">[<span class="membername">item1</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="optional">[<span class="membername">...</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Array">Array</a></div><div class="member-body"><p class="description">Returns a new Array composed of the items of <code>this</code> followed by <code>item0, item1, ...</code>. If any of the parameters are Arrays themselves, the values of that Array will be concatenated into the new Array. See also <a href="#push">push</a>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 var x = [1, 2, 3];
 var concatenated = x.concat(4, 5, [6, 7]);
