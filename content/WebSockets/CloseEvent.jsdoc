@@ -1,0 +1,31 @@
+CloseEvent : Event
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-sockets.html#the-closeevent-interface
+
+----
+new CloseEvent(type : String, [{ \
+    wasClean : Boolean, \
+    code : Number, \
+    reason : String \
+  }]) : CloseEvent
+
+
+----
+instance.wasClean : Boolean
+
+ReadOnly:
+true
+
+----
+instance.code : Number
+
+ReadOnly:
+true
+
+----
+instance.reason : String
+
+ReadOnly:
+true
+

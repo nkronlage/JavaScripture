@@ -1,0 +1,218 @@
+WebSocket : EventTarget
+
+WebSockets are a persistent connection to a server that allows sending and receiving data.
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-sockets.html#the-websocket-interface
+
+----
+new WebSocket(url : String) : WebSocket
+
+Constructs a new WebSocket connection to **url**.
+
+<htmlexample>
+<script>
+  // Connect to a WebSocket that echos back the messages it receives.
+  var ws = new WebSocket('wss://echo.websocket.org/');
+  ws.onopen = function(e) {
+    console.log('WebSocket Opened. Sending "Hello"');
+    ws.send('Hello');
+  };
+
+  ws.onmessage = function(e) {
+    console.log('Received:', e.data);
+  };
+</script>
+</htmlexample>
+
+----
+new WebSocket(url : String, protocol : String) : WebSocket
+
+Same as %%#new_WebSocket_String_Iterable|**new WebSocket(url, [protocol])**%%.
+
+----
+new WebSocket(url : String, protocols : Iterable<String>) : WebSocket
+
+
+----
+instance.url : String
+
+The url passed to the WebSocket constructor.
+
+<htmlexample>
+<script>
+  // Connect to a WebSocket that echos back the messages it receives.
+  var ws = new WebSocket('wss://echo.websocket.org/');
+  console.log(ws.url);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.readyState : Number
+
+One of %%#CONNECTING|**WebSocket.CONNECTING**%%,
+%%#OPEN|**WebSocket.OPEN**%%,
+%%#CLOSING|**WebSocket.CLOSING**%%, or
+%%#CLOSED|**WebSocket.CLOSED**%%.
+
+<htmlexample>
+<button>Close</button>
+<script>
+  // Connect to a WebSocket that echos back the messages it receives.
+  var ws = new WebSocket('wss://echo.websocket.org/');
+
+  var readyStateNames = {
+    [WebSocket.CONNECTING]: 'CONNECTING',
+    [WebSocket.OPEN]: 'OPEN',
+    [WebSocket.CLOSING]: 'CLOSING',
+    [WebSocket.CLOSED]: 'CLOSED',
+  };
+
+  var logReadyState = function() {
+    console.log(readyStateNames[ws.readyState]);
+  };
+
+  logReadyState();
+  ws.onopen = logReadyState;
+  ws.onclose = logReadyState;
+  document.querySelector('button').onclick = function() {
+    ws.close();
+    logReadyState();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+----
+instance.bufferedAmount : Number
+
+ReadOnly:
+true
+
+----
+instance.extensions : String
+
+ReadOnly:
+true
+
+----
+instance.protocol : String
+
+ReadOnly:
+true
+
+----
+instance.binaryType : String
+
+Set to either **'arraybuffer'** or **'blob'** to choose if the %%MessageEvent#data|MessageEvent.data%%
+property will be an %%/ArrayBuffer|ArrayBuffer%% or a %%/Blob|Blob%% for binary
+data received by the WebSocket.
+
+<htmlexample>
+<script>
+  var testBinaryType = function(binaryType) {
+    // Connect to a WebSocket that echos back the messages it receives.
+    var ws = new WebSocket('wss://echo.websocket.org/');
+    ws.binaryType = binaryType;
+    ws.onopen = function(e) {
+      ws.send(new Uint32Array([1, 2, 3]));
+    };
+
+    ws.onmessage = function(e) {
+      // The type of the data will match the specified binaryType
+      console.log(binaryType + ':', e.data);
+    };
+  };
+
+  testBinaryType('arraybuffer');
+  testBinaryType('blob');
+</script>
+</htmlexample>
+
+----
+prototype.close([code : Number, [reason : String]]) : undefined
+
+Closes the WebSocket connection.
+
+----
+prototype.send(data : ArrayBuffer) : undefined
+
+Sends **data** to the server.
+
+----
+prototype.send(data : ArrayBufferView) : undefined
+
+Sends **data** to the server.
+
+----
+prototype.send(data : Blob) : undefined
+
+Sends **data** to the server.
+
+----
+prototype.send(data : String) : undefined
+
+Sends **data** to the server.
+
+----
+CONNECTING : Number
+
+The value of %%#readyState|readyState%% after constructing the WebSocket and before
+%%#onopen|onopen%% fires.
+
+ReadOnly:
+true
+
+Value:
+0
+
+----
+OPEN : Number
+
+The value of %%#readyState|readyState%% after %%#onopen|onopen%% fires.
+
+ReadOnly:
+true
+
+Value:
+1
+
+----
+CLOSING : Number
+
+The value of %%#readyState|readyState%% after calling %%#close|**close()**%% and before
+%%#onclose|onclose%% fires.
+
+ReadOnly:
+true
+
+Value:
+2
+
+----
+CLOSED : Number
+
+The value of %%#readyState|readyState%% after %%#onclose|onclose%% fires.
+
+ReadOnly:
+true
+
+Value:
+3
+
+----
+event.open : listener(event : Event) : undefined
+
+----
+event.error : listener(event : ErrorEvent) : undefined
+
+----
+event.close : listener(event : CloseEvent) : undefined
+
+----
+event.message : listener(event : MessageEvent) : undefined

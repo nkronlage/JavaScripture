@@ -41,8 +41,20 @@ const getAnchorName = member => {
         else if (params[i].name === '...') {
           res += '_dotdotdot';
         }
-        else {
+        else if (typeof params[i].type === 'string') {
           res += '_' + params[i].type;
+        }
+        else if (member.type === 'Indexer') {
+          // Indexer like this[Symbol.iterator]
+          res += '_' + params[i].name.replace(/\./g, '_');
+        }
+        else if (params[i].type.name) {
+          res += '_' + params[i].type.name;
+        }
+        else {
+          console.error('Unexpected type');
+          console.dir(params[i].type);
+          throw 'Unexpected type';
         }
       }
     };
