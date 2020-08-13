@@ -1,15 +1,65 @@
 ImageData : Object
 
-Contains the pixel data of for a %%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
+Contains the pixel data of a %%/CanvasRenderingContext2D|**CanvasRenderingContext2D**%%.
 
-Created through
+Can also be created through
 %%/CanvasRenderingContext2D#createImageData|**CanvasRenderingContext2D.createImageData()**%%
 or
 %%/CanvasRenderingContext2D#createImageData|**CanvasRenderingContext2D.getImageData()**%%.
 
-
 Spec:
 https://html.spec.whatwg.org/#imagedata
+
+----
+new ImageData(width : Number, height : Number) : ImageData
+
+Creates an ImageData of the specified size filled with transparent black.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var imageData = new ImageData(100, 100);
+
+  for (var i = 0; i < imageData.data.length; i++) {
+    imageData.data[i] = Math.round(255 * Math.random());
+  }
+
+  context.putImageData(imageData, 0, 0);
+</script>
+
+</htmlexample>
+
+----
+new ImageData(data : Uint8ClampedArray, width : Number, height : Number) : ImageData
+
+Creates an ImageData of the specified size with the specified data. **data[0]** is
+the Red component of the first pixel (top left), **data[1]** is the Green component of the first pixel,
+**data[2]** is the Blue component of the first pixel,
+**data[3]** is the Alpha component of the first pixel,
+**data[4]** is the Red component of the second pixel (one right of top left), etc.
+
+<htmlexample>
+<canvas id='canvas'></canvas>
+<script>
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+
+  var width = 100;
+  var height = 100;
+
+  var data = new Uint8ClampedArray(4 * width * height);
+
+  for (var i = 0; i < data.length; i++) {
+    data[i] = Math.round(255 * Math.random());
+  }
+
+  var imageData = new ImageData(data, 100, 100);
+  context.putImageData(imageData, 0, 0);
+</script>
+</htmlexample>
 
 ----
 instance.width : Number
