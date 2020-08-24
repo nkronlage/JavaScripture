@@ -480,9 +480,37 @@ Spec:
 http://www.w3.org/TR/pointerevents/#widl-Element-releasePointerCapture-void-long-pointerId
 
 ----
-prototype.requestFullscreen() : undefined
+prototype.requestFullscreen([options: { \
+    navigationUI : String /* One of 'auto', 'show', or 'hide'. */ \
+  }]) : Promise<undefined>
+
+Enters fullscreen mode where **this** fills the entire screen. See also %%/Document#exitFullscreen|**document.exitFullscreen()**%%.
 
 <htmlexample>
+<div style="background: pink;">
+  Element
+  <button id="enter">Enter Fullscreen</button>
+  <button id="exit">Exit Fullscreen</button>
+</div>
+<script>
+document.querySelector('#enter').onclick = async () => {
+  const div = document.querySelector('div');
+  if (div.requestFullscreen) {
+    await div.requestFullscreen();
+  }
+  else if (div.webkitRequestFullscreen) {
+    div.webkitRequestFullscreen();
+  }
+};
+document.querySelector('#exit').onclick = async () => {
+  if (document.exitFullscreen) {
+    await document.exitFullscreen();
+  }
+  else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+};
+</script>
 </htmlexample>
 
 Spec:
@@ -665,3 +693,15 @@ true
 
 Spec:
 https://w3c.github.io/clipboard-apis/#clipboard-event-paste
+
+----
+event.fullscreenchange : listener(event : Event) : undefined
+
+Spec:
+https://fullscreen.spec.whatwg.org/#handler-document-onfullscreenchange
+
+----
+event.fullscreenerror : listener(event : Event) : undefined
+
+Spec:
+https://fullscreen.spec.whatwg.org/#handler-document-onfullscreenerror

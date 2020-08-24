@@ -286,7 +286,37 @@ Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-135944439
 
 ----
-prototype.exitFullscreen() : undefined
+prototype.exitFullscreen() : Promise<undefined>
+
+Exits fullscreen mode. See also %%/Element#requestFullscreen|**element.requestFullscreen()**%%.
+
+<htmlexample>
+<div style="background: pink;">
+  Element
+  <button id="enter">Enter Fullscreen</button>
+  <button id="exit">Exit Fullscreen</button>
+</div>
+<script>
+document.querySelector('#enter').onclick = async () => {
+  const div = document.querySelector('div');
+  if (div.requestFullscreen) {
+    await div.requestFullscreen();
+  }
+  else if (div.webkitRequestFullscreen) {
+    div.webkitRequestFullscreen();
+  }
+};
+document.querySelector('#exit').onclick = async () => {
+  if (document.exitFullscreen) {
+    await document.exitFullscreen();
+  }
+  else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+};
+</script>
+</htmlexample>
+
 
 Spec:
 https://fullscreen.spec.whatwg.org/#dom-document-exitfullscreen
