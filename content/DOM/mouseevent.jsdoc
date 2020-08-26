@@ -33,29 +33,269 @@ Spec:
 http://www.w3.org/TR/DOM-Level-3-Events/#idl-interface-MouseEvent-initializers
 
 ----
-instance.screenX : Number
+instance.clientX : Number
 
-The x position of the pointer on the screen at the time the event fired.
-See also 
-%%#screenY|**screenY**%%,
-%%#clientX|**clientX**%%, and
-%%#clientY|**clientY**%%.
+The x position of the pointer relative to the viewport at the time the event fired.
+This is the same as %%#x|**x**%%.
+
+See the corresponding 
+%%#clientY|**clientY**%% 
+and alternative coordinates
+%%#offsetX|**offsetX**%%,
+%%#pageX|**pageX**%%, and
+%%#screenX|**screenX**%%.
 
 <htmlexample>
-<pre id="element" style="background: #eee; height: 100px">
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
 </pre>
 <script>
   var element = document.getElementById('element');
+  var output = document.getElementById('output');
 
   element.onmousemove = function(event) {
-    element.textContent = 'screen: (' + event.screenX + ', ' + event.screenY + ')\n' +
-                          'client: (' + event.clientX + ', ' + event.clientY + ')';
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-offsetx
+
+----
+instance.clientY : Number
+
+The y position of the pointer relative to the viewport at the time the event fired.
+This is the same as %%#y|**y**%%.
+
+See the corresponding 
+%%#clientX|**clientX**%% 
+and alternative coordinates
+%%#offsetY|**offsetY**%%,
+%%#pageY|**pageY**%%, and
+%%#screenY|**screenY**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-offsety
+
+----
+instance.offsetX : Number
+
+The x position of the pointer relative to **this** the time the event fired.
+
+See the corresponding 
+%%#offsetY|**offsetY**%% 
+and alternative coordinates
+%%#x|**x**%%,
+%%#clientX|**clientX**%%,
+%%#pageX|**pageX**%%, and
+%%#screenX|**screenX**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-offsetx
+
+----
+instance.offsetY : Number
+
+The y position of the pointer relative to **this** at the time the event fired.
+
+See the corresponding 
+%%#offsetX|**offsetX**%% 
+and alternative coordinates
+%%#y|**y**%%,
+%%#clientY|**clientY**%%,
+%%#pageY|**pageY**%%, and
+%%#screenY|**screenY**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-offsety
+
+----
+instance.pageX : Number
+
+The x position of the pointer relative to the page at the time the event fired.
+Same as **%%#clientX|this.clientX%% + %%/Window#scrollX|window.scrollX%%**.
+
+See the corresponding 
+%%#pageY|**pageY**%% 
+and alternative coordinates
+%%#x|**x**%%,
+%%#clientX|**clientX**%%,
+%%#offsetX|**offsetX**%%, and
+%%#screenX|**screenX**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-pagex
+
+----
+instance.pageY : Number
+
+The y position of the pointer relative to the page at the time the event fired.
+Same as **%%#clientY|this.clientY%% + %%/Window#scrollY|window.scrollY%%**.
+
+See the corresponding 
+%%#pageX|**pageX**%% 
+and alternative coordinates
+%%#y|**y**%%,
+%%#clientY|**clientY**%%,
+%%#offsetY|**offsetY**%%, and
+%%#screenY|**screenY**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-pagey
+
+----
+instance.screenX : Number
+
+The x position of the pointer on the screen at the time the event fired.
+
+See the corresponding 
+%%#screenY|**screenY**%% 
+and alternative coordinates
+%%#x|**x**%%,
+%%#clientX|**clientX**%%,
+%%#offsetX|**offsetX**%%, and
+%%#pageX|**pageX**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
   };
 </script>
 </htmlexample>
 
 Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#widl-MouseEvent-screenX
+https://drafts.csswg.org/cssom-view-1/#dom-mouseevent-screenx
 
 ReadOnly:
 true
@@ -64,84 +304,36 @@ true
 instance.screenY : Number
 
 The y position of the pointer on the screen at the time the event fired.
-See also 
-%%#screenX|**screenX**%%,
-%%#clientX|**clientX**%%, and
-%%#clientY|**clientY**%%.
 
-<htmlexample>
-<pre id="element" style="background: #eee; height: 100px">
-</pre>
-<script>
-  var element = document.getElementById('element');
-
-  element.onmousemove = function(event) {
-    element.textContent = 'screen: (' + event.screenX + ', ' + event.screenY + ')\n' +
-                          'client: (' + event.clientX + ', ' + event.clientY + ')';
-  };
-</script>
-</htmlexample>
-
-Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#widl-MouseEvent-screenY
-
-ReadOnly:
-true
-
-
-----
-instance.clientX : Number
-
-The x position of the pointer relative to the viewport at the time the event fired.
-See also 
+See the corresponding 
+%%#screenX|**screenX**%% 
+and alternative coordinates
+%%#y|**y**%%,
 %%#clientY|**clientY**%%,
-%%#screenX|**screenX**%%, and
-%%#screenY|**screenY**%%.
+%%#offsetY|**offsetY**%%, and
+%%#pageY|**pageY**%%.
 
 <htmlexample>
-<pre id="element" style="background: #eee; height: 100px">
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
 </pre>
 <script>
   var element = document.getElementById('element');
+  var output = document.getElementById('output');
 
   element.onmousemove = function(event) {
-    element.textContent = 'screen: (' + event.screenX + ', ' + event.screenY + ')\n' +
-                          'client: (' + event.clientX + ', ' + event.clientY + ')';
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
   };
 </script>
 </htmlexample>
 
 Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#widl-MouseEvent-clientX
-
-ReadOnly:
-true
-
-----
-instance.clientY : Number
-
-The y position of the pointer relative to the viewport at the time the event fired.
-See also 
-%%#clientX|**clientX**%%,
-%%#screenX|**screenX**%%, and
-%%#screenY|**screenY**%%.
-
-
-<htmlexample>
-<pre id="element" style="background: #eee; height: 100px">
-</pre>
-<script>
-  var element = document.getElementById('element');
-
-  element.onmousemove = function(event) {
-    element.textContent = 'screen: (' + event.screenX + ', ' + event.screenY + ')\n' +
-                          'client: (' + event.clientX + ', ' + event.clientY + ')';
-  };
-</script>
-</htmlexample>
-
-Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#widl-MouseEvent-clientY
+https://drafts.csswg.org/cssom-view-1/#dom-mouseevent-screeny
 
 ReadOnly:
 true
@@ -264,7 +456,7 @@ See also %%#buttons|**buttons**%%.
 
 <htmlexample>
 <pre id="element" style="background: #eee; height: 100px">
-  button:  <span id="button"></span>
+  button: <span id="button"></span>
   type: <span id="type"></span>
 </pre>
 <script>
@@ -322,7 +514,7 @@ mouseover,
 dragenter, 
 and
 dragexit
-events.  It is the element that the receives the opposite event pair for this event.
+events.  It is the element that receives the opposite event pair for this event.
 For example, the **relatedTarget** of a mouseenter is the element that will receive the 
 mouseleave event. 
 
@@ -331,6 +523,83 @@ http://www.w3.org/TR/DOM-Level-3-Events/#widl-MouseEvent-relatedTarget
 
 ReadOnly:
 true
+
+----
+instance.x : Number
+
+The x position of the pointer relative to the viewport at the time the event fired.
+This is the same as %%#clientX|**clientX**%%.
+
+See the corresponding 
+%%#y|**y**%% 
+and alternative coordinates
+%%#offsetX|**offsetX**%%,
+%%#pageX|**pageX**%%, and
+%%#screenX|**screenX**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-x
+
+----
+instance.y : Number
+
+The y position of the pointer relative to the viewport at the time the event fired.
+This is the same as %%#clientY|**clientY**%%.
+
+See the corresponding 
+%%#x|**x**%% 
+and alternative coordinates
+%%#offsetY|**offsetY**%%,
+%%#pageY|**pageY**%%, and
+%%#screenY|**screenY**%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:    (' + event.x       + ', ' + event.y       + ')\n' +
+                         'client: (' + event.clientX + ', ' + event.clientY + ')\n' +
+                         'offset: (' + event.offsetX + ', ' + event.offsetY + ')\n' +
+                         'page:   (' + event.pageX   + ', ' + event.pageY   + ')\n' +
+                         'screen: (' + event.screenX + ', ' + event.screenY + ')\n';
+  };
+</script>
+</htmlexample>
+
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-y
 
 ----
 prototype.getModifierState(modifierKey : String) : Boolean

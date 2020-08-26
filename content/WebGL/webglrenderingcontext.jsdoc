@@ -380,8 +380,9 @@ void bindBuffer(GLenum target, WebGLBuffer buffer);
 ----
 prototype.bindFramebuffer(target : Number, framebuffer : WebGLFramebuffer) : undefined
 
-Sets the current framebuffer to **framebuffer**.  **target** must be
-%%#FRAMEBUFFER|**FRAMEBUFFER**%%. 
+Sets the current framebuffer to **framebuffer**. **target** must be
+%%#FRAMEBUFFER|**FRAMEBUFFER**%% or **null**. If **null**, the rendering will
+go to the canvas.
 See %%#createFramebuffer|**createFramebuffer()**%%
 for an example of using **bindFramebuffer()**.
 
@@ -1417,7 +1418,6 @@ Defaults to %%#BACK|**BACK**%%.
 To turn on culling, you must call **%%#enable|enable%%(%%#CULL_FACE|CULL_FACE%%)**.
 To select which face is the front or back, use %%#frontFace|**frontFace()**%%.
 
-
 Spec:
 http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
 
@@ -2181,7 +2181,6 @@ Determines which side of triangles is the front face.
 To turn on culling, you must call **%%#enable|enable%%(%%#CULL_FACE|CULL_FACE%%)**.
 To select which face is culled, use %%#cullFace|**cullFace()**%%.
 
-
 Spec:
 http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFrontFace.xml
 
@@ -2641,15 +2640,10 @@ prototype.getProgramParameter(program : WebGLProgram, parameter : Number) : Obje
 %%#DELETE_STATUS|**DELETE_STATUS**%%,
 %%#LINK_STATUS|**LINK_STATUS**%%, 
 %%#VALIDATE_STATUS|**VALIDATE_STATUS**%%, 
-%%#INFO_LOG_LENGTH|**INFO_LOG_LENGTH**%%, 
 %%#ATTACHED_SHADERS|**ATTACHED_SHADERS**%%, 
 %%#ACTIVE_ATTRIBUTES|**ACTIVE_ATTRIBUTES**%%, 
-%%#ACTIVE_ATTRIBUTE_MAX_LENGTH|**ACTIVE_ATTRIBUTE_MAX_LENGTH**%%, 
-%%#ACTIVE_UNIFORMS|**ACTIVE_UNIFORMS**%%, 
 or
-%%#ACTIVE_UNIFORM_MAX_LENGTH|**ACTIVE_UNIFORM_MAX_LENGTH**%%.
-
-
+%%#ACTIVE_UNIFORMS|**ACTIVE_UNIFORMS**%%.
 
 IDL:
 any getProgramParameter(WebGLProgram program, GLenum pname);
@@ -2708,10 +2702,8 @@ prototype.getShaderParameter(shader : WebGLShader, parameter : Number) : Object
 
 %%#SHADER_TYPE|**SHADER_TYPE**%%,
 %%#DELETE_STATUS|**DELETE_STATUS**%%, 
-%%#COMPILE_STATUS|**COMPILE_STATUS**%%, 
-%%#INFO_LOG_LENGTH|**INFO_LOG_LENGTH**%%, 
 or
-%%#SHADER_SOURCE_LENGTH|**SHADER_SOURCE_LENGTH**%%.
+%%#COMPILE_STATUS|**COMPILE_STATUS**%%.
 
 IDL:
 any getShaderParameter(WebGLShader shader, GLenum pname);
@@ -4627,6 +4619,9 @@ IDL:
 ReadOnly:
 true
 
+Value:
+256 (0x100)
+
 ----
 STENCIL_BUFFER_BIT : Number
 
@@ -4636,6 +4631,8 @@ IDL:
 ReadOnly:
 true
 
+Value:
+1024 (0x400)
 
 ----
 COLOR_BUFFER_BIT : Number
@@ -4646,6 +4643,8 @@ IDL:
 ReadOnly:
 true
 
+Value:
+16384 (0x4000)
     
 ----
 POINTS : Number
@@ -4657,6 +4656,8 @@ IDL:
 ReadOnly:
 true
 
+Value:
+0 (0x0)
 
 ----
 LINES : Number
@@ -4664,9 +4665,11 @@ LINES : Number
 IDL:
 const GLenum LINES                          = 0x0001;
 
-
 ReadOnly:
 true
+
+Value:
+1 (0x1)
 
 ----
 LINE_LOOP : Number
@@ -4677,6 +4680,8 @@ const GLenum LINE_LOOP                      = 0x0002;
 ReadOnly:
 true
 
+Value:
+2 (0x2)
 
 ----
 LINE_STRIP : Number
@@ -4687,6 +4692,8 @@ const GLenum LINE_STRIP                     = 0x0003;
 ReadOnly:
 true
 
+Value:
+3 (0x3)
 
 ----
 TRIANGLES : Number
@@ -4697,6 +4704,8 @@ const GLenum TRIANGLES                      = 0x0004;
 ReadOnly:
 true
 
+Value:
+4 (0x4)
 
 ----
 TRIANGLE_STRIP : Number
@@ -4707,6 +4716,8 @@ const GLenum TRIANGLE_STRIP                 = 0x0005;
 ReadOnly:
 true
 
+Value:
+5 (0x5)
 
 ----
 TRIANGLE_FAN : Number
@@ -4727,12 +4738,17 @@ const GLenum TRIANGLE_FAN                   = 0x0006;
 ReadOnly:
 true
 
+Value:
+6 (0x6)
 
 ----
 ZERO : Number
 
 ReadOnly:
 true
+
+Value:
+0 (0x0)
 
 IDL:
 /* BlendingFactorDest */
@@ -4744,6 +4760,9 @@ ONE : Number
 ReadOnly:
 true
 
+Value:
+1 (0x1)
+
 IDL:
 const GLenum ONE                            = 1;
 
@@ -4752,6 +4771,9 @@ SRC_COLOR : Number
 
 ReadOnly:
 true
+
+Value:
+768 (0x300)
 
 IDL:
 const GLenum SRC_COLOR                      = 0x0300;
@@ -4762,6 +4784,9 @@ ONE_MINUS_SRC_COLOR : Number
 ReadOnly:
 true
 
+Value:
+769 (0x301)
+
 IDL:
 const GLenum ONE_MINUS_SRC_COLOR            = 0x0301;
 
@@ -4770,6 +4795,9 @@ SRC_ALPHA : Number
 
 ReadOnly:
 true
+
+Value:
+770 (0x302)
 
 IDL:
 const GLenum SRC_ALPHA                      = 0x0302;
@@ -4780,6 +4808,9 @@ ONE_MINUS_SRC_ALPHA : Number
 ReadOnly:
 true
 
+Value:
+771 (0x303)
+
 IDL:
 const GLenum ONE_MINUS_SRC_ALPHA            = 0x0303;
 
@@ -4788,6 +4819,9 @@ DST_ALPHA : Number
 
 ReadOnly:
 true
+
+Value:
+772 (0x304)
 
 IDL:
 const GLenum DST_ALPHA                      = 0x0304;
@@ -4798,6 +4832,10 @@ ONE_MINUS_DST_ALPHA : Number
 ReadOnly:
 true
 
+
+Value:
+773 (0x305)
+
 IDL:
 const GLenum ONE_MINUS_DST_ALPHA            = 0x0305;
 
@@ -4806,6 +4844,10 @@ DST_COLOR : Number
 
 ReadOnly:
 true
+
+Value:
+774 (0x306)
+
 
 IDL:
 /* BlendingFactorSrc */
@@ -4819,6 +4861,9 @@ ONE_MINUS_DST_COLOR : Number
 ReadOnly:
 true
 
+Value:
+775 (0x307)
+
 IDL:
 const GLenum ONE_MINUS_DST_COLOR            = 0x0307;
 
@@ -4827,6 +4872,10 @@ SRC_ALPHA_SATURATE : Number
 
 ReadOnly:
 true
+
+Value:
+776 (0x308)
+
 
 IDL:
 const GLenum SRC_ALPHA_SATURATE             = 0x0308;
@@ -4841,6 +4890,9 @@ FUNC_ADD : Number
 ReadOnly:
 true
 
+Value:
+32774 (0x8006)
+
 IDL:
 /* BlendEquationSeparate */
 const GLenum FUNC_ADD                       = 0x8006;
@@ -4851,6 +4903,10 @@ BLEND_EQUATION : Number
 ReadOnly:
 true
 
+Value:
+32777 (0x8009)
+
+
 IDL:
 const GLenum BLEND_EQUATION                 = 0x8009;
 
@@ -4859,6 +4915,10 @@ BLEND_EQUATION_RGB : Number
 
 ReadOnly:
 true
+
+Value:
+32777 (0x8009)
+
 
 IDL:
 getParameter returns unsigned long
@@ -4871,6 +4931,9 @@ BLEND_EQUATION_ALPHA : Number
 ReadOnly:
 true
 
+Value:
+34877 (0x883D)
+
 IDL:
 getParameter returns unsigned long
 
@@ -4882,6 +4945,9 @@ FUNC_SUBTRACT : Number
 ReadOnly:
 true
 
+Value:
+32778 (0x800A)
+
 IDL:
 /* BlendSubtract */
 const GLenum FUNC_SUBTRACT                  = 0x800A;
@@ -4892,15 +4958,20 @@ FUNC_REVERSE_SUBTRACT :  Number
 ReadOnly:
 true
 
+Value:
+32779 (0x800B)
+
 IDL:
 const GLenum FUNC_REVERSE_SUBTRACT          = 0x800B;
-
 
 ----
 BLEND_DST_RGB : Number
 
 ReadOnly:
 true
+
+Value:
+32968 (0x80C8)
 
 IDL:
 getParameter returns unsigned long
@@ -4914,6 +4985,9 @@ BLEND_SRC_RGB : Number
 ReadOnly:
 true
 
+Value:
+32969 (0x80C9)
+
 IDL:
 getParameter returns unsigned long
 
@@ -4924,6 +4998,9 @@ BLEND_DST_ALPHA : Number
 
 ReadOnly:
 true
+
+Value:
+32970 (0x80CA)
 
 IDL:
 getParameter returns unsigned long
@@ -4936,6 +5013,9 @@ BLEND_SRC_ALPHA : Number
 ReadOnly:
 true
 
+Value:
+32971 (0x80CB)
+
 IDL:
 getParameter returns unsigned long
 
@@ -4947,6 +5027,9 @@ CONSTANT_COLOR : Number
 ReadOnly:
 true
 
+Value:
+32769 (0x8001)
+
 IDL:
 const GLenum CONSTANT_COLOR                 = 0x8001;
 
@@ -4955,6 +5038,9 @@ ONE_MINUS_CONSTANT_COLOR : Number
 
 ReadOnly:
 true
+
+Value:
+32770 (0x8002)
 
 IDL:
 const GLenum ONE_MINUS_CONSTANT_COLOR       = 0x8002;
@@ -4965,6 +5051,10 @@ CONSTANT_ALPHA : Number
 ReadOnly:
 true
 
+Value:
+32771 (0x8003)
+
+
 IDL:
 const GLenum CONSTANT_ALPHA                 = 0x8003;
 
@@ -4974,6 +5064,9 @@ ONE_MINUS_CONSTANT_ALPHA : Number
 ReadOnly:
 true
 
+Value:
+32772 (0x8004)
+
 IDL:
 const GLenum ONE_MINUS_CONSTANT_ALPHA       = 0x8004;
 
@@ -4982,6 +5075,9 @@ BLEND_COLOR : Number
 
 ReadOnly:
 true
+
+Value:
+32773 (0x8005)
 
 IDL:
 getParameter returns Float32Array of length 4
@@ -4994,6 +5090,9 @@ ARRAY_BUFFER : Number
 ReadOnly:
 true
 
+Value:
+34962 (0x8892)
+
 IDL:
 /* Buffer Objects */
 const GLenum ARRAY_BUFFER                   = 0x8892;
@@ -5004,15 +5103,20 @@ ELEMENT_ARRAY_BUFFER : Number
 ReadOnly:
 true
 
+Value:
+34963 (0x8893)
+
 IDL:
 const GLenum ELEMENT_ARRAY_BUFFER           = 0x8893;
-
 
 ----
 ARRAY_BUFFER_BINDING : Number
 
 ReadOnly:
 true
+
+Value:
+34964 (0x8894)
 
 IDL:
 getParameter returns WebGLBuffer
@@ -5025,6 +5129,9 @@ ELEMENT_ARRAY_BUFFER_BINDING : Number
 ReadOnly:
 true
 
+Value:
+34965 (0x8895)
+
 IDL:
 const GLenum ELEMENT_ARRAY_BUFFER_BINDING   = 0x8895;
 
@@ -5034,21 +5141,32 @@ STREAM_DRAW : Number
 ReadOnly:
 true
 
+Value:
+35040 (0x88E0)
+
 IDL:
 const GLenum STREAM_DRAW                    = 0x88E0;
+
 ----
 STATIC_DRAW : Number
 
 ReadOnly:
 true
 
+Value:
+35044 (0x88E4)
+
 IDL:
 const GLenum STATIC_DRAW                    = 0x88E4;
+
 ----
 DYNAMIC_DRAW : Number
 
 ReadOnly:
 true
+
+Value:
+35048 (0x88E8)
 
 IDL:
 const GLenum DYNAMIC_DRAW                   = 0x88E8;
@@ -5059,13 +5177,20 @@ BUFFER_SIZE : Number
 ReadOnly:
 true
 
+Value:
+34660 (0x8764)
+
 IDL:
 const GLenum BUFFER_SIZE                    = 0x8764;
+
 ----
 BUFFER_USAGE : Number
 
 ReadOnly:
 true
+
+Value:
+34661 (0x8765)
 
 IDL:
 const GLenum BUFFER_USAGE                   = 0x8765;
@@ -5076,51 +5201,56 @@ CURRENT_VERTEX_ATTRIB : Number
 ReadOnly:
 true
 
+Value:
+34342 (0x8626)
+
 IDL:
 const GLenum CURRENT_VERTEX_ATTRIB          = 0x8626;
 
-/* CullFaceMode */
 ----
 FRONT : Number
 
 ReadOnly:
 true
 
+Value:
+1028 (0x404)
+
 IDL:
 const GLenum FRONT                          = 0x0404;
+
 ----
 BACK : Number
 
 ReadOnly:
 true
 
+Value:
+1029 (0x405)
+
 IDL:
 const GLenum BACK                           = 0x0405;
+
 ----
 FRONT_AND_BACK : Number
 
 ReadOnly:
 true
 
+Value:
+1032 (0x408)
+
 IDL:
 const GLenum FRONT_AND_BACK                 = 0x0408;
 
-/* DepthFunction */
-/*      NEVER */
-/*      LESS */
-/*      EQUAL */
-/*      LEQUAL */
-/*      GREATER */
-/*      NOTEQUAL */
-/*      GEQUAL */
-/*      ALWAYS */
-
-/* EnableCap */
 ----
 TEXTURE_2D : Number
 
 ReadOnly:
 true
+
+Value:
+3553 (0xDE1)
 
 IDL:
 const GLenum TEXTURE_2D                     = 0x0DE1;
@@ -5130,6 +5260,9 @@ CULL_FACE : Number
 
 ReadOnly:
 true
+
+Value:
+2884 (0xB44)
 
 IDL:
 getParameter returns Boolean
@@ -5141,6 +5274,9 @@ BLEND : Number
 
 ReadOnly:
 true
+
+Value:
+3042 (0xBE2)
 
 IDL:
 getParameter return Boolean
@@ -5211,9 +5347,11 @@ DITHER : Number
 </script>
 </htmlexample>
 
-
 ReadOnly:
 true
+
+Value:
+3024 (0xBD0)
 
 IDL:
 const GLenum DITHER                         = 0x0BD0;
@@ -5224,6 +5362,8 @@ STENCIL_TEST : Number
 ReadOnly:
 true
 
+Value:
+2960 (0xB90)
 
 IDL:
 const GLenum STENCIL_TEST                   = 0x0B90;
@@ -5234,6 +5374,8 @@ DEPTH_TEST : Number
 ReadOnly:
 true
 
+Value:
+2929 (0xB71)
 
 IDL:
 const GLenum DEPTH_TEST                     = 0x0B71;
@@ -5244,6 +5386,8 @@ SCISSOR_TEST : Number
 ReadOnly:
 true
 
+Value:
+3089 (0xC11)
 
 IDL:
 const GLenum SCISSOR_TEST                   = 0x0C11;
@@ -5254,6 +5398,8 @@ POLYGON_OFFSET_FILL : Number
 ReadOnly:
 true
 
+Value:
+32823 (0x8037)
 
 IDL:
 const GLenum POLYGON_OFFSET_FILL            = 0x8037;
@@ -5264,6 +5410,8 @@ SAMPLE_ALPHA_TO_COVERAGE : Number
 ReadOnly:
 true
 
+Value:
+32926 (0x809E)
 
 IDL:
 const GLenum SAMPLE_ALPHA_TO_COVERAGE       = 0x809E;
@@ -5274,11 +5422,11 @@ SAMPLE_COVERAGE : Number
 ReadOnly:
 true
 
+Value:
+32928 (0x80A0)
 
 IDL:
 const GLenum SAMPLE_COVERAGE                = 0x80A0;
-
-/* ErrorCode */
 
 ----
 NO_ERROR : Number
@@ -5286,6 +5434,8 @@ NO_ERROR : Number
 ReadOnly:
 true
 
+Value:
+0 (0x0)
 
 IDL:
 const GLenum NO_ERROR                       = 0;
@@ -5296,6 +5446,8 @@ INVALID_ENUM : Number
 ReadOnly:
 true
 
+Value:
+1280 (0x500)
 
 IDL:
 const GLenum INVALID_ENUM                   = 0x0500;
@@ -5306,6 +5458,8 @@ INVALID_VALUE : Number
 ReadOnly:
 true
 
+Value:
+1281 (0x501)
 
 IDL:
 const GLenum INVALID_VALUE                  = 0x0501;
@@ -5316,6 +5470,8 @@ INVALID_OPERATION : Number
 ReadOnly:
 true
 
+Value:
+1282 (0x502)
 
 IDL:
 const GLenum INVALID_OPERATION              = 0x0502;
@@ -5326,6 +5482,8 @@ OUT_OF_MEMORY : Number
 ReadOnly:
 true
 
+Value:
+1285 (0x505)
 
 IDL:
 const GLenum OUT_OF_MEMORY                  = 0x0505;
@@ -5338,6 +5496,8 @@ CW : Number
 ReadOnly:
 true
 
+Value:
+2304 (0x900)
 
 IDL:
 const GLenum CW                             = 0x0900;
@@ -5348,11 +5508,11 @@ CCW : Number
 ReadOnly:
 true
 
+Value:
+2305 (0x901)
 
 IDL:
 const GLenum CCW                            = 0x0901;
-
-/* GetPName */
 
 ----
 LINE_WIDTH : Number
@@ -5360,6 +5520,8 @@ LINE_WIDTH : Number
 ReadOnly:
 true
 
+Value:
+2849 (0xB21)
 
 IDL:
 const GLenum LINE_WIDTH                     = 0x0B21;
@@ -5370,6 +5532,8 @@ ALIASED_POINT_SIZE_RANGE : Number
 ReadOnly:
 true
 
+Value:
+33901 (0x846D)
 
 IDL:
 getParameter returns Float32Array of length 2 
@@ -5382,6 +5546,8 @@ ALIASED_LINE_WIDTH_RANGE : Number
 ReadOnly:
 true
 
+Value:
+33902 (0x846E)
 
 IDL:
 getParameter returns Float32Array of length 2 
@@ -5394,6 +5560,8 @@ CULL_FACE_MODE : Number
 ReadOnly:
 true
 
+Value:
+2885 (0xB45)
 
 IDL:
 getParameter returns unsigned long
@@ -5406,6 +5574,8 @@ FRONT_FACE : Number
 ReadOnly:
 true
 
+Value:
+2886 (0xB46)
 
 IDL:
 const GLenum FRONT_FACE                     = 0x0B46;
@@ -5416,6 +5586,8 @@ DEPTH_RANGE : Number
 ReadOnly:
 true
 
+Value:
+2928 (0xB70)
 
 IDL:
 getParameter returns Float32Array of length 2
@@ -5448,6 +5620,8 @@ operations will write to the depth buffer.  Use
 ReadOnly:
 true
 
+Value:
+2930 (0xB72)
 
 IDL:
 const GLenum DEPTH_WRITEMASK                = 0x0B72;
@@ -5458,6 +5632,9 @@ DEPTH_CLEAR_VALUE : Number
 ReadOnly:
 true
 
+
+Value:
+2931 (0xB73)
 
 IDL:
 getParameter returns float
@@ -5470,6 +5647,8 @@ DEPTH_FUNC : Number
 ReadOnly:
 true
 
+Value:
+2932 (0xB74)
 
 IDL:
 getParameter returns unsigned long
@@ -5482,6 +5661,8 @@ STENCIL_CLEAR_VALUE : Number
 ReadOnly:
 true
 
+Value:
+2961 (0xB91)
 
 IDL:
 const GLenum STENCIL_CLEAR_VALUE            = 0x0B91;
@@ -5492,6 +5673,8 @@ STENCIL_FUNC : Number
 ReadOnly:
 true
 
+Value:
+2962 (0xB92)
 
 IDL:
 const GLenum STENCIL_FUNC                   = 0x0B92;
@@ -5502,6 +5685,8 @@ STENCIL_FAIL : Number
 ReadOnly:
 true
 
+Value:
+2964 (0xB94)
 
 IDL:
 const GLenum STENCIL_FAIL                   = 0x0B94;
@@ -5512,6 +5697,8 @@ STENCIL_PASS_DEPTH_FAIL : Number
 ReadOnly:
 true
 
+Value:
+2965 (0xB95)
 
 IDL:
 const GLenum STENCIL_PASS_DEPTH_FAIL        = 0x0B95;
@@ -5522,6 +5709,8 @@ STENCIL_PASS_DEPTH_PASS : Number
 ReadOnly:
 true
 
+Value:
+2966 (0xB96)
 
 IDL:
 const GLenum STENCIL_PASS_DEPTH_PASS        = 0x0B96;
@@ -5532,6 +5721,8 @@ STENCIL_REF : Number
 ReadOnly:
 true
 
+Value:
+2967 (0xB97)
 
 IDL:
 const GLenum STENCIL_REF                    = 0x0B97;
@@ -5542,6 +5733,8 @@ STENCIL_VALUE_MASK : Number
 ReadOnly:
 true
 
+Value:
+2963 (0xB93)
 
 IDL:
 const GLenum STENCIL_VALUE_MASK             = 0x0B93;
@@ -5552,6 +5745,8 @@ STENCIL_WRITEMASK : Number
 ReadOnly:
 true
 
+Value:
+2968 (0xB98)
 
 IDL:
 const GLenum STENCIL_WRITEMASK              = 0x0B98;
@@ -5562,6 +5757,8 @@ STENCIL_BACK_FUNC : Number
 ReadOnly:
 true
 
+Value:
+34816 (0x8800)
 
 IDL:
 const GLenum STENCIL_BACK_FUNC              = 0x8800;
@@ -5572,6 +5769,8 @@ STENCIL_BACK_FAIL : Number
 ReadOnly:
 true
 
+Value:
+34817 (0x8801)
 
 IDL:
 const GLenum STENCIL_BACK_FAIL              = 0x8801;
@@ -5582,6 +5781,8 @@ STENCIL_BACK_PASS_DEPTH_FAIL : Number
 ReadOnly:
 true
 
+Value:
+34818 (0x8802)
 
 IDL:
 const GLenum STENCIL_BACK_PASS_DEPTH_FAIL   = 0x8802;
@@ -5592,6 +5793,8 @@ STENCIL_BACK_PASS_DEPTH_PASS : Number
 ReadOnly:
 true
 
+Value:
+34819 (0x8803)
 
 IDL:
 const GLenum STENCIL_BACK_PASS_DEPTH_PASS   = 0x8803;
@@ -5601,6 +5804,9 @@ STENCIL_BACK_REF : Number
 
 ReadOnly:
 true
+
+Value:
+36003 (0x8CA3)
 
 
 IDL:
@@ -5612,6 +5818,8 @@ STENCIL_BACK_VALUE_MASK : Number
 ReadOnly:
 true
 
+Value:
+36004 (0x8CA4)
 
 IDL:
 const GLenum STENCIL_BACK_VALUE_MASK        = 0x8CA4;
@@ -5622,6 +5830,8 @@ STENCIL_BACK_WRITEMASK : Number
 ReadOnly:
 true
 
+Value:
+36005 (0x8CA5)
 
 IDL:
 const GLenum STENCIL_BACK_WRITEMASK         = 0x8CA5;
@@ -5632,6 +5842,8 @@ VIEWPORT : Number
 ReadOnly:
 true
 
+Value:
+2978 (0xBA2)
 
 IDL:
 const GLenum VIEWPORT                       = 0x0BA2;
@@ -5642,6 +5854,8 @@ SCISSOR_BOX : Number
 ReadOnly:
 true
 
+Value:
+3088 (0xC10)
 
 IDL:
 const GLenum SCISSOR_BOX                    = 0x0C10;
@@ -5675,10 +5889,11 @@ current clear color set by the most recent
 </script>
 </htmlexample>
 
-
 ReadOnly:
 true
 
+Value:
+3106 (0xC22)
 
 IDL:
 getParameter returns Float32Array of length 4
@@ -5712,6 +5927,8 @@ operations will write to the color channels of the framebuffer.  Use
 ReadOnly:
 true
 
+Value:
+3107 (0xC23)
 
 IDL:
 getParameter returns Array of length 4 with Booleans
@@ -5721,10 +5938,11 @@ const GLenum COLOR_WRITEMASK                = 0x0C23;
 ----
 UNPACK_ALIGNMENT : Number
 
-
 ReadOnly:
 true
 
+Value:
+3317 (0xCF5)
 
 IDL:
 const GLenum UNPACK_ALIGNMENT               = 0x0CF5;
@@ -5735,6 +5953,8 @@ PACK_ALIGNMENT : Number
 ReadOnly:
 true
 
+Value:
+3333 (0xD05)
 
 IDL:
 const GLenum PACK_ALIGNMENT                 = 0x0D05;
@@ -5757,6 +5977,8 @@ MAX_TEXTURE_SIZE : Number
 ReadOnly:
 true
 
+Value:
+3379 (0xD33)
 
 IDL:
 const GLenum MAX_TEXTURE_SIZE               = 0x0D33;
@@ -5781,6 +6003,8 @@ MAX_VIEWPORT_DIMS : Number
 ReadOnly:
 true
 
+Value:
+3386 (0xD3A)
 
 IDL:
 const GLenum MAX_VIEWPORT_DIMS              = 0x0D3A;
@@ -5794,6 +6018,8 @@ const GLenum SUBPIXEL_BITS                  = 0x0D50;
 ReadOnly:
 true
 
+Value:
+3408 (0xD50)
 
 ----
 RED_BITS : Number
@@ -5804,6 +6030,8 @@ const GLenum RED_BITS                       = 0x0D52;
 ReadOnly:
 true
 
+Value:
+3410 (0xD52)
 
 ----
 GREEN_BITS : Number
@@ -5813,6 +6041,9 @@ const GLenum GREEN_BITS                     = 0x0D53;
 
 ReadOnly:
 true
+
+Value:
+3411 (0xD53)
 
 ----
 BLUE_BITS : Number
@@ -5825,6 +6056,9 @@ const GLenum BLUE_BITS                      = 0x0D54;
 ReadOnly:
 true
 
+Value:
+3412 (0xD54)
+
 ----
 ALPHA_BITS : Number
 
@@ -5836,6 +6070,9 @@ const GLenum ALPHA_BITS                     = 0x0D55;
 ReadOnly:
 true
 
+Value:
+3413 (0xD55)
+
 ----
 DEPTH_BITS : Number
 
@@ -5846,6 +6083,9 @@ const GLenum DEPTH_BITS                     = 0x0D56;
 
 ReadOnly:
 true
+
+Value:
+3414 (0xD56)
 
 ----
 STENCIL_BITS : Number
@@ -5866,6 +6106,9 @@ const GLenum POLYGON_OFFSET_UNITS           = 0x2A00;
 ReadOnly:
 true
 
+Value:
+3415 (0xD57)
+
 ----
 POLYGON_OFFSET_FACTOR : Number
 
@@ -5874,6 +6117,9 @@ const GLenum POLYGON_OFFSET_FACTOR          = 0x8038;
 
 ReadOnly:
 true
+
+Value:
+32824 (0x8038)
 
 ----
 TEXTURE_BINDING_2D : Number
@@ -5884,6 +6130,9 @@ const GLenum TEXTURE_BINDING_2D             = 0x8069;
 ReadOnly:
 true
 
+Value:
+32873 (0x8069)
+
 ----
 SAMPLE_BUFFERS : Number
 
@@ -5892,6 +6141,9 @@ const GLenum SAMPLE_BUFFERS                 = 0x80A8;
 
 ReadOnly:
 true
+
+Value:
+32936 (0x80A8)
 
 ----
 SAMPLES : Number
@@ -5902,6 +6154,9 @@ const GLenum SAMPLES                        = 0x80A9;
 ReadOnly:
 true
 
+Value:
+32937 (0x80A9)
+
 ----
 SAMPLE_COVERAGE_VALUE : Number
 
@@ -5910,6 +6165,9 @@ const GLenum SAMPLE_COVERAGE_VALUE          = 0x80AA;
 
 ReadOnly:
 true
+
+Value:
+32938 (0x80AA)
 
 ----
 SAMPLE_COVERAGE_INVERT : Number
@@ -5926,6 +6184,8 @@ const GLenum SAMPLE_COVERAGE_INVERT         = 0x80AB;
 ReadOnly:
 true
 
+Value:
+32939 (0x80AB)
 
 ----
 NUM_COMPRESSED_TEXTURE_FORMATS : Number
@@ -5949,6 +6209,9 @@ const GLenum COMPRESSED_TEXTURE_FORMATS     = 0x86A3;
 ReadOnly:
 true
 
+Value:
+34467 (0x86A3)
+
 ----
 DONT_CARE : Number
 
@@ -5958,6 +6221,9 @@ const GLenum DONT_CARE                      = 0x1100;
 ReadOnly:
 true
 
+Value:
+4352 (0x1100)
+
 ----
 FASTEST : Number
 
@@ -5966,6 +6232,9 @@ const GLenum FASTEST                        = 0x1101;
 
 ReadOnly:
 true
+
+Value:
+4353 (0x1101)
 
 ----
 NICEST : Number
@@ -5978,6 +6247,9 @@ const GLenum NICEST                         = 0x1102;
 ReadOnly:
 true
 
+Value:
+4354 (0x1102)
+
 ----
 GENERATE_MIPMAP_HINT : Number
 
@@ -5989,6 +6261,9 @@ const GLenum GENERATE_MIPMAP_HINT            = 0x8192;
 ReadOnly:
 true
 
+Value:
+33170 (0x8192)
+
 ----
 BYTE : Number
 
@@ -5997,6 +6272,9 @@ const GLenum BYTE                           = 0x1400;
 
 ReadOnly:
 true
+
+Value:
+5120 (0x1400)
 
 ----
 UNSIGNED_BYTE : Number
@@ -6007,6 +6285,9 @@ const GLenum UNSIGNED_BYTE                  = 0x1401;
 ReadOnly:
 true
 
+Value:
+5121 (0x1401)
+
 ----
 SHORT : Number
 
@@ -6015,6 +6296,9 @@ const GLenum SHORT                          = 0x1402;
 
 ReadOnly:
 true
+
+Value:
+5122 (0x1402)
 
 ----
 UNSIGNED_SHORT : Number
@@ -6025,6 +6309,9 @@ const GLenum UNSIGNED_SHORT                 = 0x1403;
 ReadOnly:
 true
 
+Value:
+5123 (0x1403)
+
 ----
 INT : Number
 
@@ -6034,6 +6321,9 @@ const GLenum INT                            = 0x1404;
 ReadOnly:
 true
 
+Value:
+5124 (0x1404)
+
 ----
 UNSIGNED_INT : Number
 
@@ -6042,6 +6332,9 @@ const GLenum UNSIGNED_INT                   = 0x1405;
 
 ReadOnly:
 true
+
+Value:
+5125 (0x1405)
 
 ----
 FLOAT : Number
@@ -6054,6 +6347,9 @@ const GLenum FLOAT                          = 0x1406;
 ReadOnly:
 true
 
+Value:
+5126 (0x1406)
+
 ----
 DEPTH_COMPONENT : Number
 
@@ -6062,6 +6358,9 @@ const GLenum DEPTH_COMPONENT                = 0x1902;
 
 ReadOnly:
 true
+
+Value:
+6402 (0x1902)
 
 ----
 ALPHA : Number
@@ -6072,6 +6371,9 @@ const GLenum ALPHA                          = 0x1906;
 ReadOnly:
 true
 
+Value:
+6406 (0x1906)
+
 ----
 RGB : Number
 
@@ -6080,6 +6382,9 @@ const GLenum RGB                            = 0x1907;
 
 ReadOnly:
 true
+
+Value:
+6407 (0x1907)
 
 ----
 RGBA : Number
@@ -6090,6 +6395,9 @@ const GLenum RGBA                           = 0x1908;
 ReadOnly:
 true
 
+Value:
+6408 (0x1908)
+
 ----
 LUMINANCE : Number
 
@@ -6098,6 +6406,9 @@ const GLenum LUMINANCE                      = 0x1909;
 
 ReadOnly:
 true
+
+Value:
+6409 (0x1909)
 
 ----
 LUMINANCE_ALPHA : Number
@@ -6111,6 +6422,9 @@ const GLenum LUMINANCE_ALPHA                = 0x190A;
 ReadOnly:
 true
 
+Value:
+6410 (0x190A)
+
 ----
 UNSIGNED_SHORT_4_4_4_4 : Number
 
@@ -6120,6 +6434,9 @@ const GLenum UNSIGNED_SHORT_4_4_4_4         = 0x8033;
 ReadOnly:
 true
 
+Value:
+32819 (0x8033)
+
 ----
 UNSIGNED_SHORT_5_5_5_1 : Number
 
@@ -6128,6 +6445,9 @@ const GLenum UNSIGNED_SHORT_5_5_5_1         = 0x8034;
 
 ReadOnly:
 true
+
+Value:
+32820 (0x8034)
 
 ----
 UNSIGNED_SHORT_5_6_5 : Number
@@ -6139,6 +6459,9 @@ const GLenum UNSIGNED_SHORT_5_6_5           = 0x8363;
 
 ReadOnly:
 true
+
+Value:
+33635 (0x8363)
 
 ----
 FRAGMENT_SHADER : Number
@@ -6162,6 +6485,9 @@ const GLenum FRAGMENT_SHADER                  = 0x8B30;
 
 ReadOnly:
 true
+
+Value:
+35632 (0x8B30)
 
 ----
 VERTEX_SHADER : Number
@@ -6189,6 +6515,9 @@ const GLenum VERTEX_SHADER                    = 0x8B31;
 ReadOnly:
 true
 
+Value:
+35633 (0x8B31)
+
 ----
 MAX_VERTEX_ATTRIBS : Number
 
@@ -6212,6 +6541,8 @@ const GLenum MAX_VERTEX_ATTRIBS               = 0x8869;
 ReadOnly:
 true
 
+Value:
+34921 (0x8869)
 
 ----
 MAX_VERTEX_UNIFORM_VECTORS : Number
@@ -6233,10 +6564,11 @@ The maximum number of uniforms a program may define.
 IDL:
 const GLenum MAX_VERTEX_UNIFORM_VECTORS       = 0x8DFB;
 
-
 ReadOnly:
 true
 
+Value:
+36347 (0x8DFB)
 
 ----
 MAX_VARYING_VECTORS : Number
@@ -6259,8 +6591,7 @@ IDL:
 const GLenum MAX_VARYING_VECTORS              = 0x8DFC;
 
 Value:
-0x8DFC
-
+36348 (0x8DFC)
 
 ReadOnly:
 true
@@ -6291,8 +6622,7 @@ IDL:
 const GLenum MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
 
 Value:
-0x8B4D
-
+35661 (0x8B4D)
 
 ReadOnly:
 true
@@ -6315,14 +6645,11 @@ MAX_VERTEX_TEXTURE_IMAGE_UNITS : Number
 IDL:
 const GLenum MAX_VERTEX_TEXTURE_IMAGE_UNITS   = 0x8B4C;
 
-Value:
-0x8B4C
-
 ReadOnly:
 true
 
-
-
+Value:
+35660 (0x8B4C)
 
 ----
 MAX_TEXTURE_IMAGE_UNITS : Number
@@ -6342,12 +6669,11 @@ MAX_TEXTURE_IMAGE_UNITS : Number
 IDL:
 const GLenum MAX_TEXTURE_IMAGE_UNITS          = 0x8872;
 
-
 ReadOnly:
 true
 
 Value:
-0x8872
+34930 (0x8872)
 
 ----
 MAX_FRAGMENT_UNIFORM_VECTORS : Number
@@ -6368,7 +6694,7 @@ IDL:
 const GLenum MAX_FRAGMENT_UNIFORM_VECTORS     = 0x8DFD;
 
 Value:
-0x8DFD
+36349 (0x8DFD)
 
 ReadOnly:
 true
@@ -6380,7 +6706,7 @@ IDL:
 const GLenum SHADER_TYPE                      = 0x8B4F;
 
 Value:
-0x8B4F
+35663 (0x8B4F)
 
 ReadOnly:
 true
@@ -6392,7 +6718,7 @@ IDL:
 const GLenum DELETE_STATUS                    = 0x8B80;
 
 Value:
-0x8B80
+35712 (0x8B80)
 
 ReadOnly:
 true
@@ -6404,7 +6730,7 @@ IDL:
 const GLenum LINK_STATUS                      = 0x8B82;
 
 Value:
-0x8B82
+35714 (0x8B82)
 
 ReadOnly:
 true
@@ -6416,7 +6742,7 @@ IDL:
 const GLenum VALIDATE_STATUS                  = 0x8B83;
 
 Value:
-0x8B83
+35715 (0x8B83)
 
 ReadOnly:
 true
@@ -6428,7 +6754,7 @@ IDL:
 const GLenum ATTACHED_SHADERS                 = 0x8B85;
 
 Value:
-0x8B85
+35717 (0x8B85)
 
 ReadOnly:
 true
@@ -6526,14 +6852,8 @@ const GLenum ACTIVE_UNIFORMS                  = 0x8B86;
 ReadOnly:
 true
 
-----
-ACTIVE_UNIFORM_MAX_LENGTH : Number
-
-IDL:
-const GLenum ACTIVE_UNIFORM_MAX_LENGTH        = 0x8B87;
-
-ReadOnly:
-true
+Value:
+35718 (0x8B86)
 
 ----
 ACTIVE_ATTRIBUTES : Number
@@ -6625,14 +6945,8 @@ to get the number of attributes in the specified program.
 IDL:
 const GLenum ACTIVE_ATTRIBUTES                = 0x8B89;
 
-ReadOnly:
-true
-
-----
-ACTIVE_ATTRIBUTE_MAX_LENGTH : Number
-
-IDL:
-const GLenum ACTIVE_ATTRIBUTE_MAX_LENGTH      = 0x8B8A;
+Value:
+35721 (0x8B89)
 
 ReadOnly:
 true
@@ -6642,6 +6956,9 @@ SHADING_LANGUAGE_VERSION : Number
 
 IDL:
 const GLenum SHADING_LANGUAGE_VERSION         = 0x8B8C;
+
+Value:
+35724 (0x8B8C)
 
 ReadOnly:
 true
@@ -6654,10 +6971,12 @@ getParameter returns WebGLProgram
 
 const GLenum CURRENT_PROGRAM                  = 0x8B8D;
 
-/* StencilFunction */
+Value:
+35725 (0x8B8D)
 
 ReadOnly:
 true
+
 ----
 NEVER : Number
 
@@ -6666,6 +6985,9 @@ const GLenum NEVER                          = 0x0200;
 
 ReadOnly:
 true
+
+Value:
+512 (0x200)
 
 ----
 LESS : Number
@@ -6676,6 +6998,9 @@ const GLenum LESS                           = 0x0201;
 ReadOnly:
 true
 
+Value:
+513 (0x201)
+
 ----
 EQUAL : Number
 
@@ -6684,6 +7009,9 @@ const GLenum EQUAL                          = 0x0202;
 
 ReadOnly:
 true
+
+Value:
+514 (0x202)
 
 ----
 LEQUAL : Number
@@ -6694,6 +7022,9 @@ const GLenum LEQUAL                         = 0x0203;
 ReadOnly:
 true
 
+Value:
+515 (0x203)
+
 ----
 GREATER : Number
 
@@ -6702,6 +7033,9 @@ const GLenum GREATER                        = 0x0204;
 
 ReadOnly:
 true
+
+Value:
+516 (0x204)
 
 ----
 NOTEQUAL : Number
@@ -6712,6 +7046,9 @@ const GLenum NOTEQUAL                       = 0x0205;
 ReadOnly:
 true
 
+Value:
+517 (0x205)
+
 ----
 GEQUAL : Number
 
@@ -6720,6 +7057,9 @@ const GLenum GEQUAL                         = 0x0206;
 
 ReadOnly:
 true
+
+Value:
+518 (0x206)
 
 ----
 ALWAYS : Number
@@ -6733,6 +7073,9 @@ const GLenum ALWAYS                         = 0x0207;
 ReadOnly:
 true
 
+Value:
+519 (0x207)
+
 ----
 KEEP : Number
 
@@ -6741,6 +7084,9 @@ const GLenum KEEP                           = 0x1E00;
 
 ReadOnly:
 true
+
+Value:
+7680 (0x1E00)
 
 ----
 REPLACE : Number
@@ -6751,6 +7097,9 @@ const GLenum REPLACE                        = 0x1E01;
 ReadOnly:
 true
 
+Value:
+7681 (0x1E01)
+
 ----
 INCR : Number
 
@@ -6759,6 +7108,9 @@ const GLenum INCR                           = 0x1E02;
 
 ReadOnly:
 true
+
+Value:
+7682 (0x1E02)
 
 ----
 DECR : Number
@@ -6769,6 +7121,9 @@ const GLenum DECR                           = 0x1E03;
 ReadOnly:
 true
 
+Value:
+7683 (0x1E03)
+
 ----
 INVERT : Number
 
@@ -6778,6 +7133,9 @@ const GLenum INVERT                         = 0x150A;
 ReadOnly:
 true
 
+Value:
+5386 (0x150A)
+
 ----
 INCR_WRAP : Number
 
@@ -6786,6 +7144,9 @@ const GLenum INCR_WRAP                      = 0x8507;
 
 ReadOnly:
 true
+
+Value:
+34055 (0x8507)
 
 ----
 DECR_WRAP : Number
@@ -6798,6 +7159,9 @@ const GLenum DECR_WRAP                      = 0x8508;
 ReadOnly:
 true
 
+Value:
+34056 (0x8508)
+
 ----
 VENDOR : Number
 
@@ -6806,6 +7170,9 @@ const GLenum VENDOR                         = 0x1F00;
 
 ReadOnly:
 true
+
+Value:
+7936 (0x1F00)
 
 ----
 RENDERER : Number
@@ -6826,6 +7193,9 @@ const GLenum VERSION                        = 0x1F02;
 ReadOnly:
 true
 
+Value:
+7937 (0x1F01)
+
 ----
 NEAREST : Number
 
@@ -6834,6 +7204,9 @@ const GLenum NEAREST                        = 0x2600;
 
 ReadOnly:
 true
+
+Value:
+9728 (0x2600)
 
 ----
 LINEAR : Number
@@ -6844,9 +7217,9 @@ const GLenum LINEAR                         = 0x2601;
 ReadOnly:
 true
 
-/* TextureMinFilter */
-/*      NEAREST */
-/*      LINEAR */
+Value:
+9729 (0x2601)
+
 ----
 NEAREST_MIPMAP_NEAREST : Number
 
@@ -6860,18 +7233,23 @@ const GLenum NEAREST_MIPMAP_NEAREST         = 0x2700;
 ReadOnly:
 true
 
+Value:
+9984 (0x2700)
+
 ----
 LINEAR_MIPMAP_NEAREST : Number
 
 Note, you can only use **LINEAR_MIPMAP_NEAREST** for textures where the
 width and height are both powers of **2** (such as 128, 256, 512, etc).
 
-
 IDL:
 const GLenum LINEAR_MIPMAP_NEAREST          = 0x2701;
 
 ReadOnly:
 true
+
+Value:
+9985 (0x2701)
 
 ----
 NEAREST_MIPMAP_LINEAR : Number
@@ -6885,6 +7263,9 @@ const GLenum NEAREST_MIPMAP_LINEAR          = 0x2702;
 ReadOnly:
 true
 
+Value:
+9986 (0x2702)
+
 ----
 LINEAR_MIPMAP_LINEAR : Number
 
@@ -6897,7 +7278,9 @@ const GLenum LINEAR_MIPMAP_LINEAR           = 0x2703;
 ReadOnly:
 true
 
-/* TextureParameterName */
+Value:
+9987 (0x2703)
+
 ----
 TEXTURE_MAG_FILTER : Number
 
@@ -6906,6 +7289,9 @@ const GLenum TEXTURE_MAG_FILTER             = 0x2800;
 
 ReadOnly:
 true
+
+Value:
+10240 (0x2800)
 
 ----
 TEXTURE_MIN_FILTER : Number
@@ -6916,6 +7302,9 @@ const GLenum TEXTURE_MIN_FILTER             = 0x2801;
 ReadOnly:
 true
 
+Value:
+10241 (0x2801)
+
 ----
 TEXTURE_WRAP_S : Number
 
@@ -6925,6 +7314,9 @@ const GLenum TEXTURE_WRAP_S                 = 0x2802;
 ReadOnly:
 true
 
+Value:
+10242 (0x2802)
+
 ----
 TEXTURE_WRAP_T : Number
 
@@ -6933,6 +7325,9 @@ const GLenum TEXTURE_WRAP_T                 = 0x2803;
 
 ReadOnly:
 true
+
+Value:
+10243 (0x2803)
 
 /* TextureTarget */
 /*      TEXTURE_2D */
@@ -6945,6 +7340,9 @@ const GLenum TEXTURE                        = 0x1702;
 ReadOnly:
 true
 
+Value:
+5890 (0x1702)
+
 ----
 TEXTURE_CUBE_MAP : Number
 
@@ -6953,6 +7351,10 @@ const GLenum TEXTURE_CUBE_MAP               = 0x8513;
 
 ReadOnly:
 true
+
+Value:
+34067 (0x8513)
+
 ----
 TEXTURE_BINDING_CUBE_MAP : Number
 
@@ -6961,6 +7363,10 @@ const GLenum TEXTURE_BINDING_CUBE_MAP       = 0x8514;
 
 ReadOnly:
 true
+
+Value:
+34068 (0x8514)
+
 ----
 TEXTURE_CUBE_MAP_POSITIVE_X : Number
 
@@ -6969,6 +7375,10 @@ const GLenum TEXTURE_CUBE_MAP_POSITIVE_X    = 0x8515;
 
 ReadOnly:
 true
+
+Value:
+34069 (0x8515)
+
 ----
 TEXTURE_CUBE_MAP_NEGATIVE_X : Number
 
@@ -6977,6 +7387,10 @@ const GLenum TEXTURE_CUBE_MAP_NEGATIVE_X    = 0x8516;
 
 ReadOnly:
 true
+
+Value:
+34070 (0x8516)
+
 ----
 TEXTURE_CUBE_MAP_POSITIVE_Y : Number
 
@@ -6985,6 +7399,10 @@ const GLenum TEXTURE_CUBE_MAP_POSITIVE_Y    = 0x8517;
 
 ReadOnly:
 true
+
+Value:
+34071 (0x8517)
+
 ----
 TEXTURE_CUBE_MAP_NEGATIVE_Y : Number
 
@@ -6993,6 +7411,10 @@ const GLenum TEXTURE_CUBE_MAP_NEGATIVE_Y    = 0x8518;
 
 ReadOnly:
 true
+
+Value:
+34072 (0x8518)
+
 ----
 TEXTURE_CUBE_MAP_POSITIVE_Z : Number
 
@@ -7001,6 +7423,10 @@ const GLenum TEXTURE_CUBE_MAP_POSITIVE_Z    = 0x8519;
 
 ReadOnly:
 true
+
+Value:
+34073 (0x8519)
+
 ----
 TEXTURE_CUBE_MAP_NEGATIVE_Z : Number
 
@@ -7009,6 +7435,10 @@ const GLenum TEXTURE_CUBE_MAP_NEGATIVE_Z    = 0x851A;
 
 ReadOnly:
 true
+
+Value:
+34074 (0x851A)
+
 ----
 MAX_CUBE_MAP_TEXTURE_SIZE : Number
 
@@ -7027,12 +7457,12 @@ MAX_CUBE_MAP_TEXTURE_SIZE : Number
 IDL:
 const GLenum MAX_CUBE_MAP_TEXTURE_SIZE      = 0x851C;
 
-
 ReadOnly:
 true
 
+Value:
+34076 (0x851C)
 
-/* TextureUnit */
 ----
 TEXTURE0 : Number
 
@@ -7041,6 +7471,10 @@ const GLenum TEXTURE0                       = 0x84C0;
 
 ReadOnly:
 true
+
+Value:
+33984 (0x84C0)
+
 ----
 TEXTURE1 : Number
 
@@ -7049,6 +7483,10 @@ const GLenum TEXTURE1                       = 0x84C1;
 
 ReadOnly:
 true
+
+Value:
+33985 (0x84C1)
+
 ----
 TEXTURE2 : Number
 
@@ -7057,6 +7495,10 @@ const GLenum TEXTURE2                       = 0x84C2;
 
 ReadOnly:
 true
+
+Value:
+33986 (0x84C2)
+
 ----
 TEXTURE3 : Number
 
@@ -7065,6 +7507,10 @@ const GLenum TEXTURE3                       = 0x84C3;
 
 ReadOnly:
 true
+
+Value:
+33987 (0x84C3)
+
 ----
 TEXTURE4 : Number
 
@@ -7073,6 +7519,10 @@ const GLenum TEXTURE4                       = 0x84C4;
 
 ReadOnly:
 true
+
+Value:
+33988 (0x84C4)
+
 ----
 TEXTURE5 : Number
 
@@ -7081,6 +7531,10 @@ const GLenum TEXTURE5                       = 0x84C5;
 
 ReadOnly:
 true
+
+Value:
+33989 (0x84C5)
+
 ----
 TEXTURE6 : Number
 
@@ -7089,6 +7543,10 @@ const GLenum TEXTURE6                       = 0x84C6;
 
 ReadOnly:
 true
+
+Value:
+33990 (0x84C6)
+
 ----
 TEXTURE7 : Number
 
@@ -7097,6 +7555,10 @@ const GLenum TEXTURE7                       = 0x84C7;
 
 ReadOnly:
 true
+
+Value:
+33991 (0x84C7)
+
 ----
 TEXTURE8 : Number
 
@@ -7105,6 +7567,10 @@ const GLenum TEXTURE8                       = 0x84C8;
 
 ReadOnly:
 true
+
+Value:
+33992 (0x84C8)
+
 ----
 TEXTURE9 : Number
 
@@ -7113,6 +7579,10 @@ const GLenum TEXTURE9                       = 0x84C9;
 
 ReadOnly:
 true
+
+Value:
+33993 (0x84C9)
+
 ----
 TEXTURE10 : Number
 
@@ -7121,6 +7591,10 @@ const GLenum TEXTURE10                      = 0x84CA;
 
 ReadOnly:
 true
+
+Value:
+33994 (0x84CA)
+
 ----
 TEXTURE11 : Number
 
@@ -7129,6 +7603,10 @@ const GLenum TEXTURE11                      = 0x84CB;
 
 ReadOnly:
 true
+
+Value:
+33995 (0x84CB)
+
 ----
 TEXTURE12 : Number
 
@@ -7137,6 +7615,10 @@ const GLenum TEXTURE12                      = 0x84CC;
 
 ReadOnly:
 true
+
+Value:
+33996 (0x84CC)
+
 ----
 TEXTURE13 : Number
 
@@ -7145,6 +7627,10 @@ const GLenum TEXTURE13                      = 0x84CD;
 
 ReadOnly:
 true
+
+Value:
+33997 (0x84CD)
+
 ----
 TEXTURE14 : Number
 
@@ -7153,6 +7639,10 @@ const GLenum TEXTURE14                      = 0x84CE;
 
 ReadOnly:
 true
+
+Value:
+33998 (0x84CE)
+
 ----
 TEXTURE15 : Number
 
@@ -7161,6 +7651,10 @@ const GLenum TEXTURE15                      = 0x84CF;
 
 ReadOnly:
 true
+
+Value:
+33999 (0x84CF)
+
 ----
 TEXTURE16 : Number
 
@@ -7169,6 +7663,10 @@ const GLenum TEXTURE16                      = 0x84D0;
 
 ReadOnly:
 true
+
+Value:
+34000 (0x84D0)
+
 ----
 TEXTURE17 : Number
 
@@ -7177,6 +7675,10 @@ const GLenum TEXTURE17                      = 0x84D1;
 
 ReadOnly:
 true
+
+Value:
+34001 (0x84D1)
+
 ----
 TEXTURE18 : Number
 
@@ -7185,6 +7687,10 @@ const GLenum TEXTURE18                      = 0x84D2;
 
 ReadOnly:
 true
+
+Value:
+34002 (0x84D2)
+
 ----
 TEXTURE19 : Number
 
@@ -7193,6 +7699,10 @@ const GLenum TEXTURE19                      = 0x84D3;
 
 ReadOnly:
 true
+
+Value:
+34003 (0x84D3)
+
 ----
 TEXTURE20 : Number
 
@@ -7201,6 +7711,10 @@ const GLenum TEXTURE20                      = 0x84D4;
 
 ReadOnly:
 true
+
+Value:
+34004 (0x84D4)
+
 ----
 TEXTURE21 : Number
 
@@ -7209,6 +7723,10 @@ const GLenum TEXTURE21                      = 0x84D5;
 
 ReadOnly:
 true
+
+Value:
+34005 (0x84D5)
+
 ----
 TEXTURE22 : Number
 
@@ -7217,6 +7735,10 @@ const GLenum TEXTURE22                      = 0x84D6;
 
 ReadOnly:
 true
+
+Value:
+34006 (0x84D6)
+
 ----
 TEXTURE23 : Number
 
@@ -7225,6 +7747,10 @@ const GLenum TEXTURE23                      = 0x84D7;
 
 ReadOnly:
 true
+
+Value:
+34007 (0x84D7)
+
 ----
 TEXTURE24 : Number
 
@@ -7233,6 +7759,10 @@ const GLenum TEXTURE24                      = 0x84D8;
 
 ReadOnly:
 true
+
+Value:
+34008 (0x84D8)
+
 ----
 TEXTURE25 : Number
 
@@ -7241,6 +7771,10 @@ const GLenum TEXTURE25                      = 0x84D9;
 
 ReadOnly:
 true
+
+Value:
+34009 (0x84D9)
+
 ----
 TEXTURE26 : Number
 
@@ -7249,6 +7783,10 @@ const GLenum TEXTURE26                      = 0x84DA;
 
 ReadOnly:
 true
+
+Value:
+34010 (0x84DA)
+
 ----
 TEXTURE27 : Number
 
@@ -7257,6 +7795,10 @@ const GLenum TEXTURE27                      = 0x84DB;
 
 ReadOnly:
 true
+
+Value:
+34011 (0x84DB)
+
 ----
 TEXTURE28 : Number
 
@@ -7265,6 +7807,10 @@ const GLenum TEXTURE28                      = 0x84DC;
 
 ReadOnly:
 true
+
+Value:
+34012 (0x84DC)
+
 ----
 TEXTURE29 : Number
 
@@ -7273,6 +7819,10 @@ const GLenum TEXTURE29                      = 0x84DD;
 
 ReadOnly:
 true
+
+Value:
+34013 (0x84DD)
+
 ----
 TEXTURE30 : Number
 
@@ -7281,6 +7831,10 @@ const GLenum TEXTURE30                      = 0x84DE;
 
 ReadOnly:
 true
+
+Value:
+34014 (0x84DE)
+
 ----
 TEXTURE31 : Number
 
@@ -7289,6 +7843,10 @@ const GLenum TEXTURE31                      = 0x84DF;
 
 ReadOnly:
 true
+
+Value:
+34015 (0x84DF)
+
 ----
 ACTIVE_TEXTURE : Number
 
@@ -7320,6 +7878,9 @@ const GLenum ACTIVE_TEXTURE                 = 0x84E0;
 ReadOnly:
 true
 
+Value:
+34016 (0x84E0)
+
 /* TextureWrapMode */
 ----
 REPEAT : Number
@@ -7327,12 +7888,15 @@ REPEAT : Number
 Note, you can only use **REPEAT** for textures where the
 width and height are both powers of **2** (such as 128, 256, 512, etc).
 
-
 IDL:
 const GLenum REPEAT                         = 0x2901;
 
 ReadOnly:
 true
+
+Value:
+10497 (0x2901)
+
 ----
 CLAMP_TO_EDGE : Number
 
@@ -7354,7 +7918,9 @@ const GLenum MIRRORED_REPEAT                = 0x8370;
 ReadOnly:
 true
 
-/* Uniform Types */
+Value:
+33071 (0x812F)
+
 ----
 FLOAT_VEC2 : Number
 
@@ -7363,6 +7929,10 @@ const GLenum FLOAT_VEC2                     = 0x8B50;
 
 ReadOnly:
 true
+
+Value:
+35664 (0x8B50)
+
 ----
 FLOAT_VEC3 : Number
 
@@ -7371,6 +7941,10 @@ const GLenum FLOAT_VEC3                     = 0x8B51;
 
 ReadOnly:
 true
+
+Value:
+35665 (0x8B51)
+
 ----
 FLOAT_VEC4 : Number
 
@@ -7379,6 +7953,10 @@ const GLenum FLOAT_VEC4                     = 0x8B52;
 
 ReadOnly:
 true
+
+Value:
+35666 (0x8B52)
+
 ----
 INT_VEC2 : Number
 
@@ -7387,6 +7965,10 @@ const GLenum INT_VEC2                       = 0x8B53;
 
 ReadOnly:
 true
+
+Value:
+35667 (0x8B53)
+
 ----
 INT_VEC3 : Number
 
@@ -7395,6 +7977,10 @@ const GLenum INT_VEC3                       = 0x8B54;
 
 ReadOnly:
 true
+
+Value:
+35668 (0x8B54)
+
 ----
 INT_VEC4 : Number
 
@@ -7403,6 +7989,10 @@ const GLenum INT_VEC4                       = 0x8B55;
 
 ReadOnly:
 true
+
+Value:
+35669 (0x8B55)
+
 ----
 BOOL : Number
 
@@ -7411,6 +8001,10 @@ const GLenum BOOL                           = 0x8B56;
 
 ReadOnly:
 true
+
+Value:
+35670 (0x8B56)
+
 ----
 BOOL_VEC2 : Number
 
@@ -7419,6 +8013,10 @@ const GLenum BOOL_VEC2                      = 0x8B57;
 
 ReadOnly:
 true
+
+Value:
+35671 (0x8B57)
+
 ----
 BOOL_VEC3 : Number
 
@@ -7427,6 +8025,10 @@ const GLenum BOOL_VEC3                      = 0x8B58;
 
 ReadOnly:
 true
+
+Value:
+35672 (0x8B58)
+
 ----
 BOOL_VEC4 : Number
 
@@ -7435,6 +8037,10 @@ const GLenum BOOL_VEC4                      = 0x8B59;
 
 ReadOnly:
 true
+
+Value:
+35673 (0x8B59)
+
 ----
 FLOAT_MAT2 : Number
 
@@ -7443,6 +8049,10 @@ const GLenum FLOAT_MAT2                     = 0x8B5A;
 
 ReadOnly:
 true
+
+Value:
+35674 (0x8B5A)
+
 ----
 FLOAT_MAT3 : Number
 
@@ -7451,6 +8061,10 @@ const GLenum FLOAT_MAT3                     = 0x8B5B;
 
 ReadOnly:
 true
+
+Value:
+35675 (0x8B5B)
+
 ----
 FLOAT_MAT4 : Number
 
@@ -7459,6 +8073,10 @@ const GLenum FLOAT_MAT4                     = 0x8B5C;
 
 ReadOnly:
 true
+
+Value:
+35676 (0x8B5C)
+
 ----
 SAMPLER_2D : Number
 
@@ -7467,6 +8085,10 @@ const GLenum SAMPLER_2D                     = 0x8B5E;
 
 ReadOnly:
 true
+
+Value:
+35678 (0x8B5E)
+
 ----
 SAMPLER_CUBE : Number
 
@@ -7476,7 +8098,9 @@ const GLenum SAMPLER_CUBE                   = 0x8B60;
 ReadOnly:
 true
 
-/* Vertex Arrays */
+Value:
+35680 (0x8B60)
+
 ----
 VERTEX_ATTRIB_ARRAY_ENABLED : Number
 
@@ -7485,6 +8109,10 @@ const GLenum VERTEX_ATTRIB_ARRAY_ENABLED        = 0x8622;
 
 ReadOnly:
 true
+
+Value:
+34338 (0x8622)
+
 ----
 VERTEX_ATTRIB_ARRAY_SIZE : Number
 
@@ -7493,6 +8121,10 @@ const GLenum VERTEX_ATTRIB_ARRAY_SIZE           = 0x8623;
 
 ReadOnly:
 true
+
+Value:
+34339 (0x8623)
+
 ----
 VERTEX_ATTRIB_ARRAY_STRIDE : Number
 
@@ -7501,6 +8133,10 @@ const GLenum VERTEX_ATTRIB_ARRAY_STRIDE         = 0x8624;
 
 ReadOnly:
 true
+
+Value:
+34340 (0x8624)
+
 ----
 VERTEX_ATTRIB_ARRAY_TYPE : Number
 
@@ -7509,6 +8145,10 @@ const GLenum VERTEX_ATTRIB_ARRAY_TYPE           = 0x8625;
 
 ReadOnly:
 true
+
+Value:
+34341 (0x8625)
+
 ----
 VERTEX_ATTRIB_ARRAY_NORMALIZED : Number
 
@@ -7517,6 +8157,10 @@ const GLenum VERTEX_ATTRIB_ARRAY_NORMALIZED     = 0x886A;
 
 ReadOnly:
 true
+
+Value:
+34922 (0x886A)
+
 ----
 VERTEX_ATTRIB_ARRAY_POINTER : Number
 
@@ -7525,6 +8169,10 @@ const GLenum VERTEX_ATTRIB_ARRAY_POINTER        = 0x8645;
 
 ReadOnly:
 true
+
+Value:
+34373 (0x8645)
+
 ----
 VERTEX_ATTRIB_ARRAY_BUFFER_BINDING : Number
 
@@ -7534,7 +8182,9 @@ const GLenum VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
 ReadOnly:
 true
 
-/* Shader Source */
+Value:
+34975 (0x889F)
+
 ----
 COMPILE_STATUS : Number
 
@@ -7543,24 +8193,10 @@ const GLenum COMPILE_STATUS                 = 0x8B81;
 
 ReadOnly:
 true
-----
-INFO_LOG_LENGTH : Number
 
-IDL:
-const GLenum INFO_LOG_LENGTH                = 0x8B84;
+Value:
+35713 (0x8B81)
 
-ReadOnly:
-true
-----
-SHADER_SOURCE_LENGTH : Number
-
-IDL:
-const GLenum SHADER_SOURCE_LENGTH           = 0x8B88;
-
-ReadOnly:
-true
-
-/* Shader Precision-Specified Types */
 ----
 LOW_FLOAT : Number
 
@@ -7569,6 +8205,10 @@ const GLenum LOW_FLOAT                      = 0x8DF0;
 
 ReadOnly:
 true
+
+Value:
+36336 (0x8DF0)
+
 ----
 MEDIUM_FLOAT : Number
 
@@ -7577,6 +8217,10 @@ const GLenum MEDIUM_FLOAT                   = 0x8DF1;
 
 ReadOnly:
 true
+
+Value:
+36337 (0x8DF1)
+
 ----
 HIGH_FLOAT : Number
 
@@ -7585,6 +8229,10 @@ const GLenum HIGH_FLOAT                     = 0x8DF2;
 
 ReadOnly:
 true
+
+Value:
+36338 (0x8DF2)
+
 ----
 LOW_INT : Number
 
@@ -7593,6 +8241,10 @@ const GLenum LOW_INT                        = 0x8DF3;
 
 ReadOnly:
 true
+
+Value:
+36339 (0x8DF3)
+
 ----
 MEDIUM_INT : Number
 
@@ -7601,6 +8253,10 @@ const GLenum MEDIUM_INT                     = 0x8DF4;
 
 ReadOnly:
 true
+
+Value:
+36340 (0x8DF4)
+
 ----
 HIGH_INT : Number
 
@@ -7610,7 +8266,9 @@ const GLenum HIGH_INT                       = 0x8DF5;
 ReadOnly:
 true
 
-/* Framebuffer Object. */
+Value:
+36341 (0x8DF5)
+
 ----
 FRAMEBUFFER : Number
 
@@ -7619,6 +8277,10 @@ const GLenum FRAMEBUFFER                    = 0x8D40;
 
 ReadOnly:
 true
+
+Value:
+36160 (0x8D40)
+
 ----
 RENDERBUFFER : Number
 
@@ -7628,6 +8290,9 @@ const GLenum RENDERBUFFER                   = 0x8D41;
 ReadOnly:
 true
 
+Value:
+36161 (0x8D41)
+
 ----
 RGBA4 : Number
 
@@ -7636,6 +8301,10 @@ const GLenum RGBA4                          = 0x8056;
 
 ReadOnly:
 true
+
+Value:
+32854 (0x8056)
+
 ----
 RGB5_A1 : Number
 
@@ -7644,6 +8313,10 @@ const GLenum RGB5_A1                        = 0x8057;
 
 ReadOnly:
 true
+
+Value:
+32855 (0x8057)
+
 ----
 RGB565 : Number
 
@@ -7652,6 +8325,10 @@ const GLenum RGB565                         = 0x8D62;
 
 ReadOnly:
 true
+
+Value:
+36194 (0x8D62)
+
 ----
 DEPTH_COMPONENT16 : Number
 
@@ -7660,6 +8337,10 @@ const GLenum DEPTH_COMPONENT16              = 0x81A5;
 
 ReadOnly:
 true
+
+Value:
+33189 (0x81A5)
+
 ----
 STENCIL_INDEX : Number
 
@@ -7668,6 +8349,7 @@ const GLenum STENCIL_INDEX                  = 0x1901;
 
 ReadOnly:
 true
+
 ----
 STENCIL_INDEX8 : Number
 
@@ -7676,6 +8358,10 @@ const GLenum STENCIL_INDEX8                 = 0x8D48;
 
 ReadOnly:
 true
+
+Value:
+36168 (0x8D48)
+
 ----
 DEPTH_STENCIL : Number
 
@@ -7685,6 +8371,9 @@ const GLenum DEPTH_STENCIL                  = 0x84F9;
 ReadOnly:
 true
 
+Value:
+34041 (0x84F9)
+
 ----
 RENDERBUFFER_WIDTH : Number
 
@@ -7693,6 +8382,10 @@ const GLenum RENDERBUFFER_WIDTH             = 0x8D42;
 
 ReadOnly:
 true
+
+Value:
+36162 (0x8D42)
+
 ----
 RENDERBUFFER_HEIGHT : Number
 
@@ -7701,6 +8394,10 @@ const GLenum RENDERBUFFER_HEIGHT            = 0x8D43;
 
 ReadOnly:
 true
+
+Value:
+36163 (0x8D43)
+
 ----
 RENDERBUFFER_INTERNAL_FORMAT : Number
 
@@ -7709,6 +8406,10 @@ const GLenum RENDERBUFFER_INTERNAL_FORMAT   = 0x8D44;
 
 ReadOnly:
 true
+
+Value:
+36164 (0x8D44)
+
 ----
 RENDERBUFFER_RED_SIZE : Number
 
@@ -7717,6 +8418,10 @@ const GLenum RENDERBUFFER_RED_SIZE          = 0x8D50;
 
 ReadOnly:
 true
+
+Value:
+36176 (0x8D50)
+
 ----
 RENDERBUFFER_GREEN_SIZE : Number
 
@@ -7725,6 +8430,10 @@ const GLenum RENDERBUFFER_GREEN_SIZE        = 0x8D51;
 
 ReadOnly:
 true
+
+Value:
+36177 (0x8D51)
+
 ----
 RENDERBUFFER_BLUE_SIZE : Number
 
@@ -7733,6 +8442,10 @@ const GLenum RENDERBUFFER_BLUE_SIZE         = 0x8D52;
 
 ReadOnly:
 true
+
+Value:
+36178 (0x8D52)
+
 ----
 RENDERBUFFER_ALPHA_SIZE : Number
 
@@ -7741,6 +8454,10 @@ const GLenum RENDERBUFFER_ALPHA_SIZE        = 0x8D53;
 
 ReadOnly:
 true
+
+Value:
+36179 (0x8D53)
+
 ----
 RENDERBUFFER_DEPTH_SIZE : Number
 
@@ -7749,6 +8466,10 @@ const GLenum RENDERBUFFER_DEPTH_SIZE        = 0x8D54;
 
 ReadOnly:
 true
+
+Value:
+36180 (0x8D54)
+
 ----
 RENDERBUFFER_STENCIL_SIZE : Number
 
@@ -7758,6 +8479,9 @@ const GLenum RENDERBUFFER_STENCIL_SIZE      = 0x8D55;
 ReadOnly:
 true
 
+Value:
+36181 (0x8D55)
+
 ----
 FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE : Number
 
@@ -7766,6 +8490,10 @@ const GLenum FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE           = 0x8CD0;
 
 ReadOnly:
 true
+
+Value:
+36048 (0x8CD0)
+
 ----
 FRAMEBUFFER_ATTACHMENT_OBJECT_NAME : Number
 
@@ -7774,6 +8502,10 @@ const GLenum FRAMEBUFFER_ATTACHMENT_OBJECT_NAME           = 0x8CD1;
 
 ReadOnly:
 true
+
+Value:
+36049 (0x8CD1)
+
 ----
 FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL : Number
 
@@ -7782,6 +8514,10 @@ const GLenum FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL         = 0x8CD2;
 
 ReadOnly:
 true
+
+Value:
+36050 (0x8CD2)
+
 ----
 FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE : Number
 
@@ -7791,6 +8527,9 @@ const GLenum FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8CD3;
 ReadOnly:
 true
 
+Value:
+36051 (0x8CD3)
+
 ----
 COLOR_ATTACHMENT0 : Number
 
@@ -7799,6 +8538,10 @@ const GLenum COLOR_ATTACHMENT0              = 0x8CE0;
 
 ReadOnly:
 true
+
+Value:
+36064 (0x8CE0)
+
 ----
 DEPTH_ATTACHMENT : Number
 
@@ -7807,6 +8550,10 @@ const GLenum DEPTH_ATTACHMENT               = 0x8D00;
 
 ReadOnly:
 true
+
+Value:
+36096 (0x8D00)
+
 ----
 STENCIL_ATTACHMENT : Number
 
@@ -7815,8 +8562,15 @@ const GLenum STENCIL_ATTACHMENT             = 0x8D20;
 
 ReadOnly:
 true
+
+Value:
+36128 (0x8D20)
+
 ----
 DEPTH_STENCIL_ATTACHMENT : Number
+
+Value:
+33306 (0x821A)
 
 IDL:
 const GLenum DEPTH_STENCIL_ATTACHMENT       = 0x821A;
@@ -7826,6 +8580,9 @@ true
 
 ----
 NONE : Number
+
+Value:
+0 (0x0)
 
 IDL:
 const GLenum NONE                           = 0;
@@ -7839,11 +8596,15 @@ FRAMEBUFFER_COMPLETE : Number
 Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
 to indicate that framebuffer is set up completely.
 
+Value:
+36053 (0x8CD5)
+
 IDL:
 const GLenum FRAMEBUFFER_COMPLETE                      = 0x8CD5;
 
 ReadOnly:
 true
+
 ----
 FRAMEBUFFER_INCOMPLETE_ATTACHMENT : Number
 
@@ -7868,23 +8629,30 @@ Depth images must be of the format
 Stencil images must be of the format 
 %%#STENCIL_INDEX8|**STENCIL_INDEX8**%%.
 
+Value:
+36054 (0x8CD6)
 
 IDL:
 const GLenum FRAMEBUFFER_INCOMPLETE_ATTACHMENT         = 0x8CD6;
 
 ReadOnly:
 true
+
 ----
 FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT : Number
 
 Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
 to indicate that no images are attached to the framebuffer.
 
+Value:
+36055 (0x8CD7)
+
 IDL:
 const GLenum FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
 
 ReadOnly:
 true
+
 ----
 FRAMEBUFFER_INCOMPLETE_DIMENSIONS : Number
 
@@ -7892,18 +8660,24 @@ Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
 to indicate that the images attached to the framebuffer 
 have differing widths and heights.
 
+Value:
+36057 (0x8CD9)
+
 IDL:
 const GLenum FRAMEBUFFER_INCOMPLETE_DIMENSIONS         = 0x8CD9;
 
 ReadOnly:
 true
+
 ----
 FRAMEBUFFER_UNSUPPORTED : Number
-
 
 Returned by %%#checkFramebufferStatus|**checkFramebufferStatus()**%%
 to indicate that the images attached to the framebuffer 
 are not supported by the current implementation.
+
+Value:
+36061 (0x8CDD)
 
 IDL:
 const GLenum FRAMEBUFFER_UNSUPPORTED                   = 0x8CDD;
@@ -7914,19 +8688,27 @@ true
 ----
 FRAMEBUFFER_BINDING : Number
 
+Value:
+36006 (0x8CA6)
+
 IDL:
 const GLenum FRAMEBUFFER_BINDING            = 0x8CA6;
 
 ReadOnly:
 true
+
 ----
 RENDERBUFFER_BINDING : Number
+
+Value:
+36007 (0x8CA7)
 
 IDL:
 const GLenum RENDERBUFFER_BINDING           = 0x8CA7;
 
 ReadOnly:
 true
+
 ----
 MAX_RENDERBUFFER_SIZE : Number
 
@@ -7948,6 +8730,8 @@ const GLenum MAX_RENDERBUFFER_SIZE          = 0x84E8;
 ReadOnly:
 true
 
+Value:
+34024 (0x84E8)
 
 ----
 INVALID_FRAMEBUFFER_OPERATION : Number
@@ -7958,7 +8742,9 @@ const GLenum INVALID_FRAMEBUFFER_OPERATION  = 0x0506;
 ReadOnly:
 true
 
-/* WebGL-specific enums */
+Value:
+1286 (0x506)
+
 ----
 UNPACK_FLIP_Y_WEBGL : Number
 
@@ -7967,6 +8753,9 @@ const GLenum UNPACK_FLIP_Y_WEBGL            = 0x9240;
 
 ReadOnly:
 true
+
+Value:
+37440 (0x9240)
 
 ----
 UNPACK_PREMULTIPLY_ALPHA_WEBGL : Number
@@ -7977,6 +8766,9 @@ const GLenum UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241;
 ReadOnly:
 true
 
+Value:
+37441 (0x9241)
+
 ----
 CONTEXT_LOST_WEBGL : Number
 
@@ -7985,6 +8777,9 @@ const GLenum CONTEXT_LOST_WEBGL             = 0x9242;
 
 ReadOnly:
 true
+
+Value:
+37442 (0x9242)
 
 ----
 UNPACK_COLORSPACE_CONVERSION_WEBGL : Number
@@ -7995,6 +8790,9 @@ const GLenum UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243;
 ReadOnly:
 true
 
+Value:
+37443 (0x9243)
+
 ----
 BROWSER_DEFAULT_WEBGL : Number
 
@@ -8003,3 +8801,6 @@ const GLenum BROWSER_DEFAULT_WEBGL          = 0x9244;
 
 ReadOnly:
 true
+
+Value:
+37444 (0x9244)

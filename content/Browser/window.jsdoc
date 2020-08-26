@@ -32,6 +32,23 @@ true
 ----
 instance.opener : Window
 
+----
+instance.pageXOffset : Number
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view-1/#dom-window-pagexoffset
+
+----
+instance.pageYOffset : Number
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view-1/#dom-window-pageyoffset
 
 ----
 instance.parent : Window
@@ -39,6 +56,24 @@ instance.parent : Window
 
 ReadOnly:
 true
+
+----
+instance.scrollX : Number
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view-1/#dom-window-scrollx
+
+----
+instance.scrollY : Number
+
+ReadOnly:
+true
+
+Spec:
+https://drafts.csswg.org/cssom-view-1/#dom-window-scrolly
 
 ----
 instance.top : Window
@@ -360,8 +395,6 @@ true
 
 ----
 instance.indexedDB : IDBFactory
-
-
 
 ----
 instance.innerWidth : Number
