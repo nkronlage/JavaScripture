@@ -48,7 +48,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -86,7 +86,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -124,7 +124,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -162,7 +162,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -201,7 +201,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -240,7 +240,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -278,7 +278,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -316,7 +316,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -540,7 +540,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
@@ -578,7 +578,7 @@ and alternative coordinates
 <htmlexample>
 <div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
 </div>
-<pre id="output" style="position: fixed; top: 10px; left: 20px;">
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
 </pre>
 <script>
   var element = document.getElementById('element');
