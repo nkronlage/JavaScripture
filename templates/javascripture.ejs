@@ -569,6 +569,8 @@ var executeHTMLExample = function(example, prop) {
     newIframe.className = iframe.className;
     newIframe.width = iframe.width;
     newIframe.height = iframe.height;
+    newIframe.style.width = iframe.offsetWidth + 'px';
+    newIframe.style.height = iframe.offsetHeight + 'px';
     iframe.parentNode.replaceChild(newIframe, iframe);
     iframe = newIframe;
 
