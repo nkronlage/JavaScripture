@@ -146,6 +146,9 @@ http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#Document3-docu
 ----
 instance.fullscreenEnabled : Boolean
 
+**true** if the %%/Element#requestFullscreen|**element.requestFullscreen()**%% API is
+enabled.
+
 ReadOnly:
 true
 
@@ -154,6 +157,8 @@ https://fullscreen.spec.whatwg.org/#dom-document-fullscreenenabled
 
 ----
 instance.fullscreenElement : Element
+
+The element that is currently fullscreen from a call to %%/Element#requestFullscreen|**element.requestFullscreen()**%%.
 
 ReadOnly:
 true
