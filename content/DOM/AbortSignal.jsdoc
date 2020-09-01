@@ -1,0 +1,15 @@
+AbortSignal : EventTarget
+
+Available on through the %%/AbortController#signal|AbortController.signal%% property.
+
+Spec:
+https://dom.spec.whatwg.org/#interface-AbortSignal
+
+----
+instance.aborted : Boolean
+
+ReadOnly:
+true
+
+----
+event.abort : listener(e : Event) : undefined

@@ -19,8 +19,19 @@ new Request(url : String, [init : { \
   credentials : String /* See the %%#credentials|credentials%% property for the valid values. */, \
   headers : Object /* The http headers to send with the request. This will be passed \
                       to the %%/Headers|Headers%% constructor. */, \
+  integrity : String, \
+  keepalive : Boolean, \
   method : String /* The http method such as **'GET'**, **'POST'**, **'DELETE'**. */, \
-  mode : String /* See the %%#mode|mode%% property for the valid values. */ \
+  mode : String /* See the %%#mode|mode%% property for the valid values. */, \
+  redirect : String /* One of **'follow'**, **'error'**, or **'manual'** */, \
+  referrer : String, \
+  referrerPolicy : String /* One of **''**, **'no-referrer'**, **'no-referrer-when-downgrade'**, \
+                             **'same-origin'**, **'origin'**, **'strict-origin'**, \
+                             **'origin-when-cross-origin'**, **'strict-origin-when-cross-origin'**, \
+                             or **'unsafe-url'** */, \
+  requestMode : String /* One of **'navigate'**, **'same-origin'**, **'no-cors'**, or **'cors'** */, \
+  requestCredentials : String /* One of **'omit'**, **'same-origin'**, or **'include'** */, \
+  signal : AbortSignal \
 }]) : Request
 
 <example>
@@ -56,47 +67,6 @@ Will be one of:
 ReadOnly:
 true
 
-----
-instance.context : String
-
-Will be one of:
-
-**'audio'**, 
-**'beacon'**, 
-**'cspreport'**, 
-**'download'**, 
-**'embed'**, 
-**'eventsource'**, 
-**'favicon'**, 
-**'fetch'**,
-**'font'**, 
-**'form'**, 
-**'frame'**, 
-**'hyperlink'**, 
-**'iframe'**, 
-**'image'**, 
-**'imageset'**, 
-**'import'**,
-**'internal'**, 
-**'location'**, 
-**'manifest'**, 
-**'object'**, 
-**'ping'**, 
-**'plugin'**, 
-**'prefetch'**, 
-**'script'**,
-**'serviceworker'**, 
-**'sharedworker'**, 
-**'subresource'**, 
-**'style'**, 
-**'track'**, 
-**'video'**, 
-**'worker'**,
-**'xmlhttprequest'**, 
-**'xslt'**.
-
-ReadOnly:
-true
 
 ----
 instance.credentials : String
@@ -111,7 +81,44 @@ ReadOnly:
 true
 
 ----
+instance.destination : String
+
+Will be one of:
+
+**''**, **'audio'**, **'audioworklet'**, **'document'**, **'embed'**, **'font'**,
+**'frame'**, **'iframe'**, **'image'**, '**manifest'**, **'object'**, **'paintworklet'**,
+**'report'**, **'script'**, **'sharedworker'**, **'style'**,  **'track'**, **'video'**,
+**'worker'**, **'xslt'**.
+
+ReadOnly:
+true
+
+----
 instance.headers : Headers
+
+ReadOnly:
+true
+
+----
+instance.integrity : String
+
+ReadOnly:
+true
+
+----
+instance.keepalive : Boolean
+
+ReadOnly:
+true
+
+----
+instance.isHistoryNavigation : Boolean
+
+ReadOnly:
+true
+
+----
+instance.isReloadNavigation : Boolean
 
 ReadOnly:
 true
@@ -135,7 +142,25 @@ ReadOnly:
 true
 
 ----
+instance.redirect : String
+
+ReadOnly:
+true
+
+----
 instance.referrer : String
+
+ReadOnly:
+true
+
+----
+instance.referrerPolicy : String
+
+ReadOnly:
+true
+
+----
+instance.signal : AbortSignal
 
 ReadOnly:
 true

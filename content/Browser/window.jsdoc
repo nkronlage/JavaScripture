@@ -16,7 +16,6 @@ instance.frameElement : Element
 ReadOnly:
 true
 
-
 ----
 instance.frames : Window
 
@@ -1165,7 +1164,7 @@ prototype.close() : undefined
 ----
 prototype.fetch(url : String, [requestInit : Object]) : Promise<Response>
 
-Fetches the specified url. See alse %%/Request|Request%% and %%/Response|Response%%.
+Fetches the specified url. See also %%/Request|Request%% and %%/Response|Response%%.
 
 <htmlexample>
 <script>
@@ -1184,7 +1183,7 @@ https://fetch.spec.whatwg.org/#dom-global-fetch
 prototype.fetch(request : Request, [requestInit : Object]) : Promise<Response>
 
 Fetches the specified web request. If **requestInit** is specified, its values
-overwrite the values on **request**. See alse %%/Request|Request%% and %%/Response|Response%%.
+overwrite the values on **request**. See also %%/Request|Request%% and %%/Response|Response%%.
 
 <htmlexample>
 <script>

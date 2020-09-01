@@ -1,0 +1,20 @@
+AbortController : Object
+
+Allows canceling some asynchronous operations. For example, pass
+%%#signal|**this.signal**%% to the %%/Request|Request%% constructor to
+allow canceling %%/Window#fetch|fetch()%% operations.
+
+Spec:
+https://dom.spec.whatwg.org/#interface-abortcontroller
+
+----
+new AbortController : AbortController
+
+----
+instance.signal : AbortSignal
+
+ReadOnly:
+true
+
+----
+prototype.abort() : undefined
