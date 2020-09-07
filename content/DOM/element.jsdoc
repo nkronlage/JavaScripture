@@ -108,6 +108,8 @@ but present in **childNodes**).
 </script>
 </htmlexample>
 
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-children
 
 ----
 instance.className : String
@@ -165,6 +167,10 @@ See also %%#className|**className**%%.
 ----
 instance.firstElementChild : Element
 
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-firstelementchild
+
+
 ----
 instance.id : String
 
@@ -174,6 +180,9 @@ You can retrieve an element by **id** using
 
 ----
 instance.lastElementChild : Element
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-lastelementchild
 
 ----
 instance.localName : String
@@ -235,6 +244,122 @@ true
 
 Spec:
 http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-104682815
+
+----
+prototype.append(item0 : String, [item1 : String, [...]]) : undefined
+
+Same as **%%#append_Node_Node_dotdotdot|append%%(new %%/Text|Text%%(item0),
+new %%/Text|Text%%(item1), ...)**.
+
+<htmlexample>
+<div id='parent'><span id='foo'>foo</span></div>
+<script>
+  var parent = document.getElementById('parent');
+  parent.append('bar', 'baz');
+
+  console.log(parent.childNodes[0]);
+  console.log(parent.childNodes[1]);
+  console.log(parent.childNodes[2]);
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-append
+
+----
+prototype.append(item0 : Node, [item1 : Node, [...]]) : undefined
+
+Inserts the specified nodes at the end of %%Node#childNodes|**this.childNodes**%%.
+See also %%#prepend|prepend%%, %%#replaceChildren|replaceChildren%%, and
+%%Node#appendChild|Node.appendChild%%.
+
+<htmlexample>
+<div id='parent'><span id='foo'>foo</span></div>
+<script>
+  var parent = document.getElementById('parent');
+  parent.append(new Text('bar'), document.createElement('input'));
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-append
+
+----
+prototype.prepend(item0 : String, [item1 : String, [...]]) : undefined
+
+Same as **%%#prepend_Node_Node_dotdotdot|prepend%%(new %%/Text|Text%%(item0),
+new %%/Text|Text%%(item1), ...)**.
+
+<htmlexample>
+<div id='parent'><span id='foo'>foo</span></div>
+<script>
+  var parent = document.getElementById('parent');
+  parent.prepend('bar', 'baz');
+
+  console.log(parent.childNodes[0]);
+  console.log(parent.childNodes[1]);
+  console.log(parent.childNodes[2]);
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-prepend
+
+----
+prototype.prepend(item0 : Node, [item1 : Node, [...]]) : undefined
+
+Inserts the specified nodes at the start of %%Node#childNodes|**this.childNodes**%%.
+See also %%#append|append%%, %%#replaceChildren|replaceChildren%%, and
+%%Node#insertBefore|Node.insertBefore%%.
+
+<htmlexample>
+<div id='parent'><span id='foo'>foo</span></div>
+<script>
+  var parent = document.getElementById('parent');
+  parent.prepend(new Text('bar'), document.createElement('input'));
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-prepend
+
+----
+prototype.replaceChildren(item0 : String, [item1 : String, [...]]) : undefined
+
+Same as **%%#replaceChildren_Node_Node_dotdotdot|replaceChildren%%(new %%/Text|Text%%(item0),
+new %%/Text|Text%%(item1), ...)**.
+
+<htmlexample>
+<div id='parent'><span id='foo'>foo</span></div>
+<script>
+  var parent = document.getElementById('parent');
+  parent.replaceChildren('bar', 'baz');
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-replacechildren
+
+----
+prototype.replaceChildren(item0 : Node, [item1 : Node, [...]]) : undefined
+
+Removes all items from %%Node#childNodes|**this.childNodes**%% and replaces them
+with the specified nodes.
+See also %%#append|append%%, %%#prepend|prepend%%,
+%%Node#insertBefore|Node.insertBefore%%,
+%%Node#removeChild|Node.removeChild%%, and
+%%Node#replaceChild|Node.replaceChild%%.
+
+<htmlexample>
+<div id='parent'><span id='foo'>foo</span></div>
+<script>
+  var parent = document.getElementById('parent');
+  parent.replaceChildren(new Text('bar'), document.createElement('input'));
+</script>
+</htmlexample>
+
+Spec:
+https://dom.spec.whatwg.org/#dom-parentnode-replacechildren
 
 ----
 prototype.createShadowRoot() : ShadowRoot
