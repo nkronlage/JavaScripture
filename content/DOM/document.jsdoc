@@ -167,6 +167,17 @@ Spec:
 https://fullscreen.spec.whatwg.org/#dom-document-fullscreenelement
 
 ----
+instance.pointerLockElement : Element
+
+The element that currently has the pointer locked by a call to %%/Element#requestPointerLock|**element.requestPointerLock()**%%.
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-documentorshadowroot-pointerlockelement
+
+----
 instance.implementation : DOMImplementation
 
 Spec:
@@ -325,6 +336,34 @@ document.querySelector('#exit').onclick = async () => {
 
 Spec:
 https://fullscreen.spec.whatwg.org/#dom-document-exitfullscreen
+
+----
+prototype.exitPointerLock() : undefined
+
+Releases the pointer locked with %%/Element#requestPointerLock|element.requestPointerLock()%%.
+
+<htmlexample>
+<button id="request">Request Pointer Lock</button>
+<pre id="output" style="background: #eee; height: 100px">
+<script>
+document.querySelector('#request').onclick = (e) => {
+  document.body.requestPointerLock();
+  e.stopPropagation();
+};
+document.body.onclick = () => {
+  document.exitPointerLock();
+};
+document.body.onmousemove = (e) => {
+  const output = document.getElementById('output');
+  output.textContent = 'hasPointerLock: ' + !!document.pointerLockElement + '\n' +
+                       'movementX: ' + e.movementX + '\n' + 
+                       'movementY: ' + e.movementY;
+};
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-document-exitpointerlock
 
 ----
 prototype.getElementsByTagName(tagName : String) : NodeList
@@ -615,3 +654,21 @@ true
 
 Spec:
 https://w3c.github.io/clipboard-apis/#clipboard-event-paste
+
+----
+event.pointerlockchange : listener(event : Event) : undefined
+
+Bubbles:
+false
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-document-onpointerlockchange
+
+----
+event.pointerlockerror : listener(event : Event) : undefined
+
+Bubbles:
+false
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-document-onpointerlockerror

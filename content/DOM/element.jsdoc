@@ -516,6 +516,42 @@ document.querySelector('#exit').onclick = async () => {
 Spec:
 https://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen
 
+
+----
+prototype.requestPointerLock() : undefined
+
+Locks the pointer (mouse cursor) to **this**. If successful,
+%%/Document#onpointerlockchange|document.onpointerlockchange%% will fire and
+subsequent pointer moves be sent to **this**. If unable to lock the pointer,
+%%%/Document#onpointerlockerror|document.onpointerlockerror%% will fire.
+Use %%%/Document#exitPointerLock|document.exitPointerLock%% to release the pointer.
+See also %%/Document#pointerLockElement|document.pointerLockElement%%,
+%%/MouseEvent#movementX|MouseEvent.movementX%% and
+%%/MouseEvent#movementY|MouseEvent.movementY%%.
+
+<htmlexample>
+<button id="request">Request Pointer Lock</button>
+<pre id="output" style="background: #eee; height: 100px">
+<script>
+document.querySelector('#request').onclick = (e) => {
+  document.body.requestPointerLock();
+  e.stopPropagation();
+};
+document.body.onclick = () => {
+  document.exitPointerLock();
+};
+document.body.onmousemove = (e) => {
+  const output = document.getElementById('output');
+  output.textContent = 'hasPointerLock: ' + !!document.pointerLockElement + '\n' +
+                       'movementX: ' + e.movementX + '\n' + 
+                       'movementY: ' + e.movementY;
+};
+</script>
+</htmlexample>
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-element-requestpointerlock
+
 ----
 prototype.scrollIntoView([top = false : Boolean]) : undefined
 

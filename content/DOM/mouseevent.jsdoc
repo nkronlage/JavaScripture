@@ -68,7 +68,7 @@ ReadOnly:
 true
 
 Spec:
-https://drafts.csswg.org/cssom-view/#dom-mouseevent-offsetx
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-clientx
 
 ----
 instance.clientY : Number
@@ -106,7 +106,75 @@ ReadOnly:
 true
 
 Spec:
-https://drafts.csswg.org/cssom-view/#dom-mouseevent-offsety
+https://drafts.csswg.org/cssom-view/#dom-mouseevent-clienty
+
+----
+instance.movementX : Number
+
+The change in x position of the pointer since the last time the mouse move event fired.
+
+See the corresponding %%#movementY|**movementY**%% and 
+%%/Element#requestPointerLock|element.requestPointerLock()%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:      (' + event.x         + ', ' + event.y         + ')\n' +
+                         'client:   (' + event.clientX   + ', ' + event.clientY   + ')\n' +
+                         'movement: (' + event.movementX + ', ' + event.movementY + ')\n' +
+                         'offset:   (' + event.offsetX   + ', ' + event.offsetY   + ')\n' +
+                         'page:     (' + event.pageX     + ', ' + event.pageY     + ')\n' +
+                         'screen:   (' + event.screenX   + ', ' + event.screenY   + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-mouseevent-movementx
+
+----
+instance.movementY : Number
+
+The change in y position of the pointer since the last time the mouse move event fired.
+
+See the corresponding %%#movementX|**movementX**%% and 
+%%/Element#requestPointerLock|element.requestPointerLock()%%.
+
+<htmlexample>
+<div id="element" style="background: radial-gradient(#aff, #bbb); height: 500px; width: 500px;">
+</div>
+<pre id="output" style="position: fixed; top: 10px; left: 20px; pointer-events: none;">
+</pre>
+<script>
+  var element = document.getElementById('element');
+  var output = document.getElementById('output');
+
+  element.onmousemove = function(event) {
+    output.textContent = 'x/y:      (' + event.x         + ', ' + event.y         + ')\n' +
+                         'client:   (' + event.clientX   + ', ' + event.clientY   + ')\n' +
+                         'movement: (' + event.movementX + ', ' + event.movementY + ')\n' +
+                         'offset:   (' + event.offsetX   + ', ' + event.offsetY   + ')\n' +
+                         'page:     (' + event.pageX     + ', ' + event.pageY     + ')\n' +
+                         'screen:   (' + event.screenX   + ', ' + event.screenY   + ')\n';
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/pointerlock/#dom-mouseevent-movementy
 
 ----
 instance.offsetX : Number
