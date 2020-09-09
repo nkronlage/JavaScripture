@@ -1,8 +1,8 @@
 DOMTokenList : Object
 
-An object containing a list of strings.  Used in
+An object containing a list of strings. Used in
 %%/Element#classList|**Element.classList**%% and
-%%/HTMLIFrameElement#sandbox|**HTMLIFrameElement.sandbox%%.
+%%/HTMLIFrameElement#sandbox|**HTMLIFrameElement.sandbox**%%.
 
 Spec:
 https://dom.spec.whatwg.org/#domtokenlist

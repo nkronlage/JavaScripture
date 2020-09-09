@@ -73,16 +73,14 @@ details on the supported metadata keys and values.
     }
 
     // Split on ';' followed by spaces
-    var pairs = document.cookie.split(/;\s*/g);
+    var cookies = document.cookie.split(/;\s*/g);
 
-    pairs = pairs.map(function(pair) {
-      return pair.split('=');
+    // Get the property/value pairs for each cookie
+    var entries = cookies.map(function(cookie) {
+      return cookie.split('=');
     });
 
-    return pairs.reduce(function(object, pair) {
-      object[pair[0]] = pair[1];
-      return object;
-    }, {});
+    return Object.fromEntries(entries);
   };
 
   var clearCookies = function() {
