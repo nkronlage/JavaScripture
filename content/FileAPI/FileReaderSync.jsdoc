@@ -1,0 +1,59 @@
+FileReaderSync : Object
+
+Similar to %%/FileReader|FileReader%% except synchronously reads from %%/Blob|Blob%%s.
+Only available inside %%/Worker|Worker%%s.
+
+Spec:
+https://w3c.github.io/FileAPI/#FileReaderSync
+
+----
+new FileReaderSync() : FileReaderSync
+
+Constructs a new FileReaderSync.
+
+----
+prototype.readAsArrayBuffer() : ArrayBuffer
+
+Reads from **blob** as an ArrayBuffer. 
+See also %%/Blob#arrayBuffer|Blob.arrayBuffer()%%.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  const blob = new Blob(['foo']);
+  const reader = new FileReaderSync();
+  postMessage(reader.readAsArrayBuffer(blob));
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', ...new Uint8Array(e.data));
+  };
+</script>
+</htmlexample>
+
+----
+prototype.readAsText(blob : Blob, [encoding : String]) : String
+
+Reads from **blob** as a string. 
+For the valid values of **encoding**, see %%http://www.iana.org/assignments/character-sets/character-sets.xhtml|character sets%%.
+See also %%/Blob#text|Blob.text()%%.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  const blob = new Blob(['foo']);
+  const reader = new FileReaderSync();
+  postMessage(reader.readAsText(blob));
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log('worker returned: ', e.data);
+  };
+</script>
+</htmlexample>
