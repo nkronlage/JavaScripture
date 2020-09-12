@@ -490,6 +490,27 @@ true
 ----
 event.mouseenter : listener(event : MouseEvent) : undefined
 
+Called when the mouse enters the element or any of its descendant nodes.
+Note, unlike %%#mouseover|**mouseover**%%, **mouseenter** does not bubble and so it will
+only fire once as long as the mouse remains within **this**.
+See also %%#mouseleave|**mouseleave**%%.
+
+<htmlexample>
+<div style="background: pink;">
+  <span style="background: #DFD">foo</span>
+  <span style="background: #DDF">bar</span>
+</div>
+<script>
+  const div = document.querySelector('div');
+  div.onmouseenter = (e) => {
+    console.log('mouseenter');
+  };
+  div.onmouseleave = (e) => {
+    console.log('mouseleave');
+  };
+</script>
+</htmlexample>
+
 Bubbles:
 false
 
@@ -503,6 +524,25 @@ http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseenter
 event.mouseleave : listener(event : MouseEvent) : undefined
 
 Called when the mouse leaves the element or any of its descendant nodes.
+Note, unlike %%#mouseout|**mouseout**%%, **mouseleave** does not bubble and so it will
+not fire while mouse remains within **this**.
+See also %%#mouseenter|**mouseenter**%%.
+
+<htmlexample>
+<div style="background: pink;">
+  <span style="background: #DFD">foo</span>
+  <span style="background: #DDF">bar</span>
+</div>
+<script>
+  const div = document.querySelector('div');
+  div.onmouseenter = (e) => {
+    console.log('mouseenter');
+  };
+  div.onmouseleave = (e) => {
+    console.log('mouseleave');
+  };
+</script>
+</htmlexample>
 
 Bubbles:
 false
@@ -527,7 +567,27 @@ true
 ----
 event.mouseout : listener(event : MouseEvent) : undefined
 
-Called when the mouse leaves the element.
+Called when the mouse leaves the element by moving out of the bounds of **this**
+or by entering the bounds of a child of **this**.
+Note, unlike %%#mouseleave|**mouseleave**%%, **mouseout** bubbles and will
+fire each time the mouse moves to a different child within **this**.
+See also %%#mouseover|**mouseover**%%.
+
+<htmlexample>
+<div style="background: pink;">
+  <span style="background: #DFD">foo</span>
+  <span style="background: #DDF">bar</span>
+</div>
+<script>
+  const div = document.querySelector('div');
+  div.onmouseover = (e) => {
+    console.log('mouseover', e.target.tagName === 'SPAN' ? e.target.textContent : 'DIV');
+  };
+  div.onmouseout = (e) => {
+    console.log('mouseout', e.target.tagName === 'SPAN' ? e.target.textContent : 'DIV');
+  };
+</script>
+</htmlexample>
 
 Bubbles:
 true
@@ -538,7 +598,27 @@ true
 ----
 event.mouseover : listener(event : MouseEvent) : undefined
 
-Called when the mouse enters the element.
+Called when the mouse is directly over **this**.
+Note, unlike %%#mouseenter|**mouseenter**%%, **mouseover** bubbles and will
+fire each time the mouse moves to a different child within **this**.
+See also %%#mouseout|**mouseout**%%.
+
+<htmlexample>
+<div style="background: pink;">
+  <span style="background: #DFD">foo</span>
+  <span style="background: #DDF">bar</span>
+</div>
+<script>
+  const div = document.querySelector('div');
+  div.onmouseover = (e) => {
+    console.log('mouseover', e.target.tagName === 'SPAN' ? e.target.textContent : 'DIV');
+  };
+  div.onmouseout = (e) => {
+    console.log('mouseout', e.target.tagName === 'SPAN' ? e.target.textContent : 'DIV');
+  };
+</script>
+</htmlexample>
+
 
 Bubbles:
 true
