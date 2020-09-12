@@ -88,8 +88,8 @@ https://w3c.github.io/gamepad/#dom-gamepadbutton-touched
 ----
 instance.value : Number
 
-The strength that the button was pressed between **0** and **1**. If the button 
-doesn't measure pressure, will be **0** when unpressed and **1** when pressed.
+The pressure that the button was pressed with between **0** (light press) and **1** (hard press). 
+If the button doesn't measure pressure, will be **0** when unpressed and **1** when pressed.
 
 <htmlexample>
 Press button on controller to connect.
