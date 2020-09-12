@@ -39,6 +39,7 @@ Begins reading from **blob** as an %%/ArrayBuffer|**ArrayBuffer**%%.
 The result will 
 be stored on %%#result|**this.result**%% after the %%#onload|**'load'**%% event
 fires.
+See also %%/Blob#arrayBuffer|Blob.arrayBuffer()%%.
 
 <htmlexample>
 <input type='file' onchange='openFile(event)'>
@@ -67,6 +68,7 @@ Begins reading from **blob** as a string.  The result will
 be stored on %%#result|**this.result**%% after the %%#onload|**'load'**%% event fires.
 For the valid values of **encoding**, see %%http://www.iana.org/assignments/character-sets/character-sets.xhtml|character
 sets%%.
+See also %%/Blob#text|Blob.text()%%.
 
 <htmlexample>
 <input type='file' accept='text/plain' onchange='openFile(event)'><br>

@@ -110,6 +110,27 @@ ReadOnly:
 true
 
 ----
+prototype.arrayBuffer() : Promise<ArrayBuffer>
+
+Asynchronously returns an ArrayBuffer for the data in **this**.
+See also %%/FileReader#readAsArrayBuffer|FileReader.readAsArrayBuffer()%%.
+
+<example>
+const blob = new Blob(['foo']);
+const arrayBuffer = await blob.arrayBuffer();
+console.log(arrayBuffer.byteLength);
+
+const chars = new Uint8Array(arrayBuffer);
+console.log(chars);
+
+// The bytes of the ArrayBuffer match the char codes of the string
+console.log([...'foo'].map(c => c.charCodeAt(0)));
+</example>
+
+Spec:
+https://w3c.github.io/FileAPI/#dom-blob-arraybuffer
+
+----
 prototype.slice([start = 0: Number, [end : Number, [contentType = '' : String]]]) : Blob
 
 Returns a new blob that contains the bytes **start** to **end - 1** from **this**.
@@ -117,7 +138,6 @@ If **start** or **end** is negative, the value is added to %%#size|**this.size**
 performing the slice. If **end** is not specified, **this.size** is used.
 The returned blob's %%#type|**type**%% will be **contentType** if specified,
 otherwise it will be **''**.
-
 
 <example>
 var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
@@ -134,7 +154,40 @@ console.log('slice size:', slice.size);
 console.log('slice type:', slice.type);
 </example>
 
+Spec:
+https://w3c.github.io/FileAPI/#dom-blob-slice
+
+----
+prototype.stream() : ReadableStream
+
+Returns a stream of the data in **this**. The values of the stream will be
+%%/Uint8Array|**Uint8Array**%%s.
+
+<example>
+const blob = new Blob(['foo']);
+const stream = blob.stream();
+const reader = stream.getReader();
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+</example>
 
 Spec:
-http://www.w3.org/TR/FileAPI/#dfn-slice
+https://w3c.github.io/FileAPI/#dom-blob-text
 
+----
+prototype.text() : Promise<String>
+
+Asynchronously returns a String for the data in **this**.
+
+See also %%/FileReader#readAsText|FileReader.readAsText()%%.
+
+<example>
+const blob = new Blob(['foo']);
+console.log(await blob.text());
+</example>
+
+Spec:
+https://w3c.github.io/FileAPI/#dom-blob-text
