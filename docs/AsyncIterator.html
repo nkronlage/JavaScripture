@@ -17,18 +17,16 @@ const stream = async function*() {
   }
 };
 
-(async () =&gt; {
-  const iterator = stream();
-  console.dir(await iterator.next());
-  console.dir(await iterator.next());
-  console.dir(await iterator.next());
-  console.dir(await iterator.next());
+const iterator = stream();
+console.dir(await iterator.next());
+console.dir(await iterator.next());
+console.dir(await iterator.next());
+console.dir(await iterator.next());
 
-  // for await of loops make it easy to loop over async iterables 
-  for await (const i of stream()) {
-    console.log(i);
-  }
-})();
+// for await of loops make it easy to loop over async iterables 
+for await (const i of stream()) {
+  console.log(i);
+}
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "AsyncIterator.AsyncIterator"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/10.0/#sec-asynciterator-interface" class="spec">Spec</a></div></div><div><a name="InstanceIndexers"></a><h2>Instance Indexers</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="indexer_Symbol_asyncIterator"></a><div class="declaration"><span class="membername primary">this</span>[<a href="/Symbol#asyncIterator"><span class="membername">Symbol.asyncIterator</span></a>]&nbsp;:&nbsp;<a class="membertype" href="/Function">Function</a>&lt;<a class="membertype" href="/AsyncIterator">AsyncIterator</a>&gt;</div><div class="member-body"><p class="description">Returns a method that returns <code>this</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 const sleep = t =&gt; new Promise(r =&gt; setTimeout(r, t));
 
@@ -39,22 +37,20 @@ const stream = async function*() {
   }
 };
 
-(async () =&gt; {
-  const iterator = stream();
+const iterator = stream();
 
-  var iteratorIterator = iterator[Symbol.asyncIterator]();
+var iteratorIterator = iterator[Symbol.asyncIterator]();
 
-  console.log(iterator === iteratorIterator);
-  console.log();
+console.log(iterator === iteratorIterator);
+console.log();
 
-  for await (const x of stream()) {
-    console.log(x);
-  }
-  console.log();
+for await (const x of stream()) {
+  console.log(x);
+}
+console.log();
 
-  // Since AsyncIterators are also AsyncIterables, you can use for-await-of loops with them.
-  for await (const x of iterator) {
-    console.log(x);
-  }
-})();
+// Since AsyncIterators are also AsyncIterables, you can use for-await-of loops with them.
+for await (const x of iterator) {
+  console.log(x);
+}
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "AsyncIterator.undefined"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="next"></a> <a name="next_Object"></a><div class="declaration"><span class="membername primary">next</span>(<span class="optional">[<span class="membername">yieldValue</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a></div><div class="member-body"><p class="description">Promise return type: { value : Object, done : Boolean }</p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="return"></a> <a name="return_Object"></a><div class="declaration"><span class="membername primary">return</span>(<span class="optional">[<span class="membername">yieldValue</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a></div><div class="member-body"><p class="description"></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="throw"></a> <a name="throw_Object"></a><div class="declaration"><span class="membername primary">throw</span>(<span class="optional">[<span class="membername">rejectReason</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Promise">Promise</a></div><div class="member-body"><p class="description"></p></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script></html>
