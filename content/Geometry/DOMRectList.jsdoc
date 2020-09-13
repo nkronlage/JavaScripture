@@ -1,10 +1,10 @@
 DOMRectList : Object
 
 Spec:
-http://dev.w3.org/csswg/cssom-view/#clientrectlist
+https://drafts.fxtf.org/geometry-1/#DOMRectList
 
 ----
-instance[index : Number] : ClientRect
+instance[index : Number] : DOMRect
 
 Returns the DOMRect at the specified **index**. You can also use the
 %%#item|**item()**%% method to retrieve the item. 
@@ -18,13 +18,12 @@ instance.length : Number
 The number of DOMRects in the list.
 
 Spec:
-http://dev.w3.org/csswg/cssom-view/#dom-clientrectlist-length
-
+https://drafts.fxtf.org/geometry-1/#dom-domrectlist-length
 
 ----
-prototype.item(index : Number) : ClientRect
+prototype.item(index : Number) : DOMRect
 
 Same as %%#indexer_Number|**this[index]**%%.
 
 Spec: 
-http://dev.w3.org/csswg/cssom-view/#dom-clientrectlist-item
+https://drafts.fxtf.org/geometry-1/#dom-domrectlist-item

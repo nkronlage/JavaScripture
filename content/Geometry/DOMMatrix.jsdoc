@@ -554,7 +554,7 @@ prototype.rotateFromVectorSelf([x = 0 : Number, [y = 0 : Number]]) : DOMMatrix
 
 Rotates **this** by the angle between the x axis and the vector from the origin
 to the specified point (**x**, **y**). Same as 
-%%#rotateSelf_Number|**this.rotateSelf%%(%%Math#atan2|Math.atan2%%(y, x) * 180 / %%Math#PI|Math.PI%%)**.
+**%%#rotateSelf_Number|this.rotateSelf%%(%%Math#atan2|Math.atan2%%(y, x) * 180 / %%Math#PI|Math.PI%%)**.
 Return **this**.
 
 <htmlexample>
