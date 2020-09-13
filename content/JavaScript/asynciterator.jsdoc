@@ -22,18 +22,16 @@ const stream = async function*() {
   }
 };
 
-(async () => {
-  const iterator = stream();
-  console.dir(await iterator.next());
-  console.dir(await iterator.next());
-  console.dir(await iterator.next());
-  console.dir(await iterator.next());
+const iterator = stream();
+console.dir(await iterator.next());
+console.dir(await iterator.next());
+console.dir(await iterator.next());
+console.dir(await iterator.next());
 
-  // for await of loops make it easy to loop over async iterables 
-  for await (const i of stream()) {
-    console.log(i);
-  }
-})();
+// for await of loops make it easy to loop over async iterables 
+for await (const i of stream()) {
+  console.log(i);
+}
 </example>
 
 Spec:
@@ -67,22 +65,20 @@ const stream = async function*() {
   }
 };
 
-(async () => {
-  const iterator = stream();
+const iterator = stream();
 
-  var iteratorIterator = iterator[Symbol.asyncIterator]();
+var iteratorIterator = iterator[Symbol.asyncIterator]();
 
-  console.log(iterator === iteratorIterator);
-  console.log();
+console.log(iterator === iteratorIterator);
+console.log();
 
-  for await (const x of stream()) {
-    console.log(x);
-  }
-  console.log();
+for await (const x of stream()) {
+  console.log(x);
+}
+console.log();
 
-  // Since AsyncIterators are also AsyncIterables, you can use for-await-of loops with them.
-  for await (const x of iterator) {
-    console.log(x);
-  }
-})();
+// Since AsyncIterators are also AsyncIterables, you can use for-await-of loops with them.
+for await (const x of iterator) {
+  console.log(x);
+}
 </example>

@@ -22,6 +22,16 @@ new Response([body = null : Object, [init : { \
 ----
 instance.body : ReadableStream
 
+<example>
+const res = await fetch('/fireworks.ogv');
+const reader = res.body.getReader();
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log('chunk size:', result.value.byteLength);
+}
+</example>
+
 ReadOnly:
 true
 

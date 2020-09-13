@@ -1,0 +1,25 @@
+ReadableStreamDefaultReader : Object
+
+Spec:
+https://streams.spec.whatwg.org/#default-reader-class-definition
+
+----
+new ReadableStreamDefaultReader(stream : ReadableStream) : ReadableStreamDefaultReader
+
+----
+instance.closed : Promise<undefined>
+
+ReadOnly:
+true
+
+----
+prototype.cancel([reason : Object]) : Promise<undefined>
+
+----
+prototype.read() : Promise
+
+Promise return type:
+{ value : Object, done : Boolean }
+
+----
+prototype.releaseLock() : undefined;

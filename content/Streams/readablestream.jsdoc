@@ -1,0 +1,58 @@
+ReadableStream : Object
+
+Represents a stream of data.
+
+Spec:
+https://streams.spec.whatwg.org/#rs-class-definition
+
+----
+new ReadableStream([underlyingSource : Object, [strategy : Object]]) : ReadableStream
+
+----
+instance.locked : Boolean
+
+ReadOnly:
+true
+
+----
+prototype.cancel([reason : Object]) : Promise<undefined>
+
+----
+prototype.getReader([options : {\
+    mode : String /* Either **undefined** or **'byob'** */ \
+  }]) : ReadableStreamDefaultReader
+
+<example>
+const res = await fetch('/fireworks.ogv');
+const reader = res.body.getReader();
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log('chunk size:', result.value.byteLength);
+}
+</example>
+
+----
+prototype.pipeThrough(transform : {\
+    readable : ReadableStream, \
+    writable : WritableStream, \
+  }, \
+  [options : { \
+    signal : AbortSignal, \
+    preventAbort : Boolean, \
+    preventCancel : Boolean, \
+    preventClose : Boolean, \
+  }]) : undefined
+
+----
+prototype.pipeTo(destination : WritableStream, [options : { \
+    signal : AbortSignal, \
+    preventAbort : Boolean, \
+    preventCancel : Boolean, \
+    preventClose : Boolean, \
+  }]) : undefined
+
+----
+prototype.tee() : Array<ReadableStream>
+
+
