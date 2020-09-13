@@ -109,6 +109,10 @@ fs.readdirSync('./content').map(set => {
       });
   });
 
+for (const set of Object.values(sets)) {
+  set.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 fs.writeFileSync('./tmp/apisets.json', JSON.stringify(sets));
 
 const makeCustomPage = (page, extension = 'html') => {
