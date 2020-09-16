@@ -40,6 +40,20 @@ Spec:
 https://drafts.csswg.org/cssom-view/#dom-screen-availwidth
 
 ----
+instance.colorDepth : Number
+
+The number of bits used for color on the screen.
+
+<example>
+console.log(screen.colorDepth);
+</example>
+
+ReadOnly:
+true
+
+https://drafts.csswg.org/cssom-view/#dom-screen-colordepth
+
+----
 instance.height : Number
 
 Height of the screen in pixels.
@@ -53,6 +67,11 @@ true
 
 Spec:
 https://drafts.csswg.org/cssom-view/#dom-screen-height
+
+----
+instance.pixelDepth : Number
+
+Same as %%#colorDepth|colorDepth%%.
 
 ----
 instance.width : Number
