@@ -421,41 +421,49 @@ http://www.ecma-international.org/ecma-262/6.0/#sec-number.isNaN
 parseInt(str : String, [base : Number]) : Number
 
 Converts **str** into an integral number. If **base** is not specified, **parseInt**
-will attempt to determine the base to use depending on the input. **parseInt** is
-more forgiving than **Number(str)** (or equivalently **+str**) in that it will ignore
-extra characters after the numeric portion of the string.  If the first character
-is not a valid number in the specified **base**, **parseInt** will return %%#NaN|**NaN**%%.
-
+will attempt to determine the base to use depending on the input (**'0x'** prefix is base 16).
+**parseInt** is less scrict than using **Number(str)** (or **+str**) to convert to a Number
+because it ignores extra characters after the numeric portion of the string.
+If the first character is not a valid number in the specified **base**, **parseInt** will
+return %%#NaN|**NaN**%%.
 Also exists as %%Global#parseInt|**parseInt**%% in the global namespace.
 
 <example>
 console.log(Number.parseInt('12'));
-console.log(Number.parseInt('0x12'));    // Detected hex
-console.log(Number.parseInt('012'));     // Detected octal
-console.log(Number.parseInt('012', 10)); // Force decimal
-console.log(Number.parseInt === parseInt); // Also available in global namespace
+console.log(Number.parseInt('12.34')); // Ignores non digits
+console.log(Number.parseInt('0x12')); // Autodetects base 16
+console.log(Number.parseInt('12', 16)); // Force base 16
+console.log(Number.parseInt('12e5')); // Doesn't support scientific notation
+console.log(Number.parseInt('Infinity')); // Doesn't support infinity
+console.log(Number.parseInt == parseInt); // Also available in the global namespace
 </example>
 
 Version:
 ECMAScript 2015
 
 Spec:
-https://tc39.es/ecma262/#sec-number.parseint
+https://www.ecma-international.org/ecma-262/#sec-number-parsefloat-string
 
 ----
 parseFloat(str : String) : Number
 
 Converts **str** into a floating point number.
-
+**parseFloat** is less scrict than using **Number(str)** (or **+str**) to convert to a Number
+because it ignores extra characters after the numeric portion of the string.
+If the first character is not a valid number, **parseFloat** will return %%#NaN|**NaN**%%.
 Also exists as %%Global#parseFloat|**parseFloat**%% in the global namespace.
 
 <example>
-console.log(Number.parseFloat('3.14') * 2);
-console.log(Number.parseFloat === parseFloat); // Also available in global namespace
+console.log(Number.parseFloat('12'));
+console.log(Number.parseFloat('12.34'));
+console.log(Number.parseFloat('0x12')); // Does not detect hex
+console.log(Number.parseFloat('12e5')); // Supports scientific notation
+console.log(Number.parseFloat('Infinity')); // Supports Infinity
+console.log(Number.parseFloat === parseFloat); // Also available in the global namespace
 </example>
 
 Version:
 ECMAScript 2015
 
 Spec:
-https://tc39.es/ecma262/#sec-number.parsefloat
+https://www.ecma-international.org/ecma-262/#sec-number-parsefloat-string
