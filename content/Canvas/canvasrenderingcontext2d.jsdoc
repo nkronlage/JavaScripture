@@ -568,13 +568,37 @@ Draw the path with %%#fill|**fill()**%% or
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
 
-  context.lineWidth = 20;
+  var lineWidth = 20;
+  var y = 80;
+  context.strokeStyle = 'black';
+  context.lineWidth = lineWidth;
 
+  // align-middle (default)
   context.beginPath();
-  context.moveTo(20,20);
-  context.lineTo(60,60);
-  context.lineTo(100,20);
+  context.moveTo(20, y);
+  context.lineTo(80, y);
   context.stroke();
+
+  // align-top
+  context.beginPath();
+  context.moveTo(20 + 100, y + lineWidth/2);
+  context.lineTo(80 + 100, y + lineWidth/2);
+  context.stroke();
+
+  // align-bottom
+  context.beginPath();
+  context.moveTo(20 + 200, y - lineWidth/2);
+  context.lineTo(80 + 200, y - lineWidth/2);
+  context.stroke();
+
+  // y-coordinate
+  context.strokeStyle = 'red';
+  context.lineWidth = 1;
+  context.beginPath();
+  context.moveTo(10, y);
+  context.lineTo(310, y);
+  context.stroke();
+
 </script>
 </htmlexample>
 
