@@ -1234,7 +1234,9 @@ IDL:
 ----
 instance.lineWidth : Number
 
-The width of the stroke. Defaults to **1**.
+The width of the stroke. Defaults to **1**. Line is centered on the coordinates so half the width is on either side of the path.
+
+
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -1247,6 +1249,35 @@ The width of the stroke. Defaults to **1**.
   context.beginPath();
   context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
   context.stroke();
+
+
+  context.lineWidth = 1;
+  context.strokeStyle = 'red';
+  context.setLineDash([2, 2]);
+  context.beginPath();
+  context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
+  context.stroke();
+
+
+  // draw dots
+  var dotSize = 4;
+  var halfDot = dotSize / 2;
+
+  // (20, 20)
+  context.fillStyle = 'red';
+  context.fillRect(20-halfDot, 20-halfDot, dotSize, dotSize); 
+  context.textAlign = 'center';
+  context.fillText('(20, 20)', 20, 10);
+
+  // (60,60)
+  context.fillRect(60-halfDot, 60-halfDot, dotSize, dotSize); 
+  context.fillText('(60, 60)', 60, 85);
+
+  // (100, 20)
+  context.fillRect(100-halfDot, 20-halfDot, dotSize, dotSize); 
+  context.fillText('(120, 20)', 100, 10);
+
+
 </script>
 </htmlexample>
 
