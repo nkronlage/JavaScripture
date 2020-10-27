@@ -231,7 +231,6 @@ The brush used to fill the stroke of shapes.  Must be a css color %%/String|**St
 or a %%/CanvasPattern|**CanvasPattern**%%. See also %%#lineDashOffset|lineDashOffset%%,
 %%#setLineDash|setLineDash()%%.
 
-
 <htmlexample>
 <canvas id='canvas'></canvas>
 <script>
@@ -1234,9 +1233,8 @@ IDL:
 ----
 instance.lineWidth : Number
 
-The width of the stroke. Defaults to **1**. Line is centered on the coordinates so half the width is on either side of the path.
-
-
+The width of the stroke. The line is centered on the coordinates so half the width 
+is on either side of the path. Defaults to **1**.
 
 <htmlexample>
 <canvas id='canvas'></canvas>
@@ -1250,7 +1248,7 @@ The width of the stroke. Defaults to **1**. Line is centered on the coordinates 
   context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
   context.stroke();
 
-
+  // Draw red dashed line showing path
   context.lineWidth = 1;
   context.strokeStyle = 'red';
   context.setLineDash([2, 2]);
@@ -1258,29 +1256,25 @@ The width of the stroke. Defaults to **1**. Line is centered on the coordinates 
   context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
   context.stroke();
 
-
-  // draw dots
+  // Draw dots
   var dotSize = 4;
   var halfDot = dotSize / 2;
 
-  // (20, 20)
+  // (20, 20) Dot
   context.fillStyle = 'red';
-  context.fillRect(20-halfDot, 20-halfDot, dotSize, dotSize); 
+  context.fillRect(20 - halfDot, 20 - halfDot, dotSize, dotSize); 
   context.textAlign = 'center';
   context.fillText('(20, 20)', 20, 10);
 
-  // (60,60)
-  context.fillRect(60-halfDot, 60-halfDot, dotSize, dotSize); 
+  // (60,60) Dot
+  context.fillRect(60 - halfDot, 60 - halfDot, dotSize, dotSize); 
   context.fillText('(60, 60)', 60, 85);
 
-  // (100, 20)
-  context.fillRect(100-halfDot, 20-halfDot, dotSize, dotSize); 
+  // (100, 20) Dot
+  context.fillRect(100 - halfDot, 20 - halfDot, dotSize, dotSize); 
   context.fillText('(120, 20)', 100, 10);
-
-
 </script>
 </htmlexample>
-
 
 IDL:
 interface CanvasLineStyles {

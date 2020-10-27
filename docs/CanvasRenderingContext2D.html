@@ -156,7 +156,7 @@
   }
   draw();
 &lt;/script&gt;
-</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CanvasRenderingContext2D.lineJoin"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="lineWidth"></a><div class="declaration"><span class="membername primary">lineWidth</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The width of the stroke. Defaults to <code>1</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
+</textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CanvasRenderingContext2D.lineJoin"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="lineWidth"></a><div class="declaration"><span class="membername primary">lineWidth</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">The width of the stroke. The line is centered on the coordinates so half the width is on either side of the path. Defaults to <code>1</code>.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
 &lt;canvas id=&#39;canvas&#39;&gt;&lt;/canvas&gt;
 &lt;script&gt;
   var canvas = document.getElementById(&#39;canvas&#39;);
@@ -167,6 +167,32 @@
   context.beginPath();
   context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
   context.stroke();
+
+  // Draw red dashed line showing path
+  context.lineWidth = 1;
+  context.strokeStyle = &#39;red&#39;;
+  context.setLineDash([2, 2]);
+  context.beginPath();
+  context.moveTo(20,20); context.lineTo(60,60); context.lineTo(100,20);
+  context.stroke();
+
+  // Draw dots
+  var dotSize = 4;
+  var halfDot = dotSize / 2;
+
+  // (20, 20) Dot
+  context.fillStyle = &#39;red&#39;;
+  context.fillRect(20 - halfDot, 20 - halfDot, dotSize, dotSize); 
+  context.textAlign = &#39;center&#39;;
+  context.fillText(&#39;(20, 20)&#39;, 20, 10);
+
+  // (60,60) Dot
+  context.fillRect(60 - halfDot, 60 - halfDot, dotSize, dotSize); 
+  context.fillText(&#39;(60, 60)&#39;, 60, 85);
+
+  // (100, 20) Dot
+  context.fillRect(100 - halfDot, 20 - halfDot, dotSize, dotSize); 
+  context.fillText(&#39;(120, 20)&#39;, 100, 10);
 &lt;/script&gt;
 </textarea><a onclick='executeHTMLExample(this.parentNode.parentNode, "CanvasRenderingContext2D.lineWidth"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="htmlerrormessage" style="display: none"></div><iframe class="output" width="350" height="200"></iframe><pre class="results"> </pre></div></div></div><p></p></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="miterLimit"></a><div class="declaration"><span class="membername primary">miterLimit</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a></div><div class="member-body"><p class="description">Adjusts the maximum distance the miter point can extend from the joint.</p><div class="htmlexample"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="19" cols="60" wrap="off">
 &lt;canvas id=&#39;canvas&#39;&gt;&lt;/canvas&gt;
