@@ -1,0 +1,20 @@
+CustomEvent : Event
+
+CustomEvent is an Event subclass that provides a **detail** property to store custom
+event data.
+
+Spec:
+https://dom.spec.whatwg.org/#interface-customevent
+
+----
+new CustomEvent( \
+  type : String,  \
+  [eventInit : { \
+     detail : Object \
+  }]) : Event
+
+----
+instance.detail : Object
+
+ReadOnly:
+true
