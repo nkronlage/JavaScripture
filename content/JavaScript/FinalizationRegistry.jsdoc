@@ -1,0 +1,125 @@
+FinalizationRegistry : Object
+
+FinalizationRegistry provides a way to be notified when an object is garbage
+collected. Note, JavaScript makes no guarantees on if or when an object will 
+be garbage collected. See also %%/WeakRef|WeakRef%%.
+
+Spec:
+https://tc39.es/ecma262/#sec-finalization-registry-objects
+
+Version:
+ECMAScript 2021
+
+----
+new FinalizationRegistry(cleanupCallback(heldValue : Object) : undefined) : FinalizationRegistry
+
+Returns a new FinalizationRegistry that will call **cleanupCallback** when
+objects passed to %%#register|**register()**%% are garbage collected.
+
+<example>
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+let waitingForCleanup = true;
+const registry = new FinalizationRegistry((heldValue) => {
+  console.log(`cleanup: ${heldValue}`);
+  waitingForCleanup = false;
+});
+
+let foo = {};
+registry.register(foo, 42);
+foo = undefined; // Clear strong reference
+
+const startTime = Date.now();
+console.log('Allocating a lot of objects to try to force garbage collection');
+while (waitingForCleanup) {
+  for (let i = 0; i < 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-finalization-registry-cleanup-callback
+
+----
+prototype.register(target : Object, heldValue : Object, [unregisterToken : Object]) : undefined
+
+<p>
+Registers **target** with **this** so the **cleanupCallback** passed to **this**'s
+%%#new_FinalizationRegistry_Function|constructor%% will be called when **target** 
+is garbage collected.
+</p>
+<p>
+The value passed to **cleanupCallback** at that time will be
+**heldValue**. Note **target** and **heldValue** can not be the same object because
+**this** will hold a strong reference to **heldValue**, preventing it from being 
+garbage collected.
+</p>
+<p>
+If **unregisterToken** is specified, you can prevent **cleanupCallback** from being called
+by calling %%#unregister|**unregister(unregisterToken)**%%.
+</p>
+<example>
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+let waitingForCleanup = true;
+const registry = new FinalizationRegistry((heldValue) => {
+  console.log(`cleanup: ${heldValue}`);
+  waitingForCleanup = false;
+});
+
+let foo = {};
+registry.register(foo, 42);
+foo = undefined; // Clear strong reference
+
+const startTime = Date.now();
+console.log('Allocating a lot of objects to try to force garbage collection');
+while (waitingForCleanup) {
+  for (let i = 0; i < 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-finalization-registry.prototype.register
+
+----
+prototype.unregister(unregisterToken : Object) : undefined
+
+<example>
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+let waitingForCleanup = true;
+const registry = new FinalizationRegistry((heldValue) => {
+  console.log(`cleanup: ${heldValue}`);
+  waitingForCleanup = false;
+});
+
+let foo = {};
+const token1 = {};
+const token2 = {};
+registry.register(foo, 'registered with token1', token1);
+registry.register(foo, 'registered with token2', token2);
+foo = undefined; // Clear strong reference
+
+registry.unregister(token1);
+
+const startTime = Date.now();
+console.log('Allocating a lot of objects to try to force garbage collection');
+while (waitingForCleanup) {
+  for (let i = 0; i < 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-finalization-registry.prototype.unregister

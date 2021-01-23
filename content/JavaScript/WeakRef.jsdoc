@@ -1,0 +1,48 @@
+WeakRef : Object
+
+A WeakRef allows holding on to another object, while still allowing that object
+to be garbage collected if there are no other strong references to it. Note,
+JavaScript makes no guarantees on if or when an object will be garbage collected.
+See also %%/FinalizationRegistry|FinalizationRegistry%%.
+
+Spec:
+https://tc39.es/ecma262/#sec-weak-ref-objects
+
+Version:
+ECMAScript 2021
+
+----
+new WeakRef(target : Object) : WeakRef
+
+Spec:
+https://tc39.es/ecma262/#sec-weak-ref-target
+
+----
+prototype.deref() : Object
+
+Returns the target of **this** if it has not been garbage collected yet, otherwise
+returns **undefined**. If **deref()** returns a valid object, that object
+will not be garbage collected until control returns to the event loop, such as
+when returing from a callback or calling **await** on a %%/Promise|Promise%%.
+
+<example>
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+let foo = {};
+const weakRef = new WeakRef(foo);
+foo = undefined; // Clear strong reference
+
+const startTime = Date.now();
+console.log('Allocating a lot of objects to force garbage collection');
+while (weakRef.deref()) {
+  for (let i = 0; i < 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-weak-ref.prototype.deref
+
