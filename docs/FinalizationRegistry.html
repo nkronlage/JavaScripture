@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>FinalizationRegistry JavaScript API</title><meta name="description" content="Interactive API reference for the JavaScript FinalizationRegistry Object. FinalizationRegistry provides a way to be notified when an object is garbage collected. Note, JavaScript makes no guarantees o"><link rel="stylesheet" type="text/css" href="styles.css"><script type="text/javascript">var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23450559-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();</script></head><body><script>if (sessionStorage.collapsed === 'true') {
+  document.body.classList.add('members-collapsed');
+}</script><div class="topnav"><a href="/">JavaScripture</a><div class="bookmarks"><a class="bookmark contribute" href="https://github.com/nkronlage/JavaScripture">Contribute via GitHub</a> <a class="bookmark" href="/feedback">Feedback</a></div></div><div class="container"><nav class="leftnav"><div id="searchContainer"><input id="searchBox" type="text" placeholder="Search (Ctrl + S)" autocomplete="false" autofocus="autofocus"><div id="resultsBox" style="display:none;"></div></div><div id="apichooser"><a href="#" onclick="openApiChooser(); return false;"><div class="arrow"></div><span id="selectedsets"></span></a><div id="obscure"></div><div id="apisets"><ul></ul></div></div><div class="toc"><h2>FinalizationRegistry</h2><div class="navgroup"><div class="group"><a href="#Constructors">Constructors</a></div><div class="group collapsed"><a href="#InstanceMethods" onclick="expandoClicked(this.parentNode); return false;"><div class="arrow"></div>Instance Methods</a><div class="subgroup"><a href="#register_Object_Object_Object">register</a><a href="#unregister_Object">unregister</a></div></div></div><h2>JavaScript API</h2><div id="related-apis" class="navgroup"></div><h2>All API</h2><div id="rootObjs" class="navgroup"><span class="empty">No API set selected.</span></div></div></nav><div class="content"><h1 class="declaration"><span class="hide">JavaScript</span> <span class="object">FinalizationRegistry</span> <span class="type">: <a href="/Object">Object</a></span></h1><div class="metadata"><span>constructor</span></div><div class="objectdescription">FinalizationRegistry provides a way to be notified when an object is garbage collected. Note, JavaScript makes no guarantees on if or when an object will be garbage collected. See also <a href="/WeakRef">WeakRef</a>.<div class="membermetadata"><span class="ecmascript2021">ECMAScript 2021</span> <a href="https://tc39.es/ecma262/#sec-finalization-registry-objects" class="spec">Spec</a></div></div><div><a name="Constructors"></a><h2>Constructors</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="FinalizationRegistry"></a> <a name="new_FinalizationRegistry_Function"></a><div class="declaration">new <span class="membername primary">FinalizationRegistry</span>(<span class="membername">cleanupCallback</span>&nbsp;:&nbsp;<a class="membertype" href="/Function">Function</a>)&nbsp;:&nbsp;<a class="membertype" href="/FinalizationRegistry">FinalizationRegistry</a><div class="subfunction"><span class="membername">cleanupCallback</span>(<span class="membername">heldValue</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div></div><div class="member-body"><p class="description">Returns a new FinalizationRegistry that will call <code>cleanupCallback</code> when objects passed to <a href="#register"><code>register()</code></a> are garbage collected.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const sleep = (ms) =&gt; new Promise(r =&gt; setTimeout(r, ms));
+
+let waitingForCleanup = true;
+const registry = new FinalizationRegistry((heldValue) =&gt; {
+  console.log(`cleanup: ${heldValue}`);
+  waitingForCleanup = false;
+});
+
+let foo = {};
+registry.register(foo, 42);
+foo = undefined; // Clear strong reference
+
+const startTime = Date.now();
+console.log(&#39;Allocating a lot of objects to try to force garbage collection&#39;);
+while (waitingForCleanup) {
+  for (let i = 0; i &lt; 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "FinalizationRegistry.FinalizationRegistry"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://tc39.es/ecma262/#sec-finalization-registry-cleanup-callback" class="spec">Spec</a></div></div></div></div><div><a name="InstanceMethods"></a><h2>Instance Methods</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="register"></a> <a name="register_Object_Object_Object"></a><div class="declaration"><span class="membername primary">register</span>(<span class="membername">target</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="membername">heldValue</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>, <span class="optional">[<span class="membername">unregisterToken</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description"></p><p>Registers <code>target</code> with <code>this</code> so the <code>cleanupCallback</code> passed to <code>this</code>'s <a href="#new_FinalizationRegistry_Function">constructor</a> will be called when <code>target</code> is garbage collected.</p><p>The value passed to <code>cleanupCallback</code> at that time will be <code>heldValue</code>. Note <code>target</code> and <code>heldValue</code> can not be the same object because <code>this</code> will hold a strong reference to <code>heldValue</code>, preventing it from being garbage collected.</p><p>If <code>unregisterToken</code> is specified, you can prevent <code>cleanupCallback</code> from being called by calling <a href="#unregister"><code>unregister(unregisterToken)</code></a>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const sleep = (ms) =&gt; new Promise(r =&gt; setTimeout(r, ms));
+
+let waitingForCleanup = true;
+const registry = new FinalizationRegistry((heldValue) =&gt; {
+  console.log(`cleanup: ${heldValue}`);
+  waitingForCleanup = false;
+});
+
+let foo = {};
+registry.register(foo, 42);
+foo = undefined; // Clear strong reference
+
+const startTime = Date.now();
+console.log(&#39;Allocating a lot of objects to try to force garbage collection&#39;);
+while (waitingForCleanup) {
+  for (let i = 0; i &lt; 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "FinalizationRegistry.register"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://tc39.es/ecma262/#sec-finalization-registry.prototype.register" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="unregister"></a> <a name="unregister_Object"></a><div class="declaration"><span class="membername primary">unregister</span>(<span class="membername">unregisterToken</span>&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a>)&nbsp;:&nbsp;<a class="membertype" href="/undefined">undefined</a></div><div class="member-body"><p class="description"></p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
+const sleep = (ms) =&gt; new Promise(r =&gt; setTimeout(r, ms));
+
+let waitingForCleanup = true;
+const registry = new FinalizationRegistry((heldValue) =&gt; {
+  console.log(`cleanup: ${heldValue}`);
+  waitingForCleanup = false;
+});
+
+let foo = {};
+const token1 = {};
+const token2 = {};
+registry.register(foo, &#39;registered with token1&#39;, token1);
+registry.register(foo, &#39;registered with token2&#39;, token2);
+foo = undefined; // Clear strong reference
+
+registry.unregister(token1);
+
+const startTime = Date.now();
+console.log(&#39;Allocating a lot of objects to try to force garbage collection&#39;);
+while (waitingForCleanup) {
+  for (let i = 0; i &lt; 100; i++) {
+    const x = new Array(100);
+  }
+  await sleep(10);
+}
+console.log(`foo was reclaimed after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
+
+</textarea><a onclick='executeExample(this.parentNode.parentNode, "FinalizationRegistry.unregister"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://tc39.es/ecma262/#sec-finalization-registry.prototype.unregister" class="spec">Spec</a></div></div></div></div><div class="bottomnav"><a href="/">home</a> <a href="/license">license</a> <a href="https://github.com/nkronlage/JavaScripture">contribute</a> <a href="/feedback">feedback</a></div><div class="copyright">Copyright © JavaScripture Contributors</div></div></div></body><script src="javascripture.js"></script></html>
