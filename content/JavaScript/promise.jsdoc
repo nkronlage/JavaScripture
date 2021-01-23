@@ -263,12 +263,56 @@ Version:
 ECMAScript 2020
 
 ----
+any(promises : Iterable<Promise>) : Promise
+
+Creates a new Promise that will be resolved when the first of **promises**
+is resolved. If all of **promises** are rejected, the returned promise will 
+be rejected with an %%/AggregateError|AggregateError%% containing all the 
+rejected values. See also %%#race|**race()**%%.
+
+<example>
+const promises = [];
+
+// Queue several promises that randomly resolve/reject
+for (let i = 0; i < 3; i++) {
+  promises.push(new Promise((resolve, reject) => {
+    const random = Math.random() * 200;
+    setTimeout(function() {
+      if (Math.random() < 0.2) {
+        resolve('resolving after ' + random + ' milliseconds');
+      }
+      else {
+        reject('rejecting after ' + random + ' milliseconds');
+      }
+    }, random);
+  }));
+}
+
+try {
+  const firstResult = await Promise.any(promises);
+  console.log('first result: ' + firstResult);
+}
+catch (e) {
+  console.log('all rejected:');
+  for (const error of e.errors) {
+    console.log(`  ${error}`);
+  }
+}
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-promise.any
+
+Version:
+ECMAScript 2021
+
+----
 race(promises : Iterable<Promise>) : Promise
 
 Creates a new Promise that will be resolved when the first of **promises**
 is resolved. If a promise is rejected before any resolve, the returned
 Promise will be rejected immediately and will provide the value of the
-Promise that was rejected.
+Promise that was rejected. See also %%#any|**any()**%%.
 
 <example>
 var promises = [];

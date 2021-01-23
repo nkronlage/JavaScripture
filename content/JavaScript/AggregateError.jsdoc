@@ -1,0 +1,16 @@
+AggregateError : Error
+
+Spec:
+https://tc39.es/ecma262/#sec-aggregate-error-objects
+
+Version:
+ECMAScript 2021
+
+----
+AggregateError(errors : Iterable<Error>, message : String) : AggregateError
+
+----
+new AggregateError(errors : Iterable<Error>, message : String) : AggregateError
+
+----
+instance.errors : Array<Error>
