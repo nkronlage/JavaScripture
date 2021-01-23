@@ -523,6 +523,12 @@ console.log(x.replaceAll('b', 'Z'));
 console.log(x); // x is unchanged
 </example>
 
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.replaceall
+
+Version:
+ECMAScript 2021
+
 ----
 prototype.replaceAll(searchValue : String, replaceFunction(match : String, offset : Number, string : String) : String) : String
 
@@ -551,6 +557,12 @@ console.log('replaced=' + replaced);
 console.log('x=' + x); // x is unchanged
 </example>
 
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.replaceall
+
+Version:
+ECMAScript 2021
+
 ----
 prototype.replaceAll(searchValue : RegExp, replaceValue : String) : String
 
@@ -564,6 +576,12 @@ var x = 'abcba';
 console.log(x.replaceAll(/b/g, 'Z'));
 console.log(x); // x is unchanged
 </example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.replaceall
+
+Version:
+ECMAScript 2021
 
 ----
 prototype.replaceAll(searchValue : RegExp, replaceFunction(match : String, capture1 : String, capture2 : String, ..., offset : Number, string : String) : String) : String
@@ -595,6 +613,12 @@ var replaced = 'abcba'.replaceAll(/b/g, function(match, offset, string) {
 console.log('replaced=' + replaced);
 console.log('x=' + x); // x is unchanged
 </example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.prototype.replaceall
+
+Version:
+ECMAScript 2021
 
 ----
 prototype.search(regexp : RegExp) : Number
