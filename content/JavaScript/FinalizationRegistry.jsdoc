@@ -47,7 +47,7 @@ https://tc39.es/ecma262/#sec-finalization-registry-cleanup-callback
 prototype.register(target : Object, heldValue : Object, [unregisterToken : Object]) : undefined
 
 <p>
-Registers **target** with **this** so the **cleanupCallback** passed to **this**'s
+Registers **target** with **this** so the **cleanupCallback** passed to **this**'
 %%#new_FinalizationRegistry_Function|constructor%% will be called when **target** 
 is garbage collected.
 </p>
@@ -90,6 +90,9 @@ https://tc39.es/ecma262/#sec-finalization-registry.prototype.register
 
 ----
 prototype.unregister(unregisterToken : Object) : undefined
+
+Prevents **cleanupCallback** from being called for an object
+previously registered with the specified **unregisterToken**.
 
 <example>
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));

@@ -14,6 +14,8 @@ ECMAScript 2021
 ----
 new WeakRef(target : Object) : WeakRef
 
+Creates a new WeakRef that tracks **target**.
+
 Spec:
 https://tc39.es/ecma262/#sec-weak-ref-target
 
@@ -23,7 +25,7 @@ prototype.deref() : Object
 Returns the target of **this** if it has not been garbage collected yet, otherwise
 returns **undefined**. If **deref()** returns a valid object, that object
 will not be garbage collected until control returns to the event loop, such as
-when returing from a callback or calling **await** on a %%/Promise|Promise%%.
+when returning from a callback or **await**ing a %%/Promise|Promise%%.
 
 <example>
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
