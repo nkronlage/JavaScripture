@@ -1,13 +1,26 @@
 Iterable : Object
 
-An iterable object is any object that returns a function that produces
-an %%/Iterator|Iterator%% for its %%/Symbol#iterator|**Symbol.iterator**%%
-property.
+<p>
+An iterable object is any object that has a
+%%/Symbol#iterator|**Symbol.iterator**%% property whose value is a 
+function that returns an %%/Iterable|**Iterable**%%.
+</p>
 
+<p>
 You can loop over all values in an iterable object by using a 
-**for (var value of iterable) { }** loop.
+**for (const value of iterable) { }** loop.
+</p>
 
+<p>
+You may create your own iterable object by assigning the
+%%/Symbol#iterator|**Symbol.iterator**%% property to a
+generator function (**function* () {}**) or an object with a 
+%%/Iterator#next|**next()**%% method.
+</p>
+
+<p>
 See %%/Iterator|Iterator%% for more details.
+</p>
 
 Version:
 ECMAScript 2015
@@ -22,16 +35,33 @@ Returns a function that produces an Iterator for this object.
 
 <example>
 // Arrays are a built in Iterable object
-var arr = ['a', 'b', 'c'];
+const arr = ['a', 'b', 'c'];
 
 // Use for (... of ...) loop to get the values of an iterable
-for (var x of arr) {
+for (const x of arr) {
   console.log(x);
 } 
 
+// Create an iterable class with a generator function
+class MyIterable {
+  constructor(maxValue) {
+    this._maxValue = maxValue;
+  }
+
+  *[Symbol.iterator]() {
+    for (let i = 0; i < this._maxValue; i++) {
+      yield i;
+    }
+  }
+}
+
+for (const x of new MyIterable(3)) {
+  console.log(x);
+}
+
 // Under the covers, for (... of ...) does the following: 
-var iterator = arr[Symbol.iterator]();
-var current = iterator.next();
+const iterator = arr[Symbol.iterator]();
+let current = iterator.next();
 while (!current.done) {
   console.log(current.value);
   current = iterator.next();

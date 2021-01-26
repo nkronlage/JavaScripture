@@ -1,13 +1,26 @@
 AsyncIterable : Object
 
-An async iterable object is any object that returns a function that produces
-an %%/AsyncIterator|AsyncIterator%% for its 
-%%/Symbol#asyncIterator|**Symbol.asyncIterator**%% property.
+<p>
+An async iterable object is any object that has a 
+%%/Symbol#asyncIterator|**Symbol.asyncIterator**%% property whose value is
+a function that returns an %%/AsyncIterator|AsyncIterator%%.
+</p>
 
-You can loop over all values in an AsyncIterable object by using a
+<p>
+You can loop over all values in an async iterable object by using a
 **for await (const value of asyncIterable) { }** loop.
+</p>
 
+<p>
+You may create your own async iterable object by assigning the
+%%/Symbol#asyncIterator|**Symbol.asyncIterator**%% property to an
+async generator function (**async function* () {}**) or an object with a 
+%%/AsyncIterator#next|**next()**%% method.
+</p>
+
+<p>
 See %%/AsyncIterator|AsyncIterator%% for more details.
+</p>
 
 Spec:
 http://www.ecma-international.org/ecma-262/10.0/#sec-asynciterable-interface
@@ -16,3 +29,24 @@ http://www.ecma-international.org/ecma-262/10.0/#sec-asynciterable-interface
 instance[Symbol.asyncIterator] : Function<AsyncIterator>
 
 Returns a function that produces an AsyncIterator for this object.
+
+<example>
+class UriFetcher {
+  constructor(uris) {
+    this._uris = uris;
+  }
+
+  async *[Symbol.asyncIterator]() {
+    for (const uri of this._uris) {
+      const response = await fetch(uri);
+      yield await response.text();      
+    }
+  }
+}
+
+const fetcher = new UriFetcher(['/', '/Array']);
+
+for await (const page of fetcher) {
+  console.log(page.substring(0, 100));
+}
+</example>

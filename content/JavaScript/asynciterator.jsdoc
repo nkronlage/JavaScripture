@@ -1,16 +1,22 @@
 AsyncIterator : AsyncIterable
 
+<p>
 An AsyncIterator is an Object that returns a sequence of Promises.
+</p>
 
-Since AsyncIterators are AsyncIterables, you can use **for await (const value of
-iterable) {}** to easily loop over the values in an AsyncIterator.
+<p>
+Since AsyncIterators are AsyncIterables, you can use **for await (const value of iterable) {}**
+to easily loop over the values in an AsyncIterator.
+</p>
 
+<p>
 Calling an async generator function (**async function* () {}**) returns
-an %%AsyncIterable|AsyncIterable%%.
+an AsyncIterator.
+</p>
 
-You may create your own %%/AsyncIterable|AsyncIterable%% object by assigning the
-%%/Symbol#asyncIterator|**Symbol.asyncIterator**%% property to an
-object with a **next()** method.
+<p>
+See %%/AsyncIterable|AsyncIterable%% for more details.
+</p>
 
 <example>
 const sleep = t => new Promise(r => setTimeout(r, t));
@@ -28,7 +34,7 @@ console.dir(await iterator.next());
 console.dir(await iterator.next());
 console.dir(await iterator.next());
 
-// for await of loops make it easy to loop over async iterables 
+// for-await-of loops make it easy to loop over async iterables 
 for await (const i of stream()) {
   console.log(i);
 }
@@ -36,7 +42,6 @@ for await (const i of stream()) {
 
 Spec:
 http://www.ecma-international.org/ecma-262/10.0/#sec-asynciterator-interface
-
 
 ----
 instance.next([yieldValue : Object]) : Promise
