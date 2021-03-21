@@ -1,8 +1,46 @@
+<%
+var wrap = function(text, type) {
+  return '<span class="' + type + '">'+ text + '</span>';
+};
+var wrapLink = function(text, type) {
+  return '<a class="' + type + '" href="/'+text+'">'+ text + '</a>';
+};
+var renderType = function(type) {
+  if (type.name) {
+    var res = ''
+    res += wrapLink(type.name, 'membertype');
+
+    if (type.templates) {
+      res += '&lt;'
+
+      type.templates.forEach(function(template, index) {
+        if (index > 0) {
+          res += ', ';
+        }
+        res += renderType(template);
+      });
+
+      res += '&gt;'
+    }
+    return res;
+  }
+  else if (type.type === 'Object') {
+    return wrapLink(type.type, 'membertype');
+  }
+  else if (typeof type === 'string') {
+    return wrapLink(type, 'membertype');
+  }
+  else {
+    console.log(type);
+    throw Error('unexpected type');
+  }
+};
+%>
 <h1 class='declaration'>
 <span class='hide'>JavaScript</span>
 <span class='object'><%= obj.name %></span> 
 <% if (obj.type !== 'undefined') { %>
- <span class=' type'> : <a href='/<%= obj.type %>'><%= obj.type %></a></span>
+ <span class=' type'> : <%- renderType(obj.type) %></span>
 <% } %>
 </h1>
 <div class='metadata'>

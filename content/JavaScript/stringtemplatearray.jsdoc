@@ -1,0 +1,43 @@
+StringTemplateArray : Array<String>
+
+A StringTemplateArray is the parameter passed to tagged template functions. In addition
+to being an array of Strings, it contains the "raw" strings before escaping is 
+applied.
+
+See %%/String#raw|String.raw%% for a built in tagged template function.
+
+
+Spec:
+https://tc39.es/ecma262/#sec-gettemplateobject
+
+----
+instance.raw : Array<String>
+
+Returns the unescaped versions of the template parts in **this**. For example,
+if **this[i]** is a new line character, **this.raw[i]** will be **\n**.
+
+<example>
+const join = (strings) => {
+ return '[' + strings.map(s => "'" + s + "'").join(', ') + ']';
+};
+
+// The following mimics the normal template string behavior with logging
+const myTemplate = (stringTemplateArray, ...parts) => {
+  console.log('cooked:', join(stringTemplateArray));
+  console.log('raw:   ', join(stringTemplateArray.raw));
+  console.log('parts: ', join(parts));
+  let result = stringTemplateArray[0];
+  for (let i = 1; i < stringTemplateArray.length; i++) {
+    result += parts[i - 1] + stringTemplateArray[i];
+  }
+  return result;
+};
+
+console.log('result:', myTemplate`a\tb`);
+console.log();
+console.log('result:', myTemplate`A string\twith ${2}\tparts${'!'}`);
+</example>
+
+ReadOnly:
+true
+

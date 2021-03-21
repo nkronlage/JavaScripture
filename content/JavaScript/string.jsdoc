@@ -873,3 +873,21 @@ console.log(String.fromCodePoint(0x1F600));
 
 Spec:
 https://tc39.es/ecma262/#sec-string.fromcodepoint
+
+----
+raw(template : StringTemplateArray, [sub1 : String, [sub2 : String, [...]]]) : String
+
+**String.raw** is intended to be used as a tagged templated string. It returns the
+string as typed in JavaScript, without applying character escaping. For example,
+**raw`foo\nbar`** returns **foo\nbar**, with no new line in the string.
+
+<example>
+console.log('a\tb');
+console.log(String.raw`a\tb`);
+</example>
+
+Spec:
+https://tc39.es/ecma262/#sec-string.raw
+
+Version:
+ECMAScript 2015
