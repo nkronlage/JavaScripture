@@ -57,7 +57,7 @@ console.log('size=' + blob.size);
 console.log('type=' + blob.type);
 
 var testEndings = function(string, endings) {
-  var blob = new Blob([string], { type: 'plain/text',
+  var blob = new Blob([string], { type: 'text/plain',
                                   endings: endings });
   var reader = new FileReader();
   reader.onload = function(event){
@@ -79,7 +79,7 @@ instance.size : Number
 The size of the blob in bytes.
 
 <example>
-var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
+var blob = new Blob(['foo', 'bar'], { type: 'text/plain',
                                       endings: 'native' });
 
 console.log(blob.size);
@@ -97,7 +97,7 @@ instance.type : String
 The type of the blob.
 
 <example>
-var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
+var blob = new Blob(['foo', 'bar'], { type: 'text/plain',
                                       endings: 'native' });
 
 console.log(blob.type);
@@ -140,7 +140,7 @@ The returned blob's %%#type|**type**%% will be **contentType** if specified,
 otherwise it will be **''**.
 
 <example>
-var blob = new Blob(['foo', 'bar'], { type: 'plain/text',
+var blob = new Blob(['foo', 'bar'], { type: 'text/plain',
                                       endings: 'native' });
 console.log('blob size:', blob.size);
 console.log('blob type:', blob.type);
