@@ -19,7 +19,7 @@ console.log(&#39;size=&#39; + blob.size);
 console.log(&#39;type=&#39; + blob.type);
 
 var testEndings = function(string, endings) {
-  var blob = new Blob([string], { type: &#39;plain/text&#39;,
+  var blob = new Blob([string], { type: &#39;text/plain&#39;,
                                   endings: endings });
   var reader = new FileReader();
   reader.onload = function(event){
@@ -34,12 +34,12 @@ testEndings(&#39;foo\r\nbar&#39;, &#39;native&#39;);
 testEndings(&#39;foo\nbar&#39;,   &#39;transparent&#39;);
 testEndings(&#39;foo\r\nbar&#39;, &#39;transparent&#39;);
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Blob.Blob"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p></div></div></div><div><a name="InstanceProperties"></a><h2>Instance Properties</h2><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="size"></a><div class="declaration"><span class="membername primary">size</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The size of the blob in bytes.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
-var blob = new Blob([&#39;foo&#39;, &#39;bar&#39;], { type: &#39;plain/text&#39;,
+var blob = new Blob([&#39;foo&#39;, &#39;bar&#39;], { type: &#39;text/plain&#39;,
                                       endings: &#39;native&#39; });
 
 console.log(blob.size);
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Blob.size"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.w3.org/TR/FileAPI/#dfn-size" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="type"></a><div class="declaration"><span class="membername primary">type</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>&nbsp;&nbsp;<span class="metadata">readonly</span></div><div class="member-body"><p class="description">The type of the blob.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
-var blob = new Blob([&#39;foo&#39;, &#39;bar&#39;], { type: &#39;plain/text&#39;,
+var blob = new Blob([&#39;foo&#39;, &#39;bar&#39;], { type: &#39;text/plain&#39;,
                                       endings: &#39;native&#39; });
 
 console.log(blob.type);
@@ -54,7 +54,7 @@ console.log(chars);
 // The bytes of the ArrayBuffer match the char codes of the string
 console.log([...&#39;foo&#39;].map(c =&gt; c.charCodeAt(0)));
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Blob.arrayBuffer"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="https://w3c.github.io/FileAPI/#dom-blob-arraybuffer" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="slice"></a> <a name="slice_Number_Number_String"></a><div class="declaration"><span class="membername primary">slice</span>(<span class="optional">[<span class="membername">start</span><span class="defaultvalue">&nbsp;=&nbsp;0</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">end</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">contentType</span><span class="defaultvalue">&nbsp;=&nbsp;''</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>]</span>]</span>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Blob">Blob</a></div><div class="member-body"><p class="description">Returns a new blob that contains the bytes <code>start</code> to <code>end - 1</code> from <code>this</code>. If <code>start</code> or <code>end</code> is negative, the value is added to <a href="#size"><code>this.size</code></a> before performing the slice. If <code>end</code> is not specified, <code>this.size</code> is used. The returned blob's <a href="#type"><code>type</code></a> will be <code>contentType</code> if specified, otherwise it will be <code>''</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
-var blob = new Blob([&#39;foo&#39;, &#39;bar&#39;], { type: &#39;plain/text&#39;,
+var blob = new Blob([&#39;foo&#39;, &#39;bar&#39;], { type: &#39;text/plain&#39;,
                                       endings: &#39;native&#39; });
 console.log(&#39;blob size:&#39;, blob.size);
 console.log(&#39;blob type:&#39;, blob.type);
