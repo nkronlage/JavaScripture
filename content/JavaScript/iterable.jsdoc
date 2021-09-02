@@ -3,7 +3,7 @@ Iterable : Object
 <p>
 An iterable object is any object that has a
 %%/Symbol#iterator|**Symbol.iterator**%% property whose value is a 
-function that returns an %%/Iterable|**Iterable**%%.
+function that returns an %%/Iterator|**Iterator**%%.
 </p>
 
 <p>
