@@ -49,9 +49,13 @@ x.length = 0;
 var x = [1, 2, 3];
 var concatenated = x.concat(4, 5, [6, 7]);
 
-console.log(concatenated);
+console.dir(concatenated);
 console.log(concatenated.length);
-console.log(x); // x is unchanged
+console.dir(x); // x is unchanged
+
+// The spread operator (...) also allows concatenating.
+var spread = [...x, 4, 5, ...[6, 7]];
+console.dir(spread);
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "Array.concat"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.4" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="copyWithin"></a> <a name="copyWithin_Number_Number_Number"></a><div class="declaration"><span class="membername primary">copyWithin</span>(<span class="membername">target</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="membername">start</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>, <span class="optional">[<span class="membername">end</span>&nbsp;:&nbsp;<a class="membertype" href="/Number">Number</a>]</span>)&nbsp;:&nbsp;<a class="membertype" href="/Array">Array</a></div><div class="member-body"><p class="description">Copies <code>this[start], this[start + 1], ... this[end - 1]</code> to <code>this[target], this[target + 1], ... this[target + start - end - 1]</code>. If <code>end</code> is not specified, <code>this.length</code> will be used. If <code>end</code> is greater than <code>this.length</code>, it is clamped to <code>this.length</code>. Note, no elements are copied past <code>this.length - 1</code> (ie, <code>copyWithin()</code> will not increase the length of <code>this</code>). Returns <code>this</code>.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 var x = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;];
 
