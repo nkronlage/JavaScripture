@@ -135,19 +135,22 @@ Spec:
 https://dom.spec.whatwg.org/#dom-domtokenlist-remove
 
 ----
-prototype.replace(oldToken : String, newToken : String) : undefined
+prototype.replace(oldToken : String, newToken : String) : Boolean
 
-Removes **oldToken** from **this** and adds **newToken**.
+If **oldToken** is present in **this**, removes **oldToken**, adds **newToken**,
+and returns **true**. Otherwise, makes no changes and returns **false**.
 
 <htmlexample>
 <style>
   .bar { font-weight: bold;  }
   .baz { color: red; }
+  .not-applied { font-size: 2em; }
 </style>
-<span id='foo' class='baz'>foo</span>
+<span id='foo' class='bar'>foo</span>
 <script>
   var foo = document.getElementById('foo');
-  foo.classList.replace('bar', 'baz');
+  console.log(foo.classList.replace('bar', 'baz'));
+  console.log(foo.classList.replace('bar', 'not-applied'));
 </script>
 </htmlexample>
 
