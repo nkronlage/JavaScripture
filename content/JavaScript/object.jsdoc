@@ -86,13 +86,43 @@ instance[symbol : Symbol] : Object
 Returns the value stored in this at the specified **symbol**.
 
 <example>
-var x = { foo: 'bar'};
+var myObject = { foo: 'bar' };
 
+var mySymbol = Symbol('MySymbol');
 
+myObject[mySymbol] = 'baz';
+
+console.log(myObject[mySymbol]);
+
+// The property cannot be accessed using a string
+console.log(myObject['MySymbol']);
 </example>
 
 Version:
 ECMAScript 2015
+
+----
+assign(target : Object, source1 : Object, [source2 : Object, [...]]) : Object
+
+Copies properties from each **source** to **target**. Any properties already
+set on **target** are overwritten. Returns **target**.
+
+
+<example>
+const source1 = { a: 1, b: 2, c: 3 };
+const source2 = { b: 'foo', d: 4 };
+
+// Often target is a new object to combine sources without modifying either source
+const combined = Object.assign({}, source1, source2);
+console.dir(combined);
+
+// The new spread operator can achieve the same result:
+const spreadCombined = { ...source1, ...source2 }; 
+console.dir(spreadCombined);
+</example>
+
+Spec:
+https://262.ecma-international.org/12.0/#sec-object.assign
 
 ----
 getPrototypeOf(obj : Object) : Object
