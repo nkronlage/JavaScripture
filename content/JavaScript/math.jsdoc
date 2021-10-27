@@ -708,11 +708,13 @@ console.log();
 // Shuffle an array
 const shuffle = (array) => {
   for (let i = 0; i < array.length; i++) {
-    const x = randomInt(i, array.length);
-    [array[i], array[x]] = [array[x], array[i]];
+    const swapIndex = randomInt(i, array.length);
+    [array[i], array[swapIndex]] = [array[swapIndex], array[i]];
   }
   return array;
 };
+console.dir(shuffle(['a', 'b', 'c', 'd', 'e']));
+console.dir(shuffle(['a', 'b', 'c', 'd', 'e']));
 console.dir(shuffle(['a', 'b', 'c', 'd', 'e']));
 console.log();
 
