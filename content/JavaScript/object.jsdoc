@@ -308,25 +308,6 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.7
 
 ----
-seal(obj : Object) : Object
-
-Same as %%#preventExtensions|**preventExtensions**%% except it also
-sets each property as not 
-%%/PropertyDescriptor#configurable|**configurable**%%.  Returns **obj**.
-
-<example>
-var x = { foo: 1 };
-Object.seal(x);
-x.foo = 3;
-console.log(x.foo);
-x.bar = 1;
-console.log(x.bar);
-</example>
-
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.8
-
-----
 entries(obj : Object) : Array<Array>
 
 Returns an Array of key/value pairs for the properies of **obj**. See also
@@ -488,23 +469,6 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.14
 
 ----
-values(obj : Object) : Array<Object>
-
-Returns an **Array** containing the enumerable property values on **obj**.
-See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
-
-<example>
-var x = { foo: 1, bar: 2 };
-console.log(Object.values(x));
-</example>
-
-Version:
-ECMAScript 2017
-
-Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.14
-
-----
 prototype.constructor : Function
 
 The **Function** that constructed **this**.
@@ -622,3 +586,59 @@ for (var propertyName in x) {
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.7
 
+----
+seal(obj : Object) : Object
+
+Same as %%#preventExtensions|**preventExtensions**%% except it also
+sets each property as not
+%%/PropertyDescriptor#configurable|**configurable**%%.  Returns **obj**.
+
+<example>
+var x = { foo: 1 };
+Object.seal(x);
+x.foo = 3;
+console.log(x.foo);
+x.bar = 1;
+console.log(x.bar);
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.8
+
+----
+setPrototypeOf(obj : Object, prototype : Object) : Object
+
+Changes the prototype of **obj** to **prototype**. Returns **obj**.
+
+<example>
+const base = { a: 1, b: 2 };
+const obj = { c: 3 };
+
+console.dir(obj);
+console.log(Object.getPrototypeOf(obj) === Object.prototype);
+
+Object.setPrototypeOf(obj, base);
+
+console.dir(obj);
+console.log(Object.getPrototypeOf(obj) === base);
+</example>
+
+Spec:
+https://262.ecma-international.org/12.0/#sec-object.setprototypeof
+
+----
+values(obj : Object) : Array<Object>
+
+Returns an **Array** containing the enumerable property values on **obj**.
+See also %%#entries|**entries()**%% and %%#keys|**keys()**%%.
+
+<example>
+var x = { foo: 1, bar: 2 };
+console.log(Object.values(x));
+</example>
+
+Version:
+ECMAScript 2017
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.14
