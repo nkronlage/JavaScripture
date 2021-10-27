@@ -694,9 +694,10 @@ Returns a random number between **0** (inclusive) and **1** (exclusive).
 console.log(Math.random());
 console.log(Math.random());
 console.log(Math.random());
+console.log();
 
 // Random integer between min (inclusive) and max (exclusive)
-var randomInt = function(min, max) {
+const randomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 console.log(randomInt(0, 100));
@@ -704,14 +705,26 @@ console.log(randomInt(0, 100));
 console.log(randomInt(0, 100));
 console.log();
 
+// Shuffle an array
+const shuffle = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    const x = randomInt(i, array.length);
+    [array[i], array[x]] = [array[x], array[i]];
+  }
+  return array;
+};
+console.dir(shuffle(['a', 'b', 'c', 'd', 'e']));
+console.log();
+
+
 // Produce a normally distributed random number using the Box-Muller transform
-var randn = function() {
+const randn = () => {
   if (randn.hasValues) {
     randn.hasValues = false;
     return randn.distance * Math.sin(randn.angle);
   }
 
-  var random = Math.max(Math.random(), 1e-100);
+  const random = Math.max(Math.random(), 1e-100);
   randn.distance = Math.sqrt(-2 * Math.log(random));
   randn.angle = Math.random() * Math.PI * 2;
   randn.hasValues = true;
