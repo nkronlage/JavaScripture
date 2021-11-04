@@ -803,4 +803,6 @@ toggleTheme.addEventListener('click', function(e) {
     htmlElement.classList.add(newTheme);
     localStorage.theme = newTheme;
   }
+  e.preventDefault();
+  return false;
 });
