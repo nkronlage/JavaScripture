@@ -34,7 +34,6 @@ var renderType = function(type) {
 };
 %>
 <h1 class='declaration'>
-<span class='hide'>JavaScript</span>
 <span class='object'><%= obj.name %></span> 
 <% if (obj.type !== 'undefined') { %>
  <span class=' type'> : <%- renderType(obj.type) %></span>
