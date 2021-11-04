@@ -7,12 +7,12 @@
   <meta charset='utf-8'>
   <title><%= title %></title>
   <% if (locals.obj) { %>
-  <meta name="description" content="<%= getPageDescription(obj) %>" />
+  <meta name="description" content="<%= getPageDescription(obj) %>">
   <% } else { %>
-  <meta name="description" content="<%= locals.description || "Interactive JavaScript API reference. Learn JavaScript quickly and easily." %>" />
+  <meta name="description" content="<%= locals.description || "Interactive JavaScript API reference. Learn JavaScript quickly and easily." %>">
   <% } %>
 
-  <link rel='stylesheet' type='text/css' href='styles.css'/>
+  <link rel='stylesheet' type='text/css' href='styles.css'>
 <script type='text/javascript'>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-23450559-1']);
@@ -28,6 +28,9 @@
 <script>
 if (sessionStorage.collapsed === 'true') {
   document.body.classList.add('members-collapsed');
+}
+if (localStorage.theme) {
+  document.body.parentElement.classList.add(localStorage.theme);
 }
 </script>
 
@@ -51,6 +54,7 @@ if (sessionStorage.collapsed === 'true') {
       <a href='/license'>license</a>
       <a href='https://github.com/nkronlage/JavaScripture'>contribute</a>
       <a href='/feedback'>feedback</a>
+      <a id='toggle-theme' href='#'>toggle light/dark mode</a>
     </div>
     <div class='copyright'>
       Copyright © JavaScripture Contributors

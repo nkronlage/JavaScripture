@@ -7,12 +7,102 @@ Secondary Color B:
 C21700  663730  410800  FF8E80  FFE8E6
 */
 /* 0.577 */
-.hide {
-  display: none; }
+
+
+html {
+  --light-text-color: #00172A;
+  --light-link-color: #1A86E3;
+  --light-link-hover-color: #86C6FF;
+  --light-topnav-link-color: #FFE780;
+  --light-topnav-link-hover-color: #FFFAE6;
+  --light-metadata-color: rgba(33, 51, 66, 0.4);
+  --light-background-color: #FFF;
+  --light-topnav-background-color: #00172A;
+  --light-bookmark-background-color: #C21700;
+  --light-code-background-color: #EEE;
+  --light-obscure-background-color: rgba(0, 0, 0, 0.2);
+  --light-search-container-border-color: rgba(0, 23, 42, 0.4);
+
+  --dark-text-color: #CCC;
+  --dark-link-color: #1A86E3;
+  --dark-link-hover-color: #86C6FF;
+  --dark-topnav-link-color: #FFE780;
+  --dark-topnav-link-hover-color: #FFFAE6;
+  --dark-metadata-color: rgba(255, 255, 255, 0.4);
+  --dark-background-color: #222;
+  --dark-topnav-background-color: #000;
+  --dark-bookmark-background-color: #C21700;
+  --dark-code-background-color: #333;
+  --dark-obscure-background-color: rgba(0, 0, 0, 0.4);
+  --dark-search-container-border-color: rgba(255, 255, 255, 0.4);
+
+  --text-color: var(--light-text-color);
+  --link-color: var(--light-link-color);
+  --link-hover-color: var(--light-link-hover-color);
+  --topnav-link-color: var(--light-topnav-link-color);
+  --topnav-link-hover-color: var(--light-topnav-link-hover-color);
+  --metadata-color: var(--light-metadata-color);
+  --background-color: var(--light-background-color);
+  --topnav-background-color: var(--light-topnav-background-color);
+  --bookmark-background-color: var(--light-bookmark-background-color);
+  --code-background-color: var(--light-code-background-color);
+  --obscure-background-color: var(--light-obscure-background-color);
+  --search-container-border-color: var(--light-search-container-border-color);
+}
+html.dark-theme {
+    color-scheme: dark;
+  --text-color: var(--dark-text-color);
+  --link-color: var(--dark-link-color);
+  --link-hover-color: var(--dark-link-hover-color);
+  --topnav-link-color: var(--dark-topnav-link-color);
+  --topnav-link-hover-color: var(--dark-topnav-link-hover-color);
+  --metadata-color: var(--dark-metadata-color);
+  --background-color: var(--dark-background-color);
+  --topnav-background-color: var(--dark-topnav-background-color);
+  --bookmark-background-color: var(--dark-bookmark-background-color);
+  --code-background-color: var(--dark-code-background-color);
+  --obscure-background-color: var(--dark-obscure-background-color);
+  --search-container-border-color: var(--dark-search-container-border-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --text-color: var(--dark-text-color);
+    --link-color: var(--dark-link-color);
+    --link-hover-color: var(--dark-link-hover-color);
+    --topnav-link-color: var(--dark-topnav-link-color);
+    --topnav-link-hover-color: var(--dark-topnav-link-hover-color);
+    --metadata-color: var(--dark-metadata-color);
+    --background-color: var(--dark-background-color);
+    --topnav-background-color: var(--dark-topnav-background-color);
+    --bookmark-background-color: var(--dark-bookmark-background-color);
+    --code-background-color: var(--dark-code-background-color);
+    --obscure-background-color: var(--dark-obscure-background-color);
+    --search-container-border-color: var(--dark-search-container-border-color);
+  }
+  html.light-theme {
+    color-scheme: light;
+    --text-color: var(--light-text-color);
+    --link-color: var(--light-link-color);
+    --link-hover-color: var(--light-link-hover-color);
+    --topnav-link-color: var(--light-topnav-link-color);
+    --topnav-link-hover-color: var(--light-topnav-link-hover-color);
+    --metadata-color: var(--light-metadata-color);
+    --background-color: var(--light-background-color);
+    --topnav-background-color: var(--light-topnav-background-color);
+    --bookmark-background-color: var(--light-bookmark-background-color);
+    --code-background-color: var(--light-code-background-color);
+    --obscure-background-color: var(--light-obscure-background-color);
+    --search-container-border-color: var(--light-search-container-border-color);
+  }
+}
 
 html {
   font-family: "museo-sans-1", "museo-sans-2", Verdana, Arial, sans-serif;
-  color: #00172A; }
+  color-scheme: light dark;
+  color: #00172A;
+  color: var(--text-color);
+  background: var(--background-color); }
 
 body {
   margin: 0;
@@ -23,13 +113,16 @@ h1 {
 
 a {
   text-decoration: none;
-  color: #1A86E3; }
+  color: #1A86E3;
+  color: var(--link-color); }
 
 a:visited {
-  color: #1A86E3; }
+  color: #1A86E3;
+  color: var(--link-color); }
 
 a:hover {
-  color: #86C6FF; }
+  color: #86C6FF;
+  color: var(--link-hover-color); }
 
 .topnav {
   position: fixed;
@@ -38,19 +131,23 @@ a:hover {
   top: 0;
   z-index: 9999;
   background: #00172A;
+  background: var(--topnav-background-color);
   font-size: 1.2em;
   height: 1.5em;
   padding-left: 1em;
   border-bottom: 1px solid #000000; }
   .topnav a {
     color: #FFE780;
+    color: var(--topnav-link-color);
     font-family: Baskerville;
     font-variant: small-caps;
     text-decoration: none; }
   .topnav a:visited {
-    color: #FFE780; }
+    color: #FFE780; 
+    color: var(--topnav-link-color); }
   .topnav a:hover {
-    color: #FFFAE6; }
+    color: #FFFAE6;
+    color: var(--topnav-link-hover-color); }
 
 .bookmarks {
   position: absolute;
@@ -59,6 +156,7 @@ a:hover {
   .bookmarks .bookmark {
     position: relative;
     background: #C21700;
+    background: var(--bookmark-background-color);
     padding: 0.8em;
     margin-left: 0.3em;
     box-shadow: 2px 2px 5px -1px rgba(0, 23, 42, 0.6); }
@@ -73,6 +171,7 @@ a:hover {
   margin-top: 1em;
   font-size: 0.8em;
   color: rgba(33, 51, 66, 0.4);
+  color: var(--metadata-color);
   text-align: center; }
 
 .container {
@@ -106,7 +205,9 @@ a:hover {
 #apisets {
   display: none;
   background: white;
+  background: var(--background-color);
   border: 1px solid rgba(0, 23, 42, 0.4);
+  border: 1px solid var(--search-container-border-color);
   box-shadow: 2px 2px 5px -1px rgba(102, 92, 48, 0.3);
   position: absolute;
   top: 100%;
@@ -126,6 +227,7 @@ a:hover {
   top: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.1);
+  background: var(--obscure-background-color);
   z-index: 9998; }
 
 .leftnav {
@@ -137,7 +239,8 @@ a:hover {
   z-index: 100; }
   .leftnav #searchContainer {
     position: relative;
-    border: 1px solid rgba(0, 23, 42, 0.4); }
+    border: 1px solid rgba(0, 23, 42, 0.4);
+    border: 1px solid var(--search-container-border-color); }
   .leftnav #searchBox {
     width: 100%;
     box-sizing: border-box;
@@ -148,7 +251,9 @@ a:hover {
     outline-style: none; }
   .leftnav #resultsBox {
     background: white;
+    background: var(--background-color);
     border: 1px solid rgba(0, 23, 42, 0.4);
+    border: 1px solid var(--search-container-border-color);
     box-shadow: 2px 2px 5px -1px rgba(102, 92, 48, 0.3);
     position: absolute;
     top: 100%;
@@ -244,6 +349,7 @@ h1.declaration {
 
 .metadata {
   color: rgba(33, 51, 66, 0.4);
+  color: var(--metadata-color);
   margin-bottom: 1em; }
 
 .metadata span {
@@ -256,6 +362,7 @@ h1.declaration {
 
 .membermetadata {
   color: rgba(33, 51, 66, 0.4);
+  color: var(--metadata-color);
   font-size: 0.8em;
   opacity: 0.7; }
 
@@ -296,7 +403,8 @@ code, .code {
 
 code {
   font-size: 95%;
-  background: #EEE; }
+  background: #EEE;
+  background: var(--code-background-color); }
 
 .output {
   box-sizing: border-box;
@@ -325,6 +433,7 @@ code {
 .member {
   margin-bottom: 2em;
   border-top: 1px solid #00172A;
+  border-top: 1px solid var(--text-color);
   padding-top: 0.5em;
   padding-left: 2em; }
   .member .declaration {
@@ -391,6 +500,7 @@ input[type=submit] {
 
 .details {
   border-top: 1px solid #00172A;
+  border-top: 1px solid var(--text-color);
   padding-top: 1em;
   padding-left: 2em; }
 

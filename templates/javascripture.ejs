@@ -531,6 +531,7 @@ var executeExample = function(example, prop) {
       errormessage.style.display = 'block';
     };
 
+    doc.writeln('<!DOCTYPE html>');
     doc.writeln('<script>');
     doc.writeln('window.onerror=function(err) { javascriptureReportError(err); };');
     doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
@@ -606,6 +607,7 @@ var executeHTMLExample = function(example, prop) {
       errormessage.style.display = 'block';
     };
 
+    doc.writeln('<!DOCTYPE html>');
     doc.writeln('<script>');
     doc.writeln('window.onerror=function(err) { javascriptureReportError(err); };');
     doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
@@ -786,3 +788,19 @@ for (var i = 0; i < expanders.length; i++) {
   });
 }
 
+var toggleTheme = document.getElementById('toggle-theme');
+toggleTheme.addEventListener('click', function(e) {
+  var preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-theme' : 'light-theme';
+  var currentTheme = localStorage.theme || preferredTheme;
+  var newTheme = (currentTheme === 'dark-theme') ? 'light-theme' : 'dark-theme';
+
+  var htmlElement = document.body.parentElement;
+  htmlElement.classList.remove(currentTheme);
+  if (newTheme === preferredTheme) {
+    delete localStorage.theme;
+  }
+  else {
+    htmlElement.classList.add(newTheme);
+    localStorage.theme = newTheme;
+  }
+});
