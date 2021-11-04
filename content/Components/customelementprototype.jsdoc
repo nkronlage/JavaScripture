@@ -21,8 +21,6 @@ Called when %%/Document#adoptNode|adopted%% into a new Document.
 
 <script>
   class MyElement extends HTMLElement {
-    static get observedAttributes() { return ['foo']; }
-
     adoptedCallback(oldDocument, newDocument) {
       console.log(`adopted from ${oldDocument.documentURI} to ${newDocument.documentURI}`);
     }
