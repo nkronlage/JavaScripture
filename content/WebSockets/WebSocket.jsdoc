@@ -13,7 +13,7 @@ Constructs a new WebSocket connection to **url**.
 <htmlexample>
 <script>
   // Connect to a WebSocket that echos back the messages it receives.
-  var ws = new WebSocket('wss://echo.websocket.org/');
+  var ws = new WebSocket('wss://echo.javascripture.com/');
   ws.onopen = function(e) {
     console.log('WebSocket Opened. Sending "Hello"');
     ws.send('Hello');
@@ -42,7 +42,7 @@ The url passed to the WebSocket constructor.
 <htmlexample>
 <script>
   // Connect to a WebSocket that echos back the messages it receives.
-  var ws = new WebSocket('wss://echo.websocket.org/');
+  var ws = new WebSocket('wss://echo.javascripture.com/');
   console.log(ws.url);
 </script>
 </htmlexample>
@@ -62,7 +62,7 @@ One of %%#CONNECTING|**WebSocket.CONNECTING**%%,
 <button>Close</button>
 <script>
   // Connect to a WebSocket that echos back the messages it receives.
-  var ws = new WebSocket('wss://echo.websocket.org/');
+  var ws = new WebSocket('wss://echo.javascripture.com/');
 
   var readyStateNames = {
     [WebSocket.CONNECTING]: 'CONNECTING',
@@ -117,7 +117,7 @@ data received by the WebSocket.
 <script>
   var testBinaryType = function(binaryType) {
     // Connect to a WebSocket that echos back the messages it receives.
-    var ws = new WebSocket('wss://echo.websocket.org/');
+    var ws = new WebSocket('wss://echo.javascripture.com/');
     ws.binaryType = binaryType;
     ws.onopen = function(e) {
       ws.send(new Uint32Array([1, 2, 3]));
