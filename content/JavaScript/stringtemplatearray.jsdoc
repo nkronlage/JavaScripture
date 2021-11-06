@@ -13,18 +13,18 @@ https://tc39.es/ecma262/#sec-gettemplateobject
 ----
 instance.raw : Array<String>
 
-Returns the unescaped versions of the template parts in **this**. For example,
-if **this[i]** is a new line character, **this.raw[i]** will be **\n**.
+Returns the template parts in **this** as written in the source code. For 
+example, if the template string is **`\n`**, **this[0]** will be a string of 
+length **1** containing the new line character whereas **this.raw[0]** will 
+be a string of length **2** containing **'\'** followed by **'n'**.
 
 <example>
-const join = (strings) => {
- return '[' + strings.map(s => "'" + s + "'").join(', ') + ']';
-};
+const join = (strings) => "['" + strings.join("', '") + "']";
 
 // The following mimics the normal template string behavior with logging
 const myTemplate = (stringTemplateArray, ...parts) => {
-  console.log('cooked:', join(stringTemplateArray));
   console.log('raw:   ', join(stringTemplateArray.raw));
+  console.log('cooked:', join(stringTemplateArray));
   console.log('parts: ', join(parts));
   let result = stringTemplateArray[0];
   for (let i = 1; i < stringTemplateArray.length; i++) {
@@ -33,6 +33,11 @@ const myTemplate = (stringTemplateArray, ...parts) => {
   return result;
 };
 
+console.log('result:', myTemplate`\n`);
+console.log();
+console.log('result:', myTemplate`
+`);
+console.log();
 console.log('result:', myTemplate`a\tb`);
 console.log();
 console.log('result:', myTemplate`A string\twith ${2}\tparts${'!'}`);
@@ -40,4 +45,3 @@ console.log('result:', myTemplate`A string\twith ${2}\tparts${'!'}`);
 
 ReadOnly:
 true
-
