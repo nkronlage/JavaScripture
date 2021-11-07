@@ -14,6 +14,15 @@ Parses the specified string of JSON and converts it to an **Object**.
 var x = JSON.parse('{"foo": 1, "bar": 2}');
 console.log(x.foo);
 console.log(x.bar);
+console.log();
+
+// Consider using String.raw when embedding JSON directly in
+// Javascript to handle escaped characters (such as \n).
+var person = JSON.parse(String.raw`{
+  "name": "John Doe",
+  "address": "1234 Maple St\nChicago, IL"
+}`);
+console.log(person.address);
 </example>
 
 Spec:
