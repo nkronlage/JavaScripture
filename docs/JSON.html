@@ -14,6 +14,15 @@ if (localStorage.theme) {
 var x = JSON.parse(&#39;{&#34;foo&#34;: 1, &#34;bar&#34;: 2}&#39;);
 console.log(x.foo);
 console.log(x.bar);
+console.log();
+
+// Consider using String.raw when embedding JSON directly in
+// Javascript to handle escaped characters (such as \n).
+var person = JSON.parse(String.raw`{
+  &#34;name&#34;: &#34;John Doe&#34;,
+  &#34;address&#34;: &#34;1234 Maple St\nChicago, IL&#34;
+}`);
+console.log(person.address);
 </textarea><a onclick='executeExample(this.parentNode.parentNode, "JSON.parse"); return false' href="#" class="run">Run</a></div><div class="resultsPanel"><h4>Results:</h4><div style="position: relative"><div class="errormessage" style="display: none"></div><pre class="results"> </pre></div></div></div><p></p><div class="membermetadata"><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2" class="spec">Spec</a></div></div></div><div class="member"><div class="expand-members" title="Toggle showing all descriptions and examples"></div><a name="parse_String_Function"></a><div class="declaration"><span class="membername primary">parse</span>(<span class="membername">str</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">reviver</span>&nbsp;:&nbsp;<a class="membertype" href="/Function">Function</a>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a><div class="subfunction"><span class="membername">reviver</span>(<span class="membername">key</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>, <span class="membername">value</span>&nbsp;:&nbsp;<a class="membertype" href="/String">String</a>)&nbsp;:&nbsp;<a class="membertype" href="/Object">Object</a></div></div><div class="member-body"><p class="description">Parses the specified string of JSON and converts it to an <code>Object</code>. <code>reviver</code> will be called for each parsed key/value pair and the function's return value is used in place of the value.</p><div class="example"><div class="codePanel"><h4>Example:</h4><textarea class="code" rows="12" cols="60" wrap="off">
 var reviver = function(key, value) {
   console.log(&#39;reviver called with key=&#34;&#39; + key + &#39;&#34;, value=&#39; + value);
