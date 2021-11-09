@@ -174,7 +174,7 @@ https://url.spec.whatwg.org/#dom-urlsearchparams-set
 ----
 prototype.sort() : undefined
 
-Sorts the name/value pairs by the name. Order of values is preserved.
+Sorts the name/value pairs by the name. Order of values for the same name is preserved.
 
 <example>
 const params = new URLSearchParams('?a=1&b=2&a=another+value');
