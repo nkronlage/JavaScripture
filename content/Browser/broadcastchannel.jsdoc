@@ -12,7 +12,7 @@ https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel
 ----
 new BroadcastChannel(name : String) : BroadcastChannel
 
-Creates a new BroadcastChannel for the specified **name**. 
+Creates a new BroadcastChannel for the specified **name**.
 
 <htmlexample>
 <script id='workerCode' type='text/plain'>
