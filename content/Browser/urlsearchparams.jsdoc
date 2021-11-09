@@ -1,5 +1,9 @@
 URLSearchParams : Object
 
+Helper method to manipulate search parameters (such as **?foo=bar**) of a url as a 
+set of name/value pairs. Note, each name can have multiple values. See
+%%/URL#searchParams|**URL.searchParams**%%.
+
 Iterable:
 true
 
@@ -7,26 +11,178 @@ Spec:
 https://url.spec.whatwg.org/#urlsearchparams
 
 ----
-new URLSearchParams(init = '' : String) : URLSearchParams
+new URLSearchParams() : URLSearchParams
+
+Constructs a new URLSearchParams.
+
+<example>
+const params = new URLSearchParams();
+
+params.set('a', 1);
+params.set('b', 2);
+console.log(params.get('a'));
+console.log(params.get('b'));
+
+params.set('c', 3);
+
+for (const [k, v] of params) {
+  console.log(k, v);
+}
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-urlsearchparams
+
+----
+new URLSearchParams(init : String) : URLSearchParams
+
+Constructs a new URLSearchParams from the specified string.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2');
+
+console.log(params.get('a'));
+console.log(params.get('b'));
+
+params.set('c', 3);
+
+for (const [k, v] of params) {
+  console.log(k, v);
+}
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-urlsearchparams
 
 ----
 new URLSearchParams(init : URLSearchParams) : URLSearchParams
 
+Constructs a new URLSearchParams that is a copy of **init**.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2');
+const params2 = new URLSearchParams(params);
+params2.set('c', 3);
+
+console.log('params:');
+for (const [k, v] of params) {
+  console.log(k, v);
+}
+
+console.log('params2:');
+for (const [k, v] of params2) {
+  console.log(k, v);
+}
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-urlsearchparams
+
 ----
 prototype.append(name : String, value : String) : undefined
+
+Appends the specified name/value pair to **this**. Note, unlike %%#set|**set()**%%,
+this allows multiple values for a given name.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2');
+
+// Append keeps existing name/value pairs
+params.append('a', 'append value');
+console.log(params);
+
+// Notice set replaces all name/value pairs
+params.set('a', 'set value');
+console.log(params);
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-append
 
 ----
 prototype.delete(name : String) : undefined
 
+Removes all name/value pairs with the given name.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2');
+
+params.delete('a');
+console.log(params);
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-delete
+
 ----
 prototype.get(name : String) : String
+
+Gets the first value for the specified name.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2');
+console.log(params.get('a'));
+console.log(params.get('b'));
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-get
 
 ----
 prototype.getAll(name : String) : Array<String>
 
+Gets all values for the specified name.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2&a=another+value');
+console.dir(params.getAll('a'));
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-getall
+
 ----
 prototype.has(name : String) : Boolean
 
+Returns **true** if **name** is defined in **this**.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2');
+console.log(params.has('a'));
+console.log(params.has('c'));
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-has
+
 ----
 prototype.set(name : String, value : String) : undefined
+
+Sets the **value** for the specified **name**. Note, if there are multiple values 
+for **name**, all will be replaced with the new **value**. See also %%#append|**append()**%%.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2&a=another+value');
+
+params.set('a', 'set value');
+console.log(params);
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-set
+
+----
+prototype.sort() : undefined
+
+Sorts the name/value pairs by the name. Order of values is preserved.
+
+<example>
+const params = new URLSearchParams('?a=1&b=2&a=another+value');
+
+params.sort();
+console.log(params);
+</example>
+
+Spec:
+https://url.spec.whatwg.org/#dom-urlsearchparams-sort
 
