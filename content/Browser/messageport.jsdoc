@@ -16,7 +16,7 @@ Serializes **message** and sends it to the other MessagePort.
 
 <htmlexample>
 <iframe id='iframe'></iframe>
-<script id='iframeCode' type ='text/plain'>
+<script id='iframeCode' type='text/plain'>
   window.onmessage = e => {
     const port2 = e.data;
     port2.onmessage = e => {

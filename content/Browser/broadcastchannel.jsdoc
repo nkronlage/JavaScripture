@@ -1,0 +1,165 @@
+BroadcastChannel : EventTarget
+
+BroadcastChannel provides a simple way for different contexts (such as %%/Window|Windows%%
+or %%/Worker|Workers%%) in the same %%URL#origin|origin%% to broadcast messages all
+other BroadcastChannels created with the same %%#name|name%%.
+
+See also %%/Window#postMessage|Window.postMessage%% and %%/MessageChannel|MessageChannel%%.
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel
+
+----
+new BroadcastChannel(name : String) : BroadcastChannel
+
+Creates a new BroadcastChannel for the specified **name**. 
+
+<htmlexample>
+<script id='workerCode' type='text/plain'>
+  const channel = new BroadcastChannel('constructor-example');
+  channel.postMessage('message from worker');
+</script>
+<iframe id='iframe'></iframe>
+<script id='iframeCode' type='text/plain'>
+  const channel = new BroadcastChannel('constructor-example');
+  channel.postMessage('message from iframe');
+</script>
+<script>
+  const channel = new BroadcastChannel('constructor-example');
+  channel.onmessage = e => console.log(e.data);
+
+  const workerCode = document.getElementById('workerCode').textContent;
+  const workerBlob = new Blob([workerCode], { type: 'application/javascript' });
+  const worker = new Worker(URL.createObjectURL(workerBlob));
+
+  var iframeCode = document.getElementById('iframeCode').textContent;
+  var html = '<script>' + iframeCode + '</' + 'script>';
+  var iframeBlob = new Blob([html], { type: 'text/html' });
+  document.querySelector('#iframe').src = URL.createObjectURL(iframeBlob);
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#dom-broadcastchannel
+
+----
+instance.name : String
+
+Returns the name of the channel.
+
+<htmlexample>
+<script>
+  const channel = new BroadcastChannel('name-example');
+  console.log(channel.name);
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#dom-broadcastchannel-name
+
+----
+prototype.close() : undefined
+
+Causes **this** to stop listening to message. Allows **this** to be garbage collected.
+
+<htmlexample>
+<script id='worker' type='text/plain'>
+  const channel = new BroadcastChannel('close-example');
+  for (let i = 1; i < 10; i++) {
+    setTimeout(() => channel.postMessage(i), 100 * i);
+   }
+</script>
+<script>
+  const channel = new BroadcastChannel('close-example');
+  channel.onmessage = e => {
+    console.log(`got: ${e.data}`);
+
+    // stop listening after 4 messages
+    if (e.data === 4) {
+      channel.close();
+    }
+  };
+
+  const code = document.getElementById('worker').textContent;
+  const blob = new Blob([code], { type: 'application/javascript' });
+  const worker = new Worker(URL.createObjectURL(blob));
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#dom-broadcastchannel-close
+
+----
+prototype.postMessage(message : Object) : undefined
+
+Serializes **message** and sends it to all other BroadcastChannels sharing the same
+%%#name|name%% as **this** on the same origin.
+
+<htmlexample>
+<script id='worker' type='text/plain'>
+  const channel = new BroadcastChannel('postMessage-example');
+  // Many data types can be sent.
+  channel.postMessage('foo');
+  channel.postMessage(1234);
+  channel.postMessage(5678n);
+  channel.postMessage({foo: 'bar'});
+  channel.postMessage(['a', 'b', 'c']);
+</script>
+<script>
+  const channel = new BroadcastChannel('postMessage-example');
+  channel.onmessage = e => console.log(`got ${typeof e.data}:`, e.data);
+
+  const code = document.getElementById('worker').textContent;
+  const blob = new Blob([code], { type: 'application/javascript' });
+  const worker = new Worker(URL.createObjectURL(blob));
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#dom-broadcastchannel-postmessage
+
+----
+event.message : listener(event : MessageEvent) : undefined
+
+Fired when %%#postMessage|**postMessage**%% is called on another BroadcastChannel
+sharing the same %%#name|name%% as **this**.
+
+<htmlexample>
+<script id='workerCode' type='text/plain'>
+  const channel = new BroadcastChannel('message-example');
+  channel.postMessage('message from worker');
+</script>
+<iframe id='iframe'></iframe>
+<script id='iframeCode' type='text/plain'>
+  const channel = new BroadcastChannel('message-example');
+  channel.postMessage('message from iframe');
+</script>
+<script>
+  const channel = new BroadcastChannel('message-example');
+  channel.onmessage = e => console.log(e.data);
+
+  const workerCode = document.getElementById('workerCode').textContent;
+  const workerBlob = new Blob([workerCode], { type: 'application/javascript' });
+  const worker = new Worker(URL.createObjectURL(workerBlob));
+
+  var iframeCode = document.getElementById('iframeCode').textContent;
+  var html = '<script>' + iframeCode + '</' + 'script>';
+  var iframeBlob = new Blob([html], { type: 'text/html' });
+  document.querySelector('#iframe').src = URL.createObjectURL(iframeBlob);
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#handler-broadcastchannel-onmessage
+
+----
+event.messageerror : listener(event : MessageEvent) : undefined
+
+Fired when unable to deserialize a message from another BroadcastChannel in **this**'
+context.
+
+Spec:
+https://html.spec.whatwg.org/multipage/web-messaging.html#handler-broadcastchannel-onmessageerror

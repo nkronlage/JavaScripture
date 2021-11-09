@@ -1,8 +1,10 @@
 MessageChannel : Object
 
-A message channel allows sending messages between contexts such as two
-%%/Worker|Workers%% by %%/Window#postMessage|transferring%% the ports
-to the workers.
+A message channel allows sending messages between contexts, such as two
+%%/Worker|Workers%%, by %%/Window#postMessage|transferring%% the MessageChannel's
+%%/MessagePort|MessagePorts%% to the workers.
+
+See also %%/Window#postMessage|Window.postMessage%% and %%/BroadcastChannel|BroadcastChannel%%.
 
 Spec:
 https://html.spec.whatwg.org/multipage/web-messaging.html#messageport

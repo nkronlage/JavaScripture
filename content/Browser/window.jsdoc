@@ -1397,7 +1397,7 @@ owns **this** and no longer available in the context that called
 **postMessage()**.
 </p>
 <p>
-See also %%/MessageChannel|MessageChannel%%.
+See also %%/BroadcastChannel|BroadcastChannel%% and %%/MessageChannel|MessageChannel%%.
 </p>
 <htmlexample>
 <iframe id='iframe'></iframe>

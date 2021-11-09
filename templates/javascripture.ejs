@@ -517,12 +517,24 @@ var executeExample = function(example, prop) {
           if (res.length) {
             res += ' ';
           }
-          res += escapeHTML(arguments[i]);
+          if (typeof arguments[i] === 'string') {
+            res += arguments[i];
+          }
+          else {
+            res += dumpObject(arguments[i], 0);
+          }
         }
-        results.insertAdjacentHTML('beforeend', res + '\n');
+        results.insertAdjacentHTML('beforeend', escapeHTML(res) + '\n');
       },
-      dir: function(obj) {
-        results.insertAdjacentHTML('beforeend', escapeHTML(dumpObject(obj, 0)) + '\n');
+      dir: function() {
+        var res = '';
+        for (var i = 0; i < arguments.length; i++) {
+          if (res.length) {
+            res += ' ';
+          }
+          res += dumpObject(arguments[i], 0);
+        }
+        results.insertAdjacentHTML('beforeend', escapeHTML(res) + '\n');
       }
     };
 
@@ -591,12 +603,24 @@ var executeHTMLExample = function(example, prop) {
           if (res.length) {
             res += ' ';
           }
-          res += escapeHTML(arguments[i]);
+          if (typeof arguments[i] === 'string') {
+            res += arguments[i];
+          }
+          else {
+            res += dumpObject(arguments[i], 0);
+          }
         }
-        results.insertAdjacentHTML('beforeend', res + '\n');
+        results.insertAdjacentHTML('beforeend', escapeHTML(res) + '\n');
       },
       dir: function(obj) {
-        results.insertAdjacentHTML('beforeend', escapeHTML(dumpObject(obj, 0)) + '\n');
+        var res = '';
+        for (var i = 0; i < arguments.length; i++) {
+          if (res.length) {
+            res += ' ';
+          }
+          res += dumpObject(arguments[i], 0);
+        }
+        results.insertAdjacentHTML('beforeend', escapeHTML(res) + '\n');
       }
     };
 
