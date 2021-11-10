@@ -517,7 +517,9 @@ var executeExample = function(example, prop) {
           if (res.length) {
             res += ' ';
           }
-          if (typeof arguments[i] === 'string') {
+          if (arguments[i] === undefined || 
+              arguments[i] === null || 
+              arguments[i].toString !== Object.prototype.toString) {
             res += arguments[i];
           }
           else {
@@ -603,7 +605,9 @@ var executeHTMLExample = function(example, prop) {
           if (res.length) {
             res += ' ';
           }
-          if (typeof arguments[i] === 'string') {
+          if (arguments[i] === undefined || 
+              arguments[i] === null || 
+              arguments[i].toString !== Object.prototype.toString) {
             res += arguments[i];
           }
           else {
