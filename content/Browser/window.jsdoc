@@ -1348,9 +1348,141 @@ and
 ----
 prototype.print() : undefined
 
+----
+prototype.showDirectoryPicker([options : { \
+    id : String, \
+    startIn : Object /* Either a %%/String|String%% or %%/FileSystemHandle|FileSystemHandle%% */, \
+  }]) : Promise<FileSystemDirectoryHandle>
+
+Specifying **options.id** will cause the browser to remember the directory of the chosen file
+so another call to **showSaveFilePicker** with the same **id** will start in that directory.
+
+<htmlexample>
+startIn: <select id="startIn">
+  <option>desktop</option>
+  <option>documents</option>
+  <option>downloads</option>
+  <option>music</option>
+  <option selected>pictures</option>
+  <option>videos</option>
+</select><br>
+<button onclick="openDirectory()">Open Directory</button>
+<script>
+  const openDirectory = async () => {
+    try {
+      const directoryHandle = await showDirectoryPicker({
+        startIn: document.getElementById('startIn').value,
+      });
+      console.log(`${directoryHandle.name}:`);
+      for await (const [name, fileHandle] of directoryHandle) {
+        console.log(' ', name, fileHandle.kind);
+      }
+    }
+    catch (e) {
+      console.log(e);
+    }
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-window-showdirectorypicker
+
+----
+prototype.showOpenFilePicker([options : { \
+    excludeAcceptAllOption : Boolean, \
+    id : String, \
+    multiple : Boolean, \
+    startIn : Object /* Either a %%/String|String%% or %%/FileSystemHandle|FileSystemHandle%% */, \
+    types : Array, \
+  }]) : Promise<Array<FileSystemFileHandle>>
+
+Specifying **options.id** will cause the browser to remember the directory of the chosen file
+so another call to **showSaveFilePicker** with the same **id** will start in that directory. 
+See %%https://wicg.github.io/file-system-access/#api-filepickeroptions-starting-directory|spec%% for
+complete details.
+
+<htmlexample>
+<label><input id="excludeAcceptAllOption" type="checkbox">excludeAcceptAllOption</label><br>
+<label><input id="multiple" type="checkbox">multiple</label><br>
+startIn: <select id="startIn">
+  <option>desktop</option>
+  <option>documents</option>
+  <option>downloads</option>
+  <option>music</option>
+  <option selected>pictures</option>
+  <option>videos</option>
+</select><br>
+<button onclick="openFile()">Open File</button>
+<div id="output"><div>
+<script>
+  const openFile = async () => {
+    try {
+      const fileHandles = await showOpenFilePicker({
+        excludeAcceptAllOption: document.getElementById('excludeAcceptAllOption').checked,
+        multiple: document.getElementById('multiple').checked,
+        startIn: document.getElementById('startIn').value,
+        types: [
+          {
+            description: 'Raster Image Files',
+            accept: {
+              'image/*': ['.png', '.jpeg', '.jpg']
+            }
+          },
+          {
+            description: 'Vector Image Files',
+            accept: {
+              'image/*': '.svg'
+            }
+          }
+        ],
+      });
+      console.log(`Got ${fileHandles.length} files`);
+
+      const files = await Promise.all(fileHandles.map(handle => handle.getFile()));
+
+      const images = files.map(file => {
+        const image = new Image();
+        image.src = URL.createObjectURL(file);
+        image.onload = () => URL.revokeObjectURL(file);
+        return image;
+      });
+
+      document.getElementById('output').replaceChildren(...images);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-window-showopenfilepicker
+
+----
+prototype.showSaveFilePicker([options : { \
+    excludeAcceptAllOption : Boolean, \
+    id : String, \
+    multiple : Boolean, \
+    startIn : Object /* Either a %%/String|String%% or %%/FileSystemHandle|FileSystemHandle%% */, \
+    suggestedName : String, \
+    types : Array, \
+  }]) : Promise<FileSystemFileHandle>
+
+
+Specifying **options.id** will cause the browser to remember the directory of the chosen file
+so another call to **showSaveFilePicker** with the same **id** will start in that directory.
+
+<htmlexample>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-window-showsavefilepicker
 
 ----
 prototype.showModalDialog(url : String, [arguments : Object]) : Object
+
 
 
 ----

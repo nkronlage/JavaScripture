@@ -1,0 +1,108 @@
+FileSystemHandle : Object
+
+Spec:
+https://wicg.github.io/file-system-access/#filesystemhandle
+
+----
+instance.kind : String
+
+Will be one of **'directory'** or **'file'**
+
+<htmlexample>
+<button onclick="openFile()">Open File</button>
+<script>
+  const openFile = async () => {
+    const [fileHandle] = await showOpenFilePicker();
+
+    console.log(fileHandle.kind);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemhandle-kind
+
+----
+instance.name : String
+
+<htmlexample>
+<button onclick="openFile()">Open File</button>
+<script>
+  const openFile = async () => {
+    const [fileHandle] = await showOpenFilePicker();
+
+    console.log(fileHandle.name);
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemhandle-name
+
+----
+prototype.isSameEntry(other : FileSystemHandle) : Promise<boolean>
+
+<htmlexample>
+<button onclick="openFile()">Open File</button>
+<script>
+  const openFile = async () => {
+    const [fileHandle1] = await showOpenFilePicker();
+    const [fileHandle2] = await showOpenFilePicker();
+
+    console.log(await fileHandle1.isSameEntry(fileHandle2));
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemhandle-issameentry
+
+----
+prototype.queryPermission([descriptor : { \
+  mode : String /* Must be **'read'** or **'readwrite'**. Default = **'read'**. */ \
+}]) : Promise<String>
+
+Return value will be one of **'denied'**, **'granted'**, or **'prompt'**.
+
+<htmlexample>
+<button onclick="openFile()">Open File</button>
+<script>
+  const openFile = async () => {
+    const [fileHandle] = await showOpenFilePicker();
+
+    console.log(await fileHandle.queryPermission({mode: 'read'}));
+    console.log(await fileHandle.queryPermission({mode: 'readwrite'}));
+  };
+</script>
+
+</htmlexample>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemhandle-querypermission
+
+----
+prototype.requestPermission([descriptor : { \
+  mode : String /* Must be **'read'** or **'readwrite'**. Default = **'read'**. */ \
+}]) : Promise<String>
+
+Return value will be one of **'denied'**, **'granted'**, or **'prompt'**.
+
+<htmlexample>
+<button onclick="openFile()">Open File</button>
+<script>
+  const openFile = async () => {
+    const [fileHandle] = await showOpenFilePicker();
+
+    console.log(await fileHandle.requestPermission({mode: 'readwrite'}));
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemhandle-requestpermission

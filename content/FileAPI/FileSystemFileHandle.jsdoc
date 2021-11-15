@@ -1,0 +1,18 @@
+FileSystemFileHandle : FileSystemHandle
+
+Spec:
+https://wicg.github.io/file-system-access/#api-filesystemfilehandle
+
+----
+prototype.getFile() : Promise<File>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemfilehandle-getfile
+
+----
+prototype.createWritable([options : { \
+    keepExistingData : Boolean /* Default = **false**. */, \
+  }]) : Promise<FileSystemWritableFileStream> 
+
+Spec: 
+https://wicg.github.io/file-system-access/#dom-filesystemfilehandle-createwritable

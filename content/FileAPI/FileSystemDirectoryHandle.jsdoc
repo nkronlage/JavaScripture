@@ -1,0 +1,72 @@
+FileSystemDirectoryHandle : FileSystemHandle
+
+See %%/Window#showDirectoryPicker|window.showDirectoryPicker%%.
+
+Spec:
+https://wicg.github.io/file-system-access/#api-filesystemdirectoryhandle
+
+AsyncIterable:
+true
+
+----
+instance[Symbol.asyncIterator] : Function<AsyncIterator>
+
+<htmlexample>
+startIn: <select id="startIn">
+  <option>desktop</option>
+  <option>documents</option>
+  <option>downloads</option>
+  <option>music</option>
+  <option selected>pictures</option>
+  <option>videos</option>
+</select><br>
+<button onclick="openDirectory()">Open Directory</button>
+<script>
+  const openDirectory = async () => {
+    try {
+      const directoryHandle = await showDirectoryPicker({
+        startIn: document.getElementById('startIn').value,
+      });
+      console.log(`${directoryHandle.name}:`);
+      for await (const [name, fileHandle] of directoryHandle) {
+        console.log(' ', name, fileHandle.kind);
+      }
+    }
+    catch (e) {
+      console.log(e);
+    }
+  };
+</script>
+</htmlexample>
+
+
+----
+prototype.getFileHandle(name : String, [options : { \
+    create : Boolean /* Default = **false**. */ \
+  }]) : Promise<FileSystemFileHandle>
+
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemdirectoryhandle-getfilehandle
+
+----
+prototype.getDirectoryHandle(name : String, [options : { \
+    create : Boolean /* Default = **false**. */ \
+  }]) : Promise<FileSystemDirectoryHandle>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemdirectoryhandle-getdirectoryhandle
+
+----
+prototype.removeEntry(name : String, [options : { \
+    recursive : Boolean /* Default = **false**. */ \
+  }]) : Promise<undefined>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemdirectoryhandle-removeentry
+
+----
+prototype.resolve(possibleDescendant : FileSystemHandle) : Promise<Array<String>>
+
+Spec:
+https://wicg.github.io/file-system-access/#dom-filesystemdirectoryhandle-resolve
