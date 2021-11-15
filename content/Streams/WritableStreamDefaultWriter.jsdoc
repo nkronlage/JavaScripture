@@ -1,0 +1,61 @@
+WritableStreamDefaultWriter : Object
+
+Spec:
+https://streams.spec.whatwg.org/#writablestreamdefaultwriter
+
+----
+new WritableStreamDefaultWriter(stream : WritableStream) : WritableStreamDefaultWriter
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-constructor
+
+----
+instance.closed : Promise<undefined>
+
+ReadOnly:
+true
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-closed
+
+----
+instance.desiredSize : Number
+
+ReadOnly:
+true
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-desired-size
+
+----
+instance.ready : Promise<undefined>
+
+ReadOnly:
+true
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-ready
+
+----
+prototype.abort([reason : Object]) : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-abort
+
+----
+prototype.close() : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-close
+
+----
+prototype.releaseLock() : undefined
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-release-lock
+
+----
+prototype.write([chunk : Object]) : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#default-writer-write

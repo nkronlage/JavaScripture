@@ -5,8 +5,20 @@ Represents a stream of data.
 Spec:
 https://streams.spec.whatwg.org/#rs-class-definition
 
+AsyncIterable:
+true
+
 ----
 new ReadableStream([underlyingSource : Object, [strategy : Object]]) : ReadableStream
+
+Spec:
+https://streams.spec.whatwg.org/#rs-constructor
+
+----
+instance[Symbol.asyncIterator] : Function<AsyncIterator>
+
+Spec:
+https://streams.spec.whatwg.org/#rs-asynciterator
 
 ----
 instance.locked : Boolean
@@ -14,8 +26,14 @@ instance.locked : Boolean
 ReadOnly:
 true
 
+Spec:
+https://streams.spec.whatwg.org/#rs-locked
+
 ----
 prototype.cancel([reason : Object]) : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#rs-cancel
 
 ----
 prototype.getReader([options : {\
@@ -32,6 +50,9 @@ while (!(result = await reader.read()).done) {
 }
 </example>
 
+Spec:
+https://streams.spec.whatwg.org/#rs-get-reader
+
 ----
 prototype.pipeThrough(transform : {\
     readable : ReadableStream, \
@@ -42,7 +63,10 @@ prototype.pipeThrough(transform : {\
     preventAbort : Boolean, \
     preventCancel : Boolean, \
     preventClose : Boolean, \
-  }]) : undefined
+  }]) : ReadableStream
+
+Spec:
+https://streams.spec.whatwg.org/#rs-pipe-through
 
 ----
 prototype.pipeTo(destination : WritableStream, [options : { \
@@ -50,7 +74,10 @@ prototype.pipeTo(destination : WritableStream, [options : { \
     preventAbort : Boolean, \
     preventCancel : Boolean, \
     preventClose : Boolean, \
-  }]) : undefined
+  }]) : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#rs-pipe-to
 
 ----
 prototype.tee() : Array<ReadableStream>

@@ -1,0 +1,37 @@
+WritableStream : Object
+
+Spec:
+https://streams.spec.whatwg.org/#writablestream
+
+----
+new WritableStream([underlyingSink : Object, [strategy : Object]]) : WritableStream
+
+Spec:
+https://streams.spec.whatwg.org/#ws-constructor
+
+----
+instance.locked : Boolean
+
+Spec:
+https://streams.spec.whatwg.org/#ws-locked
+
+ReadOnly:
+true
+
+----
+prototype.abort([reason : Object]) : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#ws-abort
+
+----
+prototype.close() : Promise<undefined>
+
+Spec:
+https://streams.spec.whatwg.org/#ws-close
+
+----
+prototype.getWriter() : WritableStreamDefaultWriter
+
+Spec:
+https://streams.spec.whatwg.org/#ws-get-writer

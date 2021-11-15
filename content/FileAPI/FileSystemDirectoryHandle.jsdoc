@@ -9,7 +9,7 @@ AsyncIterable:
 true
 
 ----
-instance[Symbol.asyncIterator] : Function<AsyncIterator>
+instance[Symbol.asyncIterator] : Function<AsyncIterator<FileSystemHandle>>
 
 <htmlexample>
 startIn: <select id="startIn">

@@ -1,0 +1,30 @@
+FileSystemWritableFileStream : WritableStream
+
+Spec:
+https://wicg.github.io/file-system-access/#filesystemwritablefilestream
+
+----
+prototype.seek(position : Number) : Promise<undefined>
+
+----
+prototype.truncate(size : Number) : Promise<undefined>
+
+----
+prototype.write(arrayBuffer : ArrayBuffer) : Promise<undefined>
+
+----
+prototype.write(arrayBufferView : ArrayBufferView) : Promise<undefined>
+
+----
+prototype.write(blob : Blob) : Promise<undefined>
+
+----
+prototype.write(string : String) : Promise<undefined>
+
+----
+prototype.write(writeParams : { \
+    data : Object /* Must be of type %%/ArrayBuffer|ArrayBuffer%%, %%/ArrayBufferView|ArrayBufferView%%, %%/Blob|Blob%%, or %%/String|String%%. */, \
+    position : Number, \
+    size : Number, \
+    type : String /* Must be one of **'write'**, **'seek'**, **'truncate'** */, \
+  }) : Promise<undefined>
