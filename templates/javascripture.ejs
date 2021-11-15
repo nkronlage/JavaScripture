@@ -261,15 +261,55 @@ var autocomplete = function(searchTerm) {
   }
   resultsBox.style.display = '';
 
+
   var regexp = RegExp(searchTerm.replace(/[^\w]/, function(x) { return '\\' + x }), 'i');
+  var looseRegexpString = [...searchTerm].map((char, i) => {
+    if (/[^\w]/.test(char)) {
+      return (i > 0 ? '.*' : '') + '\\' + char;
+    }
+    return (i > 0 ? '.*' : '') + char;
+  }).join('');
+  var looseRegexp = RegExp(looseRegexpString, 'i');
 
   var filtered = possibilities.filter(function(p) { 
-    return regexp.test(p);
+    return looseRegexp.test(p);
   });
 
   filtered.sort(function(a, b) {
-    var aMatchIndex = a.match(regexp).index;
-    var bMatchIndex = b.match(regexp).index;
+    var aMatchIndex = a.match(regexp)?.index;
+    var bMatchIndex = b.match(regexp)?.index;
+
+    var aLoose = (aMatchIndex === undefined);
+    var bLoose = (bMatchIndex === undefined);
+
+    var aDotIndex = a.indexOf('.');
+    var bDotIndex = b.indexOf('.');
+
+    var aDot = (aDotIndex !== -1);
+    var bDot = (bDotIndex !== -1);
+
+    var aObjectLength = aDotIndex !== -1 ? aDotIndex : a.length;
+    var bObjectLength = bDotIndex !== -1 ? bDotIndex : b.length;
+
+    // Show loose things at the end
+    if (aLoose && !bLoose) {
+      return 1;
+    }
+    if (!aLoose && bLoose) {
+      return -1;
+    }
+    if (aLoose && bLoose) {
+      if (!aDot && bDot) {
+        return -1;
+      }
+      if (aDot && !bDot) {
+        return 1;
+      }
+      if (a.length !== b.length) {
+        return a.length - b.length;
+      }
+      return a.localeCompare(b);
+    }
 
     var aAtStart = (aMatchIndex === 0);
     var bAtStart = (bMatchIndex === 0);
@@ -281,9 +321,6 @@ var autocomplete = function(searchTerm) {
     if (!aAtStart && bAtStart) {
       return 1;
     }
-
-    var aDotIndex = a.indexOf('.');
-    var bDotIndex = b.indexOf('.');
 
     var aAfterDot = (aMatchIndex === aDotIndex + 1)
     var bAfterDot = (bMatchIndex === bDotIndex + 1)
@@ -297,9 +334,6 @@ var autocomplete = function(searchTerm) {
     }
 
     // Then choose things that don't have a dot
-    var aDot = (aDotIndex !== -1);
-    var bDot = (bDotIndex !== -1);
-    
     if (!aDot && bDot) {
       return -1;
     }
