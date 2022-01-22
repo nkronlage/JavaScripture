@@ -263,7 +263,7 @@ var autocomplete = function(searchTerm) {
 
 
   var regexp = RegExp(searchTerm.replace(/[^\w]/, function(x) { return '\\' + x }), 'i');
-  var looseRegexpString = [...searchTerm].map((char, i) => {
+  var looseRegexpString = Array.from(searchTerm).map((char, i) => {
     if (/[^\w]/.test(char)) {
       return (i > 0 ? '.*' : '') + '\\' + char;
     }
