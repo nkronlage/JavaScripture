@@ -1558,6 +1558,28 @@ See also %%/BroadcastChannel|BroadcastChannel%% and %%/MessageChannel|MessageCha
 </htmlexample>
 
 ----
+prototype.structuredClone(value : Object, [transfer : Array<Transferable>]) : Object
+
+Creates a deep clone of **value**. Elements of **value** in **transfer** will be
+transferred to the new object and will no longer be useable on **value**.
+
+<example>
+const toClone = { a: 1, b: 2 };
+const clone = structuredClone(toClone);
+
+console.dir(toClone);
+console.dir(clone);
+
+toClone.a = 'changed';
+
+console.dir(toClone);
+console.dir(clone);
+</example>
+
+Spec:
+https://html.spec.whatwg.org/multipage/structured-data.html#structured-cloning
+
+----
 event.abort : listener(event : Event) : undefined
 
 ----
