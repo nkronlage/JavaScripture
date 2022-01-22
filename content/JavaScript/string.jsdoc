@@ -200,12 +200,12 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.8
 
 ----
 prototype.localeCompare(that : String, [locales : Array<String>, [options : { \
-  caseFirst : Boolean, /* */ \
-  ignorePunctuation : Boolean, /* */ \
-  localeMatcher : String, /* */ \
-  numeric : Boolean, /* */ \
-  sensitivity : String, /* */ \
-  usage : String /* */ \
+  caseFirst : String /* Must be one of **'lower'**, **'upper'**, or **'false'**. */, \
+  ignorePunctuation : Boolean /* */, \
+  localeMatcher : String /* Must be one of **'best fit'** or **'lookup'**. */, \
+  numeric : Boolean /* */, \
+  sensitivity : String /* Must be one of **'accent'**, **'base'**, **'case'**, or **'variant'**. */, \
+  usage : String /* Must be one of **'search'** or **'sort'**. */ \
 }]]) : Number
 
 Compares **this** to **that**.  Returns a negative number if **this** would sort 
