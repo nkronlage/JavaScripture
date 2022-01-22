@@ -38,6 +38,38 @@ http://dev.w3.org/csswg/cssom-view/#dom-element-clientleft
 ----
 instance.clientWidth : Number
 
+The width of **this** in CSS pixels. Does not include **this**'s border or scrollbar.
+
+Will be **0** for %%/CSSStyleDeclaration#display|**display: inline**%% elements; use
+%%#getBoundingClientRect|getBoundingClientRect()%% or
+%%%#getClientRects|getClientRects()%% instead.
+See also 
+%%/HTMLElement#offsetWidth|HTMLElement.offsetWidth%% and %%#scrollWidth|scrollWidth%%.
+
+<htmlexample>
+<style>
+  div {
+    width: 100px;
+    height: 20px;
+    background: pink;
+    border: 10px solid blue;
+    padding: 15px;
+    white-space: pre;
+    overflow: scroll;
+  }
+</style>
+<div>My Div's very long content....
+that
+must
+scroll</div>
+<script>
+  const div = document.querySelector('div');
+  console.log('clientWidth', div.clientWidth);
+  console.log('offsetWidth', div.offsetWidth);
+  console.log('scrollWidth', div.scrollWidth);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
@@ -46,6 +78,37 @@ http://dev.w3.org/csswg/cssom-view/#dom-element-clientwidth
 
 ----
 instance.clientHeight : Number
+
+The height of **this** in CSS pixels. Does not include **this**'s border or scrollbar.
+Will be **0** for %%/CSSStyleDeclaration#display|**display: inline**%% elements; use
+%%#getBoundingClientRect|getBoundingClientRect()%% or
+%%%#getClientRects|getClientRects()%% instead.
+See also 
+%%/HTMLElement#offsetHeight|HTMLElement.offsetHeight%% and %%#scrollHeight|scrollHeight%%.
+
+<htmlexample>
+<style>
+  div {
+    width: 100px;
+    height: 20px;
+    background: pink;
+    border: 10px solid blue;
+    padding: 15px;
+    white-space: pre;
+    overflow: scroll;
+  }
+</style>
+<div>My Div's very long content....
+that
+must
+scroll</div>
+<script>
+  const div = document.querySelector('div');
+  console.log('clientHeight', div.clientHeight);
+  console.log('offsetHeight', div.offsetHeight);
+  console.log('scrollHeight', div.scrollHeight);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -220,6 +283,34 @@ http://dev.w3.org/csswg/cssom-view/#dom-element-scrollleft
 ----
 instance.scrollWidth : Number
 
+The width of the total scrollable region of **this** in CSS pixels. Will be the same as
+%%/Element#clientWidth|clientWidth%% if **this** does not scroll horizontally. See also 
+%%#clientWidth|clientWidth%% and %%/HTMLElement#offsetWidth|HTMLElement.offsetWidth%%.
+
+<htmlexample>
+<style>
+  div {
+    width: 100px;
+    height: 20px;
+    background: pink;
+    border: 10px solid blue;
+    padding: 15px;
+    white-space: pre;
+    overflow: scroll;
+  }
+</style>
+<div>My Div's very long content....
+that
+must
+scroll</div>
+<script>
+  const div = document.querySelector('div');
+  console.log('clientWidth', div.clientWidth);
+  console.log('offsetWidth', div.offsetWidth);
+  console.log('scrollWidth', div.scrollWidth);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
@@ -228,6 +319,34 @@ http://dev.w3.org/csswg/cssom-view/#dom-element-scrollwidth
 
 ----
 instance.scrollHeight : Number
+
+The height of the total scrollable region of **this** in CSS pixels. Will be the same as
+%%/Element#clientWidth|clientWidth%% if **this** does not scroll vertically. See also 
+%%#clientHeight|clientHeight%% and %%/HTMLElement#offsetHeight|HTMLElement.offsetHeight%%.
+
+<htmlexample>
+<style>
+  div {
+    width: 100px;
+    height: 20px;
+    background: pink;
+    border: 10px solid blue;
+    padding: 15px;
+    white-space: pre;
+    overflow: scroll;
+  }
+</style>
+<div>My Div's very long content....
+that
+must
+scroll</div>
+<script>
+  const div = document.querySelector('div');
+  console.log('clientHeight', div.clientHeight);
+  console.log('offsetHeight', div.offsetHeight);
+  console.log('scrollHeight', div.scrollHeight);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
@@ -551,6 +670,8 @@ part of the element
 text elements split on multiple lines will return a list with
 **length** > 1).
 
+See also %%#clientWidth|clientWidth%% and %%#clientHeight|clientHeight%%.
+
 <htmlexample>
 <div style='width: 120px'>
 <span id='foo'>This is a string of wrapping text</span>
@@ -581,6 +702,8 @@ viewport. If this is a text element that is split on multiple lines,
 the rectangle will be enlarged to contain all portions.
 Use %%#getClientRects|**getClientRects()**%% to get the rectangles
 of each portion.
+
+See also %%#clientWidth|clientWidth%% and %%#clientHeight|clientHeight%%.
 
 <htmlexample>
 <span id='foo'>This is a string of text</span>

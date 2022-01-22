@@ -38,8 +38,6 @@ is replaced by the provided HTML.  Compare to %%#innerHTML|**innerHTML**%%.
 </script>
 </htmlexample>
 
-
-
 ----
 instance.offsetTop : Number
 
@@ -61,6 +59,33 @@ http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetleft
 ----
 instance.offsetWidth : Number
 
+The width of **this** in CSS pixels. Includes **this**'s border and scrollbar.  See also 
+%%/Element#clientWidth|Element.clientWidth%%  and %%/Element#scrollWidth|Element.scrollWidth%%.
+
+<htmlexample>
+<style>
+  div {
+    width: 100px;
+    height: 20px;
+    background: pink;
+    border: 10px solid blue;
+    padding: 15px;
+    white-space: pre;
+    overflow: scroll;
+  }
+</style>
+<div>My Div's very long content....
+that
+must
+scroll</div>
+<script>
+  const div = document.querySelector('div');
+  console.log('clientWidth', div.clientWidth);
+  console.log('offsetWidth', div.offsetWidth);
+  console.log('scrollWidth', div.scrollWidth);
+</script>
+</htmlexample>
+
 ReadOnly:
 true
 
@@ -69,6 +94,33 @@ http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetwidth
 
 ----
 instance.offsetHeight : Number
+
+The height of **this** in CSS pixels. Includes **this**'s border and scrollbar.  See also 
+%%/Element#clientHeight|Element.clientHeight%% and %%/Element#scrollHeight|Element.scrollHeight%%.
+
+<htmlexample>
+<style>
+  div {
+    width: 100px;
+    height: 20px;
+    background: pink;
+    border: 10px solid blue;
+    padding: 15px;
+    white-space: pre;
+    overflow: scroll;
+  }
+</style>
+<div>My Div's very long content....
+that
+must
+scroll</div>
+<script>
+  const div = document.querySelector('div');
+  console.log('clientHeight', div.clientHeight);
+  console.log('offsetHeight', div.offsetHeight);
+  console.log('scrollHeight', div.scrollHeight);
+</script>
+</htmlexample>
 
 ReadOnly:
 true
