@@ -56,7 +56,7 @@ prototype.encodeInto(value : String, destination : Uint8Array) : { \
   }
 
 Writes **value** as a sequence of UTF-8 bytes into **destination**. Returns
-information about the number of characters tread from **value** and bytes
+information about the number of characters read from **value** and bytes
 written to **destination**.
 
 <example>
