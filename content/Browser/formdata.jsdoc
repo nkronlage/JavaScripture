@@ -4,7 +4,7 @@ Use with %%XMLHttpRequest#send_FormData|**XMLHttpRequest.send()**%% to
 send %%/HTMLFormElement|form%% results to a server without navigating.
 
 Spec:
-http://www.w3.org/TR/XMLHttpRequest2/#interface-formdata
+https://xhr.spec.whatwg.org/#interface-formdata
 
 ----
 new FormData() : FormData

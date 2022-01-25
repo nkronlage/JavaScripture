@@ -16,8 +16,10 @@ If you've found a bug with the site, please report it using GitHub:
 If you have any other comments (or don't feel like entering the issue in GitHub), 
 please use the following form to contact us directly.
 
-<form action='https://script.google.com/macros/s/AKfycbx5uDsYEhAmNC5ZS7PIR-0WnK9wH0mEeM27o_Yd2zXN2gdVOMk/exec' method='post'>
-  <input type="text" name="subject" value="">
+<form action="https://script.google.com/macros/s/AKfycbzPRQNiqD508uR2f6QYnzT9-0AQ-HjaMVYjqkESa4kqFzaHASzmasEF4gj9Q726Pjth/exec"
+    method="post"
+    onsubmit="submitForm(event)">
+  <input type="text" name="subject">
   <script>
     var referrer = document.referrer || '';
     referrer = referrer.replace(location.origin, '');
@@ -37,4 +39,30 @@ please use the following form to contact us directly.
     display: none;
   }
 </style>
+
+<script>
+var submitForm = function(e) {
+  e.preventDefault();
+
+  var form = e.target;
+  var request = new XMLHttpRequest();
+  request.open(form.method, form.action, /* async = */ false);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.onreadystatechange = function() {
+    if (request.readyState === 4) {
+      if (request.status === 200) {
+        location = "/thankyou";
+      }
+      else {
+        alert('Sorry, unable to submit feedback. Please try again later.');
+      }
+    }
+  };
+  var params = new URLSearchParams();
+  for (var kvp of new FormData(form).entries()) {
+    params.append(kvp[0], kvp[1]);
+  }
+  request.send(params.toString());
+};
+</script>
 
