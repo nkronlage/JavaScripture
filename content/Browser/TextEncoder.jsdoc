@@ -1,0 +1,70 @@
+TextEncoder : Object
+
+Encodes a %%/String|String%% into a UTF-8 stream of bytes.
+
+Spec:
+https://encoding.spec.whatwg.org/#interface-textencoder
+
+----
+new TextEncoder() : TextEncoder
+
+Creates an encoder that can convert strings to a sequence of UTF-8 bytes.
+
+<example>
+const encoder = new TextEncoder();
+console.log(encoder.encode('abc'));
+console.log(encoder.encode('😀🐱⚽️'));
+</example>
+
+Spec:
+https://encoding.spec.whatwg.org/#dom-textencoder
+
+----
+instance.encoding : String
+
+Returns the encoding method. Currently only **'utf-8'** is supported.
+
+<example>
+const encoder = new TextEncoder();
+console.log(encoder.encoding);
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://encoding.spec.whatwg.org/#dom-textencoder-encoding
+
+----
+prototype.encode(value = '' : String) : Uint8Array
+
+Converts **value** into a sequence of UTF-8 bytes.
+
+<example>
+const encoder = new TextEncoder();
+console.log(encoder.encode('abc'));
+console.log(encoder.encode('😀🐱⚽️'));
+</example>
+
+Spec:
+https://encoding.spec.whatwg.org/#dom-textencoder-encode
+
+----
+prototype.encodeInto(value : String, destination : Uint8Array) : { \
+    read : Number /* The number of UTF-16 characters read from **value**. */, \ 
+    written : Number /* The number of bytes written to **destination**. \
+  }
+
+Writes **value** as a sequence of UTF-8 bytes into **destination**. Returns
+information about the number of characters tread from **value** and bytes
+written to **destination**.
+
+<example>
+const encoder = new TextEncoder();
+const buffer = new Uint8Array(20);
+console.dir(encoder.encodeInto('😀🐱⚽️', buffer));
+console.log(buffer);
+</example>
+
+Spec:
+https://encoding.spec.whatwg.org/#dom-textencoder-encodeinto

@@ -1,6 +1,6 @@
 String : Object
 
-Strings contain text.  They are represented as a sequence of characters.
+Strings contain text.  They are represented as a sequence of UTF-16 characters.
 JavaScript strings are immutable.
 
 Primitive:
@@ -88,6 +88,8 @@ prototype.charCodeAt(pos : Number) : Number
 Returns the unicode value of the character at position **pos**.  Use 
 %%#fromCharCode|**String.fromCharCode()**%% to generate a string from character code values.
 
+See also %%/TextEncoder|TextEncoder%%.
+
 <example>
 console.log('abc'.charCodeAt(2));
 </example>
@@ -104,6 +106,8 @@ value at **pos**.
 Use 
 %%#fromCodePoint|**String.fromCodePoint()**%% to generate a string from 
 code points.
+
+See also %%/TextEncoder|TextEncoder%%.
 
 <example>
 console.log('abc'.codePointAt(2));
@@ -845,7 +849,7 @@ Returns a new string composed of characters from the specified UTF-16 values.
 Each code should be between 0 and 0xFFFF inclusive.
 Use %%#charCodeAt|**charCodeAt()**%% to retrieve character codes from strings.
 
-See also %%#fromCodePoint|**fromCodePoint()**%%.
+See also %%#fromCodePoint|**fromCodePoint()**%% and %%/TextDecoder|TextDecoder%%.
 
 <example>
 console.log(String.fromCharCode(97, 98, 99));
@@ -863,7 +867,7 @@ Each code point should be between 0 and 0x10FFFF inclusive.
 
 Use %%#codePointAt|**codePointAt()**%% to retrievecodes from strings.
 
-See also %%#fromCharCode|**fromCharCode()**%%.
+See also %%#fromCharCode|**fromCharCode()**%% and %%/TextDecoder|TextDecoder%%.
 
 <example>
 console.log(String.fromCharCode(0xD83D, 0xDE00));
