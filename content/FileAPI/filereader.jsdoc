@@ -72,7 +72,6 @@ See also %%/Blob#text|Blob.text()%%.
 
 <htmlexample>
 <input type='file' accept='text/plain' onchange='openFile(event)'><br>
-<img id='output'>
 <script>
   var openFile = function(event) {
     var input = event.target;
