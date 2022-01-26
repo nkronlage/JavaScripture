@@ -52,7 +52,7 @@ https://encoding.spec.whatwg.org/#dom-textencoder-encode
 ----
 prototype.encodeInto(value : String, destination : Uint8Array) : { \
     read : Number /* The number of UTF-16 characters read from **value**. */, \ 
-    written : Number /* The number of bytes written to **destination**. \
+    written : Number /* The number of bytes written to **destination**. */ \
   }
 
 Writes **value** as a sequence of UTF-8 bytes into **destination**. Returns
