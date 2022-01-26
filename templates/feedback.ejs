@@ -27,12 +27,13 @@ please use the following form to contact us directly.
   </script>
 
   <h3>Comment</h3> 
-  <textarea name='message' rows='6' cols='50' maxlength='500' autofocus></textarea>
+  <textarea name="message" rows="6" cols="50" maxlength="500" autofocus></textarea>
   
   <h3>Your Email (optional)</h3> 
-  <input name='email' type='text' />
+  <input name="email" type="text" />
   
-  <input type='submit' value='Submit'/>
+  <input type="submit" value="Submit"/>
+  <span id="sending" style="visibility: hidden">Sending...</span>
 </form>
 <style>
   input[name=subject] {
@@ -45,11 +46,17 @@ var submitForm = function(e) {
   e.preventDefault();
 
   var form = e.target;
+  var submitInput = form.querySelector('input[type=submit]');
+  submitInput.disabled = true;
+  var sendingSpan = form.querySelector('#sending');
+  sendingSpan.style.visibility = 'visible';
   var request = new XMLHttpRequest();
-  request.open(form.method, form.action, /* async = */ false);
+  request.open(form.method, form.action);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.onreadystatechange = function() {
     if (request.readyState === 4) {
+      submitInput.disabled = false;
+      sendingSpan.style.visibility = 'hidden';
       if (request.status === 200) {
         location = "/thankyou";
       }
