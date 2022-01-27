@@ -474,6 +474,39 @@ var escapeHTML = function(s) {
   });
 }
 
+var getErrorMessage = function(error, fromUnhandledRejection) {
+  var message = fromUnhandledRejection ? 'Promise rejected: ' : '';
+
+  if (error.stack) {
+    // Replace blob url with 'example'
+    var stack = error.stack.replace(/blob:https?:\/\/.*?\/[^:]*/g, 'example')
+
+    // FireFox/Safari style error
+    if (/@/.test(stack)) {
+      // Strip asyncFunctionResume added by Safari
+      console.log('here', JSON.stringify(stack));
+      stack = stack.replace(/\s*asyncFunctionResume.*\n.*/g, '');
+      // Indent
+      stack = stack.replace(/^/gm, '    ');
+      // Prepend name/message
+      message += error.name + ': ' + error.message + '\n' + stack;
+    }
+    else {
+      message += stack;
+    }
+  }
+  else if (error.name) {
+    message += error.name + ': ' + error.message;
+  }
+  else {
+    message += String(error);
+  }
+  if (error.cause) {
+    message += '\nCaused by: ' + getErrorMessage(error.cause);
+  }
+  return message;
+}
+
 var lastRun;
 var recordRun = function(prop) {
   if (!init && lastRun !== prop) {
@@ -576,15 +609,15 @@ var executeExample = function(example, prop) {
       }
     };
 
-    iframe.contentWindow.javascriptureReportError = function(error) {
-      errormessage.innerHTML = escapeHTML(error);
+    iframe.contentWindow.javascriptureReportError = function(error, fromUnhandledRejection) {
+      errormessage.innerHTML = getErrorMessage(error, fromUnhandledRejection);
       errormessage.style.display = 'block';
     };
 
     doc.writeln('<!DOCTYPE html>');
     doc.writeln('<script>');
-    doc.writeln('window.onerror=function(err) { javascriptureReportError(err); };');
-    doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
+    doc.writeln('window.onerror=function(msg, file, line, column, err) { javascriptureReportError(err || msg); };');
+    doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError(evt.reason, true); evt.preventDefault(); };');
     doc.writeln('</script>');
 
     var scriptBody;
@@ -666,15 +699,15 @@ var executeHTMLExample = function(example, prop) {
 
     errormessage.style.display = 'none';
 
-    iframe.contentWindow.javascriptureReportError = function(error) {
-      errormessage.innerHTML = escapeHTML(error);
+    iframe.contentWindow.javascriptureReportError = function(error, fromUnhandledRejection) {
+      errormessage.innerHTML = getErrorMessage(error, fromUnhandledRejection);
       errormessage.style.display = 'block';
     };
 
     doc.writeln('<!DOCTYPE html>');
     doc.writeln('<script>');
-    doc.writeln('window.onerror=function(err) { javascriptureReportError(err); };');
-    doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError("Promise rejected: " + evt.reason); evt.preventDefault(); };');
+    doc.writeln('window.onerror=function(msg, file, line, column, err) { javascriptureReportError(err || msg); };');
+    doc.writeln('window.onunhandledrejection=function(evt) { javascriptureReportError(evt.reason, true); evt.preventDefault(); };');
     doc.writeln('</script>');
     doc.writeln(code.value);
     doc.close();

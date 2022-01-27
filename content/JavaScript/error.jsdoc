@@ -24,6 +24,14 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.1.1
 
 ----
+Error(message : String, options : Object) : Error
+
+Same as %%#new_Error_String_Object|**new Error(message, options)**%%.
+
+Spec:
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-error-constructor
+
+----
 new Error(message : String) : Error
 
 Creates a new **Error** with the specified **message** that describes the error.
@@ -37,7 +45,7 @@ var divide = function(x, y) {
 };
 
 try {
-  console.log(divide(10, 0)); 
+  console.log(divide(10, 0));
 }
 catch (error) {
   console.log(error.name);
@@ -49,21 +57,42 @@ Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.2.1
 
 ----
-prototype.name : String
+new Error(message : String, options : { cause : Error }) : Error
 
-The type of error.
+Creates a new **Error** with the specified **message** that describes the error and
+original **cause** of the error.
 
 <example>
+var validateNumber = function(x) {
+  if (typeof x !== 'number') {
+    throw Error(x + ' is not a number');
+  }
+  return x;
+};
+
+var multiply = function(x, y) {
+  try {
+    return validateNumber(x) * validateNumber(y);
+  }
+  catch(e) {
+    throw Error('Unable to multiply', { cause: e });
+  }
+};
+
 try {
-  foo; 
+  console.log(multiply(3, 'abc'));
 }
 catch (error) {
-  console.log(error.name);
+  console.log(error);
+  console.log('Cause:', error.cause);
 }
 </example>
 
 Spec:
-http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4.2
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-error-constructor
+
+Version:
+ECMAScript 2022
 
 ----
 prototype.message : String
@@ -72,7 +101,7 @@ A human readable message that describes the error.
 
 <example>
 try {
-  foo; 
+  foo;
 }
 catch (error) {
   console.log(error.message);
@@ -82,3 +111,19 @@ catch (error) {
 Spec:
 http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4.3
 
+----
+prototype.name : String
+
+The type of error.
+
+<example>
+try {
+  foo;
+}
+catch (error) {
+  console.log(error.name);
+}
+</example>
+
+Spec:
+http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4.2
