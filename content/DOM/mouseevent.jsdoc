@@ -683,10 +683,9 @@ Returns **true** if the the **modifierKey** is pressed or active.
 **'NumLock'**,
 **'ScrollLock'**,
 **'Shift'**,
-**'SymbolLock'**, 
 or 
-**'OS'**.
+**'SymbolLock'**.
 
 Spec:
-http://www.w3.org/TR/DOM-Level-3-Events/#widl-MouseEvent-getModifierState
+https://w3c.github.io/uievents/#dom-mouseevent-getmodifierstate
 

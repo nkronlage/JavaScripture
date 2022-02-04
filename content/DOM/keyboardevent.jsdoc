@@ -1,11 +1,52 @@
 KeyboardEvent : UIEvent
 
-%%https://w3c.github.io/uievents/tools/key-event-viewer.html|Keyboard Event Demo%%
+Event containing information about key presses.
+See %%https://w3c.github.io/uievents/tools/key-event-viewer.html|Keyboard Event Demo%%.
+
+Spec:
+https://w3c.github.io/uievents/#interface-keyboardevent
+
+----
+new KeyboardEvent( \
+  type : String,  \
+  [eventInit : { \
+     key : String, \
+     code : String, \
+     location : Number, \
+     repeat : Boolean, \
+     isComposing : Boolean, \
+     ctrlKey : Boolean, \
+     shiftKey : Boolean, \
+     altKey : Boolean, \
+     metaKey : Boolean, \
+     modifierAltGraph : Boolean, \
+     modifierCapsLock : Boolean, \
+     modifierFn : Boolean, \
+     modifierFnLock : Boolean, \
+     modifierHyper : Boolean, \
+     modifierNumLock : Boolean, \
+     modifierScrollLock : Boolean, \
+     modifierSuper : Boolean, \
+     modifierSymbol : Boolean, \
+     modifierSymbolLock : Boolean, \
+     view : Window, \
+     detail : Number, \
+     bubbles : Boolean, \
+     cancelable: Boolean, \
+     composed : Boolean, \
+  }]) : MouseEvent
+
+Creates a new KeyboardEvent of the specified **type** and initial properties.
+
+Spec:
+http://www.w3.org/TR/DOM-Level-3-Events/#idl-interface-MouseEvent-initializers
+
 
 ----
 instance.altKey : Boolean
 
 Returns **true** if the keyboard's alt (Option on Mac) key is pressed.
+See also %%#getModifierState|**getModifierState()**%%.
 
 <htmlexample>
 <input id='input'>
@@ -53,6 +94,7 @@ true
 instance.ctrlKey : Boolean
 
 Returns **true** if the keyboard's control key is pressed.
+See also %%#getModifierState|**getModifierState()**%%.
 
 <htmlexample>
 <input id='input'>
@@ -70,6 +112,57 @@ Returns **true** if the keyboard's control key is pressed.
 ReadOnly:
 true
 
+----
+instance.code : String
+
+<htmlexample>
+<input id='input'>
+<div>key: <span id='keyOutput'></span></div>
+<div>code: <span id='codeOutput'></span></div>
+<script>
+  var input = document.getElementById('input');
+  var keyOutput = document.getElementById('keyOutput');
+  var codeOutput = document.getElementById('codeOutput');
+
+  input.onkeydown = function(event) {
+    keyOutput.textContent = event.key;
+    codeOutput.textContent = event.code;
+    event.preventDefault();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/uievents/#dom-keyboardevent-code
+
+----
+instance.key : String
+
+<htmlexample>
+<input id='input'>
+<div>key: <span id='keyOutput'></span></div>
+<div>code: <span id='codeOutput'></span></div>
+<script>
+  var input = document.getElementById('input');
+  var keyOutput = document.getElementById('keyOutput');
+  var codeOutput = document.getElementById('codeOutput');
+
+  input.onkeydown = function(event) {
+    keyOutput.textContent = event.key;
+    codeOutput.textContent = event.code;
+    event.preventDefault();
+  };
+</script>
+</htmlexample>
+
+ReadOnly:
+true
+
+Spec:
+https://w3c.github.io/uievents/#dom-keyboardevent-key
 
 ----
 instance.keyCode : Number
@@ -131,6 +224,7 @@ instance.metaKey : Boolean
 
 Returns **true** if the keyboard's meta (Command on Mac, the Windows logo key in
 some PC browsers) key is pressed.
+See also %%#getModifierState|**getModifierState()**%%.
 
 <htmlexample>
 <input id='input'>
@@ -173,6 +267,7 @@ true
 instance.shiftKey : Boolean
 
 Returns **true** if the keyboard's shift key is pressed.
+See also %%#getModifierState|**getModifierState()**%%.
 
 <htmlexample>
 <input id='input'>
@@ -214,7 +309,25 @@ instance.which : Number
 ReadOnly:
 true
 
+----
+prototype.getModifierState(modifierKey : String) : Boolean
 
+Returns **true** if the the **modifierKey** is pressed or active.
+**modifierKey** must be one of
+**'Alt'**,
+**'AltGraph'**,
+**'CapsLock'**,
+**'Control'**,
+**'Fn'**,
+**'Meta'**,
+**'NumLock'**,
+**'ScrollLock'**,
+**'Shift'**,
+or
+**'SymbolLock'**.
+
+Spec:
+https://w3c.github.io/uievents/#dom-keyboardevent-getmodifierstate
 
 ----
 DOM_KEY_LOCATION_STANDARD : Number
