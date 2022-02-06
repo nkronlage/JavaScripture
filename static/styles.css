@@ -397,7 +397,7 @@ h1.declaration {
   padding: 0.5em;
   font-family: Menlo, consolas, monospace;
   font-size: 0.8em;
-  white-space: pre;
+  white-space: pre-wrap;
   box-shadow: 2px 2px 5px -1px rgba(102, 92, 48, 0.8); }
 
 .errormessage {
