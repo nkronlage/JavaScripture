@@ -689,6 +689,7 @@ http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.13
 random() : Number
 
 Returns a random number between **0** (inclusive) and **1** (exclusive). 
+See also %%/Crypto#getRandomValues|crypto.getRandomValues()%%.
 
 <example>
 console.log(Math.random());

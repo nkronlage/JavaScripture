@@ -27,7 +27,7 @@ Fills **values** with randomly generated integers.
 %%Uint16Array|**Uint16Array**%%,
 %%Uint32Array|**Uint32Array**%%.
 
-Returns **values**.
+Returns **values**. See also %%/Math#random|Math.random()%%.
 
 
 <example>
