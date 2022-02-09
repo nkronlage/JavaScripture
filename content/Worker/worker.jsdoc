@@ -123,7 +123,7 @@ The message passed to **postMessage** is in **event.data**.
 </htmlexample>
 
 ----
-event.error : listener(event : Event) : undefined
+event.error : listener(event : ErrorEvent) : undefined
 
 Fires when an error occurs in the worker.
 

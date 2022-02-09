@@ -174,6 +174,42 @@ message through the %%/Worker#onmessage|**onmessage**%% event.
 </htmlexample>
 
 ----
+prototype.reportError(error : Object) : undefined
+
+Fires the %%#onerror|error%% event with the specified **error**. Unlike **throw error**,
+this will always cause the error event to fire, even if there is a **catch** handler
+around the call.
+
+<htmlexample>
+<script id='code' type='text/plain'>
+  self.onerror = function(message, source, line, column) {
+    postMessage(message);
+    postMessage(source);
+    postMessage(line);
+    postMessage(column);
+    postMessage('');
+  };
+
+  try {
+    reportError(Error('reportedException'));
+    throw Error('handledException');
+  }
+  catch {}
+
+  throw Error('unhandledException');
+</script>
+<script>
+  var code = document.getElementById('code').textContent;
+  var blob = new Blob([code], { type: 'application/javascript' });
+  var url = URL.createObjectURL(blob);
+  var worker = new Worker(url);
+  worker.onmessage = function(e) {
+    console.log(e.data);
+  };
+</script>
+</htmlexample>
+
+----
 event.message : listener(event : Event) : undefined
 
 Called when %%/Worker#postMessage|**Worker.postMessage()**%% is called.
@@ -202,9 +238,9 @@ Called when %%/Worker#postMessage|**Worker.postMessage()**%% is called.
 </htmlexample>
 
 ----
-event.error : listener(error : String) : undefined
+event.error : listener(error : String, source : String, line : Number, column : Number) : undefined
 
-Fired when there is an error in the worker.
+Fired when there is an error in the worker. See also %%#reportError|reportError()%%.
 
 <htmlexample>
 <script id='code' type='text/plain'>

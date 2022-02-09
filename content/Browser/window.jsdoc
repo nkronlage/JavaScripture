@@ -1558,6 +1558,37 @@ See also %%/BroadcastChannel|BroadcastChannel%% and %%/MessageChannel|MessageCha
 </htmlexample>
 
 ----
+prototype.reportError(error : Object) : undefined
+
+Fires the %%#onerror|error%% event with the specified **error**. Unlike **throw error**,
+this will always cause the error event to fire, even if there is a **catch** handler
+around the call.
+
+<htmlexample>
+<script>
+window.onerror = function(message, source, line, column, error) {
+  console.log(message);
+  console.log(source);
+  console.log(line);
+  console.log(column);
+  console.log(error);
+};
+
+try {
+  reportError(Error('reportedException'));
+  console.log('');
+  throw Error('handledException');
+}
+catch {}
+
+throw Error('unhandledException');
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#runtime-script-errors
+
+----
 prototype.structuredClone(value : Object, [transfer : Array<Transferable>]) : Object
 
 Creates a deep clone of **value**. Elements of **value** in **transfer** will be
@@ -1662,7 +1693,30 @@ event.emptied : listener(event : Event) : undefined
 event.ended : listener(event : Event) : undefined
 
 ----
-event.error : listener(event : Event, source : String, line : Number, column : Number) : undefined
+event.error : listener(message : string, source : String, line : Number, column : Number, error : Object) : undefined
+
+Fired when an unhandled exception is thrown or an error is passed to %%#reportError|reportError()%%.
+
+<htmlexample>
+<script>
+window.onerror = function(message, source, line, column, error) {
+  console.log(message);
+  console.log(source);
+  console.log(line);
+  console.log(column);
+  console.log(error);
+};
+
+try {
+  reportError(Error('reportedException'));
+  console.log('');
+  throw Error('handledException');
+}
+catch {}
+
+throw Error('unhandledException');
+</script>
+</htmlexample>
 
 ----
 event.focus : listener(event : Event) : undefined
