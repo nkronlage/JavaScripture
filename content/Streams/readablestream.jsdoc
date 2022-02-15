@@ -9,7 +9,31 @@ AsyncIterable:
 true
 
 ----
-new ReadableStream([underlyingSource : Object, [strategy : Object]]) : ReadableStream
+new ReadableStream([underlyingSource : { \
+    start: Function, \
+    pull: Funtion, \
+    cancel: Function, \
+    type: String, \
+    autoAllocateChunkSize : Number, \
+  }, [strategy : Object]]) : ReadableStream
+
+<example>
+const stream = new ReadableStream({
+  start(controller) {
+    controller.enqueue('a');
+    controller.enqueue('b');
+    controller.enqueue('c');
+    controller.close();
+  }
+});
+
+const reader = stream.getReader();
+let result;
+while (!(result = await reader.read()).done) {
+  console.log('chunk size:', result.value);
+}
+console.log('done');
+</example>
 
 Spec:
 https://streams.spec.whatwg.org/#rs-constructor

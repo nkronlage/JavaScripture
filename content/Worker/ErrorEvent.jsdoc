@@ -1,0 +1,63 @@
+ErrorEvent : Event
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#errorevent
+
+
+----
+new ErrorEvent(type : String, [options : { \
+    message : String, \
+    filename : String, \ 
+    lineno : Number, \
+    colno : Number, \
+    error : Object \
+  }]) : ErrorEvent
+
+Spec:
+https://dom.spec.whatwg.org/#concept-event-constructor
+
+----
+instance.message : String
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#dom-errorevent-message
+
+----
+instance.filename : String
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#dom-errorevent-filename
+
+----
+instance.lineno : Number
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#dom-errorevent-lineno
+
+----
+instance.colno : Number
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#dom-errorevent-colno
+
+----
+instance.error : Object
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/webappapis.html#dom-errorevent-error
+

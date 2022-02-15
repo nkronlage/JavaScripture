@@ -1,0 +1,21 @@
+ReadableStreamDefaultController : Object
+
+Spec:
+https://streams.spec.whatwg.org/#readablestreamdefaultcontroller
+
+----
+instance.desiredSize : Number
+
+ReadOnly:
+true
+
+----
+prototype.close() : undefined
+
+
+----
+prototype.enqueue([chunk : Object]) : undefined
+
+----
+prototype.error([e : Object]) : undefined
+
