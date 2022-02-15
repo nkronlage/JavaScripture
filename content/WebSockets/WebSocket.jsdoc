@@ -1,6 +1,7 @@
 WebSocket : EventTarget
 
 WebSockets are a persistent connection to a server that allows sending and receiving data.
+See also %%/EventSource|EventSource%%.
 
 Spec:
 https://html.spec.whatwg.org/multipage/web-sockets.html#the-websocket-interface

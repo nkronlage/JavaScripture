@@ -1,0 +1,162 @@
+EventSource : EventTarget
+
+EventSource allows listening to events pushed from the server. Similar to a
+%%/WebSocket|WebSocket%% except it is a one way connection.
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface
+
+----
+new EventSource(url : String, [init: { \
+    withCredentials : Boolean, \
+  }]) : EventSource
+
+Creates an EventSource.
+
+<htmlexample>
+<form>
+  <label>message: <textarea name="message">my message</textarea></label><br>
+  <label>event: <input name="event" type="checkbox"></label><br>
+  <input type="submit">
+</form>
+
+<script>
+  const guid = [...crypto.getRandomValues(new Uint32Array(4))].map(x => x.toString(16).padStart(2, '0')).join('');
+  const echoUrl = `https://sse-echo.javascripture.com/?g=${guid}`;
+
+  const eventSource = new EventSource(echoUrl);
+  eventSource.onmessage = (event) => {
+    console.log('message data:', event.data);
+  }
+
+  eventSource.addEventListener('my-event', (event) => {
+    console.log('event data:', event.data);
+  });
+
+  // Send a message to the server that it echos back to eventSource
+  const form = document.querySelector('form');
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    let url = echoUrl;
+    if (form.event.checked) {
+      url += '&event=my-event';
+    }
+    await fetch(url , { method: 'POST', body: form.message.value });
+  };
+</script>
+</htmlexample>
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource
+
+----
+instance.url : String
+
+The url **this** is connected to.
+
+<example>
+const guid = [...crypto.getRandomValues(new Uint32Array(4))].map(x => x.toString(16).padStart(2, '0')).join('');
+const echoUrl = `https://sse-echo.javascripture.com/?g=${guid}`;
+const eventSource = new EventSource(echoUrl);
+console.log(eventSource.url);
+</example>
+
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-url
+
+---
+instance.withCredentials : Boolean
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-withcredentials
+
+----
+instance.readyState : Number
+
+The current connection state. Will be one of %%#CONNECTING|CONNECTING%%, %%#OPEN|OPEN%%,
+or %%#CLOSED|CLOSED%%.
+
+<example>
+const guid = [...crypto.getRandomValues(new Uint32Array(4))].map(x => x.toString(16).padStart(2, '0')).join('');
+const echoUrl = `https://sse-echo.javascripture.com/?g=${guid}`;
+
+const names = new Map([
+  [EventSource.CONNECTING, 'CONNECTING'],
+  [EventSource.OPEN, 'OPEN'],
+  [EventSource.CLOSED, 'CLOSED']]);
+
+const eventSource = new EventSource(echoUrl);
+console.log('after construction. readyState:', names.get(eventSource.readyState));
+
+eventSource.onopen = (event) => {
+  console.log('in onopen. readyState:', names.get(eventSource.readyState));
+
+  eventSource.close();
+  console.log('after close. readyState:', names.get(eventSource.readyState));
+};
+</example>
+
+ReadOnly:
+true
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-readystate
+
+
+----
+protype.close() : undefined
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-close
+
+----
+event.open : listener(event : Event) : undefined
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#handler-eventsource-onopen
+
+----
+event.message : listener(event : MessageEvent) : undefined
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#handler-eventsource-onmessage
+
+----
+event.error : listener(event : ErrorEvent) : undefined
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#handler-eventsource-onerror
+
+----
+CONNECTING : Number
+
+Value:
+0
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-connecting
+
+----
+OPEN : Number
+
+Value:
+1
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-open
+
+----
+CLOSED : Number
+
+Value:
+2
+
+Spec:
+https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-closed
