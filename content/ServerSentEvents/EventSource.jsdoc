@@ -111,7 +111,7 @@ https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-r
 
 
 ----
-protype.close() : undefined
+prototype.close() : undefined
 
 Spec:
 https://html.spec.whatwg.org/multipage/server-sent-events.html#dom-eventsource-close
