@@ -643,16 +643,16 @@ prototype.slice(startIndex : Number, [endIndex : Number]) : String
 
 Returns a new string composed of the section of **this** between **start** and
 **end-1**.
-If **endIndex** is not specified, **this.length** is used instead.  If 
-**startIndex** or **endIndex** is negative, **this.length** is added to it before performing
-the substring. Similar to %%#substring|**substring()**%%.
+If **endIndex** is not specified, **this.length** is used instead. If
+**startIndex** or **endIndex** is negative, **this.length** is added to it before
+performing the substring. See also %%#substring|**substring()**%%.
 
 <example>
 var x = 'abcde';
 console.log(x.slice(2));
-console.log(x.slice(-2));
+console.log(x.slice(-2)); // start becomes 0
 console.log(x.slice(2, 4));
-console.log(x.slice(2, -1));
+console.log(x.slice(2, -1)); // end becomes 0, start/end swap
 console.log(x); // x is unchanged
 </example>
 
@@ -718,11 +718,9 @@ Returns a new string composed of the section of **this** between **start** and
 Before performing the operation, **substring** may modifiy the effective values
 of **start** and **end** as follows.  If both **start** and **end** are 
 specified, and **end** is less than **start**, the values are swapped.
-If **start** is less than **0**, it is replaced with **0**.
-If **end** is negative, **this.length** is added to it before performing
-the substring.
+If either **start** or **end** is less than **0**, it is replaced with **0**.
 If **end** is not specified, **this.length** is used instead.  
- Similar to %%#slice|**slice()**%%.
+See also %%#slice|**slice()**%%.
 
 <example>
 var x = 'abcde';
