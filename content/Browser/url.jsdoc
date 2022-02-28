@@ -17,16 +17,16 @@ Creates a new **URL** object for the provided **url**.
 <example>
 const url = new URL('http://user:pass@example.com:8080/resource/path?q=1#hash');
 
-console.log(url.href);
-console.log(url.protocol);
-console.log(url.username);
-console.log(url.password);
-console.log(url.host);
-console.log(url.hostname);
-console.log(url.port);
-console.log(url.pathname);
-console.log(url.search);
-console.log(url.hash);
+console.log('href:', url.href);
+console.log('protocol:', url.protocol);
+console.log('username:', url.username);
+console.log('password:', url.password);
+console.log('host:', url.host);
+console.log('hostname:', url.hostname);
+console.log('port:', url.port);
+console.log('pathname:', url.pathname);
+console.log('search:', url.search);
+console.log('hash:', url.hash);
 </example>
 
 Spec:
@@ -41,16 +41,16 @@ Creates a new **URL** for the **relativeUrl** using **base** as the base url.
 const url = new URL('../other?q=2#hash2',
                     'http://user:pass@example.com:8080/res/path/file?q=1#hash');
 
-console.log(url.href);
-console.log(url.protocol);
-console.log(url.username);
-console.log(url.password);
-console.log(url.host);
-console.log(url.hostname);
-console.log(url.port);
-console.log(url.pathname);
-console.log(url.search);
-console.log(url.hash);
+console.log('href:', url.href);
+console.log('protocol:', url.protocol);
+console.log('username:', url.username);
+console.log('password:', url.password);
+console.log('host:', url.host);
+console.log('hostname:', url.hostname);
+console.log('port:', url.port);
+console.log('pathname:', url.pathname);
+console.log('search:', url.search);
+console.log('hash:', url.hash);
 </example>
 
 Spec:
