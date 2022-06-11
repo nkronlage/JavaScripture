@@ -55,7 +55,7 @@ Spec:
 https://streams.spec.whatwg.org/#default-writer-release-lock
 
 ----
-prototype.write([chunk : Object]) : Promise<undefined>
+prototype.write(chunk : Object) : Promise<undefined>
 
 Spec:
 https://streams.spec.whatwg.org/#default-writer-write

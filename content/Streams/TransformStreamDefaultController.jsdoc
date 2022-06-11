@@ -1,0 +1,32 @@
+TransformStreamDefaultController : Object
+
+
+Spec:
+https://streams.spec.whatwg.org/#ts-default-controller-class
+
+----
+instance.desiredSize : Number
+
+ReadOnly:
+true
+
+Spec:
+https://streams.spec.whatwg.org/#ts-default-controller-desired-size
+
+----
+prototype.enqueue(chunk : Object) : undefined
+
+Spec:
+https://streams.spec.whatwg.org/#ts-default-controller-enqueue
+
+----
+prototype.error(reason : Object) : undefined
+
+Spec:
+https://streams.spec.whatwg.org/#ts-default-controller-error
+
+----
+prototype.terminate() : undefined
+
+Spec:
+https://streams.spec.whatwg.org/#ts-default-controller-terminate

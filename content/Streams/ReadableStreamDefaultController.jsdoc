@@ -1,4 +1,6 @@
-ReadableStreamDefaultController : Object
+ReadableStreamDefaultController : ReadableStreamController
+
+Controls a %%/ReadableStream|ReadableStream's%% state and queue.
 
 Spec:
 https://streams.spec.whatwg.org/#readablestreamdefaultcontroller
@@ -12,10 +14,50 @@ true
 ----
 prototype.close() : undefined
 
+Causes the owning stream to close.
+
+<example>
+// Create a stream of strings.
+const stringStream = new ReadableStream({
+  start(controller) {
+    controller.enqueue('a');
+    controller.enqueue('b');
+    controller.close();
+  }
+});
+
+const reader = stringStream.getReader();
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+console.log('done');
+</example>
 
 ----
-prototype.enqueue([chunk : Object]) : undefined
+prototype.enqueue(chunk : Object) : undefined
+
+Causes the owning stream to return **chunk**.
+
+<example>
+// Create a stream of strings.
+const stringStream = new ReadableStream({
+  start(controller) {
+    ['a', 'b', 'c'].forEach(s => controller.enqueue(s));
+    controller.close();
+  }
+});
+
+const reader = stringStream.getReader();
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#rs-default-controller-enqueue
 
 ----
-prototype.error([e : Object]) : undefined
+prototype.error(reason : Object) : undefined
 

@@ -1,10 +1,34 @@
 WritableStream : Object
 
+Represents a writable stream of data.
+
 Spec:
-https://streams.spec.whatwg.org/#writablestream
+https://streams.spec.whatwg.org/#ws-class
 
 ----
-new WritableStream([underlyingSink : Object, [strategy : Object]]) : WritableStream
+new WritableStream([sink : WritableStreamSink, [strategy : QueuingStrategy]]) : WritableStream
+
+Creates a new WritableStream.
+
+<example>
+const stream = new WritableStream({
+  start() {
+    console.log('start');
+  },
+  write(chunk) {
+    console.log('chunk:', chunk);
+  },
+  close() {
+    console.log('close');
+  }
+});
+
+const writer = stream.getWriter();
+writer.write('a');
+writer.write('b');
+writer.write('c');
+writer.close();
+</example>
 
 Spec:
 https://streams.spec.whatwg.org/#ws-constructor

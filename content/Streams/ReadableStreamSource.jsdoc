@@ -1,0 +1,99 @@
+ReadableStreamSource : Object
+
+Object that provides the sequence of values for a %%/ReadableStream|ReadableStream%%.
+Passed to the %%/ReadableStream|ReadableStream%% constructor. Any JavaScript object
+can be used as a readable stream source. Any of the properties/method can be specified.
+If a property/method is not provided, the ReadableStream will use a default behavior 
+for the property/method.
+
+Spec:
+https://streams.spec.whatwg.org/#dictdef-underlyingsource
+
+----
+instance.start(controller : ReadableStreamController) : Object
+
+<example>
+// Create a stream of strings.
+const stringStream = new ReadableStream({
+  start(controller) {
+    ['a', 'b', 'c'].forEach(s => controller.enqueue(s));
+  }
+});
+
+const reader = stringStream.getReader();
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsource-start
+
+----
+instance.pull(controller : ReadableStreamController) : Promise<undefined>
+
+Called each time the stream's internal queue drops below the
+%%/QueuingStrategy#highWaterMark|high water mark%%, indicating **this** should 
+enqueue more chunks.
+
+<example>
+const stringStream = new ReadableStream({
+  i: 1,
+  pull(controller) {
+    console.log('pull', controller.desiredSize);
+    while (controller.desiredSize > 0) {
+      controller.enqueue(`chunk_${this.i++}`);
+    }
+    if (this.i > 5) controller.close();
+  }
+}, new CountQueuingStrategy({ highWaterMark: 2 }));
+
+const reader = stringStream.getReader();
+let result;
+while (!(result = await reader.read()).done) {
+  console.log('received:', result.value);
+}
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsource-pull
+
+----
+instance.cancel(reason : Object) : Promise<undefined>
+
+Called when the stream has been canceled, either by %%/ReadableStream#cancel|ReadableStream.cancel()%% or
+%%ReadableStreamDefaultReader#cancel|Reader.cancel()%%, with **reason** as the value
+passed to that function.
+
+<example>
+const stringStream = new ReadableStream({
+  start(controller) {
+    controller.enqueue('a');
+    controller.enqueue('b');
+    controller.close();
+  },
+  cancel(reason) {
+    console.log(`cancel reason: ${reason}`);
+  }
+});
+
+const reader = stringStream.getReader();
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+  reader.cancel('xyz');
+}
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsource-pull
+
+----
+instance.type : String
+
+If set to **'bytes'**, the ReadableStream will be a readable byte stream.
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsource-type

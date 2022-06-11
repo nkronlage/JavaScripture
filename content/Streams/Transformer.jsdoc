@@ -1,0 +1,56 @@
+Transformer : Object
+
+Passed to the %%/TransformStream|TransformStream%% constructor. Any JavaScript object
+can be used as a Transformer. Any of the properties can be specified. If a property
+is not provided, the TransformStream will use a default behavior for the property.
+
+Spec:
+https://streams.spec.whatwg.org/#transformer-api
+
+----
+instance.start(controller : TransformStreamDefaultController) : Object
+
+<example>
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-transformer-start
+
+----
+instance.transform(chunk: Object, controller : TransformStreamDefaultController) : Promise<undefined>
+
+<example>
+// Create a stream of strings.
+const stringStream = new ReadableStream({
+  start(controller) {
+    ['a', 'b', 'c'].forEach(s => controller.enqueue(s));
+    controller.close();
+  }
+});
+
+// Transform the stream into upper case.
+const upperCaseStream = stringStream.pipeThrough(new TransformStream({
+  transform(chunk, controller) {
+    controller.enqueue(chunk.toUpperCase());
+  }
+}));
+
+const reader = upperCaseStream.getReader();
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-transformer-transform
+
+----
+instance.flush(controller : TransformStreamDefaultController) : Promise<undefined>
+
+<example>
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-transformer-flush
+

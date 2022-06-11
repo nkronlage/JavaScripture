@@ -1,0 +1,118 @@
+WritableStreamSink : Object
+
+Object that receives the sequence of values for a %%/WritableStream|WritableStream%%.
+Passed to the %%/WritableStream|WritableStream%% constructor. Any JavaScript object
+can be used as a writable stream sink. Any of the properties/method can be specified.
+If a property/method is not provided, the WritableStream will use a default behavior 
+for the property/method.
+
+Spec:
+https://streams.spec.whatwg.org/#underlying-sink-api
+
+----
+instance.start(controller : WritableStreamDefaultController) : Object
+
+Called when **this** is passed to a %%/WritableStream|WritableStream%% constructor.
+
+<example>
+const stream = new WritableStream({
+  start() {
+    console.log('start');
+  },
+  write(chunk) {
+    console.log('chunk:', chunk);
+  },
+  close() {
+    console.log('close');
+  }
+});
+
+const writer = stream.getWriter();
+writer.write('a');
+writer.write('b');
+writer.write('c');
+writer.close();
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsink-start
+
+----
+instance.write(chunk: Object, controller : WritableStreamDefaultController) : Promise<undefined>
+
+Called each time a chunk is written to the stream.
+
+<example>
+const stream = new WritableStream({
+  write(chunk) {
+    console.log('chunk:', chunk);
+  }
+});
+
+const writer = stream.getWriter();
+writer.write('a');
+writer.write('b');
+writer.write('c');
+writer.close();
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsink-write
+
+----
+instance.close() : Promise<undefined>
+
+Called when the writer is closed.
+
+<example>
+const stream = new WritableStream({
+  start() {
+    console.log('start');
+  },
+  write(chunk) {
+    console.log('chunk:', chunk);
+  },
+  close() {
+    console.log('close');
+  }
+});
+
+const writer = stream.getWriter();
+writer.write('a');
+writer.write('b');
+writer.write('c');
+writer.close();
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsink-close
+
+----
+instance.abort(reason : Object) : Promise<undefined>
+
+Called when the stream is aborted.
+
+<example>
+const stream = new WritableStream({
+  start() {
+    console.log('start');
+  },
+  write(chunk) {
+    console.log('chunk:', chunk);
+  },
+  close() {
+    console.log('close');
+  },
+  abort(reason) {
+    console.log('abort:', reason);
+  }
+});
+
+const writer = stream.getWriter();
+await writer.write('a');
+await writer.write('b');
+await writer.abort('Abort Reason');
+</example>
+
+Spec:
+https://streams.spec.whatwg.org/#dom-underlyingsink-abort

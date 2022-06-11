@@ -1,0 +1,17 @@
+QueuingStrategy : Object
+
+Spec:
+https://streams.spec.whatwg.org/#qs
+
+
+----
+instance.highWaterMark : Number
+
+Spec:
+https://streams.spec.whatwg.org/#dom-queuingstrategy-highwatermark
+
+----
+instance.size(chunk : Object) : Number
+
+Spec:
+https://streams.spec.whatwg.org/#dom-queuingstrategy-size

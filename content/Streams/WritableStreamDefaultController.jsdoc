@@ -1,0 +1,20 @@
+WritableStreamDefaultController : Object
+
+Spec:
+https://streams.spec.whatwg.org/#ws-default-controller-class
+
+----
+instance.signal : AbortSignal
+
+ReadOnly:
+true
+
+Spec:
+https://streams.spec.whatwg.org/#ws-default-controller-signal
+
+----
+prototype.error([e : Object]) : undefined
+
+
+Spec:
+https://streams.spec.whatwg.org/#ws-default-controller-error

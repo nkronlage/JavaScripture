@@ -9,11 +9,56 @@ new ReadableStreamDefaultReader(stream : ReadableStream) : ReadableStreamDefault
 ----
 instance.closed : Promise<undefined>
 
+A promise that resolves when the stream closes.
+
+<example>
+const stringStream = new ReadableStream({
+  start(controller) {
+    controller.enqueue('a');
+    controller.enqueue('b');
+    controller.close();
+  }
+});
+
+const reader = stringStream.getReader();
+reader.closed.then(() => console.log('reader closed'));
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+console.log('done');
+</example>
+
 ReadOnly:
 true
 
 ----
 prototype.cancel([reason : Object]) : Promise<undefined>
+
+Causes the stream to cancel and stop producing new chunks. Causes the 
+UnderlyingSource's %%/UnderlyingSource#cancel|cancel%% method to be called.
+
+<example>
+const stringStream = new ReadableStream({
+  start(controller) {
+    controller.enqueue('a');
+    controller.enqueue('b');
+    controller.close();
+  },
+  cancel(reason) {
+    console.log(`cancel reason: ${reason}`);
+  }
+});
+
+const reader = stringStream.getReader();
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+  reader.cancel('xyz');
+}
+</example>
 
 ----
 prototype.read() : Promise
@@ -23,3 +68,24 @@ Promise return type:
 
 ----
 prototype.releaseLock() : undefined;
+
+Release the lock on the ReadableStream so another reader can read from the stream.
+
+<example>
+const stringStream = new ReadableStream({
+  start(controller) {
+    controller.enqueue('a');
+    controller.enqueue('b');
+    controller.close();
+  }
+});
+
+const reader1 = stringStream.getReader();
+const result1 = await reader1.read();
+console.log(result1.value);
+reader1.releaseLock();
+
+const reader2 = new ReadableStreamDefaultReader(stringStream);
+const result2 = await reader2.read();
+console.log(result2.value);
+</example>

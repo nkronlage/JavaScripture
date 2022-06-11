@@ -1,0 +1,6 @@
+ReadableStreamByteController : ReadableStreamController
+
+Spec:
+https://streams.spec.whatwg.org/#readablebytestreamcontroller
+
+

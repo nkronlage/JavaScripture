@@ -1,0 +1,37 @@
+TransformStream : Object
+
+Spec:
+https://streams.spec.whatwg.org/#ts-class
+
+----
+new TransformStream([transformer: Transformer, [writableStrategy: QueuingStrategy, [readableStrategy: QueuingStrategy]]]) : TransformStream
+
+<example>
+const reader = new ReadableStream({
+  start(controller) {
+    ['a', 'b', 'c'].forEach(s => controller.enqueue(s));
+    controller.close();
+  }
+}).pipeThrough(new TransformStream({
+  transform(chunk, controller) {
+    controller.enqueue(chunk.toUpperCase());
+  }
+})).getReader();
+
+let result;
+while (!(result = await reader.read()).done) {
+  console.log(result.value);
+}
+</example>
+
+----
+instance.readable : ReadableStream
+
+ReadOnly:
+true
+
+----
+instance.writable : ReadableStream
+
+ReadOnly:
+true
