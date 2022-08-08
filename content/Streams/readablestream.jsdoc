@@ -1,6 +1,8 @@
 ReadableStream : Object
 
-Represents a readable stream of data.
+Represents a readable stream of data. The stream can be read using the
+%%#getReader|ReadableStreamReader%% or by %%#pipeTo|piping to%% a
+%%/WritableStream|WritableStream%%.
 
 Spec:
 https://streams.spec.whatwg.org/#rs-class-definition
