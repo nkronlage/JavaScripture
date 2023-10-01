@@ -83,7 +83,7 @@ Also schedules **onFinally** to be called when the promise has been either resol
 or rejected.
 
 <example>
-var promise = new Promise((reject, resolve) => {
+var promise = new Promise((resolve, reject) => {
   let x = Math.random();
   if (x < 0.5) {
     resolve(x);
